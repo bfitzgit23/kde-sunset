@@ -41,7 +41,7 @@ CDEPEND="
 	>=media-libs/libpgf-6.12.27
 	media-libs/libpng:0=
 	media-libs/opencv:=[contrib(+),-qt5]
-	media-libs/phonon[qt4]
+	media-libs/phonon:0-qt4
 	>=media-libs/tiff-3.8.2:0
 	virtual/jpeg:0
 	x11-libs/libX11
