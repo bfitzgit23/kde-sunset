@@ -2,9 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python2_7 )
 
-inherit toolchain-funcs cmake-utils python-single-r1 java-pkg-opt-2 java-ant-2
+inherit toolchain-funcs cmake-utils java-pkg-opt-2 java-ant-2
 
 DESCRIPTION="A collection of algorithms and sample code for various computer vision problems"
 HOMEPAGE="https://opencv.org"
@@ -12,11 +11,9 @@ HOMEPAGE="https://opencv.org"
 SRC_URI="https://github.com/Itseez/opencv/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="BSD"
-SLOT="0/2.4"
+SLOT="2.4"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux"
-IUSE="cuda +eigen examples ffmpeg gstreamer gtk ieee1394 jpeg opencl openexr opengl openmp pch png +python qt5 testprograms threads tiff v4l vtk xine"
-
-REQUIRED_USE="python? ( ${PYTHON_REQUIRED_USE} )"
+IUSE="cuda +eigen examples ffmpeg gstreamer gtk ieee1394 jpeg opencl openexr opengl openmp pch png qt5 testprograms threads tiff v4l vtk xine"
 
 # The following logic is intrinsic in the build system, but we do not enforce
 # it on the useflags since this just blocks emerging pointlessly:
@@ -48,15 +45,6 @@ RDEPEND="
 	openexr? ( media-libs/openexr )
 	opengl? ( virtual/opengl virtual/glu )
 	png? ( media-libs/libpng:0= )
-	python? (
-		${PYTHON_DEPS}
-		$(python_gen_cond_dep '
-			|| (
-				dev-python/numpy-python2[${PYTHON_MULTI_USEDEP}]
-				dev-python/numpy[${PYTHON_MULTI_USEDEP}]
-			)
-		')
-	)
 	qt5? (
 		dev-qt/qtconcurrent:5
 		dev-qt/qtcore:5
@@ -82,6 +70,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-2.4.2-cflags.patch"
 	"${FILESDIR}/${PN}-2.4.8-javamagic.patch"
 	"${FILESDIR}/${PN}-2.4.9-cuda-pkg-config.patch"
+	"${FILESDIR}/${PN}-2.4.13-sysctl.patch"
 	"${FILESDIR}/${PN}-3.0.0-gles.patch"
 	"${FILESDIR}/${P}-gcc-6.0.patch"
 	"${FILESDIR}/${P}-imgcodecs-refactoring.patch" #bug 627958
@@ -89,7 +78,6 @@ PATCHES=(
 
 pkg_setup() {
 	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
-	use python && python-single-r1_pkg_setup
 	java-pkg-opt-2_pkg_setup
 }
 
@@ -205,11 +193,7 @@ src_configure() {
 		mycmakeargs+=( -DWITH_CUFFT=OFF )
 	fi
 
-	if use examples && use python; then
-		mycmakeargs+=( -DINSTALL_PYTHON_EXAMPLES=ON )
-	else
-		mycmakeargs+=( -DINSTALL_PYTHON_EXAMPLES=OFF )
-	fi
+	mycmakeargs+=( -DINSTALL_PYTHON_EXAMPLES=OFF )
 
 	# things we want to be hard off or not yet figured out
 	mycmakeargs+=(
@@ -227,4 +211,9 @@ src_configure() {
 	tc-export CC CXX
 
 	cmake-utils_src_configure
+}
+
+src_install () {
+	cmake-utils_src_install
+	rm -f "${ED%/}"/usr/$(get_libdir)/*so
 }
