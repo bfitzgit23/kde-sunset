@@ -22,3 +22,16 @@ DEPEND=">=media-libs/opencv-2.4.9 <media-libs/opencv-3.0.0"
 RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/${MY_P}/extra/${PN}
+
+PATCHES=(
+	"${FILESDIR}/libkface-4.12.0-opencv.patch" # force opencv-2.4.13
+)
+
+src_configure() {
+	# LQR = only allows to choose between bundled/external
+	local mycmakeargs=(
+		-DENABLE_OPENCV3=no
+	)
+
+	kde4-base_src_configure
+}
