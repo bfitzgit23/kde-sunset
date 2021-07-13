@@ -29,6 +29,7 @@ CDEPEND="
 	kde-apps/kdebase-kioslaves:4
 	kde-apps/libkdcraw:4=
 	kde-apps/libkexiv2:4=
+	kde-apps/libkface:4=
 	kde-apps/libkgeomap:4=
 	kde-apps/libkipi:4
 	kde-apps/kcmshell:4
@@ -40,7 +41,7 @@ CDEPEND="
 	media-libs/liblqr
 	>=media-libs/libpgf-6.12.27
 	media-libs/libpng:0=
-	media-libs/opencv:=[contrib(+),-qt5]
+	media-libs/opencv:2.4[contrib(+),-qt5]
 	media-libs/phonon:0-qt4
 	>=media-libs/tiff-3.8.2:0
 	virtual/jpeg:0
@@ -69,6 +70,7 @@ RESTRICT=test
 
 PATCHES=(
 	"${FILESDIR}/${PN}-4.14.0-lensfun.patch" # bug 566624
+	"${FILESDIR}/${PN}-4.14.0-opencv.patch" # force opencv-2.4.13
 	"${FILESDIR}/${PN}-libpgf-7.patch"
 )
 
@@ -106,7 +108,7 @@ src_configure() {
 		-DENABLE_LCMS2=ON
 		-DWITH_LQR=ON
 		-DWITH_LENSFUN=ON
-		-DENABLE_OPENCV3=$(has_version ">=media-libs/opencv-3" && echo yes || echo no)
+		-DENABLE_OPENCV3=no
 		$(cmake-utils_use_enable addressbook KDEPIMLIBSSUPPORT)
 		$(cmake-utils_use_enable debug DEBUG_MESSAGES)
 		$(cmake-utils_use_enable gphoto2 GPHOTO2)

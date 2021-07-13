@@ -1,0 +1,12 @@
+diff --git a/core/CMakeLists.txt b/core/CMakeLists.txt
+index 25db22e..22dfcd6 100644
+--- a/core/CMakeLists.txt
++++ b/core/CMakeLists.txt
+@@ -120,6 +120,7 @@ find_package(PkgConfig)
+ find_package(Jasper)
+ find_package(Eigen3)
+ find_package(Boost)
++find_package(OpenCV  "2.4.13")
+ 
+ # -- check OpenCV --------------------------------------------------------------------------------
+ 
