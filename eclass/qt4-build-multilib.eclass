@@ -9,10 +9,10 @@
 # @BLURB: Eclass for Qt4 split ebuilds with multilib support.
 # @DESCRIPTION:
 # This eclass contains various functions that are used when building Qt4.
-# Requires EAPI 5.
+# Requires EAPI 6.
 
 case ${EAPI} in
-	5)	: ;;
+	6)	: ;;
 	*)	die "qt4-build-multilib.eclass: unsupported EAPI=${EAPI:-0}" ;;
 esac
 
@@ -291,7 +291,7 @@ qt4-build-multilib_src_prepare() {
 	epatch "${WORKDIR}/patch/CVE-2018-15518.patch"
 
 	[[ ${PATCHES[@]} ]] && epatch "${PATCHES[@]}"
-	epatch_user
+	eapply_user
 }
 
 qt4_multilib_src_configure() {
