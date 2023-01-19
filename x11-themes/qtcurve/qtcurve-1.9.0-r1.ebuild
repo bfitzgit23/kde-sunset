@@ -5,7 +5,7 @@ EAPI=7
 
 KFMIN=5.60.0
 QTMIN=5.12.3
-inherit cmake-utils kde.org
+inherit cmake-utils kde4.org
 
 DESCRIPTION="Widget styles for Qt and GTK2"
 HOMEPAGE="https://invent.kde.org/system/qtcurve"

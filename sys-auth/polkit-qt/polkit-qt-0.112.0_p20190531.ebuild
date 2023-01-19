@@ -5,7 +5,7 @@ EAPI=7
 
 COMMIT=55776dc9c51d7153c66402b257f7a0992f9d4ae5
 KDE_ORG_NAME="polkit-qt-1"
-inherit cmake kde.org
+inherit cmake kde4.org
 
 DESCRIPTION="Qt wrapper around polkit-1 client libraries"
 HOMEPAGE="https://api.kde.org/kdesupport-api/polkit-qt-1-apidocs/"
