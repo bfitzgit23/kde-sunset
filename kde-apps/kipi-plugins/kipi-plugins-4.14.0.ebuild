@@ -6,7 +6,7 @@
 # TODO: complete packaging of qtsoap and qtkoauth, see dilfridge overlay for work in progress
 #
 
-EAPI=5
+EAPI=6
 
 OPENGL_REQUIRED="optional"
 KDE_HANDBOOK="optional"
