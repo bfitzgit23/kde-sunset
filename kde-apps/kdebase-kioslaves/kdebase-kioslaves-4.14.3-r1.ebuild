@@ -39,6 +39,7 @@ KMEXTRA="
 PATCHES=(
 	"${FILESDIR}/${PN}-CVE-2014-8600.patch"
 	"${FILESDIR}/${P}-webkit.patch"
+	"${FILESDIR}/${P}-samba-4.10.patch"
 )
 
 src_configure() {
