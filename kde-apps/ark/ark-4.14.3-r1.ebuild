@@ -15,7 +15,7 @@ IUSE="+archive +bzip2 debug lzma"
 DEPEND="
 	$(add_kdeapps_dep libkonq)
 	sys-libs/zlib
-	archive? ( >=app-arch/libarchive-2.6.1:=[bzip2?,lzma?,zlib] )
+	archive? ( >=app-arch/libarchive-2.6.1:=[bzip2?,lzma?] )
 "
 RDEPEND="${DEPEND}"
 
