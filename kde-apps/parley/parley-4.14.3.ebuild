@@ -23,7 +23,7 @@ KMEXTRACTONLY="
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with plasma)
+		-DWITH_plasma="$(usex plasma)"
 	)
 
 	kde4-base_src_configure

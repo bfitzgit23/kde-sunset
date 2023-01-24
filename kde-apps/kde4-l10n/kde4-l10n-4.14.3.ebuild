@@ -145,7 +145,7 @@ kio_baloosearch,kio_tags,kio_timeline,plasma_runner_baloosearchrunner}.po
 
 src_configure() {
 	mycmakeargs=(
-		$(cmake-utils_use_build handbook docs)
+		-DBUILD_docs="$(usex handbook)"
 	)
 	[[ -n ${A} ]] && kde4-base_src_configure
 }

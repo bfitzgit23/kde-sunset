@@ -43,8 +43,8 @@ src_configure() {
 	local mycmakeargs=(
 		-DBUILD_TOOLS=OFF
 		-DBUILD_doc=$(usex handbook)
-		$(cmake-utils_use_find_package ldap Ldap)
-		$(cmake-utils_use_find_package prison Prison)
+		-DCMAKE_DISABLE_FIND_PACKAGE_Ldap="$(usex !ldap)"
+		-DCMAKE_DISABLE_FIND_PACKAGE_Prison="$(usex !prison)"
 	)
 
 	kde4-base_src_configure

@@ -23,7 +23,7 @@ DOCS=( ChangeLog README TODO )
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with taglib)
+		-DWITH_taglib="$(usex taglib)"
 	)
 
 	kde4-base_src_configure

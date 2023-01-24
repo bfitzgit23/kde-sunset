@@ -31,7 +31,7 @@ DEPEND="
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with kipi)
+		-DWITH_kipi="$(usex kipi)"
 	)
 	# Workaround for bug #479510
 	if [[ -e ${EPREFIX}/usr/include/${CHOST}/jconfig.h ]]; then

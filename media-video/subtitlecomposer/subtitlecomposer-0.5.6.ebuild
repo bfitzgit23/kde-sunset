@@ -28,8 +28,8 @@ DEPEND="${RDEPEND}
 src_configure() {
 	mycmakeargs=(
 		-DWITH_GStreamer=OFF
-		$(cmake-utils_use_with unicode ICU)
-		$(cmake-utils_use_with xine)
+		-DWITH_ICU="$(usex unicode)"
+		-DWITH_xine="$(usex xine)"
 	)
 	kde4-base_src_configure
 }

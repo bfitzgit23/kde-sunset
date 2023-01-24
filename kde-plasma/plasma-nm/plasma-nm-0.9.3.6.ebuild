@@ -40,8 +40,8 @@ PATCHES=( "${FILESDIR}/${P}-networkmanager-1.0.6.patch" )
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use !modemmanager DISABLE_MODEMMANAGER_SUPPORT)
-		$(cmake-utils_use_find_package openconnect OpenConnect)
+		-DDISABLE_MODEMMANAGER_SUPPORT="$(usex !modemmanager)"
+		-DCMAKE_DISABLE_FIND_PACKAGE_OpenConnect="$(usex !openconnect)"
 	)
 
 	kde4-base_src_configure

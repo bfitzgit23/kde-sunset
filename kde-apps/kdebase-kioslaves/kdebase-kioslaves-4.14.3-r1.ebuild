@@ -46,12 +46,12 @@ src_configure() {
 	local mycmakeargs=(
 		-DWITH_SLP=OFF
 		-DWITH_KDEWEBKIT=FALSE
-		$(cmake-utils_use_with bzip2 BZip2)
-		$(cmake-utils_use_with exif Exiv2)
-		$(cmake-utils_use_with lzma LibLZMA)
-		$(cmake-utils_use_with openexr OpenEXR)
-		$(cmake-utils_use_with samba)
-		$(cmake-utils_use_with sftp LibSSH)
+		-DWITH_BZip2="$(usex bzip2)"
+		-DWITH_Exiv2="$(usex exif)"
+		-DWITH_LibLZMA="$(usex lzma)"
+		-DWITH_OpenEXR="$(usex openexr)"
+		-DWITH_samba="$(usex samba)"
+		-DWITH_LibSSH="$(usex sftp)"
 	)
 	kde4-meta_src_configure
 }

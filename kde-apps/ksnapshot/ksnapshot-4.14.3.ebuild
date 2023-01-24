@@ -21,7 +21,7 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with kipi)
+		-DWITH_kipi="$(usex kipi)"
 	)
 
 	kde4-base_src_configure

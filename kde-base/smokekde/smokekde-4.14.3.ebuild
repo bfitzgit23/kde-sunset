@@ -24,11 +24,11 @@ src_configure() {
 		-DWITH_Nepomuk=OFF
 		-DWITH_Soprano=OFF
 		-DCMAKE_CXX_STANDARD=98
-		$(cmake-utils_use_with akonadi)
-		$(cmake-utils_use_with akonadi KdepimLibs)
-		$(cmake-utils_use_with attica LibAttica)
-		$(cmake-utils_use_disable kate)
-		$(cmake-utils_use_with okular)
+		-DWITH_akonadi="$(usex akonadi)"
+		-DWITH_KdepimLibs="$(usex akonadi)"
+		-DWITH_LibAttica="$(usex attica)"
+		-DDISABLE_kate="$(usex !kate)"
+		-DWITH_okular="$(usex okular)"
 	)
 	kde4-base_src_configure
 }

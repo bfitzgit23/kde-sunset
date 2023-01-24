@@ -83,12 +83,12 @@ src_configure() {
 		-DWITH_Soprano=OFF
 		-DWITH_Xmms=OFF
 		-DWITH_KDEWEBKIT=OFF
-		$(cmake-utils_use_with gps libgps)
-		$(cmake-utils_use_with json QJSON)
-		$(cmake-utils_use_with pim Akonadi)
-		$(cmake-utils_use_with pim KdepimLibs)
+		-DWITH_libgps="$(usex gps)"
+		-DWITH_QJSON="$(usex json)"
+		-DWITH_Akonadi="$(usex pim)"
+		-DWITH_KdepimLibs="$(usex pim)"
 		-DWITH_PythonLibs=OFF
-		$(cmake-utils_use_with qalculate)
+		-DWITH_qalculate="$(usex qalculate)"
 	)
 
 	kde4-meta_src_configure

@@ -24,7 +24,7 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_build tools qmake_parser)
+		-DBUILD_qmake_parser="$(usex tools)"
 	)
 	kde4-base_src_configure
 }

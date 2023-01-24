@@ -40,8 +40,8 @@ src_configure() {
 		"-DGRUB_CONFIG=/etc/default/grub"
 		"-DGRUB_ENV=/boot/grub/grubenv"
 		"-DGRUB_MEMTEST=/etc/grub.d/39_memtest86+"
-		$(cmake-utils_use_with imagemagick ImageMagick)
-		$(cmake-utils_use_with hwinfo HD)
+		-DWITH_ImageMagick="$(usex imagemagick)"
+		-DWITH_HD="$(usex hwinfo)"
 	)
 	cmake-utils_src_configure
 }

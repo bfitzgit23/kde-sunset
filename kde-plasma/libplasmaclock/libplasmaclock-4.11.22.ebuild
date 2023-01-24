@@ -25,7 +25,7 @@ KMEXTRACTONLY="
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with pim KdepimLibs)
+		-DWITH_KdepimLibs="$(usex pim)"
 	)
 
 	kde4-meta_src_configure

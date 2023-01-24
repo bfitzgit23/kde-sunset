@@ -30,11 +30,11 @@ RESTRICT="test"
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with analitza)
-		$(cmake-utils_use_with postscript LibSpectre)
+		-DWITH_analitza="$(usex analitza)"
+		-DWITH_LibSpectre="$(usex postscript)"
 		-DWITH_PythonLibs=OFF
-		$(cmake-utils_use_with qalculate)
-		$(cmake-utils_use_with R)
+		-DWITH_qalculate="$(usex qalculate)"
+		-DWITH_R="$(usex R)"
 	)
 	kde4-base_src_configure
 }

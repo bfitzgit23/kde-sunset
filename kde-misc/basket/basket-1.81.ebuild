@@ -25,7 +25,7 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_find_package crypt Gpgme)
+		-DCMAKE_DISABLE_FIND_PACKAGE_Gpgme="$(usex !crypt)"
 	)
 	kde4-base_src_configure
 }

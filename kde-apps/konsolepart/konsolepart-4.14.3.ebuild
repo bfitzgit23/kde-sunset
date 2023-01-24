@@ -43,7 +43,7 @@ src_prepare() {
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with "!minimal" LibKonq)
+		-DWITH_LibKonq="$(usex "!minimal")"
 	)
 
 	kde4-base_src_configure

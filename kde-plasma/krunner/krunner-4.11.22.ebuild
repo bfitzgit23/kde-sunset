@@ -41,7 +41,7 @@ KMLOADLIBS="libkworkspace"
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with opengl OpenGL)
+		-DWITH_OpenGL="$(usex opengl)"
 	)
 
 	kde4-meta_src_configure

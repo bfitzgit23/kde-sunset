@@ -82,7 +82,7 @@ src_prepare() {
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_find_package google LibKGAPI2)
+		-DCMAKE_DISABLE_FIND_PACKAGE_LibKGAPI2="$(usex !google)"
 	)
 
 	kde4-meta_src_configure

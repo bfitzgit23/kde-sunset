@@ -109,14 +109,14 @@ src_configure() {
 		-DWITH_LQR=ON
 		-DWITH_LENSFUN=ON
 		-DENABLE_OPENCV3=no
-		$(cmake-utils_use_enable addressbook KDEPIMLIBSSUPPORT)
-		$(cmake-utils_use_enable debug DEBUG_MESSAGES)
-		$(cmake-utils_use_enable gphoto2 GPHOTO2)
-		$(cmake-utils_use_with gphoto2)
-		$(cmake-utils_use_enable mysql INTERNALMYSQL)
-		$(cmake-utils_use_enable mysql MYSQLSUPPORT)
-		$(cmake-utils_use_enable semantic-desktop BALOOSUPPORT)
-		$(cmake-utils_use_enable thumbnails THUMBS_DB)
+		-DENABLE_KDEPIMLIBSSUPPORT="$(usex addressbook)"
+		-DENABLE_DEBUG_MESSAGES="$(usex debug)"
+		-DENABLE_GPHOTO2="$(usex gphoto2)"
+		-DWITH_gphoto2="$(usex gphoto2)"
+		-DENABLE_INTERNALMYSQL="$(usex mysql)"
+		-DENABLE_MYSQLSUPPORT="$(usex mysql)"
+		-DENABLE_BALOOSUPPORT="$(usex semantic-desktop)"
+		-DENABLE_THUMBS_DB="$(usex thumbnails)"
 	)
 
 	kde4-base_src_configure

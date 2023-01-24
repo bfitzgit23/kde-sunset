@@ -34,7 +34,7 @@ RDEPEND="${DEPEND}
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with openconnect)
+		-DWITH_openconnect="$(usex openconnect)"
 	)
 	kde4-base_src_configure
 }

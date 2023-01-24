@@ -109,7 +109,7 @@ src_configure() {
 		-DWITH_LiboRTP=OFF
 		-DWITH_Mediastreamer=OFF
 		-DWITH_Speex=OFF
-		$(cmake-utils_use_disable v4l VIDEOSUPPORT)
+		-DDISABLE_VIDEOSUPPORT="$(usex !v4l)"
 	)
 	# enable protocols
 	for x in ${PROTOCOLS}; do
@@ -118,14 +118,14 @@ src_configure() {
 			zeroconf) x2=bonjour ;;
 			*) x2='' ;;
 		esac
-		mycmakeargs+=($(cmake-utils_use_with ${x/+/} ${x2}))
+		mycmakeargs+=(-DWITH_${x2})="$(usex ${x/+/})"
 	done
 
 	mycmakeargs+=( -DWITH_libjingle=OFF -DWITH_Libmsn=OFF -DWITH_qq=OFF )
 
 	# enable plugins
 	for x in ${PLUGINS}; do
-		mycmakeargs+=($(cmake-utils_use_with ${x/+/}))
+		mycmakeargs+=(-DWITH_${x/+/})="$(usex ${x/+/}))"
 	done
 
 	kde4-base_src_configure

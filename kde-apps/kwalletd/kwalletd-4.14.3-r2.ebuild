@@ -29,8 +29,8 @@ PATCHES=(
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_find_package gpg Gpgme)
-		$(cmake-utils_use_find_package gpg QGpgme)
+		-DCMAKE_DISABLE_FIND_PACKAGE_Gpgme="$(usex !gpg)"
+		-DCMAKE_DISABLE_FIND_PACKAGE_QGpgme="$(usex !gpg)"
 	)
 
 	kde4-base_src_configure

@@ -23,7 +23,7 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with opengl OpenGL)
+		-DWITH_OpenGL="$(usex opengl)"
 	)
 
 	kde4-base_src_configure

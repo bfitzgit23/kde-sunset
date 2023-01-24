@@ -123,22 +123,22 @@ src_configure() {
 
 	mycmakeargs+=(
 		-DENABLE_OPENCV3=$(has_version ">=media-libs/opencv-3" && echo yes || echo no)
-		$(cmake-utils_use_with ipod GLIB2)
-		$(cmake-utils_use_with ipod GObject)
-		$(cmake-utils_use_with ipod Gdk)
-		$(cmake-utils_use_with ipod Gpod)
-		$(cmake-utils_use_with calendar KdepimLibs)
-		$(cmake-utils_use_with gpssync KGeoMap)
-		$(cmake-utils_use_with mediawiki Mediawiki)
-		$(cmake-utils_use_find_package redeyes OpenCV)
-		$(cmake-utils_use_with opengl OpenGL)
-		$(cmake-utils_use_with crypt QCA2)
-		$(cmake-utils_use_with scanner KSane)
-		$(cmake-utils_use_with upnp Hupnp)
-		$(cmake-utils_use_with vkontakte LibKVkontakte)
-		$(cmake-utils_use_with videoslideshow QtGStreamer)
-		$(cmake-utils_use_enable expoblending)
-		$(cmake-utils_use_enable panorama)
+		-DWITH_GLIB2="$(usex ipod)"
+		-DWITH_GObject="$(usex ipod)"
+		-DWITH_Gdk="$(usex ipod)"
+		-DWITH_Gpod="$(usex ipod)"
+		-DWITH_KdepimLibs="$(usex calendar)"
+		-DWITH_KGeoMap="$(usex gpssync)"
+		-DWITH_Mediawiki="$(usex mediawiki)"
+		-DCMAKE_DISABLE_FIND_PACKAGE_OpenCV="$(usex !redeyes)"
+		-DWITH_OpenGL="$(usex opengl)"
+		-DWITH_QCA2="$(usex crypt)"
+		-DWITH_KSane="$(usex scanner)"
+		-DWITH_Hupnp="$(usex upnp)"
+		-DWITH_LibKVkontakte="$(usex vkontakte)"
+		-DWITH_QtGStreamer="$(usex videoslideshow)"
+		-DENABLE_expoblending="$(usex expoblending)"
+		-DENABLE_panorama="$(usex panorama)"
 	)
 
 	kde4-base_src_configure

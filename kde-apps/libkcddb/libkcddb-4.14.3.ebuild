@@ -33,7 +33,7 @@ src_prepare() {
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with musicbrainz MusicBrainz5)
+		-DWITH_MusicBrainz5="$(usex musicbrainz)"
 	)
 
 	kde4-base_src_configure

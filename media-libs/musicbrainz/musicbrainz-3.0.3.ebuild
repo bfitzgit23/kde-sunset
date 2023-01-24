@@ -30,7 +30,7 @@ PATCHES=( "${FILESDIR}/${PN}-3.0.2-gcc44.patch" )
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_find_package test CppUnit)
+		-DCMAKE_DISABLE_FIND_PACKAGE_CppUnit="$(usex !test)"
 	)
 	cmake-utils_src_configure
 }

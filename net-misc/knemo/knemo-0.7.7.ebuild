@@ -30,7 +30,7 @@ DOCS=( AUTHORS ChangeLog README )
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_no wifi WIRELESS_SUPPORT)
+		-DNO_WIRELESS_SUPPORT="$(usex !wifi)"
 	)
 
 	kde4-base_src_configure

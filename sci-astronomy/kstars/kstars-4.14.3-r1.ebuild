@@ -33,8 +33,8 @@ src_configure() {
 	use ppc64 && append-flags -mminimal-toc
 
 	local mycmakeargs=(
-		$(cmake-utils_use_with fits CFitsio)
-		$(cmake-utils_use_with indi)
+		-DWITH_CFitsio="$(usex fits)"
+		-DWITH_indi="$(usex indi)"
 	)
 
 	kde4-base_src_configure

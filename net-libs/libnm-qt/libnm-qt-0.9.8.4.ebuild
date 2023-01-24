@@ -37,9 +37,9 @@ S=${WORKDIR}/networkmanager-qt-${PV}
 src_configure() {
 	local mycmakeargs=(
 		-DBUILD_EXAMPLES=OFF
-		$(cmake-utils_use_find_package doc Doxygen)
-		$(cmake-utils_use !modemmanager DISABLE_MODEMMANAGERQT)
-		$(cmake-utils_use !test DISABLE_TESTING)
+		-DCMAKE_DISABLE_FIND_PACKAGE_Doxygen="$(usex !doc)"
+		-DDISABLE_MODEMMANAGERQT="$(usex !modemmanager)"
+		-DDISABLE_TESTING="$(usex !test)"
 	)
 
 	kde4-base_src_configure

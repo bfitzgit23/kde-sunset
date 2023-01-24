@@ -38,18 +38,18 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with chm)
-		$(cmake-utils_use_with crypt QCA2)
-		$(cmake-utils_use_with djvu DjVuLibre)
-		$(cmake-utils_use_with dpi LibKScreen)
-		$(cmake-utils_use_with ebook EPub)
-		$(cmake-utils_use_with jpeg)
-		$(cmake-utils_use_with jpeg Kexiv2)
-		$(cmake-utils_use_with mobi QMobiPocket)
-		$(cmake-utils_use_with postscript LibSpectre)
-		$(cmake-utils_use_with pdf PopplerQt4)
-		$(cmake-utils_use_with pdf Poppler)
-		$(cmake-utils_use_with tiff)
+		-DWITH_chm="$(usex chm)"
+		-DWITH_QCA2="$(usex crypt)"
+		-DWITH_DjVuLibre="$(usex djvu)"
+		-DWITH_LibKScreen="$(usex dpi)"
+		-DWITH_EPub="$(usex ebook)"
+		-DWITH_jpeg="$(usex jpeg)"
+		-DWITH_Kexiv2="$(usex jpeg)"
+		-DWITH_QMobiPocket="$(usex mobi)"
+		-DWITH_LibSpectre="$(usex postscript)"
+		-DWITH_PopplerQt4="$(usex pdf)"
+		-DWITH_Poppler="$(usex pdf)"
+		-DWITH_tiff="$(usex tiff)"
 	)
 
 	kde4-base_src_configure
