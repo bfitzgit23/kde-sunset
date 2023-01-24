@@ -483,10 +483,10 @@ kde5_src_prepare() {
 		local l10npart=5
 		[[ ${PN} = kde4-l10n ]] && l10npart=4
 		# move known variant subdirs to root dir, currently sr@*
-		use_if_iuse l10n_sr-ijekavsk && _l10n_variant_subdir2root sr-ijekavsk sr
-		use_if_iuse l10n_sr-Latn-ijekavsk && _l10n_variant_subdir2root sr-Latn-ijekavsk sr
-		use_if_iuse l10n_sr-Latn && _l10n_variant_subdir2root sr-Latn sr
-		if use_if_iuse l10n_sr; then
+		in_iuse l10n_sr-ijekavsk && use l10n_sr-ijekavsk && _l10n_variant_subdir2root sr-ijekavsk sr
+		in_iuse l10n_sr-Latn-ijekavsk && use l10n_sr-Latn-ijekavsk && _l10n_variant_subdir2root sr-Latn-ijekavsk sr
+		in_iuse l10n_sr-Latn && use l10n_sr-Latn && _l10n_variant_subdir2root sr-Latn sr
+		if in_iuse l10n_sr && use l10n_sr; then
 			rm -rf kde-l10n-sr-${PV}/${l10npart}/sr/sr@* || die "Failed to cleanup L10N=sr"
 			_l10n_variant_subdir_buster sr
 		elif [[ -d kde-l10n-sr-${PV} ]]; then
@@ -518,12 +518,12 @@ kde5_src_prepare() {
 	cmake-utils_src_prepare
 
 	# only build examples when required
-	if ! use_if_iuse examples || ! use examples ; then
+	if ! in_iuse examples && use examples || ! use examples ; then
 		cmake_comment_add_subdirectory examples
 	fi
 
 	# only enable handbook when required
-	if ! use_if_iuse handbook ; then
+	if ! in_iuse handbook && use handbook ; then
 		cmake_comment_add_subdirectory ${KDE_DOC_DIR}
 
 		if [[ ${KDE_HANDBOOK} = forceoptional ]] ; then
@@ -575,7 +575,7 @@ kde5_src_prepare() {
 	fi
 
 	# only build unit tests when required
-	if ! use_if_iuse test ; then
+	if ! in_iuse test && use test ; then
 		if [[ ${KDE_TEST} = forceoptional ]] ; then
 			punt_bogus_dep Qt5 Test
 			# if forceoptional, also cover non-kde categories
@@ -602,13 +602,13 @@ kde5_src_configure() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	# we rely on cmake-utils.eclass to append -DNDEBUG too
-	if ! use_if_iuse debug; then
+	if ! in_iuse debug && use debug; then
 		append-cppflags -DQT_NO_DEBUG
 	fi
 
 	local cmakeargs
 
-	if ! use_if_iuse test ; then
+	if ! in_iuse test && use test ; then
 		cmakeargs+=( -DBUILD_TESTING=OFF )
 
 		if [[ ${KDE_TEST} = optional ]] ; then
@@ -616,11 +616,11 @@ kde5_src_configure() {
 		fi
 	fi
 
-	if ! use_if_iuse handbook && [[ ${KDE_HANDBOOK} = optional ]] ; then
+	if ! in_iuse handbook && use handbook && [[ ${KDE_HANDBOOK} = optional ]] ; then
 		cmakeargs+=( -DCMAKE_DISABLE_FIND_PACKAGE_KF5DocTools=ON )
 	fi
 
-	if ! use_if_iuse designer && [[ ${KDE_DESIGNERPLUGIN} != false ]] ; then
+	if ! in_iuse designer && use designer && [[ ${KDE_DESIGNERPLUGIN} != false ]] ; then
 		cmakeargs+=( -DCMAKE_DISABLE_FIND_PACKAGE_Qt5Designer=ON )
 	fi
 
