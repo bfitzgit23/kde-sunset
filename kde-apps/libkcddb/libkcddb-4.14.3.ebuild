@@ -26,7 +26,7 @@ src_prepare() {
 
 	if ! use handbook ; then
 		pushd kcmcddb > /dev/null
-		comment_add_subdirectory doc
+		cmake_comment_add_subdirectory doc
 		popd > /dev/null
 	fi
 }

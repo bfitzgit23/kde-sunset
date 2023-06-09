@@ -21,7 +21,7 @@ RDEPEND="$(add_kdeapps_dep konsolepart)"
 RESTRICT="test"
 
 src_prepare() {
-	comment_add_subdirectory data
+	cmake_comment_add_subdirectory data
 
 	kde4-base_src_prepare
 }

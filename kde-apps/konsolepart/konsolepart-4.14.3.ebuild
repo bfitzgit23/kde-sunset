@@ -36,7 +36,7 @@ RESTRICT="test"
 S="${WORKDIR}/${KMNAME}-${PV}"
 
 src_prepare() {
-	comment_add_subdirectory doc/manual
+	cmake_comment_add_subdirectory doc/manual
 
 	kde4-base_src_prepare
 }
