@@ -1,7 +1,7 @@
 diff --git libkdcraw/kdcraw_p.cpp libkdcraw/kdcraw_p.cpp
 index d6f5d00..76a7d42 100644
---- libkdcraw/kdcraw_p.cpp
-+++ libkdcraw/kdcraw_p.cpp
+--- a/libkdcraw/kdcraw_p.cpp
++++ b/libkdcraw/kdcraw_p.cpp
 @@ -371,6 +371,7 @@ bool KDcraw::Private::loadFromLibraw(const QString& filePath, QByteArray& imageD
              raw.imgdata.params.fbdd_noiserd = lround(m_parent->m_rawDecodingSettings.NRThreshold / 100.0);
              break;
@@ -52,8 +52,8 @@ index d6f5d00..76a7d42 100644
  
 diff --git libkdcraw/rawdecodingsettings.h libkdcraw/rawdecodingsettings.h
 index 01cc01b..ad7a664 100644
---- libkdcraw/rawdecodingsettings.h
-+++ libkdcraw/rawdecodingsettings.h
+--- a/libkdcraw/rawdecodingsettings.h
++++ b/libkdcraw/rawdecodingsettings.h
 @@ -50,8 +50,6 @@ class LIBKDCRAW_EXPORT RawDecodingSettings
  
      /** RAW decoding Interpolation methods

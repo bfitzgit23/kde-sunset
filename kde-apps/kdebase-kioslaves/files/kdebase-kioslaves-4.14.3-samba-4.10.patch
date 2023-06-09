@@ -1,7 +1,7 @@
 diff --git a/kdebase-kioslaves-4.14.3/kioslave/smb/kio_smb.h b/kdebase-kioslaves-4.14.3/kioslave/smb/kio_smb.h
 index c2229ab..53e4145 100644
---- a/kdebase-kioslaves-4.14.3/kioslave/smb/kio_smb.h
-+++ b/kdebase-kioslaves-4.14.3/kioslave/smb/kio_smb.h
+--- a/kioslave/smb/kio_smb.h
++++ b/kioslave/smb/kio_smb.h
 @@ -210,6 +210,10 @@ protected:
  
  public:
@@ -15,8 +15,8 @@ index c2229ab..53e4145 100644
      // global ::auth_smbc_get_data() call.
 diff --git a/kdebase-kioslaves-4.14.3/kioslave/smb/kio_smb_auth.cpp b/kdebase-kioslaves-4.14.3/kioslave/smb/kio_smb_auth.cpp
 index 4d236b4..5a5ef28 100644
---- a/kdebase-kioslaves-4.14.3/kioslave/smb/kio_smb_auth.cpp
-+++ b/kdebase-kioslaves-4.14.3/kioslave/smb/kio_smb_auth.cpp
+--- a/kioslave/smb/kio_smb_auth.cpp
++++ b/kioslave/smb/kio_smb_auth.cpp
 @@ -188,6 +188,11 @@ bool SMBSlave::auth_initialize_smbc()
  	    return false;
  	}
@@ -31,8 +31,8 @@ index 4d236b4..5a5ef28 100644
  	/* New libsmbclient interface of Samba 3.2 */
 diff --git a/kdebase-kioslaves-4.14.3/kioslave/smb/kio_smb_browse.cpp b/kdebase-kioslaves-4.14.3/kioslave/smb/kio_smb_browse.cpp
 index 5253be9..4cfa9cf 100644
---- a/kdebase-kioslaves-4.14.3/kioslave/smb/kio_smb_browse.cpp
-+++ b/kdebase-kioslaves-4.14.3/kioslave/smb/kio_smb_browse.cpp
+--- a/kioslave/smb/kio_smb_browse.cpp
++++ b/kioslave/smb/kio_smb_browse.cpp
 @@ -175,7 +175,18 @@ KUrl SMBSlave::checkURL(const KUrl& kurl) const
      QString surl = kurl.url();
      if (surl.startsWith(QLatin1String("smb:/"))) {
