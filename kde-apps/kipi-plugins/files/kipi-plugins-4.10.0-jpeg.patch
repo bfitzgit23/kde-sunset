@@ -1,6 +1,6 @@
-diff -u -r a/extra/kipi-plugins/common/libkipiplugins/tools/imageio/kpwriteimage.cpp b/extra/kipi-plugins/common/libkipiplugins/tools/imageio/kpwriteimage.cpp
---- a/extra/kipi-plugins/common/libkipiplugins/tools/imageio/kpwriteimage.cpp	2014-12-16 09:54:40.000000000 +0200
-+++ b/extra/kipi-plugins/common/libkipiplugins/tools/imageio/kpwriteimage.cpp	2014-12-24 20:46:51.471208340 +0200
+diff --git a/common/libkipiplugins/tools/imageio/kpwriteimage.cpp b/common/libkipiplugins/tools/imageio/kpwriteimage.cpp
+--- a/common/libkipiplugins/tools/imageio/kpwriteimage.cpp	2014-12-16 09:54:40.000000000 +0200
++++ b/common/libkipiplugins/tools/imageio/kpwriteimage.cpp	2014-12-24 20:46:51.471208340 +0200
 @@ -181,8 +181,8 @@
      cinfo.comp_info[2].v_samp_factor = 1;
  
@@ -12,9 +12,9 @@ diff -u -r a/extra/kipi-plugins/common/libkipiplugins/tools/imageio/kpwriteimage
  
      // Write ICC color profile.
      if (!d->iccProfile.isEmpty())
-diff -u -r a/extra/kipi-plugins/jpeglossless/transform/jpegtransform.cpp b/extra/kipi-plugins/jpeglossless/transform/jpegtransform.cpp
---- a/extra/kipi-plugins/jpeglossless/transform/jpegtransform.cpp	2014-12-16 09:54:40.000000000 +0200
-+++ b/extra/kipi-plugins/jpeglossless/transform/jpegtransform.cpp	2014-12-24 20:53:06.757881558 +0200
+diff --git a/jpeglossless/transform/jpegtransform.cpp b/jpeglossless/transform/jpegtransform.cpp
+--- a/jpeglossless/transform/jpegtransform.cpp	2014-12-16 09:54:40.000000000 +0200
++++ b/jpeglossless/transform/jpegtransform.cpp	2014-12-24 20:53:06.757881558 +0200
 @@ -197,10 +197,10 @@
      JCOPY_OPTION copyoption = JCOPYOPT_ALL;
      jpeg_transform_info transformoption;
