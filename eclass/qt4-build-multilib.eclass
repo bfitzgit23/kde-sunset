@@ -36,8 +36,7 @@ case ${PV} in
 		PATCHNAME="${MY_P}-patches-${PATCH_VERSION}"
 		SRC_URI="
 			http://download.qt.io/official_releases/qt/${PV%.*}/${PV}/${MY_P}.tar.gz
-			mirror://kde-sunset/${PATCHNAME}.tgz"
-		S=${WORKDIR}/${MY_P}
+		MY_P=qt-everywhere-opensource-src-${PV/_/-}		S=${WORKDIR}/${MY_P}
 		;;
 esac
 
@@ -57,6 +56,17 @@ DEPEND="
 	dev-lang/perl
 	virtual/pkgconfig
 "
+
+
+# src_{configure,compile,test,install} are inherited from multilib-minimal
+EXPORT_FUNCTIONS src_unpack src_prepare pkg_postinst pkg_postrm
+
+multilib_src_configure()	{ qt4_multilib_src_configure; }
+multilib_src_compile()		{ qt4_multilib_src_compile; }
+multilib_src_test()		{ qt4_multilib_src_test; }
+multilib_src_install()		{ qt4_multilib_src_install; }
+multilib_src_install_all()	{ qt4_multilib_src_install_all; }
+
 
 
 # src_{configure,compile,test,install} are inherited from multilib-minimal
@@ -172,7 +182,7 @@ qt4-build-multilib_src_prepare() {
 
 		# Bug 503500
 		# undefined reference with -Os and --as-needed
-		if use x86 || in_iuse abi_x86_32 && use abi_x86_32; then
+		if use x86 || use_if_iuse abi_x86_32; then
 			replace-flags -Os -O2
 		fi
 	fi
@@ -277,20 +287,7 @@ qt4-build-multilib_src_prepare() {
 	fi
 
 	# apply patches
-	# EPATCH_SOURCE="${WORKDIR}/patch" EPATCH_SUFFIX="patch" EPATCH_FORCE="yes" epatch
-
-	# patching individually
-	epatch "${WORKDIR}/patch/fix-build-icu59.patch"
-	epatch "${WORKDIR}/patch/qt4-openssl-1.1.patch"
-	# epatch "${WORKDIR}/patch/gcc9-qforeach.patch"
-	epatch "${WORKDIR}/patch/CVE-2018-19873.patch"
-	epatch "${WORKDIR}/patch/CVE-2018-19872.patch"
-	epatch "${WORKDIR}/patch/CVE-2018-19871.patch"
-	epatch "${WORKDIR}/patch/CVE-2018-19870.patch"
-	epatch "${WORKDIR}/patch/CVE-2018-19869.patch"
-	epatch "${WORKDIR}/patch/CVE-2018-15518.patch"
-
-	[[ ${PATCHES[@]} ]] && epatch "${PATCHES[@]}"
+	[[ ${PATCHES[@]} ]] && eapply "${PATCHES[@]}"
 	eapply_user
 }
 
