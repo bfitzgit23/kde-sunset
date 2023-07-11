@@ -10,7 +10,7 @@ if [[ ${QT4_BUILD_TYPE} == release ]]; then
 	KEYWORDS="amd64 ~arm ~hppa ~mips ~ppc ~ppc64 ~sparc x86"
 fi
 
-IUSE="+glib iconv libressl qt3support"
+IUSE="+glib iconv libressl qt3support ssl"
 
 DEPEND="
 	>=sys-libs/zlib-1.2.8-r1[${MULTILIB_USEDEP}]
