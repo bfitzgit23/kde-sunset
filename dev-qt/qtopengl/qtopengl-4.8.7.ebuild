@@ -27,7 +27,8 @@ QT4_TARGET_DIRECTORIES="
 
 QCONFIG_ADD="opengl"
 QCONFIG_DEFINE="QT_OPENGL"
-PATCHES=( "${FILESDIR}/${PN}-4.8.7-gcc9.patch" )
+PATCHES=( "${FILESDIR}/${PN}-4.8.7-gcc9.patch"
+"${FILESDIR}/fix_jit.patch" )
 
 multilib_src_configure() {
 	local myconf=(

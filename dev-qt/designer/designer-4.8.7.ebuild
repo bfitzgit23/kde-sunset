@@ -23,7 +23,8 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 PDEPEND="phonon? ( media-libs/phonon:0-qt4[designer] )"
-PATCHES=( "${FILESDIR}/${PN}-4.8.7-gcc9.patch" )
+PATCHES=( "${FILESDIR}/${PN}-4.8.7-gcc9.patch" 
+	  "${FILESDIR}/fix_jit.patch")
 
 QT4_TARGET_DIRECTORIES="tools/designer"
 

@@ -22,6 +22,7 @@ PATCHES=(
 #	"${FILESDIR}/${PN}-4.7-qdbusintegrator-no-const.patch"
 	"${FILESDIR}/${PN}-4.8.4-qdbusconnection-silence-warning.patch"
 	"${FILESDIR}/${PN}-4.8.7-gcc9.patch"
+	"${FILESDIR}/fix_jit.patch"
 )
 
 QT4_TARGET_DIRECTORIES="
