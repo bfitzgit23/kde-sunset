@@ -7,7 +7,7 @@ inherit cmake-utils
 
 DESCRIPTION="C++ template library for linear algebra"
 HOMEPAGE="http://eigen.tuxfamily.org/"
-SRC_URI="https://bitbucket.org/eigen/eigen/get/${PV}.tar.bz2 -> ${P}.tar.bz2"
+SRC_URI="https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/eigen2/2.0.17-1/eigen2_2.0.17.orig.tar.bz2 -> ${P}.tar.bz2"
 
 LICENSE="GPL-3"
 SLOT="2"
