@@ -262,8 +262,8 @@ qt4-build-multilib_src_prepare() {
 
 
 	# apply patches
-	[[ ${PATCHES[@]} ]] && eapply epatch "${PATCHES[@]}"
-	eapply_user epatch_user
+	[[ ${PATCHES[@]} ]] && eapply "${PATCHES[@]}"
+	eapply_user
 }
 
 qt4_multilib_src_configure() {
