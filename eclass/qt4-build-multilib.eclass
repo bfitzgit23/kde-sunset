@@ -267,7 +267,7 @@ qt4-build-multilib_src_prepare() {
 	# patching individually
 	epatch "${WORKDIR}/files/fix-build-icu59.patch"
 	epatch "${WORKDIR}/files/qt4-openssl-1.1.patch"
-	epatch -Np0 "${WORKDIR}/files/fix_jit.patch"
+	epatch "${WORKDIR}/files/fix_jit.patch"
 	epatch "${WORKDIR}/files/qtcore-4.8.7-gcc9.patch"
 
 	[[ ${PATCHES[@]} ]] && epatch "${PATCHES[@]}"
