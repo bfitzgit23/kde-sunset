@@ -25,7 +25,6 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 PATCHES=(
-	"${FILESDIR}/${PV}-gcc5.patch"
 	"${FILESDIR}/${PV}-use-correct-icu-typedef.patch"
 	"${FILESDIR}/${PV}-use-correct-icu-typedef-2.patch"
 	"${FILESDIR}/${PV}-macros-semicolon.patch"
