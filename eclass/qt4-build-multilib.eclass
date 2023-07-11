@@ -261,10 +261,6 @@ qt4-build-multilib_src_prepare() {
 		fi
 	fi
 
-	if [[ ${CHOST} == *-solaris* ]]; then
-		sed -i -e '/^QMAKE_LFLAGS_THREAD/a QMAKE_LFLAGS_DYNAMIC_LIST = -Wl,--dynamic-list,' \
-			mkspecs/$(qt4_get_mkspec)/qmake.conf || die
-	fi
 
 	# apply patches
 	[[ ${PATCHES[@]} ]] && eapply "${PATCHES[@]}"
