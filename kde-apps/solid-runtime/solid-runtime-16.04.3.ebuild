@@ -10,7 +10,7 @@ inherit kde4-meta
 DESCRIPTION="KDE SC solid runtime modules (autoeject, automounter and others)"
 HOMEPAGE="https://solid.kde.org"
 KEYWORDS="amd64 x86"
-IUSE="debug bluetooth networkmanager"
+IUSE="debug bluetooth"
 
 KMEXTRA="
 	solid-device-automounter/
@@ -23,7 +23,6 @@ KMEXTRA="
 DEPEND=""
 RDEPEND="${DEPEND}
 	bluetooth? ( || ( kde-plasma/bluedevil:4 kde-plasma/bluedevil:5 ) )
-	networkmanager? ( || ( kde-plasma/plasma-nm:4 kde-plasma/plasma-nm:5 ) )
 "
 
 PATCHES=( "${FILESDIR}/${PN}-4.14.3-networkmanager-1.0.6.patch" )
