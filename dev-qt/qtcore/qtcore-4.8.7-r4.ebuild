@@ -17,7 +17,7 @@ DEPEND="
 	glib? ( dev-libs/glib:2[${MULTILIB_USEDEP}] )
 	iconv? ( >=virtual/libiconv-0-r2[${MULTILIB_USEDEP}] )
 	ssl? (
-		!libressl? ( >=dev-libs/openssl-1.1:=[sslv3,${MULTILIB_USEDEP}] )
+		!libressl? ( >=dev-libs/openssl-1.1:=[${MULTILIB_USEDEP}] )
 		libressl? ( dev-libs/libressl:=[${MULTILIB_USEDEP}] )
 	)
 "
