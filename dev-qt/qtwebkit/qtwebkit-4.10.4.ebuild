@@ -56,6 +56,11 @@ S=${WORKDIR}
 PATCHES=(
 	"${FILESDIR}/${PV}-gcc5.patch"
 	"${FILESDIR}/${PV}-use-correct-icu-typedef.patch"
+	"${FILESDIR}/${PV}-use-correct-icu-typedef-2.patch"
+	"${FILESDIR}/${PV}-macros-semicolon.patch"
+	"${FILESDIR}/qtwebkit-bison-3.7.patch"
+	"${FILESDIR}/webkit-qtwebkit-23-gcc5.patch"
+	"${FILESDIR}/webkit-qtwebkit-23-glib2.patch"
 )
 
 src_prepare() {
