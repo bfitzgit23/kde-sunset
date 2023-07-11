@@ -740,9 +740,7 @@ qt4_get_mkspec() {
 	esac
 
 	# Add -64 for 64-bit prefix profiles
-	if use amd64-linux || use ppc64-linux ||
-		use x64-macos ||
-		use sparc64-solaris || use x64-solaris
+	if use amd64-linux
 	then
 		[[ -d ${S}/mkspecs/${spec}-64 ]] && spec+=-64
 	fi
