@@ -291,11 +291,6 @@ qt4_multilib_src_configure() {
 	local arch=$(tc-arch)
 	case ${arch} in
 		amd64|x64-*)	arch=x86_64 ;;
-		arm64|hppa)	arch=generic ;;
-		ppc*-macos)	arch=ppc ;;
-		ppc*)		arch=powerpc ;;
-		sparc*)		arch=sparc ;;
-		x86-macos)	arch=x86 ;;
 		x86*)		arch=i386 ;;
 	esac
 
