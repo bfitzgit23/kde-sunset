@@ -91,7 +91,7 @@ RDEPEND="
 		kde-plasma/qguiplatformplugin_kde:4
 		kde-plasma/solid-actions-kcm:4
 	)
-	wallpapers? ( kde-plasma/plasma-workspace-wallpapers:5 )
+	wallpapers? ( kde-apps/kde-wallpapers:4 )
 "
 
 KMEXTRACTONLY="
