@@ -12,7 +12,7 @@ DESCRIPTION="MathML-based graph calculator for KDE"
 HOMEPAGE="https://www.kde.org/applications/education/kalgebra
 https://edu.kde.org/kalgebra"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug"
+IUSE="debug opengl"
 
 DEPEND="
 	$(add_kdeapps_dep analitza opengl?)

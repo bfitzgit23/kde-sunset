@@ -6,7 +6,7 @@ EAPI=6
 KDEBASE="kdevelop"
 KMNAME="kdev-python"
 KDE_LINGUAS="bs ca ca@valencia de en_GB es et fi fr gl it nl pl pt pt_BR sk sl sv tr uk"
-PYTHON_COMPAT=( python2_7 )
+PYTHON_COMPAT=( python3_11 )
 MY_P="${KMNAME}-${PV}"
 inherit kde4-base python-any-r1
 
