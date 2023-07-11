@@ -7,7 +7,7 @@ if [[ ${PV} = *_pre* ]]; then
 	# KDE quickgit https certificate issue
 	# COMMIT_ID="18ed37d89b8185ac15a8bfe245de8a88d17f2c64"
 	# SRC_URI="https://quickgit.kde.org/?p=${PN}.git&a=snapshot&h=${COMMIT_ID}&fmt=tgz -> ${P}.tar.gz"
-	SRC_URI="https://dev.gentoo.org/~johu/distfiles/${P}.tar.gz"
+	SRC_URI="https://www.jabawok.net/mirror/gentoo/distfiles/${P}.tar.gz"
 	S="${WORKDIR}/${PN}"
 else
 	SRC_URI="mirror://kde/stable/${PN}/src/${P}.tar.bz2"
