@@ -29,7 +29,6 @@ RDEPEND="${DEPEND}
 	kde-apps/kdialog:*
 	kde-frameworks/kdelibs:4[bzip2?,lzma?]
 	virtual/ssh
-	!kernel_SunOS? ( virtual/eject )
 "
 
 KMEXTRA="
