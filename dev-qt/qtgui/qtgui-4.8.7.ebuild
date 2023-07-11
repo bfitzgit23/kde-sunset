@@ -111,13 +111,6 @@ pkg_setup() {
 			$(use xv && echo QT_XVIDEO)"
 }
 
-src_prepare() {
-	qt4-build-multilib_src_prepare
-
-	# Add -xvideo to the list of accepted configure options
-	sed -i -e 's:|-xinerama|:&-xvideo|:' configure || die
-}
-
 multilib_src_configure() {
 	local myconf=(
 		$(qt_use accessibility)

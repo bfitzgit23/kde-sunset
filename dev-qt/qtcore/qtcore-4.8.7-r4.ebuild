@@ -56,6 +56,7 @@ QT4_TARGET_DIRECTORIES="
 
 QCONFIG_DEFINE="QT_ZLIB"
 
+
 src_prepare() {
 	qt4-build-multilib_src_prepare
 
