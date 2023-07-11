@@ -7,7 +7,7 @@ inherit cmake-utils
 
 DESCRIPTION="C++ string template engine based on the Django template system"
 HOMEPAGE="https://github.com/steveire/grantlee"
-SRC_URI="https://mirrors.jabawok.net/gentoo/distfiles/${P}.tar.gz"
+SRC_URI="https://ftp.osuosl.org/pub/blfs/conglomeration/grantlee/grantlee-0.4.0.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
