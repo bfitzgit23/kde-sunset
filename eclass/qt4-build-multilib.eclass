@@ -271,7 +271,7 @@ qt4-build-multilib_src_prepare() {
 	epatch "${WORKDIR}/files/qtcore-4.8.7-gcc9.patch"
 
 	[[ ${PATCHES[@]} ]] && epatch "${PATCHES[@]}"
-	eapply_user
+	eapply_user && epatch_user
 }
 
 qt4_multilib_src_configure() {
