@@ -63,7 +63,6 @@ PATCHES=(
 	"${FILESDIR}/${PN}-4.8.5-disable-gtk-theme-check.patch" # bug 491226
 	"${FILESDIR}/${PN}-4.8.5-qclipboard-delay.patch" # bug 514968
 	"${FILESDIR}/${PN}-4.8.7-gcc9.patch"
-	"${FILESDIR}/fix_jit.patch"
 )
 
 QT4_TARGET_DIRECTORIES="
@@ -109,6 +108,13 @@ pkg_setup() {
 			$(use xinerama && echo QT_XINERAMA)
 			QT_XINPUT QT_XKB QT_XRANDR QT_XRENDER QT_XSYNC
 			$(use xv && echo QT_XVIDEO)"
+}
+
+src_prepare() {
+	qt4-build-multilib_src_prepare
+
+	# Add -xvideo to the list of accepted configure options
+	sed -i -e 's:|-xinerama|:&-xvideo|:' configure || die
 }
 
 multilib_src_configure() {
