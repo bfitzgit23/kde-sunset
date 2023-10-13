@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KDE_LINGUAS="ar bs ca ca@valencia cs da de el es et fa fi fr ga gl hu ia it
 ja kk km ko lt mr nb nds nl nn pl pt pt_BR ro ru se sk sl sr sr@ijekavian
@@ -34,7 +34,7 @@ RDEPEND="${DEPEND}
 
 src_configure() {
 	local mycmakeargs=(
-		-DWITH_openconnect="$(usex openconnect)"
+		$(cmake-utils_use_with openconnect)
 	)
 	kde4-base_src_configure
 }

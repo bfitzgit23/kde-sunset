@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KMNAME="kde-workspace"
 OPENGL_REQUIRED="optional"
@@ -41,7 +41,7 @@ KMLOADLIBS="libkworkspace"
 
 src_configure() {
 	local mycmakeargs=(
-		-DWITH_OpenGL="$(usex opengl)"
+		$(cmake-utils_use_with opengl OpenGL)
 	)
 
 	kde4-meta_src_configure

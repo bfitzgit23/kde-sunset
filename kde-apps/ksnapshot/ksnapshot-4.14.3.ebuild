@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KDE_HANDBOOK="optional"
 inherit kde4-base
@@ -21,7 +21,7 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-		-DWITH_kipi="$(usex kipi)"
+		$(cmake-utils_use_with kipi)
 	)
 
 	kde4-base_src_configure

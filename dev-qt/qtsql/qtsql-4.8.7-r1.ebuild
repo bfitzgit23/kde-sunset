@@ -1,7 +1,7 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=5
 
 inherit multilib qt4-build-multilib
 
@@ -33,9 +33,7 @@ QT4_TARGET_DIRECTORIES="
 	src/plugins/sqldrivers"
 
 PATCHES=( "${FILESDIR}/${P}-mysql-8.patch"
-          "${FILESDIR}/${PN}-4.8.7-gcc9.patch"
-	  "${FILESDIR}/fix_jit.patch" 	
-)
+          "${FILESDIR}/${PN}-4.8.7-gcc9.patch" )
 
 multilib_src_configure() {
 	local myconf=(

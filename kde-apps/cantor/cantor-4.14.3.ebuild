@@ -1,7 +1,7 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KDE_HANDBOOK="optional"
 inherit kde4-base
@@ -30,11 +30,11 @@ RESTRICT="test"
 
 src_configure() {
 	local mycmakeargs=(
-		-DWITH_analitza="$(usex analitza)"
-		-DWITH_LibSpectre="$(usex postscript)"
+		$(cmake-utils_use_with analitza)
+		$(cmake-utils_use_with postscript LibSpectre)
 		-DWITH_PythonLibs=OFF
-		-DWITH_qalculate="$(usex qalculate)"
-		-DWITH_R="$(usex R)"
+		$(cmake-utils_use_with qalculate)
+		$(cmake-utils_use_with R)
 	)
 	kde4-base_src_configure
 }

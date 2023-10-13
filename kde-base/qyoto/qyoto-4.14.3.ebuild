@@ -1,7 +1,7 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KDE_REQUIRED="never"
 inherit mono-env kde4-base
@@ -24,9 +24,9 @@ pkg_setup() {
 
 src_configure() {
 	local mycmakeargs=(
-		-DWITH_phonon="$(usex phonon)"
-		-DDISABLE_QScintilla="$(usex !qscintilla)"
-		-DDISABLE_QtWebKit="$(usex !webkit)"
+		$(cmake-utils_use_with phonon)
+		$(cmake-utils_use_disable qscintilla QScintilla)
+		$(cmake-utils_use_disable webkit QtWebKit)
 	)
 	kde4-base_src_configure
 }

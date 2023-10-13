@@ -1,7 +1,7 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 inherit kde4-base
 
@@ -14,7 +14,7 @@ RDEPEND=${DEPEND}
 
 src_configure() {
 	local mycmakeargs=(
-		-DWITH_speechd="$(usex speechd)"
+		$(cmake-utils_use_with speechd)
 	)
 	kde4-base_src_configure
 }

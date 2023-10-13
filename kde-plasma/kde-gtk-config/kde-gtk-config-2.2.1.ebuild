@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KDE_LINGUAS="bs ca ca@valencia cs da de el es et eu fi fr ga gl hu id it ja kk
 km lt mr nb nds nl pl pt pt_BR ro ru sk sl sv uk zh_CN zh_TW"
@@ -31,10 +31,7 @@ RDEPEND="
 	$(add_kdeapps_dep kcmshell)
 "
 
-PATCHES=(
-	"${FILESDIR}/${P}-kdelibs-4.14.11.patch"
-	"${FILESDIR}/${P}-pango-1.48.5-r1.patch"
-)
+PATCHES=( "${FILESDIR}/${P}-kdelibs-4.14.11.patch" )
 
 pkg_postinst() {
 	kde4-base_pkg_postinst

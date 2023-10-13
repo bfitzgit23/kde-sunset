@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KDE_REQUIRED="never"
 inherit kde4-base
@@ -24,6 +24,7 @@ RDEPEND="
 	net-misc/mobile-broadband-provider-info
 	|| (
 		>=net-misc/networkmanager-0.9.8.4[consolekit]
+		>=net-misc/networkmanager-0.9.8.4[elogind]
 		>=net-misc/networkmanager-0.9.8.4[systemd]
 	)
 	modemmanager? ( >=net-libs/libmm-qt-1.0.0 )
@@ -37,9 +38,9 @@ S=${WORKDIR}/networkmanager-qt-${PV}
 src_configure() {
 	local mycmakeargs=(
 		-DBUILD_EXAMPLES=OFF
-		-DCMAKE_DISABLE_FIND_PACKAGE_Doxygen="$(usex !doc)"
-		-DDISABLE_MODEMMANAGERQT="$(usex !modemmanager)"
-		-DDISABLE_TESTING="$(usex !test)"
+		$(cmake-utils_use_find_package doc Doxygen)
+		$(cmake-utils_use !modemmanager DISABLE_MODEMMANAGERQT)
+		$(cmake-utils_use !test DISABLE_TESTING)
 	)
 
 	kde4-base_src_configure

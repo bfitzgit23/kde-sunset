@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 inherit kde4-base
 
@@ -27,11 +27,11 @@ src_configure() {
 	local mycmakeargs=(
 		-DWITH_Nepomuk=OFF
 		-DWITH_Soprano=OFF
-		-DWITH_akonadi="$(usex akonadi)"
-		-DWITH_KdepimLibs="$(usex akonadi)"
-		-DWITH_LibAttica="$(usex attica)"
-		-DDISABLE_kate="$(usex !kate)"
-		-DWITH_okular="$(usex okular)"
+		$(cmake-utils_use_with akonadi)
+		$(cmake-utils_use_with akonadi KdepimLibs)
+		$(cmake-utils_use_with attica LibAttica)
+		$(cmake-utils_use_disable kate)
+		$(cmake-utils_use_with okular)
 	)
 	kde4-base_src_configure
 }

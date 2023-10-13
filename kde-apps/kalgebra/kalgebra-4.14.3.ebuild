@@ -1,7 +1,7 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KDE_HANDBOOK="optional"
 DECLARATIVE_REQUIRED="always"
@@ -17,12 +17,13 @@ IUSE="debug"
 DEPEND="
 	$(add_kdeapps_dep analitza opengl?)
 	$(add_kdeapps_dep libkdeedu)
+	opengl? ( virtual/glu )
 "
 RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-		-DWITH_OpenGL="$(usex opengl)"
+		$(cmake-utils_use_with opengl OpenGL)
 	)
 
 	kde4-base_src_configure

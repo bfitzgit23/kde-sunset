@@ -26,7 +26,7 @@ PATCHES=( "${FILESDIR}/${P}-gpgmepp.patch" )
 src_configure() {
 	local mycmakeargs=(
 		-DCMAKE_DISABLE_FIND_PACKAGE_QGpgme=ON
-		-DCMAKE_DISABLE_FIND_PACKAGE_Gpgmepp="$(usex !gpg)"
+		$(cmake-utils_use_find_package gpg Gpgmepp)
 	)
 
 	kde4-base_src_configure

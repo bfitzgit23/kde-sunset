@@ -24,12 +24,12 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-		-DCMAKE_DISABLE_FIND_PACKAGE_EPub="$(usex !epub)"
-		-DCMAKE_DISABLE_FIND_PACKAGE_Exiv2="$(usex !exif)"
-		-DCMAKE_DISABLE_FIND_PACKAGE_FFmpeg="$(usex !ffmpeg)"
-		-DCMAKE_DISABLE_FIND_PACKAGE_QMobipocket="$(usex !mobi)"
-		-DCMAKE_DISABLE_FIND_PACKAGE_PopplerQt4="$(usex !pdf)"
-		-DCMAKE_DISABLE_FIND_PACKAGE_Taglib="$(usex !taglib)"
+		$(cmake-utils_use_find_package epub EPub)
+		$(cmake-utils_use_find_package exif Exiv2)
+		$(cmake-utils_use_find_package ffmpeg FFmpeg)
+		$(cmake-utils_use_find_package mobi QMobipocket)
+		$(cmake-utils_use_find_package pdf PopplerQt4)
+		$(cmake-utils_use_find_package taglib Taglib)
 	)
 
 	kde4-base_src_configure

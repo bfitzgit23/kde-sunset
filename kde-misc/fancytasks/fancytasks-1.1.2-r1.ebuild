@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 KDE_LINGUAS="de en_GB es et fr km nds pl pt ru sv tr uk"
 KDE_LINGUAS_DIR=( applet/locale containment/locale )
 KDE_MINIMAL="4.8"

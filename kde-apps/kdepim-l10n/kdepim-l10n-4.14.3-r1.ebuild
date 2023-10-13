@@ -1,7 +1,7 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KDE_HANDBOOK=optional
 inherit kde4-base
@@ -99,7 +99,7 @@ src_prepare() {
 
 src_configure() {
 	mycmakeargs=(
-		-DBUILD_docs="$(usex handbook)"
+		$(cmake-utils_use_build handbook docs)
 	)
 	[[ -n ${A} ]] && kde4-base_src_configure
 }

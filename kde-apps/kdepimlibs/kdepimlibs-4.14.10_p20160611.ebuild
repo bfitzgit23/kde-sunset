@@ -1,10 +1,11 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_HANDBOOK="optional"
 CPPUNIT_REQUIRED="optional"
+CMAKE_MAKEFILE_GENERATOR=emake
 inherit kde4-base
 
 DESCRIPTION="Common library for KDE PIM apps"
@@ -43,8 +44,8 @@ src_configure() {
 	local mycmakeargs=(
 		-DBUILD_TOOLS=OFF
 		-DBUILD_doc=$(usex handbook)
-		-DCMAKE_DISABLE_FIND_PACKAGE_Ldap="$(usex !ldap)"
-		-DCMAKE_DISABLE_FIND_PACKAGE_Prison="$(usex !prison)"
+		-DBUILD_ldap=$(usex ldap Ldap)
+		-DBUILD_prison=$(usex prison Prison)
 	)
 
 	kde4-base_src_configure

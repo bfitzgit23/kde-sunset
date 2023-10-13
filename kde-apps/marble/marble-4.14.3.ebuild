@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KDE_HANDBOOK="optional"
 KDE_REQUIRED="optional"
@@ -42,12 +42,12 @@ REQUIRED_USE="plasma? ( kde )"
 
 src_configure() {
 	local mycmakeargs=(
-		-DWITH_DESIGNER_PLUGIN="$(usex designer-plugin)"
-		-DQTONLY="$(usex !kde)"
-		-DWITH_phonon="$(usex phonon)"
-		-DWITH_plasma="$(usex plasma)"
-		-DWITH_libshp="$(usex shapefile)"
-		-DWITH_quazip="$(usex zip)"
+		$(cmake-utils_use_with designer-plugin DESIGNER_PLUGIN)
+		$(cmake-utils_use !kde QTONLY)
+		$(cmake-utils_use_with phonon)
+		$(cmake-utils_use_with plasma)
+		$(cmake-utils_use_with shapefile libshp)
+		$(cmake-utils_use_with zip quazip)
 		-DBUILD_MARBLE_TESTS=OFF
 		-DWITH_liblocation=0
 		-DEXPERIMENTAL_PYTHON_BINDINGS=OFF

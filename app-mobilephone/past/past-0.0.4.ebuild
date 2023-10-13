@@ -23,4 +23,5 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 DOCS=( ChangeLog TODO )
-PATCHES=( "${FILESDIR}/${P}-gcc-4.7.patch" )
+PATCHES=( "${FILESDIR}/${P}-gcc-4.7.patch" 
+          "${FILESDIR}/${P}-FindQt4.patch" )

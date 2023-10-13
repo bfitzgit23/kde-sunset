@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KDE_REQUIRED="never"
 inherit kde4-base
@@ -15,3 +15,4 @@ DEPEND="
 	dev-qt/qtcore:4
 "
 RDEPEND="${DEPEND}"
+PATCHES=( "${FILESDIR}/${PN}-4-private-destructors.patch" )

@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KDE_LINGUAS="ar bg bs ca ca@valencia cs da de el en_GB eo es et fa fi fr ga gl
 hr hu is it ja km ko lt lv mai mr ms nb nds nl nn pa pl pt pt_BR ro ru sk
@@ -40,8 +40,8 @@ PATCHES=( "${FILESDIR}/${P}-networkmanager-1.0.6.patch" )
 
 src_configure() {
 	local mycmakeargs=(
-		-DDISABLE_MODEMMANAGER_SUPPORT="$(usex !modemmanager)"
-		-DCMAKE_DISABLE_FIND_PACKAGE_OpenConnect="$(usex !openconnect)"
+		$(cmake-utils_use !modemmanager DISABLE_MODEMMANAGER_SUPPORT)
+		$(cmake-utils_use_find_package openconnect OpenConnect)
 	)
 
 	kde4-base_src_configure

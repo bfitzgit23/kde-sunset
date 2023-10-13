@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KDE_HANDBOOK="optional"
 CPPUNIT_REQUIRED="optional"
@@ -34,8 +34,8 @@ src_configure(){
 		-DWITH_Avogadro=OFF
 		-DWITH_OpenBabel2=OFF
 		-DWITH_OpenGL=OFF
-		-DWITH_OCaml="$(usex solver)"
-		-DWITH_Libfacile="$(usex solver)"
+		$(cmake-utils_use_with solver OCaml)
+		$(cmake-utils_use_with solver Libfacile)
 	)
 
 	kde4-base_src_configure

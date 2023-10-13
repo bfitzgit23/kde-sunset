@@ -1,7 +1,7 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 inherit kde4-base
 
@@ -14,8 +14,4 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 
-PATCHES=(
-	"${FILESDIR}/${P}-libraw-0.16.1.patch"
-	"${FILESDIR}/${P}-libraw-0.19.0.patch"
-	"${FILESDIR}/${P}-libraw-0.21.0.patch"
-)
+PATCHES=( "${FILESDIR}/${P}-libraw-0.16.1.patch" )

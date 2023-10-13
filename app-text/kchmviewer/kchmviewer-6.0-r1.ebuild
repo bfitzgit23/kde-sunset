@@ -5,7 +5,7 @@ EAPI=6
 
 KDE_REQUIRED="optional"
 KDE_LINGUAS_DIR="po"
-inherit desktop kde4-base xdg-utils
+inherit desktop kde4-base xdg-utils qmake-utils
 
 DESCRIPTION="A feature rich chm file viewer, based on Qt"
 HOMEPAGE="https://www.ulduzsoft.com/linux/kchmviewer/"

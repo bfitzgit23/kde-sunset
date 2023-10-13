@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KMNAME="kde-workspace"
 KMMODULE="libs/plasmaclock"
@@ -25,7 +25,7 @@ KMEXTRACTONLY="
 
 src_configure() {
 	local mycmakeargs=(
-		-DWITH_KdepimLibs="$(usex pim)"
+		$(cmake-utils_use_with pim KdepimLibs)
 	)
 
 	kde4-meta_src_configure

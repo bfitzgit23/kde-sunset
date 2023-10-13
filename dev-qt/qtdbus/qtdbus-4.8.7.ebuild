@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=5
 inherit qt4-build-multilib
 
 DESCRIPTION="The DBus module for the Qt toolkit"
@@ -19,10 +19,9 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 PATCHES=(
-#	"${FILESDIR}/${PN}-4.7-qdbusintegrator-no-const.patch"
+	"${FILESDIR}/${PN}-4.7-qdbusintegrator-no-const.patch"
 	"${FILESDIR}/${PN}-4.8.4-qdbusconnection-silence-warning.patch"
 	"${FILESDIR}/${PN}-4.8.7-gcc9.patch"
-	"${FILESDIR}/fix_jit.patch"
 )
 
 QT4_TARGET_DIRECTORIES="

@@ -1,7 +1,7 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KDE_HANDBOOK="optional"
 inherit kde4-base
@@ -15,7 +15,7 @@ IUSE="+archive +bzip2 debug lzma"
 DEPEND="
 	$(add_kdeapps_dep libkonq)
 	sys-libs/zlib
-	archive? ( >=app-arch/libarchive-2.6.1:=[bzip2?,lzma?] )
+	archive? ( >=app-arch/libarchive-2.6.1:=[bzip2?,lzma?,zlib] )
 "
 RDEPEND="${DEPEND}"
 
@@ -26,9 +26,9 @@ PATCHES=( "${FILESDIR}/${P}-crash.patch" )
 
 src_configure() {
 	local mycmakeargs=(
-		-DWITH_LibArchive="$(usex archive)"
-		-DWITH_BZip2="$(usex bzip2)"
-		-DWITH_LibLZMA="$(usex lzma)"
+		$(cmake-utils_use_with archive LibArchive)
+		$(cmake-utils_use_with bzip2 BZip2)
+		$(cmake-utils_use_with lzma LibLZMA)
 	)
 	kde4-base_src_configure
 }

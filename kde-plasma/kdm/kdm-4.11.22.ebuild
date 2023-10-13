@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-workspace"
@@ -44,6 +44,7 @@ KMEXTRACTONLY="
 
 PATCHES=(
 	"${FILESDIR}/${PN}-4-gentoo-xinitrc.d.patch"
+	"${FILESDIR}/${PN}-4-dbus-build.patch"
 )
 
 pkg_setup() {
@@ -57,10 +58,9 @@ pkg_setup() {
 
 src_configure() {
 	local mycmakeargs=(
-		-DCMAKE_C_STANDARD=99
-		-DKDE4_KRB5AUTH="$(usex kerberos)"
-		-DWITH_pam="$(usex pam)"
-		-DWITH_CkConnector="$(usex consolekit)"
+		$(cmake-utils_use kerberos KDE4_KRB5AUTH)
+		$(cmake-utils_use_with pam)
+		$(cmake-utils_use_with consolekit CkConnector)
 	)
 
 	kde4-meta_src_configure

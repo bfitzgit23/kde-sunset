@@ -1,7 +1,7 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-baseapps"
@@ -38,9 +38,9 @@ RESTRICT="test"
 
 src_configure() {
 	local mycmakeargs=(
-		-DWITH_Baloo="$(usex semantic-desktop)"
-		-DWITH_BalooWidgets="$(usex semantic-desktop)"
-		-DWITH_KFileMetaData="$(usex semantic-desktop)"
+		$(cmake-utils_use_with semantic-desktop Baloo)
+		$(cmake-utils_use_with semantic-desktop BalooWidgets)
+		$(cmake-utils_use_with semantic-desktop KFileMetaData)
 	)
 
 	kde4-meta_src_configure

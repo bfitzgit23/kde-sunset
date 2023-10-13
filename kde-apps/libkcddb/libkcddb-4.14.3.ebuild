@@ -1,7 +1,7 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KDE_HANDBOOK="optional"
 inherit kde4-base
@@ -26,14 +26,14 @@ src_prepare() {
 
 	if ! use handbook ; then
 		pushd kcmcddb > /dev/null
-		cmake_comment_add_subdirectory doc
+		comment_add_subdirectory doc
 		popd > /dev/null
 	fi
 }
 
 src_configure() {
 	local mycmakeargs=(
-		-DWITH_MusicBrainz5="$(usex musicbrainz)"
+		$(cmake-utils_use_with musicbrainz MusicBrainz5)
 	)
 
 	kde4-base_src_configure

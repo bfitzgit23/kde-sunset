@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=5
 inherit qt4-build-multilib
 
 DESCRIPTION="The Declarative module for the Qt toolkit"
@@ -34,9 +34,7 @@ QT4_TARGET_DIRECTORIES="
 
 QCONFIG_ADD="declarative"
 QCONFIG_DEFINE="QT_DECLARATIVE"
-PATCHES=( "${FILESDIR}/${PN}-4.8.7-gcc9.patch" 
-	"${FILESDIR}/fix_jit.patch"
-)
+PATCHES=( "${FILESDIR}/${PN}-4.8.7-gcc9.patch" )
 
 pkg_setup() {
 	use webkit && QT4_TARGET_DIRECTORIES+="

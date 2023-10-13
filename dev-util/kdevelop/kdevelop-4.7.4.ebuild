@@ -19,7 +19,10 @@ fi
 
 DEPEND="
 	dev-libs/qjson
-	dev-qt/qtdeclarative:4[webkit]
+	|| (
+		dev-qt/qtdeclarative:4[webkit]
+		dev-qt/qtwebkit:4
+	)
 	gdbui? (
 		kde-plasma/ksysguard:4
 		kde-plasma/libkworkspace:4

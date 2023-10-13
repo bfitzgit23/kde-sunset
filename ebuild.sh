@@ -1,0 +1,1 @@
+find -type f -name "*.ebuild" -exec sh -c 'mv "$1" "${1%*.ebuild}(1).ebuild"' _ {} \;

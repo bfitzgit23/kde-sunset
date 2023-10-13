@@ -14,13 +14,12 @@
 if [[ -z ${_KDE4_FUNCTIONS_ECLASS} ]]; then
 _KDE4_FUNCTIONS_ECLASS=1
 
-inherit versionator
-
 # @ECLASS-VARIABLE: EAPI
 # @DESCRIPTION:
-# Currently kde4 eclasses support EAPI 5 and 6.
+# Currently kde4 eclasses support 6 and 7.
 case ${EAPI} in
-	5|6) : ;;
+	6) inherit eapi7-ver ;;
+	7) : ;;
 	*) die "EAPI=${EAPI:-0} is not supported" ;;
 esac
 
@@ -418,9 +417,9 @@ _enable_selected_linguas_dir() {
 # release version. If no version is specified, ${PV} is used.
 get_kde_version() {
 	local ver=${1:-${PV}}
-	local major=$(get_major_version ${ver})
-	local minor=$(get_version_component_range 2 ${ver})
-	local micro=$(get_version_component_range 3 ${ver})
+	local major=$(ver_cut 1 ${ver})
+	local minor=$(ver_cut 2 ${ver})
+	local micro=$(ver_cut 3 ${ver})
 	if [[ ${ver} == 9999 ]]; then
 		echo live
 	else

@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KDE_LINGUAS="ca ca@valencia cs da de el es et fi fr ga gl hu it lt nl pa pl pt
 pt_BR ro ru sk sl sv uk tr zh_TW"
@@ -40,8 +40,8 @@ src_configure() {
 		"-DGRUB_CONFIG=/etc/default/grub"
 		"-DGRUB_ENV=/boot/grub/grubenv"
 		"-DGRUB_MEMTEST=/etc/grub.d/39_memtest86+"
-		-DWITH_ImageMagick="$(usex imagemagick)"
-		-DWITH_HD="$(usex hwinfo)"
+		$(cmake-utils_use_with imagemagick ImageMagick)
+		$(cmake-utils_use_with hwinfo HD)
 	)
 	cmake-utils_src_configure
 }

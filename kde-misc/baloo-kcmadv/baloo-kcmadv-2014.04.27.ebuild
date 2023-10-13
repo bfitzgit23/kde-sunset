@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 KDE_MINIMAL=4.13.0
 
 inherit kde4-base
@@ -19,7 +19,7 @@ IUSE=""
 DEPEND="
 	dev-libs/qjson
 	dev-libs/xapian
-	kde-frameworks/baloo:4[-minimal]
+	kde-frameworks/baloo:4
 	kde-frameworks/kfilemetadata:4
 "
 RDEPEND="${DEPEND}"

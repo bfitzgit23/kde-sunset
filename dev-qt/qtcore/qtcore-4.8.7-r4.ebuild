@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=5
 inherit qt4-build-multilib
 
 DESCRIPTION="Cross-platform application development framework"
@@ -16,6 +16,10 @@ DEPEND="
 	>=sys-libs/zlib-1.2.8-r1[${MULTILIB_USEDEP}]
 	glib? ( dev-libs/glib:2[${MULTILIB_USEDEP}] )
 	iconv? ( >=virtual/libiconv-0-r2[${MULTILIB_USEDEP}] )
+	ssl? (
+		!libressl? ( >=dev-libs/openssl-1.1:=[sslv3,${MULTILIB_USEDEP}] )
+		libressl? ( dev-libs/libressl:=[${MULTILIB_USEDEP}] )
+	)
 "
 RDEPEND="${DEPEND}"
 PDEPEND="
@@ -29,13 +33,12 @@ MULTILIB_WRAPPED_HEADERS=(
 )
 
 PATCHES=(
-#	"${FILESDIR}/${PN}-4.8.5-honor-ExcludeSocketNotifiers-in-glib-event-loop.patch" # bug 514968
-#	"${FILESDIR}/${PN}-4.8.5-qeventdispatcher-recursive.patch" # bug 514968
+	"${FILESDIR}/${PN}-4.8.5-honor-ExcludeSocketNotifiers-in-glib-event-loop.patch" # bug 514968
+	"${FILESDIR}/${PN}-4.8.5-qeventdispatcher-recursive.patch" # bug 514968
 	"${FILESDIR}/${PN}-4.8.7-openssl-1.1.patch" # bug 592536
 #	"${FILESDIR}/${PN}-4.8.7-libressl.patch" # bug 584796
 	"${FILESDIR}/${PN}-4.8.7-moc.patch" # bug 556104, 635394
 	"${FILESDIR}/${PN}-4.8.7-gcc9.patch"
-	"${FILESDIR}/fix_jit.patch"
 )
 
 QT4_TARGET_DIRECTORIES="
@@ -55,7 +58,6 @@ QT4_TARGET_DIRECTORIES="
 	tools/linguist/lupdate"
 
 QCONFIG_DEFINE="QT_ZLIB"
-
 
 src_prepare() {
 	qt4-build-multilib_src_prepare
@@ -84,6 +86,7 @@ multilib_src_configure() {
 		$(qt_use glib)
 		$(qt_use iconv)
 		-no-icu
+		$(use ssl && echo -openssl-linked || echo -no-openssl)
 		$(qt_use qt3support)
 	)
 	qt4_multilib_src_configure

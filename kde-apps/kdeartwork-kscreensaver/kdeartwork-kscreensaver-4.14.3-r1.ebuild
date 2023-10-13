@@ -1,7 +1,7 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KMMODULE="kscreensaver"
 KMNAME="kdeartwork"
@@ -39,9 +39,9 @@ src_configure() {
 	local mycmakeargs=(
 		-DKSCREENSAVER_SOUND_SUPPORT=ON
 		-DOPENGL=ON
-		-DWITH_Eigen3="$(usex eigen)"
-		-DWITH_kexiv2="$(usex kexiv2)"
-		-DWITH_xscreensaver="$(usex xscreensaver)"
+		$(cmake-utils_use_with eigen Eigen3)
+		$(cmake-utils_use_with kexiv2)
+		$(cmake-utils_use_with xscreensaver)
 	)
 
 	kde4-meta_src_configure

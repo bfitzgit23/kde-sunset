@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KDE_HANDBOOK="optional"
 OPENGL_REQUIRED="always"
@@ -36,7 +36,7 @@ PATCHES=(
 
 src_configure() {
 	local mycmakeargs=(
-		-DWITH_kipi="$(usex kipi)"
+		$(cmake-utils_use_with kipi)
 	)
 	# Workaround for bug #479510
 	if [[ -e ${EPREFIX}/usr/include/${CHOST}/jconfig.h ]]; then

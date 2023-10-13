@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=5
 inherit qt4-build-multilib
 
 DESCRIPTION="Translation files for the Qt toolkit"
@@ -18,9 +18,7 @@ DEPEND="
 RDEPEND=""
 
 QT4_TARGET_DIRECTORIES="translations"
-PATCHES=( "${FILESDIR}/${PN}-4.8.7-gcc9.patch"
-          "${FILESDIR}/fix_jit.patch"  
-)
+PATCHES=( "${FILESDIR}/${PN}-4.8.7-gcc9.patch" )
 
 multilib_src_configure() {
 	if multilib_is_native_abi; then

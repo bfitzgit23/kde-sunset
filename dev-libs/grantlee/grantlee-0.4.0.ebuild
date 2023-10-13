@@ -1,13 +1,13 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 inherit cmake-utils
 
 DESCRIPTION="C++ string template engine based on the Django template system"
 HOMEPAGE="https://github.com/steveire/grantlee"
-SRC_URI="https://ftp.osuosl.org/pub/blfs/conglomeration/grantlee/grantlee-0.4.0.tar.gz"
+SRC_URI="http://downloads.grantlee.org/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
@@ -34,7 +34,7 @@ PATCHES=(
 
 src_configure() {
 	local mycmakeargs=(
-		-DBUILD_TESTS="$(usex test)"
+		$(cmake-utils_use_build test TESTS)
 	)
 
 	cmake-utils_src_configure

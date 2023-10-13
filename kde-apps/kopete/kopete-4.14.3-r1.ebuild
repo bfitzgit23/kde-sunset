@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=5
 
 KDE_HANDBOOK="optional"
 inherit kde4-base kde4-functions-extra
@@ -109,7 +109,7 @@ src_configure() {
 		-DWITH_LiboRTP=OFF
 		-DWITH_Mediastreamer=OFF
 		-DWITH_Speex=OFF
-		-DDISABLE_VIDEOSUPPORT="$(usex !v4l)"
+		$(cmake-utils_use_disable v4l VIDEOSUPPORT)
 	)
 	# enable protocols
 	for x in ${PROTOCOLS}; do
@@ -118,14 +118,14 @@ src_configure() {
 			zeroconf) x2=bonjour ;;
 			*) x2='' ;;
 		esac
-		mycmakeargs+=(-DWITH_${x2})="$(usex ${x/+/})"
+		mycmakeargs+=($(cmake-utils_use_with ${x/+/} ${x2}))
 	done
 
 	mycmakeargs+=( -DWITH_libjingle=OFF -DWITH_Libmsn=OFF -DWITH_qq=OFF )
 
 	# enable plugins
 	for x in ${PLUGINS}; do
-		mycmakeargs+=(-DWITH_${x/+/})="$(usex ${x/+/}))"
+		mycmakeargs+=($(cmake-utils_use_with ${x/+/}))
 	done
 
 	kde4-base_src_configure

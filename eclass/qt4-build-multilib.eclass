@@ -12,7 +12,8 @@
 # Requires EAPI 7.
 
 case ${EAPI} in
-	6)	: ;;
+	7)	: ;;
+	*)	die "qt4-build-multilib.eclass: unsupported EAPI=${EAPI:-0}" ;;
 esac
 
 inherit eutils flag-o-matic multilib multilib-minimal toolchain-funcs
@@ -164,6 +165,12 @@ qt4-build-multilib_src_prepare() {
 		if [[ ${CHOST} == *86*-apple-darwin* ]]; then
 			replace-flags -O[23] -O1
 		fi
+
+		# Bug 503500
+		# undefined reference with -Os and --as-needed
+		if use x86 || use_if_iuse abi_x86_32; then
+			replace-flags -Os -O2
+		fi
 	fi
 
 	if [[ ${PN} == qtdeclarative ]]; then
@@ -260,18 +267,14 @@ qt4-build-multilib_src_prepare() {
 		fi
 	fi
 
+	if [[ ${CHOST} == *-solaris* ]]; then
+		sed -i -e '/^QMAKE_LFLAGS_THREAD/a QMAKE_LFLAGS_DYNAMIC_LIST = -Wl,--dynamic-list,' \
+			mkspecs/$(qt4_get_mkspec)/qmake.conf || die
+	fi
 
 	# apply patches
-	# EPATCH_SOURCE="${WORKDIR}/patch" EPATCH_SUFFIX="patch" EPATCH_FORCE="yes" epatch
-
-	# patching individually
-	epatch "${WORKDIR}/files/fix-build-icu59.patch"
-	epatch "${WORKDIR}/files/qt4-openssl-1.1.patch"
-	epatch "${WORKDIR}/files/fix_jit.patch"
-	epatch "${WORKDIR}/files/qtcore-4.8.7-gcc9.patch"
-
-	[[ ${PATCHES[@]} ]] && epatch "${PATCHES[@]}"
-	eapply_user && epatch_user
+	[[ ${PATCHES[@]} ]] && eapply "${PATCHES[@]}"
+	eapply_user
 }
 
 qt4_multilib_src_configure() {
@@ -294,6 +297,11 @@ qt4_multilib_src_configure() {
 	local arch=$(tc-arch)
 	case ${arch} in
 		amd64|x64-*)	arch=x86_64 ;;
+		arm64|hppa)	arch=generic ;;
+		ppc*-macos)	arch=ppc ;;
+		ppc*)		arch=powerpc ;;
+		sparc*)		arch=sparc ;;
+		x86-macos)	arch=x86 ;;
 		x86*)		arch=i386 ;;
 	esac
 
@@ -314,6 +322,7 @@ qt4_multilib_src_configure() {
 		-demosdir "${QT4_DEMOSDIR}"
 
 		# debug/release
+		$(use_if_iuse debug && echo -debug || echo -release)
 		-no-separate-debug-info
 
 		# licensing stuff
@@ -743,7 +752,9 @@ qt4_get_mkspec() {
 	esac
 
 	# Add -64 for 64-bit prefix profiles
-	if use amd64-linux
+	if use amd64-linux || use ppc64-linux ||
+		use x64-macos ||
+		use sparc64-solaris || use x64-solaris
 	then
 		[[ -d ${S}/mkspecs/${spec}-64 ]] && spec+=-64
 	fi

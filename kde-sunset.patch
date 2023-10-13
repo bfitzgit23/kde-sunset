@@ -1,0 +1,431 @@
+From 7680da640c88b94afabd2cea10d562f97f683d3d Mon Sep 17 00:00:00 2001
+From: Sam James <sam@gentoo.org>
+Date: Mon, 24 Jan 2022 19:58:21 +0000
+Subject: [PATCH 1/5] foo
+
+---
+ eclass/kde4-base.eclass      | 19 +++++++++++++++----
+ eclass/kde4-functions.eclass | 13 ++++++-------
+ 2 files changed, 21 insertions(+), 11 deletions(-)
+
+diff --git a/eclass/kde4-base.eclass b/eclass/kde4-base.eclass
+index 32da6eeb..69b3a794 100644
+--- a/eclass/kde4-base.eclass
++++ b/eclass/kde4-base.eclass
+@@ -17,6 +17,16 @@
+ if [[ -z ${_KDE4_BASE_ECLASS} ]]; then
+ _KDE4_BASE_ECLASS=1
+ 
++
++# @ECLASS-VARIABLE: EAPI
++# @DESCRIPTION:
++# Currently kde4 eclasses support 6 and 7.
++case ${EAPI} in
++	6) inherit eapi7-ver ;;
++	7) : ;;
++	*) die "EAPI=${EAPI:-0} is not supported" ;;
++esac
++
+ # @ECLASS-VARIABLE: KDE_SELINUX_MODULE
+ # @DESCRIPTION:
+ # If set to "none", do nothing.
+@@ -35,7 +45,8 @@ _KDE4_BASE_ECLASS=1
+ # for tests you should proceed with setting VIRTUALX_REQUIRED=test.
+ : ${VIRTUALX_REQUIRED:=manual}
+ 
+-inherit kde4-functions toolchain-funcs flag-o-matic gnome2-utils virtualx versionator eutils multilib xdg-utils
++inherit kde4-functions toolchain-funcs flag-o-matic gnome2-utils virtualx eutils multilib xdg-utils
++
+ 
+ if [[ ${KDE_BUILD_TYPE} = live ]]; then
+ 	case ${KDE_SCM} in
+@@ -67,7 +78,7 @@ KDE_MINIMAL="${KDE_MINIMAL:-4.4}"
+ # Set slot for KDEBASE known packages
+ case ${KDEBASE} in
+ 	kde-base)
+-		SLOT=4/$(get_version_component_range 1-2)
++		SLOT=4/$(ver_cut 1-2)
+ 		KDE_MINIMAL="${PV}"
+ 		;;
+ 	kdevelop)
+@@ -86,10 +97,10 @@ case ${KDEBASE} in
+ 			case ${PN} in
+ 				kdevelop)
+ 					KDEVELOP_VERSION=${PV}
+-					KDEVPLATFORM_VERSION="$(($(get_major_version)-3)).$(get_after_major_version)"
++					KDEVPLATFORM_VERSION="$(($(ver_cut 1)-3)).$(ver_cut 2-)"
+ 					;;
+ 				kdevplatform|kdevelop-php*|kdevelop-python)
+-					KDEVELOP_VERSION="$(($(get_major_version)+3)).$(get_after_major_version)"
++					KDEVELOP_VERSION="$(($(ver_cut 1)+3)).$(ver_cut 2-)"
+ 					KDEVPLATFORM_VERSION=${PV}
+ 					;;
+ 				*)
+diff --git a/eclass/kde4-functions.eclass b/eclass/kde4-functions.eclass
+index 35ff15d1..185ed14b 100644
+--- a/eclass/kde4-functions.eclass
++++ b/eclass/kde4-functions.eclass
+@@ -14,13 +14,12 @@
+ if [[ -z ${_KDE4_FUNCTIONS_ECLASS} ]]; then
+ _KDE4_FUNCTIONS_ECLASS=1
+ 
+-inherit versionator
+-
+ # @ECLASS-VARIABLE: EAPI
+ # @DESCRIPTION:
+-# Currently kde4 eclasses support EAPI 5 and 6.
++# Currently kde4 eclasses support 6 and 7.
+ case ${EAPI} in
+-	5|6) : ;;
++	6) inherit eapi7-ver ;;
++	7) : ;;
+ 	*) die "EAPI=${EAPI:-0} is not supported" ;;
+ esac
+ 
+@@ -418,9 +417,9 @@ _enable_selected_linguas_dir() {
+ # release version. If no version is specified, ${PV} is used.
+ get_kde_version() {
+ 	local ver=${1:-${PV}}
+-	local major=$(get_major_version ${ver})
+-	local minor=$(get_version_component_range 2 ${ver})
+-	local micro=$(get_version_component_range 3 ${ver})
++	local major=$(ver_cut 1 ${ver})
++	local minor=$(ver_cut 2 ${ver})
++	local micro=$(ver_cut 3 ${ver})
+ 	if [[ ${ver} == 9999 ]]; then
+ 		echo live
+ 	else
+-- 
+2.35.1
+
+
+From 16a6fa85218ed27f829f0009807ade25e0a91418 Mon Sep 17 00:00:00 2001
+From: Sam James <sam@gentoo.org>
+Date: Mon, 24 Jan 2022 20:49:11 +0000
+Subject: [PATCH 2/5] foo2
+
+---
+ eclass/kde4-functions-extra.eclass | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/eclass/kde4-functions-extra.eclass b/eclass/kde4-functions-extra.eclass
+index a6ad8470..c996bf39 100644
+--- a/eclass/kde4-functions-extra.eclass
++++ b/eclass/kde4-functions-extra.eclass
+@@ -12,9 +12,9 @@ _KDE4_FUNCTIONS_ECLASS_EXTRA=1
+ 
+ # @ECLASS-VARIABLE: EAPI
+ # @DESCRIPTION:
+-# Currently kde4 eclasses support EAPI 5 and 6.
++# Currently kde4 eclasses support EAPI 5 and 6 and 7.
+ case ${EAPI} in
+-	5|6) : ;;
++	5|6|7) : ;;
+ 	*) die "EAPI=${EAPI:-0} is not supported" ;;
+ esac
+ 
+-- 
+2.35.1
+
+
+From 0dec660cd070335accd740448f9f965dd41684b1 Mon Sep 17 00:00:00 2001
+From: Sam James <sam@gentoo.org>
+Date: Mon, 24 Jan 2022 20:49:15 +0000
+Subject: [PATCH 3/5] foo3
+
+---
+ eclass/qt4-build-multilib.eclass | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/eclass/qt4-build-multilib.eclass b/eclass/qt4-build-multilib.eclass
+index e426f8d4..a3ba16cc 100644
+--- a/eclass/qt4-build-multilib.eclass
++++ b/eclass/qt4-build-multilib.eclass
+@@ -9,10 +9,10 @@
+ # @BLURB: Eclass for Qt4 split ebuilds with multilib support.
+ # @DESCRIPTION:
+ # This eclass contains various functions that are used when building Qt4.
+-# Requires EAPI 5.
++# Requires EAPI 7.
+ 
+ case ${EAPI} in
+-	5)	: ;;
++	7)	: ;;
+ 	*)	die "qt4-build-multilib.eclass: unsupported EAPI=${EAPI:-0}" ;;
+ esac
+ 
+@@ -273,8 +273,8 @@ qt4-build-multilib_src_prepare() {
+ 	fi
+ 
+ 	# apply patches
+-	[[ ${PATCHES[@]} ]] && epatch "${PATCHES[@]}"
+-	epatch_user
++	[[ ${PATCHES[@]} ]] && eapply "${PATCHES[@]}"
++	eapply_user
+ }
+ 
+ qt4_multilib_src_configure() {
+@@ -480,7 +480,7 @@ qt4_multilib_src_install_all() {
+ 		find "${S}"/src/${moduledir} -type f -name '*_p.h' -exec doins '{}' + || die
+ 	fi
+ 
+-	prune_libtool_files
++	#prune_libtool_files
+ }
+ 
+ # @FUNCTION: qt4-build-multilib_pkg_postinst
+-- 
+2.35.1
+
+
+From c9d70e72ecc4eb2fdcc8734fc12c8019431178a7 Mon Sep 17 00:00:00 2001
+From: Sam James <sam@gentoo.org>
+Date: Tue, 25 Jan 2022 02:27:13 +0000
+Subject: [PATCH 4/5] foo4
+
+---
+ eclass/qt4-build-multilib.eclass | 36 ++++++++++++++++----------------
+ 1 file changed, 18 insertions(+), 18 deletions(-)
+
+diff --git a/eclass/qt4-build-multilib.eclass b/eclass/qt4-build-multilib.eclass
+index a3ba16cc..cd1e6ec5 100644
+--- a/eclass/qt4-build-multilib.eclass
++++ b/eclass/qt4-build-multilib.eclass
+@@ -452,7 +452,7 @@ qt4_multilib_src_install() {
+ 
+ 	# move pkgconfig directory to the correct location
+ 	if [[ -d ${D}${QT4_LIBDIR}/pkgconfig ]]; then
+-		mv "${D}${QT4_LIBDIR}"/pkgconfig "${ED}usr/$(get_libdir)" || die
++		mv "${D}/${QT4_LIBDIR}"/pkgconfig "${ED}/usr/$(get_libdir)" || die
+ 	fi
+ 
+ 	qt4_install_module_qconfigs
+@@ -649,16 +649,16 @@ qt4_install_module_qconfigs() {
+ qt4_regenerate_global_qconfigs() {
+ 	if [[ -n ${QCONFIG_ADD} || -n ${QCONFIG_REMOVE} || -n ${QCONFIG_DEFINE} || ${PN} == qtcore ]]; then
+ 		local x qconfig_add qconfig_remove qconfig_new
+-		for x in "${ROOT}${QT4_DATADIR}"/mkspecs/gentoo/*-qconfig.pri; do
++		for x in "${ROOT}/${QT4_DATADIR}"/mkspecs/gentoo/*-qconfig.pri; do
+ 			[[ -f ${x} ]] || continue
+ 			qconfig_add+=" $(sed -n 's/^QCONFIG_ADD=//p' "${x}")"
+ 			qconfig_remove+=" $(sed -n 's/^QCONFIG_REMOVE=//p' "${x}")"
+ 		done
+ 
+-		if [[ -e "${ROOT}${QT4_DATADIR}"/mkspecs/gentoo/qconfig.pri ]]; then
++		if [[ -e "${ROOT}/${QT4_DATADIR}"/mkspecs/gentoo/qconfig.pri ]]; then
+ 			# start with the qconfig.pri that qtcore installed
+-			if ! cp "${ROOT}${QT4_DATADIR}"/mkspecs/gentoo/qconfig.pri \
+-				"${ROOT}${QT4_DATADIR}"/mkspecs/qconfig.pri; then
++			if ! cp "${ROOT}/${QT4_DATADIR}"/mkspecs/gentoo/qconfig.pri \
++				"${ROOT}/${QT4_DATADIR}"/mkspecs/qconfig.pri; then
+ 				eerror "cp qconfig failed."
+ 				return 1
+ 			fi
+@@ -666,36 +666,36 @@ qt4_regenerate_global_qconfigs() {
+ 			# generate list of QT_CONFIG entries from the existing list
+ 			# including qconfig_add and excluding qconfig_remove
+ 			for x in $(sed -n 's/^QT_CONFIG +=//p' \
+-				"${ROOT}${QT4_DATADIR}"/mkspecs/qconfig.pri) ${qconfig_add}; do
++				"${ROOT}/${QT4_DATADIR}"/mkspecs/qconfig.pri) ${qconfig_add}; do
+ 					has ${x} ${qconfig_remove} || qconfig_new+=" ${x}"
+ 			done
+ 
+ 			# replace the existing QT_CONFIG list with qconfig_new
+ 			if ! sed -i -e "s/QT_CONFIG +=.*/QT_CONFIG += ${qconfig_new}/" \
+-				"${ROOT}${QT4_DATADIR}"/mkspecs/qconfig.pri; then
++				"${ROOT}/${QT4_DATADIR}"/mkspecs/qconfig.pri; then
+ 				eerror "Sed for QT_CONFIG failed"
+ 				return 1
+ 			fi
+ 
+ 			# create Gentoo/qconfig.h
+-			if [[ ! -e ${ROOT}${QT4_HEADERDIR}/Gentoo ]]; then
+-				if ! mkdir -p "${ROOT}${QT4_HEADERDIR}"/Gentoo; then
++			if [[ ! -e ${ROOT}/${QT4_HEADERDIR}/Gentoo ]]; then
++				if ! mkdir -p "${ROOT}/${QT4_HEADERDIR}"/Gentoo; then
+ 					eerror "mkdir ${QT4_HEADERDIR}/Gentoo failed"
+ 					return 1
+ 				fi
+ 			fi
+-			: > "${ROOT}${QT4_HEADERDIR}"/Gentoo/gentoo-qconfig.h
+-			for x in "${ROOT}${QT4_HEADERDIR}"/Gentoo/gentoo-*-qconfig.h; do
++			: > "${ROOT}/${QT4_HEADERDIR}"/Gentoo/gentoo-qconfig.h
++			for x in "${ROOT}/${QT4_HEADERDIR}"/Gentoo/gentoo-*-qconfig.h; do
+ 				[[ -f ${x} ]] || continue
+-				cat "${x}" >> "${ROOT}${QT4_HEADERDIR}"/Gentoo/gentoo-qconfig.h
++				cat "${x}" >> "${ROOT}/${QT4_HEADERDIR}"/Gentoo/gentoo-qconfig.h
+ 			done
+ 		else
+-			rm -f "${ROOT}${QT4_DATADIR}"/mkspecs/qconfig.pri
+-			rm -f "${ROOT}${QT4_HEADERDIR}"/Gentoo/gentoo-qconfig.h
+-			rmdir "${ROOT}${QT4_DATADIR}"/mkspecs \
+-				"${ROOT}${QT4_DATADIR}" \
+-				"${ROOT}${QT4_HEADERDIR}"/Gentoo \
+-				"${ROOT}${QT4_HEADERDIR}" 2>/dev/null
++			rm -f "${ROOT}/${QT4_DATADIR}"/mkspecs/qconfig.pri
++			rm -f "${ROOT}/${QT4_HEADERDIR}"/Gentoo/gentoo-qconfig.h
++			rmdir "${ROOT}/${QT4_DATADIR}"/mkspecs \
++				"${ROOT}/${QT4_DATADIR}" \
++				"${ROOT}/${QT4_HEADERDIR}"/Gentoo \
++				"${ROOT}/${QT4_HEADERDIR}" 2>/dev/null
+ 		fi
+ 	fi
+ }
+-- 
+2.35.1
+
+
+From 5054f633f742bc2f0effc3b75e5a21c8b0f3a935 Mon Sep 17 00:00:00 2001
+From: Sam James <sam@gentoo.org>
+Date: Wed, 26 Jan 2022 01:40:23 +0000
+Subject: [PATCH 5/5] kde-apps/akonadi: add 1.13.1_p20161023
+
+---
+ kde-apps/akonadi/Manifest                     |   1 +
+ .../akonadi/akonadi-1.13.1_p20161023.ebuild   | 128 ++++++++++++++++++
+ 2 files changed, 129 insertions(+)
+ create mode 100644 kde-apps/akonadi/akonadi-1.13.1_p20161023.ebuild
+
+diff --git a/kde-apps/akonadi/Manifest b/kde-apps/akonadi/Manifest
+index d82dc150..60f9a7f0 100644
+--- a/kde-apps/akonadi/Manifest
++++ b/kde-apps/akonadi/Manifest
+@@ -1 +1,2 @@
++DIST akonadi-1.13.1_p20161023.tar.bz2 297642 BLAKE2B 79b20451a3ae38e6381eaae7c40df05f5a1fa1a7e61c59f451ce41dbd702e351e980280ecff7015097e1eccc5c526b6b555d307f747b7123abf8a1437c4fa4ee SHA512 60beece728608bb7d04b346e2821688bbf1cbb344a6a502080307e306a9eb6b72a08f8d9f59254cbedbd8c99e498dacb63721197c4444d2b29fe83803f2db91c
+ DIST akonadi-1.13.1_pre20160203.tar.gz 384556 BLAKE2B 979c775e6d4e59ec67efaa283fd5cd882560b6b4d1fcf31c6cc915a5e00b21832801c3138fbdc7221f09cac74da1b71f9eb0289f1f4597980a218b37db3342d0 SHA512 0ef8213f504ad1e500a2c1ce19a7575cd1fd8b7ffc7e5fb0bd2437639d8c458c47bbfea7734fcd3e200136a661331dde32af0b064f0b25d324138ce6e35d15f3
+diff --git a/kde-apps/akonadi/akonadi-1.13.1_p20161023.ebuild b/kde-apps/akonadi/akonadi-1.13.1_p20161023.ebuild
+new file mode 100644
+index 00000000..decf4310
+--- /dev/null
++++ b/kde-apps/akonadi/akonadi-1.13.1_p20161023.ebuild
+@@ -0,0 +1,128 @@
++# Copyright 1999-2022 Gentoo Authors
++# Distributed under the terms of the GNU General Public License v2
++
++EAPI=6
++
++if [[ ${PV} = *_pre* || ${PV} = *_p* ]]; then
++	# KDE quickgit https certificate issue
++	# COMMIT_ID="18ed37d89b8185ac15a8bfe245de8a88d17f2c64"
++	# SRC_URI="https://quickgit.kde.org/?p=${PN}.git&a=snapshot&h=${COMMIT_ID}&fmt=tgz -> ${P}.tar.gz"
++	COMMIT_ID="1fc0e05b4bba6d95595c69899c1b38599942a13c"
++	SRC_URI="https://invent.kde.org/pim/akonadi/-/archive/${COMMIT_ID}/akonadi-${COMMIT_ID}.tar.bz2 -> ${P}.tar.bz2"
++	#SRC_URI="https://dev.gentoo.org/~johu/distfiles/${P}.tar.gz"
++	S="${WORKDIR}/${PN}-${COMMIT_ID}"
++else
++	SRC_URI="mirror://kde/stable/${PN}/src/${P}.tar.bz2"
++fi
++inherit cmake-utils
++
++DESCRIPTION="The server part of Akonadi"
++HOMEPAGE="https://pim.kde.org/akonadi"
++
++LICENSE="LGPL-2.1"
++SLOT="4"
++KEYWORDS="amd64 x86"
++IUSE="+mysql postgres sqlite test"
++
++REQUIRED_USE="|| ( sqlite mysql postgres )"
++
++CDEPEND="
++	dev-libs/boost:=
++	>=dev-qt/qtcore-4.8.5:4
++	>=dev-qt/qtdbus-4.8.5:4
++	>=dev-qt/qtgui-4.8.5:4
++	>=dev-qt/qtsql-4.8.5:4[mysql?,postgres?]
++	>=dev-qt/qttest-4.8.5:4
++	x11-misc/shared-mime-info
++	sqlite? ( dev-db/sqlite:3 )
++"
++DEPEND="${CDEPEND}
++	dev-libs/libxslt
++	>=dev-util/automoc-0.9.88
++	test? ( sys-apps/dbus )
++"
++RDEPEND="${CDEPEND}
++	mysql? ( virtual/mysql )
++	postgres? ( dev-db/postgresql[server] )
++"
++
++RESTRICT="test"
++
++PATCHES=(
++	"${FILESDIR}/${PN}-1.13.0-mysql56-crash.patch"
++	"${FILESDIR}/${PN}-1.13.1-mysql.conf.patch"
++)
++
++pkg_pretend() {
++	if [[ ${MERGE_TYPE} != binary ]] && tc-is-gcc; then
++		[[ $(gcc-major-version) -lt 4 ]] || \
++			( [[ $(gcc-major-version) -eq 4 && $(gcc-minor-version) -lt 7 ]] ) \
++			&& die "Sorry, but gcc-4.6 and earlier won't work (see bug #520102)."
++	fi
++}
++
++pkg_setup() {
++	# Set default storage backend in order: MySQL, SQLite PostgreSQL
++	# reverse driver check to keep the order
++	if use postgres; then
++		DRIVER="QPSQL"
++		AVAILABLE+=" ${DRIVER}"
++	fi
++
++	if use sqlite; then
++		DRIVER="QSQLITE3"
++		AVAILABLE+=" ${DRIVER}"
++	fi
++
++	if use mysql; then
++		DRIVER="QMYSQL"
++		AVAILABLE+=" ${DRIVER}"
++	fi
++
++	# Notify about MySQL is recommend by upstream
++	if use sqlite || has_version "<${CATEGORY}/${P}[sqlite]"; then
++		ewarn
++		ewarn "We strongly recommend you change your Akonadi database backend to MySQL in your"
++		ewarn "user configuration. This is the backend recommended by KDE upstream. PostgreSQL"
++		ewarn "is also known to work very well but requires manual dump and import on major"
++		ewarn "upgrades of the DB."
++		ewarn "You can select the backend in your ~/.config/akonadi/akonadiserverrc."
++		ewarn "Available drivers are:${AVAILABLE}"
++		ewarn
++	fi
++}
++
++src_configure() {
++	local mycmakeargs=(
++		-DINSTALL_QSQLITE_IN_QT_PREFIX=ON
++		-DWITH_SOPRANO=FALSE
++		-DAKONADI_BUILD_TESTS=$(usex test)
++		-DAKONADI_BUILD_QSQLITE=$(usex sqlite)
++		-DQT5_BUILD=OFF
++	)
++
++	cmake-utils_src_configure
++}
++
++src_test() {
++	export $(dbus-launch)
++	cmake-utils_src_test
++}
++
++src_install() {
++	# Who knows, maybe it accidentally fixes our permission issues
++	cat <<-EOF > "${T}"/akonadiserverrc
++[%General]
++Driver=${DRIVER}
++EOF
++	insinto /usr/share/config/akonadi
++	doins "${T}"/akonadiserverrc
++
++	cmake-utils_src_install
++}
++
++pkg_postinst() {
++	elog "${DRIVER} has been set as your default akonadi storage backend."
++	elog "You can override it in your ~/.config/akonadi/akonadiserverrc."
++	elog "Available drivers are: ${AVAILABLE}"
++}
+-- 
+2.35.1

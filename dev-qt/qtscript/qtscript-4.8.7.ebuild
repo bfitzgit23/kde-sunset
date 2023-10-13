@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=5
 inherit qt4-build-multilib
 
 DESCRIPTION="The QtScript module for the Qt toolkit"
@@ -26,7 +26,6 @@ PATCHES=(
 	"${FILESDIR}/4.8.6-javascriptcore-x32.patch"
 	"${FILESDIR}/${PN}-5.11.3-gcc-8.3.patch"
 	"${FILESDIR}/${PN}-4.8.7-gcc9.patch"
-	"${FILESDIR}/fix_jit.patch"
 )
 
 multilib_src_configure() {
