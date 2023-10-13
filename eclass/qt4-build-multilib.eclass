@@ -13,7 +13,6 @@
 
 case ${EAPI} in
 	7)	: ;;
-	*)	die "qt4-build-multilib.eclass: unsupported EAPI=${EAPI:-0}" ;;
 esac
 
 inherit eutils flag-o-matic multilib multilib-minimal toolchain-funcs
