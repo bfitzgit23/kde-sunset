@@ -158,20 +158,6 @@ qt4-build-multilib_src_prepare() {
 	# See bugs 582522, 582618, 583662, 583744.
 	append-cxxflags -std=gnu++98
 
-	if [[ ${PN} == qtcore ]]; then
-		# Bug 373061
-		# qmake bus errors with -O2 or -O3 but -O1 works
-		if [[ ${CHOST} == *86*-apple-darwin* ]]; then
-			replace-flags -O[23] -O1
-		fi
-
-		# Bug 503500
-		# undefined reference with -Os and --as-needed
-		if use x86 || use_if_iuse abi_x86_32; then
-			replace-flags -Os -O2
-		fi
-	fi
-
 	if [[ ${PN} == qtdeclarative ]]; then
 		# Bug 551560
 		# gcc-4.8 ICE with -Os, fixed in 4.9
@@ -321,7 +307,6 @@ qt4_multilib_src_configure() {
 		-demosdir "${QT4_DEMOSDIR}"
 
 		# debug/release
-		$(use_if_iuse debug && echo -debug || echo -release)
 		-no-separate-debug-info
 
 		# licensing stuff
