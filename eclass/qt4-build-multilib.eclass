@@ -708,7 +708,6 @@ qt4_get_mkspec() {
 
 	case ${CHOST} in
 		*-linux*)
-		*)
 			die "qt4-build-multilib.eclass: unsupported CHOST '${CHOST}'" ;;
 	esac
 
