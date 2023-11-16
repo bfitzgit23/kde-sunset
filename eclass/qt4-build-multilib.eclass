@@ -9,10 +9,11 @@
 # @BLURB: Eclass for Qt4 split ebuilds with multilib support.
 # @DESCRIPTION:
 # This eclass contains various functions that are used when building Qt4.
-# Requires EAPI 7.
+# Requires EAPI 6.
 
 case ${EAPI} in
-	6|7)	: ;;
+	6)	: ;;
+	*)	die "qt4-build-multilib.eclass: unsupported EAPI=${EAPI:-0}" ;;
 esac
 
 inherit eutils flag-o-matic multilib multilib-minimal toolchain-funcs
@@ -20,6 +21,7 @@ inherit eutils flag-o-matic multilib multilib-minimal toolchain-funcs
 HOMEPAGE="https://www.qt.io/"
 LICENSE="|| ( LGPL-2.1 LGPL-3 GPL-3 ) FDL-1.3"
 SLOT="4"
+PATCH_VERSION="1"
 
 case ${PV} in
 	4.?.9999)
@@ -31,7 +33,10 @@ case ${PV} in
 		# official stable release
 		QT4_BUILD_TYPE="release"
 		MY_P=qt-everywhere-opensource-src-${PV/_/-}
-		SRC_URI="http://download.qt.io/archive/qt/${PV%.*}/${PV}/${MY_P}.tar.gz"
+		PATCHNAME="${MY_P}-patches-${PATCH_VERSION}"
+		SRC_URI="
+			http://download.qt.io/official_releases/qt/${PV%.*}/${PV}/${MY_P}.tar.gz
+					S=${WORKDIR}/${MY_P}"
 		S=${WORKDIR}/${MY_P}
 		;;
 esac
@@ -158,6 +163,20 @@ qt4-build-multilib_src_prepare() {
 	# See bugs 582522, 582618, 583662, 583744.
 	append-cxxflags -std=gnu++98
 
+	if [[ ${PN} == qtcore ]]; then
+		# Bug 373061
+		# qmake bus errors with -O2 or -O3 but -O1 works
+		if [[ ${CHOST} == *86*-apple-darwin* ]]; then
+			replace-flags -O[23] -O1
+		fi
+
+		# Bug 503500
+		# undefined reference with -Os and --as-needed
+		if use x86 || in_iuse abi_x86_32 && use abi_x86_32; then
+			replace-flags -Os -O2
+		fi
+	fi
+
 	if [[ ${PN} == qtdeclarative ]]; then
 		# Bug 551560
 		# gcc-4.8 ICE with -Os, fixed in 4.9
@@ -216,12 +235,25 @@ qt4-build-multilib_src_prepare() {
 		mkspecs/$(qt4_get_mkspec)/qmake.conf \
 		|| die "sed QMAKE_(LIB|INC)DIR failed"
 
+	if [[ ${CHOST} == *-darwin* ]]; then
+		# Set FLAGS and remove -arch, since our gcc-apple is multilib crippled (by design)
+		sed -i \
+			-e "s:QMAKE_CFLAGS_RELEASE.*=.*:QMAKE_CFLAGS_RELEASE=${CFLAGS}:" \
+			-e "s:QMAKE_CXXFLAGS_RELEASE.*=.*:QMAKE_CXXFLAGS_RELEASE=${CXXFLAGS}:" \
+			-e "s:QMAKE_LFLAGS_RELEASE.*=.*:QMAKE_LFLAGS_RELEASE=-headerpad_max_install_names ${LDFLAGS}:" \
+			-e "s:-arch\s\w*::g" \
+			mkspecs/common/g++-macx.conf \
+			|| die "sed g++-macx.conf failed"
 
 		# Fix configure's -arch settings that appear in qmake/Makefile and also
 		# fix arch handling (automagically duplicates our -arch arg and breaks
 		# pch). Additionally disable Xarch support.
 		sed -i \
+			-e "s:-arch i386::" \
+			-e "s:-arch ppc::" \
 			-e "s:-arch x86_64::" \
+			-e "s:-arch ppc64::" \
+			-e "s:-arch \$i::" \
 			-e "/if \[ ! -z \"\$NATIVE_64_ARCH\" \]; then/,/fi/ d" \
 			-e "s:CFG_MAC_XARCH=yes:CFG_MAC_XARCH=no:g" \
 			-e "s:-Xarch_x86_64::g" \
@@ -229,9 +261,22 @@ qt4-build-multilib_src_prepare() {
 			configure mkspecs/common/gcc-base-macx.conf mkspecs/common/g++-macx.conf \
 			|| die "sed -arch/-Xarch failed"
 
+		# On Snow Leopard don't fall back to 10.5 deployment target.
+		if [[ ${CHOST} == *-apple-darwin10 ]]; then
+			sed -i \
+				-e "s:QMakeVar set QMAKE_MACOSX_DEPLOYMENT_TARGET.*:QMakeVar set QMAKE_MACOSX_DEPLOYMENT_TARGET 10.6:g" \
+				-e "s:-mmacosx-version-min=10.[0-9]:-mmacosx-version-min=10.6:g" \
+				configure mkspecs/common/g++-macx.conf \
+				|| die "sed deployment target failed"
+		fi
+	fi
 
+	if [[ ${CHOST} == *-solaris* ]]; then
+		sed -i -e '/^QMAKE_LFLAGS_THREAD/a QMAKE_LFLAGS_DYNAMIC_LIST = -Wl,--dynamic-list,' \
+			mkspecs/$(qt4_get_mkspec)/qmake.conf || die
+	fi
 
-	# apply patches
+# apply patches
 	[[ ${PATCHES[@]} ]] && eapply "${PATCHES[@]}"
 	eapply_user
 }
@@ -281,6 +326,7 @@ qt4_multilib_src_configure() {
 		-demosdir "${QT4_DEMOSDIR}"
 
 		# debug/release
+		$(in_iuse debug && use debug && echo -debug || echo -release)
 		-no-separate-debug-info
 
 		# licensing stuff
@@ -318,6 +364,8 @@ qt4_multilib_src_configure() {
 		$(is-flagq -mno-avx	&& echo -no-avx)
 		$(is-flagq -mfpu=*	&& ! is-flagq -mfpu=*neon* && echo -no-neon)
 
+		# bug 367045
+		$([[ ${CHOST} == *86*-apple-darwin* ]] && echo -no-ssse3)
 
 		# prefer system libraries
 		-system-zlib
@@ -334,6 +382,12 @@ qt4_multilib_src_configure() {
 
 		# precompiled headers don't work on hardened, where the flag is masked
 		$(in_iuse pch && qt_use pch || echo -no-pch)
+
+		# enable linker optimizations to reduce relocations, except on Solaris
+		# where this flag seems to introduce major breakage to applications,
+		# mostly to be seen as a core dump with the message:
+		# "QPixmap: Must construct a QApplication before a QPaintDevice"
+		$([[ ${CHOST} != *-solaris* ]] && echo -reduce-relocations)
 	)
 
 	conf+=(
@@ -402,7 +456,7 @@ qt4_multilib_src_install() {
 
 	# move pkgconfig directory to the correct location
 	if [[ -d ${D}${QT4_LIBDIR}/pkgconfig ]]; then
-		mv "${D}/${QT4_LIBDIR}"/pkgconfig "${ED}/usr/$(get_libdir)" || die
+		mv "${D}${QT4_LIBDIR}"/pkgconfig "${ED}usr/$(get_libdir)" || die
 	fi
 
 	qt4_install_module_qconfigs
@@ -430,7 +484,7 @@ qt4_multilib_src_install_all() {
 		find "${S}"/src/${moduledir} -type f -name '*_p.h' -exec doins '{}' + || die
 	fi
 
-	#prune_libtool_files
+	prune_libtool_files
 }
 
 # @FUNCTION: qt4-build-multilib_pkg_postinst
@@ -599,16 +653,16 @@ qt4_install_module_qconfigs() {
 qt4_regenerate_global_qconfigs() {
 	if [[ -n ${QCONFIG_ADD} || -n ${QCONFIG_REMOVE} || -n ${QCONFIG_DEFINE} || ${PN} == qtcore ]]; then
 		local x qconfig_add qconfig_remove qconfig_new
-		for x in "${ROOT}/${QT4_DATADIR}"/mkspecs/gentoo/*-qconfig.pri; do
+		for x in "${ROOT}${QT4_DATADIR}"/mkspecs/gentoo/*-qconfig.pri; do
 			[[ -f ${x} ]] || continue
 			qconfig_add+=" $(sed -n 's/^QCONFIG_ADD=//p' "${x}")"
 			qconfig_remove+=" $(sed -n 's/^QCONFIG_REMOVE=//p' "${x}")"
 		done
 
-		if [[ -e "${ROOT}/${QT4_DATADIR}"/mkspecs/gentoo/qconfig.pri ]]; then
+		if [[ -e "${ROOT}${QT4_DATADIR}"/mkspecs/gentoo/qconfig.pri ]]; then
 			# start with the qconfig.pri that qtcore installed
-			if ! cp "${ROOT}/${QT4_DATADIR}"/mkspecs/gentoo/qconfig.pri \
-				"${ROOT}/${QT4_DATADIR}"/mkspecs/qconfig.pri; then
+			if ! cp "${ROOT}${QT4_DATADIR}"/mkspecs/gentoo/qconfig.pri \
+				"${ROOT}${QT4_DATADIR}"/mkspecs/qconfig.pri; then
 				eerror "cp qconfig failed."
 				return 1
 			fi
@@ -616,36 +670,36 @@ qt4_regenerate_global_qconfigs() {
 			# generate list of QT_CONFIG entries from the existing list
 			# including qconfig_add and excluding qconfig_remove
 			for x in $(sed -n 's/^QT_CONFIG +=//p' \
-				"${ROOT}/${QT4_DATADIR}"/mkspecs/qconfig.pri) ${qconfig_add}; do
+				"${ROOT}${QT4_DATADIR}"/mkspecs/qconfig.pri) ${qconfig_add}; do
 					has ${x} ${qconfig_remove} || qconfig_new+=" ${x}"
 			done
 
 			# replace the existing QT_CONFIG list with qconfig_new
 			if ! sed -i -e "s/QT_CONFIG +=.*/QT_CONFIG += ${qconfig_new}/" \
-				"${ROOT}/${QT4_DATADIR}"/mkspecs/qconfig.pri; then
+				"${ROOT}${QT4_DATADIR}"/mkspecs/qconfig.pri; then
 				eerror "Sed for QT_CONFIG failed"
 				return 1
 			fi
 
 			# create Gentoo/qconfig.h
-			if [[ ! -e ${ROOT}/${QT4_HEADERDIR}/Gentoo ]]; then
-				if ! mkdir -p "${ROOT}/${QT4_HEADERDIR}"/Gentoo; then
+			if [[ ! -e ${ROOT}${QT4_HEADERDIR}/Gentoo ]]; then
+				if ! mkdir -p "${ROOT}${QT4_HEADERDIR}"/Gentoo; then
 					eerror "mkdir ${QT4_HEADERDIR}/Gentoo failed"
 					return 1
 				fi
 			fi
-			: > "${ROOT}/${QT4_HEADERDIR}"/Gentoo/gentoo-qconfig.h
-			for x in "${ROOT}/${QT4_HEADERDIR}"/Gentoo/gentoo-*-qconfig.h; do
+			: > "${ROOT}${QT4_HEADERDIR}"/Gentoo/gentoo-qconfig.h
+			for x in "${ROOT}${QT4_HEADERDIR}"/Gentoo/gentoo-*-qconfig.h; do
 				[[ -f ${x} ]] || continue
-				cat "${x}" >> "${ROOT}/${QT4_HEADERDIR}"/Gentoo/gentoo-qconfig.h
+				cat "${x}" >> "${ROOT}${QT4_HEADERDIR}"/Gentoo/gentoo-qconfig.h
 			done
 		else
-			rm -f "${ROOT}/${QT4_DATADIR}"/mkspecs/qconfig.pri
-			rm -f "${ROOT}/${QT4_HEADERDIR}"/Gentoo/gentoo-qconfig.h
-			rmdir "${ROOT}/${QT4_DATADIR}"/mkspecs \
-				"${ROOT}/${QT4_DATADIR}" \
-				"${ROOT}/${QT4_HEADERDIR}"/Gentoo \
-				"${ROOT}/${QT4_HEADERDIR}" 2>/dev/null
+			rm -f "${ROOT}${QT4_DATADIR}"/mkspecs/qconfig.pri
+			rm -f "${ROOT}${QT4_HEADERDIR}"/Gentoo/gentoo-qconfig.h
+			rmdir "${ROOT}${QT4_DATADIR}"/mkspecs \
+				"${ROOT}${QT4_DATADIR}" \
+				"${ROOT}${QT4_HEADERDIR}"/Gentoo \
+				"${ROOT}${QT4_HEADERDIR}" 2>/dev/null
 		fi
 	fi
 }
@@ -659,6 +713,24 @@ qt4_get_mkspec() {
 
 	case ${CHOST} in
 		*-linux*)
+			spec=linux ;;
+		*-darwin*)
+			spec=darwin ;; # darwin/mac with X11
+		*-freebsd*|*-dragonfly*)
+			spec=freebsd ;;
+		*-netbsd*)
+			spec=netbsd ;;
+		*-openbsd*)
+			spec=openbsd ;;
+		*-aix*)
+			spec=aix ;;
+		hppa*-hpux*)
+			spec=hpux ;;
+		ia64*-hpux*)
+			spec=hpuxi ;;
+		*-solaris*)
+			spec=solaris ;;
+		*)
 			die "qt4-build-multilib.eclass: unsupported CHOST '${CHOST}'" ;;
 	esac
 
@@ -684,7 +756,9 @@ qt4_get_mkspec() {
 	esac
 
 	# Add -64 for 64-bit prefix profiles
-	if use amd64-linux
+	if use amd64-linux || use ppc64-linux ||
+		use x64-macos ||
+		use sparc64-solaris || use x64-solaris
 	then
 		[[ -d ${S}/mkspecs/${spec}-64 ]] && spec+=-64
 	fi
