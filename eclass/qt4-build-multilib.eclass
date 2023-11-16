@@ -708,23 +708,6 @@ qt4_get_mkspec() {
 
 	case ${CHOST} in
 		*-linux*)
-			spec=linux ;;
-		*-darwin*)
-			spec=darwin ;; # darwin/mac with X11
-		*-freebsd*|*-dragonfly*)
-			spec=freebsd ;;
-		*-netbsd*)
-			spec=netbsd ;;
-		*-openbsd*)
-			spec=openbsd ;;
-		*-aix*)
-			spec=aix ;;
-		hppa*-hpux*)
-			spec=hpux ;;
-		ia64*-hpux*)
-			spec=hpuxi ;;
-		*-solaris*)
-			spec=solaris ;;
 		*)
 			die "qt4-build-multilib.eclass: unsupported CHOST '${CHOST}'" ;;
 	esac
@@ -751,9 +734,7 @@ qt4_get_mkspec() {
 	esac
 
 	# Add -64 for 64-bit prefix profiles
-	if use amd64-linux || use ppc64-linux ||
-		use x64-macos ||
-		use sparc64-solaris || use x64-solaris
+	if use amd64-linux
 	then
 		[[ -d ${S}/mkspecs/${spec}-64 ]] && spec+=-64
 	fi
