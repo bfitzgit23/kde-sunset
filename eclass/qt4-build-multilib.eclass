@@ -12,7 +12,7 @@
 # Requires EAPI 7.
 
 case ${EAPI} in
-	7)	: ;;
+	6|7)	: ;;
 esac
 
 inherit eutils flag-o-matic multilib multilib-minimal toolchain-funcs

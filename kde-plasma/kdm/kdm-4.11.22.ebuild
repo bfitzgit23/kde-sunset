@@ -5,7 +5,7 @@ EAPI=5
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-workspace"
-inherit systemd kde4-meta flag-o-matic user
+inherit systemd kde4-meta flag-o-matic
 
 DESCRIPTION="Login manager by KDE, similar to xdm and gdm"
 
