@@ -94,6 +94,8 @@ multilib_src_compile() {
 		--no-geolocation
 		--no-device-orientation
 		--no-orientation-events
+		--no-xslt
+		--no-force-sse2
 		# copied from eqmake4
 		QMAKE_AR="'$(tc-getAR) cqs'"
 		QMAKE_CC="'$(tc-getCC)'"

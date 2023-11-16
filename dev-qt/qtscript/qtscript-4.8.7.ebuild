@@ -26,6 +26,7 @@ PATCHES=(
 	"${FILESDIR}/4.8.6-javascriptcore-x32.patch"
 	"${FILESDIR}/${PN}-5.11.3-gcc-8.3.patch"
 	"${FILESDIR}/${PN}-4.8.7-gcc9.patch"
+	"${FILESDIR}/disable-sslv3.patch"
 )
 
 multilib_src_configure() {

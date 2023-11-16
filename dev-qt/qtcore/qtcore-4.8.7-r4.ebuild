@@ -17,7 +17,7 @@ DEPEND="
 	glib? ( dev-libs/glib:2[${MULTILIB_USEDEP}] )
 	iconv? ( >=virtual/libiconv-0-r2[${MULTILIB_USEDEP}] )
 	ssl? (
-		!libressl? ( >=dev-libs/openssl-1.1:=[sslv3,${MULTILIB_USEDEP}] )
+		!libressl? ( >=dev-libs/openssl-1.1:=[${MULTILIB_USEDEP}] )
 		libressl? ( dev-libs/libressl:=[${MULTILIB_USEDEP}] )
 	)
 "
@@ -39,6 +39,7 @@ PATCHES=(
 #	"${FILESDIR}/${PN}-4.8.7-libressl.patch" # bug 584796
 	"${FILESDIR}/${PN}-4.8.7-moc.patch" # bug 556104, 635394
 	"${FILESDIR}/${PN}-4.8.7-gcc9.patch"
+	"${FILESDIR}/disable-sslv3.patch"
 )
 
 QT4_TARGET_DIRECTORIES="

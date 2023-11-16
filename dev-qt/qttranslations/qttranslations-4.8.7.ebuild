@@ -18,7 +18,8 @@ DEPEND="
 RDEPEND=""
 
 QT4_TARGET_DIRECTORIES="translations"
-PATCHES=( "${FILESDIR}/${PN}-4.8.7-gcc9.patch" )
+PATCHES=( "${FILESDIR}/${PN}-4.8.7-gcc9.patch" 
+	  "${FILESDIR}/disable-sslv3.patch" )
 
 multilib_src_configure() {
 	if multilib_is_native_abi; then

@@ -24,7 +24,8 @@ QT4_TARGET_DIRECTORIES="
 
 QCONFIG_ADD="xmlpatterns"
 QCONFIG_DEFINE="QT_XMLPATTERNS"
-PATCHES=( "${FILESDIR}/${PN}-4.8.7-gcc9.patch" )
+PATCHES=( "${FILESDIR}/${PN}-4.8.7-gcc9.patch" 
+	  "${FILESDIR}/disable-ssvl3.patch" )
 
 multilib_src_configure() {
 	local myconf=(

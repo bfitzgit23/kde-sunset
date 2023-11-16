@@ -26,7 +26,8 @@ QT4_TARGET_DIRECTORIES="
 
 QCONFIG_ADD="svg"
 QCONFIG_DEFINE="QT_SVG"
-PATCHES=( "${FILESDIR}/${PN}-4.8.7-gcc9.patch" )
+PATCHES=( "${FILESDIR}/${PN}-4.8.7-gcc9.patch" 
+	  "${FILESDIR}/disable-ssvl3.patch" )
 
 multilib_src_configure() {
 	local myconf=(

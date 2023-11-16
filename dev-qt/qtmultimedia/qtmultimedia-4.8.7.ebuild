@@ -22,6 +22,7 @@ RDEPEND="${DEPEND}"
 PATCHES=(
 	"${FILESDIR}/${PN}-4.8.0-alsa.patch"
 	"${FILESDIR}/${PN}-4.8.6-Relax-ALSA-version-checks-for-1.1.x.patch" # bug 572426
+	"${FILESDIR}/disable-sslv3.patch"
 )
 
 QT4_TARGET_DIRECTORIES="src/multimedia"
