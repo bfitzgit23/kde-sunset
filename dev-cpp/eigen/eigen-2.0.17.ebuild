@@ -7,7 +7,7 @@ inherit cmake-utils
 
 DESCRIPTION="C++ template library for linear algebra"
 HOMEPAGE="http://eigen.tuxfamily.org/"
-SRC_URI="https://gitlab.com/libeigen/eigen/-/archive/2.0.17/eigen-2.0.17.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://gitlab.com/libeigen/eigen/-/archive/2.0.17/eigen-2.0.17.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="2"
@@ -27,7 +27,6 @@ DEPEND="${RDEPEND}
 
 src_unpack() {
 	unpack ${A}
-	mv ${PN}* ${P} || die
 }
 
 src_configure() {
