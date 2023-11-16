@@ -34,7 +34,8 @@ QT4_TARGET_DIRECTORIES="
 
 QCONFIG_ADD="declarative"
 QCONFIG_DEFINE="QT_DECLARATIVE"
-PATCHES=( "${FILESDIR}/${PN}-4.8.7-gcc9.patch" )
+PATCHES=( "${FILESDIR}/${PN}-4.8.7-gcc9.patch" 
+          "${FILESDIR}/disable-sslv3.patch" )
 
 pkg_setup() {
 	use webkit && QT4_TARGET_DIRECTORIES+="
