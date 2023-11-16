@@ -216,25 +216,12 @@ qt4-build-multilib_src_prepare() {
 		mkspecs/$(qt4_get_mkspec)/qmake.conf \
 		|| die "sed QMAKE_(LIB|INC)DIR failed"
 
-	if [[ ${CHOST} == *-darwin* ]]; then
-		# Set FLAGS and remove -arch, since our gcc-apple is multilib crippled (by design)
-		sed -i \
-			-e "s:QMAKE_CFLAGS_RELEASE.*=.*:QMAKE_CFLAGS_RELEASE=${CFLAGS}:" \
-			-e "s:QMAKE_CXXFLAGS_RELEASE.*=.*:QMAKE_CXXFLAGS_RELEASE=${CXXFLAGS}:" \
-			-e "s:QMAKE_LFLAGS_RELEASE.*=.*:QMAKE_LFLAGS_RELEASE=-headerpad_max_install_names ${LDFLAGS}:" \
-			-e "s:-arch\s\w*::g" \
-			mkspecs/common/g++-macx.conf \
-			|| die "sed g++-macx.conf failed"
 
 		# Fix configure's -arch settings that appear in qmake/Makefile and also
 		# fix arch handling (automagically duplicates our -arch arg and breaks
 		# pch). Additionally disable Xarch support.
 		sed -i \
-			-e "s:-arch i386::" \
-			-e "s:-arch ppc::" \
 			-e "s:-arch x86_64::" \
-			-e "s:-arch ppc64::" \
-			-e "s:-arch \$i::" \
 			-e "/if \[ ! -z \"\$NATIVE_64_ARCH\" \]; then/,/fi/ d" \
 			-e "s:CFG_MAC_XARCH=yes:CFG_MAC_XARCH=no:g" \
 			-e "s:-Xarch_x86_64::g" \
@@ -242,20 +229,7 @@ qt4-build-multilib_src_prepare() {
 			configure mkspecs/common/gcc-base-macx.conf mkspecs/common/g++-macx.conf \
 			|| die "sed -arch/-Xarch failed"
 
-		# On Snow Leopard don't fall back to 10.5 deployment target.
-		if [[ ${CHOST} == *-apple-darwin10 ]]; then
-			sed -i \
-				-e "s:QMakeVar set QMAKE_MACOSX_DEPLOYMENT_TARGET.*:QMakeVar set QMAKE_MACOSX_DEPLOYMENT_TARGET 10.6:g" \
-				-e "s:-mmacosx-version-min=10.[0-9]:-mmacosx-version-min=10.6:g" \
-				configure mkspecs/common/g++-macx.conf \
-				|| die "sed deployment target failed"
-		fi
-	fi
 
-	if [[ ${CHOST} == *-solaris* ]]; then
-		sed -i -e '/^QMAKE_LFLAGS_THREAD/a QMAKE_LFLAGS_DYNAMIC_LIST = -Wl,--dynamic-list,' \
-			mkspecs/$(qt4_get_mkspec)/qmake.conf || die
-	fi
 
 	# apply patches
 	[[ ${PATCHES[@]} ]] && eapply "${PATCHES[@]}"
