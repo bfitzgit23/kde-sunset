@@ -4,8 +4,7 @@
 EAPI=8
 
 MY_PV=${PV/4.10/2.3}
-PYTHON_COMPAT=( python2_7 )
-inherit python-any-r1 qmake-utils toolchain-funcs multilib-minimal
+inherit qmake-utils toolchain-funcs multilib-minimal
 
 DESCRIPTION="The WebKit module for the Qt toolkit"
 HOMEPAGE="https://www.qt.io/ http://trac.webkit.org/wiki/QtWebKit"
@@ -63,6 +62,7 @@ PATCHES=(
 	"${FILESDIR}/${PV}-use-correct-icu-typedef-2.patch"
 	"${FILESDIR}/${PV}-macros-semicolon.patch"
 	"${FILESDIR}/${PV}-bison.patch"
+	"${FILESDIR}/webkit-qtwebkit-23-glib2.patch"
 )
 
 src_prepare() {
@@ -97,6 +97,10 @@ multilib_src_compile() {
 		--no-geolocation
 		--no-device-orientation
 		--no-orientation-events
+		--no-xslt
+		--no-force-sse2
+		--no-video
+		--release
 		# copied from eqmake4
 		QMAKE_AR="'$(tc-getAR) cqs'"
 		QMAKE_CC="'$(tc-getCC)'"
