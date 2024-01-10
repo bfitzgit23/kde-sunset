@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=8
 
 KDE_LINGUAS="bg cs de el es fr hu pl pt_BR ru sr sr@latin uk"
 KDE_LINGUAS_LIVE_OVERRIDE="true"

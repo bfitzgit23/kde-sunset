@@ -18,8 +18,9 @@ _KDE4_FUNCTIONS_ECLASS=1
 # @DESCRIPTION:
 # Currently kde4 eclasses support 6 and 7.
 case ${EAPI} in
-	6) inherit eapi7-ver ;;
-	7) : ;;
+	7) inherit eapi7-ver ;;
+	8|9) : ;;
+	*) die "EAPI=${EAPI:-0} is not supported" ;;
 esac
 
 # @ECLASS-VARIABLE: KDE_OVERRIDE_MINIMAL

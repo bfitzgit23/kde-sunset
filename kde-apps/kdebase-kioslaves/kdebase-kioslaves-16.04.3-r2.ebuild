@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-runtime"
@@ -29,6 +29,7 @@ RDEPEND="${DEPEND}
 	kde-apps/kdialog:*
 	kde-frameworks/kdelibs:4[bzip2?,lzma?]
 	virtual/ssh
+	!kernel_SunOS? ( virtual/eject )
 "
 
 KMEXTRA="

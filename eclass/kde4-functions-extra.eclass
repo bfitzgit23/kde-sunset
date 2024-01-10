@@ -14,7 +14,8 @@ _KDE4_FUNCTIONS_ECLASS_EXTRA=1
 # @DESCRIPTION:
 # Currently kde4 eclasses support EAPI 5 and 6 and 7.
 case ${EAPI} in
-	6|7) : ;;
+	7|8|9) : ;;
+	*) die "EAPI=${EAPI:-0} is not supported" ;;
 esac
 
 # @FUNCTION: add_kdeplasma_dep

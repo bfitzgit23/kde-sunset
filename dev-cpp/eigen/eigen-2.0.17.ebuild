@@ -1,13 +1,13 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
 inherit cmake-utils
 
 DESCRIPTION="C++ template library for linear algebra"
 HOMEPAGE="http://eigen.tuxfamily.org/"
-SRC_URI="https://gitlab.com/libeigen/eigen/-/archive/2.0.17/eigen-2.0.17.tar.gz"
+SRC_URI="https://bitbucket.org/eigen/eigen/get/${PV}.tar.bz2 -> ${P}.tar.bz2"
 
 LICENSE="GPL-3"
 SLOT="2"
@@ -27,6 +27,7 @@ DEPEND="${RDEPEND}
 
 src_unpack() {
 	unpack ${A}
+	mv ${PN}* ${P} || die
 }
 
 src_configure() {

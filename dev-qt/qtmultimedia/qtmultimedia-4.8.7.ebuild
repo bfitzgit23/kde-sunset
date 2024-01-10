@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=8
 inherit qt4-build-multilib
 
 DESCRIPTION="The Multimedia module for the Qt toolkit"
@@ -22,7 +22,6 @@ RDEPEND="${DEPEND}"
 PATCHES=(
 	"${FILESDIR}/${PN}-4.8.0-alsa.patch"
 	"${FILESDIR}/${PN}-4.8.6-Relax-ALSA-version-checks-for-1.1.x.patch" # bug 572426
-	"${FILESDIR}/disable-sslv3.patch"
 )
 
 QT4_TARGET_DIRECTORIES="src/multimedia"

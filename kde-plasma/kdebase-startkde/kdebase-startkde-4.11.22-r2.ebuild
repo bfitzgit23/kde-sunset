@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=8
 
 KMNAME="kde-workspace"
 KMNOMODULE="true"
@@ -91,7 +91,7 @@ RDEPEND="
 		kde-plasma/qguiplatformplugin_kde:4
 		kde-plasma/solid-actions-kcm:4
 	)
-	wallpapers? ( kde-apps/kde-wallpapers:4 )
+	wallpapers? ( kde-plasma/plasma-workspace-wallpapers:5 )
 "
 
 KMEXTRACTONLY="

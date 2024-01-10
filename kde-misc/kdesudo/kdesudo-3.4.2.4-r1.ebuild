@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=8
 # FIXME. What is linguas_jv, different Japanese translation?
 KDE_LINGUAS="ar cs da de el en_GB es et fa fi fr gl he hr hu id is it ja kk ko
 lt lv ms nb nl oc pl pt pt_BR ro ru sk sv tl tr uk zh_CN zh_TW"

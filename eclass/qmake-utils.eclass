@@ -15,9 +15,8 @@
 if [[ -z ${_QMAKE_UTILS_ECLASS} ]]; then
 _QMAKE_UTILS_ECLASS=1
 
-
 [[ ${EAPI:-0} == [01234] ]] && die "qmake-utils.eclass: unsupported EAPI=${EAPI:-0}"
-[[ ${EAPI:-0} == 6 ]] && inherit eutils multilib
+[[ ${EAPI:-0} == 9 ]] && inherit eutils multilib
 inherit estack toolchain-funcs
 
 # @FUNCTION: qt4_get_bindir

@@ -1,0 +1,28 @@
+diff -ru a/Source/WebCore/dom/Document.cpp b/Source/WebCore/dom/Document.cpp
+--- a/Source/WebCore/dom/Document.cpp   2021-11-25 19:15:40.017000000 +0300
++++ b/Source/WebCore/dom/Document.cpp   2021-11-25 19:22:29.701000000 +0300
+@@ -3874,12 +3874,12 @@
+     unsigned i = 0;
+
+     UChar32 c;
+-    U16_NEXT(characters, i, length, c)
++    U16_NEXT(characters, i, length, c);
+     if (!isValidNameStart(c))
+         return false;
+
+     while (i < length) {
+-        U16_NEXT(characters, i, length, c)
++        U16_NEXT(characters, i, length, c);
+         if (!isValidNamePart(c))
+             return false;
+     }
+@@ -3942,7 +3942,7 @@
+     const UChar* s = qualifiedName.characters();
+     for (unsigned i = 0; i < length;) {
+         UChar32 c;
+-        U16_NEXT(s, i, length, c)
++        U16_NEXT(s, i, length, c);
+         if (c == ':') {
+             if (sawColon) {
+                 ec = NAMESPACE_ERR;
+

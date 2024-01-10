@@ -1,12 +1,12 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
 KDEBASE="kdevelop"
 KMNAME="kdev-python"
 KDE_LINGUAS="bs ca ca@valencia de en_GB es et fi fr gl it nl pl pt pt_BR sk sl sv tr uk"
-PYTHON_COMPAT=( python3_11 )
+PYTHON_COMPAT=( python2_7 )
 MY_P="${KMNAME}-${PV}"
 inherit kde4-base python-any-r1
 

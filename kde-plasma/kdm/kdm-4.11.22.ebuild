@@ -1,11 +1,11 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=8
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-workspace"
-inherit systemd kde4-meta flag-o-matic
+inherit systemd kde4-meta flag-o-matic user
 
 DESCRIPTION="Login manager by KDE, similar to xdm and gdm"
 

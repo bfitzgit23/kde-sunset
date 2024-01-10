@@ -1,10 +1,11 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 MY_PV=${PV/4.10/2.3}
-inherit qmake-utils toolchain-funcs multilib-minimal
+PYTHON_COMPAT=( python2_7 )
+inherit python-any-r1 qmake-utils toolchain-funcs multilib-minimal
 
 DESCRIPTION="The WebKit module for the Qt toolkit"
 HOMEPAGE="https://www.qt.io/ http://trac.webkit.org/wiki/QtWebKit"
@@ -25,6 +26,8 @@ RDEPEND="
 	>=dev-qt/qtopengl-4.8.6-r1:4[${MULTILIB_USEDEP}]
 	>=dev-qt/qtscript-4.8.6-r1:4[${MULTILIB_USEDEP}]
 	>=dev-qt/qtsql-4.8.6-r1:4[sqlite,${MULTILIB_USEDEP}]
+	>=dev-qt/qtsvg-4.8.6-r1:4[${MULTILIB_USEDEP}]
+	>=dev-qt/qtxmlpatterns-4.8.6-r1:4[${MULTILIB_USEDEP}]
 	>=media-libs/fontconfig-2.10.2-r1[${MULTILIB_USEDEP}]
 	media-libs/libpng:0=[${MULTILIB_USEDEP}]
 	>=sys-libs/zlib-1.2.8-r1[${MULTILIB_USEDEP}]
@@ -40,6 +43,7 @@ RDEPEND="
 	)
 "
 DEPEND="${RDEPEND}
+	${PYTHON_DEPS}
 	dev-lang/perl
 	dev-lang/ruby
 	dev-util/gperf
@@ -59,7 +63,6 @@ PATCHES=(
 	"${FILESDIR}/${PV}-use-correct-icu-typedef-2.patch"
 	"${FILESDIR}/${PV}-macros-semicolon.patch"
 	"${FILESDIR}/${PV}-bison.patch"
-	"${FILESDIR}/webkit-qtwebkit-23-glib2.patch"
 )
 
 src_prepare() {
@@ -94,8 +97,6 @@ multilib_src_compile() {
 		--no-geolocation
 		--no-device-orientation
 		--no-orientation-events
-		--no-xslt
-		--no-force-sse2
 		# copied from eqmake4
 		QMAKE_AR="'$(tc-getAR) cqs'"
 		QMAKE_CC="'$(tc-getCC)'"

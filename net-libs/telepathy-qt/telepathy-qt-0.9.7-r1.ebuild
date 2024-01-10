@@ -1,9 +1,9 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-PYTHON_COMPAT=( python3_11 )
+PYTHON_COMPAT=( python2_7 )
 inherit cmake python-any-r1
 
 DESCRIPTION="Qt bindings for the Telepathy D-Bus protocol"

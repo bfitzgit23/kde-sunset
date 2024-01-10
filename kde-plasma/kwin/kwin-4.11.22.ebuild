@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
 KMNAME="kde-workspace"
 DECLARATIVE_REQUIRED="always"
@@ -44,6 +44,9 @@ COMMONDEPEND="
 DEPEND="${COMMONDEPEND}
 	x11-libs/xcb-util-renderutil
 	x11-base/xorg-proto
+"
+RDEPEND="${COMMONDEPEND}
+	x11-apps/scripts
 "
 
 KMEXTRACTONLY="
