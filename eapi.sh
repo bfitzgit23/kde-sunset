@@ -6,4 +6,4 @@ OVERLAY_PATH="/var/db/repos/kde-sunset"
 find $OVERLAY_PATH -name "*.ebuild" -exec sed -i 's/EAPI=[0-9]*/EAPI=8/g' {} +
 
 # Update EAPI in eclass files
-find $OVERLAY_PATH -name "*.eclass" -exec sed -i 's/EAPI=[0-9]*/EAPI=8/g' {} +
+find $OVERLAY_PATH/eclass -name "*.eclass" -exec sed -i 's/EAPI=[0-9]*/EAPI=8/g' {} +
