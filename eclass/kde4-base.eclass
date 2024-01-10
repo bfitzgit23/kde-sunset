@@ -24,7 +24,7 @@ _KDE4_BASE_ECLASS=1
 case ${EAPI} in
 	7) inherit eapi7-ver ;;
 	8|9) : ;;
-	*) die "EAPI=7${EAPI:-0} is not supported" ;;
+	*) die "EAPI=8${EAPI:-0} is not supported" ;;
 esac
 
 # @ECLASS-VARIABLE: KDE_SELINUX_MODULE
