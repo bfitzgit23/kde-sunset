@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 COMMIT=d626bceefe2dab03c5aa1c2ac96ef627a6b60c8d
 inherit kde4-base

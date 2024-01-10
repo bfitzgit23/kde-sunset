@@ -109,7 +109,7 @@ _CMAKE_UTILS_ECLASS=1
 case ${EAPI} in
 	3|4|5) : ${CMAKE_WARN_UNUSED_CLI:=no} ;;
 	7|8|9) : ${CMAKE_WARN_UNUSED_CLI:=yes} ;;
-	*) die "EAPI=${EAPI:-0} is not supported" ;;
+	*) die "EAPI=7${EAPI:-0} is not supported" ;;
 esac
 
 inherit toolchain-funcs flag-o-matic multiprocessing xdg-utils
@@ -697,7 +697,7 @@ cmake-utils_src_configure() {
 			if [[ ${EAPI} == [345] ]]; then
 				eqawarn "Declaring mycmakeargs as a variable is deprecated. Please use an array instead."
 			else
-				die "Declaring mycmakeargs as a variable is banned in EAPI=${EAPI}. Please use an array instead."
+				die "Declaring mycmakeargs as a variable is banned in EAPI=7${EAPI}. Please use an array instead."
 			fi
 		fi
 		local mycmakeargs_local=(${mycmakeargs})
