@@ -22,9 +22,9 @@ _KDE4_BASE_ECLASS=1
 # @DESCRIPTION:
 # Currently kde4 eclasses support 6 and 7.
 case ${EAPI} in
-	7) inherit eapi7-ver ;;
-	8|9) : ;;
-	*) die "EAPI=8${EAPI:-0} is not supported" ;;
+	6) inherit eapi7-ver ;;
+	7) : ;;
+	*) die "EAPI=${EAPI:-0} is not supported" ;;
 esac
 
 # @ECLASS-VARIABLE: KDE_SELINUX_MODULE
