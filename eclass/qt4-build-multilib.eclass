@@ -12,7 +12,7 @@
 # Requires EAPI 7.
 
 case ${EAPI} in
-	7)	: ;;
+	6|7)	: ;;
 	*)	die "qt4-build-multilib.eclass: unsupported EAPI=${EAPI:-0}" ;;
 esac
 
