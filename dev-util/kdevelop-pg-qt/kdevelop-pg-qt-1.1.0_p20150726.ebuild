@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
 COMMIT=8e6845216dc1f7bae64311459042e528b8e78de1
 KDEBASE="kdevelop"
