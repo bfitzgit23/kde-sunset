@@ -5,7 +5,7 @@
 # CMakeLists.txt, kexi/CMakeLists.txt kexi/migration/CMakeLists.txt
 # krita/CMakeLists.txt
 
-EAPI=8
+EAPI=6
 
 CHECKREQS_DISK_BUILD="4G"
 KDE_HANDBOOK="optional"

@@ -1,7 +1,7 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=6
 inherit kde4-meta-pkg
 
 DESCRIPTION="kdeartwork - merge this to pull in all kdeartwork-derived packages"

@@ -1,7 +1,7 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=6
 
 KDE_LINGUAS="bs ca ca@valencia da de el en_GB es et fi fr gl it kk nl pl pt
 pt_BR ru sk sl sv tr uk zh_CN zh_TW"
