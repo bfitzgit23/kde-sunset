@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI=7
 
 if [[ "${PV}" != "9999" ]]; then
 	SRC_URI="http://www.vandenoever.info/software/strigi/${P}.tar.bz2"

@@ -1,7 +1,7 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 MY_PV=${PV/4.10/2.3}
 inherit qmake-utils toolchain-funcs multilib-minimal

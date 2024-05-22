@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_LINGUAS="af cs de es fr he it pl ru sk sl tr uk"
 inherit kde4-base
