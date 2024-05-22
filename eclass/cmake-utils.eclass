@@ -108,8 +108,7 @@ _CMAKE_UTILS_ECLASS=1
 
 case ${EAPI} in
 	3|4|5) : ${CMAKE_WARN_UNUSED_CLI:=no} ;;
-	6|7) : ${CMAKE_WARN_UNUSED_CLI:=yes} ;;
-	*) die "EAPI=${EAPI:-0} is not supported" ;;
+	6|7|8) : ${CMAKE_WARN_UNUSED_CLI:=yes} ;;
 esac
 
 inherit toolchain-funcs flag-o-matic multiprocessing xdg-utils
