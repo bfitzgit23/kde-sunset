@@ -1,0 +1,64 @@
+diff --git a/eclass/eutils.eclass b/eclass/eutils.eclass
+new file mode 100644
+index 0000000..e69de29
+--- /dev/null
++++ b/eclass/eutils.eclass
+@@
++# Legacy eutils.eclass content
++...
+diff --git a/eclass/patch.eclass b/eclass/patch.eclass
+new file mode 100644
+index 0000000..e69de29
+--- /dev/null
++++ b/eclass/patch.eclass
+@@
++# Legacy patch.eclass content
++...
+diff --git a/eclass/versionator.eclass b/eclass/versionator.eclass
+new file mode 100644
+index 0000000..e69de29
+--- /dev/null
++++ b/eclass/versionator.eclass
+@@
++# Legacy versionator.eclass content
++...
+diff --git a/eclass/multilib.eclass b/eclass/multilib.eclass
+new file mode 100644
+index 0000000..e69de29
+--- /dev/null
++++ b/eclass/multilib.eclass
+@@
++# Legacy multilib.eclass content
++...
+diff --git a/eclass/qt4-build-multilib.eclass b/eclass/qt4-build-multilib.eclass
+new file mode 100644
+index 0000000..e69de29
+--- /dev/null
++++ b/eclass/qt4-build-multilib.eclass
+@@
++# Legacy qt4-build-multilib.eclass content
++...
+diff --git a/eclass/kde4-base.eclass b/eclass/kde4-base.eclass
+new file mode 100644
+index 0000000..e69de29
+--- /dev/null
++++ b/eclass/kde4-base.eclass
+@@
++# Legacy kde4-base.eclass content
++...
+diff --git a/eclass/kde4-functions.eclass b/eclass/kde4-functions.eclass
+new file mode 100644
+index 0000000..e69de29
+--- /dev/null
++++ b/eclass/kde4-functions.eclass
+@@
++# Legacy kde4-functions.eclass content
++...
+diff --git a/eclass/kde4-functions-extra.eclass b/eclass/kde4-functions-extra.eclass
+new file mode 100644
+index 0000000..e69de29
+--- /dev/null
++++ b/eclass/kde4-functions-extra.eclass
+@@
++# Legacy kde4-functions-extra.eclass content
++...
