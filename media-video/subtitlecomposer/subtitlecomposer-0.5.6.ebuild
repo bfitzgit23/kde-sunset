@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 KDE_LINGUAS="bg cs de el es fr hu pl pt_BR ru sr sr@latin uk"
 KDE_LINGUAS_LIVE_OVERRIDE="true"
@@ -28,8 +28,8 @@ DEPEND="${RDEPEND}
 src_configure() {
 	mycmakeargs=(
 		-DWITH_GStreamer=OFF
-		-DWITH_ICU="$(usex unicode)"
-		-DWITH_xine="$(usex xine)"
+		$(cmake-utils_use_with unicode ICU)
+		$(cmake-utils_use_with xine)
 	)
 	kde4-base_src_configure
 }

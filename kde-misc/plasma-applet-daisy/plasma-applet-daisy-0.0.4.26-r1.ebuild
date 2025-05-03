@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 KDE_MINIMAL="4.8"
 KDE_LINGUAS_DIR="applet/po"

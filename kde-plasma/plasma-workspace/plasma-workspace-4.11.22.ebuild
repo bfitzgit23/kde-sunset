@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 DECLARATIVE_REQUIRED="always"
 KDE_HANDBOOK="optional"
@@ -79,11 +79,11 @@ src_configure() {
 		-DWITH_PythonLibrary=OFF
 		-DWITH_Soprano=OFF
 		-DWITH_Xmms=OFF
-		-DWITH_libgps="$(usex gps)"
-		-DWITH_QJSON="$(usex json)"
-		-DWITH_Akonadi="$(usex pim)"
-		-DWITH_KdepimLibs="$(usex pim)"
-		-DWITH_qalculate="$(usex qalculate)"
+		$(cmake-utils_use_with gps libgps)
+		$(cmake-utils_use_with json QJSON)
+		$(cmake-utils_use_with pim Akonadi)
+		$(cmake-utils_use_with pim KdepimLibs)
+		$(cmake-utils_use_with qalculate)
 	)
 
 	kde4-meta_src_configure

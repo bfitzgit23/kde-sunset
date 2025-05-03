@@ -1,11 +1,11 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 KFMIN=5.60.0
 QTMIN=5.12.3
-inherit cmake-utils kde4.org
+inherit cmake-utils kde.org
 
 DESCRIPTION="Widget styles for Qt and GTK2"
 HOMEPAGE="https://invent.kde.org/system/qtcurve"

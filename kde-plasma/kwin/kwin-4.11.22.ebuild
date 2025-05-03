@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 KMNAME="kde-workspace"
 DECLARATIVE_REQUIRED="always"
@@ -56,10 +56,6 @@ KMEXTRACTONLY="
 "
 
 PATCHES=( "${FILESDIR}/${P}-gcc6.patch" )
-
-PATCHES=(
-	"${FILESDIR}/${PN}-4.11.22-cpp11-compat.patch"
-)
 
 src_configure() {
 	# FIXME Remove when activity API moved away from libkworkspace

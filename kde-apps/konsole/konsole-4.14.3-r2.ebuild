@@ -1,7 +1,7 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 KDE_HANDBOOK="optional"
 KDE_DOC_DIRS="doc/manual"
@@ -21,7 +21,7 @@ RDEPEND="$(add_kdeapps_dep konsolepart)"
 RESTRICT="test"
 
 src_prepare() {
-	cmake_comment_add_subdirectory data
+	comment_add_subdirectory data
 
 	kde4-base_src_prepare
 }

@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 KDE_MINIMAL="${PV}"
 KDE_HANDBOOK="optional"
@@ -33,8 +33,8 @@ src_configure() {
 	use ppc64 && append-flags -mminimal-toc
 
 	local mycmakeargs=(
-		-DWITH_CFitsio="$(usex fits)"
-		-DWITH_indi="$(usex indi)"
+		$(cmake-utils_use_with fits CFitsio)
+		$(cmake-utils_use_with indi)
 	)
 
 	kde4-base_src_configure

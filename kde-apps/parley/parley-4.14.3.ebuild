@@ -1,7 +1,7 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 KDE_HANDBOOK="optional"
 inherit kde4-base
@@ -23,7 +23,7 @@ KMEXTRACTONLY="
 
 src_configure() {
 	local mycmakeargs=(
-		-DWITH_plasma="$(usex plasma)"
+		$(cmake-utils_use_with plasma)
 	)
 
 	kde4-base_src_configure

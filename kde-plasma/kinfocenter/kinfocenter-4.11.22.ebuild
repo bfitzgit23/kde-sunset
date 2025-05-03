@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-workspace"
@@ -28,8 +28,8 @@ RDEPEND="${DEPEND}
 
 src_configure() {
 	local mycmakeargs=(
-		-DWITH_RAW1394="$(usex ieee1394)"
-		-DWITH_OpenGL="$(usex opengl)"
+		$(cmake-utils_use_with ieee1394 RAW1394)
+		$(cmake-utils_use_with opengl OpenGL)
 	)
 
 	kde4-meta_src_configure

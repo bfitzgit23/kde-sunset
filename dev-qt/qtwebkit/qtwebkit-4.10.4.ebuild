@@ -1,10 +1,11 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 MY_PV=${PV/4.10/2.3}
-inherit qmake-utils toolchain-funcs multilib-minimal
+PYTHON_COMPAT=( python2_7 )
+inherit python-any-r1 qmake-utils toolchain-funcs multilib-minimal
 
 DESCRIPTION="The WebKit module for the Qt toolkit"
 HOMEPAGE="https://www.qt.io/ http://trac.webkit.org/wiki/QtWebKit"
@@ -40,6 +41,7 @@ RDEPEND="
 	)
 "
 DEPEND="${RDEPEND}
+	${PYTHON_DEPS}
 	dev-lang/perl
 	dev-lang/ruby
 	dev-util/gperf

@@ -1,7 +1,7 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 inherit kde4-base
 
@@ -23,7 +23,7 @@ DOCS=( ChangeLog README TODO )
 
 src_configure() {
 	local mycmakeargs=(
-		-DWITH_taglib="$(usex taglib)"
+		$(cmake-utils_use_with taglib)
 	)
 
 	kde4-base_src_configure

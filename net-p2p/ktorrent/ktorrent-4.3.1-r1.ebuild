@@ -1,7 +1,7 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 KDE_SCM="git"
 if [[ ${PV} != 9999* ]]; then
@@ -69,23 +69,23 @@ src_prepare() {
 
 src_configure() {
 	local mycmakeargs=(
-		-DENABLE_BWSCHEDULER_PLUGIN="$(usex bwscheduler)"
-		-DENABLE_DOWNLOADORDER_PLUGIN="$(usex downloadorder)"
-		-DENABLE_INFOWIDGET_PLUGIN="$(usex infowidget)"
-		-DWITH_SYSTEM_GEOIP="$(usex infowidget)"
-		-DENABLE_IPFILTER_PLUGIN="$(usex ipfilter)"
+		$(cmake-utils_use_enable bwscheduler BWSCHEDULER_PLUGIN)
+		$(cmake-utils_use_enable downloadorder DOWNLOADORDER_PLUGIN)
+		$(cmake-utils_use_enable infowidget INFOWIDGET_PLUGIN)
+		$(cmake-utils_use_with infowidget SYSTEM_GEOIP)
+		$(cmake-utils_use_enable ipfilter IPFILTER_PLUGIN)
 		-DENABLE_SCRIPTING_PLUGIN=OFF
-		-DENABLE_LOGVIEWER_PLUGIN="$(usex logviewer)"
-		-DENABLE_MAGNETGENERATOR_PLUGIN="$(usex magnetgenerator)"
-		-DENABLE_MEDIAPLAYER_PLUGIN="$(usex mediaplayer)"
-		-DENABLE_SYNDICATION_PLUGIN="$(usex rss)"
-		-DENABLE_SCANFOLDER_PLUGIN="$(usex scanfolder)"
-		-DENABLE_SEARCH_PLUGIN="$(usex search)"
-		-DENABLE_SHUTDOWN_PLUGIN="$(usex shutdown)"
-		-DENABLE_STATS_PLUGIN="$(usex stats)"
-		-DENABLE_UPNP_PLUGIN="$(usex upnp)"
-		-DENABLE_WEBINTERFACE_PLUGIN="$(usex webinterface)"
-		-DENABLE_ZEROCONF_PLUGIN="$(usex zeroconf)"
+		$(cmake-utils_use_enable logviewer LOGVIEWER_PLUGIN)
+		$(cmake-utils_use_enable magnetgenerator MAGNETGENERATOR_PLUGIN)
+		$(cmake-utils_use_enable mediaplayer MEDIAPLAYER_PLUGIN)
+		$(cmake-utils_use_enable rss SYNDICATION_PLUGIN)
+		$(cmake-utils_use_enable scanfolder SCANFOLDER_PLUGIN)
+		$(cmake-utils_use_enable search SEARCH_PLUGIN)
+		$(cmake-utils_use_enable shutdown SHUTDOWN_PLUGIN)
+		$(cmake-utils_use_enable stats STATS_PLUGIN)
+		$(cmake-utils_use_enable upnp UPNP_PLUGIN)
+		$(cmake-utils_use_enable webinterface WEBINTERFACE_PLUGIN)
+		$(cmake-utils_use_enable zeroconf ZEROCONF_PLUGIN)
 	)
 	kde4-base_src_configure
 }

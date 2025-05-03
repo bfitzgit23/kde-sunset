@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 KMNAME="kdepim"
 KMNOMODULE="true"
@@ -82,7 +82,7 @@ src_prepare() {
 
 src_configure() {
 	local mycmakeargs=(
-		-DCMAKE_DISABLE_FIND_PACKAGE_LibKGAPI2="$(usex !google)"
+		$(cmake-utils_use_find_package google LibKGAPI2)
 	)
 
 	kde4-meta_src_configure

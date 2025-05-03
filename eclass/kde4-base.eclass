@@ -17,6 +17,16 @@
 if [[ -z ${_KDE4_BASE_ECLASS} ]]; then
 _KDE4_BASE_ECLASS=1
 
+
+# @ECLASS-VARIABLE: EAPI
+# @DESCRIPTION:
+# Currently kde4 eclasses support 6 and 7.
+case ${EAPI} in
+	6) inherit eapi7-ver ;;
+	7) : ;;
+	*) die "EAPI=${EAPI:-0} is not supported" ;;
+esac
+
 # @ECLASS-VARIABLE: KDE_SELINUX_MODULE
 # @DESCRIPTION:
 # If set to "none", do nothing.
@@ -35,7 +45,8 @@ _KDE4_BASE_ECLASS=1
 # for tests you should proceed with setting VIRTUALX_REQUIRED=test.
 : ${VIRTUALX_REQUIRED:=manual}
 
-inherit kde4-functions toolchain-funcs flag-o-matic gnome2-utils virtualx versionator eutils multilib xdg-utils
+inherit kde4-functions toolchain-funcs flag-o-matic gnome2-utils virtualx eutils multilib xdg-utils
+
 
 if [[ ${KDE_BUILD_TYPE} = live ]]; then
 	case ${KDE_SCM} in
@@ -67,7 +78,7 @@ KDE_MINIMAL="${KDE_MINIMAL:-4.4}"
 # Set slot for KDEBASE known packages
 case ${KDEBASE} in
 	kde-base)
-		SLOT=4/$(get_version_component_range 1-2)
+		SLOT=4/$(ver_cut 1-2)
 		KDE_MINIMAL="${PV}"
 		;;
 	kdevelop)
@@ -86,10 +97,10 @@ case ${KDEBASE} in
 			case ${PN} in
 				kdevelop)
 					KDEVELOP_VERSION=${PV}
-					KDEVPLATFORM_VERSION="$(($(get_major_version)-3)).$(get_after_major_version)"
+					KDEVPLATFORM_VERSION="$(($(ver_cut 1)-3)).$(ver_cut 2-)"
 					;;
 				kdevplatform|kdevelop-php*|kdevelop-python)
-					KDEVELOP_VERSION="$(($(get_major_version)+3)).$(get_after_major_version)"
+					KDEVELOP_VERSION="$(($(ver_cut 1)+3)).$(ver_cut 2-)"
 					KDEVPLATFORM_VERSION=${PV}
 					;;
 				*)

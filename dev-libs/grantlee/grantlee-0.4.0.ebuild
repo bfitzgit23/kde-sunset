@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 inherit cmake-utils
 
@@ -34,7 +34,7 @@ PATCHES=(
 
 src_configure() {
 	local mycmakeargs=(
-		-DBUILD_TESTS="$(usex test)"
+		$(cmake-utils_use_build test TESTS)
 	)
 
 	cmake-utils_src_configure

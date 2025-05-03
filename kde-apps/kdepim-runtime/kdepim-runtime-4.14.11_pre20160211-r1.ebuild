@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 KMNAME="kdepim-runtime"
 QT_MINIMAL="4.8.7"
@@ -35,7 +35,7 @@ RDEPEND="${DEPEND}
 
 src_configure() {
 	local mycmakeargs=(
-		-DCMAKE_DISABLE_FIND_PACKAGE_LibKGAPI2="$(usex !google)"
+		$(cmake-utils_use_find_package google LibKGAPI2)
 	)
 
 	kde4-base_src_configure

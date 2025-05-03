@@ -107,8 +107,6 @@ _CMAKE_UTILS_ECLASS=1
 # Helps in improving QA of build systems that write to source tree.
 
 case ${EAPI} in
-    8)
-    8)
 	3|4|5) : ${CMAKE_WARN_UNUSED_CLI:=no} ;;
 	6|7) : ${CMAKE_WARN_UNUSED_CLI:=yes} ;;
 	*) die "EAPI=${EAPI:-0} is not supported" ;;
@@ -117,8 +115,6 @@ esac
 inherit toolchain-funcs flag-o-matic multiprocessing xdg-utils
 
 case ${EAPI} in
-    8)
-    8)
 	[3456])
 		: ${CMAKE_MAKEFILE_GENERATOR:=emake}
 		inherit eutils multilib
@@ -158,8 +154,6 @@ if [[ ${PN} != cmake ]]; then
 fi
 
 case ${EAPI} in
-    8)
-    8)
 	7) ;;
 	*) DEPEND=" ${BDEPEND}" ;;
 esac
@@ -258,8 +252,6 @@ _cmake_generator_to_use() {
 			# if ninja is enabled but not installed, the build could fail
 			# this could happen if ninja is manually enabled (eg. make.conf) but not installed
 			case ${EAPI} in
-    8)
-    8)
 				3|4|5|6)
 					if ! ROOT=/ has_version dev-util/ninja; then
 						die "CMAKE_MAKEFILE_GENERATOR is set to ninja, but ninja is not installed. Please install dev-util/ninja or unset CMAKE_MAKEFILE_GENERATOR."

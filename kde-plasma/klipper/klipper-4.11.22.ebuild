@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-workspace"
@@ -23,7 +23,7 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-		-DWITH_prison="$(usex prison)"
+		$(cmake-utils_use_with prison)
 	)
 
 	kde4-meta_src_configure

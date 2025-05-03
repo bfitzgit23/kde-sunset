@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 VIRTUALX_REQUIRED="test"
 inherit kde4-base
@@ -25,7 +25,7 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-		-DCMAKE_DISABLE_FIND_PACKAGE_Gpgme="$(usex !crypt)"
+		$(cmake-utils_use_find_package crypt Gpgme)
 	)
 	kde4-base_src_configure
 }

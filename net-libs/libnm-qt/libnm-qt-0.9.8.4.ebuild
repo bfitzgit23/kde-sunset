@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 KDE_REQUIRED="never"
 inherit kde4-base
@@ -37,9 +37,9 @@ S=${WORKDIR}/networkmanager-qt-${PV}
 src_configure() {
 	local mycmakeargs=(
 		-DBUILD_EXAMPLES=OFF
-		-DCMAKE_DISABLE_FIND_PACKAGE_Doxygen="$(usex !doc)"
-		-DDISABLE_MODEMMANAGERQT="$(usex !modemmanager)"
-		-DDISABLE_TESTING="$(usex !test)"
+		$(cmake-utils_use_find_package doc Doxygen)
+		$(cmake-utils_use !modemmanager DISABLE_MODEMMANAGERQT)
+		$(cmake-utils_use !test DISABLE_TESTING)
 	)
 
 	kde4-base_src_configure

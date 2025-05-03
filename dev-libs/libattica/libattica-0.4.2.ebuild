@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 MY_P="${P#lib}"
 MY_PN="${PN#lib}"
@@ -35,7 +35,7 @@ S=${WORKDIR}/${MY_P}
 src_configure() {
 	local mycmakeargs=(
 		-DQT4_BUILD=true
-		-DATTICA_ENABLE_TESTS="$(usex test)"
+		$(cmake-utils_use test ATTICA_ENABLE_TESTS)
 	)
 	cmake-utils_src_configure
 }

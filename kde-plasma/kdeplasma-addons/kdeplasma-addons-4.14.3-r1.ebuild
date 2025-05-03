@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 WEBKIT_REQUIRED="always"
 inherit flag-o-matic kde4-base
@@ -42,16 +42,16 @@ src_configure() {
 		-DDBUS_INTERFACES_INSTALL_DIR="${EPREFIX}/usr/share/dbus-1/interfaces/"
 		-DWITH_Nepomuk=OFF
 		-DWITH_QtOAuth=OFF
-		-DWITH_LibAttica="$(usex attica)"
-		-DWITH_Marble="$(usex desktopglobe)"
-		-DCMAKE_DISABLE_FIND_PACKAGE_Eigen2="$(usex !eigen)"
-		-DWITH_Kexiv2="$(usex exif)"
-		-DBUILD_ibus="$(usex ibus)"
-		-DWITH_QJSON="$(usex json)"
-		-DWITH_KdepimLibs="$(usex pim)"
-		-DWITH_qalculate="$(usex qalculate)"
-		-DWITH_qwt="$(usex qwt)"
-		-DBUILD_scim="$(usex scim)"
+		$(cmake-utils_use_with attica LibAttica)
+		$(cmake-utils_use_with desktopglobe Marble)
+		$(cmake-utils_use_find_package eigen Eigen2)
+		$(cmake-utils_use_with exif Kexiv2)
+		$(cmake-utils_use_build ibus)
+		$(cmake-utils_use_with json QJSON)
+		$(cmake-utils_use_with pim KdepimLibs)
+		$(cmake-utils_use_with qalculate)
+		$(cmake-utils_use_with qwt)
+		$(cmake-utils_use_build scim)
 	)
 
 	kde4-base_src_configure

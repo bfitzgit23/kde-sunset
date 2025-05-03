@@ -1,7 +1,7 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 KDE_HANDBOOK="optional"
 inherit kde4-base
@@ -24,8 +24,8 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-		-DWITH_flac="$(usex flac)"
-		-DWITH_OggVorbis="$(usex vorbis)"
+		$(cmake-utils_use_with flac)
+		$(cmake-utils_use_with vorbis OggVorbis)
 	)
 
 	kde4-base_src_configure

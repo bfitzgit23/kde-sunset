@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 QT_MINIMAL="4.8.7"
 inherit cmake flag-o-matic toolchain-funcs xdg-utils
@@ -104,7 +104,7 @@ RDEPEND="${COMMON_DEPEND}
 	plasma? ( !sci-libs/plasma )
 	udev? ( app-misc/media-player-info )
 	udisks? ( sys-fs/udisks:2 )
-	upower? ( || ( >=sys-power/upower-0.9.23 sys-power/upower-pm-utils ) )
+	upower? ( >=sys-power/upower-0.9.23 )
 "
 BDEPEND="
 	doc? ( app-doc/doxygen )
@@ -138,7 +138,6 @@ PATCHES=(
 	"${FILESDIR}/${PN}-4.14.35-kde3support.patch"
 	"${FILESDIR}/${PN}-4.14.35-plasma4.patch"
 	"${FILESDIR}/${PN}-4.14.37-exiv2-cmake.patch"
-	"${FILESDIR}/${P}-findsamba.patch"
 	"${FILESDIR}/${P}-CVE-2019-14744.patch"
 	"${FILESDIR}/${P}-kio-tls1x.patch"
 	"${FILESDIR}/${P}-narrowing-warning.patch"

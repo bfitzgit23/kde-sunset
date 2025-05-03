@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-runtime"
@@ -41,12 +41,12 @@ PATCHES=( "${FILESDIR}/${PN}-CVE-2014-8600.patch" )
 src_configure() {
 	local mycmakeargs=(
 		-DWITH_SLP=OFF
-		-DWITH_BZip2="$(usex bzip2)"
-		-DWITH_Exiv2="$(usex exif)"
-		-DWITH_LibLZMA="$(usex lzma)"
-		-DWITH_OpenEXR="$(usex openexr)"
-		-DWITH_samba="$(usex samba)"
-		-DWITH_LibSSH="$(usex sftp)"
+		$(cmake-utils_use_with bzip2 BZip2)
+		$(cmake-utils_use_with exif Exiv2)
+		$(cmake-utils_use_with lzma LibLZMA)
+		$(cmake-utils_use_with openexr OpenEXR)
+		$(cmake-utils_use_with samba)
+		$(cmake-utils_use_with sftp LibSSH)
 	)
 	kde4-meta_src_configure
 }

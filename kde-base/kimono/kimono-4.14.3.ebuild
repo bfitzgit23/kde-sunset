@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=8
+EAPI=7
 
 inherit mono-env kde4-base
 
@@ -34,9 +34,9 @@ src_configure() {
 	local mycmakeargs=(
 		-DWITH_Soprano=OFF
 		-DWITH_Nepomuk=OFF
-		-DWITH_akonadi="$(usex akonadi)"
-		-DWITH_KdepimLibs="$(usex akonadi)"
-		-DDISABLE_plasma="$(usex !plasma)"
+		$(cmake-utils_use_with akonadi)
+		$(cmake-utils_use_with akonadi KdepimLibs)
+		$(cmake-utils_use_disable plasma)
 	)
 	kde4-base_src_configure
 }
