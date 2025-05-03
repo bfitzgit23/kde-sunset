@@ -16,7 +16,7 @@ case ${EAPI} in
 	*)	die "qt4-build-multilib.eclass: unsupported EAPI=${EAPI:-0}" ;;
 esac
 
-inherit patch multilib desktop user  flag-o-matic multilib multilib-minimal toolchain-funcs
+ multilib desktop user  flag-o-matic multilib multilib-minimal toolchain-funcs
 
 HOMEPAGE="https://www.qt.io/"
 LICENSE="|| ( LGPL-2.1 LGPL-3 GPL-3 ) FDL-1.3"
@@ -68,7 +68,7 @@ multilib_src_install_all()	{ qt4_multilib_src_install_all; }
 # @ECLASS-VARIABLE: PATCHES
 # @DEFAULT_UNSET
 # @DESCRIPTION:
-# Array variable containing all the patches to be applied. This variable
+# Array variable containing all the es to be applied. This variable
 # is expected to be defined in the global scope of ebuilds. Make sure to
 # specify the full path. This variable is used in src_prepare phase.
 #
@@ -218,7 +218,7 @@ qt4-build-multilib_src_prepare() {
 	find config.tests/unix -name '*.test' -type f -execdir \
 		sed -i -e '/bin\/qmake/s/-nocache//' '{}' + || die "sed -nocache failed"
 
-	# compile.test needs additional patching so that it doesn't create another cache file
+	# compile.test needs additional ing so that it doesn't create another cache file
 	# inside the test subdir, which would incorrectly override config.tests/.qmake.cache
 	sed -i -e '/echo.*QT_BUILD_TREE.*\.qmake\.cache/d' \
 		-e '/bin\/qmake/s/ "$SRCDIR/ "QT_BUILD_TREE=$OUTDIR"&/' \
@@ -272,7 +272,7 @@ qt4-build-multilib_src_prepare() {
 			mkspecs/$(qt4_get_mkspec)/qmake.conf || die
 	fi
 
-	# apply patches
+	# apply es
 	[[ ${PATCHES[@]} ]] && eapply "${PATCHES[@]}"
 	eapply_user
 }

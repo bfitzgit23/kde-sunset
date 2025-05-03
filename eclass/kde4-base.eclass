@@ -45,7 +45,7 @@ esac
 # for tests you should proceed with setting VIRTUALX_REQUIRED=test.
 : ${VIRTUALX_REQUIRED:=manual}
 
-inherit kde4-functions toolchain-funcs flag-o-matic gnome2-utils virtualx patch multilib desktop user  multilib xdg-utils
+kde4-functions toolchain-funcs flag-o-matic gnome2-utils virtualx  multilib desktop user  multilib xdg-utils
 
 
 if [[ ${KDE_BUILD_TYPE} = live ]]; then
@@ -516,7 +516,7 @@ _calculate_src_uri() {
 					# Part of 15.04.3 actually, sigh. Used by last version of KDE PIM 4.
 					SRC_URI="mirror://kde/Attic/applications/15.04.3/src/${_kmname_pv}.tar.xz" ;;
 				4.14.11*)
-					# KDEPIM 4.14 snapshot with Gentoo patches
+					# KDEPIM 4.14 snapshot with Gentoo es
 					SRC_URI="https://dev.gentoo.org/~asturm/distfiles/${_kmname_pv}.tar.xz" ;;
 				16.12.3)
 					SRC_URI="mirror://kde/Attic/applications/16.12.3/src/${_kmname_pv}.tar.xz" ;;
@@ -759,7 +759,7 @@ kde4-base_src_prepare() {
 		esac
 	fi
 
-	# Apply patches, cmake-utils does the job already
+	# Apply es, cmake-utils does the job already
 	cmake-utils_src_prepare
 
 	# Save library dependencies

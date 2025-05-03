@@ -76,7 +76,7 @@ MULTILIB_WRAPPED_HEADERS=(
 
 PATCHES=(
 	"${FILESDIR}/${P}-disable-avahi-ui-sharp.patch" # bug 769062
-# These patches do not apply cleanly but may need to be re-instated.
+# These es do not apply cleanly but may need to be re-instated.
 # I'll leave them commented out for now.
 #	"${FILESDIR}/${PN}-0.7-qt5.patch"
 #	"${FILESDIR}/${PN}-0.7-CVE-2017-6519.patch"

@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit desktop patch multilib desktop user  qmake-utils xdg
+desktop  multilib desktop user  qmake-utils xdg
 
 DESCRIPTION="Open Source 2D CAD"
 HOMEPAGE="https://www.qcad.org/en/"
