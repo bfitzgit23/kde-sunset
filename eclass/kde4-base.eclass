@@ -45,7 +45,7 @@ esac
 # for tests you should proceed with setting VIRTUALX_REQUIRED=test.
 : ${VIRTUALX_REQUIRED:=manual}
 
-inherit kde4-functions toolchain-funcs flag-o-matic gnome2-utils virtualx eutils multilib xdg-utils
+inherit kde4-functions toolchain-funcs flag-o-matic gnome2-utils virtualx patch multilib desktop user  multilib xdg-utils
 
 
 if [[ ${KDE_BUILD_TYPE} = live ]]; then

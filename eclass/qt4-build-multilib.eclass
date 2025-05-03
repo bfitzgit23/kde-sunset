@@ -16,7 +16,7 @@ case ${EAPI} in
 	*)	die "qt4-build-multilib.eclass: unsupported EAPI=${EAPI:-0}" ;;
 esac
 
-inherit eutils flag-o-matic multilib multilib-minimal toolchain-funcs
+inherit patch multilib desktop user  flag-o-matic multilib multilib-minimal toolchain-funcs
 
 HOMEPAGE="https://www.qt.io/"
 LICENSE="|| ( LGPL-2.1 LGPL-3 GPL-3 ) FDL-1.3"

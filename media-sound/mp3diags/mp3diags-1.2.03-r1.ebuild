@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit eutils gnome2-utils qmake-utils
+inherit patch multilib desktop user  gnome2-utils qmake-utils
 
 MY_PN=MP3Diags
 MY_P=${MY_PN}-${PV}

@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-inherit eutils qmake-utils
+inherit patch multilib desktop user  qmake-utils
 
 DESCRIPTION="A hierarchical notebook"
 HOMEPAGE="http://www.tuxcards.de/"
