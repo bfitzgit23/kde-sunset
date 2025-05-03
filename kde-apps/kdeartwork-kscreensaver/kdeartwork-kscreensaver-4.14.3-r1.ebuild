@@ -39,9 +39,9 @@ src_configure() {
 	local mycmakeargs=(
 		-DKSCREENSAVER_SOUND_SUPPORT=ON
 		-DOPENGL=ON
-		$(cmake-utils_use_with eigen Eigen3)
-		$(cmake-utils_use_with kexiv2)
-		$(cmake-utils_use_with xscreensaver)
+		-DWITH_Eigen3="$(usex eigen)"
+		-DWITH_kexiv2="$(usex kexiv2)"
+		-DWITH_xscreensaver="$(usex xscreensaver)"
 	)
 
 	kde4-meta_src_configure

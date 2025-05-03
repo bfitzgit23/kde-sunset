@@ -22,6 +22,8 @@ RDEPEND="dev-qt/qtcore:4[qt3support]
 	x11-libs/libX11:0="
 DEPEND="${RDEPEND}"
 
+PATCHES=( "${FILESDIR}"/${P}-gcc6.patch )
+
 src_prepare() {
 	default
 

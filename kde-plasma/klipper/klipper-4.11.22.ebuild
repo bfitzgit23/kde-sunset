@@ -23,7 +23,7 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with prison)
+		-DWITH_prison="$(usex prison)"
 	)
 
 	kde4-meta_src_configure

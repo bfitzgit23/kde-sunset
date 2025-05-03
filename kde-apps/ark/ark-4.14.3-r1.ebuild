@@ -15,7 +15,7 @@ IUSE="+archive +bzip2 debug lzma"
 DEPEND="
 	$(add_kdeapps_dep libkonq)
 	sys-libs/zlib
-	archive? ( >=app-arch/libarchive-2.6.1:=[bzip2?,lzma?,zlib] )
+	archive? ( >=app-arch/libarchive-2.6.1:=[bzip2?,lzma?] )
 "
 RDEPEND="${DEPEND}"
 
@@ -26,9 +26,9 @@ PATCHES=( "${FILESDIR}/${P}-crash.patch" )
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with archive LibArchive)
-		$(cmake-utils_use_with bzip2 BZip2)
-		$(cmake-utils_use_with lzma LibLZMA)
+		-DWITH_LibArchive="$(usex archive)"
+		-DWITH_BZip2="$(usex bzip2)"
+		-DWITH_LibLZMA="$(usex lzma)"
 	)
 	kde4-base_src_configure
 }

@@ -19,7 +19,7 @@ IUSE=""
 DEPEND="
 	dev-libs/qjson
 	dev-libs/xapian
-	kde-frameworks/baloo:4
+	kde-frameworks/baloo:4[-minimal]
 	kde-frameworks/kfilemetadata:4
 "
 RDEPEND="${DEPEND}"

@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-workspace"
-inherit systemd kde4-meta flag-o-matic
+inherit systemd kde4-meta flag-o-matic user
 
 DESCRIPTION="Login manager by KDE, similar to xdm and gdm"
 
@@ -44,7 +44,6 @@ KMEXTRACTONLY="
 
 PATCHES=(
 	"${FILESDIR}/${PN}-4-gentoo-xinitrc.d.patch"
-	"${FILESDIR}/${PN}-4-dbus-build.patch"
 )
 
 pkg_setup() {
@@ -58,9 +57,10 @@ pkg_setup() {
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use kerberos KDE4_KRB5AUTH)
-		$(cmake-utils_use_with pam)
-		$(cmake-utils_use_with consolekit CkConnector)
+		-DCMAKE_C_STANDARD=99
+		-DKDE4_KRB5AUTH="$(usex kerberos)"
+		-DWITH_pam="$(usex pam)"
+		-DWITH_CkConnector="$(usex consolekit)"
 	)
 
 	kde4-meta_src_configure

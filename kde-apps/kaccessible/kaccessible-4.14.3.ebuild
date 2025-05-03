@@ -14,7 +14,7 @@ RDEPEND=${DEPEND}
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with speechd)
+		-DWITH_speechd="$(usex speechd)"
 	)
 	kde4-base_src_configure
 }

@@ -24,8 +24,8 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with flac)
-		$(cmake-utils_use_with vorbis OggVorbis)
+		-DWITH_flac="$(usex flac)"
+		-DWITH_OggVorbis="$(usex vorbis)"
 	)
 
 	kde4-base_src_configure

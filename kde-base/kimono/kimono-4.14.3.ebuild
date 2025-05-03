@@ -34,9 +34,9 @@ src_configure() {
 	local mycmakeargs=(
 		-DWITH_Soprano=OFF
 		-DWITH_Nepomuk=OFF
-		$(cmake-utils_use_with akonadi)
-		$(cmake-utils_use_with akonadi KdepimLibs)
-		$(cmake-utils_use_disable plasma)
+		-DWITH_akonadi="$(usex akonadi)"
+		-DWITH_KdepimLibs="$(usex akonadi)"
+		-DDISABLE_plasma="$(usex !plasma)"
 	)
 	kde4-base_src_configure
 }

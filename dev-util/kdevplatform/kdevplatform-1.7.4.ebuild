@@ -45,7 +45,7 @@ src_configure() {
 		-DBUILD_classbrowser=$(usex classbrowser)
 		-DBUILD_cvs=$(usex cvs)
 		-DBUILD_konsole=$(usex konsole)
-		$(cmake-utils_use_find_package reviewboard QJSON)
+		-DCMAKE_DISABLE_FIND_PACKAGE_QJSON="$(usex !reviewboard)"
 		-DBUILD_subversion=$(usex subversion)
 	)
 

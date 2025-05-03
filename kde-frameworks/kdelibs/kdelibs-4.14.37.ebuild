@@ -106,7 +106,7 @@ RDEPEND="${COMMONDEPEND}
 	plasma? ( !sci-libs/plasma )
 	udev? ( app-misc/media-player-info )
 	udisks? ( sys-fs/udisks:2 )
-	upower? ( >=sys-power/upower-0.9.23 )
+	upower? ( || ( >=sys-power/upower-0.9.23 sys-power/upower-pm-utils ) )
 "
 PDEPEND="
 	dev-util/automoc
@@ -136,6 +136,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-4.14.35-kde3support.patch"
 	"${FILESDIR}/${PN}-4.14.35-plasma4.patch"
 	"${FILESDIR}/${PN}-4.14.37-exiv2-cmake.patch"
+	"${FILESDIR}/${PN}-4.14.37-openssl-1.1.patch"
 )
 
 src_prepare() {

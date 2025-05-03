@@ -26,14 +26,14 @@ src_prepare() {
 
 	if ! use handbook ; then
 		pushd kcmcddb > /dev/null
-		comment_add_subdirectory doc
+		cmake_comment_add_subdirectory doc
 		popd > /dev/null
 	fi
 }
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with musicbrainz MusicBrainz5)
+		-DWITH_MusicBrainz5="$(usex musicbrainz)"
 	)
 
 	kde4-base_src_configure

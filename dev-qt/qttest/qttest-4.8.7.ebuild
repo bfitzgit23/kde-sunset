@@ -16,7 +16,6 @@ DEPEND="
 	~dev-qt/qtcore-${PV}[debug=,${MULTILIB_USEDEP}]
 "
 RDEPEND="${DEPEND}"
-PATCHES=( "${FILESDIR}/${PN}-4.8.7-gcc9.patch" )
 
 QT4_TARGET_DIRECTORIES="src/testlib"
 

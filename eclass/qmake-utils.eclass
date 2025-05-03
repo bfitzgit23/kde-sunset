@@ -15,7 +15,7 @@
 if [[ -z ${_QMAKE_UTILS_ECLASS} ]]; then
 _QMAKE_UTILS_ECLASS=1
 
-[[ ${EAPI:-0} == [01234] ]]
+[[ ${EAPI:-0} == [01234] ]] && die "qmake-utils.eclass: unsupported EAPI=${EAPI:-0}"
 [[ ${EAPI:-0} == 5 ]] && inherit eutils multilib
 inherit estack toolchain-funcs
 

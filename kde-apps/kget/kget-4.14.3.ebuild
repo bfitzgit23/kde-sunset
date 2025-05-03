@@ -29,10 +29,10 @@ src_configure() {
 		-DWITH_NepomukCore=OFF
 		-DWITH_NepomukWidgets=OFF
 		-DWITH_KWebKitPart=OFF
-		$(cmake-utils_use_with bittorrent KTorrent)
-		$(cmake-utils_use_with gpg QGpgme)
-		$(cmake-utils_use_with mms LibMms)
-		$(cmake-utils_use_with sqlite)
+		-DWITH_KTorrent="$(usex bittorrent)"
+		-DWITH_QGpgme="$(usex gpg)"
+		-DWITH_LibMms="$(usex mms)"
+		-DWITH_sqlite="$(usex sqlite)"
 	)
 	kde4-base_src_configure
 }

@@ -25,8 +25,6 @@ RDEPEND="
 	>=dev-qt/qtopengl-4.8.6-r1:4[${MULTILIB_USEDEP}]
 	>=dev-qt/qtscript-4.8.6-r1:4[${MULTILIB_USEDEP}]
 	>=dev-qt/qtsql-4.8.6-r1:4[sqlite,${MULTILIB_USEDEP}]
-	>=dev-qt/qtsvg-4.8.6-r1:4[${MULTILIB_USEDEP}]
-	>=dev-qt/qtxmlpatterns-4.8.6-r1:4[${MULTILIB_USEDEP}]
 	>=media-libs/fontconfig-2.10.2-r1[${MULTILIB_USEDEP}]
 	media-libs/libpng:0=[${MULTILIB_USEDEP}]
 	>=sys-libs/zlib-1.2.8-r1[${MULTILIB_USEDEP}]
@@ -42,7 +40,6 @@ RDEPEND="
 	)
 "
 DEPEND="${RDEPEND}
-	${PYTHON_DEPS}
 	dev-lang/perl
 	dev-lang/ruby
 	dev-util/gperf
@@ -59,10 +56,6 @@ S=${WORKDIR}
 PATCHES=(
 	"${FILESDIR}/${PV}-gcc5.patch"
 	"${FILESDIR}/${PV}-use-correct-icu-typedef.patch"
-	"${FILESDIR}/${PV}-use-correct-icu-typedef-2.patch"
-	"${FILESDIR}/${PV}-macros-semicolon.patch"
-	"${FILESDIR}/${PV}-bison.patch"
-	"${FILESDIR}/webkit-qtwebkit-23-glib2.patch"
 )
 
 src_prepare() {
@@ -97,10 +90,6 @@ multilib_src_compile() {
 		--no-geolocation
 		--no-device-orientation
 		--no-orientation-events
-		--no-xslt
-		--no-force-sse2
-		--no-video
-		--release
 		# copied from eqmake4
 		QMAKE_AR="'$(tc-getAR) cqs'"
 		QMAKE_CC="'$(tc-getCC)'"

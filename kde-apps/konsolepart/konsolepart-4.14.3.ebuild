@@ -36,14 +36,14 @@ RESTRICT="test"
 S="${WORKDIR}/${KMNAME}-${PV}"
 
 src_prepare() {
-	comment_add_subdirectory doc/manual
+	cmake_comment_add_subdirectory doc/manual
 
 	kde4-base_src_prepare
 }
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with "!minimal" LibKonq)
+		-DWITH_LibKonq="$(usex "!minimal")"
 	)
 
 	kde4-base_src_configure

@@ -27,8 +27,8 @@ src_configure() {
 	local mycmakeargs=(
 		-DBUILD_tests=OFF
 		-DWITH_Xine=OFF
-		$(cmake-utils_use_with alsa)
-		$(cmake-utils_use_with pulseaudio PulseAudio)
+		-DWITH_alsa="$(usex alsa)"
+		-DWITH_PulseAudio="$(usex pulseaudio)"
 	)
 
 	kde4-meta_src_configure

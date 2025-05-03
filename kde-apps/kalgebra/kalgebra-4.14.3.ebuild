@@ -12,17 +12,18 @@ DESCRIPTION="MathML-based graph calculator for KDE"
 HOMEPAGE="https://www.kde.org/applications/education/kalgebra
 https://edu.kde.org/kalgebra"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug opengl"
+IUSE="debug"
 
 DEPEND="
-	$(add_kdeapps_dep analitza)
+	$(add_kdeapps_dep analitza opengl?)
 	$(add_kdeapps_dep libkdeedu)
+	opengl? ( virtual/glu )
 "
 RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with opengl OpenGL)
+		-DWITH_OpenGL="$(usex opengl)"
 	)
 
 	kde4-base_src_configure

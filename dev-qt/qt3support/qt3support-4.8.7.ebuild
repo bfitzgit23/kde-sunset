@@ -18,7 +18,6 @@ DEPEND="
 	~dev-qt/qtsql-${PV}[debug=,qt3support,${MULTILIB_USEDEP}]
 "
 RDEPEND="${DEPEND}"
-PATCHES=( "${FILESDIR}/${PN}-4.8.7-gcc9.patch" )
 
 QT4_TARGET_DIRECTORIES="
 	src/qt3support

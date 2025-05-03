@@ -23,8 +23,8 @@ src_configure() {
 	use ppc64 && append-flags -mno-altivec
 
 	local mycmakeargs=(
-		$(cmake-utils_use_with gsl)
-		$(cmake-utils_use_with qalculate)
+		-DWITH_gsl="$(usex gsl)"
+		-DWITH_qalculate="$(usex qalculate)"
 	)
 	kde4-base_src_configure
 }

@@ -15,4 +15,3 @@ DEPEND="
 	dev-qt/qtcore:4
 "
 RDEPEND="${DEPEND}"
-PATCHES=( "${FILESDIR}/${PN}-4-private-destructors.patch" )

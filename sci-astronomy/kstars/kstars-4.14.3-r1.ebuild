@@ -12,7 +12,7 @@ HOMEPAGE="https://kde.org/applications/en/education/org.kde.kstars https://edu.k
 SRC_URI="mirror://kde/Attic/${PV}/src/${P}.tar.xz"
 
 LICENSE="GPL-2"
-SLOT=4
+SLOT=4/$(get_version_component_range 1-2)
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug fits indi"
 
@@ -33,8 +33,8 @@ src_configure() {
 	use ppc64 && append-flags -mminimal-toc
 
 	local mycmakeargs=(
-		$(cmake-utils_use_with fits CFitsio)
-		$(cmake-utils_use_with indi)
+		-DWITH_CFitsio="$(usex fits)"
+		-DWITH_indi="$(usex indi)"
 	)
 
 	kde4-base_src_configure

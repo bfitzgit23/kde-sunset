@@ -22,9 +22,9 @@ PATCHES=( "${FILESDIR}/${PN}-4.14.3-alsa-optional.patch" )
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_find_package alsa)
-		$(cmake-utils_use_with canberra)
-		$(cmake-utils_use_with pulseaudio PulseAudio)
+		-DCMAKE_DISABLE_FIND_PACKAGE_alsa="$(usex !alsa)"
+		-DWITH_canberra="$(usex canberra)"
+		-DWITH_PulseAudio="$(usex pulseaudio)"
 	)
 
 	kde4-base_src_configure

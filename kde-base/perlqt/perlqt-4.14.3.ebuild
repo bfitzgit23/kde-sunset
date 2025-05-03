@@ -31,15 +31,15 @@ PATCHES=(
 src_configure() {
 	local mycmakeargs=(
 		-DDISABLE_Qt3Support=ON
-		$(cmake-utils_use_disable declarative QtDeclarative)
-		$(cmake-utils_use_disable multimedia QtMultimedia)
-		$(cmake-utils_use_disable opengl QtOpenGL)
-		$(cmake-utils_use_with phonon)
-		$(cmake-utils_use_with qimageblitz QImageBlitz)
-		$(cmake-utils_use_with qscintilla QScintilla)
-		$(cmake-utils_use_disable qthelp QtHelp)
-		$(cmake-utils_use_disable qwt)
-		$(cmake-utils_use_disable webkit QtWebKit)
+		-DDISABLE_QtDeclarative="$(usex !declarative)"
+		-DDISABLE_QtMultimedia="$(usex !multimedia)"
+		-DDISABLE_QtOpenGL="$(usex !opengl)"
+		-DWITH_phonon="$(usex phonon)"
+		-DWITH_QImageBlitz="$(usex qimageblitz)"
+		-DWITH_QScintilla="$(usex qscintilla)"
+		-DDISABLE_QtHelp="$(usex !qthelp)"
+		-DDISABLE_qwt="$(usex !qwt)"
+		-DDISABLE_QtWebKit="$(usex !webkit)"
 	)
 	kde4-base_src_configure
 }

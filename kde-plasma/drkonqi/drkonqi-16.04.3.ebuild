@@ -13,7 +13,7 @@ HOMEPAGE="https://kde.org/"
 SRC_URI="mirror://kde/Attic/applications/${PV}/src/${KMNAME}-${PV}.tar.xz"
 
 LICENSE="GPL-2"
-SLOT=4
+SLOT=4/$(get_version_component_range 1-2)
 KEYWORDS="amd64 x86"
 IUSE="debug"
 

@@ -24,9 +24,9 @@ pkg_setup() {
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with phonon)
-		$(cmake-utils_use_disable qscintilla QScintilla)
-		$(cmake-utils_use_disable webkit QtWebKit)
+		-DWITH_phonon="$(usex phonon)"
+		-DDISABLE_QScintilla="$(usex !qscintilla)"
+		-DDISABLE_QtWebKit="$(usex !webkit)"
 	)
 	kde4-base_src_configure
 }

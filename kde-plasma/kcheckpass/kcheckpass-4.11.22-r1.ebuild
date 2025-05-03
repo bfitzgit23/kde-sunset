@@ -28,7 +28,7 @@ src_prepare() {
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with pam)
+		-DWITH_pam="$(usex pam)"
 	)
 
 	kde4-meta_src_configure

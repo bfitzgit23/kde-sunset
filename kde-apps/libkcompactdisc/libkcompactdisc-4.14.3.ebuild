@@ -11,7 +11,7 @@ IUSE="alsa debug"
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with alsa)
+		-DWITH_alsa="$(usex alsa)"
 	)
 	kde4-base_src_configure
 }

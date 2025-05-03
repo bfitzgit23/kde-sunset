@@ -38,9 +38,9 @@ RESTRICT="test"
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with semantic-desktop Baloo)
-		$(cmake-utils_use_with semantic-desktop BalooWidgets)
-		$(cmake-utils_use_with semantic-desktop KFileMetaData)
+		-DWITH_Baloo="$(usex semantic-desktop)"
+		-DWITH_BalooWidgets="$(usex semantic-desktop)"
+		-DWITH_KFileMetaData="$(usex semantic-desktop)"
 	)
 
 	kde4-meta_src_configure

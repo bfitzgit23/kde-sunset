@@ -17,15 +17,6 @@
 if [[ -z ${_KDE4_BASE_ECLASS} ]]; then
 _KDE4_BASE_ECLASS=1
 
-
-# @ECLASS-VARIABLE: EAPI
-# @DESCRIPTION:
-# Currently kde4 eclasses support 6 and 7.
-case ${EAPI} in
-	6) inherit eapi7-ver ;;
-	7|8) : ;;
-esac
-
 # @ECLASS-VARIABLE: KDE_SELINUX_MODULE
 # @DESCRIPTION:
 # If set to "none", do nothing.
@@ -44,8 +35,7 @@ esac
 # for tests you should proceed with setting VIRTUALX_REQUIRED=test.
 : ${VIRTUALX_REQUIRED:=manual}
 
-inherit kde4-functions toolchain-funcs flag-o-matic gnome2-utils virtualx eutils multilib xdg-utils
-
+inherit kde4-functions toolchain-funcs flag-o-matic gnome2-utils virtualx versionator eutils multilib xdg-utils
 
 if [[ ${KDE_BUILD_TYPE} = live ]]; then
 	case ${KDE_SCM} in
@@ -62,7 +52,7 @@ fi
 # Defaults to 'always'.
 : ${CMAKE_REQUIRED:=always}
 if [[ ${CMAKE_REQUIRED} = always ]]; then
-	buildsystem_eclass="cmake"
+	buildsystem_eclass="cmake-utils"
 	export_fns="src_configure src_compile src_test src_install"
 fi
 
@@ -77,7 +67,7 @@ KDE_MINIMAL="${KDE_MINIMAL:-4.4}"
 # Set slot for KDEBASE known packages
 case ${KDEBASE} in
 	kde-base)
-		SLOT=4/$(ver_cut 1-2)
+		SLOT=4/$(get_version_component_range 1-2)
 		KDE_MINIMAL="${PV}"
 		;;
 	kdevelop)
@@ -96,10 +86,10 @@ case ${KDEBASE} in
 			case ${PN} in
 				kdevelop)
 					KDEVELOP_VERSION=${PV}
-					KDEVPLATFORM_VERSION="$(($(ver_cut 1)-3)).$(ver_cut 2-)"
+					KDEVPLATFORM_VERSION="$(($(get_major_version)-3)).$(get_after_major_version)"
 					;;
 				kdevplatform|kdevelop-php*|kdevelop-python)
-					KDEVELOP_VERSION="$(($(ver_cut 1)+3)).$(ver_cut 2-)"
+					KDEVELOP_VERSION="$(($(get_major_version)+3)).$(get_after_major_version)"
 					KDEVPLATFORM_VERSION=${PV}
 					;;
 				*)
@@ -758,8 +748,8 @@ kde4-base_src_prepare() {
 		esac
 	fi
 
-	# Apply patches, cmake does the job already
-	cmake_src_prepare
+	# Apply patches, cmake-utils does the job already
+	cmake-utils_src_prepare
 
 	# Save library dependencies
 	if [[ -n ${KMSAVELIBS} ]] ; then
@@ -823,7 +813,7 @@ kde4-base_src_configure() {
 
 	mycmakeargs=("${cmakeargs[@]}" "${mycmakeargs[@]}")
 
-	cmake_src_configure
+	cmake-utils_src_configure
 }
 
 # @FUNCTION: kde4-base_src_compile
@@ -832,7 +822,7 @@ kde4-base_src_configure() {
 kde4-base_src_compile() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	cmake_src_compile "$@"
+	cmake-utils_src_compile "$@"
 }
 
 # @FUNCTION: kde4-base_src_test
@@ -850,7 +840,7 @@ kde4-base_src_test() {
 			kded4_pid=$!
 		fi
 
-		cmake_src_test
+		cmake-utils_src_test
 	}
 
 	# When run as normal user during ebuild development with the ebuild command, the
@@ -861,7 +851,7 @@ kde4-base_src_test() {
 
 	# Override this value, set in kde4-base_src_configure()
 	mycmakeargs+=(-DKDE4_BUILD_TESTS=ON)
-	cmake_src_configure
+	cmake-utils_src_configure
 	kde4-base_src_compile
 
 	if [[ ${VIRTUALX_REQUIRED} == always || ${VIRTUALX_REQUIRED} == test ]]; then
@@ -910,7 +900,7 @@ kde4-base_src_install() {
 		done
 	fi
 
-	cmake_src_install
+	cmake-utils_src_install
 
 	# We don't want ${PREFIX}/share/doc/HTML to be compressed,
 	# because then khelpcenter can't find the docs

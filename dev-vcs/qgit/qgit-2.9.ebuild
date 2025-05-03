@@ -31,7 +31,7 @@ PATCHES=( "${FILESDIR}"/${P}-fix-qt4-build-{1,2}.patch )
 
 src_prepare() {
 	cmake_src_prepare
-	cp "${DISTDIR}"/${PN}-tab_remove.png src/resources/tab_remove.png || die
+	mv "${DISTDIR}"/${PN}-tab_remove.png src/resources/tab_remove.png || die
 }
 
 src_configure() {

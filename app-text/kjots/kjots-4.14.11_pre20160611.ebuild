@@ -13,7 +13,7 @@ HOMEPAGE="https://www.kde.org/applications/utilities/kjots/"
 SRC_URI="https://dev.gentoo.org/~asturm/distfiles/${KMNAME}-${PV}.tar.xz"
 
 LICENSE="GPL-2"
-SLOT=4
+SLOT=4/$(get_version_component_range 1-2)
 KEYWORDS="amd64 x86"
 IUSE="debug"
 
