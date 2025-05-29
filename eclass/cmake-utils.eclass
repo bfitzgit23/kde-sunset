@@ -117,7 +117,7 @@ inherit toolchain-funcs flag-o-matic multiprocessing xdg-utils
 case ${EAPI} in
 	[3456])
 		: ${CMAKE_MAKEFILE_GENERATOR:=emake}
- multilib desktop user  multilib
+		inherit eutils multilib
 		;;
 	*)
 		: ${CMAKE_MAKEFILE_GENERATOR:=ninja}
@@ -487,7 +487,7 @@ _cmake_cleanup_cmake() {
 
 # @FUNCTION: cmake-utils_src_prepare
 # @DESCRIPTION:
-# Apply ebuild and user es.
+# Apply ebuild and user patches.
 cmake-utils_src_prepare() {
 	debug-print-function ${FUNCNAME} "$@"
 
@@ -498,10 +498,10 @@ cmake-utils_src_prepare() {
 		_cmake_cleanup_cmake
 	else
 		debug-print "$FUNCNAME: PATCHES=$PATCHES"
-		[[ ${PATCHES[@]} ]] && PATCHES=(${PATCHES[@]})
+		[[ ${PATCHES[@]} ]] && epatch "${PATCHES[@]}"
 
-		debug-print "$FUNCNAME: applying user es"
-		PATCHES=(_user)
+		debug-print "$FUNCNAME: applying user patches"
+		epatch_user
 	fi
 
 	popd > /dev/null || die
