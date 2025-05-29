@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
  multilib desktop user  qt4-build-multilib
 
 DESCRIPTION="WYSIWYG tool for designing and building Qt-based GUIs"

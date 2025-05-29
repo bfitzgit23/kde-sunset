@@ -10,5 +10,5 @@ LICENSE=LGPL-2.1+
 RDEPEND=dev-libs/gmp:0=[cxx] dev-qt/qtcore:4 dev-qt/qtdbus:4 kde-frameworks/kdelibs:4
 SLOT=0/5
 SRC_URI=mirror://kde/stable/alkimia/5.0.0/src/libalkimia-5.0.0.tar.xz
-_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	multiprocessing	1e32df7deee68372153dca65f4a7c21f	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	cmake-utils	ac790b512da80dd6141c442ae4d90a3d
+_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	multiprocessing	1e32df7deee68372153dca65f4a7c21f	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	cmake-utils	c2a3c219cbbdf2a42896be00e5393f74
 _md5_=600536ed29122f53fc86ce2ae84e347e

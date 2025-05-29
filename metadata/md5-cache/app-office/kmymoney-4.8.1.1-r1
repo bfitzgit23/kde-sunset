@@ -12,5 +12,5 @@ RDEPEND=>=app-crypt/gpgme-1.7.0[cxx] <app-office/libalkimia-6.0.0 dev-libs/gmp:0
 RESTRICT=!test? ( test )
 SLOT=4
 SRC_URI=mirror://kde/stable/kmymoney/4.8.1.1/src/kmymoney-4.8.1.1.tar.xz
-_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	multiprocessing	1e32df7deee68372153dca65f4a7c21f	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	cmake-utils	ac790b512da80dd6141c442ae4d90a3d	gnome2-utils	a8cf148ec7f5ae0b1f1d33ae5f7f9e88	virtualx	9741d451eb64ea8bb9faee90d68a9b68
+_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	multiprocessing	1e32df7deee68372153dca65f4a7c21f	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	cmake-utils	c2a3c219cbbdf2a42896be00e5393f74	gnome2-utils	a8cf148ec7f5ae0b1f1d33ae5f7f9e88	virtualx	9741d451eb64ea8bb9faee90d68a9b68
 _md5_=12806b8f3810c812559128efa1313fdf

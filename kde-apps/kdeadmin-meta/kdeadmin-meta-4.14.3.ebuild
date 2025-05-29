@@ -1,7 +1,7 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 inherit kde4-meta-pkg
 
 DESCRIPTION="KDE administration tools - merge this to pull in all kdeadmin-derived packages"

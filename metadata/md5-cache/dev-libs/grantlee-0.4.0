@@ -12,5 +12,5 @@ RDEPEND=dev-qt/qtcore:4 dev-qt/qtgui:4 dev-qt/qtscript:4
 RESTRICT=test
 SLOT=0
 SRC_URI=http://downloads.grantlee.org/grantlee-0.4.0.tar.gz
-_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	multiprocessing	1e32df7deee68372153dca65f4a7c21f	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	cmake-utils	ac790b512da80dd6141c442ae4d90a3d
+_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	multiprocessing	1e32df7deee68372153dca65f4a7c21f	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	cmake-utils	c2a3c219cbbdf2a42896be00e5393f74
 _md5_=928e12942142c0bbcd126532af44b335

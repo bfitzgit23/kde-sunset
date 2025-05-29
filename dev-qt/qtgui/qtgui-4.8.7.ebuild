@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
  multilib desktop user  qt4-build-multilib
 
 DESCRIPTION="The GUI module for the Qt toolkit"
