@@ -11,6 +11,10 @@
 # This eclass contains various functions that are used when building Qt4.
 # Requires EAPI 5.
 
+case ${EAPI} in
+	5)	: ;;
+	*)	die "qt4-build-multilib.eclass: unsupported EAPI=${EAPI:-0}" ;;
+esac
 
 inherit eutils flag-o-matic multilib multilib-minimal toolchain-funcs
 
