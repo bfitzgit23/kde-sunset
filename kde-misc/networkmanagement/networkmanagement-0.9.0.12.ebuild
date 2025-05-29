@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 KDE_LINGUAS="ar bs ca ca@valencia cs da de el es et fa fi fr ga gl hu ia it
 ja kk km ko lt mr nb nds nl nn pl pt pt_BR ro ru se sk sl sr sr@ijekavian
