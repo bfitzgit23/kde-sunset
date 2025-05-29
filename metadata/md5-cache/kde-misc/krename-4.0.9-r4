@@ -1,0 +1,14 @@
+DEFINED_PHASES=configure
+DEPEND=exif? ( >=media-gfx/exiv2-0.13:= ) pdf? ( >=app-text/podofo-0.8 ) taglib? ( >=media-libs/taglib-1.5 ) truetype? ( media-libs/freetype:2 ) sys-devel/gettext
+DESCRIPTION=Powerful batch file renamer
+EAPI=7
+HOMEPAGE=https://kde.org/applications/utilities/org.kde.krename https://userbase.kde.org/KRename
+INHERIT=kde4-base
+IUSE=debug exif pdf taglib truetype
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=exif? ( >=media-gfx/exiv2-0.13:= ) pdf? ( >=app-text/podofo-0.8 ) taglib? ( >=media-libs/taglib-1.5 ) truetype? ( media-libs/freetype:2 )
+SLOT=4
+SRC_URI=mirror://sourceforge/krename/krename-4.0.9.tar.bz2
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=b9d28402c1ef554657c057a0dd7a41fb

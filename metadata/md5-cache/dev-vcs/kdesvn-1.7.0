@@ -1,0 +1,15 @@
+DEFINED_PHASES=configure
+DEPEND=dev-libs/apr:1 dev-libs/apr-util:1 dev-qt/qtsql:4[sqlite] >=dev-vcs/subversion-1.7 sys-devel/gettext
+DESCRIPTION=A frontend to the subversion vcs
+EAPI=7
+HOMEPAGE=http://kdesvn.alwins-world.de/
+INHERIT=flag-o-matic kde4-base
+IUSE=debug
+KEYWORDS=amd64 x86
+LICENSE=GPL-2
+RDEPEND=dev-libs/apr:1 dev-libs/apr-util:1 dev-qt/qtsql:4[sqlite] >=dev-vcs/subversion-1.7 sys-devel/gettext !kde-apps/kdesdk-kioslaves:4[subversion(-)]
+RESTRICT=test
+SLOT=4
+SRC_URI=mirror://kde/stable/kdesvn/1.7.0/kdesvn-1.7.0.tar.xz
+_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=5d4c49dd7e1d6787c87194571fe54d2f

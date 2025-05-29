@@ -1,0 +1,8 @@
+DEFINED_PHASES=-
+DESCRIPTION=A module that monitors free disk space on the home dir
+EAPI=7
+INHERIT=kde4-meta
+IUSE=debug
+KEYWORDS=amd64 x86 ~amd64-linux ~x86-linux
+_eclasses_=kde4-meta	61c1355df82c4444bbe3a02879662f58
+_md5_=21952b406a4ee8d262a4be2906862af0

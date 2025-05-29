@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install prepare
+DEPEND=dev-qt/designer:4 dev-qt/qtcore:4 dev-qt/qtgui:4[accessibility] dev-qt/qtopengl:4 dev-qt/qtscript:4 dev-qt/qtsql:4 dev-qt/qtsvg:4[accessibility] dev-qt/qtxmlpatterns:4 media-libs/phonon:0-qt4
+DESCRIPTION=Tool for generating Qt bindings for Qt Script
+EAPI=7
+HOMEPAGE=https://code.google.com/p/qtscriptgenerator/
+INHERIT=qmake-utils
+IUSE=debug
+KEYWORDS=amd64 ~arm ~ppc ~ppc64 x86
+LICENSE=GPL-2
+RDEPEND=dev-qt/designer:4 dev-qt/qtcore:4 dev-qt/qtgui:4[accessibility] dev-qt/qtopengl:4 dev-qt/qtscript:4 dev-qt/qtsql:4 dev-qt/qtsvg:4[accessibility] dev-qt/qtxmlpatterns:4 media-libs/phonon:0-qt4
+SLOT=0
+SRC_URI=https://dev.gentoo.org/~johu/distfiles/qtscriptgenerator-src-0.2.0.tar.gz
+_eclasses_=estack	c61c368a76fdf3a82fdf8dbaebea3804	toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	qmake-utils	2218d2474d8bfbbb26e2ca96adf313d8
+_md5_=071169f04154b55a2ebf16db0e174896

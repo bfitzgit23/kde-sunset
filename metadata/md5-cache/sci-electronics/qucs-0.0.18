@@ -1,0 +1,14 @@
+DEFINED_PHASES=configure postinst prepare
+DEPEND=dev-qt/qtcore:4[qt3support] dev-qt/qtgui:4[qt3support] dev-qt/qtscript:4 dev-qt/qtsvg:4 dev-qt/qt3support:4 x11-libs/libX11:0=
+DESCRIPTION=Quite Universal Circuit Simulator in Qt4
+EAPI=7
+HOMEPAGE=http://qucs.sourceforge.net/
+INHERIT=flag-o-matic toolchain-funcs
+IUSE=debug
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=dev-qt/qtcore:4[qt3support] dev-qt/qtgui:4[qt3support] dev-qt/qtscript:4 dev-qt/qtsvg:4 dev-qt/qt3support:4 x11-libs/libX11:0=
+SLOT=0
+SRC_URI=mirror://sourceforge/qucs/qucs-0.0.18.tar.gz
+_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a
+_md5_=d5e56afda4e188e6d26c684ba2694d2d

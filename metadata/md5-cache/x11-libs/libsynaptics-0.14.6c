@@ -1,0 +1,10 @@
+DEFINED_PHASES=install
+DESCRIPTION=Library for accessing synaptics touchpads
+EAPI=7
+HOMEPAGE=http://qsynaptics.sourceforge.net/
+KEYWORDS=~amd64 ~ppc ~x86
+LICENSE=GPL-2
+RDEPEND=>=x11-drivers/xf86-input-synaptics-0.15.0
+SLOT=0
+SRC_URI=http://qsynaptics.sourceforge.net/libsynaptics-0.14.6c.tar.bz2
+_md5_=c5ce2463202ab137e3e336d87159012c

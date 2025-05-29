@@ -1,0 +1,14 @@
+BDEPEND=app-alternatives/ninja >=dev-build/cmake-3.20.5
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=dev-qt/qtcore:4
+DESCRIPTION=KDE Meta Object Compiler
+EAPI=7
+HOMEPAGE=https://www.kde.org
+INHERIT=cmake flag-o-matic
+KEYWORDS=amd64 ~arm ~hppa ~ppc ~ppc64 ~sparc x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~x86-solaris
+LICENSE=BSD-2
+RDEPEND=dev-qt/qtcore:4
+SLOT=0
+SRC_URI=mirror://kde/stable/automoc4/0.9.88/automoc4-0.9.88.tar.bz2
+_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	multiprocessing	1e32df7deee68372153dca65f4a7c21f	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	cmake	b05c1b7b3c9213c155f128f4eadaa49f
+_md5_=983b0f80bc93eb629cf1a8990fc11244

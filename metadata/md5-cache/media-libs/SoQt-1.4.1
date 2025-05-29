@@ -1,0 +1,15 @@
+BDEPEND=virtual/pkgconfig doc? ( app-doc/doxygen )
+DEFINED_PHASES=compile configure install
+DEPEND=dev-qt/qtgui:4[qt3support] dev-qt/qtopengl:4[qt3support] dev-qt/qt3support:4 >=media-libs/coin-2.4.4
+DESCRIPTION=Glue between Coin3D and Qt
+EAPI=7
+HOMEPAGE=http://www.coin3d.org/
+INHERIT=flag-o-matic
+IUSE=doc
+KEYWORDS=~amd64 x86
+LICENSE=|| ( GPL-2 PEL )
+RDEPEND=dev-qt/qtgui:4[qt3support] dev-qt/qtopengl:4[qt3support] dev-qt/qt3support:4 >=media-libs/coin-2.4.4
+SLOT=0
+SRC_URI=https://github.com/coin3d/soqt/archive/SoQt-1.4.1.tar.gz
+_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a
+_md5_=7862cfdf2f76c445fd200905e8fe2d01

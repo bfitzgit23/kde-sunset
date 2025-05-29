@@ -1,0 +1,14 @@
+DEFINED_PHASES=-
+DEPEND=net-fs/samba[cups] sys-devel/gettext
+DESCRIPTION=The advanced network neighborhood browser by KDE
+EAPI=7
+HOMEPAGE=https://sourceforge.net/projects/smb4k/
+INHERIT=kde4-base
+IUSE=debug
+KEYWORDS=amd64 x86
+LICENSE=GPL-2
+RDEPEND=net-fs/samba[cups]
+SLOT=4
+SRC_URI=mirror://sourceforge/smb4k/smb4k-1.2.3.tar.xz
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=3235e0895358fc8a42adab923fce588c

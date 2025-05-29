@@ -1,0 +1,12 @@
+DEFINED_PHASES=configure
+DEPEND=kde-frameworks/kactivities:4 kde-frameworks/kdelibs:4[opengl] kde-plasma/kephal:4 kde-plasma/libkworkspace:4 kde-plasma/liboxygenstyle:4 x11-libs/libICE x11-libs/libSM x11-libs/libX11 x11-libs/libxcb x11-libs/xcb-util-image x11-libs/xcb-util-keysyms x11-libs/libXcomposite x11-libs/libXcursor x11-libs/libXdamage x11-libs/libXext x11-libs/libXfixes >=x11-libs/libXrandr-1.2.1 x11-libs/libXrender x11-libs/libXxf86vm !gles2-only? ( >=media-libs/mesa-7.10 ) gles2-only? ( >=media-libs/mesa-7.12[egl(+),gles2] ) x11-libs/xcb-util-renderutil x11-base/xorg-proto
+DESCRIPTION=KDE window manager
+EAPI=7
+HOMEPAGE=https://userbase.kde.org/KWin
+INHERIT=flag-o-matic kde4-meta
+IUSE=debug gles2-only
+KEYWORDS=amd64 x86 ~amd64-linux ~x86-linux
+RDEPEND=kde-frameworks/kactivities:4 kde-frameworks/kdelibs:4[opengl] kde-plasma/kephal:4 kde-plasma/libkworkspace:4 kde-plasma/liboxygenstyle:4 x11-libs/libICE x11-libs/libSM x11-libs/libX11 x11-libs/libxcb x11-libs/xcb-util-image x11-libs/xcb-util-keysyms x11-libs/libXcomposite x11-libs/libXcursor x11-libs/libXdamage x11-libs/libXext x11-libs/libXfixes >=x11-libs/libXrandr-1.2.1 x11-libs/libXrender x11-libs/libXxf86vm !gles2-only? ( >=media-libs/mesa-7.10 ) gles2-only? ( >=media-libs/mesa-7.12[egl(+),gles2] ) x11-apps/scripts
+RESTRICT=test
+_eclasses_=kde4-meta	61c1355df82c4444bbe3a02879662f58	toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a
+_md5_=c4bc44696826b61678fab22500700e07

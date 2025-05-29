@@ -1,0 +1,14 @@
+DEFINED_PHASES=-
+DEPEND=dev-db/sqlite:3 dev-libs/libxml2 dev-libs/libxslt media-libs/qimageblitz
+DESCRIPTION=A recipe application by KDE
+EAPI=7
+HOMEPAGE=https://apps.kde.org/en/krecipes
+INHERIT=kde4-base
+IUSE=debug
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2 LGPL-2.1
+RDEPEND=dev-db/sqlite:3 dev-libs/libxml2 dev-libs/libxslt media-libs/qimageblitz
+SLOT=4
+SRC_URI=mirror://kde/stable/krecipes/2.0.0/src/krecipes-2.0.0.tar.xz
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=a4564ec42132b8c09dd2911bc9eada31

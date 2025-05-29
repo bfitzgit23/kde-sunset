@@ -1,0 +1,13 @@
+BDEPEND=>=dev-vcs/git-1.8.2.1[curl]
+DEFINED_PHASES=compile install prepare unpack
+DEPEND=x11-libs/libX11 x11-libs/libXext
+DESCRIPTION=Historical copy of Qt 1, adapted to compile on modern systems (circa. 2016)
+EAPI=7
+HOMEPAGE=https://invent.kde.org/historical/qt1
+INHERIT=git-r3 toolchain-funcs
+LICENSE=Qt-Free-Edition
+PROPERTIES=live
+RDEPEND=x11-libs/libX11 x11-libs/libXext
+SLOT=0
+_eclasses_=git-r3	875eb471682d3e1f18da124be97dcc81	toolchain-funcs	f9d71a6efe9d083aec750dd13968e169
+_md5_=800ef0df7c0c1bd4a2d106eba9843601

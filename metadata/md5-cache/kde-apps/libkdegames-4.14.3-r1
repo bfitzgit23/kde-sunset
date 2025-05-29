@@ -1,0 +1,10 @@
+DEFINED_PHASES=-
+DEPEND=media-libs/libsndfile media-libs/openal
+DESCRIPTION=Base library common to many KDE games
+EAPI=7
+INHERIT=kde4-base
+IUSE=debug
+KEYWORDS=amd64 x86 ~amd64-linux ~x86-linux
+RDEPEND=media-libs/libsndfile media-libs/openal
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=959620f7763efca553bcb0222edfd0e6

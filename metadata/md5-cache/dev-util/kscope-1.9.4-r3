@@ -1,0 +1,13 @@
+DEFINED_PHASES=configure install postinst postrm preinst prepare
+DEPEND=dev-qt/qtcore:4 dev-qt/qtgui:4 x11-libs/qscintilla:0-qt4= dev-util/desktop-file-utils x11-misc/shared-mime-info
+DESCRIPTION=Source Editing Environment based on Qt
+EAPI=7
+HOMEPAGE=http://kscope.sourceforge.net/
+INHERIT=desktop qmake-utils xdg
+KEYWORDS=amd64 ~ppc ~sparc x86
+LICENSE=GPL-2
+RDEPEND=dev-qt/qtcore:4 dev-qt/qtgui:4 x11-libs/qscintilla:0-qt4=
+SLOT=4
+SRC_URI=mirror://sourceforge/kscope/kscope-1.9.4.tar.gz
+_eclasses_=desktop	3a72ffe0d8e1dd73af3a1c8c15a59fed	estack	c61c368a76fdf3a82fdf8dbaebea3804	toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	qmake-utils	2218d2474d8bfbbb26e2ca96adf313d8	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	xdg	3ef49a87c52c8b77c476351195dfe575
+_md5_=e16a4ec5dbeef59676f286fde7d502a1

@@ -1,0 +1,14 @@
+DEFINED_PHASES=-
+DEPEND=dev-libs/boost:= net-analyzer/rrdtool
+DESCRIPTION=Simple kdelibs4-based live data viewer for collectd
+EAPI=7
+HOMEPAGE=https://www.forwiss.uni-passau.de/~berberic/Linux/kcollectd.html
+INHERIT=kde4-base
+IUSE=debug
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-3
+RDEPEND=dev-libs/boost:= net-analyzer/rrdtool || ( app-metrics/collectd[collectd_plugins_rrdtool] app-metrics/collectd[collectd_plugins_rrdcached] )
+SLOT=4
+SRC_URI=https://www.forwiss.uni-passau.de/~berberic/Linux/kcollectd/kcollectd-0.9.tar.gz
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=218872ce66932ccdc673347e41ef2d42

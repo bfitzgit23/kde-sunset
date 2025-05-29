@@ -1,0 +1,14 @@
+BDEPEND=dev-util/ninja >=dev-util/cmake-3.9.6
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=dev-libs/glib:2 media-libs/libpng:0= dev-qt/qtgui:4
+DESCRIPTION=X-ray diffraction/control image viewer in the context of data processing by XDS
+EAPI=7
+HOMEPAGE=http://xds-viewer.sourceforge.net/
+INHERIT=cmake-utils
+KEYWORDS=~amd64 ~x86 ~amd64-linux ~x86-linux
+LICENSE=GPL-2
+RDEPEND=dev-libs/glib:2 media-libs/libpng:0= dev-qt/qtgui:4
+SLOT=0
+SRC_URI=mirror://sourceforge/xds-viewer/xds-viewer-0.6.tar.gz
+_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	multiprocessing	1e32df7deee68372153dca65f4a7c21f	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	cmake-utils	ac790b512da80dd6141c442ae4d90a3d
+_md5_=91ddb02487f1dc2cc3c6c82459b8e7aa

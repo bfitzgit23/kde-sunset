@@ -1,0 +1,15 @@
+BDEPEND=dev-util/ninja >=dev-util/cmake-3.9.6
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=dev-qt/qtcore:4 dev-qt/qtdbus:4 dev-util/automoc
+DESCRIPTION=Cache/proxy system for the SSDP part of UPnP
+EAPI=7
+HOMEPAGE=https://frinring.wordpress.com/2010/08/09/cagibi-0-1-1-released-network-kio-slave-freezes-kded-in-4-5-0/
+INHERIT=cmake-utils
+IUSE=debug
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=dev-qt/qtcore:4 dev-qt/qtdbus:4
+SLOT=0
+SRC_URI=mirror://kde/stable/cagibi/cagibi-0.2.0.tar.bz2
+_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	multiprocessing	1e32df7deee68372153dca65f4a7c21f	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	cmake-utils	ac790b512da80dd6141c442ae4d90a3d
+_md5_=e85dbd1b8dc522f7036c8672b6e52d02

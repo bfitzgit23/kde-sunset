@@ -1,0 +1,13 @@
+DEFINED_PHASES=-
+DESCRIPTION=Program for ripping internet radios
+EAPI=7
+HOMEPAGE=https://www.linux-apps.com/p/1126631
+INHERIT=kde4-base
+IUSE=debug
+KEYWORDS=amd64 x86
+LICENSE=GPL-2 GPL-3
+RDEPEND=media-sound/streamripper
+SLOT=4
+SRC_URI=mirror://sourceforge/kstreamripper/kstreamripper-0.7.100.tar.bz2
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=cebc54322cbea2d19b8d772155ba27d4

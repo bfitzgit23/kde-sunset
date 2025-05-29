@@ -1,0 +1,10 @@
+DEFINED_PHASES=-
+DEPEND=x11-libs/libX11 x11-libs/libXrandr x11-base/xorg-proto
+DESCRIPTION=Allows handling of multihead systems via the XRandR extension
+EAPI=7
+INHERIT=kde4-meta
+IUSE=debug
+KEYWORDS=amd64 x86 ~amd64-linux ~x86-linux
+RDEPEND=x11-libs/libX11 x11-libs/libXrandr
+_eclasses_=kde4-meta	61c1355df82c4444bbe3a02879662f58
+_md5_=fc8452fadd5e4c2fb3eec94b2e1d0d53

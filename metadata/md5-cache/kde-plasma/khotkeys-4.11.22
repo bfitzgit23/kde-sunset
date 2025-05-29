@@ -1,0 +1,10 @@
+DEFINED_PHASES=-
+DEPEND=kde-plasma/libkworkspace:4 x11-libs/libX11 x11-libs/libXtst
+DESCRIPTION=KDE Plasma workspace hotkey module
+EAPI=7
+INHERIT=kde4-meta
+IUSE=debug
+KEYWORDS=amd64 x86 ~amd64-linux ~x86-linux
+RDEPEND=kde-plasma/libkworkspace:4 x11-libs/libX11 x11-libs/libXtst
+_eclasses_=kde4-meta	61c1355df82c4444bbe3a02879662f58
+_md5_=43e029503a2570b11c3760ded83f4f96

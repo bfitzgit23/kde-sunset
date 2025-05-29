@@ -1,0 +1,14 @@
+DEFINED_PHASES=-
+DEPEND=dev-qt/qtcore:4 dev-qt/qtdbus:4 net-misc/mobile-broadband-provider-info >=net-misc/networkmanager-0.9.8[modemmanager]
+DESCRIPTION=Modemmanager bindings for Qt
+EAPI=7
+HOMEPAGE=https://projects.kde.org/projects/extragear/libs/libmm-qt
+INHERIT=kde4-base
+IUSE=debug
+KEYWORDS=amd64 x86
+LICENSE=LGPL-2
+RDEPEND=dev-qt/qtcore:4 dev-qt/qtdbus:4 net-misc/mobile-broadband-provider-info >=net-misc/networkmanager-0.9.8[modemmanager]
+SLOT=0
+SRC_URI=mirror://kde/unstable/modemmanager-qt/1.0.1/src/libmm-qt-1.0.1.tar.xz
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=25fbd7b49f94fac71fffad34be4608e2

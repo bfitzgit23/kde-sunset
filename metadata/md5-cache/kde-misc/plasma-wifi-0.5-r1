@@ -1,0 +1,13 @@
+DEFINED_PHASES=prepare
+DESCRIPTION=Plasmoid which displays the currect signal strength
+EAPI=7
+HOMEPAGE=http://www.kde-look.org/content/show.php/cpuload?content=79476
+INHERIT=kde4-base
+IUSE=debug
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-3+
+RDEPEND=kde-plasma/plasma-workspace:4
+SLOT=4
+SRC_URI=http://kde-look.org/CONTENT/content-files/79476-plasma-wifi-0.5.tgz
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=27f3f5bb9c322652a7e9ba24772ca6f2

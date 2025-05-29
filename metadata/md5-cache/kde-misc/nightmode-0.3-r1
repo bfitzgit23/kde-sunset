@@ -1,0 +1,14 @@
+DEFINED_PHASES=-
+DEPEND=kde-plasma/kwin:4
+DESCRIPTION=kwin plugin that makes the entire screen darker
+EAPI=7
+HOMEPAGE=http://kde-apps.org/content/show.php/Nightmode?content=123805
+INHERIT=kde4-base
+IUSE=debug
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=kde-plasma/kwin:4
+SLOT=4
+SRC_URI=http://static.davidedmundson.co.uk/nightmode_0.3.tar.gz
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=499e8f75ee392432e2313e0d3c959559

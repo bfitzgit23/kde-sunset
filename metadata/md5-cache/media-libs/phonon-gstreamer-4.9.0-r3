@@ -1,0 +1,15 @@
+BDEPEND=virtual/pkgconfig app-alternatives/ninja >=dev-build/cmake-3.20.5
+DEFINED_PHASES=compile configure install postinst postrm prepare test
+DEPEND=dev-libs/glib:2 dev-libs/libxml2:2 >=dev-qt/qtcore-4.8.7-r2:4[glib] >=dev-qt/qtgui-4.8.7:4[glib] >=dev-qt/qtopengl-4.8.7:4 media-libs/gstreamer:1.0 media-libs/gst-plugins-base:1.0 media-libs/phonon:0-qt4 media-plugins/gst-plugins-meta:1.0[alsa?,ogg,vorbis] virtual/opengl network? ( media-plugins/gst-plugins-soup:1.0 )
+DESCRIPTION=Phonon GStreamer backend
+EAPI=7
+HOMEPAGE=https://community.kde.org/Phonon
+INHERIT=cmake xdg-utils
+IUSE=alsa debug minimal +network
+KEYWORDS=amd64 ~arm ~ppc ~ppc64 x86
+LICENSE=LGPL-2.1+ || ( LGPL-2.1 LGPL-3 )
+RDEPEND=dev-libs/glib:2 dev-libs/libxml2:2 >=dev-qt/qtcore-4.8.7-r2:4[glib] >=dev-qt/qtgui-4.8.7:4[glib] >=dev-qt/qtopengl-4.8.7:4 media-libs/gstreamer:1.0 media-libs/gst-plugins-base:1.0 media-libs/phonon:0-qt4 media-plugins/gst-plugins-meta:1.0[alsa?,ogg,vorbis] virtual/opengl network? ( media-plugins/gst-plugins-soup:1.0 ) !<dev-qt/qtwebkit-4.10.4:4[gstreamer] !<media-libs/phonon-gstreamer-4.10:0
+SLOT=0-qt4
+SRC_URI=mirror://kde/stable/phonon/phonon-backend-gstreamer/4.9.0/phonon-backend-gstreamer-4.9.0.tar.xz
+_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	multiprocessing	1e32df7deee68372153dca65f4a7c21f	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	cmake	b05c1b7b3c9213c155f128f4eadaa49f
+_md5_=74ab55ccadc38d2e3e43a9413db7d88e

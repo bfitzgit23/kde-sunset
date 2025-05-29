@@ -1,0 +1,11 @@
+DEFINED_PHASES=configure
+DEPEND=telepathy? ( net-libs/telepathy-qt:0-qt4 ) vnc? ( >=net-libs/libvncserver-0.9 )
+DESCRIPTION=KDE remote desktop connection (RDP and VNC) client
+EAPI=7
+HOMEPAGE=https://apps.kde.org/en/krdc
+INHERIT=kde4-base
+IUSE=debug +rdp telepathy vnc
+KEYWORDS=amd64 x86 ~amd64-linux ~x86-linux
+RDEPEND=telepathy? ( net-libs/telepathy-qt:0-qt4 ) vnc? ( >=net-libs/libvncserver-0.9 ) rdp? ( >=net-misc/freerdp-1.1.0_beta1[X] )
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=7524036d01805da85ab8e7fddd9937a6

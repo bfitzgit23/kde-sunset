@@ -1,0 +1,14 @@
+DEFINED_PHASES=prepare
+DEPEND=kde-plasma/plasma-workspace:4 x11-libs/libX11 x11-libs/libXcomposite x11-libs/libXext
+DESCRIPTION=Task and launch representation plasmoid
+EAPI=7
+HOMEPAGE=http://kde-look.org/content/show.php/Fancy+Tasks?content=99737
+INHERIT=kde4-base
+IUSE=debug
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=kde-plasma/plasma-workspace:4 x11-libs/libX11 x11-libs/libXcomposite x11-libs/libXext
+SLOT=4
+SRC_URI=http://kde-look.org/CONTENT/content-files/99737-fancytasks-1.1.2.tar.bz2
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=14fea87d42479391dafef9681253557e

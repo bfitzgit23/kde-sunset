@@ -1,0 +1,10 @@
+DEFINED_PHASES=configure
+DEPEND=subversion? ( dev-libs/apr dev-vcs/subversion )
+DESCRIPTION=kioslaves from kdesdk package
+EAPI=7
+INHERIT=kde4-base
+IUSE=debug subversion
+KEYWORDS=amd64 x86 ~amd64-linux ~x86-linux
+RDEPEND=subversion? ( dev-libs/apr dev-vcs/subversion ) subversion? ( !>=dev-vcs/kdesvn-1.5.2:4 )
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=e0082ae5357978ad4dcca425a265ce87

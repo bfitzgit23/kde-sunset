@@ -1,0 +1,10 @@
+DEFINED_PHASES=-
+DESCRIPTION=KDE SC solid runtime modules (autoeject, automounter and others)
+EAPI=7
+HOMEPAGE=https://solid.kde.org
+INHERIT=kde4-meta
+IUSE=debug bluetooth networkmanager
+KEYWORDS=amd64 x86
+RDEPEND=bluetooth? ( || ( kde-plasma/bluedevil:4 kde-plasma/bluedevil:5 ) ) networkmanager? ( || ( kde-plasma/plasma-nm:4 kde-plasma/plasma-nm:5 ) )
+_eclasses_=kde4-meta	61c1355df82c4444bbe3a02879662f58
+_md5_=f89886b70451a3158264ccb075c8e7ee

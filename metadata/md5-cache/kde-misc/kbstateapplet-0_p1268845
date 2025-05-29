@@ -1,0 +1,14 @@
+DEFINED_PHASES=-
+DEPEND=x11-libs/libX11
+DESCRIPTION=Plasmoid that shows the state of keyboard leds
+EAPI=7
+HOMEPAGE=https://websvn.kde.org/trunk/playground/base/plasma/applets/kbstateapplet
+INHERIT=kde4-base
+IUSE=debug
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=x11-libs/libX11 kde-plasma/plasma-workspace:4
+SLOT=4
+SRC_URI=https://dev.gentoo.org/~dilfridge/distfiles/kbstateapplet-0_p1268845.tar.xz
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=26a62b42f673459403ae2705f1300089

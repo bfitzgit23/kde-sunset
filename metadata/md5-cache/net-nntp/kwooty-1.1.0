@@ -1,0 +1,14 @@
+DEFINED_PHASES=-
+DEPEND=kde-plasma/libkworkspace:4
+DESCRIPTION=Friendly nzb linux usenet binary client
+EAPI=7
+HOMEPAGE=https://www.linux-apps.com/content/show.php/Kwooty?content=114385
+INHERIT=kde4-base
+IUSE=debug
+KEYWORDS=amd64 x86
+LICENSE=GPL-2
+RDEPEND=kde-plasma/libkworkspace:4 app-arch/unrar app-arch/par2cmdline
+SLOT=4
+SRC_URI=mirror://sourceforge/kwooty/kwooty-1.1.0.tar.gz
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=4fc6b001603a508c9e79eb2406e6fdd2

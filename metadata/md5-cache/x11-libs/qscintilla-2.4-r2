@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install postinst
+DEPEND=dev-qt/qtgui:4
+DESCRIPTION=Qt port of Neil Hodgson's Scintilla C++ editor class
+EAPI=7
+HOMEPAGE=https://riverbankcomputing.com/software/qscintilla/intro
+INHERIT=qmake-utils
+IUSE=doc
+KEYWORDS=amd64 ~hppa ~ppc ~ppc64 ~sparc x86
+LICENSE=|| ( GPL-2 GPL-3 )
+RDEPEND=dev-qt/qtgui:4 !<x11-libs/qscintilla-2.4-r2:0
+SLOT=0-qt4
+SRC_URI=https://www.riverbankcomputing.co.uk/static/Downloads/QScintilla2/QScintilla-gpl-2.4.tar.gz mirror://kde-sunset/QScintilla-gpl-2.4.tar.gz
+_eclasses_=estack	c61c368a76fdf3a82fdf8dbaebea3804	toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	qmake-utils	2218d2474d8bfbbb26e2ca96adf313d8
+_md5_=2613f2e506813d6b28c3ad969840a4b4

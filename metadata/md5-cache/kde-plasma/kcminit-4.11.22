@@ -1,0 +1,10 @@
+DEFINED_PHASES=-
+DEPEND=x11-libs/libX11
+DESCRIPTION=Runs startups initialization for KDE Plasma Control Modules
+EAPI=7
+INHERIT=kde4-meta
+IUSE=debug
+KEYWORDS=amd64 x86 ~amd64-linux ~x86-linux
+RDEPEND=x11-libs/libX11
+_eclasses_=kde4-meta	61c1355df82c4444bbe3a02879662f58
+_md5_=d93b459903201024305b956c6eaab689

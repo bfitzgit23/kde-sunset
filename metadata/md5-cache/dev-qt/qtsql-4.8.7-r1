@@ -1,0 +1,10 @@
+DEFINED_PHASES=-
+DEPEND=~dev-qt/qtcore-4.8.7[debug=,qt3support=,] freetds? ( dev-db/freetds ) mysql? ( dev-db/mysql-connector-c:=[] ) odbc? ( || ( >=dev-db/unixODBC-2.3.2-r2[] >=dev-db/libiodbc-3.52.8-r2[] ) ) postgres? ( dev-db/postgresql:* ) sqlite? ( >=dev-db/sqlite-3.8.3:3[] )
+DESCRIPTION=The SQL module for the Qt toolkit
+EAPI=7
+INHERIT=multilib qt4-build-multilib
+IUSE=freetds mysql odbc postgres qt3support +sqlite
+RDEPEND=~dev-qt/qtcore-4.8.7[debug=,qt3support=,] freetds? ( dev-db/freetds ) mysql? ( dev-db/mysql-connector-c:=[] ) odbc? ( || ( >=dev-db/unixODBC-2.3.2-r2[] >=dev-db/libiodbc-3.52.8-r2[] ) ) postgres? ( dev-db/postgresql:* ) sqlite? ( >=dev-db/sqlite-3.8.3:3[] )
+REQUIRED_USE=|| ( freetds mysql odbc postgres sqlite )
+_eclasses_=multilib	d41d8cd98f00b204e9800998ecf8427e	qt4-build-multilib	14633bc23f0c06d5bc68a82813eb86ed
+_md5_=97f0b6dfd0b1052b52ff7e8fb060a15c

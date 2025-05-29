@@ -1,0 +1,13 @@
+DEFINED_PHASES=-
+DEPEND=kde-plasma/kwin:4
+DESCRIPTION=Titlebar-less decoration inspired by Google Chrome and Nitrogen minimal mod
+EAPI=7
+HOMEPAGE=http://kde-look.org/content/show.php/Chromi?content=119069
+INHERIT=kde4-base
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2+
+RDEPEND=kde-plasma/kwin:4
+SLOT=4
+SRC_URI=https://dev.gentoo.org/~kensington/distfiles/kwin-deco-chromi-0.2_p20141209.tar.xz
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=a786efd6f819dfa1876419f8e38d065c

@@ -1,0 +1,14 @@
+DEFINED_PHASES=configure
+DEPEND=>=net-libs/libnm-qt-0.9.8.2[modemmanager?] net-misc/mobile-broadband-provider-info >=net-misc/networkmanager-0.9.8.0 modemmanager? ( >=net-libs/libmm-qt-1.0.0 ) openconnect? ( net-vpn/networkmanager-openconnect net-vpn/openconnect:= ) !kde-misc/networkmanagement sys-devel/gettext
+DESCRIPTION=KDE Plasma applet for NetworkManager
+EAPI=7
+HOMEPAGE=https://projects.kde.org/projects/playground/network/plasma-nm
+INHERIT=kde4-base
+IUSE=debug modemmanager openconnect
+KEYWORDS=amd64 x86
+LICENSE=GPL-2 LGPL-2.1
+RDEPEND=>=net-libs/libnm-qt-0.9.8.2[modemmanager?] net-misc/mobile-broadband-provider-info >=net-misc/networkmanager-0.9.8.0 modemmanager? ( >=net-libs/libmm-qt-1.0.0 ) openconnect? ( net-vpn/networkmanager-openconnect net-vpn/openconnect:= ) !kde-misc/networkmanagement
+SLOT=4
+SRC_URI=mirror://kde/stable/plasma-nm/plasma-nm-0.9.3.6.tar.xz
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=caca66db6942284ccf5346843fea0cfc

@@ -1,0 +1,14 @@
+DEFINED_PHASES=-
+DEPEND=kde-plasma/plasma-workspace:4
+DESCRIPTION=KDE-based monitor for the IBM HDAPS system
+EAPI=7
+HOMEPAGE=http://www.kde-look.org/content/show.php/HDAPS+monitor?content=103481
+INHERIT=kde4-base
+IUSE=debug
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=kde-plasma/plasma-workspace:4 app-laptop/hdapsd
+SLOT=4
+SRC_URI=http://www.kde-look.org/CONTENT/content-files/103481-hdaps_monitor-0.3.tar.gz
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=3e1be36c7850b22b3fe2dc2e20466f93

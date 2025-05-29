@@ -1,0 +1,9 @@
+DEFINED_PHASES=-
+DESCRIPTION=kdeartwork - merge this to pull in all kdeartwork-derived packages
+EAPI=7
+HOMEPAGE=https://www.kde.org/
+KEYWORDS=~amd64 ~x86
+LICENSE=metapackage
+RDEPEND=>=kde-apps/kdeartwork-colorschemes-15.08.3:4 >=kde-apps/kdeartwork-desktopthemes-15.08.3:4 >=kde-apps/kdeartwork-emoticons-15.08.3:4 >=kde-apps/kdeartwork-iconthemes-15.08.3:4 >=kde-apps/kdeartwork-wallpapers-15.08.3:4 >=kde-apps/kdeartwork-weatherwallpapers-15.08.3:4
+SLOT=4
+_md5_=55289f10a9b6c8e65dc80ae11d1a057f

@@ -1,0 +1,12 @@
+DEFINED_PHASES=-
+DEPEND=sys-devel/bison sys-devel/flex
+DESCRIPTION=A LL(1) parser generator used mainly by KDevelop language plugins
+EAPI=7
+INHERIT=kde4-base
+IUSE=debug
+KEYWORDS=~amd64 ~x86
+LICENSE=LGPL-2
+RDEPEND=dev-util/kdevelop:4
+SRC_URI=https://invent.kde.org/kdevelop/kdevelop-pg-qt/-/archive/8e6845216dc1f7bae64311459042e528b8e78de1/kdevelop-pg-qt-8e6845216dc1f7bae64311459042e528b8e78de1.tar.gz -> kdevelop-pg-qt-1.1.0_p20150726.tar.gz
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=3cfb628dd624261c4343b9f358cb99bf

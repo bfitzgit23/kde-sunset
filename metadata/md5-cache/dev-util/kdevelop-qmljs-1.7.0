@@ -1,0 +1,12 @@
+DEFINED_PHASES=-
+DEPEND=>=dev-util/kdevplatform-1.7.0:4
+DESCRIPTION=QML and javascript plugin for KDevelop 4
+EAPI=7
+INHERIT=kde4-base
+IUSE=debug
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2 LGPL-2
+RDEPEND=>=dev-util/kdevplatform-1.7.0:4 dev-util/kdevelop:4
+SRC_URI=mirror://kde/stable/kdevelop/kdev-qmljs/1.7.0/src/kdev-qmljs-1.7.0.tar.xz
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=41ef3a01018b31759910d93e7c76a16b

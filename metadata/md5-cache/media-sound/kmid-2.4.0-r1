@@ -1,0 +1,14 @@
+DEFINED_PHASES=-
+DEPEND=media-libs/alsa-lib >=media-sound/drumstick-0.4 <media-sound/drumstick-1.0.0
+DESCRIPTION=A MIDI/Karaoke player based on kdelibs
+EAPI=7
+HOMEPAGE=https://userbase.kde.org/KMid
+INHERIT=kde4-base
+IUSE=debug
+KEYWORDS=amd64 x86
+LICENSE=GPL-2
+RDEPEND=media-libs/alsa-lib >=media-sound/drumstick-0.4 <media-sound/drumstick-1.0.0
+SLOT=4
+SRC_URI=mirror://sourceforge/kmid2/kmid-2.4.0.tar.bz2
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=ebfcf4f7fdc3b9c81f82df88fa76d78c

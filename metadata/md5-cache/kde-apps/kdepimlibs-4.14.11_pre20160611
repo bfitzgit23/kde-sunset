@@ -1,0 +1,12 @@
+DEFINED_PHASES=configure install
+DEPEND=>=app-crypt/gpgme-1.8.0 dev-libs/boost:= dev-libs/cyrus-sasl dev-libs/libgpg-error dev-libs/libical:= dev-libs/qjson kde-apps/akonadi:4 media-libs/phonon:0-qt4 x11-misc/shared-mime-info ldap? ( net-nds/openldap ) prison? ( kde-frameworks/prison:4 )
+DESCRIPTION=Common library for KDE PIM apps
+EAPI=7
+INHERIT=kde4-base
+IUSE=debug ldap prison
+KEYWORDS=amd64 x86
+LICENSE=LGPL-2.1
+RDEPEND=>=app-crypt/gpgme-1.8.0 dev-libs/boost:= dev-libs/cyrus-sasl dev-libs/libgpg-error dev-libs/libical:= dev-libs/qjson kde-apps/akonadi:4 media-libs/phonon:0-qt4 x11-misc/shared-mime-info ldap? ( net-nds/openldap ) prison? ( kde-frameworks/prison:4 )
+RESTRICT=test
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=3c768f362e210f6ba437b5a894770ac7

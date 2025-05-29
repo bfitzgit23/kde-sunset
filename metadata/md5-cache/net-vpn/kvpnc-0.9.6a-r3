@@ -1,0 +1,14 @@
+DEFINED_PHASES=configure prepare
+DEPEND=dev-libs/libgcrypt:0 sys-devel/gettext
+DESCRIPTION=KDELibs4-based frontend for various VPN clients
+EAPI=7
+HOMEPAGE=https://userbase.kde.org/KVpnc
+INHERIT=kde4-base
+IUSE=debug
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=dev-libs/libgcrypt:0
+SLOT=4
+SRC_URI=http://download.gna.org/kvpnc/kvpnc-0.9.6a-kde4.tar.bz2 http://download.gna.org/kvpnc/kvpnc-0.9.6-kde4-locale.tar.bz2
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=103fd363cb624e0c4fdc19171de2ccc6

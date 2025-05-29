@@ -1,0 +1,12 @@
+DEFINED_PHASES=install
+DEPEND=sys-libs/pam
+DESCRIPTION=pam.d files used by several KDE components
+EAPI=7
+HOMEPAGE=https://www.kde.org
+INHERIT=pam
+KEYWORDS=amd64 x86
+LICENSE=GPL-2
+RDEPEND=sys-libs/pam
+SLOT=0
+_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	pam	b56d0c9c20fc5b553f13c8ae165a10a5
+_md5_=e22e24ad93a5e66de8d85f822023fbeb

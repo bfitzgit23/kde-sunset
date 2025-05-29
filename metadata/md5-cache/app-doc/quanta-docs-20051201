@@ -1,0 +1,10 @@
+DEFINED_PHASES=install
+DESCRIPTION=Language documentation files for Quanta.
+EAPI=0
+HOMEPAGE=http://quanta.kdewebdev.org/
+IUSE=mysql
+KEYWORDS=~alpha amd64 ~hppa mips ~ppc ~ppc64 ~sparc x86
+LICENSE=GPL-2
+SLOT=0
+SRC_URI=mirror://gentoo/quanta-css-20051201.tar.bz2 mirror://gentoo/quanta-html-20051201.tar.bz2 mirror://gentoo/quanta-javascript-20051201.tar.bz2 mirror://gentoo/quanta-php-20051201.tar.bz2 mysql? ( mirror://gentoo/quanta-mysql5-20051201.tar.bz2 )
+_md5_=1aba900825ea52264b760be5627db4f8

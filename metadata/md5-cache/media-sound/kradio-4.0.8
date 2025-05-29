@@ -1,0 +1,14 @@
+DEFINED_PHASES=configure prepare
+DEPEND=media-libs/libsndfile alsa? ( media-libs/alsa-lib ) ffmpeg? ( >=media-libs/libmms-0.4 media-video/ffmpeg:0= ) lirc? ( app-misc/lirc ) mp3? ( media-sound/lame ) vorbis? ( media-libs/libvorbis media-libs/libogg )
+DESCRIPTION=kradio is a radio tuner application for KDE
+EAPI=7
+HOMEPAGE=http://kradio.sourceforge.net/
+INHERIT=kde4-base
+IUSE=alsa debug encode ffmpeg lirc +mp3 +vorbis v4l
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=media-libs/libsndfile alsa? ( media-libs/alsa-lib ) ffmpeg? ( >=media-libs/libmms-0.4 media-video/ffmpeg:0= ) lirc? ( app-misc/lirc ) mp3? ( media-sound/lame ) vorbis? ( media-libs/libvorbis media-libs/libogg )
+SLOT=4
+SRC_URI=mirror://sourceforge/kradio/kradio4-4.0.8.tar.bz2
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=9e33608b1167134b76d2256ab723953e

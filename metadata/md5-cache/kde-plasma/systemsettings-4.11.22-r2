@@ -1,0 +1,12 @@
+DEFINED_PHASES=configure prepare unpack
+DEPEND=dev-libs/glib:2 kde-plasma/kwin:4 kde-plasma/libkworkspace:4 media-libs/fontconfig >=media-libs/freetype-2 >=x11-libs/libxklavier-3.2 x11-libs/libX11 x11-libs/libXcursor x11-libs/libXext x11-libs/libXfixes x11-libs/libXft x11-libs/libXi x11-libs/libxkbfile x11-libs/libXrandr x11-libs/libXtst opengl? ( virtual/opengl ) usb? ( virtual/libusb:0 ) x11-base/xorg-proto
+DESCRIPTION=System settings utility
+EAPI=7
+HOMEPAGE=https://userbase.kde.org/System_Settings
+INHERIT=kde4-meta
+IUSE=debug gtk +kscreen +usb
+KEYWORDS=amd64 x86 ~amd64-linux ~x86-linux
+RDEPEND=dev-libs/glib:2 kde-plasma/kwin:4 kde-plasma/libkworkspace:4 media-libs/fontconfig >=media-libs/freetype-2 >=x11-libs/libxklavier-3.2 x11-libs/libX11 x11-libs/libXcursor x11-libs/libXext x11-libs/libXfixes x11-libs/libXft x11-libs/libXi x11-libs/libxkbfile x11-libs/libXrandr x11-libs/libXtst opengl? ( virtual/opengl ) usb? ( virtual/libusb:0 ) >=kde-frameworks/oxygen-icons-5.19.0:5 sys-libs/timezone-data x11-apps/setxkbmap x11-misc/xkeyboard-config gtk? ( kde-plasma/kde-gtk-config:4 ) kscreen? ( kde-plasma/kscreen:4 )
+RESTRICT=test
+_eclasses_=kde4-meta	61c1355df82c4444bbe3a02879662f58
+_md5_=0fb6d7dfee91bb781f666cb3769f566b

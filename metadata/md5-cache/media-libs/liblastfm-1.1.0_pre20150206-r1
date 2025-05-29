@@ -1,0 +1,16 @@
+BDEPEND=app-alternatives/ninja >=dev-build/cmake-3.20.5
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=dev-qt/qtcore:4[ssl] dev-qt/qtdbus:4 fingerprint? ( dev-qt/qtsql:4 media-libs/libsamplerate sci-libs/fftw:3.0 ) test? ( dev-qt/qttest:4 )
+DESCRIPTION=Collection of libraries to integrate Last.fm services
+EAPI=7
+HOMEPAGE=https://github.com/lastfm/liblastfm
+INHERIT=cmake
+IUSE=fingerprint test
+KEYWORDS=amd64 ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux
+LICENSE=GPL-3
+RDEPEND=dev-qt/qtcore:4[ssl] dev-qt/qtdbus:4 fingerprint? ( dev-qt/qtsql:4 media-libs/libsamplerate sci-libs/fftw:3.0 ) !<media-libs/lastfmlib-0.4.0 !<media-libs/liblastfm-1.1.0_pre20150206-r1:0
+RESTRICT=test
+SLOT=0-qt4
+SRC_URI=https://github.com/lastfm/liblastfm/archive/44331654256df83bc1d3cbb271a8ce3d4c464686.tar.gz -> liblastfm-1.1.0_pre20150206.tar.gz
+_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	multiprocessing	1e32df7deee68372153dca65f4a7c21f	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	cmake	b05c1b7b3c9213c155f128f4eadaa49f
+_md5_=a3c3f5b54132b003f724263f19655fd2

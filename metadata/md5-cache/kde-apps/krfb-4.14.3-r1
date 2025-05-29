@@ -1,0 +1,12 @@
+DEFINED_PHASES=configure prepare
+DEPEND=>=net-libs/libvncserver-0.9.9 sys-libs/zlib virtual/jpeg:0 x11-libs/libX11 x11-libs/libXdamage x11-libs/libXext x11-libs/libXtst telepathy? ( net-libs/telepathy-qt:0-qt4 )
+DESCRIPTION=VNC-compatible server to share KDE desktops
+EAPI=7
+HOMEPAGE=https://apps.kde.org/en/krfb
+INHERIT=kde4-base
+IUSE=debug telepathy ktp
+KEYWORDS=amd64 x86 ~amd64-linux ~x86-linux
+RDEPEND=>=net-libs/libvncserver-0.9.9 sys-libs/zlib virtual/jpeg:0 x11-libs/libX11 x11-libs/libXdamage x11-libs/libXext x11-libs/libXtst telepathy? ( net-libs/telepathy-qt:0-qt4 )
+REQUIRED_USE=ktp? ( telepathy )
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=4b36666fc3be7469f28a80d006911ad8

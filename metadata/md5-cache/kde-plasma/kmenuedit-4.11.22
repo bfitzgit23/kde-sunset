@@ -1,0 +1,10 @@
+DEFINED_PHASES=configure
+DEPEND=kde-plasma/khotkeys:4
+DESCRIPTION=KDE Plasma menu editor
+EAPI=7
+INHERIT=kde4-meta
+IUSE=debug
+KEYWORDS=amd64 x86 ~amd64-linux ~x86-linux
+RDEPEND=kde-plasma/khotkeys:4
+_eclasses_=kde4-meta	61c1355df82c4444bbe3a02879662f58
+_md5_=760ccdde5d9a056c7c94635b28c01b8a

@@ -1,0 +1,14 @@
+DEFINED_PHASES=configure prepare
+DEPEND=media-libs/phonon:0-qt4 x11-libs/libX11 cairo? ( x11-libs/cairo x11-libs/pango ) expat? ( >=dev-libs/expat-2.0.1 )
+DESCRIPTION=Video player plugin for Konqueror and basic MPlayer frontend
+EAPI=7
+HOMEPAGE=https://kmplayer.kde.org
+INHERIT=kde4-base
+IUSE=cairo debug expat
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2 FDL-1.2 LGPL-2.1
+RDEPEND=media-libs/phonon:0-qt4 x11-libs/libX11 cairo? ( x11-libs/cairo x11-libs/pango ) expat? ( >=dev-libs/expat-2.0.1 ) media-video/mplayer
+SLOT=4
+SRC_URI=https://github.com/KDE/kmplayer/archive/a28ff105e76a227b799c2bbf6e732791de5fb84e.tar.gz -> kmplayer-0.11.5.tar.gz
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=e91dfdcfb89f20ae69853a3398b3222d

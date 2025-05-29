@@ -1,0 +1,13 @@
+DEFINED_PHASES=install
+DESCRIPTION=KCM displaying distribution and system information
+EAPI=7
+HOMEPAGE=https://projects.kde.org/projects/playground/base/about-distro
+INHERIT=kde4-base
+IUSE=debug
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-3
+RDEPEND=sys-apps/lsb-release
+SLOT=4
+SRC_URI=https://www.gentoo.org/images/glogo-small.png mirror://kde/stable/about-distro/1.1.0/src/about-distro-1.1.0.tar.xz
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=fc77ecd03cd2db4bc34442c6753a684d

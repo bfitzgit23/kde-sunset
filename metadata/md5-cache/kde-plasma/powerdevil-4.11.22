@@ -1,0 +1,11 @@
+DEFINED_PHASES=-
+DEPEND=kde-frameworks/kactivities:4 kde-plasma/libkworkspace:4 x11-libs/libX11 x11-libs/libXext x11-libs/libXrandr
+DESCRIPTION=PowerDevil is an utility for KDE4 for Laptop Powermanagement
+EAPI=7
+HOMEPAGE=https://solid.kde.org
+INHERIT=kde4-meta
+IUSE=debug
+KEYWORDS=amd64 x86 ~amd64-linux ~x86-linux
+RDEPEND=kde-frameworks/kactivities:4 kde-plasma/libkworkspace:4 x11-libs/libX11 x11-libs/libXext x11-libs/libXrandr
+_eclasses_=kde4-meta	61c1355df82c4444bbe3a02879662f58
+_md5_=dbb5c7fa186d750f284d6f3381352457

@@ -1,0 +1,16 @@
+BDEPEND=dev-util/ninja >=dev-util/cmake-3.9.6
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=dev-qt/qtcore:4 test? ( dev-qt/qtgui:4 dev-qt/qttest:4 )
+DESCRIPTION=A library providing access to Open Collaboration Services
+EAPI=7
+HOMEPAGE=https://www.kde.org/
+INHERIT=cmake-utils
+IUSE=debug test
+KEYWORDS=amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux
+LICENSE=GPL-2 LGPL-2
+RDEPEND=dev-qt/qtcore:4
+RESTRICT=!test? ( test )
+SLOT=0
+SRC_URI=mirror://kde/stable/attica/attica-0.4.2.tar.bz2
+_eclasses_=toolchain-funcs	f9d71a6efe9d083aec750dd13968e169	flag-o-matic	b892042b2667b8ac69ec8a2571dc290a	multiprocessing	1e32df7deee68372153dca65f4a7c21f	xdg-utils	42869b3c8d86a70ef3cf75165a395e09	ninja-utils	2df4e452cea39a9ec8fb543ce059f8d6	cmake-utils	ac790b512da80dd6141c442ae4d90a3d
+_md5_=0bc21d7a27d9c3897e93a2946b3741b9

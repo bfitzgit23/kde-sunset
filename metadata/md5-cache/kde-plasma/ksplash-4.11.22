@@ -1,0 +1,10 @@
+DEFINED_PHASES=configure
+DEPEND=media-libs/libpng:0= virtual/jpeg:0 x11-libs/libX11 x11-libs/libXext xinerama? ( x11-libs/libXinerama ) xinerama? ( x11-base/xorg-proto )
+DESCRIPTION=KDE Plasma splashscreen framework
+EAPI=7
+INHERIT=kde4-meta
+IUSE=cpu_flags_x86_3dnow altivec debug cpu_flags_x86_mmx cpu_flags_x86_sse cpu_flags_x86_sse2 xinerama
+KEYWORDS=amd64 x86 ~amd64-linux ~x86-linux
+RDEPEND=media-libs/libpng:0= virtual/jpeg:0 x11-libs/libX11 x11-libs/libXext xinerama? ( x11-libs/libXinerama )
+_eclasses_=kde4-meta	61c1355df82c4444bbe3a02879662f58
+_md5_=1c57fc6d1a5174735632d459bacf5e54

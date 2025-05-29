@@ -1,0 +1,14 @@
+DEFINED_PHASES=configure
+DEPEND=net-misc/mobile-broadband-provider-info >=net-misc/networkmanager-0.9.6 openconnect? ( net-vpn/networkmanager-openconnect net-vpn/openconnect:= )
+DESCRIPTION=KDE frontend for NetworkManager
+EAPI=7
+HOMEPAGE=https://projects.kde.org/projects/extragear/base/networkmanagement
+INHERIT=kde4-base
+IUSE=debug openconnect
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2 LGPL-2
+RDEPEND=net-misc/mobile-broadband-provider-info >=net-misc/networkmanager-0.9.6 openconnect? ( net-vpn/networkmanager-openconnect net-vpn/openconnect:= ) !kde-base/solid !kde-plasma/plasma-nm:4
+SLOT=4
+SRC_URI=mirror://kde/unstable/networkmanagement/0.9.0.12/src/networkmanagement-0.9.0.12.tar.xz
+_eclasses_=kde4-base	32f7663416aeb0445dc3bde956658ab9
+_md5_=48d92706d0b62e97b996a6a54b664354
