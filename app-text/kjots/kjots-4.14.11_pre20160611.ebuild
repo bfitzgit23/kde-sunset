@@ -6,7 +6,7 @@ EAPI=7
 KDE_HANDBOOK="optional"
 KDE_MINIMAL="${PV}"
 KMNAME="kdepim"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Note taking utility by KDE"
 HOMEPAGE="https://www.kde.org/applications/utilities/kjots/"
@@ -18,13 +18,13 @@ KEYWORDS="amd64 x86"
 IUSE="debug"
 
 DEPEND="
-	$(add_kdeapps_dep kdepim-common-libs)
-	$(add_kdeapps_dep kdepimlibs)
-	dev-libs/grantlee:0
+ $(add_kdeapps_dep kdepim-common-libs)
+ $(add_kdeapps_dep kdepimlibs)
+ dev-libs/grantlee:0
 "
 RDEPEND="${DEPEND}"
 
 KMEXTRACTONLY="
-	akonadi_next/
-	noteshared/
+ akonadi_next/
+ noteshared/
 "

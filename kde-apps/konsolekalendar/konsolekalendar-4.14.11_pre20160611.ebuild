@@ -6,7 +6,7 @@ EAPI=7
 KDE_HANDBOOK="optional"
 KMNAME="kdepim"
 KMMODULE="console/${PN}"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Command line interface to KDE calendars"
 HOMEPAGE+=" https://userbase.kde.org/KonsoleKalendar"
@@ -15,33 +15,33 @@ KEYWORDS="amd64 x86"
 IUSE="debug"
 
 DEPEND="
-	$(add_kdeapps_dep kdepim-common-libs '' 4.14.11_pre20160611)
-	$(add_kdeapps_dep kdepimlibs '' 4.14.11_pre20160611)
+ $(add_kdeapps_dep kdepim-common-libs '' 4.14.11_pre20160611)
+ $(add_kdeapps_dep kdepimlibs '' 4.14.11_pre20160611)
 "
 RDEPEND="${DEPEND}"
 
 KMCOMPILEONLY="
-	calendarsupport/
-	grantleetheme/
-	incidenceeditor-ng/
-	kaddressbookgrantlee/
-	mailcommon/
-	messagecore/
-	messageviewer/
-	pimcommon/
-	templateparser/
+ calendarsupport/
+ grantleetheme/
+ incidenceeditor-ng/
+ kaddressbookgrantlee/
+ mailcommon/
+ messagecore/
+ messageviewer/
+ pimcommon/
+ templateparser/
 "
 KMEXTRACTONLY="
-	akonadi_next/
-	agents/mailfilteragent/org.freedesktop.Akonadi.MailFilterAgent.xml
-	calendarviews/
-	kdgantt2/
-	korganizer/data/org.kde.Korganizer.Calendar.xml
-	mailimporter/
-	messagecomposer/
-	libkdepimdbusinterfaces/
-	libkleo/
-	libkpgp/
+ akonadi_next/
+ agents/mailfilteragent/org.freedesktop.Akonadi.MailFilterAgent.xml
+ calendarviews/
+ kdgantt2/
+ korganizer/data/org.kde.Korganizer.Calendar.xml
+ mailimporter/
+ messagecomposer/
+ libkdepimdbusinterfaces/
+ libkleo/
+ libkpgp/
 "
 
 KMLOADLIBS="kdepim-common-libs"

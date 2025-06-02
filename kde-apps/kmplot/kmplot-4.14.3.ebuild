@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Mathematical function plotter for KDE"
 HOMEPAGE="https://www.kde.org/applications/education/kmplot https://edu.kde.org/kmplot"
@@ -12,5 +12,5 @@ KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 RDEPEND="
-	$(add_kdeapps_dep knotify)
+ $(add_kdeapps_dep knotify)
 "

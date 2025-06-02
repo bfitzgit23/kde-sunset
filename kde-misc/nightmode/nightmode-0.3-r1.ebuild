@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_MINIMAL="4.8"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="kwin plugin that makes the entire screen darker"
 HOMEPAGE="http://kde-apps.org/content/show.php/Nightmode?content=123805"

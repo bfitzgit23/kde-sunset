@@ -4,12 +4,12 @@
 EAPI=7
 
 KMNAME="kde-runtime"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Tool to inform KDE about a change in hostname"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 RDEPEND="
-	x11-apps/xauth
+ x11-apps/xauth
 "

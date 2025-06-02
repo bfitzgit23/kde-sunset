@@ -4,7 +4,7 @@
 EAPI=7
 # po/ directory is disabled in CMakeLists.txt
 # KDE_LINGUAS="es fr pl ro"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="VIA Envy24 based sound card control utility for KDE"
 HOMEPAGE="https://sourceforge.net/projects/kenvy24/"
@@ -16,7 +16,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug +handbook"
 
 DEPEND="
-	media-libs/alsa-lib
+ media-libs/alsa-lib
 "
 RDEPEND="${DEPEND}"
 

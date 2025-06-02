@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE Educational: vocabulary trainer"
 HOMEPAGE="https://www.kde.org/applications/education/parley
@@ -13,18 +13,18 @@ KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug +plasma"
 
 DEPEND="
-	$(add_kdeapps_dep libkdeedu)
+ $(add_kdeapps_dep libkdeedu)
 "
 RDEPEND="${DEPEND}"
 
 KMEXTRACTONLY="
-	libkdeedu/keduvocdocument
+ libkdeedu/keduvocdocument
 "
 
 src_configure() {
-	local mycmakeargs=(
-		$(cmake-utils_use_with plasma)
-	)
+ local mycmakeargs=(
+ $(cmake-utils_use_with plasma)
+ )
 
-	kde4-base_src_configure
+ kde4-base_src_configure
 }

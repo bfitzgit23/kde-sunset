@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit flag-o-matic
+flag-o-matic
 
 DESCRIPTION="Glue between Coin3D and Qt"
 HOMEPAGE="http://www.coin3d.org/"
@@ -16,38 +16,38 @@ KEYWORDS="~amd64 x86"
 IUSE="doc"
 
 RDEPEND="
-	dev-qt/qtgui:4[qt3support]
-	dev-qt/qtopengl:4[qt3support]
-	dev-qt/qt3support:4
-	>=media-libs/coin-2.4.4
+ dev-qt/qtgui:4[qt3support]
+ dev-qt/qtopengl:4[qt3support]
+ dev-qt/qt3support:4
+ >=media-libs/coin-2.4.4
 "
 DEPEND="${RDEPEND}"
 BDEPEND="
-	virtual/pkgconfig
-	doc? ( app-doc/doxygen )
+ virtual/pkgconfig
+ doc? ( app-doc/doxygen )
 "
 
 PATCHES=( "${FILESDIR}/${P}-gcc44.patch" )
 
 src_configure() {
-	export PATH="/usr/bin/:${PATH}"
-	export QTDIR="/usr"
-	export CONFIG_QTLIBS="$(pkg-config --libs QtGui)"
+ export PATH="/usr/bin/:${PATH}"
+ export QTDIR="/usr"
+ export CONFIG_QTLIBS="$(pkg-config --libs QtGui)"
 
-	append-ldflags $(no-as-needed)
+ append-ldflags $(no-as-needed)
 
-	econf \
-		--with-coin \
-		--disable-html-help\
-		$(use_enable doc html) \
-		htmldir=/usr/share/doc/${PF}/html
+ econf \
+ --with-coin \
+ --disable-html-help\
+ $(use_enable doc html) \
+ htmldir=/usr/share/doc/${PF}/html
 }
 
 src_compile() {
-	emake -j1
+ emake -j1
 }
 
 src_install() {
-	emake DESTDIR="${D}" install
-	dodoc AUTHORS ChangeLog NEWS README*
+ emake DESTDIR="${D}" install
+ dodoc AUTHORS ChangeLog NEWS README*
 }

@@ -5,7 +5,7 @@ EAPI=7
 
 OPENGL_REQUIRED="always"
 KDE_MINIMAL="4.10.3"
-inherit kde4-base
+kde4-base
 
 HOMEPAGE="http://www.kde-apps.org/content/show.php?content=87586"
 DESCRIPTION="OpenGL KDE4 screensaver"
@@ -17,9 +17,9 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND="
-	kde-plasma/kscreensaver:4
-	media-libs/libart_lgpl
-	virtual/glu
-	virtual/opengl
+ kde-plasma/kscreensaver:4
+ media-libs/libart_lgpl
+ virtual/glu
+ virtual/opengl
 "
 RDEPEND="${DEPEND}"

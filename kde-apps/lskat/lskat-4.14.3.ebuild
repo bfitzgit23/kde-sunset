@@ -5,12 +5,12 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KDE_SELINUX_MODULE="games"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Skat game for KDE"
 HOMEPAGE="
-	https://www.kde.org/applications/games/lskat/
-	https://games.kde.org/game.php?game=lskat
+ https://www.kde.org/applications/games/lskat/
+ https://games.kde.org/game.php?game=lskat
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"

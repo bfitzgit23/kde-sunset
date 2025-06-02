@@ -4,7 +4,7 @@
 EAPI=7
 
 COMMIT=6149f60ce87457d8c54b7fa399645c07c96e8094
-inherit qmake-utils
+qmake-utils
 
 DESCRIPTION="Qt widget to display images with animated transition effect"
 HOMEPAGE="https://github.com/ariya/pictureflow
@@ -23,10 +23,10 @@ RDEPEND="${DEPEND}"
 PATCHES=( "${FILESDIR}/${P}-remove-slide.patch" )
 
 src_configure() {
-	eqmake4 ${PN}-qt/pictureflow.pro
+ eqmake4 ${PN}-qt/pictureflow.pro
 }
 
 src_install() {
-	dobin ${PN}
-	dodoc ChangeLog
+ dobin ${PN}
+ dodoc ChangeLog
 }

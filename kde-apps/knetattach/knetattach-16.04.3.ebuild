@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-runtime"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="KDE network wizard"
 KEYWORDS="amd64 x86"

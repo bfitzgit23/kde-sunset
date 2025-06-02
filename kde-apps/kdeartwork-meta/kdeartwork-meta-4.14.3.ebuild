@@ -2,19 +2,19 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-inherit kde4-meta-pkg
+kde4-meta-pkg
 
 DESCRIPTION="kdeartwork - merge this to pull in all kdeartwork-derived packages"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="minimal"
 
 RDEPEND="
-	$(add_kdeapps_dep kdeartwork-colorschemes)
-	$(add_kdeapps_dep kdeartwork-desktopthemes)
-	$(add_kdeapps_dep kdeartwork-emoticons)
-	$(add_kdeapps_dep kdeartwork-iconthemes)
-	$(add_kdeapps_dep kdeartwork-kscreensaver)
-	$(add_kdeapps_dep kdeartwork-wallpapers)
-	$(add_kdeapps_dep kdeartwork-weatherwallpapers)
-	!minimal? ( $(add_kdeapps_dep kdeartwork-styles) )
+ $(add_kdeapps_dep kdeartwork-colorschemes)
+ $(add_kdeapps_dep kdeartwork-desktopthemes)
+ $(add_kdeapps_dep kdeartwork-emoticons)
+ $(add_kdeapps_dep kdeartwork-iconthemes)
+ $(add_kdeapps_dep kdeartwork-kscreensaver)
+ $(add_kdeapps_dep kdeartwork-wallpapers)
+ $(add_kdeapps_dep kdeartwork-weatherwallpapers)
+ !minimal? ( $(add_kdeapps_dep kdeartwork-styles) )
 "

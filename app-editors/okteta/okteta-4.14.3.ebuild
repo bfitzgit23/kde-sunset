@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_MINIMAL="${PV}"
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE hexeditor"
 HOMEPAGE="https://www.kde.org/applications/utilities/okteta
@@ -18,6 +18,6 @@ KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 DEPEND="
-	app-crypt/qca:2-qt4
+ app-crypt/qca:2-qt4
 "
 RDEPEND="${DEPEND}"

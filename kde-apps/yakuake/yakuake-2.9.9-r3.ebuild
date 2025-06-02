@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Quake-style terminal emulator based on konsole"
 HOMEPAGE="https://kde.org/applications/en/system/org.kde.yakuake"
@@ -15,11 +15,11 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 RDEPEND="
-	|| ( $(add_kdeapps_dep konsolepart) $(add_kdeapps_dep konsole) )
-	x11-libs/libX11
+ || ( $(add_kdeapps_dep konsolepart) $(add_kdeapps_dep konsole) )
+ x11-libs/libX11
 "
 DEPEND="${RDEPEND}
-	sys-devel/gettext
+ sys-devel/gettext
 "
 
 DOCS=( AUTHORS ChangeLog KDE4FAQ NEWS README TODO )

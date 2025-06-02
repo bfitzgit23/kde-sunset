@@ -6,7 +6,7 @@ EAPI=7
 KDE_MINIMAL="${PV}"
 KMNAME="kde-runtime"
 WEBKIT_REQUIRED="always"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="KDE crash handler, gives the user feedback if a program crashed"
 HOMEPAGE="https://kde.org/"
@@ -18,14 +18,14 @@ KEYWORDS="amd64 x86"
 IUSE="debug"
 
 DEPEND="
-	>=kde-apps/kdepimlibs-4.14.3:4
+ >=kde-apps/kdepimlibs-4.14.3:4
 "
 RDEPEND="${DEPEND}"
 
 pkg_postinst() {
-	kde4-meta_pkg_postinst
-	if ! has_version "sys-devel/gdb"; then
-		elog "For more usability consider installing following packages:"
-		elog "    sys-devel/gdb - Easier debugging support"
-	fi
+ kde4-meta_pkg_postinst
+ if ! has_version "sys-devel/gdb"; then
+ elog "For more usability consider installing following packages:"
+ elog " sys-devel/gdb - Easier debugging support"
+ fi
 }

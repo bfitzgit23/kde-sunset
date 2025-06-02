@@ -4,7 +4,7 @@
 EAPI=7
 
 MY_PN="${PN}-1"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="PolKit agent module for KDE Plasma"
 HOMEPAGE="https://kde.org/"
@@ -17,18 +17,18 @@ KEYWORDS="amd64 ~arm x86"
 IUSE="debug minimal"
 
 COMMON_DEPEND="
-	sys-auth/polkit-qt:0-qt4
+ sys-auth/polkit-qt:0-qt4
 "
 DEPEND="${COMMON_DEPEND}
-	sys-devel/gettext
+ sys-devel/gettext
 "
 RDEPEND="${COMMON_DEPEND}
-	!sys-auth/polkit-kde
+ !sys-auth/polkit-kde
 "
 
 src_prepare() {
-	kde4-base_src_prepare
+ kde4-base_src_prepare
 
-	# Coinstallability with kde-plasma/polkit-kde-agent
-	use minimal && rm -rf po
+ # Coinstallability with kde-plasma/polkit-kde-agent
+ use minimal && rm -rf po
 }

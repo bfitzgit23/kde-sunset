@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_HANDBOOK=optional
 KDE_LINGUAS_DIR="i18n"
-inherit kde4-base
+kde4-base
 
 MY_P=${PN}4-${PV}
 
@@ -19,8 +19,8 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 RDEPEND="
-	|| ( $(add_kdeapps_dep konsolepart) $(add_kdeapps_dep konsole) )
-	$(add_kdeapps_dep libkonq)
+ || ( $(add_kdeapps_dep konsolepart) $(add_kdeapps_dep konsole) )
+ $(add_kdeapps_dep libkonq)
 "
 DEPEND="${RDEPEND}"
 

@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="A krunner plug-in that allows you to open conversation with your contact"
 HOMEPAGE="http://www.kde-apps.org/content/show.php?action=content&content=105263"
@@ -15,8 +15,8 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 DEPEND="
-	kde-plasma/libkworkspace:4
-	$(add_kdeapps_dep kopete)
+ kde-plasma/libkworkspace:4
+ $(add_kdeapps_dep kopete)
 "
 RDEPEND="${DEPEND}"
 

@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kdepim"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Certificate manager and GUI for OpenPGP and CMS cryptography"
 HOMEPAGE="https://www.kde.org/applications/utilities/kleopatra/"
@@ -14,27 +14,27 @@ KEYWORDS="amd64 x86"
 IUSE="debug"
 
 DEPEND="
-	$(add_kdeapps_dep kdepim-common-libs '' 4.14.11_pre20160611)
-	$(add_kdeapps_dep kdepimlibs '' 4.14.11_pre20160611)
-	app-crypt/gpgme
-	dev-libs/boost:=
-	dev-libs/libassuan
-	dev-libs/libgpg-error
+ $(add_kdeapps_dep kdepim-common-libs '' 4.14.11_pre20160611)
+ $(add_kdeapps_dep kdepimlibs '' 4.14.11_pre20160611)
+ app-crypt/gpgme
+ dev-libs/boost:=
+ dev-libs/libassuan
+ dev-libs/libgpg-error
 "
 RDEPEND="${DEPEND}
-	app-crypt/gnupg
+ app-crypt/gnupg
 "
 
 KMEXTRACTONLY="
-	libkleo/
+ libkleo/
 "
 
 src_unpack() {
-	if use handbook; then
-		KMEXTRA="
-			doc/kwatchgnupg
-		"
-	fi
+ if use handbook; then
+ KMEXTRA="
+ doc/kwatchgnupg
+ "
+ fi
 
-	kde4-meta_src_unpack
+ kde4-meta_src_unpack
 }

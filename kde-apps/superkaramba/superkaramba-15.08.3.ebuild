@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="A tool to create interactive applets for the KDE desktop"
 HOMEPAGE="https://techbase.kde.org/Projects/SuperKaramba/FAQ"
@@ -12,13 +12,13 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 DEPEND="
-	media-libs/qimageblitz
-	x11-libs/libX11
-	x11-libs/libXrender
+ media-libs/qimageblitz
+ x11-libs/libX11
+ x11-libs/libXrender
 "
 RDEPEND="${DEPEND}"
 
 src_configure() {
-	local mycmakeargs=( -DWITH_PythonLibs=OFF )
-	kde4-base_src_configure
+ local mycmakeargs=( -DWITH_PythonLibs=OFF )
+ kde4-base_src_configure
 }

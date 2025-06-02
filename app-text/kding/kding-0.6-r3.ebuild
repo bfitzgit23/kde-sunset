@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KDE_LINGUAS="de"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE port of Ding, a dictionary lookup program"
 HOMEPAGE="https://sourceforge.net/projects/kding/ https://phabricator.kde.org/T10719"
@@ -19,22 +19,22 @@ IUSE="debug"
 DEPEND="media-libs/libpng:0"
 
 PATCHES=(
-	"${FILESDIR}/${P}-dtd.patch"
-	"${FILESDIR}/${P}-cmake.patch"
+ "${FILESDIR}/${P}-dtd.patch"
+ "${FILESDIR}/${P}-cmake.patch"
 )
 
 src_prepare() {
-	sed -e "/Encoding=UTF-8/d" \
-		-i resources/kding.desktop || die "fixing .desktop file failed"
+ sed -e "/Encoding=UTF-8/d" \
+ -i resources/kding.desktop || die "fixing .desktop file failed"
 
-	kde4-base_src_prepare
+ kde4-base_src_prepare
 }
 
 src_install() {
-	kde4-base_src_install
+ kde4-base_src_install
 
-	# bug 510510
-	pngfix -q --out=out.png "${ED}/usr/share/icons/hicolor/22x22/apps/kding.png"
-	mv -f out.png "${ED}/usr/share/icons/hicolor/22x22/apps/kding.png" \
-	|| die "fixing broken png file failed"
+ # bug 510510
+ pngfix -q --out=out.png "${ED}/usr/share/icons/hicolor/22x22/apps/kding.png"
+ mv -f out.png "${ED}/usr/share/icons/hicolor/22x22/apps/kding.png" \
+ || die "fixing broken png file failed"
 }

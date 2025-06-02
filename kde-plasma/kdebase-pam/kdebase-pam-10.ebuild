@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit pam
+pam
 
 DESCRIPTION="pam.d files used by several KDE components"
 HOMEPAGE="https://www.kde.org"
@@ -19,6 +19,6 @@ RDEPEND="${DEPEND}"
 S=${WORKDIR}
 
 src_install() {
-	newpamd "${FILESDIR}/kde.pam-${PV}" kde
-	newpamd "${FILESDIR}/kde-np.pam-${PV}" kde-np
+ newpamd "${FILESDIR}/kde.pam-${PV}" kde
+ newpamd "${FILESDIR}/kde-np.pam-${PV}" kde-np
 }

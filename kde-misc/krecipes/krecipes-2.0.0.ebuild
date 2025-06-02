@@ -8,7 +8,7 @@ is it ja kk lt mai mr nb nds nl nn pl pt pt_BR ro sk sl sv tr uk zh_TW"
 KDE_HANDBOOK="optional"
 VIRTUALX_REQUIRED="test"
 WEBKIT_REQUIRED="always"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="A recipe application by KDE"
 HOMEPAGE="https://apps.kde.org/en/krecipes"
@@ -20,10 +20,10 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 DEPEND="
-	dev-db/sqlite:3
-	dev-libs/libxml2
-	dev-libs/libxslt
-	media-libs/qimageblitz
+ dev-db/sqlite:3
+ dev-libs/libxml2
+ dev-libs/libxslt
+ media-libs/qimageblitz
 "
 RDEPEND="${DEPEND}"
 

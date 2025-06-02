@@ -4,7 +4,7 @@
 EAPI=7
 
 KMNAME="kde-runtime"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="KDED Password Module"
 KEYWORDS="amd64 x86"

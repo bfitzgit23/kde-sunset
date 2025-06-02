@@ -4,12 +4,12 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Kiriki - a gtali clone for KDE4"
 HOMEPAGE="
-	https://www.kde.org/applications/games/kiriki/
-	https://games.kde.org/game.php?game=kiriki
+ https://www.kde.org/applications/games/kiriki/
+ https://games.kde.org/game.php?game=kiriki
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"

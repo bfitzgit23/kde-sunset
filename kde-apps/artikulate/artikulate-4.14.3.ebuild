@@ -5,7 +5,7 @@ EAPI=7
 
 DECLARATIVE_REQUIRED="always"
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Language learning application that helps improving pronunciation skills"
 HOMEPAGE="https://edu.kde.org/applications/language/artikulate"
@@ -13,9 +13,9 @@ KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 DEPEND="
-	dev-qt/qtxmlpatterns:4
-	>=media-libs/qt-gstreamer-1.2.0:0-qt4
+ dev-qt/qtxmlpatterns:4
+ >=media-libs/qt-gstreamer-1.2.0:0-qt4
 "
 RDEPEND="${DEPEND}
-	$(add_kdeapps_dep kqtquickcharts)
+ $(add_kdeapps_dep kqtquickcharts)
 "

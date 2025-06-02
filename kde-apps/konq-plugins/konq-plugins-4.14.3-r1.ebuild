@@ -4,7 +4,7 @@
 EAPI=7
 
 KMNAME="kde-baseapps"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Various plugins for konqueror"
 
@@ -12,21 +12,21 @@ KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug tidy"
 
 DEPEND="
-	$(add_kdeapps_dep libkonq)
-	tidy? ( app-text/tidy-html5 )
+ $(add_kdeapps_dep libkonq)
+ tidy? ( app-text/tidy-html5 )
 "
 RDEPEND="${DEPEND}
-	!kde-misc/konq-plugins
-	$(add_kdeapps_dep kcmshell)
-	$(add_kdeapps_dep konqueror)
+ !kde-misc/konq-plugins
+ $(add_kdeapps_dep kcmshell)
+ $(add_kdeapps_dep konqueror)
 "
 
 PATCHES=( "${FILESDIR}/${P}-tidyhtml5.patch" ) # bug 671450
 
 src_configure() {
-	local mycmakeargs=(
-		-DWITH_LibTidy=$(usex tidy)
-	)
+ local mycmakeargs=(
+ -DWITH_LibTidy=$(usex tidy)
+ )
 
-	kde4-meta_src_configure
+ kde4-meta_src_configure
 }

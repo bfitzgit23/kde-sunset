@@ -5,7 +5,7 @@ EAPI=7
 KDE_LINGUAS="de en_GB es et fr km nds pl pt ru sv tr uk"
 KDE_LINGUAS_DIR=( applet/locale containment/locale )
 KDE_MINIMAL="4.8"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Task and launch representation plasmoid"
 HOMEPAGE="http://kde-look.org/content/show.php/Fancy+Tasks?content=99737"
@@ -17,27 +17,27 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 DEPEND="
-	kde-plasma/plasma-workspace:4
-	x11-libs/libX11
-	x11-libs/libXcomposite
-	x11-libs/libXext
+ kde-plasma/plasma-workspace:4
+ x11-libs/libX11
+ x11-libs/libXcomposite
+ x11-libs/libXext
 "
 RDEPEND="${DEPEND}"
 
 DOCS=( CHANGELOG README TODO )
 
 src_prepare() {
-	kde4-base_src_prepare
+ kde4-base_src_prepare
 
-	local lang
-	for lang in ${KDE_LINGUAS} ; do
-		if ! use "l10n_$(kde4_lingua_to_l10n "${lang}")" ; then
-			local dir
-			for dir in ${KDE_LINGUAS_DIR[@]} ; do
-				if [ -f ${dir}/${lang}.mo ]; then
-					rm ${dir}/${lang}.mo
-				fi
-			done
-		fi
-	done
+ local lang
+ for lang in ${KDE_LINGUAS} ; do
+ if ! use "l10n_$(kde4_lingua_to_l10n "${lang}")" ; then
+ local dir
+ for dir in ${KDE_LINGUAS_DIR[@]} ; do
+ if [ -f ${dir}/${lang}.mo ]; then
+ rm ${dir}/${lang}.mo
+ fi
+ done
+ fi
+ done
 }

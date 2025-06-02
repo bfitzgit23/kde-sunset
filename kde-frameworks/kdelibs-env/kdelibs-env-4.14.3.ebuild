@@ -15,19 +15,19 @@ IUSE=""
 S="${WORKDIR}"
 
 src_install() {
-	# number goes down with version
-	newenvd - 43kdepaths <<EOF
+ # number goes down with version
+ newenvd - 43kdepaths <<EOF
 CONFIG_PROTECT="/usr/share/config"
 #KDE_IS_PRELINKED=1
 EOF
 
-	# Properly place xinitrc.d file that exports XDG_MENU_PREFIX to env
-	exeinto /etc/X11/xinit/xinitrc.d/
-	newexe - 11-xdg-menu-kde-4 <<EOF
+ # Properly place xinitrc.d file that exports XDG_MENU_PREFIX to env
+ exeinto /etc/X11/xinit/xinitrc.d/
+ newexe - 11-xdg-menu-kde-4 <<EOF
 #!/bin/sh
 
 if [ -z "\${XDG_MENU_PREFIX}" ] && [ "\${DESKTOP_SESSION}" = "KDE-4" ]; then
-	export XDG_MENU_PREFIX="kde-4-"
+ export XDG_MENU_PREFIX="kde-4-"
 fi
 EOF
 }

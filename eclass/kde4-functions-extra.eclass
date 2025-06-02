@@ -14,7 +14,7 @@ _KDE4_FUNCTIONS_ECLASS_EXTRA=1
 # @DESCRIPTION:
 # Currently kde4 eclasses support EAPI 5 and 6.
 #DISABLED: case ${EAPI} in
-#DISABLED: 	5|6) : ;;
+#DISABLED: 5|6) : ;;
 #DISABLED: esac
 
 # @FUNCTION: add_kdeplasma_dep
@@ -27,32 +27,32 @@ _KDE4_FUNCTIONS_ECLASS_EXTRA=1
 # wrapped in a USE conditional (but not an || conditional without an extra set
 # of parentheses).
 add_kdeplasma_dep() {
-	debug-print-function ${FUNCNAME} "$@"
+ debug-print-function ${FUNCNAME} "$@"
 
-	local ver
-	local use=${2}
+ local ver
+ local use=${2}
 
-	if [[ -n ${use} ]] ; then
-		use="[${use}]"
-	fi
-	if [[ -n ${3} ]]; then
-		ver=${3}
-	elif [[ -n ${KDE_OVERRIDE_MINIMAL} ]]; then
-		ver=${KDE_OVERRIDE_MINIMAL}
-	elif [[ ${KDEBASE} != kde-base ]]; then
-		ver=${KDE_MINIMAL}
-	# if building kde-apps, live master or stable-live branch,
-	# use the final SC version since there are no further general releases.
-	# except when it is kdepim split packages, which rely on same-version deps
-	elif [[ ${CATEGORY} == kde-apps || ${PV} == *9999 ]]; then
-		ver=4.14.3
-	else
-		ver=${PV}
-	fi
+ if [[ -n ${use} ]] ; then
+ use="[${use}]"
+ fi
+ if [[ -n ${3} ]]; then
+ ver=${3}
+ elif [[ -n ${KDE_OVERRIDE_MINIMAL} ]]; then
+ ver=${KDE_OVERRIDE_MINIMAL}
+ elif [[ ${KDEBASE} != kde-base ]]; then
+ ver=${KDE_MINIMAL}
+ # if building kde-apps, live master or stable-live branch,
+ # use the final SC version since there are no further general releases.
+ # except when it is kdepim split packages, which rely on same-version deps
+ elif [[ ${CATEGORY} == kde-apps || ${PV} == *9999 ]]; then
+ ver=4.14.3
+ else
+ ver=${PV}
+ fi
 
-	[[ -z ${1} ]] && die "Missing parameter"
+ [[ -z ${1} ]] && die "Missing parameter"
 
-	echo " >=kde-plasma/${1}-${ver}:4${use}"
+ echo " >=kde-plasma/${1}-${ver}:4${use}"
 }
 
 # @FUNCTION: add_kdeframeworks_dep
@@ -65,32 +65,32 @@ add_kdeplasma_dep() {
 # wrapped in a USE conditional (but not an || conditional without an extra set
 # of parentheses).
 add_kdeframeworks_dep() {
-	debug-print-function ${FUNCNAME} "$@"
+ debug-print-function ${FUNCNAME} "$@"
 
-	local ver
-	local use=${2}
+ local ver
+ local use=${2}
 
-	if [[ -n ${use} ]] ; then
-		use="[${use}]"
-	fi
-	if [[ -n ${3} ]]; then
-		ver=${3}
-	elif [[ -n ${KDE_OVERRIDE_MINIMAL} ]]; then
-		ver=${KDE_OVERRIDE_MINIMAL}
-	elif [[ ${KDEBASE} != kde-base ]]; then
-		ver=${KDE_MINIMAL}
-	# if building kde-apps, live master or stable-live branch,
-	# use the final SC version since there are no further general releases.
-	# except when it is kdepim split packages, which rely on same-version deps
-	elif [[ ${CATEGORY} == kde-apps || ${PV} == *9999 ]]; then
-		ver=4.14.3
-	else
-		ver=${PV}
-	fi
+ if [[ -n ${use} ]] ; then
+ use="[${use}]"
+ fi
+ if [[ -n ${3} ]]; then
+ ver=${3}
+ elif [[ -n ${KDE_OVERRIDE_MINIMAL} ]]; then
+ ver=${KDE_OVERRIDE_MINIMAL}
+ elif [[ ${KDEBASE} != kde-base ]]; then
+ ver=${KDE_MINIMAL}
+ # if building kde-apps, live master or stable-live branch,
+ # use the final SC version since there are no further general releases.
+ # except when it is kdepim split packages, which rely on same-version deps
+ elif [[ ${CATEGORY} == kde-apps || ${PV} == *9999 ]]; then
+ ver=4.14.3
+ else
+ ver=${PV}
+ fi
 
-	[[ -z ${1} ]] && die "Missing parameter"
+ [[ -z ${1} ]] && die "Missing parameter"
 
-	echo " >=kde-frameworks/${1}-${ver}:4${use}"
+ echo " >=kde-frameworks/${1}-${ver}:4${use}"
 }
 
 fi

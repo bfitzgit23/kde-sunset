@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Provides interfaces and session daemon to colord"
 HOMEPAGE="https://projects.kde.org/projects/playground/graphics/colord-kde"
@@ -15,19 +15,19 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 DEPEND="
-	media-libs/lcms:2
-	>=x11-libs/libXrandr-1.3.0
+ media-libs/lcms:2
+ >=x11-libs/libXrandr-1.3.0
 "
 RDEPEND="${DEPEND}
-	x11-misc/colord
+ x11-misc/colord
 "
 
 PATCHES=( "${FILESDIR}/${P}-cmake34.patch" )
 
 pkg_postinst() {
-	kde4-base_pkg_postinst
-	if ! has_version "gnome-extra/gnome-color-manager"; then
-		elog "You may want to install gnome-extra/gnome-color-manager to add support for"
-		elog "colorhug calibration devices."
-	fi
+ kde4-base_pkg_postinst
+ if ! has_version "gnome-extra/gnome-color-manager"; then
+ elog "You may want to install gnome-extra/gnome-color-manager to add support for"
+ elog "colorhug calibration devices."
+ fi
 }

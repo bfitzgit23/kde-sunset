@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit desktop gnome2-utils
+desktop gnome2-utils
 
 DESCRIPTION="2D physics puzzle/sandbox game with drawing"
 HOMEPAGE="http://www.crayonphysics.com/"
@@ -17,26 +17,26 @@ RESTRICT="bindist fetch splitdebug"
 
 MYGAMEDIR="/opt/${PN}"
 QA_PREBUILT="${MYGAMEDIR#/}/crayon
-	${MYGAMEDIR#/}/lib32/*"
+ ${MYGAMEDIR#/}/lib32/*"
 
 RDEPEND="
-	dev-qt/qtcore:4[abi_x86_32(-)]
-	dev-qt/qtgui:4[abi_x86_32(-)]
-	virtual/glu[abi_x86_32(-)]
-	virtual/opengl[abi_x86_32(-)]
-	x11-libs/libX11[abi_x86_32(-)]
-	x86? (
-		!bundled-libs? (
-			media-libs/libmikmod
-			media-libs/libsdl:0[X,sound,video,opengl,joystick]
-			media-libs/libvorbis
-			media-libs/sdl-image[png,jpeg,tiff]
-			media-libs/sdl-mixer[vorbis,wav]
-			media-libs/smpeg[X,opengl]
-			media-libs/tiff:0
-			virtual/jpeg:0
-		)
-	)"
+ dev-qt/qtcore:4[abi_x86_32(-)]
+ dev-qt/qtgui:4[abi_x86_32(-)]
+ virtual/glu[abi_x86_32(-)]
+ virtual/opengl[abi_x86_32(-)]
+ x11-libs/libX11[abi_x86_32(-)]
+ x86? (
+ !bundled-libs? (
+ media-libs/libmikmod
+ media-libs/libsdl:0[X,sound,video,opengl,joystick]
+ media-libs/libvorbis
+ media-libs/sdl-image[png,jpeg,tiff]
+ media-libs/sdl-mixer[vorbis,wav]
+ media-libs/smpeg[X,opengl]
+ media-libs/tiff:0
+ virtual/jpeg:0
+ )
+ )"
 
 DOCS=( changelog.txt linux_hotfix_notes.txt )
 HTML_DOCS=( readme.html )
@@ -44,38 +44,38 @@ HTML_DOCS=( readme.html )
 S=${WORKDIR}/CrayonPhysicsDeluxe
 
 pkg_nofetch() {
-	einfo "Please buy & download ${SRC_URI} from:"
-	einfo "  ${HOMEPAGE}"
-	einfo "and move it to ${DISTDIR}"
-	einfo
+ einfo "Please buy & download ${SRC_URI} from:"
+ einfo " ${HOMEPAGE}"
+ einfo "and move it to ${DISTDIR}"
+ einfo
 }
 
 src_prepare() {
-	default
+ default
 
-	if use bundled-libs ; then
-		mv lib32/_libSDL-1.2.so.0 lib32/libSDL-1.2.so.0 || die
-	fi
+ if use bundled-libs ; then
+ mv lib32/_libSDL-1.2.so.0 lib32/libSDL-1.2.so.0 || die
+ fi
 }
 
 src_install() {
-	insinto "${MYGAMEDIR}"
-	use bundled-libs && doins -r lib32
-	doins -r cache data crayon autoexec.txt version.xml
+ insinto "${MYGAMEDIR}"
+ use bundled-libs && doins -r lib32
+ doins -r cache data crayon autoexec.txt version.xml
 
-	newicon -s 256 icon.png ${PN}.png
-	make_desktop_entry ${PN}
-	make_wrapper ${PN} "./crayon" "${MYGAMEDIR}" "${MYGAMEDIR}/lib32"
+ newicon -s 256 icon.png ${PN}.png
+ make_desktop_entry ${PN}
+ make_wrapper ${PN} "./crayon" "${MYGAMEDIR}" "${MYGAMEDIR}/lib32"
 
-	einstalldocs
+ einstalldocs
 
-	fperms +x "${MYGAMEDIR}"/crayon
+ fperms +x "${MYGAMEDIR}"/crayon
 }
 
 pkg_postinst() {
-	gnome2_icon_cache_update
+ gnome2_icon_cache_update
 }
 
 pkg_postrm() {
-	gnome2_icon_cache_update
+ gnome2_icon_cache_update
 }

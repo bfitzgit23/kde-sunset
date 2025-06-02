@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KDE_SELINUX_MODULE="gpg"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE gpg keyring manager"
 HOMEPAGE="https://www.kde.org/applications/utilities/kgpg
@@ -14,16 +14,16 @@ KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 DEPEND="
-	$(add_kdeapps_dep kdepimlibs)
+ $(add_kdeapps_dep kdepimlibs)
 "
 RDEPEND="${DEPEND}
-	app-crypt/gnupg
+ app-crypt/gnupg
 "
 
 pkg_postinst() {
-	kde4-base_pkg_postinst
+ kde4-base_pkg_postinst
 
-	if ! has_version 'app-crypt/dirmngr' && ! has_version '>=app-crypt/gnupg-2.1'; then
-		elog "For improved key search functionality, install app-crypt/dirmngr."
-	fi
+ if ! has_version 'app-crypt/dirmngr' && ! has_version '>=app-crypt/gnupg-2.1'; then
+ elog "For improved key search functionality, install app-crypt/dirmngr."
+ fi
 }

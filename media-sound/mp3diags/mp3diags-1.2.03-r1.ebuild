@@ -3,7 +3,7 @@
 
 EAPI=7
 
- multilib desktop user  gnome2-utils qmake-utils
+ multilib desktop user gnome2-utils qmake-utils
 
 MY_PN=MP3Diags
 MY_P=${MY_PN}-${PV}
@@ -18,41 +18,41 @@ KEYWORDS="amd64 x86"
 IUSE=""
 
 DEPEND="
-	dev-libs/boost:=[threads]
-	dev-qt/qtcore:4
-	dev-qt/qtgui:4
-	sys-libs/zlib
+ dev-libs/boost:=[threads]
+ dev-qt/qtcore:4
+ dev-qt/qtgui:4
+ sys-libs/zlib
 "
 RDEPEND="${DEPEND}
-	dev-qt/qtsvg:4
+ dev-qt/qtsvg:4
 "
 
 S=${WORKDIR}/${MY_P}
 
 src_configure() {
-	eqmake4 ${PN}.pro
+ eqmake4 ${PN}.pro
 }
 
 src_install() {
-	dobin bin/${MY_PN}
-	dodoc changelog.txt
+ dobin bin/${MY_PN}
+ dodoc changelog.txt
 
-	local size
-	for size in 16 22 24 32 36 40 48; do
-		insinto /usr/share/icons/hicolor/${size}x${size}/apps
-		newins desktop/${MY_PN}${size}.png ${MY_PN}.png
-	done
-	domenu desktop/${MY_PN}.desktop
+ local size
+ for size in 16 22 24 32 36 40 48; do
+ insinto /usr/share/icons/hicolor/${size}x${size}/apps
+ newins desktop/${MY_PN}${size}.png ${MY_PN}.png
+ done
+ domenu desktop/${MY_PN}.desktop
 }
 
 pkg_preinst() {
-	gnome2_icon_savelist
+ gnome2_icon_savelist
 }
 
 pkg_postinst() {
-	gnome2_icon_cache_update
+ gnome2_icon_cache_update
 }
 
 pkg_postrm() {
-	gnome2_icon_cache_update
+ gnome2_icon_cache_update
 }

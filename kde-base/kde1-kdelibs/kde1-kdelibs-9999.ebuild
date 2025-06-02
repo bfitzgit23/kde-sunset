@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit cmake-utils git-r3
+cmake-utils git-r3
 
 DESCRIPTION="KDE libraries, adapted to compile on modern systems (circa. 2016)"
 HOMEPAGE="https://invent.kde.org/historical/kde1-kdelibs"
@@ -15,11 +15,11 @@ KEYWORDS=""
 IUSE="+debug"
 
 DEPEND="
-	dev-qt/qt1
-	media-libs/libpng:0=
-	media-libs/tiff:0
-	virtual/jpeg:0
-	x11-libs/libX11
-	x11-libs/libXext
+ dev-qt/qt1
+ media-libs/libpng:0=
+ media-libs/tiff:0
+ virtual/jpeg:0
+ x11-libs/libX11
+ x11-libs/libXext
 "
 RDEPEND="${DEPEND}"

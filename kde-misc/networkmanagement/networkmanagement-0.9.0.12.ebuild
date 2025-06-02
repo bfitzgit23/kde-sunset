@@ -8,7 +8,7 @@ ja kk km ko lt mr nb nds nl nn pl pt pt_BR ro ru se sk sl sr sr@ijekavian
 sr@ijekavianlatin sr@Latn sv tr uk zh_CN zh_TW"
 KDE_SCM="git"
 KDE_MINIMAL="4.11"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE frontend for NetworkManager"
 HOMEPAGE="https://projects.kde.org/projects/extragear/base/networkmanagement"
@@ -20,21 +20,21 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug openconnect"
 
 DEPEND="
-	net-misc/mobile-broadband-provider-info
-	>=net-misc/networkmanager-0.9.6
-	openconnect? (
-		net-vpn/networkmanager-openconnect
-		net-vpn/openconnect:=
-	)
+ net-misc/mobile-broadband-provider-info
+ >=net-misc/networkmanager-0.9.6
+ openconnect? (
+ net-vpn/networkmanager-openconnect
+ net-vpn/openconnect:=
+ )
 "
 RDEPEND="${DEPEND}
-	!kde-base/solid
-	!kde-plasma/plasma-nm:4
+ !kde-base/solid
+ !kde-plasma/plasma-nm:4
 "
 
 src_configure() {
-	local mycmakeargs=(
-		$(cmake-utils_use_with openconnect)
-	)
-	kde4-base_src_configure
+ local mycmakeargs=(
+ $(cmake-utils_use_with openconnect)
+ )
+ kde4-base_src_configure
 }

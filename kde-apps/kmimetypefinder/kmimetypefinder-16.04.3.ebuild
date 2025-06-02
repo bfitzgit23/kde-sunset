@@ -4,7 +4,7 @@
 EAPI=7
 
 KMNAME="kde-runtime"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="KDE application to report the mimetype for a given file"
 KEYWORDS="amd64 x86"

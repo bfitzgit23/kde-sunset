@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit cmake xdg
+cmake xdg
 
 DESCRIPTION="Qt GUI for git repositories"
 HOMEPAGE="https://github.com/tibirna/qgit"
@@ -16,11 +16,11 @@ KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86"
 IUSE=""
 
 DEPEND="
-	dev-qt/qtcore:4
-	dev-qt/qtgui:4
+ dev-qt/qtcore:4
+ dev-qt/qtgui:4
 "
 RDEPEND="${DEPEND}
-	dev-vcs/git
+ dev-vcs/git
 "
 
 S="${WORKDIR}/${PN}-${P}"
@@ -30,11 +30,11 @@ DOCS=( README.adoc )
 PATCHES=( "${FILESDIR}"/${P}-fix-qt4-build-{1,2}.patch )
 
 src_prepare() {
-	cmake_src_prepare
-	mv "${DISTDIR}"/${PN}-tab_remove.png src/resources/tab_remove.png || die
+ cmake_src_prepare
+ mv "${DISTDIR}"/${PN}-tab_remove.png src/resources/tab_remove.png || die
 }
 
 src_configure() {
-	local mycmakeargs=( -DUseQt5=OFF )
-	cmake_src_configure
+ local mycmakeargs=( -DUseQt5=OFF )
+ cmake_src_configure
 }

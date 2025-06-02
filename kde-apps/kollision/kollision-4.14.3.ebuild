@@ -4,12 +4,12 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE: A simple ball dodging game"
 HOMEPAGE="
-	https://www.kde.org/applications/games/kollision/
-	https://games.kde.org/game.php?game=kollision
+ https://www.kde.org/applications/games/kollision/
+ https://games.kde.org/game.php?game=kollision
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"

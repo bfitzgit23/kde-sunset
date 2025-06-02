@@ -5,7 +5,7 @@ EAPI=7
 
 KMNAME="kde-workspace"
 CPPUNIT_REQUIRED="test"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="KDE Plasma control module for Solid actions"
 HOMEPAGE="https://solid.kde.org"
@@ -13,6 +13,6 @@ KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 RDEPEND="
-	$(add_kdeapps_dep solid-runtime)
-	!kde-base/solid:4
+ $(add_kdeapps_dep solid-runtime)
+ !kde-base/solid:4
 "

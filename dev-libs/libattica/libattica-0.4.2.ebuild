@@ -5,7 +5,7 @@ EAPI=7
 
 MY_P="${P#lib}"
 MY_PN="${PN#lib}"
-inherit cmake-utils
+cmake-utils
 
 DESCRIPTION="A library providing access to Open Collaboration Services"
 HOMEPAGE="https://www.kde.org/"
@@ -19,13 +19,13 @@ IUSE="debug test"
 RESTRICT+=" !test? ( test )"
 
 RDEPEND="
-	dev-qt/qtcore:4
+ dev-qt/qtcore:4
 "
 DEPEND="${RDEPEND}
-	test? (
-		dev-qt/qtgui:4
-		dev-qt/qttest:4
-	)
+ test? (
+ dev-qt/qtgui:4
+ dev-qt/qttest:4
+ )
 "
 
 DOCS=( AUTHORS ChangeLog README )
@@ -33,9 +33,9 @@ DOCS=( AUTHORS ChangeLog README )
 S=${WORKDIR}/${MY_P}
 
 src_configure() {
-	local mycmakeargs=(
-		-DQT4_BUILD=true
-		$(cmake-utils_use test ATTICA_ENABLE_TESTS)
-	)
-	cmake-utils_src_configure
+ local mycmakeargs=(
+ -DQT4_BUILD=true
+ $(cmake-utils_use test ATTICA_ENABLE_TESTS)
+ )
+ cmake-utils_src_configure
 }

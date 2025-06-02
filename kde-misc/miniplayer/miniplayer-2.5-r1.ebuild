@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_LINGUAS_DIR="applet/locale"
 KDE_LINGUAS="de et pl pt ru sv uk"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Multimedia player plasmoid"
 HOMEPAGE="http://kde-look.org/content/show.php?content=95501"
@@ -17,20 +17,20 @@ SLOT="4"
 IUSE="debug"
 
 DEPEND="
-	media-libs/phonon:0-qt4
+ media-libs/phonon:0-qt4
 "
 RDEPEND="
-	${DEPEND}
-	kde-plasma/plasma-workspace:4
+ ${DEPEND}
+ kde-plasma/plasma-workspace:4
 "
 
 src_prepare() {
-	local lang
-	for lang in ${KDE_LINGUAS} ; do
-		if ! use l10n_${lang} ; then
-			rm ${KDE_LINGUAS_DIR}/${lang}.mo
-		fi
-	done
+ local lang
+ for lang in ${KDE_LINGUAS} ; do
+ if ! use l10n_${lang} ; then
+ rm ${KDE_LINGUAS_DIR}/${lang}.mo
+ fi
+ done
 
-	kde4-base_src_prepare
+ kde4-base_src_prepare
 }

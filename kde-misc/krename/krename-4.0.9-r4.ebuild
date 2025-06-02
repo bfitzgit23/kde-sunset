@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_LINGUAS="bs cs de el es fr hu it ja lt nl pl pt ru sl sv tr uk zh_CN"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Powerful batch file renamer"
 HOMEPAGE="https://kde.org/applications/utilities/org.kde.krename
@@ -17,29 +17,29 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug exif pdf taglib truetype"
 
 RDEPEND="
-	exif? ( >=media-gfx/exiv2-0.13:= )
-	pdf? ( >=app-text/podofo-0.8 )
-	taglib? ( >=media-libs/taglib-1.5 )
-	truetype? ( media-libs/freetype:2 )
+ exif? ( >=media-gfx/exiv2-0.13:= )
+ pdf? ( >=app-text/podofo-0.8 )
+ taglib? ( >=media-libs/taglib-1.5 )
+ truetype? ( media-libs/freetype:2 )
 "
 DEPEND="${RDEPEND}
-	sys-devel/gettext
+ sys-devel/gettext
 "
 
 PATCHES=(
-	"${FILESDIR}/${P}-freetype-include.patch"
-	"${FILESDIR}/${P}-desktop-file.patch"
-	"${FILESDIR}/${P}-gcc6.patch"
+ "${FILESDIR}/${P}-freetype-include.patch"
+ "${FILESDIR}/${P}-desktop-file.patch"
+ "${FILESDIR}/${P}-gcc6.patch"
 )
 DOCS=( AUTHORS README TODO )
 
 src_configure() {
-	local mycmakeargs=(
-		-DWITH_Exiv2=$(usex exif)
-		-DWITH_Taglib=$(usex taglib)
-		-DWITH_LIBPODOFO=$(usex pdf)
-		-DWITH_Freetype=$(usex truetype)
-	)
+ local mycmakeargs=(
+ -DWITH_Exiv2=$(usex exif)
+ -DWITH_Taglib=$(usex taglib)
+ -DWITH_LIBPODOFO=$(usex pdf)
+ -DWITH_Freetype=$(usex truetype)
+ )
 
-	kde4-base_src_configure
+ kde4-base_src_configure
 }

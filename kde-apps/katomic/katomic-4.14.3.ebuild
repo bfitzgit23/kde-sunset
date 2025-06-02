@@ -5,12 +5,12 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KDE_SELINUX_MODULE="games"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE Atomic Entertainment Game"
 HOMEPAGE="
-	https://www.kde.org/applications/games/katomic/
-	https://games.kde.org/game.php?game=katomic
+ https://www.kde.org/applications/games/katomic/
+ https://games.kde.org/game.php?game=katomic
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"

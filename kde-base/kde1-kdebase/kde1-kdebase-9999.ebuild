@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit cmake-utils git-r3
+cmake-utils git-r3
 
 DESCRIPTION="KDE 1 base applications, adapted to compile on modern systems (circa. 2016)"
 HOMEPAGE="https://invent.kde.org/historical/kde1-kdebase"
@@ -15,15 +15,15 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	dev-qt/qt1
-	kde-base/kde1-kdelibs
-	x11-libs/libX11
+ dev-qt/qt1
+ kde-base/kde1-kdelibs
+ x11-libs/libX11
 "
 RDEPEND="${DEPEND}"
 
 src_compile() {
-	pushd "${BUILD_DIR}"
-	# don't ask
-	nonfatal emake
-	emake
+ pushd "${BUILD_DIR}"
+ # don't ask
+ nonfatal emake
+ emake
 }

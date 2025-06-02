@@ -5,12 +5,12 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KDE_SELINUX_MODULE="games"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE Space Game"
 HOMEPAGE="
-	https://www.kde.org/applications/games/kspaceduel/
-	https://games.kde.org/game.php?game=kspaceduel
+ https://www.kde.org/applications/games/kspaceduel/
+ https://games.kde.org/game.php?game=kspaceduel
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"

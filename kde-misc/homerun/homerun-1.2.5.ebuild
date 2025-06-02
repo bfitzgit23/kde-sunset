@@ -8,7 +8,7 @@ VIRTUALX_REQUIRED="test"
 VIRTUALDBUS_TEST="true"
 KDE_LINGUAS="ca ca@valencia cs da de el es fi fr gl hu it nl pl pt pt_BR ro sk
 sl sv tr uk zh_CN"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Application launcher for KDE Plasma desktop"
 HOMEPAGE="https://projects.kde.org/projects/playground/base/homerun"
@@ -20,12 +20,12 @@ SLOT="4"
 IUSE="debug"
 
 DEPEND="
-	$(add_kdeapps_dep libkonq)
-	kde-plasma/libkworkspace:4
+ $(add_kdeapps_dep libkonq)
+ kde-plasma/libkworkspace:4
 "
 RDEPEND="
-	${DEPEND}
-	kde-plasma/plasma-workspace:4
+ ${DEPEND}
+ kde-plasma/plasma-workspace:4
 "
 
 # Fails 2 out of 6, check later again.

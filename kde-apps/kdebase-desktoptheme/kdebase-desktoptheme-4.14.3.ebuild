@@ -5,7 +5,7 @@ EAPI=7
 
 KMNAME="kde-runtime"
 KMMODULE="desktoptheme"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Oxygen KDE4 desktop theme"
 IUSE=""

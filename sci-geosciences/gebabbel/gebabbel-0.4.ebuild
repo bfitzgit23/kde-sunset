@@ -5,7 +5,7 @@ EAPI=7
 
 MY_P=${P/g/G}
 
-inherit qmake-utils
+qmake-utils
 
 DESCRIPTION="Qt-Frontend to load and convert gps tracks with gpsbabel"
 HOMEPAGE="http://gebabbel.sourceforge.net/"
@@ -17,11 +17,11 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND="
-	dev-qt/qtcore:4
-	dev-qt/qtgui:4[accessibility]
+ dev-qt/qtcore:4
+ dev-qt/qtgui:4[accessibility]
 "
 RDEPEND="${DEPEND}
-	sci-geosciences/gpsbabel
+ sci-geosciences/gpsbabel
 "
 
 DOCS=( CHANGELOG CREDITS )
@@ -31,18 +31,18 @@ PATCHES=( "${FILESDIR}"/${PN}-0.3-gcc45.patch )
 S=${WORKDIR}/${MY_P}
 
 src_prepare() {
-	default
-	# do not mess with cflags
-	sed \
-		-e "/QMAKE_CXXFLAGS/s:=.*$:= ${CXXFLAGS}:g" \
-		-i *.pro || die
+ default
+ # do not mess with cflags
+ sed \
+ -e "/QMAKE_CXXFLAGS/s:=.*$:= ${CXXFLAGS}:g" \
+ -i *.pro || die
 }
 
 src_configure() {
-	eqmake4 Gebabbel.pro
+ eqmake4 Gebabbel.pro
 }
 
 src_install() {
-	dobin bin/${PN}
-	einstalldocs
+ dobin bin/${PN}
+ einstalldocs
 }

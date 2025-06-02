@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit qmake-utils
+qmake-utils
 
 DESCRIPTION="A simple tool for comparing two linux kernel .config files"
 HOMEPAGE="http://stoopidsimple.com/kccmp/"
@@ -15,20 +15,20 @@ KEYWORDS="amd64 x86"
 IUSE=""
 
 DEPEND="
-	dev-qt/qtcore:4
-	dev-qt/qtgui:4"
+ dev-qt/qtcore:4
+ dev-qt/qtgui:4"
 RDEPEND="${DEPEND}"
 
 src_prepare() {
-	default
-	echo "DEFINES += KCCMP_QT_4" >> ${PN}.pro
+ default
+ echo "DEFINES += KCCMP_QT_4" >> ${PN}.pro
 }
 
 src_configure() {
-	eqmake4
+ eqmake4
 }
 
 src_install() {
-	dobin kccmp
-	dodoc README
+ dobin kccmp
+ dodoc README
 }

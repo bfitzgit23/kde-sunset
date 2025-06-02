@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="A program to convert audio formats with FFmpeg"
 HOMEPAGE="http://www.kde-apps.org/content/show.php/Konvertible?content=116892"
@@ -16,15 +16,15 @@ IUSE="debug +handbook taglib"
 
 DEPEND="taglib? ( media-libs/taglib )"
 RDEPEND="${DEPEND}
-	media-video/ffmpeg
+ media-video/ffmpeg
 "
 
 DOCS=( ChangeLog README TODO )
 
 src_configure() {
-	local mycmakeargs=(
-		$(cmake-utils_use_with taglib)
-	)
+ local mycmakeargs=(
+ $(cmake-utils_use_with taglib)
+ )
 
-	kde4-base_src_configure
+ kde4-base_src_configure
 }

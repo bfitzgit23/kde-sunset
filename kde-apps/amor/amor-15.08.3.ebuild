@@ -4,12 +4,12 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE: Amusing Misuse Of Resources - desktop-dwelling creature"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 DEPEND="x11-libs/libX11
-	x11-libs/libXext"
+ x11-libs/libXext"
 RDEPEND="${DEPEND}"

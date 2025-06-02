@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_LINGUAS="af cs de es fr he it pl ru sk sl tr uk"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Yet Another Weather Plasmoid"
 HOMEPAGE="http://www.kde-look.org/content/show.php?content=94106"

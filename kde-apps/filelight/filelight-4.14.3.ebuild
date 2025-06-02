@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Visualise disk usage with interactive map of concentric, segmented rings"
 HOMEPAGE="https://utils.kde.org/projects/filelight"

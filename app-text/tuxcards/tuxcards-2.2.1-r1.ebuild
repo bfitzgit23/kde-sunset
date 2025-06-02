@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
- multilib desktop user  qmake-utils
+ multilib desktop user qmake-utils
 
 DESCRIPTION="A hierarchical notebook"
 HOMEPAGE="http://www.tuxcards.de/"
@@ -19,12 +19,12 @@ RDEPEND="${DEPEND}"
 S=${WORKDIR}/${PN}
 
 src_configure() {
-	eqmake4 tuxcards.pro
+ eqmake4 tuxcards.pro
 }
 
 src_install() {
-	dobin ${PN}
-	newicon src/icons/lo32-app-tuxcards.png ${PN}.png
-	make_desktop_entry ${PN} TuxCards ${PN} "Qt;Utility"
-	dodoc AUTHORS README
+ dobin ${PN}
+ newicon src/icons/lo32-app-tuxcards.png ${PN}.png
+ make_desktop_entry ${PN} TuxCards ${PN} "Qt;Utility"
+ dodoc AUTHORS README
 }

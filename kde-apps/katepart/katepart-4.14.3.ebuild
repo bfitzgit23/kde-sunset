@@ -6,7 +6,7 @@ EAPI=7
 KDE_HANDBOOK="optional"
 KMNAME="kate"
 KMMODULE="part"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Editor KPart by KDE"
 HOMEPAGE+=" http://kate-editor.org/about-katepart/"
@@ -17,7 +17,7 @@ RESTRICT="test"
 # bug 392993
 
 KMEXTRA="
-	addons/ktexteditor
+ addons/ktexteditor
 "
 
 PATCHES=( "${FILESDIR}/${PN}-4.14.3-gcc7.patch" )

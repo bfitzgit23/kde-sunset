@@ -5,7 +5,7 @@ EAPI=7
 
 MY_P="plasmoid-${P}"
 KDE_LINGUAS="cs da de el es et fr ga it km nds nl pl pt pt_BR ru sk sv uk"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Plasmoid showing the events from Akonadi resources"
 HOMEPAGE="http://kde-look.org/content/show.php/Eventlist?content=107779"
@@ -17,8 +17,8 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 RDEPEND="
-	$(add_kdeapps_dep kdepim-common-libs)
-	$(add_kdeapps_dep kdepimlibs)
+ $(add_kdeapps_dep kdepim-common-libs)
+ $(add_kdeapps_dep kdepimlibs)
 "
 DEPEND="${RDEPEND}"
 

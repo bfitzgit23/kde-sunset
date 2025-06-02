@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kdepim"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Tracks time spent on various tasks"
 HOEMPAGE="https://www.kde.org/applications/utilities/ktimetracker/"
@@ -14,25 +14,25 @@ KEYWORDS="amd64 x86"
 IUSE="debug"
 
 RDEPEND="
-	$(add_kdeapps_dep kdepim-common-libs)
-	$(add_kdeapps_dep kdepim-kresources)
-	$(add_kdeapps_dep kdepimlibs)
-	x11-libs/libXScrnSaver
+ $(add_kdeapps_dep kdepim-common-libs)
+ $(add_kdeapps_dep kdepim-kresources)
+ $(add_kdeapps_dep kdepimlibs)
+ x11-libs/libXScrnSaver
 "
 DEPEND="${RDEPEND}
-	x11-base/xorg-proto
+ x11-base/xorg-proto
 "
 
 KMEXTRACTONLY="
-	kresources/
+ kresources/
 "
 
 KMLOADLIBS="kdepim-common-libs"
 
 src_unpack() {
-	if use kontact; then
-		KMEXTRA="${KMEXTRA} kontact/plugins/ktimetracker"
-	fi
+ if use kontact; then
+ KMEXTRA="${KMEXTRA} kontact/plugins/ktimetracker"
+ fi
 
-	kde4-meta_src_unpack
+ kde4-meta_src_unpack
 }

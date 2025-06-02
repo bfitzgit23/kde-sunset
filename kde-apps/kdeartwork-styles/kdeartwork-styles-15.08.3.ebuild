@@ -6,17 +6,17 @@ EAPI=7
 KMMODULE="styles"
 KMNAME="kdeartwork"
 KDE_SCM="svn"
-inherit kde4-meta kde4-functions-extra
+kde4-meta kde4-functions-extra
 
 DESCRIPTION="Extra KWin styles and window decorations"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 DEPEND="
-	$(add_kdeplasma_dep kwin '' 4.11)
+ $(add_kdeplasma_dep kwin '' 4.11)
 "
 RDEPEND="${DEPEND}"
 
 KMEXTRA="
-	kwin-styles/
+ kwin-styles/
 "

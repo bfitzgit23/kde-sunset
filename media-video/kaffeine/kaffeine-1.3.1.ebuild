@@ -7,7 +7,7 @@ KDE_LINGUAS="ar ast be bg ca ca@valencia cs da de el en_GB eo es et fi fr ga gl
 hr hu it ja km ko ku lt mai nb nds nl nn pa pl pt pt_BR ro ru se sk
 sr@ijekavian sr@ijekavianlatin sr@latin sv th tr uk zh_CN zh_TW"
 KDE_SCM="git"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Media player with digital TV support by KDE"
 HOMEPAGE="https://kaffeine.kde.org/"
@@ -19,9 +19,9 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 DEPEND="
-	dev-qt/qtsql:4[sqlite]
-	>=media-video/vlc-1.2[X]
-	x11-libs/libXScrnSaver
+ dev-qt/qtsql:4[sqlite]
+ >=media-video/vlc-1.2[X]
+ x11-libs/libXScrnSaver
 "
 RDEPEND="${DEPEND}"
 
@@ -30,9 +30,9 @@ DOCS=( Changelog NOTES )
 PATCHES=( "${FILESDIR}/${P}-cmake34.patch" )
 
 src_configure() {
-	local mycmakeargs=(
-		-DBUILD_DEBUG_MODULE=$(usex debug)
-	)
+ local mycmakeargs=(
+ -DBUILD_DEBUG_MODULE=$(usex debug)
+ )
 
-	kde4-base_src_configure
+ kde4-base_src_configure
 }

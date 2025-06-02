@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Plasmoid which displays the currect signal strength"
 HOMEPAGE="http://www.kde-look.org/content/show.php/cpuload?content=79476"
@@ -15,12 +15,12 @@ SLOT="4"
 IUSE="debug"
 
 RDEPEND="
-	kde-plasma/plasma-workspace:4
+ kde-plasma/plasma-workspace:4
 "
 
 src_prepare() {
-	sed -i "s:find_package(Plasma REQUIRED)::" CMakeLists.txt || die "sed failed"
-	sed -i "s:PLASMA_LIBS:KDE4_PLASMA_LIBS:" CMakeLists.txt || die "sed failed"
+ sed -i "s:find_package(Plasma REQUIRED)::" CMakeLists.txt || die "sed failed"
+ sed -i "s:PLASMA_LIBS:KDE4_PLASMA_LIBS:" CMakeLists.txt || die "sed failed"
 
-	kde4-base_src_prepare
+ kde4-base_src_prepare
 }

@@ -6,7 +6,7 @@ EAPI=7
 KDE_HANDBOOK="optional"
 CPPUNIT_REQUIRED="optional"
 OPENGL_REQUIRED="always"
-inherit kde4-base flag-o-matic
+kde4-base flag-o-matic
 
 DESCRIPTION="KDE: periodic table of the elements"
 HOMEPAGE="https://www.kde.org/applications/education/kalzium
@@ -15,28 +15,28 @@ KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug +plasma solver"
 
 DEPEND="
-	$(add_kdeapps_dep libkdeedu)
-	solver? ( dev-ml/facile[ocamlopt] )
+ $(add_kdeapps_dep libkdeedu)
+ solver? ( dev-ml/facile[ocamlopt] )
 "
 RDEPEND=${DEPEND}
 
 KMEXTRACTONLY="
-	libkdeedu/kdeeduui/
-	libkdeedu/libscience/
+ libkdeedu/kdeeduui/
+ libkdeedu/libscience/
 "
 
 src_configure(){
-	# Fix missing finite()
-	[[ ${CHOST} == *-solaris* ]] && append-cppflags -DHAVE_IEEEFP_H
+ # Fix missing finite()
+ [[ ${CHOST} == *-solaris* ]] && append-cppflags -DHAVE_IEEEFP_H
 
-	local mycmakeargs=(
-		-DWITH_Eigen2=OFF
-		-DWITH_Avogadro=OFF
-		-DWITH_OpenBabel2=OFF
-		-DWITH_OpenGL=OFF
-		$(cmake-utils_use_with solver OCaml)
-		$(cmake-utils_use_with solver Libfacile)
-	)
+ local mycmakeargs=(
+ -DWITH_Eigen2=OFF
+ -DWITH_Avogadro=OFF
+ -DWITH_OpenBabel2=OFF
+ -DWITH_OpenGL=OFF
+ $(cmake-utils_use_with solver OCaml)
+ $(cmake-utils_use_with solver Libfacile)
+ )
 
-	kde4-base_src_configure
+ kde4-base_src_configure
 }

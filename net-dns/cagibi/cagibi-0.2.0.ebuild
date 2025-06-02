@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit cmake-utils
+cmake-utils
 
 DESCRIPTION="Cache/proxy system for the SSDP part of UPnP"
 HOMEPAGE="https://frinring.wordpress.com/2010/08/09/cagibi-0-1-1-released-network-kio-slave-freezes-kded-in-4-5-0/"
@@ -15,11 +15,11 @@ SLOT="0"
 IUSE="debug"
 
 RDEPEND="
-	dev-qt/qtcore:4
-	dev-qt/qtdbus:4
+ dev-qt/qtcore:4
+ dev-qt/qtdbus:4
 "
 DEPEND="${RDEPEND}
-	dev-util/automoc
+ dev-util/automoc
 "
 
 DOCS=( Changelog README TODO )

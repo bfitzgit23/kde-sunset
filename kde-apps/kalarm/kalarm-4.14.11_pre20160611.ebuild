@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kdepim"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Personal alarm message, command and email scheduler by KDE"
 HOMEPAGE+=" https://userbase.kde.org/KAlarm"
@@ -14,14 +14,14 @@ KEYWORDS="amd64 x86"
 IUSE="debug"
 
 RDEPEND="
-	$(add_kdeapps_dep kdepim-common-libs)
-	$(add_kdeapps_dep kdepimlibs)
-	$(add_kdeapps_dep ktimezoned)
-	media-libs/phonon:0-qt4
-	x11-libs/libX11
+ $(add_kdeapps_dep kdepim-common-libs)
+ $(add_kdeapps_dep kdepimlibs)
+ $(add_kdeapps_dep ktimezoned)
+ media-libs/phonon:0-qt4
+ x11-libs/libX11
 "
 DEPEND="${RDEPEND}"
 
 KMEXTRACTONLY="
-	kmail/
+ kmail/
 "

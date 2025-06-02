@@ -5,12 +5,12 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KDE_SELINUX_MODULE="games"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE: potato game for kids"
 HOMEPAGE="
-	https://www.kde.org/applications/games/ktuberling/
-	https://games.kde.org/game.php?game=ktuberling
+ https://www.kde.org/applications/games/ktuberling/
+ https://games.kde.org/game.php?game=ktuberling
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"

@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_LINGUAS="bg cs de el es fr hu pl pt_BR ru sr sr@latin uk"
 KDE_LINGUAS_LIVE_OVERRIDE="true"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Text-based subtitles editor"
 HOMEPAGE="https://github.com/maxrd2/subtitlecomposer"
@@ -17,28 +17,28 @@ SLOT="4"
 IUSE="debug unicode xine"
 
 RDEPEND="
-	media-libs/phonon:0-qt4
-	unicode? ( dev-libs/icu:= )
-	xine? ( media-libs/xine-lib )
+ media-libs/phonon:0-qt4
+ unicode? ( dev-libs/icu:= )
+ xine? ( media-libs/xine-lib )
 "
 DEPEND="${RDEPEND}
-	sys-devel/gettext
+ sys-devel/gettext
 "
 
 src_configure() {
-	mycmakeargs=(
-		-DWITH_GStreamer=OFF
-		$(cmake-utils_use_with unicode ICU)
-		$(cmake-utils_use_with xine)
-	)
-	kde4-base_src_configure
+ mycmakeargs=(
+ -DWITH_GStreamer=OFF
+ $(cmake-utils_use_with unicode ICU)
+ $(cmake-utils_use_with xine)
+ )
+ kde4-base_src_configure
 }
 
 pkg_postinst() {
-	kde4-base_pkg_postinst
+ kde4-base_pkg_postinst
 
-	echo
-	elog "Some example scripts provided by ${PV} require dev-lang/ruby"
-	elog "or dev-lang/python to be installed."
-	echo
+ echo
+ elog "Some example scripts provided by ${PV} require dev-lang/ruby"
+ elog "or dev-lang/python to be installed."
+ echo
 }

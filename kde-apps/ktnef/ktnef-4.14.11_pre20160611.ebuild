@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kdepim"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Viewer for TNEF attachments"
 
@@ -14,11 +14,11 @@ LICENSE="LGPL-2.1"
 IUSE="debug"
 
 DEPEND="
-	$(add_kdeapps_dep kdepimlibs)
-	kde-apps/akonadi:4
+ $(add_kdeapps_dep kdepimlibs)
+ kde-apps/akonadi:4
 "
 RDEPEND="${DEPEND}"
 
 KMEXTRACTONLY="
-	akonadi/
+ akonadi/
 "

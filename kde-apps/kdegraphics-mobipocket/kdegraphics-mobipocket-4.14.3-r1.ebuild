@@ -3,16 +3,16 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Library to support mobipocket ebooks"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 src_configure() {
-	local mycmakeargs=(
-		-DCMAKE_DISABLE_FIND_PACKAGE_Strigi=ON
-	)
+ local mycmakeargs=(
+ -DCMAKE_DISABLE_FIND_PACKAGE_Strigi=ON
+ )
 
-	kde4-base_src_configure
+ kde4-base_src_configure
 }

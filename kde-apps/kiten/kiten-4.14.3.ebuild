@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE Japanese dictionary and reference"
 HOMEPAGE="https://www.kde.org/applications/education/kiten https://edu.kde.org/kiten"

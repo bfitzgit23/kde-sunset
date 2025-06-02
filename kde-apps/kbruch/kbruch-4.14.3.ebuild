@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE Educational: Learn calculating with fractions"
 HOMEPAGE="https://www.kde.org/applications/education/kbruch https://edu.kde.org/kbruch"

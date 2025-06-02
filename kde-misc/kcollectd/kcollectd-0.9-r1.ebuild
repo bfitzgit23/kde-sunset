@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Simple kdelibs4-based live data viewer for collectd"
 HOMEPAGE="https://www.forwiss.uni-passau.de/~berberic/Linux/kcollectd.html"
@@ -15,17 +15,17 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 DEPEND="
-	dev-libs/boost:=
-	net-analyzer/rrdtool"
+ dev-libs/boost:=
+ net-analyzer/rrdtool"
 RDEPEND="${DEPEND}
-	|| (
-		app-metrics/collectd[collectd_plugins_rrdtool]
-		app-metrics/collectd[collectd_plugins_rrdcached]
-	)"
+ || (
+ app-metrics/collectd[collectd_plugins_rrdtool]
+ app-metrics/collectd[collectd_plugins_rrdcached]
+ )"
 
 PATCHES=(
-	"${FILESDIR}/${P}-boost.patch"
-	"${FILESDIR}/${P}-cflags.patch"
-	"${FILESDIR}/${P}-desktop.patch"
-	"${FILESDIR}/${P}-gcc6.patch"
+ "${FILESDIR}/${P}-boost.patch"
+ "${FILESDIR}/${P}-cflags.patch"
+ "${FILESDIR}/${P}-desktop.patch"
+ "${FILESDIR}/${P}-gcc6.patch"
 )

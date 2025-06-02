@@ -6,15 +6,15 @@ EAPI=7
 MY_PN="${PN}-kde"
 DECLARATIVE_REQUIRED="always"
 KDE_LINGUAS="ar bg bs ca cs da de es fi fr gl hu it ja ko lt nl pl pt pt_BR ro ru sk sv tr uk"
-inherit kde4-base kde4-functions-extra
+kde4-base kde4-functions-extra
 
 if [[ ${KDE_BUILD_TYPE} != live ]]; then
-	MY_P="${MY_PN}-${PV}"
-	SRC_URI="mirror://kde/unstable/${PN}/${PV}/src/${MY_P}.tar.xz"
-	KEYWORDS="~amd64 ~x86"
+ MY_P="${MY_PN}-${PV}"
+ SRC_URI="mirror://kde/unstable/${PN}/${PV}/src/${MY_P}.tar.xz"
+ KEYWORDS="~amd64 ~x86"
 else
-	EGIT_REPO_URI="git://anongit.kde.org/${MY_PN}"
-	KEYWORDS=""
+ EGIT_REPO_URI="git://anongit.kde.org/${MY_PN}"
+ KEYWORDS=""
 fi
 
 DESCRIPTION="Adds communication between KDE Plasma and your smartphone"
@@ -25,33 +25,33 @@ SLOT="4"
 IUSE="debug"
 
 COMMON_DEPEND="
-	app-crypt/qca:2-qt4
-	dev-libs/qjson
-	x11-libs/libfakekey
-	x11-libs/libX11
-	x11-libs/libXtst
+ app-crypt/qca:2-qt4
+ dev-libs/qjson
+ x11-libs/libfakekey
+ x11-libs/libX11
+ x11-libs/libXtst
 "
 RDEPEND="${COMMON_DEPEND}
-	$(add_kdeplasma_dep plasma-workspace)
-	app-crypt/qca:2-qt4[ssl]
+ $(add_kdeplasma_dep plasma-workspace)
+ app-crypt/qca:2-qt4[ssl]
 "
 DEPEND="${COMMON_DEPEND}
-	sys-devel/gettext
+ sys-devel/gettext
 "
 
 [[ ${KDE_BUILD_TYPE} != live ]] && S=${WORKDIR}/${MY_P}
 
 PATCHES=(
-	"${FILESDIR}/${P}-ninja.patch"
-	"${FILESDIR}/${P}-openssh-7.0.patch"
+ "${FILESDIR}/${P}-ninja.patch"
+ "${FILESDIR}/${P}-openssh-7.0.patch"
 )
 
 pkg_postinst(){
-	elog
-	elog "Optional dependency:"
-	elog "net-fs/sshfs (for 'remote filesystem browser' plugin)"
-	elog
-	elog "The Android .apk file is available via"
-	elog "https://play.google.com/store/apps/details?id=org.kde.kdeconnect_tp"
-	elog
+ elog
+ elog "Optional dependency:"
+ elog "net-fs/sshfs (for 'remote filesystem browser' plugin)"
+ elog
+ elog "The Android .apk file is available via"
+ elog "https://play.google.com/store/apps/details?id=org.kde.kdeconnect_tp"
+ elog
 }

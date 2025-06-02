@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit cmake-utils
+cmake-utils
 
 DESCRIPTION="X-ray diffraction/control image viewer in the context of data processing by XDS"
 HOMEPAGE="http://xds-viewer.sourceforge.net/"
@@ -15,9 +15,9 @@ KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND="
-	dev-libs/glib:2
-	media-libs/libpng:0=
-	dev-qt/qtgui:4"
+ dev-libs/glib:2
+ media-libs/libpng:0=
+ dev-qt/qtgui:4"
 DEPEND="${RDEPEND}"
 
 HTML_DOCS=( src/doc/. )

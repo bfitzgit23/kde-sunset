@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Plasma 4 plasmoid that shows CPU load on the screen"
 HOMEPAGE="http://www.kde-look.org/content/show.php/cpuload?content=86628"
@@ -15,7 +15,7 @@ SLOT="4"
 IUSE="debug"
 
 DEPEND="
-	kde-plasma/plasma-workspace:4
+ kde-plasma/plasma-workspace:4
 "
 RDEPEND="${DEPEND}"
 

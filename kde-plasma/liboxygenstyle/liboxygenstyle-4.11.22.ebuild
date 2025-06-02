@@ -5,7 +5,7 @@ EAPI=7
 
 KMNAME="kde-workspace"
 KMMODULE="libs/oxygen"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Library to support the Oxygen style in KDE Plasma"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -16,5 +16,5 @@ DEPEND="x11-libs/libX11"
 RDEPEND="${DEPEND}"
 
 PATCHES=(
-	"${FILESDIR}/${P}-gcc6.patch"
+ "${FILESDIR}/${P}-gcc6.patch"
 )

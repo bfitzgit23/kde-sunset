@@ -5,23 +5,23 @@ EAPI=7
 
 KDE_HANDBOOK="never"
 OPENGL_REQUIRED="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE library for mathematical features"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug readline"
 
 DEPEND="
-	opengl? ( virtual/glu )
-	readline? ( sys-libs/readline )
+ opengl? ( virtual/glu )
+ readline? ( sys-libs/readline )
 "
 RDEPEND="${DEPEND}"
 
 src_configure() {
-	local mycmakeargs=(
-		$(cmake-utils_use_with opengl OpenGL)
-		$(cmake-utils_use_with readline)
-	)
+ local mycmakeargs=(
+ $(cmake-utils_use_with opengl OpenGL)
+ $(cmake-utils_use_with readline)
+ )
 
-	kde4-base_src_configure
+ kde4-base_src_configure
 }

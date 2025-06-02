@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE Screenshot Utility"
 HOMEPAGE="https://www.kde.org/applications/graphics/ksnapshot/"
@@ -12,17 +12,17 @@ KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug kipi"
 
 DEPEND="
-	x11-libs/libXfixes
-	x11-libs/libX11
-	x11-libs/libXext
-	kipi? ( $(add_kdeapps_dep libkipi) )
+ x11-libs/libXfixes
+ x11-libs/libX11
+ x11-libs/libXext
+ kipi? ( $(add_kdeapps_dep libkipi) )
 "
 RDEPEND="${DEPEND}"
 
 src_configure() {
-	local mycmakeargs=(
-		$(cmake-utils_use_with kipi)
-	)
+ local mycmakeargs=(
+ $(cmake-utils_use_with kipi)
+ )
 
-	kde4-base_src_configure
+ kde4-base_src_configure
 }

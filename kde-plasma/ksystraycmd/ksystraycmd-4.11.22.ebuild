@@ -4,7 +4,7 @@
 EAPI=7
 
 KMNAME="kde-workspace"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Embeds applications given as argument into the system tray"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"

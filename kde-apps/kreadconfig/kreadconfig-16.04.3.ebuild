@@ -4,7 +4,7 @@
 EAPI=7
 
 KMNAME="kde-runtime"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Command-line tool to read KConfig entries"
 KEYWORDS="amd64 x86"

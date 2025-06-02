@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kdepim"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Note taking application"
 HOMEPAGE="https://www.kde.org/applications/utilities/knotes/"
@@ -14,18 +14,18 @@ KEYWORDS="amd64 x86"
 IUSE="debug"
 
 DEPEND="
-	$(add_kdeapps_dep kdepim-common-libs)
-	$(add_kdeapps_dep kdepimlibs)
+ $(add_kdeapps_dep kdepim-common-libs)
+ $(add_kdeapps_dep kdepimlibs)
 "
 RDEPEND="${DEPEND}"
 
 KMCOMPILEONLY="
-	noteshared/
+ noteshared/
 "
 
 KMEXTRACTONLY="
-	akonadi_next/
-	pimcommon/
+ akonadi_next/
+ pimcommon/
 "
 
 KMLOADLIBS="kdepim-common-libs"

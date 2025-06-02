@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="A screen ruler for KDE"
 HOMEPAGE="https://www.kde.org/applications/graphics/kruler/"

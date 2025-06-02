@@ -4,13 +4,13 @@
 EAPI=7
 
 KMNAME="kde-runtime"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Open Collaboration Services provider management"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 DEPEND="
-	dev-libs/libattica
+ dev-libs/libattica
 "
 RDEPEND="${DEPEND}"

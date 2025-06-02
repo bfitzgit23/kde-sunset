@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Krunner plug-in for Google translate service"
 HOMEPAGE="http://kde-apps.org/content/show.php/krunner-googletranslate?content=144348"
@@ -15,12 +15,12 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 RDEPEND="
-	dev-libs/qjson
-	kde-plasma/libkworkspace:4
+ dev-libs/qjson
+ kde-plasma/libkworkspace:4
 "
 DEPEND="
-	${RDEPEND}
-	$(add_kdeapps_dep kdepimlibs)
+ ${RDEPEND}
+ $(add_kdeapps_dep kdepimlibs)
 "
 
 DOCS=( Changelog README )

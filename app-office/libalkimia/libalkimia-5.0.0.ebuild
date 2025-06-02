@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit cmake-utils
+cmake-utils
 
 DESCRIPTION="Library with common classes and functionality used by KDE finance applications"
 HOMEPAGE="https://community.kde.org/Alkimia/libalkimia"
@@ -15,11 +15,11 @@ SLOT="0/5"
 IUSE=""
 
 RDEPEND="
-	dev-libs/gmp:0=[cxx]
-	dev-qt/qtcore:4
-	dev-qt/qtdbus:4
-	kde-frameworks/kdelibs:4
+ dev-libs/gmp:0=[cxx]
+ dev-qt/qtcore:4
+ dev-qt/qtdbus:4
+ kde-frameworks/kdelibs:4
 "
 DEPEND="${RDEPEND}
-	virtual/pkgconfig
+ virtual/pkgconfig
 "

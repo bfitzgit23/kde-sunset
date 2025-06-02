@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit qmake-utils
+qmake-utils
 
 DESCRIPTION="Qt4 tool for drawing entity-relational diagrams"
 HOMEPAGE="https://oxygene.sk/projects/dbmodel/"
@@ -15,19 +15,19 @@ KEYWORDS="amd64 x86"
 IUSE="debug"
 
 DEPEND="
-	dev-qt/qtcore:4
-	dev-qt/qtgui:4
-	dev-qt/qtsvg:4
+ dev-qt/qtcore:4
+ dev-qt/qtgui:4
+ dev-qt/qtsvg:4
 "
 RDEPEND="${DEPEND}"
 
 DOCS=( AUTHORS CHANGES )
 
 src_configure() {
-	eqmake4 ${PN}.pro PREFIX=/usr
+ eqmake4 ${PN}.pro PREFIX=/usr
 }
 
 src_install() {
-	emake INSTALL_ROOT="${D}" install
-	einstalldocs
+ emake INSTALL_ROOT="${D}" install
+ einstalldocs
 }

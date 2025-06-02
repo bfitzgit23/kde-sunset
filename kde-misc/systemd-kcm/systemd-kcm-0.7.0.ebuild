@@ -4,7 +4,7 @@
 EAPI=7
 
 MY_PN="kcmsystemd"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE control module for systemd"
 HOMEPAGE="https://projects.kde.org/projects/playground/sysadmin/systemd-kcm"
@@ -16,11 +16,11 @@ SLOT="4"
 KEYWORDS="~amd64 ~x86"
 
 DEPEND="
-	>=dev-libs/boost-1.45
+ >=dev-libs/boost-1.45
 "
 RDEPEND="${DEPEND}
-	$(add_kdeapps_dep kcmshell)
-	sys-apps/systemd
+ $(add_kdeapps_dep kcmshell)
+ sys-apps/systemd
 "
 
 # only needed for 0.7.0 and 1.1.0

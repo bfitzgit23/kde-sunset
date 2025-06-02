@@ -6,7 +6,7 @@ EAPI=7
 KDE_HANDBOOK="optional"
 KMNAME="kdepim"
 KMMODULE="console/${PN}"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Command line client for accessing the KDE addressbook"
 
@@ -14,13 +14,13 @@ KEYWORDS="amd64 x86"
 IUSE="debug"
 
 DEPEND="
-	$(add_kdeapps_dep kdepimlibs)
+ $(add_kdeapps_dep kdepimlibs)
 "
 RDEPEND="${DEPEND}"
 
 src_install() {
-	kde4-meta_src_install
+ kde4-meta_src_install
 
-	# work around NULL DT_RPATH in kabc2mutt
-	dosym kabcclient /usr/bin/kabc2mutt
+ # work around NULL DT_RPATH in kabc2mutt
+ dosym kabcclient /usr/bin/kabc2mutt
 }

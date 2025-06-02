@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit cmake-utils
+cmake-utils
 
 DESCRIPTION="Simple SMS tool"
 HOMEPAGE="https://www.linux-apps.com/content/show.php/past+-+SMS+Tool?content=74036"
@@ -15,10 +15,10 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 DEPEND="
-	app-mobilephone/gnokii[sms]
-	dev-qt/qtcore:4
-	dev-qt/qtdbus:4
-	dev-qt/qtgui:4
+ app-mobilephone/gnokii[sms]
+ dev-qt/qtcore:4
+ dev-qt/qtdbus:4
+ dev-qt/qtgui:4
 "
 RDEPEND="${DEPEND}"
 

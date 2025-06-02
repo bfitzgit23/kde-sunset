@@ -4,7 +4,7 @@
 EAPI=7
 
 COMMIT=4e36baf0032c9f2e1c78cf11175e726d9582778a
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Classical style and window decorations for KDE Plasma"
 HOMEPAGE="https://github.com/cfeck/skulpture"

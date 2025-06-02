@@ -8,14 +8,14 @@ RESTRICT="binchecks strip"
 KMMODULE="wallpapers"
 KMNAME="kdeartwork"
 KDE_SCM="svn"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Wallpapers from kde"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE=""
 
 KMEXTRA="
-	HighResolutionWallpapers/
+ HighResolutionWallpapers/
 "
 
 RDEPEND="!<kde-base/kde-wallpapers-4.9.50:4"

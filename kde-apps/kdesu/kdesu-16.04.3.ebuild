@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-runtime"
-inherit kde4-meta
+kde4-meta
 
 # FIXME: Is default command ( su/sudo ) still configurable,
 # if not, USE-flag ?
@@ -15,11 +15,11 @@ KEYWORDS="amd64 x86"
 IUSE="debug"
 
 src_configure() {
-	# Upstream moved kdesu to libexec first, then decided to move it back
-	# to /${PREFIX}/bin/ , so I'm doing that now already.
-	sed -e '/kdesu_executable/s:LIBEXEC_INSTALL_DIR:BIN_INSTALL_DIR:' \
-		-i "${S}"/kdesu/kdesu/CMakeLists.txt || \
-		die "Moving kdesu from libexec to bin failed."
+ # Upstream moved kdesu to libexec first, then decided to move it back
+ # to /${PREFIX}/bin/ , so I'm doing that now already.
+ sed -e '/kdesu_executable/s:LIBEXEC_INSTALL_DIR:BIN_INSTALL_DIR:' \
+ -i "${S}"/kdesu/kdesu/CMakeLists.txt || \
+ die "Moving kdesu from libexec to bin failed."
 
-	kde4-meta_src_configure
+ kde4-meta_src_configure
 }

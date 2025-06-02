@@ -4,7 +4,7 @@
 EAPI=7
 
 KMNAME="kde-workspace"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="KDE Plasma daemon listening for wall and write messages"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"

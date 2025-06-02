@@ -6,7 +6,7 @@ EAPI=7
 MY_PN="mpdnowplaying"
 MY_P=${MY_PN}-${PV}
 KDE_LINGUAS="de pt_BR ru"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Plasmoid attached to MPD displaying currently played item"
 HOMEPAGE="http://kde-look.org/content/show.php/MPD+Now+Playing?content=132350"

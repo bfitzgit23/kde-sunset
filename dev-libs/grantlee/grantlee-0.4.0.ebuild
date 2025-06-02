@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit cmake-utils
+cmake-utils
 
 DESCRIPTION="C++ string template engine based on the Django template system"
 HOMEPAGE="https://github.com/steveire/grantlee"
@@ -15,13 +15,13 @@ KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86"
 IUSE="debug doc test"
 
 RDEPEND="
-	dev-qt/qtcore:4
-	dev-qt/qtgui:4
-	dev-qt/qtscript:4
+ dev-qt/qtcore:4
+ dev-qt/qtgui:4
+ dev-qt/qtscript:4
 "
 DEPEND="${RDEPEND}
-	doc? ( >=app-doc/doxygen-1.7.6.1[dot] )
-	test? ( dev-qt/qttest:4 )
+ doc? ( >=app-doc/doxygen-1.7.6.1[dot] )
+ test? ( dev-qt/qttest:4 )
 "
 
 # Some tests fail
@@ -29,25 +29,25 @@ RESTRICT="test"
 
 DOCS=( AUTHORS CHANGELOG GOALS README )
 PATCHES=(
-	"${FILESDIR}/${PN}-0.3.0-nonfatal-warnings.patch"
+ "${FILESDIR}/${PN}-0.3.0-nonfatal-warnings.patch"
 )
 
 src_configure() {
-	local mycmakeargs=(
-		$(cmake-utils_use_build test TESTS)
-	)
+ local mycmakeargs=(
+ $(cmake-utils_use_build test TESTS)
+ )
 
-	cmake-utils_src_configure
+ cmake-utils_src_configure
 }
 
 src_compile() {
-	cmake-utils_src_compile
+ cmake-utils_src_compile
 
-	use doc && cmake-utils_src_compile docs
+ use doc && cmake-utils_src_compile docs
 }
 
 src_install() {
-	use doc && HTML_DOCS=( "${BUILD_DIR}/apidox/" )
+ use doc && HTML_DOCS=( "${BUILD_DIR}/apidox/" )
 
-	cmake-utils_src_install
+ cmake-utils_src_install
 }

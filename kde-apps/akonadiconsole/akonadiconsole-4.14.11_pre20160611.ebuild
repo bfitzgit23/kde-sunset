@@ -4,7 +4,7 @@
 EAPI=7
 
 KMNAME="kdepim"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Akonadi developer console"
 
@@ -12,14 +12,14 @@ KEYWORDS="amd64 x86"
 IUSE="debug"
 
 DEPEND="
-	$(add_kdeapps_dep kdepim-common-libs)
-	$(add_kdeapps_dep kdepimlibs)
-	kde-apps/akonadi:4
+ $(add_kdeapps_dep kdepim-common-libs)
+ $(add_kdeapps_dep kdepimlibs)
+ kde-apps/akonadi:4
 "
 RDEPEND="${DEPEND}"
 
 KMEXTRACTONLY="
-	akonadi_next/
-	calendarsupport/
-	messageviewer/
+ akonadi_next/
+ calendarsupport/
+ messageviewer/
 "

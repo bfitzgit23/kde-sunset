@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_LINGUAS="cs de es fr it"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE4 plasmoid for redshift"
 HOMEPAGE="http://kde-apps.org/content/show.php/Redshift+Plasmoid?content=148737 https://github.com/simgunz/redshift-plasmoid/"
@@ -17,4 +17,4 @@ IUSE="debug"
 
 DEPEND="kde-plasma/plasma-workspace:4"
 RDEPEND="${DEPEND}
-	x11-misc/redshift"
+ x11-misc/redshift"

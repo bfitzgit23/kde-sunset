@@ -12,6 +12,6 @@ KEYWORDS=" ~amd64 ~x86"
 IUSE=""
 
 RDEPEND="
-	>=kde-apps/amor-15.08.3:4
-	>=kde-apps/ktux-15.08.3:4
+ >=kde-apps/amor-15.08.3:4
+ >=kde-apps/ktux-15.08.3:4
 "

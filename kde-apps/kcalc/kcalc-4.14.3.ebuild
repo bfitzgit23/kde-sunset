@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE calculator"
 HOMEPAGE="https://www.kde.org/applications/utilities/kcalc
@@ -13,6 +13,6 @@ KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 DEPEND="
-	dev-libs/gmp
+ dev-libs/gmp
 "
 RDEPEND="${DEPEND}"

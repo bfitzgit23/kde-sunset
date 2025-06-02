@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit qmake-utils xdg
+qmake-utils xdg
 
 DESCRIPTION="Utility that merges application menus, your desktop and even your file manager"
 HOMEPAGE="https://www.launchy.net/"
@@ -15,24 +15,24 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="
-	dev-qt/qtgui:4
-	x11-libs/libX11
+ dev-qt/qtgui:4
+ x11-libs/libX11
 "
 DEPEND="${RDEPEND}
-	dev-libs/boost
-	x11-base/xorg-proto
+ dev-libs/boost
+ x11-base/xorg-proto
 "
 
 PATCHES=(
-	"${FILESDIR}"/${P}-underlink.patch
-	"${FILESDIR}"/${P}-prefix-and-libdir.patch
+ "${FILESDIR}"/${P}-underlink.patch
+ "${FILESDIR}"/${P}-prefix-and-libdir.patch
 )
 
 src_configure() {
-	eqmake4 Launchy.pro PREFIX="${EPREFIX}"/usr LIBDIR="$(get_libdir)"
+ eqmake4 Launchy.pro PREFIX="${EPREFIX}"/usr LIBDIR="$(get_libdir)"
 }
 
 src_install() {
-	emake INSTALL_ROOT="${D}" install
-	einstalldocs
+ emake INSTALL_ROOT="${D}" install
+ einstalldocs
 }

@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit qmake-utils
+qmake-utils
 
 DESCRIPTION="Universal graphical front-end for command line programs"
 HOMEPAGE="http://kaptain.sourceforge.net/"
@@ -15,16 +15,16 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="
-	dev-qt/qtcore:4[qt3support]
-	dev-qt/qt3support:4
+ dev-qt/qtcore:4[qt3support]
+ dev-qt/qt3support:4
 "
 DEPEND="${RDEPEND}"
 
 src_configure() {
-	eqmake4
+ eqmake4
 }
 
 src_install() {
-	emake DESTDIR="${D}" install
-	dodoc AUTHORS ChangeLog README TODO
+ emake DESTDIR="${D}" install
+ dodoc AUTHORS ChangeLog README TODO
 }

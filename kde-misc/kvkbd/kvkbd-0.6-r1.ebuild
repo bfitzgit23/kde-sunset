@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 KDEAPPS_ID="94374"
 
@@ -17,5 +17,5 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 PATCHES=(
-	"${FILESDIR}/${P}-underlinking.patch"
+ "${FILESDIR}/${P}-underlinking.patch"
 )

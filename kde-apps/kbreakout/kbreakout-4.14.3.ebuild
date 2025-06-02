@@ -5,12 +5,12 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 DECLARATIVE_REQUIRED="always"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE: A Breakout-like game for KDE"
 HOMEPAGE="
-	https://www.kde.org/applications/games/kbreakout/
-	https://games.kde.org/game.php?game=kbreakout
+ https://www.kde.org/applications/games/kbreakout/
+ https://games.kde.org/game.php?game=kbreakout
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"

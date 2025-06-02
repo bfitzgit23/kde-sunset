@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE application that reads what you type out loud. Doesn't include a speech synthesizer"
 HOMEPAGE="https://www.kde.org/applications/utilities/kmouth/"

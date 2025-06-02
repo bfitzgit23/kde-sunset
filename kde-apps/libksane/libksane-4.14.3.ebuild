@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="SANE Library interface for KDE"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -11,6 +11,6 @@ IUSE="debug"
 LICENSE="LGPL-2"
 
 DEPEND="
-	media-gfx/sane-backends
+ media-gfx/sane-backends
 "
 RDEPEND="${DEPEND}"

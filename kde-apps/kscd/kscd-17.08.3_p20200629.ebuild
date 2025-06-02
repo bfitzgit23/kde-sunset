@@ -4,7 +4,7 @@
 EAPI=7
 
 COMMIT=d626bceefe2dab03c5aa1c2ac96ef627a6b60c8d
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE CD player"
 HOMEPAGE="https://kde.org/applications/en/multimedia/org.kde.kscd"
@@ -14,8 +14,8 @@ KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 DEPEND="
-	$(add_kdeapps_dep libkcddb)
-	media-libs/musicbrainz:5
+ $(add_kdeapps_dep libkcddb)
+ media-libs/musicbrainz:5
 "
 RDEPEND="${DEPEND}"
 

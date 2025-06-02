@@ -5,12 +5,12 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KDE_SELINUX_MODULE="games"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE: Kolor Lines - a little game about balls and how to get rid of them"
 HOMEPAGE="
-	https://www.kde.org/applications/games/klines/
-	https://games.kde.org/game.php?game=klines
+ https://www.kde.org/applications/games/klines/
+ https://games.kde.org/game.php?game=klines
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"

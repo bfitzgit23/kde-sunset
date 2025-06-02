@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Plasmoid for monitoring emerge progress"
 HOMEPAGE="http://www.kde-look.org/content/show.php?content=103928"
@@ -17,17 +17,17 @@ SLOT="4"
 IUSE="debug"
 
 RDEPEND="
-	kde-plasma/plasma-workspace:4
+ kde-plasma/plasma-workspace:4
 "
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-0.0.2-list.patch
+ "${FILESDIR}"/${PN}-0.0.2-list.patch
 )
 
 pkg_postinst() {
-	kde4-base_pkg_postinst
-	einfo "You need to add your user to 'portage' group"
-	einfo "in order to use this plasmoid. To do that, use"
-	einfo "the following command:"
-	einfo "usermod -a -G portage <your_user_here>"
+ kde4-base_pkg_postinst
+ einfo "You need to add your user to 'portage' group"
+ einfo "in order to use this plasmoid. To do that, use"
+ einfo "the following command:"
+ einfo "usermod -a -G portage <your_user_here>"
 }

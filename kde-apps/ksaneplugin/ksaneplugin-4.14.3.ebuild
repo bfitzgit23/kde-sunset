@@ -3,13 +3,13 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="SANE Plugin for KDE"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 DEPEND="
-	$(add_kdeapps_dep libksane)
+ $(add_kdeapps_dep libksane)
 "
 RDEPEND="${DEPEND}"

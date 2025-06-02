@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE-based monitor for the IBM HDAPS system"
 HOMEPAGE="http://www.kde-look.org/content/show.php/HDAPS+monitor?content=103481"
@@ -15,4 +15,4 @@ IUSE="debug"
 
 DEPEND="kde-plasma/plasma-workspace:4"
 RDEPEND="${DEPEND}
-	app-laptop/hdapsd"
+ app-laptop/hdapsd"

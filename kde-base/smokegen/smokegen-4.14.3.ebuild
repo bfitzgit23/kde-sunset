@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_REQUIRED="never"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Scripting Meta Object Kompiler Engine - generators"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
@@ -12,6 +12,6 @@ IUSE="debug"
 HOMEPAGE="https://techbase.kde.org/Development/Languages/Smoke"
 
 DEPEND="
-	dev-qt/qtcore:4
+ dev-qt/qtcore:4
 "
 RDEPEND="${DEPEND}"

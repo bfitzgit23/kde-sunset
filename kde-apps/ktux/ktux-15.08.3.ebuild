@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base kde4-functions-extra
+kde4-base kde4-functions-extra
 
 DESCRIPTION="KDE: screensaver featuring the Space-Faring Tux"
 HOMEPAGE+=" https://userbase.kde.org/KTux"
@@ -12,7 +12,7 @@ IUSE="debug"
 
 # libkworkspace - only as a stub to provide KDE4Workspace config
 DEPEND="
-	$(add_kdeplasma_dep kscreensaver '' 4.11)
-	$(add_kdeplasma_dep libkworkspace '' 4.11)
+ $(add_kdeplasma_dep kscreensaver '' 4.11)
+ $(add_kdeplasma_dep libkworkspace '' 4.11)
 "
 RDEPEND="${DEPEND}"

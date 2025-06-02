@@ -15,6 +15,6 @@ IUSE=""
 RDEPEND=">=app-admin/eselect-1.2.4"
 
 src_install() {
-	insinto /usr/share/eselect/modules
-	doins qtgraphicssystem.eselect
+ insinto /usr/share/eselect/modules
+ doins qtgraphicssystem.eselect
 }

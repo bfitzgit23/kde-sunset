@@ -5,17 +5,17 @@ EAPI=7
 
 KMNAME="kde-baseapps"
 VIRTUALX_REQUIRED="test"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="KDE's bookmarks editor"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 DEPEND="
-	$(add_kdeapps_dep libkonq)
+ $(add_kdeapps_dep libkonq)
 "
 RDEPEND="${DEPEND}"
 
 KMEXTRACTONLY="
-	lib/konq/
+ lib/konq/
 "

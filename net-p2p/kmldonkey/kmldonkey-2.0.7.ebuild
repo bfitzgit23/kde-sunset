@@ -4,7 +4,7 @@
 EAPI=7
 
 QT3SUPPORT_REQUIRED="true"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Provides integration for the MLDonkey P2P software"
 HOMEPAGE="https://www.kde.org/"
@@ -19,16 +19,16 @@ DEPEND="kde-frameworks/kdelibs:4[plasma(+)]"
 RDEPEND="${DEPEND}"
 
 src_configure() {
-	local mycmakeargs=(
-		-DWITH_Plasma=OFF
-	)
+ local mycmakeargs=(
+ -DWITH_Plasma=OFF
+ )
 
-	kde4-base_src_configure
+ kde4-base_src_configure
 }
 
 pkg_postinst() {
-	if ! has_version net-p2p/mldonkey ; then
-		elog ${PN} is a only a client, and requires access to an instance of
-		elog net-p2p/mldonkey to function.
-	fi
+ if ! has_version net-p2p/mldonkey ; then
+ elog ${PN} is a only a client, and requires access to an instance of
+ elog net-p2p/mldonkey to function.
+ fi
 }

@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="never"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE memory and pairs game"
 HOMEPAGE="https://edu.kde.org/applications/miscellaneous/pairs"

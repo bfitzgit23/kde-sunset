@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-baseapps"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="KDE file finder utility"
 HOMEPAGE="https://www.kde.org/applications/utilities/kfind/"
@@ -13,6 +13,6 @@ KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 DEPEND="
-	$(add_kdeapps_dep libkonq)
+ $(add_kdeapps_dep libkonq)
 "
 RDEPEND="${DEPEND}"

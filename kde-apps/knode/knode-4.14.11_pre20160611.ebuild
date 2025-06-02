@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kdepim"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Usenet newsgroups and mailing lists reader by KDE"
 HOMEPAGE="https://www.kde.org/applications/internet/knode/"
@@ -17,32 +17,32 @@ IUSE="debug"
 RESTRICT=test
 
 DEPEND="
-	$(add_kdeapps_dep kdepim-common-libs)
-	$(add_kdeapps_dep kdepimlibs)
+ $(add_kdeapps_dep kdepim-common-libs)
+ $(add_kdeapps_dep kdepimlibs)
 "
 RDEPEND="${DEPEND}"
 
 KMEXTRACTONLY="
-	agents/
-	libkleo/
-	libkpgp/
-	messagecomposer/
-	messageviewer/
-	messagecore/
+ agents/
+ libkleo/
+ libkpgp/
+ messagecomposer/
+ messageviewer/
+ messagecore/
 "
 KMCOMPILEONLY="
-	grantleetheme/
-	kaddressbookgrantlee/
+ grantleetheme/
+ kaddressbookgrantlee/
 "
 
 KMLOADLIBS="kdepim-common-libs"
 
 src_unpack() {
-	if use handbook; then
-		KMEXTRA="
-			doc/kioslave/news
-		"
-	fi
+ if use handbook; then
+ KMEXTRA="
+ doc/kioslave/news
+ "
+ fi
 
-	kde4-meta_src_unpack
+ kde4-meta_src_unpack
 }

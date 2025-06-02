@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 MY_P=KTrafficAnalyzer-${PV}
 

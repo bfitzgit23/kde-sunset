@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Plasma widget displaying new and important email"
 HOMEPAGE="https://www.kde.org http://www.vizzzion.org"
@@ -15,13 +15,13 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 DEPEND="
-	$(add_kdeapps_dep kdepimlibs)
-	kde-apps/akonadi:4
-	kde-frameworks/kdelibs:4
-	dev-qt/qtcore:4
-	dev-qt/qtgui:4
-	dev-qt/qtwebkit:4
+ $(add_kdeapps_dep kdepimlibs)
+ kde-apps/akonadi:4
+ kde-frameworks/kdelibs:4
+ dev-qt/qtcore:4
+ dev-qt/qtgui:4
+ dev-qt/qtwebkit:4
 "
 RDEPEND="${DEPEND}
-	$(add_kdeapps_dep kdepim-runtime)
+ $(add_kdeapps_dep kdepim-runtime)
 "

@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Indicator widget for raid arrays"
 HOMEPAGE="http://kde-apps.org/content/show.php/K+Raid+Monitor?content=68553"
@@ -15,7 +15,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 RDEPEND="
-	kde-plasma/plasma-workspace:4
+ kde-plasma/plasma-workspace:4
 "
 
 S=${WORKDIR}/${PN}

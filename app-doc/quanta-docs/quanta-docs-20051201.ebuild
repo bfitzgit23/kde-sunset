@@ -4,10 +4,10 @@
 DESCRIPTION="Language documentation files for Quanta."
 HOMEPAGE="http://quanta.kdewebdev.org/"
 SRC_URI="mirror://gentoo/quanta-css-${PV}.tar.bz2
-	mirror://gentoo/quanta-html-${PV}.tar.bz2
-	mirror://gentoo/quanta-javascript-${PV}.tar.bz2
-	mirror://gentoo/quanta-php-${PV}.tar.bz2
-	mysql? ( mirror://gentoo/quanta-mysql5-${PV}.tar.bz2 )"
+ mirror://gentoo/quanta-html-${PV}.tar.bz2
+ mirror://gentoo/quanta-javascript-${PV}.tar.bz2
+ mirror://gentoo/quanta-php-${PV}.tar.bz2
+ mysql? ( mirror://gentoo/quanta-mysql5-${PV}.tar.bz2 )"
 # These files resemble the unversioned ones at
 # http://sourceforge.net/project/showfiles.php?group_id=4113
 
@@ -19,13 +19,13 @@ IUSE="mysql"
 S=${WORKDIR}
 
 src_install() {
-	dodir /usr/share/apps/quanta/doc
+ dodir /usr/share/apps/quanta/doc
 
-	local docdirs="css html javascript php"
-	use mysql && docdirs="${docdirs} mysql5"
+ local docdirs="css html javascript php"
+ use mysql && docdirs="${docdirs} mysql5"
 
-	for i in ${docdirs}; do
-		cd "${S}/${i}"
-		cp -R "$i" "$i.docrc" "${D}/usr/share/apps/quanta/doc"
-	done
+ for i in ${docdirs}; do
+ cd "${S}/${i}"
+ cp -R "$i" "$i.docrc" "${D}/usr/share/apps/quanta/doc"
+ done
 }

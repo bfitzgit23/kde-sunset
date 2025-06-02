@@ -5,7 +5,7 @@ EAPI=7
 
 KMNAME="kde-runtime"
 KMMODULE="kde-menu"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="KDE Menu query tool"
 KEYWORDS="amd64 x86"

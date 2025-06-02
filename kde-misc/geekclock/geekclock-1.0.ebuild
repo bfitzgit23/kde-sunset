@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 MY_PN="geek-clock-plasmoid"
 
@@ -17,7 +17,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 RDEPEND="
-	kde-plasma/plasma-workspace:4
+ kde-plasma/plasma-workspace:4
 "
 
 S="${WORKDIR}/${MY_PN}-${PV}-src"

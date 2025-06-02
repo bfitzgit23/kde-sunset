@@ -4,13 +4,13 @@
 EAPI=7
 
 KMNAME="kde-workspace"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Runs startups initialization for KDE Plasma Control Modules"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 DEPEND="
-	x11-libs/libX11
+ x11-libs/libX11
 "
 RDEPEND="${DEPEND}"

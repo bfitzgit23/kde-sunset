@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_SCM="svn"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE base artwork"
 IUSE=""

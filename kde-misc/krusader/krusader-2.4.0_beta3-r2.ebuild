@@ -5,7 +5,7 @@ EAPI=7
 
 MY_P="${P/_/-}"
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Advanced twin-panel (commander-style) file-manager with many extras"
 HOMEPAGE="https://krusader.org/"
@@ -17,15 +17,15 @@ KEYWORDS="amd64 x86"
 IUSE="+bookmarks debug"
 
 COMMON_DEPEND="
-	$(add_kdeapps_dep libkonq)
-	sys-libs/zlib
-	bookmarks? ( $(add_kdeapps_dep keditbookmarks) )
+ $(add_kdeapps_dep libkonq)
+ sys-libs/zlib
+ bookmarks? ( $(add_kdeapps_dep keditbookmarks) )
 "
 RDEPEND="${COMMON_DEPEND}
-	$(add_kdeapps_dep kdebase-kioslaves)
+ $(add_kdeapps_dep kdebase-kioslaves)
 "
 DEPEND="${COMMON_DEPEND}
-	sys-devel/gettext
+ sys-devel/gettext
 "
 
 PATCHES=( "${FILESDIR}/${P}-new-folder.patch" )

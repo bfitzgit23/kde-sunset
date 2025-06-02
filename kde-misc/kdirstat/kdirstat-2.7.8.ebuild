@@ -4,7 +4,7 @@
 EAPI=7
 
 MY_PN=k4dirstat
-inherit xdg cmake
+xdg cmake
 
 DESCRIPTION="Graphically displays disk space used up by a directory tree"
 HOMEPAGE="https://github.com/jeromerobert/k4dirstat"
@@ -17,16 +17,16 @@ KEYWORDS="amd64 x86"
 IUSE="debug"
 
 DEPEND="
-	dev-qt/qt3support:4
-	dev-qt/qtcore:4[qt3support]
-	dev-qt/qtgui:4[qt3support]
-	kde-apps/libkonq:4
-	kde-frameworks/kdelibs[qt3support]
-	sys-libs/zlib
+ dev-qt/qt3support:4
+ dev-qt/qtcore:4[qt3support]
+ dev-qt/qtgui:4[qt3support]
+ kde-apps/libkonq:4
+ kde-frameworks/kdelibs[qt3support]
+ sys-libs/zlib
 "
 RDEPEND="${DEPEND}"
 
 src_configure() {
-	local mycmakeargs=( -DK4DIRSTAT_GIT_VERSION=OFF )
-	cmake_src_configure
+ local mycmakeargs=( -DK4DIRSTAT_GIT_VERSION=OFF )
+ cmake_src_configure
 }

@@ -4,12 +4,12 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE four-in-a-row game"
 HOMEPAGE="
-	https://www.kde.org/applications/games/kfourinline/
-	https://games.kde.org/game.php?game=kfourinline
+ https://www.kde.org/applications/games/kfourinline/
+ https://games.kde.org/game.php?game=kfourinline
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"

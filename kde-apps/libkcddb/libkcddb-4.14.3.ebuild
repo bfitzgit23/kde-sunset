@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE library for CDDB"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -15,26 +15,26 @@ IUSE="debug musicbrainz"
 RESTRICT=test
 
 DEPEND="
-	musicbrainz? ( media-libs/musicbrainz:5 )
+ musicbrainz? ( media-libs/musicbrainz:5 )
 "
 RDEPEND="${DEPEND}"
 
 KMSAVELIBS="true"
 
 src_prepare() {
-	kde4-base_src_prepare
+ kde4-base_src_prepare
 
-	if ! use handbook ; then
-		pushd kcmcddb > /dev/null
-		comment_add_subdirectory doc
-		popd > /dev/null
-	fi
+ if ! use handbook ; then
+ pushd kcmcddb > /dev/null
+ comment_add_subdirectory doc
+ popd > /dev/null
+ fi
 }
 
 src_configure() {
-	local mycmakeargs=(
-		$(cmake-utils_use_with musicbrainz MusicBrainz5)
-	)
+ local mycmakeargs=(
+ $(cmake-utils_use_with musicbrainz MusicBrainz5)
+ )
 
-	kde4-base_src_configure
+ kde4-base_src_configure
 }

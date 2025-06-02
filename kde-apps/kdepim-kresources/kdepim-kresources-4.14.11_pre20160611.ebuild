@@ -5,7 +5,7 @@ EAPI=7
 
 KMNAME="kdepim"
 KMMODULE="kresources"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="KDE PIM groupware plugin collection"
 
@@ -13,15 +13,15 @@ IUSE="debug"
 KEYWORDS="amd64 x86"
 
 DEPEND="
-	$(add_kdeapps_dep kdepim-common-libs)
-	$(add_kdeapps_dep kdepimlibs)
+ $(add_kdeapps_dep kdepim-common-libs)
+ $(add_kdeapps_dep kdepimlibs)
 "
 RDEPEND="${DEPEND}"
 
 KMEXTRACTONLY="
-	kmail/
-	knotes/
-	korganizer/version.h
+ kmail/
+ knotes/
+ korganizer/version.h
 "
 
 KMLOADLIBS="kdepim-common-libs"

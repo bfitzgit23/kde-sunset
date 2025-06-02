@@ -6,7 +6,7 @@ EAPI=7
 KDE_MINIMAL="4.8"
 KDE_LINGUAS_DIR="applet/po"
 KDE_LINGUAS="bs de el fr hu it pl pt ru sr tr"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Simple application launcher for KDE 4's plasma desktop"
 HOMEPAGE="http://cdlszm.org/"

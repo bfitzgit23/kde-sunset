@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="kioslaves from kdesdk package"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -11,20 +11,20 @@ IUSE="debug subversion"
 KMNAME="kdesdk-kioslaves"
 
 DEPEND="
-	subversion? (
-		dev-libs/apr
-		dev-vcs/subversion
-	)
+ subversion? (
+ dev-libs/apr
+ dev-vcs/subversion
+ )
 "
 RDEPEND="${DEPEND}
-	subversion? ( !>=dev-vcs/kdesvn-1.5.2:4 )
+ subversion? ( !>=dev-vcs/kdesvn-1.5.2:4 )
 "
 
 src_configure() {
-	local mycmakeargs=(
-		-DAPRCONFIG_EXECUTABLE="${EPREFIX}"/usr/bin/apr-1-config
-		$(cmake-utils_use_with subversion SVN)
-	)
+ local mycmakeargs=(
+ -DAPRCONFIG_EXECUTABLE="${EPREFIX}"/usr/bin/apr-1-config
+ $(cmake-utils_use_with subversion SVN)
+ )
 
-	kde4-base_src_configure
+ kde4-base_src_configure
 }

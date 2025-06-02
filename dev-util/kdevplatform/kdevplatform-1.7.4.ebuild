@@ -10,44 +10,44 @@ pt_BR ru sk sl sv th tr uk zh_CN zh_TW"
 VIRTUALDBUS_TEST="true"
 VIRTUALX_REQUIRED="test"
 WEBKIT_REQUIRED="always"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE development support libraries and apps"
 LICENSE="GPL-2 LGPL-2"
 IUSE="+classbrowser cvs debug +konsole reviewboard subversion"
 
 if [[ ${KDE_BUILD_TYPE} = release ]]; then
-	KEYWORDS="~amd64 ~x86"
+ KEYWORDS="~amd64 ~x86"
 fi
 
 RESTRICT="test"
 
 COMMON_DEPEND="
-	dev-libs/grantlee:0
-	reviewboard? ( dev-libs/qjson )
-	subversion? (
-		dev-libs/apr
-		dev-libs/apr-util
-		dev-vcs/subversion
-	)
+ dev-libs/grantlee:0
+ reviewboard? ( dev-libs/qjson )
+ subversion? (
+ dev-libs/apr
+ dev-libs/apr-util
+ dev-vcs/subversion
+ )
 "
 DEPEND="${COMMON_DEPEND}
-	classbrowser? ( dev-libs/boost )
+ classbrowser? ( dev-libs/boost )
 "
 RDEPEND="${COMMON_DEPEND}
-	cvs? ( dev-vcs/cvs )
-	konsole? ( $(add_kdeapps_dep konsolepart) )
-	!<dev-util/kdevelop-${KDEVELOP_VERSION}:4
+ cvs? ( dev-vcs/cvs )
+ konsole? ( $(add_kdeapps_dep konsolepart) )
+ !<dev-util/kdevelop-${KDEVELOP_VERSION}:4
 "
 
 src_configure() {
-	local mycmakeargs=(
-		-DBUILD_classbrowser=$(usex classbrowser)
-		-DBUILD_cvs=$(usex cvs)
-		-DBUILD_konsole=$(usex konsole)
-		$(cmake-utils_use_find_package reviewboard QJSON)
-		-DBUILD_subversion=$(usex subversion)
-	)
+ local mycmakeargs=(
+ -DBUILD_classbrowser=$(usex classbrowser)
+ -DBUILD_cvs=$(usex cvs)
+ -DBUILD_konsole=$(usex konsole)
+ $(cmake-utils_use_find_package reviewboard QJSON)
+ -DBUILD_subversion=$(usex subversion)
+ )
 
-	kde4-base_src_configure
+ kde4-base_src_configure
 }

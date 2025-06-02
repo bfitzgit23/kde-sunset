@@ -5,12 +5,12 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KDE_SELINUX_MODULE="games"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE Board Game"
 HOMEPAGE="
-	https://www.kde.org/applications/games/kreversi/
-	https://games.kde.org/game.php?game=kreversi
+ https://www.kde.org/applications/games/kreversi/
+ https://games.kde.org/game.php?game=kreversi
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"

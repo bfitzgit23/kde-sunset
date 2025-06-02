@@ -9,7 +9,7 @@ pa pl pt pt_BR ro ru se sk sl sv ta tg th tr uk vi wa xh zh_CN zh_HK zh_TW"
 KDE_DOC_DIRS="doc-translations/%lingua_${PN}"
 KDE_HANDBOOK="optional"
 QT3SUPPORT_REQUIRED="true"
-inherit kde4-base
+kde4-base
 
 KDE_VERSION=4.4.0
 MY_P=${P}-kde${KDE_VERSION}
@@ -24,15 +24,15 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 RDEPEND="
-	x11-libs/libX11
+ x11-libs/libX11
 "
 DEPEND="${RDEPEND}
-	x11-base/xorg-proto
+ x11-base/xorg-proto
 "
 
 S=${WORKDIR}/${MY_P}
 
 PATCHES=(
-	"${FILESDIR}/${P}-kde45.patch"
-	"${FILESDIR}/${P}-underlinking.patch"
+ "${FILESDIR}/${P}-kde45.patch"
+ "${FILESDIR}/${P}-underlinking.patch"
 )

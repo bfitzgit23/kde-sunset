@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE Frontend for Cachegrind"
 HOMEPAGE="https://www.kde.org/applications/development/kcachegrind
@@ -13,5 +13,5 @@ KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 RDEPEND="
-	media-gfx/graphviz
+ media-gfx/graphviz
 "

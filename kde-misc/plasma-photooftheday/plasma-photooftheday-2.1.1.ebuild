@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 LINGUAS="bg de"
 CONTENT_NUMBER="104631"
@@ -19,10 +19,10 @@ SLOT="4"
 SRC_URI="http://kde-look.org/CONTENT/content-files/${CONTENT_NUMBER}-photo-of-the-day.tar.gz -> ${CONTENT_NUMBER}-photo-of-the-day-${PV}.tar.gz"
 
 RDEPEND="
-	kde-plasma/plasma-workspace:4
+ kde-plasma/plasma-workspace:4
 "
 DEPEND="${RDEPEND}
-	sys-devel/gettext
+ sys-devel/gettext
 "
 
 S="${WORKDIR}/photo-of-the-day"

@@ -6,7 +6,7 @@ EAPI=7
 KDE_LINGUAS="cs de es fr it pl pt_BR ru uk"
 KDE_HANDBOOK="optional"
 MY_P="knc${PV//./}"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Visual client for UPS systems based on kdelibs-4"
 HOMEPAGE="https://sites.google.com/a/prynych.cz/knutclient/"
@@ -18,8 +18,8 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 PATCHES=(
-	"${FILESDIR}/${P}-desktop.patch"
-	"${FILESDIR}/${P}-gcc6.patch"
+ "${FILESDIR}/${P}-desktop.patch"
+ "${FILESDIR}/${P}-gcc6.patch"
 )
 
 DOCS=( ChangeLog )

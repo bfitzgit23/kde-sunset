@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_LINGUAS="cs da de es et ga ja it nds nl pl pt pt_BR sk sv uk zh_CN"
-inherit kde4-base kde4-functions-extra
+kde4-base kde4-functions-extra
 
 DESCRIPTION="An input method frontend for KDE"
 HOMEPAGE="http://kde-apps.org/content/show.php/KIMToy?content=140967"
@@ -16,18 +16,18 @@ LICENSE="GPL-2+"
 IUSE=""
 
 DEPEND="
-	>=app-i18n/fcitx-4.0
-	>=app-i18n/scim-1.4.9
-	dev-libs/dbus-c++
+ >=app-i18n/fcitx-4.0
+ >=app-i18n/scim-1.4.9
+ dev-libs/dbus-c++
 "
 RDEPEND="${DEPEND}
-	$(add_kdeplasma_dep plasma-workspace)
+ $(add_kdeplasma_dep plasma-workspace)
 "
 
 src_configure() {
-	local mycmakeargs=(
-		-DWITH_IBus=OFF
-	)
+ local mycmakeargs=(
+ -DWITH_IBus=OFF
+ )
 
-	kde4-base_src_configure
+ kde4-base_src_configure
 }

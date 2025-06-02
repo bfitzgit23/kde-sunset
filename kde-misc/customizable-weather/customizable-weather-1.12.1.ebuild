@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_LINGUAS="br de el es fr hu it nb nl pl ro ru sr sr@Latn tr zh_CN"
-inherit kde4-base
+kde4-base
 
 MY_P="cwp-${PV}"
 
@@ -18,7 +18,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 RDEPEND="
-	kde-plasma/plasma-workspace:4
+ kde-plasma/plasma-workspace:4
 "
 DEPEND="${RDEPEND}"
 

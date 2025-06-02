@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="A zeroconf Plasma 4 filetransfer tool"
 HOMEPAGE="http://www.kde-apps.org/content/show.php?content=73968"
@@ -15,9 +15,9 @@ SLOT="4"
 IUSE="debug oscar zeroconf"
 
 RDEPEND="
-	kde-plasma/plasma-workspace:4
-	oscar? ( $(add_kdeapps_dep kopete oscar) )
-	zeroconf? ( $(add_kdeapps_dep zeroconf-ioslave) )
+ kde-plasma/plasma-workspace:4
+ oscar? ( $(add_kdeapps_dep kopete oscar) )
+ zeroconf? ( $(add_kdeapps_dep zeroconf-ioslave) )
 "
 
 PATCHES=( "${FILESDIR}/${P}-as-needed.patch" )

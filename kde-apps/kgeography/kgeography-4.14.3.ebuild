@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE: a geography learning tool"
 HOMEPAGE="https://edu.kde.org/applications/miscellaneous/kgeography

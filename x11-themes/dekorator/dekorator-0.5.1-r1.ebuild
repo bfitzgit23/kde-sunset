@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Window decoration engine for KDE"
 HOMEPAGE="https://store.kde.org/p/1167273"
@@ -15,8 +15,8 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 DEPEND="
-	kde-plasma/kwin:4
-	media-libs/qimageblitz
+ kde-plasma/kwin:4
+ media-libs/qimageblitz
 "
 RDEPEND="${DEPEND}"
 

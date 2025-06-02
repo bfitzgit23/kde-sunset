@@ -4,7 +4,7 @@
 EAPI=7
 
 VIRTUALX_REQUIRED="test"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Plasmoid for displaying Ayatana indications"
 HOMEPAGE="https://launchpad.net/plasma-widget-message-indicator"
@@ -16,11 +16,11 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 RDEPEND="
-	>=dev-libs/libdbusmenu-qt-0.3.0[qt4(-)]
-	>=dev-libs/libindicate-qt-0.2.5
+ >=dev-libs/libdbusmenu-qt-0.3.0[qt4(-)]
+ >=dev-libs/libindicate-qt-0.2.5
 "
 DEPEND="${RDEPEND}
-	dev-libs/libindicate
+ dev-libs/libindicate
 "
 
 # 1 test fails

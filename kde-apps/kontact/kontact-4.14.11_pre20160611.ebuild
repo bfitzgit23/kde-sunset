@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kdepim"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Container application to unify several major PIM applications within one"
 HOMEPAGE="https://www.kde.org/applications/office/kontact/"
@@ -14,8 +14,8 @@ KEYWORDS="amd64 x86"
 IUSE="debug"
 
 DEPEND="
-	$(add_kdeapps_dep kdepim-common-libs '' 4.14.11_pre20160611)
-	$(add_kdeapps_dep kdepimlibs '' 4.14.11_pre20160611)
+ $(add_kdeapps_dep kdepim-common-libs '' 4.14.11_pre20160611)
+ $(add_kdeapps_dep kdepimlibs '' 4.14.11_pre20160611)
 "
 RDEPEND="${DEPEND}"
 
@@ -27,25 +27,25 @@ KMSAVELIBS="true"
 # kcontactmanager gone from kdesvn
 #
 KMEXTRACTONLY="
-	kontact/plugins/akregator/
-	kontact/plugins/kaddressbook/
-	kontact/plugins/kjots/
-	kontact/plugins/kmail/
-	kontact/plugins/knode/
-	kontact/plugins/knotes/
-	kontact/plugins/korganizer/
-	kontact/plugins/ktimetracker/
-	kontact/plugins/planner/
-	kontact/plugins/specialdates/
-	libkdepimdbusinterfaces/
+ kontact/plugins/akregator/
+ kontact/plugins/kaddressbook/
+ kontact/plugins/kjots/
+ kontact/plugins/kmail/
+ kontact/plugins/knode/
+ kontact/plugins/knotes/
+ kontact/plugins/korganizer/
+ kontact/plugins/ktimetracker/
+ kontact/plugins/planner/
+ kontact/plugins/specialdates/
+ libkdepimdbusinterfaces/
 "
 
 src_unpack() {
-	if use handbook; then
-		KMEXTRA+="
-			doc/kontact-admin/
-		"
-	fi
+ if use handbook; then
+ KMEXTRA+="
+ doc/kontact-admin/
+ "
+ fi
 
-	kde4-meta_src_unpack
+ kde4-meta_src_unpack
 }

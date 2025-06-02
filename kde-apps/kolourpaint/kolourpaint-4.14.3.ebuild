@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Paint Program for KDE"
 HOMEPAGE="https://apps.kde.org/en/kolourpaint"
@@ -17,9 +17,9 @@ DEPEND="media-libs/qimageblitz"
 RDEPEND="${DEPEND}"
 
 pkg_postinst() {
-	kde4-base_pkg_postinst
+ kde4-base_pkg_postinst
 
-	if ! has_version kde-apps/ksaneplugin:${SLOT} ; then
-		elog "To enable scanner support, please install kde-apps/ksaneplugin:${SLOT}"
-	fi
+ if ! has_version kde-apps/ksaneplugin:${SLOT} ; then
+ elog "To enable scanner support, please install kde-apps/ksaneplugin:${SLOT}"
+ fi
 }

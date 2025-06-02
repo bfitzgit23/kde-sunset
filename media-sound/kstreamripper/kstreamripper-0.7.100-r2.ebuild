@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Program for ripping internet radios"
 HOMEPAGE="https://www.linux-apps.com/p/1126631"
@@ -17,7 +17,7 @@ IUSE="debug"
 DEPEND=""
 #>=net-libs/libproxy-0.3.1
 RDEPEND="${DEPEND}
-	media-sound/streamripper
+ media-sound/streamripper
 "
 
 S=${WORKDIR}/${PN}

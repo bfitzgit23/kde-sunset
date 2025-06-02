@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit cmake-utils
+cmake-utils
 
 DESCRIPTION="FTP server with a service discovery feature"
 HOMEPAGE="http://www.zuzuf.net/qshare/"
@@ -15,8 +15,8 @@ KEYWORDS="amd64 x86"
 IUSE=""
 
 RDEPEND="dev-qt/qtcore:4
-	dev-qt/qtgui:4
-	net-dns/avahi[mdnsresponder-compat]"
+ dev-qt/qtgui:4
+ net-dns/avahi[mdnsresponder-compat]"
 DEPEND="${RDEPEND}"
 
 DOCS=( AUTHORS README )

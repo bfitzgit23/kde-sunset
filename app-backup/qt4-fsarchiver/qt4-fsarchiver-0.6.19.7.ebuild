@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit qmake-utils versionator
+ qmake-utils 
 
 MY_P="${PN}-$(replace_version_separator 3 '-')"
 MIN_PV="$(get_version_component_range 1-3)"
@@ -19,47 +19,47 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 CDEPEND="app-arch/bzip2
-	app-arch/xz-utils
-	dev-libs/libgcrypt:=
-	dev-libs/lzo
-	dev-qt/qtcore:4
-	dev-qt/qtgui:4
-	sys-apps/util-linux
-	sys-fs/e2fsprogs
-	sys-libs/zlib"
+ app-arch/xz-utils
+ dev-libs/libgcrypt:=
+ dev-libs/lzo
+ dev-qt/qtcore:4
+ dev-qt/qtgui:4
+ sys-apps/util-linux
+ sys-fs/e2fsprogs
+ sys-libs/zlib"
 RDEPEND="${CDEPEND}
-	>=app-backup/fsarchiver-${MIN_PV}[lzma,lzo]"
+ >=app-backup/fsarchiver-${MIN_PV}[lzma,lzo]"
 DEPEND="${CDEPEND}"
 
 S="${WORKDIR}/${PN}"
 
 src_prepare() {
-	# fix .desktop file
-	sed -i \
-		-e '/Encoding/d' starter/"${PN}".desktop \
-		|| die "sed on qt4-fsarchiver.desktop failed"
-	# fix icon installation location
-	sed -i \
-		-e "/icon.path/s:app-install/icons:${PN}:" "${PN}.pro" \
-		|| die "sed on ${PN}.pro failed"
+ # fix .desktop file
+ sed -i \
+ -e '/Encoding/d' starter/"${PN}".desktop \
+ || die "sed on qt4-fsarchiver.desktop failed"
+ # fix icon installation location
+ sed -i \
+ -e "/icon.path/s:app-install/icons:${PN}:" "${PN}.pro" \
+ || die "sed on ${PN}.pro failed"
 }
 
 src_compile() {
-	eqmake4
+ eqmake4
 }
 
 src_install() {
-	emake INSTALL_ROOT="${D}" install
-	einstalldocs
+ emake INSTALL_ROOT="${D}" install
+ einstalldocs
 }
 
 pkg_postinst() {
-	elog "optional dependencies:"
-	elog "  sys-fs/btrfs-progs"
-	elog "  sys-fs/jfsutils"
-	elog "  sys-fs/ntfs3g[ntfsprogs]"
-	elog "  sys-fs/reiser4progs"
-	elog "  sys-fs/reiserfsprogs"
-	elog "  net-fs/sshfs"
-	elog "  sys-fs/xfsprogs"
+ elog "optional dependencies:"
+ elog " sys-fs/btrfs-progs"
+ elog " sys-fs/jfsutils"
+ elog " sys-fs/ntfs3g[ntfsprogs]"
+ elog " sys-fs/reiser4progs"
+ elog " sys-fs/reiserfsprogs"
+ elog " net-fs/sshfs"
+ elog " sys-fs/xfsprogs"
 }

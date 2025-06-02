@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit qmake-utils
+qmake-utils
 
 DESCRIPTION="Qt4 cross-platform multi-threaded download utility"
 HOMEPAGE="http://qt-apps.org/content/show.php/?content=103312"
@@ -15,17 +15,17 @@ KEYWORDS="amd64 x86"
 IUSE=""
 
 DEPEND="
-	dev-qt/qtcore:4[ssl]
-	dev-qt/qtgui:4
+ dev-qt/qtcore:4[ssl]
+ dev-qt/qtgui:4
 "
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${PN}"
 
 src_configure() {
-	eqmake4
+ eqmake4
 }
 
 src_install() {
-	emake INSTALL_ROOT="${D}" install
+ emake INSTALL_ROOT="${D}" install
 }

@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit cmake-utils
+cmake-utils
 
 DESCRIPTION="Application menu module for Qt"
 HOMEPAGE="https://launchpad.net/appmenu-qt"
@@ -15,10 +15,10 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND="
-	>=dev-libs/libdbusmenu-qt-0.9.0[qt4(-)]
-	dev-qt/qtcore:4
-	dev-qt/qtdbus:4
-	dev-qt/qtgui:4
+ >=dev-libs/libdbusmenu-qt-0.9.0[qt4(-)]
+ dev-qt/qtcore:4
+ dev-qt/qtdbus:4
+ dev-qt/qtgui:4
 "
 RDEPEND="${DEPEND}"
 

@@ -4,22 +4,22 @@
 EAPI=7
 
 KMNAME="kde-wallpapers"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE wallpapers"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="+minimal"
 
 src_configure() {
-	local mycmakeargs=( -DWALLPAPER_INSTALL_DIR="${EPREFIX}/usr/share/wallpapers" )
+ local mycmakeargs=( -DWALLPAPER_INSTALL_DIR="${EPREFIX}/usr/share/wallpapers" )
 
-	kde4-base_src_configure
+ kde4-base_src_configure
 }
 
 src_install() {
-	kde4-base_src_install
+ kde4-base_src_install
 
-	if use minimal ; then
-		rm -r "${ED}"usr/share/wallpapers/Autumn || die
-	fi
+ if use minimal ; then
+ rm -r "${ED}"usr/share/wallpapers/Autumn || die
+ fi
 }

@@ -3,14 +3,14 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE digital camera raw image library wrapper"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 DEPEND="
-	>=media-libs/libraw-0.16_beta1-r1:=
+ >=media-libs/libraw-0.16_beta1-r1:=
 "
 RDEPEND="${DEPEND}"
 

@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Plasma applet to monitor the network interface status"
 HOMEPAGE="https://sourceforge.net/projects/pa-net-stat/"
@@ -16,7 +16,7 @@ IUSE="debug"
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	kde-plasma/plasma-workspace:4
+ kde-plasma/plasma-workspace:4
 "
 
 S="${WORKDIR}/${P}-Source"

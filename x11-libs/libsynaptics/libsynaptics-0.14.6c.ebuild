@@ -17,6 +17,6 @@ RDEPEND=">=x11-drivers/xf86-input-synaptics-0.15.0"
 PATCHES=( "${FILESDIR}/libsynaptics-0.14.6c-add-missing-includes.patch" )
 
 src_install() {
-	emake DESTDIR="${D}" install
-	einstalldocs
+ emake DESTDIR="${D}" install
+ einstalldocs
 }

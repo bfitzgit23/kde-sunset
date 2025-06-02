@@ -2,15 +2,15 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-inherit kde4-meta-pkg
+kde4-meta-pkg
 
 DESCRIPTION="KDE WebDev - merge this to pull in all kdewebdev-derived packages"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND="
-	$(add_kdeapps_dep kfilereplace)
-	$(add_kdeapps_dep kimagemapeditor)
-	$(add_kdeapps_dep klinkstatus)
-	$(add_kdeapps_dep kommander)
+ $(add_kdeapps_dep kfilereplace)
+ $(add_kdeapps_dep kimagemapeditor)
+ $(add_kdeapps_dep klinkstatus)
+ $(add_kdeapps_dep kommander)
 "

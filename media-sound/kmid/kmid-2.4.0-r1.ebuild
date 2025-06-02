@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="A MIDI/Karaoke player based on kdelibs"
 HOMEPAGE="https://userbase.kde.org/KMid"
@@ -16,9 +16,9 @@ KEYWORDS="amd64 x86"
 IUSE="debug"
 
 RDEPEND="
-	media-libs/alsa-lib
-	>=media-sound/drumstick-0.4
-	<media-sound/drumstick-1.0.0
+ media-libs/alsa-lib
+ >=media-sound/drumstick-0.4
+ <media-sound/drumstick-1.0.0
 "
 DEPEND="${RDEPEND}"
 

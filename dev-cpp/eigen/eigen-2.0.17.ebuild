@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit cmake-utils
+cmake-utils
 
 DESCRIPTION="C++ template library for linear algebra"
 HOMEPAGE="http://eigen.tuxfamily.org/"
@@ -17,46 +17,46 @@ IUSE="debug doc examples test"
 RESTRICT="test"
 
 RDEPEND="
-	examples? (
-		dev-qt/qtgui:4
-		dev-qt/qtopengl:4
-	)
-	!dev-cpp/eigen:0"
+ examples? (
+ dev-qt/qtgui:4
+ dev-qt/qtopengl:4
+ )
+ !dev-cpp/eigen:0"
 DEPEND="${RDEPEND}
-	doc? ( app-doc/doxygen )"
+ doc? ( app-doc/doxygen )"
 
 src_unpack() {
-	unpack ${A}
-	mv ${PN}* ${P} || die
+ unpack ${A}
+ mv ${PN}* ${P} || die
 }
 
 src_configure() {
-	# benchmarks (BTL) brings up a damn load of external deps including fortran
-	# library hangs up complete compilation proccess, test later
-	local mycmakeargs=(
-		-DEIGEN_BUILD_LIB=OFF
-		-DEIGEN_BUILD_BTL=OFF
-		-DEIGEN_BUILD_PKGCONFIG=ON
-		-DEIGEN_BUILD_DEMOS=$(usex examples)
-		-DEIGEN_BUILD_TESTS=$(usex test)
-	)
-	cmake-utils_src_configure
+ # benchmarks (BTL) brings up a damn load of external deps including fortran
+ # library hangs up complete compilation proccess, test later
+ local mycmakeargs=(
+ -DEIGEN_BUILD_LIB=OFF
+ -DEIGEN_BUILD_BTL=OFF
+ -DEIGEN_BUILD_PKGCONFIG=ON
+ -DEIGEN_BUILD_DEMOS=$(usex examples)
+ -DEIGEN_BUILD_TESTS=$(usex test)
+ )
+ cmake-utils_src_configure
 }
 
 src_compile() {
-	cmake-utils_src_compile -j1
+ cmake-utils_src_compile -j1
 
-	if use doc; then
-		cmake-utils_src_compile -j1 doc
-		HTML_DOCS=( "${BUILD_DIR}"/html/. )
-	fi
+ if use doc; then
+ cmake-utils_src_compile -j1 doc
+ HTML_DOCS=( "${BUILD_DIR}"/html/. )
+ fi
 }
 
 src_install() {
-	cmake-utils_src_install -j1
+ cmake-utils_src_install -j1
 
-	if use examples; then
-		cd "${BUILD_DIR}"/demos || die
-		dobin mandelbrot/mandelbrot opengl/quaternion_demo
-	fi
+ if use examples; then
+ cd "${BUILD_DIR}"/demos || die
+ dobin mandelbrot/mandelbrot opengl/quaternion_demo
+ fi
 }

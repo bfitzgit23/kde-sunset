@@ -5,13 +5,13 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-runtime"
-inherit kde4-meta kde4-functions-extra
+kde4-meta kde4-functions-extra
 
 DESCRIPTION="The KDE Control Center"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 RDEPEND="
-	$(add_kdeplasma_dep khotkeys '' 4.11)
-	$(add_kdeapps_dep zeroconf-ioslave)
+ $(add_kdeplasma_dep khotkeys '' 4.11)
+ $(add_kdeapps_dep zeroconf-ioslave)
 "

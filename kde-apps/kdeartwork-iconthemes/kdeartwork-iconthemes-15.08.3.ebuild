@@ -6,7 +6,7 @@ EAPI=7
 KMNAME="kdeartwork"
 KMMODULE="IconThemes"
 KDE_SCM="svn"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Icon themes for kde"
 KEYWORDS="~amd64 ~x86"
@@ -14,5 +14,5 @@ IUSE=""
 
 # Provides nuvola icon theme
 RDEPEND="
-	!x11-themes/nuvola
+ !x11-themes/nuvola
 "

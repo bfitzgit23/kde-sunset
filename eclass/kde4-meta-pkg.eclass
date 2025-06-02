@@ -15,7 +15,7 @@
 if [[ -z ${_KDE4_META_PKG_ECLASS} ]]; then
 _KDE4_META_PKG_ECLASS=1
 
-inherit kde4-functions
+kde4-functions
 
 HOMEPAGE="https://www.kde.org/"
 

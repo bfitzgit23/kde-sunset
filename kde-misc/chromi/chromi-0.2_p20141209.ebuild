@@ -4,7 +4,7 @@
 EAPI=7
 
 MY_P="kwin-deco-${PN}-${PV}"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Titlebar-less decoration inspired by Google Chrome and Nitrogen minimal mod"
 HOMEPAGE="http://kde-look.org/content/show.php/Chromi?content=119069"
@@ -18,6 +18,6 @@ IUSE=""
 S="${WORKDIR}/${MY_P}"
 
 DEPEND="
-	kde-plasma/kwin:4
+ kde-plasma/kwin:4
 "
 RDEPEND="${DEPEND}"

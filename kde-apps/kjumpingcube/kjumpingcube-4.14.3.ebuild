@@ -5,12 +5,12 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KDE_SELINUX_MODULE="games"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE: Tactical one or two player game"
 HOMEPAGE="
-	https://www.kde.org/applications/games/kjumpingcube/
-	https://games.kde.org/game.php?game=kjumpingcube
+ https://www.kde.org/applications/games/kjumpingcube/
+ https://games.kde.org/game.php?game=kjumpingcube
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"

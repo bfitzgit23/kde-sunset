@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kdepim"
-inherit kde4-meta
+kde4-meta
 
 DESCRIPTION="Address book application"
 HOMEPAGE="https://www.kde.org/applications/office/kaddressbook/"
@@ -14,39 +14,39 @@ KEYWORDS="amd64 x86"
 IUSE="debug"
 
 DEPEND="
-	$(add_kdeapps_dep kdepim-common-libs '' 4.14.11_pre20160611)
-	$(add_kdeapps_dep kdepimlibs '' 4.14.11_pre20160611)
-	dev-libs/grantlee:0
+ $(add_kdeapps_dep kdepim-common-libs '' 4.14.11_pre20160611)
+ $(add_kdeapps_dep kdepimlibs '' 4.14.11_pre20160611)
+ dev-libs/grantlee:0
 "
 RDEPEND="${DEPEND}
-	!kde-base/contactthemeeditor
+ !kde-base/contactthemeeditor
 "
 
 KMEXTRA="
-	grantleeeditor/contactthemeeditor
-	plugins/kaddressbook/
-	plugins/ktexteditor/
+ grantleeeditor/contactthemeeditor
+ plugins/kaddressbook/
+ plugins/ktexteditor/
 "
 KMCOMPILEONLY="
-	grantleetheme/
-	kaddressbookgrantlee/
+ grantleetheme/
+ kaddressbookgrantlee/
 "
 KMEXTRACTONLY="
-	akonadi_next/
-	calendarsupport/
-	grantleeeditor/grantleethemeeditor/
-	libkleo/
-	pimcommon/
+ akonadi_next/
+ calendarsupport/
+ grantleeeditor/grantleethemeeditor/
+ libkleo/
+ pimcommon/
 "
 
 KMLOADLIBS="kdepim-common-libs"
 
 pkg_postinst() {
-	kde4-meta_pkg_postinst
+ kde4-meta_pkg_postinst
 
-	if ! has_version kde-apps/kdepim-kresources:${SLOT}; then
-		echo
-		elog "For groupware functionality, please install kde-apps/kdepim-kresources:${SLOT}"
-		echo
-	fi
+ if ! has_version kde-apps/kdepim-kresources:${SLOT}; then
+ echo
+ elog "For groupware functionality, please install kde-apps/kdepim-kresources:${SLOT}"
+ echo
+ fi
 }

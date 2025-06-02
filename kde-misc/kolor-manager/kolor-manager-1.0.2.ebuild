@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KControl module for Oyranos CMS cross desktop settings"
 HOMEPAGE="http://www.oyranos.org/wiki/index.php?title=Kolor-manager"
@@ -15,10 +15,10 @@ SLOT="4"
 IUSE="debug"
 
 DEPEND="
-	>=media-libs/oyranos-0.9.5
-	media-libs/libXcm
-	x11-libs/libX11
-	x11-libs/libXrandr
+ >=media-libs/oyranos-0.9.5
+ media-libs/libXcm
+ x11-libs/libX11
+ x11-libs/libXrandr
 "
 RDEPEND="${DEPEND}"
 

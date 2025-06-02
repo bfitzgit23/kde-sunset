@@ -4,17 +4,17 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE screen gamma values kcontrol module"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 RDEPEND="
-	x11-libs/libXxf86vm
+ x11-libs/libXxf86vm
 "
 DEPEND="${RDEPEND}
-	x11-base/xorg-proto
+ x11-base/xorg-proto
 "
 
 PATCHES=( "${FILESDIR}/${P}-cmake34.patch" )

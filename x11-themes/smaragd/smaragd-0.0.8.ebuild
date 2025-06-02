@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KWin theme engine that uses Emerald themes"
 HOMEPAGE="https://invent.kde.org/plasma/smaragd https://store.kde.org/p/1167274"
@@ -15,11 +15,11 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 DEPEND="
-	kde-plasma/libkworkspace:4
-	x11-libs/cairo
+ kde-plasma/libkworkspace:4
+ x11-libs/cairo
 "
 RDEPEND="${DEPEND}
-	kde-plasma/kwin:4
+ kde-plasma/kwin:4
 "
 
 S="${WORKDIR}/${PN}-v${PV}"
