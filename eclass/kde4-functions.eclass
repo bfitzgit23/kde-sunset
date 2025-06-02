@@ -14,7 +14,7 @@
 if [[ -z ${_KDE4_FUNCTIONS_ECLASS} ]]; then
 _KDE4_FUNCTIONS_ECLASS=1
 
-inherit versionator
+#inherit versionator
 
 # @ECLASS-VARIABLE: EAPI
 # @DESCRIPTION:
