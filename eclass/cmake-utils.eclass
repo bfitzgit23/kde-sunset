@@ -106,23 +106,23 @@ _CMAKE_UTILS_ECLASS=1
 # a user flag and should under _no circumstances_ be set in the ebuild.
 # Helps in improving QA of build systems that write to source tree.
 
-case ${EAPI} in
-	3|4|5) : ${CMAKE_WARN_UNUSED_CLI:=no} ;;
-	6|7) : ${CMAKE_WARN_UNUSED_CLI:=yes} ;;
-esac
+#DISABLED: case ${EAPI} in
+#DISABLED: 	3|4|5) : ${CMAKE_WARN_UNUSED_CLI:=no} ;;
+#DISABLED: 	6|7) : ${CMAKE_WARN_UNUSED_CLI:=yes} ;;
+#DISABLED: esac
 
 inherit toolchain-funcs flag-o-matic multiprocessing xdg-utils
 
-case ${EAPI} in
-	[3456])
-		: ${CMAKE_MAKEFILE_GENERATOR:=emake}
-		inherit eutils multilib
-		;;
-	*)
-		: ${CMAKE_MAKEFILE_GENERATOR:=ninja}
-		inherit ninja-utils
-		;;
-esac
+#DISABLED: case ${EAPI} in
+#DISABLED: 	[3456])
+#DISABLED: 		: ${CMAKE_MAKEFILE_GENERATOR:=emake}
+#DISABLED: 		inherit eutils multilib
+#DISABLED: 		;;
+#DISABLED: 	*)
+#DISABLED: 		: ${CMAKE_MAKEFILE_GENERATOR:=ninja}
+#DISABLED: 		inherit ninja-utils
+#DISABLED: 		;;
+#DISABLED: esac
 
 EXPORT_FUNCTIONS src_prepare src_configure src_compile src_test src_install
 
@@ -152,10 +152,10 @@ if [[ ${PN} != cmake ]]; then
 	BDEPEND+=" >=dev-util/cmake-${CMAKE_MIN_VERSION}"
 fi
 
-case ${EAPI} in
-	7) ;;
-	*) DEPEND=" ${BDEPEND}" ;;
-esac
+#DISABLED: case ${EAPI} in
+#DISABLED: 	7) ;;
+#DISABLED: 	*) DEPEND=" ${BDEPEND}" ;;
+#DISABLED: esac
 
 # Internal functions used by cmake-utils_use_*
 _cmake_use_me_now() {
@@ -250,18 +250,18 @@ _cmake_generator_to_use() {
 		ninja)
 			# if ninja is enabled but not installed, the build could fail
 			# this could happen if ninja is manually enabled (eg. make.conf) but not installed
-			case ${EAPI} in
-				3|4|5|6)
-					if ! ROOT=/ has_version dev-util/ninja; then
-						die "CMAKE_MAKEFILE_GENERATOR is set to ninja, but ninja is not installed. Please install dev-util/ninja or unset CMAKE_MAKEFILE_GENERATOR."
-					fi
-				;;
-				*)
-					if ! has_version -b dev-util/ninja; then
-						die "CMAKE_MAKEFILE_GENERATOR is set to ninja, but ninja is not installed. Please install dev-util/ninja or unset CMAKE_MAKEFILE_GENERATOR."
-					fi
-				;;
-			esac
+#DISABLED: 			case ${EAPI} in
+#DISABLED: 				3|4|5|6)
+#DISABLED: 					if ! ROOT=/ has_version dev-util/ninja; then
+#DISABLED: 						die "CMAKE_MAKEFILE_GENERATOR is set to ninja, but ninja is not installed. Please install dev-util/ninja or unset CMAKE_MAKEFILE_GENERATOR."
+#DISABLED: 					fi
+#DISABLED: 				;;
+#DISABLED: 				*)
+#DISABLED: 					if ! has_version -b dev-util/ninja; then
+#DISABLED: 						die "CMAKE_MAKEFILE_GENERATOR is set to ninja, but ninja is not installed. Please install dev-util/ninja or unset CMAKE_MAKEFILE_GENERATOR."
+#DISABLED: 					fi
+#DISABLED: 				;;
+#DISABLED: 			esac
 			generator_name="Ninja"
 			;;
 		emake)
