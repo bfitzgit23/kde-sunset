@@ -40,13 +40,13 @@ src_prepare() {
  fi
  sed -e "s:KDE4_ICON_INSTALL_DIR:ICON_INSTALL_DIR:" \
  -e "s:KDE4_XDG_APPS_INSTALL_DIR:XDG_APPS_INSTALL_DIR:" \
- -i packages/CMakeLists.txt || die
+ -i packages/CMakeLists.txt || eerror
  sed -e "s:KDE4_BIN_INSTALL_DIR:BIN_INSTALL_DIR:" \
- -i src/CMakeLists.txt || die
+ -i src/CMakeLists.txt || eerror
  echo "CONFIG += ordered" >> kchmviewer.pro # parallel build fix #281954
 
  sed -e "/Encoding=UTF-8/d" \
- -i packages/kchmviewer.desktop || die "fixing .desktop file failed"
+ -i packages/kchmviewer.desktop || eerror "fixing .desktop file failed"
 }
 
 src_configure() {

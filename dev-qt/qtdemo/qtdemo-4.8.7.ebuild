@@ -57,19 +57,19 @@ src_prepare() {
  if ! use_with/use_enable ${flag%:*}; then
  einfo "Disabling ${flag%:*} examples"
  sed -i -e "/SUBDIRS += ${flag%:*}/d" \
- examples/examples.pro || die
+ examples/examples.pro || eerror
 
  if [[ ${flag} == *:* ]]; then
  einfo "Disabling ${flag%:*} demos"
  sed -i -re "/SUBDIRS \+= demos_(${flag#*:})/d" \
- demos/demos.pro || die
+ demos/demos.pro || eerror
  fi
  fi
  done
 
  # Remove bogus dependency on qt3support (bug 510042)
  sed -i -e 's/contains(QT_CONFIG, qt3support)://' \
- examples/graphicsview/graphicsview.pro || die
+ examples/graphicsview/graphicsview.pro || eerror
 }
 
 multilib_src_configure() {

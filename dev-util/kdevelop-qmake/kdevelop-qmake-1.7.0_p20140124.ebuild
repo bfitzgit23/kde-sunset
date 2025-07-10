@@ -34,5 +34,5 @@ src_install() {
  #Move this file to prevent a collision with kappwizard
  mv "${D}"/usr/share/apps/kdevappwizard/templates/qmake_qt4guiapp.tar.bz2 \
  "${D}"/usr/share/apps/kdevappwizard/templates/kdevelop-qmake_qt4guiapp.tar.bz2 \
- || die
+ || eerror
 }

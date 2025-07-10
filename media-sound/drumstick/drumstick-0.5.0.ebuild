@@ -35,7 +35,7 @@ PATCHES=(
 )
 
 src_prepare() {
- sed -e '/CMAKE_EXE_LINKER_FLAGS/d' -i CMakeLists.txt || die
+ sed -e '/CMAKE_EXE_LINKER_FLAGS/d' -i CMakeLists.txt || eerror
  cmake-utils_src_prepare
 }
 

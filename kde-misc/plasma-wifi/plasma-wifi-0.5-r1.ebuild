@@ -19,8 +19,8 @@ RDEPEND="
 "
 
 src_prepare() {
- sed -i "s:find_package(Plasma REQUIRED)::" CMakeLists.txt || die "sed failed"
- sed -i "s:PLASMA_LIBS:KDE4_PLASMA_LIBS:" CMakeLists.txt || die "sed failed"
+ sed -i "s:find_package(Plasma REQUIRED)::" CMakeLists.txt || eerror "sed failed"
+ sed -i "s:PLASMA_LIBS:KDE4_PLASMA_LIBS:" CMakeLists.txt || eerror "sed failed"
 
  kde4-base_src_prepare
 }

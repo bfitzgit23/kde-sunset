@@ -71,7 +71,7 @@ src_install() {
  kde4-meta_src_install
 
  # an equivalent file is already installed by kde-base/startkde, bug 377151
- rm "${ED}/usr/share/apps/kdm/sessions/kde-plasma.desktop" || die
+ rm "${ED}/usr/share/apps/kdm/sessions/kde-plasma.desktop" || eerror
 
  # Customize the kdmrc configuration:
  # - SessionDirs set to /usr/share/xsessions
@@ -85,7 +85,7 @@ src_install() {
  -e "s|^.*DataDir=.*$|#&\nDataDir=${EPREFIX}${KDM_HOME}|" \
  -e "s|^.*FaceDir=.*$|#&\nFaceDir=${EPREFIX}${KDM_HOME}/faces|" \
  -i "${ED}"/usr/share/config/kdm/kdmrc \
- || die "Failed to set ServerTimeout and SessionsDirs correctly in kdmrc."
+ || eerror "Failed to set ServerTimeout and SessionsDirs correctly in kdmrc."
 
  # Don't install empty dir
  rmdir "${ED}"/usr/share/config/kdm/sessions

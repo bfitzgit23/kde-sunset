@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 MY_P=KdmThemeGenerator
 
@@ -17,15 +17,15 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 RDEPEND="
-	kde-plasma/kdm:4
+ kde-plasma/kdm:4
 "
 
 S=${WORKDIR}/${MY_P}
 
 src_install() {
-	kde4-base_src_install
-	exeinto /usr/share/${MY_P}
-	doexe copyFromUserToSystem.sh || die
-	insinto /usr/share/${MY_P}
-	doins input-shadow.svg || die
+ kde4-base_src_install
+ exeinto /usr/share/${MY_P}
+ doexe copyFromUserToSystem.sh || die
+ insinto /usr/share/${MY_P}
+ doins input-shadow.svg || die
 }

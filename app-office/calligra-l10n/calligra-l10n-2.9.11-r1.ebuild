@@ -62,7 +62,7 @@ src_unpack() {
 }
 
 src_prepare() {
- cat <<-EOF > CMakeLists.txt || die
+ cat <<-EOF > CMakeLists.txt || eerror
 project(${PN})
 $(printf "add_subdirectory( %s )\n" \
  `find . -mindepth 1 -maxdepth 1 -type d | sed -e "s:^\./::"`)
@@ -73,12 +73,12 @@ EOF
  if ! use_with/use_enable calligra_features_${cal_ft} ; then
  if ls -U ./*/messages/calligra/${cal_ft}*po > /dev/null 2>&1; then
  rm ./*/messages/calligra/${cal_ft}*po || \
- die "Failed to remove ${cal_ft} messages"
+ eerror "Failed to remove ${cal_ft} messages"
  fi
  if ls -U ./*/docs/calligra/${cal_ft} > /dev/null 2>&1; then
  sed -e "\:add_subdirectory(\s*${cal_ft}\s*): s:^:#:" \
  -i ./*/docs/calligra/CMakeLists.txt || \
- die "Failed to comment out ${cal_ft} docs"
+ eerror "Failed to comment out ${cal_ft} docs"
  fi
  fi
  done

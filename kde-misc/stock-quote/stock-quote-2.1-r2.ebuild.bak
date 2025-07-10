@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit kde4-base
+kde4-base
 
 MY_P=plasma_${PN/-/_}-${PV}
 
@@ -17,16 +17,16 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 RDEPEND="
-	kde-plasma/plasma-workspace:4
+ kde-plasma/plasma-workspace:4
 "
 S=${WORKDIR}/${MY_P}
 
 DOCS=( CHANGELOG README )
 
 src_prepare() {
-	sed -e 's:^[ \t]*::' \
-		-i applet/plasma-applet-stock-quote.desktop || die "fixing .desktop file failed"
-	sed -e 's:^[ \t]*::' \
-		-i dataengine/plasma-dataengine-stockquote.desktop || die "fixing .desktop file failed"
-	kde4-base_src_prepare
+ sed -e 's:^[ \t]*::' \
+ -i applet/plasma-applet-stock-quote.desktop || die "fixing .desktop file failed"
+ sed -e 's:^[ \t]*::' \
+ -i dataengine/plasma-dataengine-stockquote.desktop || die "fixing .desktop file failed"
+ kde4-base_src_prepare
 }

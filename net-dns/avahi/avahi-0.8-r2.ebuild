@@ -97,12 +97,12 @@ src_prepare() {
  if ! use_with/use_enable ipv6; then
  sed -i \
  -e "s/use_with/use_enable-ipv6=yes/use_with/use_enable-ipv6=no/" \
- avahi-daemon/avahi-daemon.conf || die
+ avahi-daemon/avahi-daemon.conf || eerror
  fi
 
  sed -i \
  -e "s:\\.\\./\\.\\./\\.\\./doc/avahi-docs/html/:../../../doc/${PF}/html/:" \
- doxygen_to_devhelp.xsl || die
+ doxygen_to_devhelp.xsl || eerror
 
  eautoreconf
 
@@ -159,7 +159,7 @@ multilib_src_configure() {
  )
  fi
 
- econf "${myconf[@]}"
+ econf --disable-dependency-tracking "${myconf[@]}"
 }
 
 multilib_src_compile() {
@@ -185,7 +185,7 @@ multilib_src_install() {
  fi
 
  # The build system creates an empty "/run" directory, so we clean it up here
- rmdir "${ED}"/run || die
+ rmdir "${ED}"/run || eerror
 }
 
 multilib_src_install_all() {
@@ -199,7 +199,7 @@ multilib_src_install_all() {
 
  dodoc docs/{AUTHORS,NEWS,README,TODO}
 
- find "${ED}" -name '*.la' -type f -delete || die
+ find "${ED}" -name '*.la' -type f -delete || eerror
 }
 
 pkg_postinst() {

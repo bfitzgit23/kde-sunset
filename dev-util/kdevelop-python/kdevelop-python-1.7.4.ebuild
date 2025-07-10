@@ -34,9 +34,9 @@ pkg_setup() {
 }
 
 src_compile() {
- pushd "${WORKDIR}"/${P}_build > /dev/null || die
+ pushd "${WORKDIR}"/${P}_build > /dev/null || eerror
  emake parser
- popd > /dev/null || die
+ popd > /dev/null || eerror
 
  kde4-base_src_compile
 }

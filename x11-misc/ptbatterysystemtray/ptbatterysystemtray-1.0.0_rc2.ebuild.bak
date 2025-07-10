@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit qmake-utils xdg
+qmake-utils xdg
 
 DESCRIPTION="A simple battery monitor in the system tray"
 HOMEPAGE="https://sourceforge.net/projects/batterysystem/"
@@ -16,22 +16,22 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 DEPEND="
-	dev-qt/qtcore:4
-	dev-qt/qtdbus:4
-	dev-qt/qtgui:4
+ dev-qt/qtcore:4
+ dev-qt/qtdbus:4
+ dev-qt/qtgui:4
 "
 RDEPEND="${DEPEND}"
 
 src_prepare() {
-	default
-	sed -e "/^Categories/s/Application;//" -i ptbatterysystemtray.desktop || die
+ default
+ sed -e "/^Categories/s/Application;//" -i ptbatterysystemtray.desktop || die
 }
 
 src_configure() {
-	eqmake4 ${PN}.pro INSTALL_PREFIX=/usr
+ eqmake4 ${PN}.pro INSTALL_PREFIX=/usr
 }
 
 src_install() {
-	emake INSTALL_ROOT="${D}" install
-	einstalldocs
+ emake INSTALL_ROOT="${D}" install
+ einstalldocs
 }

@@ -28,7 +28,7 @@ src_prepare() {
  default
  # adapt to Gentoo paths
  sed -e s,documentation.path.*$,documentation.path\ =\ "${EPREFIX}"/usr/share/doc/"${PF}", \
- -e s,target.path.*$,target.path\ =\ "${EPREFIX}"/usr/bin, -i src-QT4/kdiff3.pro || die
+ -e s,target.path.*$,target.path\ =\ "${EPREFIX}"/usr/bin, -i src-QT4/kdiff3.pro || eerror
 }
 
 src_configure() {

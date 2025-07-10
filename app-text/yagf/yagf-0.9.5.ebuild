@@ -33,11 +33,11 @@ DOCS=( AUTHORS ChangeLog DESCRIPTION README )
 
 src_prepare() {
  # uk translation generation is broken
- rm src/translations/yagf_uk.ts || die
+ rm src/translations/yagf_uk.ts || eerror
  # respect CFLAGS and fix translations path
  sed -e '/add_definitions(-Wall -g)/d' \
  -e '/-DQML_INSTALL_PATH=/s:${QML_DESTINATION}:/${QML_DESTINATION}:' \
- -i CMakeLists.txt || die 'sed on CMakeLists.txt failed'
+ -i CMakeLists.txt || eerror 'sed on CMakeLists.txt failed'
 
  l10n_find_plocales_changes "src/translations" "${PN}_" '.ts'
  cmake_src_prepare
@@ -54,7 +54,7 @@ src_configure() {
 src_install() {
  remove_translation() {
  rm "${ED}/usr/share/yagf/translations/${PN}_${1}.qm" ||
- die "remove '${PN}_${1}.qm' file failed"
+ eerror "remove '${PN}_${1}.qm' file failed"
  }
  cmake_src_install
  l10n_for_each_disabled_locale_do remove_translation

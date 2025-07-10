@@ -35,27 +35,27 @@ src_prepare() {
  default
 
  # remove phonon
- sed -i "/typesystem_phonon.xml/d" generator/generator.qrc || die "sed failed"
- sed -i "/qtscript_phonon/d" qtbindings/qtbindings.pro || die "sed failed"
- sed -i "/qtscript_webkit/d" qtbindings/qtbindings.pro || die "sed failed"
+ sed -i "/typesystem_phonon.xml/d" generator/generator.qrc || eerror "sed failed"
+ sed -i "/qtscript_phonon/d" qtbindings/qtbindings.pro || eerror "sed failed"
+ sed -i "/qtscript_webkit/d" qtbindings/qtbindings.pro || eerror "sed failed"
 
  use_with/use_enable arm && eapply "${FILESDIR}"/${P}-arm.patch
 }
 
 src_configure() {
- cd "${S}"/generator || die
+ cd "${S}"/generator || eerror
  eqmake4 generator.pro
 
- cd "${S}"/qtbindings || die
+ cd "${S}"/qtbindings || eerror
  eqmake4 qtbindings.pro
 }
 
 src_compile() {
- cd "${S}"/generator || die
+ cd "${S}"/generator || eerror
  emake
- ./generator --include-paths="$(qt4_get_headerdir)" || die
+ ./generator --include-paths="$(qt4_get_headerdir)" || eerror
 
- cd "${S}"/qtbindings || die
+ cd "${S}"/qtbindings || eerror
  emake
 }
 

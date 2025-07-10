@@ -132,7 +132,7 @@ pkg_setup() {
 src_prepare() {
  kde4-base_src_prepare
  if ! use_with/use_enable webkit; then
- sed -i CMakeLists.txt -e "/^find_package/ s/QtWebKit //" || die
+ sed -i CMakeLists.txt -e "/^find_package/ s/QtWebKit //" || eerror
  fi
 }
 

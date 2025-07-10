@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit desktop qmake-utils xdg
+desktop qmake-utils xdg
 
 DESCRIPTION="Graphical user interface for comparing and merging files"
 HOMEPAGE="http://www.beesoft.pl/index.php?id=beediff"
@@ -15,25 +15,25 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND="
-	dev-qt/qtcore:4
-	dev-qt/qtgui:4
+ dev-qt/qtcore:4
+ dev-qt/qtgui:4
 "
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${PN}"
 
 src_prepare() {
-	default
-	sed -e '/QMAKE_CXXFLAGS/d' -i beediff.pro || die
+ default
+ sed -e '/QMAKE_CXXFLAGS/d' -i beediff.pro || die
 }
 
 src_configure() {
-	eqmake4
+ eqmake4
 }
 
 src_install() {
-	dobin ${PN}
-	doicon img/${PN}.png
-	make_desktop_entry ${PN} "Beesoft Differ" ${PN} "Qt;Development;"
-	dodoc ChangeLog.txt
+ dobin ${PN}
+ doicon img/${PN}.png
+ make_desktop_entry ${PN} "Beesoft Differ" ${PN} "Qt;Development;"
+ dodoc ChangeLog.txt
 }

@@ -57,7 +57,7 @@ pkg_pretend() {
  if [[ ${MERGE_TYPE} != binary ]] && tc-is-gcc; then
  [[ $(gcc-major-version) -lt 4 ]] || \
  ( [[ $(gcc-major-version) -eq 4 && $(gcc-minor-version) -lt 7 ]] ) \
- && die "Sorry, but gcc-4.6 and earlier won't work (see bug #520102)."
+ && eerror "Sorry, but gcc-4.6 and earlier won't work (see bug #520102)."
  fi
 }
 

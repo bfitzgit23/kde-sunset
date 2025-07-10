@@ -47,7 +47,7 @@ src_prepare() {
 
  # I know upstream wants to help us but it doesn't work..
  sed -e '/INSTALL( FILES AUTHORS/s/^/#DISABLED /' \
- -i CMakeLists.txt || die
+ -i CMakeLists.txt || eerror
 
  use_with/use_enable handbook || rm -fr doc
 }

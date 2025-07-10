@@ -23,11 +23,11 @@ DEPEND="${RDEPEND}
 "
 
 src_configure() {
- econf --disable-static
+ econf --disable-dependency-tracking --disable-static
 }
 
 src_install() {
  use_with/use_enable doc && HTML_DOCS="doc/html/*"
  default
- find "${D}" -name '*.la' -delete || die
+ find "${D}" -name '*.la' -delete || eerror
 }

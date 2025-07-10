@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 CPPUNIT_REQUIRED="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="Common library for KDE PIM apps"
 SRC_URI="https://dev.gentoo.org/~asturm/distfiles/${P/10_p/11_pre}.tar.xz"
@@ -18,17 +18,17 @@ IUSE="debug ldap prison"
 RESTRICT="test"
 
 DEPEND="
-	>=app-crypt/gpgme-1.8.0
-	dev-libs/boost:=
-	dev-libs/cyrus-sasl
-	dev-libs/libgpg-error
-	dev-libs/libical:=
-	dev-libs/qjson
-	kde-apps/akonadi:4
-	media-libs/phonon:0-qt4
-	x11-misc/shared-mime-info
-	ldap? ( net-nds/openldap )
-	prison? ( kde-frameworks/prison:4 )
+ >=app-crypt/gpgme-1.8.0
+ dev-libs/boost:=
+ dev-libs/cyrus-sasl
+ dev-libs/libgpg-error
+ dev-libs/libical:=
+ dev-libs/qjson
+ kde-apps/akonadi:4
+ media-libs/phonon:0-qt4
+ x11-misc/shared-mime-info
+ ldap? ( net-nds/openldap )
+ prison? ( kde-frameworks/prison:4 )
 "
 # boost is not linked to, but headers which include it are installed
 # bug #418071
@@ -40,22 +40,22 @@ PATCHES=( "${FILESDIR}/${P}-revert-544410c90.patch" )
 S="${WORKDIR}/${P/10_p/11_pre}"
 
 src_configure() {
-	local mycmakeargs=(
-		-DBUILD_TOOLS=OFF
-		-DBUILD_doc=$(usex handbook)
-		$(cmake-utils_use_find_package ldap Ldap)
-		$(cmake-utils_use_find_package prison Prison)
-	)
+ local mycmakeargs=(
+ -DBUILD_TOOLS=OFF
+ -DBUILD_doc=$(usex handbook)
+ $(cmake-utils_use_find_package ldap Ldap)
+ $(cmake-utils_use_find_package prison Prison)
+ )
 
-	kde4-base_src_configure
+ kde4-base_src_configure
 }
 
 src_install() {
-	kde4-base_src_install
+ kde4-base_src_install
 
-	# Collides with net-im/choqok
-	rm "${ED}"usr/share/apps/cmake/modules/FindQtOAuth.cmake || die
+ # Collides with net-im/choqok
+ rm "${ED}"usr/share/apps/cmake/modules/FindQtOAuth.cmake || die
 
-	# contains constants/defines only
-	QA_DT_NEEDED="$(find "${ED}" -type f -name 'libakonadi-kabc.so.*' -printf '/%P\n')"
+ # contains constants/defines only
+ QA_DT_NEEDED="$(find "${ED}" -type f -name 'libakonadi-kabc.so.*' -printf '/%P\n')"
 }

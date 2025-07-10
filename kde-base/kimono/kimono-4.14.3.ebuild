@@ -27,7 +27,7 @@ src_prepare() {
  kde4-base_src_prepare
 
  sed -e "/add_subdirectory( examples )/ s:^:#:" \
- -i plasma/CMakeLists.txt || die
+ -i plasma/CMakeLists.txt || eerror
 }
 
 src_configure() {

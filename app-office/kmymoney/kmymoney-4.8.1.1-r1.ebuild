@@ -53,40 +53,40 @@ src_prepare() {
  cmake-utils_src_prepare
 
  if [[ -v LINGUAS ]] ; then
- pushd po > /dev/null || die
+ pushd po > /dev/null || eerror
  local lang
  for lang in *; do
  if [[ -e ${lang} ]] && ! has ${lang/.po/} ${LINGUAS} ; then
  case ${lang} in
  CMakeLists.txt) ;;
- *) rm -r ${lang} || die ;;
+ *) rm -r ${lang} || eerror ;;
  esac
  cmake_comment_add_subdirectory ${lang}
  sed -e "/add_subdirectory([[:space:]]*${lang}\/.*[[:space:]]*)/d" \
- -i CMakeLists.txt || die
+ -i CMakeLists.txt || eerror
  fi
  done
- popd > /dev/null || die
+ popd > /dev/null || eerror
  fi
 
  if ! use_with/use_enable handbook; then
  cmake_comment_add_subdirectory doc
  else
  if [[ -d doc && -v LINGUAS ]] ; then
- pushd doc > /dev/null || die
+ pushd doc > /dev/null || eerror
  local lang
  for lang in *; do
  if ! has ${lang} ${LINGUAS} && [[ ${lang} != "en_US" ]]; then
  cmake_comment_add_subdirectory ${lang}
  fi
  done
- popd > /dev/null || die
+ popd > /dev/null || eerror
  fi
  fi
 
  # don't install as executable
  sed -i kmymoney/CMakeLists.txt \
- -e "/install.*kmymoney.appdata/ s/PROGRAMS/FILES/" || die
+ -e "/install.*kmymoney.appdata/ s/PROGRAMS/FILES/" || eerror
 }
 
 src_configure() {

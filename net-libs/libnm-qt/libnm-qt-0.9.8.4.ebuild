@@ -47,7 +47,7 @@ src_configure() {
 
 src_install() {
  if use_with/use_enable doc; then
- { cd "${BUILD_DIR}" && doxygen; } || die "Generating documentation failed"
+ { cd "${BUILD_DIR}" && doxygen; } || eerror "Generating documentation failed"
  HTML_DOCS=( "${BUILD_DIR}/doc/html/" )
  fi
 

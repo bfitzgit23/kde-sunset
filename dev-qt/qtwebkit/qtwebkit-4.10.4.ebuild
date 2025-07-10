@@ -62,12 +62,12 @@ PATCHES=(
 
 src_prepare() {
  # examples cause_with/use_enable a sandbox violation (bug 458222)
- sed -i -e '/SUBDIRS += examples/d' Source/QtWebKit.pro || die
+ sed -i -e '/SUBDIRS += examples/d' Source/QtWebKit.pro || eerror
 
  # respect CXXFLAGS
  sed -i -e '/QMAKE_CXXFLAGS_RELEASE.*=/d' \
  Source/WTF/WTF.pro \
- Source/JavaScriptCore/Target.pri || die
+ Source/JavaScriptCore/Target.pri || eerror
 
  default
 }
@@ -112,12 +112,12 @@ multilib_src_compile() {
  QMAKE_LFLAGS_DEBUG=
  )
  echo "${myconf[@]}"
- "${myconf[@]}" || die
+ "${myconf[@]}" || eerror
 }
 
 multilib_src_install() {
  emake INSTALL_ROOT="${D}" install -C $(use_with/use_enablex debug Debug Release)
 
  # move pkgconfig file to the correct location
- mv "${ED}"/usr/$(get_libdir){/qt4/pkgconfig,} || die
+ mv "${ED}"/usr/$(get_libdir){/qt4/pkgconfig,} || eerror
 }

@@ -36,7 +36,7 @@ src_configure() {
 
 src_compile() {
  kde4-meta_src_compile
- cd "${S}/java/${PN}/java/" || die
+ cd "${S}/java/${PN}/java/" || eerror
  eant makejar
 }
 

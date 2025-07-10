@@ -20,6 +20,6 @@ src_install() {
  kde4-base_src_install
 
  if use_with/use_enable minimal ; then
- rm -r "${ED}"usr/share/wallpapers/Autumn || die
+ rm -r "${ED}"usr/share/wallpapers/Autumn || eerror
  fi
 }

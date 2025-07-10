@@ -36,7 +36,7 @@ src_prepare() {
  -e 's/LDFLAGS.*-s.*$/:/' \
  configure.ac asco/configure.ac qucs-core/configure.ac \
  configure asco/configure qucs-core/configure \
- || die "C*FLAGS and LDFLAGS sanitization sed failed"
+ || eerror "C*FLAGS and LDFLAGS sanitization sed failed"
 }
 
 src_configure() {
@@ -57,7 +57,7 @@ src_configure() {
  append-ldflags $( $(tc-getPKG_CONFIG) --libs-only-L \
  QtCore QtGui QtScript QtSvg QtXml Qt3Support )
 
- econf "${myconf[@]}"
+ econf --disable-dependency-tracking "${myconf[@]}"
 }
 
 pkg_postinst() {

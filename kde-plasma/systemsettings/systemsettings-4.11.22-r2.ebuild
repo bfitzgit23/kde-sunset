@@ -80,10 +80,10 @@ src_prepare() {
 
  sed -i -e 's/systemsettingsrc DESTINATION ${SYSCONF_INSTALL_DIR}/systemsettingsrc DESTINATION ${CONFIG_INSTALL_DIR}/' \
  systemsettings/CMakeLists.txt \
- || die "Failed to fix systemsettingsrc install location"
+ || eerror "Failed to fix systemsettingsrc install location"
 
  sed -i -e '/kde4_install_icons/ s/^/#/' kcontrol/kfontinst/kio/CMakeLists.txt \
- || die "Failed to disable icons"
+ || eerror "Failed to disable icons"
 
  kde4-meta_src_prepare
 }

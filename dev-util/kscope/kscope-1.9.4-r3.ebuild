@@ -32,11 +32,11 @@ PATCHES=(
 src_prepare() {
  default
 
- sed -e "s:/usr/local:/usr:" -i config || die
+ sed -e "s:/usr/local:/usr:" -i config || eerror
  sed -e "s:\$\${QSCI_ROOT_PATH}/include/Qsci:& /usr/include/qt4/Qsci:g" \
  -e "s:\$\${QSCI_ROOT_PATH}/lib:& -L/usr/lib/qt4:g" \
  -e "s:/lib:/$(get_libdir):g" \
- -i app/app.pro core/core.pro cscope/cscope.pro editor/editor.pro || die
+ -i app/app.pro core/core.pro cscope/cscope.pro editor/editor.pro || eerror
 
  # fix build failure with parallel make
  echo "CONFIG += ordered" >> kscope.pro

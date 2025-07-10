@@ -27,7 +27,7 @@ RDEPEND="${DEPEND}"
 
 src_prepare() {
  sed -i -e 's/install( FILES kdisplaymanager.h/install( FILES kdisplaymanager.h screenpreviewwidget.h/' \
- libs/kworkspace/CMakeLists.txt || die "failed to provide screenpreviewwidget.h"
+ libs/kworkspace/CMakeLists.txt || eerror "failed to provide screenpreviewwidget.h"
 
  kde4-meta_src_prepare
 }

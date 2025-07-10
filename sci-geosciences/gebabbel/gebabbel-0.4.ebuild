@@ -35,7 +35,7 @@ src_prepare() {
  # do not mess with cflags
  sed \
  -e "/QMAKE_CXXFLAGS/s:=.*$:= ${CXXFLAGS}:g" \
- -i *.pro || die
+ -i *.pro || eerror
 }
 
 src_configure() {

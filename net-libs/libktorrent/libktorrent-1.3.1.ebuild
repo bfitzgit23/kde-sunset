@@ -36,5 +36,5 @@ DEPEND="${RDEPEND}
 src_prepare() {
  kde4-base_src_prepare
  # do not build non-installed example binary
- sed -i -e '/add_subdirectory(examples)/d' CMakeLists.txt || die
+ sed -i -e '/add_subdirectory(examples)/d' CMakeLists.txt || eerror
 }

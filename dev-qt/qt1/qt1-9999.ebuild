@@ -25,7 +25,7 @@ src_prepare() {
  sed -i configs/linux-g++-shared \
  -e '/SYSCONF_LFLAGS_QT/s/lib/src/' \
  -e "/SYSCONF_CXX/s/g++/$(tc-getCC)/" \
- || die
+ || eerror
 }
 
 src_compile() {

@@ -19,7 +19,7 @@ RDEPEND="
 
 src_prepare() {
  # bug 275069
- sed -ie 's:colorsvn::' CMakeLists.txt || die
+ sed -ie 's:colorsvn::' CMakeLists.txt || eerror
 
  kde4-base_src_prepare
 }

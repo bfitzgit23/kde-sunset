@@ -25,7 +25,7 @@ S=${WORKDIR}/${MY_P}
 src_install() {
  kde4-base_src_install
  exeinto /usr/share/${MY_P}
- doexe copyFromUserToSystem.sh || die
+ doexe copyFromUserToSystem.sh || eerror
  insinto /usr/share/${MY_P}
- doins input-shadow.svg || die
+ doins input-shadow.svg || eerror
 }

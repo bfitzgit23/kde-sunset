@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+kde4-base
 
 DESCRIPTION="KDE4 interface to work with Graph Theory"
 HOMEPAGE="https://www.kde.org/applications/education/rocs
@@ -13,25 +13,25 @@ KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 RDEPEND="
-	dev-libs/grantlee:0
-	dev-qt/qtxmlpatterns:4
+ dev-libs/grantlee:0
+ dev-qt/qtxmlpatterns:4
 "
 DEPEND="
-	${RDEPEND}
-	>=dev-libs/boost-1.49
+ ${RDEPEND}
+ >=dev-libs/boost-1.49
 "
 
 RESTRICT=test
 # bug 443752
 
 src_test() {
-	local mycmakeargs=(-DKDE4_BUILD_TESTS=ON)
-	cmake-utils_src_configure
-	kde4-base_src_compile
+ local mycmakeargs=(-DKDE4_BUILD_TESTS=ON)
+ cmake-utils_src_configure
+ kde4-base_src_compile
 
-	cd "${BUILD_DIR}"
-	emake DESTDIR="${T}/tests" install
-	export KDEDIRS="${KDEDIRS}:${T}/tests/${PREFIX}"
-	kbuildsycoca4
-	ctest || die "tests failed"
+ cd "${BUILD_DIR}"
+ emake DESTDIR="${T}/tests" install
+ export KDEDIRS="${KDEDIRS}:${T}/tests/${PREFIX}"
+ kbuildsycoca4
+ ctest || die "tests failed"
 }

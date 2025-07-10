@@ -64,14 +64,14 @@ src_prepare() {
  # bug 172219
  sed -i -e "s:CXXFLAGS.*=:CXXFLAGS=${CXXFLAGS} :" \
  -e "s:LFLAGS.*=:LFLAGS=${LDFLAGS} :" \
- qmake/Makefile.unix || die "sed qmake/Makefile.unix failed"
+ qmake/Makefile.unix || eerror "sed qmake/Makefile.unix failed"
 
  # bug 427782
  sed -i -e '/^CPPFLAGS\s*=/ s/-g //' \
- qmake/Makefile.unix || die "sed CPPFLAGS in qmake/Makefile.unix failed"
+ qmake/Makefile.unix || eerror "sed CPPFLAGS in qmake/Makefile.unix failed"
  sed -i -e 's/setBootstrapVariable QMAKE_CFLAGS_RELEASE/QMakeVar set QMAKE_CFLAGS_RELEASE/' \
  -e 's/setBootstrapVariable QMAKE_CXXFLAGS_RELEASE/QMakeVar set QMAKE_CXXFLAGS_RELEASE/' \
- configure || die "sed configure setBootstrapVariable failed"
+ configure || eerror "sed configure setBootstrapVariable failed"
 }
 
 multilib_src_configure() {
