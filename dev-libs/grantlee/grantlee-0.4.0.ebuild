@@ -34,7 +34,7 @@ PATCHES=(
 
 src_configure() {
  local mycmakeargs=(
- $(cmake-utils_use_build test TESTS)
+ $(cmake-utils_use_with/use_enable_build test TESTS)
  )
 
  cmake-utils_src_configure
@@ -43,11 +43,11 @@ src_configure() {
 src_compile() {
  cmake-utils_src_compile
 
- use doc && cmake-utils_src_compile docs
+ use_with/use_enable doc && cmake-utils_src_compile docs
 }
 
 src_install() {
- use doc && HTML_DOCS=( "${BUILD_DIR}/apidox/" )
+ use_with/use_enable doc && HTML_DOCS=( "${BUILD_DIR}/apidox/" )
 
  cmake-utils_src_install
 }

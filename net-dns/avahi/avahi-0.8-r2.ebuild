@@ -51,11 +51,11 @@ DEPEND="
  )
 "
 RDEPEND="
- acct-user/avahi
+ acct-use_with/use_enabler/avahi
  acct-group/avahi
  acct-group/netdev
  autoipd? (
- acct-user/avahi-autoipd
+ acct-use_with/use_enabler/avahi-autoipd
  acct-group/avahi-autoipd
  )
  ${DEPEND}
@@ -87,16 +87,16 @@ PATCHES=(
 )
 
 pkg_setup() {
- use mono && mono-env_pkg_setup
- use python || use bookmarks && python_setup
+ use_with/use_enable mono && mono-env_pkg_setup
+ use_with/use_enable python || use_with/use_enable bookmarks && python_setup
 }
 
 src_prepare() {
  default
 
- if ! use ipv6; then
+ if ! use_with/use_enable ipv6; then
  sed -i \
- -e "s/use-ipv6=yes/use-ipv6=no/" \
+ -e "s/use_with/use_enable-ipv6=yes/use_with/use_enable-ipv6=no/" \
  avahi-daemon/avahi-daemon.conf || die
  fi
 
@@ -123,37 +123,37 @@ multilib_src_configure() {
  --localstatedir="${EPREFIX}/var"
  --with-distro=gentoo
  --with-systemdsystemunitdir="$(systemd_get_systemunitdir)"
- $(use_enable dbus)
- $(use_enable gdbm)
- $(use_enable gtk2 gtk)
- $(use_enable gtk gtk3)
- $(use_enable howl-compat compat-howl)
- $(use_enable mdnsresponder-compat compat-libdns_sd)
- $(use_enable nls)
- $(multilib_native_use_enable autoipd)
- $(multilib_native_use_enable doc doxygen-doc)
- $(multilib_native_use_enable introspection)
- $(multilib_native_use_enable mono)
- $(multilib_native_use_enable python)
- $(multilib_native_use_enable qt4)
- $(multilib_native_use_enable qt5)
- $(multilib_native_use_enable test tests)
+ $(use_with/use_enable_enable dbus)
+ $(use_with/use_enable_enable gdbm)
+ $(use_with/use_enable_enable gtk2 gtk)
+ $(use_with/use_enable_enable gtk gtk3)
+ $(use_with/use_enable_enable howl-compat compat-howl)
+ $(use_with/use_enable_enable mdnsresponder-compat compat-libdns_sd)
+ $(use_with/use_enable_enable nls)
+ $(multilib_native_use_with/use_enable_enable autoipd)
+ $(multilib_native_use_with/use_enable_enable doc doxygen-doc)
+ $(multilib_native_use_with/use_enable_enable introspection)
+ $(multilib_native_use_with/use_enable_enable mono)
+ $(multilib_native_use_with/use_enable_enable python)
+ $(multilib_native_use_with/use_enable_enable qt4)
+ $(multilib_native_use_with/use_enable_enable qt5)
+ $(multilib_native_use_with/use_enable_enable test tests)
  )
 
- if use python; then
+ if use_with/use_enable python; then
  myconf+=(
- $(multilib_native_use_enable dbus python-dbus)
- $(multilib_native_use_enable introspection pygobject)
+ $(multilib_native_use_with/use_enable_enable dbus python-dbus)
+ $(multilib_native_use_with/use_enable_enable introspection pygobject)
  )
  fi
 
- if use mono; then
- myconf+=( $(multilib_native_use_enable doc monodoc) )
+ if use_with/use_enable mono; then
+ myconf+=( $(multilib_native_use_with/use_enable_enable doc monodoc) )
  fi
 
  if ! multilib_is_native_abi; then
  myconf+=(
- # used by daemons only
+ # use_with/use_enabled by daemons only
  --disable-libdaemon
  --with-xml=none
  )
@@ -165,19 +165,19 @@ multilib_src_configure() {
 multilib_src_compile() {
  emake
 
- multilib_is_native_abi && use doc && emake avahi.devhelp
+ multilib_is_native_abi && use_with/use_enable doc && emake avahi.devhelp
 }
 
 multilib_src_install() {
  emake install DESTDIR="${D}"
- use bookmarks && use python && use dbus && use gtk2 || \
+ use_with/use_enable bookmarks && use_with/use_enable python && use_with/use_enable dbus && use_with/use_enable gtk2 || \
  rm -f "${ED}"/usr/bin/avahi-bookmarks
 
  # https://github.com/lathiat/avahi/issues/28
- use howl-compat && dosym avahi-compat-howl.pc /usr/$(get_libdir)/pkgconfig/howl.pc
- use mdnsresponder-compat && dosym avahi-compat-libdns_sd/dns_sd.h /usr/include/dns_sd.h
+ use_with/use_enable howl-compat && dosym avahi-compat-howl.pc /usr/$(get_libdir)/pkgconfig/howl.pc
+ use_with/use_enable mdnsresponder-compat && dosym avahi-compat-libdns_sd/dns_sd.h /usr/include/dns_sd.h
 
- if multilib_is_native_abi && use doc; then
+ if multilib_is_native_abi && use_with/use_enable doc; then
  docinto html
  dodoc -r doxygen/html/.
  insinto /usr/share/devhelp/books/avahi
@@ -189,7 +189,7 @@ multilib_src_install() {
 }
 
 multilib_src_install_all() {
- if use autoipd; then
+ if use_with/use_enable autoipd; then
  insinto /lib/rcscripts/net
  doins "${FILESDIR}"/autoipd.sh
 
@@ -203,9 +203,9 @@ multilib_src_install_all() {
 }
 
 pkg_postinst() {
- if use autoipd; then
+ if use_with/use_enable autoipd; then
  elog
- elog "To use avahi-autoipd to configure your interfaces with IPv4LL (RFC3927)"
+ elog "To use_with/use_enable avahi-autoipd to configure your interfaces with IPv4LL (RFC3927)"
  elog "addresses, just set config_<interface>=( autoipd ) in /etc/conf.d/net!"
  elog
  fi

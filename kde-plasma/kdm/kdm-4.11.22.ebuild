@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-workspace"
-systemd kde4-meta flag-o-matic user
+systemd kde4-meta flag-o-matic use_with/use_enabler
 
 DESCRIPTION="Login manager by KDE, similar to xdm and gdm"
 
@@ -49,17 +49,17 @@ PATCHES=(
 pkg_setup() {
  kde4-meta_pkg_setup
 
- # Create kdm:kdm user
+ # Create kdm:kdm use_with/use_enabler
  KDM_HOME=/var/lib/kdm
  enewgroup kdm
- enewuser kdm -1 -1 "${KDM_HOME}" kdm
+ enewuse_with/use_enabler kdm -1 -1 "${KDM_HOME}" kdm
 }
 
 src_configure() {
  local mycmakeargs=(
- $(cmake-utils_use kerberos KDE4_KRB5AUTH)
- $(cmake-utils_use_with pam)
- $(cmake-utils_use_with consolekit CkConnector)
+ $(cmake-utils_use_with/use_enable kerberos KDE4_KRB5AUTH)
+ $(cmake-utils_use_with/use_enable_with pam)
+ $(cmake-utils_use_with/use_enable_with consolekit CkConnector)
  )
 
  kde4-meta_src_configure
@@ -118,7 +118,7 @@ pkg_postinst() {
 
  mkdir -p "${EROOT}${KDM_HOME}/faces"
  # Set the default kdm face icon if it's not already set by the system admin
- # because this is user-overrideable in that way, it's not in src_install
+ # because_with/use_enable this is use_with/use_enabler-overrideable in that way, it's not in src_install
  for file in faces/.default.face.icon:default1.png faces/root.face.icon:root1.png kdmsts: ; do
  src=${file#*:}
  dest=${file%:*}
@@ -130,7 +130,7 @@ pkg_postinst() {
  fi
  done
  if [[ -n ${src} ]]; then
- cp "${EROOT}/usr/share/apps/kdm/pics/users/${src}" \
+ cp "${EROOT}/usr/share/apps/kdm/pics/use_with/use_enablers/${src}" \
  "${EROOT}${KDM_HOME}/${dest}"
  fi
  fi
@@ -148,12 +148,12 @@ pkg_postinst() {
 
  # Make sure permissions are correct -- old installations may have
  # gotten this wrong
- use prefix || chown root:kdm "${EROOT}${KDM_HOME}"
+ use_with/use_enable prefix || chown root:kdm "${EROOT}${KDM_HOME}"
  chmod 1770 "${EROOT}${KDM_HOME}"
 
- if use consolekit; then
+ if use_with/use_enable consolekit; then
  echo
- elog "You have compiled 'kdm' with consolekit support. If you want to use kdm,"
+ elog "You have compiled 'kdm' with consolekit support. If you want to use_with/use_enable kdm,"
  elog "make sure consolekit daemon is running and started at login time"
  elog
  elog "rc-update add consolekit default && /etc/init.d/consolekit start"

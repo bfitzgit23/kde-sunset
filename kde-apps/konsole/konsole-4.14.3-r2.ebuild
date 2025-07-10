@@ -9,7 +9,7 @@ VIRTUALX_REQUIRED="test"
 VIRTUALDBUS_TEST="true"
 kde4-base
 
-DESCRIPTION="X terminal for use with KDE"
+DESCRIPTION="X terminal for use_with/use_enable with KDE"
 HOMEPAGE="https://www.kde.org/applications/system/konsole https://konsole.kde.org"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"

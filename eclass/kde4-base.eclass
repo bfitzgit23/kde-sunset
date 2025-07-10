@@ -20,13 +20,13 @@ _KDE4_BASE_ECLASS=1
 # @ECLASS-VARIABLE: KDE_SELINUX_MODULE
 # @DESCRIPTION:
 # If set to "none", do nothing.
-# For any other value, add selinux to IUSE, and depending on that useflag
+# For any other value, add selinux to IUSE, and depending on that use_with/use_enableflag
 # add a dependency on sec-policy/selinux-${KDE_SELINUX_MODULE} to (R)DEPEND
 : ${KDE_SELINUX_MODULE:=none}
 
 # @ECLASS-VARIABLE: VIRTUALDBUS_TEST
 # @DESCRIPTION:
-# If defined, launch and use a private dbus session during src_test.
+# If defined, launch and use_with/use_enable a private dbus session during src_test.
 
 # @ECLASS-VARIABLE: VIRTUALX_REQUIRED
 # @DESCRIPTION:
@@ -46,7 +46,7 @@ fi
 
 # @ECLASS-VARIABLE: CMAKE_REQUIRED
 # @DESCRIPTION:
-# Specify if cmake buildsystem is being used. Possible values are 'always' and 'never'.
+# Specify if cmake buildsystem is being use_with/use_enabled. Possible values are 'always' and 'never'.
 # Please note that if it's set to 'never' you need to explicitly override following phases:
 # src_configure, src_compile, src_test and src_install.
 # Defaults to 'always'.
@@ -58,7 +58,7 @@ fi
 
 # @ECLASS-VARIABLE: KDE_MINIMAL
 # @DESCRIPTION:
-# This variable is used when KDE_REQUIRED is set, to specify required KDE minimal
+# This variable is use_with/use_enabled when KDE_REQUIRED is set, to specify required KDE minimal
 # version for apps to work. Currently defaults to 4.4
 # One may override this variable to raise version requirements.
 # Note that it is fixed to ${PV} for kde-base packages.
@@ -237,9 +237,9 @@ qt3supportdepend="
 case ${QT3SUPPORT_REQUIRED} in
  true)
  COMMONDEPEND+=" ${qt3supportdepend}"
- [[ -n ${qtcoreuse} ]] && qtcoreuse+=",qt3support" || qtcoreuse="qt3support"
- [[ -n ${qtsqluse} ]] && qtsqluse+=",qt3support" || qtsqluse="qt3support"
- [[ -n ${kdelibsuse} ]] && kdelibsuse+=",qt3support(+)" || kdelibsuse="qt3support(+)"
+ [[ -n ${qtcoreuse_with/use_enable} ]] && qtcoreuse_with/use_enable+=",qt3support" || qtcoreuse_with/use_enable="qt3support"
+ [[ -n ${qtsqluse_with/use_enable} ]] && qtsqluse_with/use_enable+=",qt3support" || qtsqluse_with/use_enable="qt3support"
+ [[ -n ${kdelibsuse_with/use_enable} ]] && kdelibsuse_with/use_enable+=",qt3support(+)" || kdelibsuse_with/use_enable="qt3support(+)"
  ;;
  *) ;;
 esac
@@ -293,9 +293,9 @@ esac
 unset qtmultimediadepend
 
 # Sql dependencies
-[[ -n ${qtsqluse} ]] && qtsqluse="[${qtsqluse}]"
+[[ -n ${qtsqluse_with/use_enable} ]] && qtsqluse_with/use_enable="[${qtsqluse_with/use_enable}]"
 qtsqldepend="
- >=dev-qt/qtsql-${QT_MINIMAL}:4${qtsqluse}
+ >=dev-qt/qtsql-${QT_MINIMAL}:4${qtsqluse_with/use_enable}
 "
 case ${SQL_REQUIRED} in
  always)
@@ -307,7 +307,7 @@ case ${SQL_REQUIRED} in
  ;;
  *) ;;
 esac
-unset qtsqluse
+unset qtsqluse_with/use_enable
 unset qtsqldepend
 
 # WebKit dependencies
@@ -317,12 +317,12 @@ qtwebkitdepend="
 case ${WEBKIT_REQUIRED} in
  always)
  COMMONDEPEND+=" ${qtwebkitdepend}"
- [[ -n ${kdelibsuse} ]] && kdelibsuse+=",webkit(+)" || kdelibsuse="webkit(+)"
+ [[ -n ${kdelibsuse_with/use_enable} ]] && kdelibsuse_with/use_enable+=",webkit(+)" || kdelibsuse_with/use_enable="webkit(+)"
  ;;
  optional)
  IUSE+=" +webkit"
  COMMONDEPEND+=" webkit? ( ${qtwebkitdepend} )"
- [[ -n ${kdelibsuse} ]] && kdelibsuse+=",webkit?" || kdelibsuse="webkit?"
+ [[ -n ${kdelibsuse_with/use_enable} ]] && kdelibsuse_with/use_enable+=",webkit?" || kdelibsuse_with/use_enable="webkit?"
  ;;
  *) ;;
 esac
@@ -347,22 +347,22 @@ unset cppuintdepend
 
 # KDE dependencies
 # Qt accessibility classes are needed in various places, bug 325461
-[[ -n ${qtcoreuse} ]] && qtcoreuse+=",ssl" || qtcoreuse="ssl"
-[[ -n ${qtcoreuse} ]] && qtcoreuse="[${qtcoreuse}]"
+[[ -n ${qtcoreuse_with/use_enable} ]] && qtcoreuse_with/use_enable+=",ssl" || qtcoreuse_with/use_enable="ssl"
+[[ -n ${qtcoreuse_with/use_enable} ]] && qtcoreuse_with/use_enable="[${qtcoreuse_with/use_enable}]"
 kdecommondepend="
  dev-lang/perl
  >=dev-qt/designer-${QT_MINIMAL}:4
- >=dev-qt/qtcore-${QT_MINIMAL}:4${qtcoreuse}
+ >=dev-qt/qtcore-${QT_MINIMAL}:4${qtcoreuse_with/use_enable}
  >=dev-qt/qtdbus-${QT_MINIMAL}:4
  >=dev-qt/qtgui-${QT_MINIMAL}:4[accessibility,dbus(+)]
  >=dev-qt/qtscript-${QT_MINIMAL}:4
  >=dev-qt/qtsvg-${QT_MINIMAL}:4
  >=dev-qt/qttest-${QT_MINIMAL}:4
 "
-unset qtcoreuse
+unset qtcoreuse_with/use_enable
 
-[[ -n ${kdelibsuse} ]] && kdelibsuse="[${kdelibsuse}]"
-kdecommondepend+=" kde-frameworks/kdelibs:4${kdelibsuse}"
+[[ -n ${kdelibsuse_with/use_enable} ]] && kdelibsuse_with/use_enable="[${kdelibsuse_with/use_enable}]"
+kdecommondepend+=" kde-frameworks/kdelibs:4${kdelibsuse_with/use_enable}"
 if [[ ${KDEBASE} = kdevelop ]]; then
  if [[ ${PN} != kdevplatform ]]; then
  # @ECLASS-VARIABLE: KDEVPLATFORM_REQUIRED
@@ -380,7 +380,7 @@ if [[ ${KDEBASE} = kdevelop ]]; then
  esac
  fi
 fi
-unset kdelibsuse
+unset kdelibsuse_with/use_enable
 
 kdedepend="
  dev-util/automoc
@@ -401,7 +401,7 @@ if [[ ${KDEBASE} != "kde-base" && -n ${KDE_LINGUAS} ]]; then
  for _lingua in $(kde4_lingua_to_l10n ${KDE_LINGUAS}); do
  # if our package has linguas, pull in kde4-l10n with selected lingua enabled,
  # but only for selected ones.
- # this can't be done on one line because if user doesn't use any localisation
+ # this can't be done on one line because_with/use_enable if use_with/use_enabler doesn't use_with/use_enable any localisation
  # then he is probably not interested in kde4-l10n at all.
  kderdepend+="
  l10n_${_lingua}? ( $(add_kdeapps_dep kde4-l10n "l10n_${_lingua}(+)") )
@@ -560,7 +560,7 @@ _calculate_live_repo() {
  # @ECLASS-VARIABLE: ESVN_MIRROR
  # @DESCRIPTION:
  # This variable allows easy overriding of default kde mirror service
- # (anonsvn) with anything else you might want to use.
+ # (anonsvn) with anything else you might want to use_with/use_enable.
  ESVN_MIRROR=${ESVN_MIRROR:=svn://anonsvn.kde.org/home/kde}
  # Split ebuild, or extragear stuff
  if [[ -n ${KMNAME} ]]; then
@@ -603,7 +603,7 @@ _calculate_live_repo() {
  fi
  # @ECLASS-VARIABLE: ESVN_UP_FREQ
  # @DESCRIPTION:
- # This variable is used for specifying the timeout between svn synces
+ # This variable is use_with/use_enabled for specifying the timeout between svn synces
  # for kde-base modules. Does not affect misc apps.
  # Default value is 1 hour.
  [[ ${KDEBASE} = kde-base ]] && ESVN_UP_FREQ=${ESVN_UP_FREQ:-1}
@@ -613,7 +613,7 @@ _calculate_live_repo() {
  # @ECLASS-VARIABLE: EGIT_MIRROR
  # @DESCRIPTION:
  # This variable allows easy overriding of default kde mirror service
- # (anongit) with anything else you might want to use.
+ # (anongit) with anything else you might want to use_with/use_enable.
  EGIT_MIRROR=${EGIT_MIRROR:=https://anongit.kde.org}
 
  # @ECLASS-VARIABLE: EGIT_REPONAME
@@ -670,7 +670,7 @@ kde4-base_pkg_setup() {
  eqawarn "Please do not just set IUSE=handbook, as this leads to dependency errors."
  fi
 
- # Don't set KDEHOME during compilation, it will cause access violations
+ # Don't set KDEHOME during compilation, it will cause_with/use_enable access violations
  unset KDEHOME
 
  KDEDIR=/usr
@@ -715,16 +715,16 @@ kde4-base_src_prepare() {
 
  # enable handbook and linguas only when not using live ebuild
 
- # Only enable selected languages, used for KDE extragear apps.
+ # Only enable selected languages, use_with/use_enabled for KDE extragear apps.
  if [[ -n ${KDE_LINGUAS} ]]; then
  enable_selected_linguas
  fi
 
  # Enable/disable handbooks for kde4-base packages
  # kde4-l10n inherits kde4-base but is metapackage, so no check for doc
- if ! has kde4-meta ${INHERITED} && in_iuse handbook; then
+ if ! has kde4-meta ${INHERITED} && in_iuse_with/use_enable handbook; then
  if [[ ${KDEBASE} == kde-base ]]; then
- if [[ ${PN} != kde4-l10n && ${PN} != kdepim-l10n ]] && use !handbook; then
+ if [[ ${PN} != kde4-l10n && ${PN} != kdepim-l10n ]] && use_with/use_enable !handbook; then
  # documentation in kde4-functions
  : ${KDE_DOC_DIRS:=doc}
  local dir
@@ -779,7 +779,7 @@ kde4-base_src_configure() {
  # Build tests in src_test only, where we override this value
  local cmakeargs=(-DKDE4_BUILD_TESTS=OFF)
 
- if in_iuse debug && use debug; then
+ if in_iuse_with/use_enable debug && use_with/use_enable debug; then
  # Set "real" debug mode
  CMAKE_KDE_BUILD_TYPE="Debugfull"
  else
@@ -843,7 +843,7 @@ kde4-base_src_test() {
  cmake-utils_src_test
  }
 
- # When run as normal user during ebuild development with the ebuild command, the
+ # When run as normal use_with/use_enabler during ebuild development with the ebuild command, the
  # kde tests tend to access the session DBUS. This however is not possible in a real
  # emerge or on the tinderbox.
  # > make sure it does not happen, so bad tests can be recognized and disabled
@@ -903,7 +903,7 @@ kde4-base_src_install() {
  cmake-utils_src_install
 
  # We don't want ${PREFIX}/share/doc/HTML to be compressed,
- # because then khelpcenter can't find the docs
+ # because_with/use_enable then khelpcenter can't find the docs
  [[ -d ${ED}/${PREFIX}/share/doc/HTML ]] &&
  docompress -x ${PREFIX}/share/doc/HTML
 }
@@ -938,7 +938,7 @@ kde4-base_pkg_postinst() {
  echo
  einfo "WARNING! This is an experimental live ebuild of ${CATEGORY}/${PN}"
  einfo "Use it at your own risk."
- einfo "Do _NOT_ file bugs at bugs.gentoo.org because of this ebuild!"
+ einfo "Do _NOT_ file bugs at bugs.gentoo.org because_with/use_enable of this ebuild!"
  echo
  fi
  fi

@@ -41,12 +41,12 @@ PATCHES=( "${FILESDIR}/${PN}-CVE-2014-8600.patch" )
 src_configure() {
  local mycmakeargs=(
  -DWITH_SLP=OFF
- $(cmake-utils_use_with bzip2 BZip2)
- $(cmake-utils_use_with exif Exiv2)
- $(cmake-utils_use_with lzma LibLZMA)
- $(cmake-utils_use_with openexr OpenEXR)
- $(cmake-utils_use_with samba)
- $(cmake-utils_use_with sftp LibSSH)
+ $(cmake-utils_use_with/use_enable_with bzip2 BZip2)
+ $(cmake-utils_use_with/use_enable_with exif Exiv2)
+ $(cmake-utils_use_with/use_enable_with lzma LibLZMA)
+ $(cmake-utils_use_with/use_enable_with openexr OpenEXR)
+ $(cmake-utils_use_with/use_enable_with samba)
+ $(cmake-utils_use_with/use_enable_with sftp LibSSH)
  )
  kde4-meta_src_configure
 }
@@ -54,7 +54,7 @@ src_configure() {
 src_install() {
  kde4-meta_src_install
 
- if use minimal; then
+ if use_with/use_enable minimal; then
  rm "${D}"/usr/lib64/libmolletnetwork.so "${D}"/usr/share/config.kcfg/jpegcreatorsettings.kcfg
  rmdir "${D}"/usr/share/config.kcfg/
  fi

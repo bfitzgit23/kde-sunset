@@ -42,7 +42,7 @@ src_prepare() {
 src_configure() {
  local myconf=(
  # enables asserts and debug codepaths
- $(use_enable debug)
+ $(use_with/use_enable_enable debug)
 
  # avoid automagic dep
  # TODO: add support for it
@@ -52,7 +52,7 @@ src_configure() {
  # automagic default on clang++
  tc-export CXX
 
- # the package doesn't use pkg-config on Linux, only on Darwin
+ # the package doesn't use_with/use_enable pkg-config on Linux, only on Darwin
  # very smart of upstream...
  append-ldflags $( $(tc-getPKG_CONFIG) --libs-only-L \
  QtCore QtGui QtScript QtSvg QtXml Qt3Support )

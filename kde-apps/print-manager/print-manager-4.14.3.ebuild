@@ -20,7 +20,7 @@ RDEPEND="${DEPEND}
 "
 
 pkg_postinst(){
- if ! use gtk ; then
+ if ! use_with/use_enable gtk ; then
  ewarn
  ewarn "By switching off \"gtk\" USE flag, you have chosen to do without"
  ewarn "an important, though optional, runtime dependency:"

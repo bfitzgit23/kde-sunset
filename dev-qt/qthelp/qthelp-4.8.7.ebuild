@@ -37,7 +37,7 @@ QT4_TARGET_DIRECTORIES="
  tools/qdoc3"
 
 pkg_setup() {
- use compat && QT4_TARGET_DIRECTORIES+="
+ use_with/use_enable compat && QT4_TARGET_DIRECTORIES+="
  tools/assistant/compat
  tools/assistant/compat/lib"
 }
@@ -47,7 +47,7 @@ src_unpack() {
 
  # compat version
  # http://blog.qt.io/blog/2010/06/22/qt-assistant-compat-version-available-as-extra-source-package/
- if use compat; then
+ if use_with/use_enable compat; then
  mv "${WORKDIR}"/qt-assistant-qassistantclient-library-compat-version-4.6.3 "${S}"/tools/assistant/compat || die
  mv "${WORKDIR}"/QtAssistant "${S}"/include || die
  find "${S}"/tools/assistant/compat -type f -execdir chmod a-x '{}' + || die
@@ -55,7 +55,7 @@ src_unpack() {
 }
 
 src_prepare() {
- use compat && PATCHES+=(
+ use_with/use_enable compat && PATCHES+=(
  "${FILESDIR}/${PN}-4.8.6-compat-install.patch"
  "${FILESDIR}/${PN}-4.8.6-compat-syncqt.patch"
  )
@@ -94,7 +94,7 @@ multilib_src_install() {
 
  if multilib_is_native_abi; then
  emake INSTALL_ROOT="${D}" install_qchdocs
- use doc && emake INSTALL_ROOT="${D}" install_htmldocs
+ use_with/use_enable doc && emake INSTALL_ROOT="${D}" install_htmldocs
 
  # do not compress .qch files
  docompress -x "${QT4_DOCDIR#${EPREFIX}}"/qch
@@ -104,7 +104,7 @@ multilib_src_install() {
 multilib_src_install_all() {
  qt4_multilib_src_install_all
 
- if use compat; then
+ if use_with/use_enable compat; then
  insinto "${QT4_DATADIR#${EPREFIX}}"/mkspecs/features
  doins tools/assistant/compat/features/assistant.prf
  fi

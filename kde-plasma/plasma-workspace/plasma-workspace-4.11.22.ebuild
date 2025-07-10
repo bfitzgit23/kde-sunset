@@ -66,7 +66,7 @@ KMEXTRACTONLY="
 "
 
 src_unpack() {
- if use handbook; then
+ if use_with/use_enable handbook; then
  KMEXTRA+=" doc/plasma-desktop"
  fi
 
@@ -79,11 +79,11 @@ src_configure() {
  -DWITH_PythonLibrary=OFF
  -DWITH_Soprano=OFF
  -DWITH_Xmms=OFF
- $(cmake-utils_use_with gps libgps)
- $(cmake-utils_use_with json QJSON)
- $(cmake-utils_use_with pim Akonadi)
- $(cmake-utils_use_with pim KdepimLibs)
- $(cmake-utils_use_with qalculate)
+ $(cmake-utils_use_with/use_enable_with gps libgps)
+ $(cmake-utils_use_with/use_enable_with json QJSON)
+ $(cmake-utils_use_with/use_enable_with pim Akonadi)
+ $(cmake-utils_use_with/use_enable_with pim KdepimLibs)
+ $(cmake-utils_use_with/use_enable_with qalculate)
  )
 
  kde4-meta_src_configure

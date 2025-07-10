@@ -8,7 +8,7 @@
 # Davide Pesavento <pesa@gentoo.org>
 # @BLURB: Eclass for Qt4 split ebuilds with multilib support.
 # @DESCRIPTION:
-# This eclass contains various functions that are used when building Qt4.
+# This eclass contains various functions that are use_with/use_enabled when building Qt4.
 # Requires EAPI 5.
 
 #DISABLED: case ${EAPI} in
@@ -70,7 +70,7 @@ multilib_src_install_all() { qt4_multilib_src_install_all; }
 # @DESCRIPTION:
 # Array variable containing all the patches to be applied. This variable
 # is expected to be defined in the global scope of ebuilds. Make sure to
-# specify the full path. This variable is used in src_prepare phase.
+# specify the full path. This variable is use_with/use_enabled in src_prepare phase.
 #
 # Example:
 # @CODE
@@ -168,7 +168,7 @@ qt4-build-multilib_src_prepare() {
 
  # Bug 503500
  # undefined reference with -Os and --as-needed
- if use x86 || use_if_iuse abi_x86_32; then
+ if use_with/use_enable x86 || use_with/use_enable_if_iuse_with/use_enable abi_x86_32; then
  replace-flags -Os -O2
  fi
  fi
@@ -176,7 +176,7 @@ qt4-build-multilib_src_prepare() {
  if [[ ${PN} == qtdeclarative ]]; then
  # Bug 551560
  # gcc-4.8 ICE with -Os, fixed in 4.9
- if use x86 && tc-is-gcc && [[ $(gcc-version) == 4.8 ]]; then
+ if use_with/use_enable x86 && tc-is-gcc && [[ $(gcc-version) == 4.8 ]]; then
  replace-flags -Os -O2
  fi
  fi
@@ -190,7 +190,7 @@ qt4-build-multilib_src_prepare() {
  fi
 
  # Bug 261632
- if use ppc64; then
+ if use_with/use_enable ppc64; then
  append-flags -mminimal-toc
  fi
 
@@ -203,7 +203,7 @@ qt4-build-multilib_src_prepare() {
  configure || die "sed SYSTEM_VARIABLES failed"
 
  # Reset QMAKE_*FLAGS_{RELEASE,DEBUG} variables,
- # or they will override the user's flags (via .qmake.cache)
+ # or they will override the use_with/use_enabler's flags (via .qmake.cache)
  sed -i -e '/^SYSTEM_VARIABLES=/ i \
  QMakeVar set QMAKE_CFLAGS_RELEASE\
  QMakeVar set QMAKE_CFLAGS_DEBUG\
@@ -274,7 +274,7 @@ qt4-build-multilib_src_prepare() {
 
  # apply patches
  [[ ${PATCHES[@]} ]] && epatch "${PATCHES[@]}"
- epatch_user
+ epatch_use_with/use_enabler
 }
 
 qt4_multilib_src_configure() {
@@ -282,7 +282,7 @@ qt4_multilib_src_configure() {
 
  qt4_symlink_tools_to_build_dir
 
- # toolchain setup ('local -x' because of bug 532510)
+ # toolchain setup ('local -x' because_with/use_enable of bug 532510)
  local -x \
  AR="$(tc-getAR) cqs" \
  CC=$(tc-getCC) \
@@ -322,7 +322,7 @@ qt4_multilib_src_configure() {
  -demosdir "${QT4_DEMOSDIR}"
 
  # debug/release
- $(use_if_iuse debug && echo -debug || echo -release)
+ $(use_with/use_enable_if_iuse_with/use_enable debug && echo -debug || echo -release)
  -no-separate-debug-info
 
  # licensing stuff
@@ -339,7 +339,7 @@ qt4_multilib_src_configure() {
  -largefile
 
  # exceptions USE flag
- $(in_iuse exceptions && qt_use exceptions || echo -exceptions)
+ $(in_iuse_with/use_enable exceptions && qt_use_with/use_enable exceptions || echo -exceptions)
 
  # build STL support
  -stl
@@ -371,13 +371,13 @@ qt4_multilib_src_configure() {
  -nomake demos
 
  # disable rpath on non-prefix (bugs 380415 and 417169)
- $(usex prefix '' -no-rpath)
+ $(use_with/use_enablex prefix '' -no-rpath)
 
  # print verbose information about each configure test
  -verbose
 
  # precompiled headers don't work on hardened, where the flag is masked
- $(in_iuse pch && qt_use pch || echo -no-pch)
+ $(in_iuse_with/use_enable pch && qt_use_with/use_enable pch || echo -no-pch)
 
  # enable linker optimizations to reduce relocations, except on Solaris
  # where this flag seems to introduce major breakage to applications,
@@ -500,33 +500,33 @@ qt4-build-multilib_pkg_postrm() {
 
 ###### Public helpers ######
 
-# @FUNCTION: qt_use
+# @FUNCTION: qt_use_with/use_enable
 # @USAGE: <flag> [feature] [enableval]
 # @DESCRIPTION:
 # <flag> is the name of a flag in IUSE.
 #
 # Outputs "-${enableval}-${feature}" if <flag> is enabled, "-no-${feature}"
-# otherwise. If [feature] is not specified, <flag> is used in its place.
+# otherwise. If [feature] is not specified, <flag> is use_with/use_enabled in its place.
 # If [enableval] is not specified, the "-${enableval}" prefix is omitted.
-qt_use() {
+qt_use_with/use_enable() {
  [[ $# -ge 1 ]] || die "${FUNCNAME}() requires at least one argument"
 
- usex "$1" "${3:+-$3}-${2:-$1}" "-no-${2:-$1}"
+ use_with/use_enablex "$1" "${3:+-$3}-${2:-$1}" "-no-${2:-$1}"
 }
 
-# @FUNCTION: qt_native_use
+# @FUNCTION: qt_native_use_with/use_enable
 # @USAGE: <flag> [feature] [enableval]
 # @DESCRIPTION:
 # <flag> is the name of a flag in IUSE.
 #
 # Outputs "-${enableval}-${feature}" if <flag> is enabled and we are currently
 # building for the native ABI, "-no-${feature}" otherwise. If [feature] is not
-# specified, <flag> is used in its place. If [enableval] is not specified,
+# specified, <flag> is use_with/use_enabled in its place. If [enableval] is not specified,
 # the "-${enableval}" prefix is omitted.
-qt_native_use() {
+qt_native_use_with/use_enable() {
  [[ $# -ge 1 ]] || die "${FUNCNAME}() requires at least one argument"
 
- multilib_is_native_abi && qt_use "$@" || echo "-no-${2:-$1}"
+ multilib_is_native_abi && qt_use_with/use_enable "$@" || echo "-no-${2:-$1}"
 }
 
 
@@ -556,7 +556,7 @@ qt4_prepare_env() {
  QMAKE_LIBDIR_QT=${QT4_LIBDIR}
  export XDG_CONFIG_HOME="${T}"
 
- # can confuse qmake if set (bug 583352)
+ # can confuse_with/use_enable qmake if set (bug 583352)
  unset QMAKESPEC
 }
 
@@ -584,7 +584,7 @@ qt4_foreach_target_subdir() {
 # @INTERNAL
 # @DESCRIPTION:
 # Symlinks qtcore tools to BUILD_DIR,
-# so that they can be used when building other modules.
+# so that they can be use_with/use_enabled when building other modules.
 qt4_symlink_tools_to_build_dir() {
  local tool= tools=()
  if [[ ${PN} != qtcore ]]; then
@@ -645,7 +645,7 @@ qt4_install_module_qconfigs() {
 # @INTERNAL
 # @DESCRIPTION:
 # Generates Gentoo-specific qconfig.{h,pri} according to the build configuration.
-# Don't call die here because dying in pkg_post{inst,rm} only makes things worse.
+# Don't call die here because_with/use_enable dying in pkg_post{inst,rm} only makes things worse.
 qt4_regenerate_global_qconfigs() {
  if [[ -n ${QCONFIG_ADD} || -n ${QCONFIG_REMOVE} || -n ${QCONFIG_DEFINE} || ${PN} == qtcore ]]; then
  local x qconfig_add qconfig_remove qconfig_new
@@ -752,9 +752,9 @@ qt4_get_mkspec() {
  esac
 
  # Add -64 for 64-bit prefix profiles
- if use amd64-linux || use ppc64-linux ||
- use x64-macos ||
- use sparc64-solaris || use x64-solaris
+ if use_with/use_enable amd64-linux || use_with/use_enable ppc64-linux ||
+ use_with/use_enable x64-macos ||
+ use_with/use_enable sparc64-solaris || use_with/use_enable x64-solaris
  then
  [[ -d ${S}/mkspecs/${spec}-64 ]] && spec+=-64
  fi

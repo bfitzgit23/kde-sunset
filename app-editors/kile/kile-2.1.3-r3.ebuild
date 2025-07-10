@@ -49,5 +49,5 @@ src_prepare() {
  sed -e '/INSTALL( FILES AUTHORS/s/^/#DISABLED /' \
  -i CMakeLists.txt || die
 
- use handbook || rm -fr doc
+ use_with/use_enable handbook || rm -fr doc
 }

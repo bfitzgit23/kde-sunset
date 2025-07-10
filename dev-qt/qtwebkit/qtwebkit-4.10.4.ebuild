@@ -57,11 +57,11 @@ S=${WORKDIR}
 
 PATCHES=(
  "${FILESDIR}/${PV}-gcc5.patch"
- "${FILESDIR}/${PV}-use-correct-icu-typedef.patch"
+ "${FILESDIR}/${PV}-use_with/use_enable-correct-icu-typedef.patch"
 )
 
 src_prepare() {
- # examples cause a sandbox violation (bug 458222)
+ # examples cause_with/use_enable a sandbox violation (bug 458222)
  sed -i -e '/SUBDIRS += examples/d' Source/QtWebKit.pro || die
 
  # respect CXXFLAGS
@@ -84,8 +84,8 @@ multilib_src_compile() {
  --qmake="$(qt4_get_bindir)"/qmake
  --qmakearg="CONFIG+=nostrip DEFINES+=HAVE_QTTESTLIB=0"
  --makeargs="${MAKEOPTS}"
- --$(usex debug debug release)
- --$(usex gstreamer video no-video)
+ --$(use_with/use_enablex debug debug release)
+ --$(use_with/use_enablex gstreamer video no-video)
  # disable WebKit2 since it requires Qt5
  --no-webkit2
  # prevent automagic dependency on qt-mobility (bug 547350)
@@ -116,7 +116,7 @@ multilib_src_compile() {
 }
 
 multilib_src_install() {
- emake INSTALL_ROOT="${D}" install -C $(usex debug Debug Release)
+ emake INSTALL_ROOT="${D}" install -C $(use_with/use_enablex debug Debug Release)
 
  # move pkgconfig file to the correct location
  mv "${ED}"/usr/$(get_libdir){/qt4/pkgconfig,} || die

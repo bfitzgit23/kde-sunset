@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
- multilib desktop user qt4-build-multilib
+ multilib desktop use_with/use_enabler qt4-build-multilib
 
 DESCRIPTION="WYSIWYG tool for designing and building Qt-based GUIs"
 
@@ -31,7 +31,7 @@ src_prepare() {
 
  local plugin
  for plugin in ${DESIGNER_PLUGINS}; do
- if ! use ${plugin} || [[ ${plugin} == phonon ]]; then
+ if ! use_with/use_enable ${plugin} || [[ ${plugin} == phonon ]]; then
  sed -i -e "/\<${plugin}\>/d" \
  tools/designer/src/plugins/plugins.pro || die
  fi

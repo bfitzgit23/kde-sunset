@@ -64,26 +64,26 @@ pkg_pretend() {
 pkg_setup() {
  # Set default storage backend in order: MySQL, SQLite PostgreSQL
  # reverse driver check to keep the order
- if use postgres; then
+ if use_with/use_enable postgres; then
  DRIVER="QPSQL"
  AVAILABLE+=" ${DRIVER}"
  fi
 
- if use sqlite; then
+ if use_with/use_enable sqlite; then
  DRIVER="QSQLITE3"
  AVAILABLE+=" ${DRIVER}"
  fi
 
- if use mysql; then
+ if use_with/use_enable mysql; then
  DRIVER="QMYSQL"
  AVAILABLE+=" ${DRIVER}"
  fi
 
  # Notify about MySQL is recommend by upstream
- if use sqlite || has_version "<${CATEGORY}/${P}[sqlite]"; then
+ if use_with/use_enable sqlite || has_version "<${CATEGORY}/${P}[sqlite]"; then
  ewarn
  ewarn "We strongly recommend you change your Akonadi database backend to MySQL in your"
- ewarn "user configuration. This is the backend recommended by KDE upstream. PostgreSQL"
+ ewarn "use_with/use_enabler configuration. This is the backend recommended by KDE upstream. PostgreSQL"
  ewarn "is also known to work very well but requires manual dump and import on major"
  ewarn "upgrades of the DB."
  ewarn "You can select the backend in your ~/.config/akonadi/akonadiserverrc."
@@ -96,8 +96,8 @@ src_configure() {
  local mycmakeargs=(
  -DINSTALL_QSQLITE_IN_QT_PREFIX=ON
  -DWITH_SOPRANO=FALSE
- -DAKONADI_BUILD_TESTS=$(usex test)
- -DAKONADI_BUILD_QSQLITE=$(usex sqlite)
+ -DAKONADI_BUILD_TESTS=$(use_with/use_enablex test)
+ -DAKONADI_BUILD_QSQLITE=$(use_with/use_enablex sqlite)
  -DQT5_BUILD=OFF
  )
 

@@ -58,7 +58,7 @@ PATCHES=(
 )
 
 src_prepare() {
- if ! use plasma; then
+ if ! use_with/use_enable plasma; then
  sed -i \
  -e "s:add_subdirectory(plasma):#nada:g" \
  CMakeLists.txt || die "Failed to make plasmoid optional"
@@ -69,23 +69,23 @@ src_prepare() {
 
 src_configure() {
  local mycmakeargs=(
- $(cmake-utils_use_enable bwscheduler BWSCHEDULER_PLUGIN)
- $(cmake-utils_use_enable downloadorder DOWNLOADORDER_PLUGIN)
- $(cmake-utils_use_enable infowidget INFOWIDGET_PLUGIN)
- $(cmake-utils_use_with infowidget SYSTEM_GEOIP)
- $(cmake-utils_use_enable ipfilter IPFILTER_PLUGIN)
+ $(cmake-utils_use_with/use_enable_enable bwscheduler BWSCHEDULER_PLUGIN)
+ $(cmake-utils_use_with/use_enable_enable downloadorder DOWNLOADORDER_PLUGIN)
+ $(cmake-utils_use_with/use_enable_enable infowidget INFOWIDGET_PLUGIN)
+ $(cmake-utils_use_with/use_enable_with infowidget SYSTEM_GEOIP)
+ $(cmake-utils_use_with/use_enable_enable ipfilter IPFILTER_PLUGIN)
  -DENABLE_SCRIPTING_PLUGIN=OFF
- $(cmake-utils_use_enable logviewer LOGVIEWER_PLUGIN)
- $(cmake-utils_use_enable magnetgenerator MAGNETGENERATOR_PLUGIN)
- $(cmake-utils_use_enable mediaplayer MEDIAPLAYER_PLUGIN)
- $(cmake-utils_use_enable rss SYNDICATION_PLUGIN)
- $(cmake-utils_use_enable scanfolder SCANFOLDER_PLUGIN)
- $(cmake-utils_use_enable search SEARCH_PLUGIN)
- $(cmake-utils_use_enable shutdown SHUTDOWN_PLUGIN)
- $(cmake-utils_use_enable stats STATS_PLUGIN)
- $(cmake-utils_use_enable upnp UPNP_PLUGIN)
- $(cmake-utils_use_enable webinterface WEBINTERFACE_PLUGIN)
- $(cmake-utils_use_enable zeroconf ZEROCONF_PLUGIN)
+ $(cmake-utils_use_with/use_enable_enable logviewer LOGVIEWER_PLUGIN)
+ $(cmake-utils_use_with/use_enable_enable magnetgenerator MAGNETGENERATOR_PLUGIN)
+ $(cmake-utils_use_with/use_enable_enable mediaplayer MEDIAPLAYER_PLUGIN)
+ $(cmake-utils_use_with/use_enable_enable rss SYNDICATION_PLUGIN)
+ $(cmake-utils_use_with/use_enable_enable scanfolder SCANFOLDER_PLUGIN)
+ $(cmake-utils_use_with/use_enable_enable search SEARCH_PLUGIN)
+ $(cmake-utils_use_with/use_enable_enable shutdown SHUTDOWN_PLUGIN)
+ $(cmake-utils_use_with/use_enable_enable stats STATS_PLUGIN)
+ $(cmake-utils_use_with/use_enable_enable upnp UPNP_PLUGIN)
+ $(cmake-utils_use_with/use_enable_enable webinterface WEBINTERFACE_PLUGIN)
+ $(cmake-utils_use_with/use_enable_enable zeroconf ZEROCONF_PLUGIN)
  )
  kde4-base_src_configure
 }

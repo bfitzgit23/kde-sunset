@@ -145,7 +145,7 @@ src_prepare() {
  sed -e 's|FILES[[:space:]]applications.menu|FILES applications.menu RENAME kde-4-applications.menu|g' \
  -i kded/CMakeLists.txt || die "Sed on CMakeLists.txt for applications.menu failed."
 
- if ! use opengl; then
+ if ! use_with/use_enable opengl; then
  sed -i -e "/if/ s/QT_QTOPENGL_FOUND/FALSE/" \
  plasma/CMakeLists.txt plasma/tests/CMakeLists.txt includes/CMakeLists.txt \
  || die "failed to sed out QT_QTOPENGL_FOUND"
@@ -164,35 +164,35 @@ src_configure() {
  -DWITH_Soprano=OFF
  -DWITH_SharedDesktopOntologies=OFF
  -DCMAKE_DISABLE_FIND_PACKAGE_Strigi=ON
- -DBUILD_doc=$(usex handbook)
- -DHAVE_X86_3DNOW=$(usex cpu_flags_x86_3dnow)
- -DHAVE_PPC_ALTIVEC=$(usex altivec)
- -DHAVE_X86_MMX=$(usex cpu_flags_x86_mmx)
- -DHAVE_X86_SSE=$(usex cpu_flags_x86_sse)
- -DHAVE_X86_SSE2=$(usex cpu_flags_x86_sse2)
- -DWITH_ACL=$(usex acl)
- -DWITH_BZip2=$(usex bzip2)
- -DWITH_FAM=$(usex fam)
+ -DBUILD_doc=$(use_with/use_enablex handbook)
+ -DHAVE_X86_3DNOW=$(use_with/use_enablex cpu_flags_x86_3dnow)
+ -DHAVE_PPC_ALTIVEC=$(use_with/use_enablex altivec)
+ -DHAVE_X86_MMX=$(use_with/use_enablex cpu_flags_x86_mmx)
+ -DHAVE_X86_SSE=$(use_with/use_enablex cpu_flags_x86_sse)
+ -DHAVE_X86_SSE2=$(use_with/use_enablex cpu_flags_x86_sse2)
+ -DWITH_ACL=$(use_with/use_enablex acl)
+ -DWITH_BZip2=$(use_with/use_enablex bzip2)
+ -DWITH_FAM=$(use_with/use_enablex fam)
  -DWITH_Jasper=OFF
- -DWITH_GSSAPI=$(usex kerberos)
- -DWITH_LibLZMA=$(usex lzma)
- -DWITH_Libintl=$(usex nls)
- -DWITH_OpenEXR=$(usex openexr)
- -DWITH_PLASMA4SUPPORT=$(usex plasma)
- -DWITH_QCA2=$(usex plasma)
- -DWITH_PolkitQt-1=$(usex policykit)
- -DWITH_KDE3SUPPORT=$(usex qt3support)
- -DWITH_ENCHANT=$(usex spell)
- -DWITH_OpenSSL=$(usex ssl)
- -DWITH_UDev=$(usex udev)
- -DWITH_SOLID_UDISKS2=$(usex udisks)
- -DWITH_KDEWEBKIT=$(usex webkit)
- -DWITH_Avahi=$(usex zeroconf)
+ -DWITH_GSSAPI=$(use_with/use_enablex kerberos)
+ -DWITH_LibLZMA=$(use_with/use_enablex lzma)
+ -DWITH_Libintl=$(use_with/use_enablex nls)
+ -DWITH_OpenEXR=$(use_with/use_enablex openexr)
+ -DWITH_PLASMA4SUPPORT=$(use_with/use_enablex plasma)
+ -DWITH_QCA2=$(use_with/use_enablex plasma)
+ -DWITH_PolkitQt-1=$(use_with/use_enablex policykit)
+ -DWITH_KDE3SUPPORT=$(use_with/use_enablex qt3support)
+ -DWITH_ENCHANT=$(use_with/use_enablex spell)
+ -DWITH_OpenSSL=$(use_with/use_enablex ssl)
+ -DWITH_UDev=$(use_with/use_enablex udev)
+ -DWITH_SOLID_UDISKS2=$(use_with/use_enablex udisks)
+ -DWITH_KDEWEBKIT=$(use_with/use_enablex webkit)
+ -DWITH_Avahi=$(use_with/use_enablex zeroconf)
  )
 
- use zeroconf || mycmakeargs+=( -DWITH_DNSSD=OFF )
+ use_with/use_enable zeroconf || mycmakeargs+=( -DWITH_DNSSD=OFF )
 
- if use debug; then
+ if use_with/use_enable debug; then
  # Set "real" debug mode
  CMAKE_KDE_BUILD_TYPE="Debugfull"
  else
@@ -213,7 +213,7 @@ src_compile() {
  cmake-utils_src_compile
 
  # The building of apidox is not managed anymore by the build system
- if use doc; then
+ if use_with/use_enable doc; then
  einfo "Building API documentation"
  cd "${S}"/doc/api/
  ./doxygen.sh "${S}" || die "APIDOX generation failed"
@@ -228,15 +228,15 @@ src_install() {
  cmake-utils_src_install
 
  # We don't want /usr/share/doc/HTML to be compressed,
- # because then khelpcenter can't find the docs
+ # because_with/use_enable then khelpcenter can't find the docs
  [[ -d ${ED}/usr/share/doc/HTML ]] &&
  docompress -x /usr/share/doc/HTML
 
- # use system certificates
+ # use_with/use_enable system certificates
  rm -f "${ED}"/usr/share/apps/kssl/ca-bundle.crt || die
  dosym ../../../../etc/ssl/certs/ca-certificates.crt /usr/share/apps/kssl/ca-bundle.crt
 
- if use doc; then
+ if use_with/use_enable doc; then
  einfo "Installing API documentation. This could take a bit of time."
  cd "${S}"/doc/api/
  docinto /HTML/en/kdelibs-apidox
@@ -257,12 +257,12 @@ pkg_postinst() {
  xdg_desktop_database_update
  xdg_mimeinfo_database_update
 
- if use zeroconf; then
+ if use_with/use_enable zeroconf; then
  elog
  elog "To make zeroconf support available in applications make sure that the avahi daemon"
  elog "is running."
  elog
- elog "If you also want to use zeroconf for hostname resolution, emerge sys-auth/nss-mdns"
+ elog "If you also want to use_with/use_enable zeroconf for hostname resolution, emerge sys-auth/nss-mdns"
  elog "and enable multicast dns lookups by editing the 'hosts:' line in /etc/nsswitch.conf"
  elog "to include 'mdns', e.g.:"
  elog " hosts: files mdns dns"

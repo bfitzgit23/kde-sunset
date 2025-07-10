@@ -50,11 +50,11 @@ pkg_postinst() {
  kde4-meta_pkg_postinst
 
  if ! has_version kde-apps/dolphin:${SLOT} ; then
- elog "If you want to use konqueror as a filemanager, install the dolphin kpart:"
+ elog "If you want to use_with/use_enable konqueror as a filemanager, install the dolphin kpart:"
  elog "kde-apps/dolphin:${SLOT}"
  fi
 
  if ! has_version virtual/jre ; then
- elog "To use Java on webpages install virtual/jre."
+ elog "To use_with/use_enable Java on webpages install virtual/jre."
  fi
 }

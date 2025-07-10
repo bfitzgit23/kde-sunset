@@ -28,12 +28,12 @@ PATCHES=(
 src_configure() {
  local mycmakeargs=(
  -DQT4_BUILD=ON
- -DHAVE_3DNOW=$(usex cpu_flags_x86_3dnow)
- -DHAVE_MMX=$(usex cpu_flags_x86_mmx)
- -DHAVE_SSE=$(usex cpu_flags_x86_sse)
- -DHAVE_SSE2=$(usex cpu_flags_x86_sse2)
+ -DHAVE_3DNOW=$(use_with/use_enablex cpu_flags_x86_3dnow)
+ -DHAVE_MMX=$(use_with/use_enablex cpu_flags_x86_mmx)
+ -DHAVE_SSE=$(use_with/use_enablex cpu_flags_x86_sse)
+ -DHAVE_SSE2=$(use_with/use_enablex cpu_flags_x86_sse2)
  )
- use ppc && mycmakeargs+=( -DHAVE_ALTIVEC=$(usex altivec) )
+ use_with/use_enable ppc && mycmakeargs+=( -DHAVE_ALTIVEC=$(use_with/use_enablex altivec) )
 
  cmake_src_configure
 }

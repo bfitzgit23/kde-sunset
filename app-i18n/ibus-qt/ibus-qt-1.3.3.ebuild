@@ -39,13 +39,13 @@ src_configure() {
 src_compile() {
  cmake-utils_src_compile
 
- if use doc; then
+ if use_with/use_enable doc; then
  emake -C "${BUILD_DIR}" docs
  fi
 }
 
 src_install() {
- if use doc; then
+ if use_with/use_enable doc; then
  HTML_DOCS=( "${BUILD_DIR}"/docs/html/. )
  fi
 

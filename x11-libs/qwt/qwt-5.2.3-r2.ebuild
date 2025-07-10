@@ -43,7 +43,7 @@ src_prepare() {
  QWT_INSTALL_FEATURES = "${EPREFIX}/usr/share/qt4/mkspecs/features"
  EOF
  sed -i -e 's/headers doc/headers/' src/src.pro || die
- use svg && echo >> qwtconfig.pri "CONFIG += QwtSVGItem"
+ use_with/use_enable svg && echo >> qwtconfig.pri "CONFIG += QwtSVGItem"
 
  echo "CONFIG += QwtDll" >> qwtconfig.pri
 }
@@ -56,11 +56,11 @@ src_install() {
  emake INSTALL_ROOT="${D}" install
  einstalldocs
 
- if use doc; then
+ if use_with/use_enable doc; then
  docinto html
  dodoc -r doc/html/.
  fi
- if use examples; then
+ if use_with/use_enable examples; then
  # don't build examples - fix the qt files to build once installed
  cat > examples/examples.pri <<-EOF
  include( qwtconfig.pri )

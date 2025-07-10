@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
- multilib desktop user qt4-build-multilib
+ multilib desktop use_with/use_enabler qt4-build-multilib
 
 DESCRIPTION="Tool for viewing on-line documentation in Qt help file format"
 
@@ -29,7 +29,7 @@ QT4_TARGET_DIRECTORIES="tools/assistant/tools/assistant"
 
 src_prepare() {
  # bug 401173
- use webkit || PATCHES+=("${FILESDIR}/disable-webkit.patch")
+ use_with/use_enable webkit || PATCHES+=("${FILESDIR}/disable-webkit.patch")
 
  qt4-build-multilib_src_prepare
 }
@@ -40,7 +40,7 @@ multilib_src_configure() {
  -no-sql-mysql -no-sql-psql -no-sql-ibase -no-sql-sqlite2 -no-sql-odbc
  -sm -xshape -xsync -xcursor -xfixes -xrandr -xrender -mitshm -xinput -xkb
  -fontconfig -no-multimedia -no-opengl -no-phonon -no-svg -no-xmlpatterns
- $(qt_use webkit)
+ $(qt_use_with/use_enable webkit)
  )
  qt4_multilib_src_configure
 }

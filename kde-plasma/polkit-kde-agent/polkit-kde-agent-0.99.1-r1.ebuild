@@ -30,5 +30,5 @@ src_prepare() {
  kde4-base_src_prepare
 
  # Coinstallability with kde-plasma/polkit-kde-agent
- use minimal && rm -rf po
+ use_with/use_enable minimal && rm -rf po
 }

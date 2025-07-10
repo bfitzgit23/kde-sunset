@@ -9,7 +9,7 @@ VIRTUALX_REQUIRED="test"
 VIRTUALDBUS_TEST="true"
 kde4-base
 
-DESCRIPTION="X terminal kpart for use by konsole and other KDE applications"
+DESCRIPTION="X terminal kpart for use_with/use_enable by konsole and other KDE applications"
 HOMEPAGE="https://www.kde.org/applications/system/konsole https://konsole.kde.org"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug minimal"
@@ -43,7 +43,7 @@ src_prepare() {
 
 src_configure() {
  local mycmakeargs=(
- $(cmake-utils_use_with "!minimal" LibKonq)
+ $(cmake-utils_use_with/use_enable_with "!minimal" LibKonq)
  )
 
  kde4-base_src_configure

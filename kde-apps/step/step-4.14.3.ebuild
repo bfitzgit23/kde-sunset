@@ -20,11 +20,11 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
  # bug 560884
- use ppc64 && append-flags -mno-altivec
+ use_with/use_enable ppc64 && append-flags -mno-altivec
 
  local mycmakeargs=(
- $(cmake-utils_use_with gsl)
- $(cmake-utils_use_with qalculate)
+ $(cmake-utils_use_with/use_enable_with gsl)
+ $(cmake-utils_use_with/use_enable_with qalculate)
  )
  kde4-base_src_configure
 }

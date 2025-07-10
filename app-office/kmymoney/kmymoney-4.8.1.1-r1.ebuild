@@ -69,7 +69,7 @@ src_prepare() {
  popd > /dev/null || die
  fi
 
- if ! use handbook; then
+ if ! use_with/use_enable handbook; then
  cmake_comment_add_subdirectory doc
  else
  if [[ -d doc && -v LINGUAS ]] ; then
@@ -90,24 +90,24 @@ src_prepare() {
 }
 
 src_configure() {
- use debug || append-cppflags -DQT_NO_DEBUG
+ use_with/use_enable debug || append-cppflags -DQT_NO_DEBUG
 
  local mycmakeargs=(
  -DUSE_QT_DESIGNER=OFF
  -DENABLE_WEBOOB=OFF
  -DCMAKE_DISABLE_FIND_PACKAGE_KdepimLibs=ON
- -DENABLE_LIBICAL=$(usex calendar)
- -DUSE_DEVELOPER_DOC=$(usex doc)
- -DENABLE_KBANKING=$(usex hbci)
- -DENABLE_LIBOFX=$(usex ofx)
- -DKDE4_BUILD_TESTS=$(usex test)
+ -DENABLE_LIBICAL=$(use_with/use_enablex calendar)
+ -DUSE_DEVELOPER_DOC=$(use_with/use_enablex doc)
+ -DENABLE_KBANKING=$(use_with/use_enablex hbci)
+ -DENABLE_LIBOFX=$(use_with/use_enablex ofx)
+ -DKDE4_BUILD_TESTS=$(use_with/use_enablex test)
  )
  cmake-utils_src_configure
 }
 
 src_compile() {
  cmake-utils_src_compile
- use doc && cmake-utils_src_compile apidoc
+ use_with/use_enable doc && cmake-utils_src_compile apidoc
 }
 
 src_test() {
@@ -136,11 +136,11 @@ src_test() {
 }
 
 src_install() {
- use doc && HTML_DOCS=( "${BUILD_DIR}/apidocs/html/." )
+ use_with/use_enable doc && HTML_DOCS=( "${BUILD_DIR}/apidocs/html/." )
  cmake-utils_src_install
 
  # We don't want /usr/share/doc/HTML to be compressed,
- # because then khelpcenter can't find the docs
+ # because_with/use_enable then khelpcenter can't find the docs
  [[ -d ${ED%/}/usr/share/doc/HTML ]] &&
  docompress -x /usr/share/doc/HTML
 }

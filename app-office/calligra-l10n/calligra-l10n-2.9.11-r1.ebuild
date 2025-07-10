@@ -70,7 +70,7 @@ EOF
 
  local cal_ft
  for cal_ft in ${CAL_FTS}; do
- if ! use calligra_features_${cal_ft} ; then
+ if ! use_with/use_enable calligra_features_${cal_ft} ; then
  if ls -U ./*/messages/calligra/${cal_ft}*po > /dev/null 2>&1; then
  rm ./*/messages/calligra/${cal_ft}*po || \
  die "Failed to remove ${cal_ft} messages"
@@ -89,7 +89,7 @@ EOF
 src_configure() {
  local mycmakeargs=(
  -DBUILD_DATA=ON
- -DBUILD_DOC=$(usex doc)
+ -DBUILD_DOC=$(use_with/use_enablex doc)
  -DBUILD_MESSAGES=ON
  )
  [[ -n ${A} ]] && kde4-base_src_configure

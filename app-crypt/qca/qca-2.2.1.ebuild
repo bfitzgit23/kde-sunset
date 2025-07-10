@@ -6,7 +6,7 @@ EAPI=7
 cmake-utils qmake-utils
 
 DESCRIPTION="Qt Cryptographic Architecture (QCA)"
-HOMEPAGE="https://userbase.kde.org/QCA"
+HOMEPAGE="https://use_with/use_enablerbase.kde.org/QCA"
 SRC_URI="mirror://kde/stable/${PN}/${PV}/${P}.tar.xz"
 
 LICENSE="LGPL-2.1"
@@ -46,8 +46,8 @@ RDEPEND="${COMMON_DEPEND}
 
 PATCHES=( "${FILESDIR}/${PN}-disable-pgp-test.patch" )
 
-qca_plugin_use() {
- echo -DWITH_${2:-$1}_PLUGIN=$(usex "$1")
+qca_plugin_use_with/use_enable() {
+ echo -DWITH_${2:-$1}_PLUGIN=$(use_with/use_enablex "$1")
 }
 
 src_configure() {
@@ -55,16 +55,16 @@ src_configure() {
  -DQT4_BUILD=ON
  -DQCA_FEATURE_INSTALL_DIR="${EPREFIX}$(qt4_get_mkspecsdir)/features"
  -DQCA_PLUGINS_INSTALL_DIR="${EPREFIX}$(qt4_get_plugindir)"
- $(qca_plugin_use botan)
- $(qca_plugin_use gcrypt)
- $(qca_plugin_use gpg gnupg)
- $(qca_plugin_use logger)
- $(qca_plugin_use nss)
- $(qca_plugin_use pkcs11)
- $(qca_plugin_use sasl cyrus-sasl)
- $(qca_plugin_use softstore)
- $(qca_plugin_use ssl ossl)
- -DBUILD_TESTS=$(usex test)
+ $(qca_plugin_use_with/use_enable botan)
+ $(qca_plugin_use_with/use_enable gcrypt)
+ $(qca_plugin_use_with/use_enable gpg gnupg)
+ $(qca_plugin_use_with/use_enable logger)
+ $(qca_plugin_use_with/use_enable nss)
+ $(qca_plugin_use_with/use_enable pkcs11)
+ $(qca_plugin_use_with/use_enable sasl cyrus-sasl)
+ $(qca_plugin_use_with/use_enable softstore)
+ $(qca_plugin_use_with/use_enable ssl ossl)
+ -DBUILD_TESTS=$(use_with/use_enablex test)
  )
  cmake-utils_src_configure
 }
@@ -77,14 +77,14 @@ src_test() {
 src_install() {
  cmake-utils_src_install
 
- if use doc; then
+ if use_with/use_enable doc; then
  pushd "${BUILD_DIR}" >/dev/null || die
  doxygen Doxyfile || die
  dodoc -r apidocs/html
  popd >/dev/null || die
  fi
 
- if use examples; then
+ if use_with/use_enable examples; then
  dodoc -r "${S}"/examples
  fi
 }

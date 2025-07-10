@@ -54,7 +54,7 @@ src_prepare() {
 
  # Disable unwanted examples/demos
  for flag in "${flags_subdirs_map[@]}"; do
- if ! use ${flag%:*}; then
+ if ! use_with/use_enable ${flag%:*}; then
  einfo "Disabling ${flag%:*} examples"
  sed -i -e "/SUBDIRS += ${flag%:*}/d" \
  examples/examples.pro || die
@@ -74,14 +74,14 @@ src_prepare() {
 
 multilib_src_configure() {
  local myconf=(
- $(qt_use dbus)
- $(qt_use declarative)
- $(qt_use multimedia) -no-audio-backend
- $(qt_use opengl)
+ $(qt_use_with/use_enable dbus)
+ $(qt_use_with/use_enable declarative)
+ $(qt_use_with/use_enable multimedia) -no-audio-backend
+ $(qt_use_with/use_enable opengl)
  -no-openvg
- $(qt_use phonon) -no-phonon-backend
- $(qt_use webkit)
- $(qt_use xmlpatterns)
+ $(qt_use_with/use_enable phonon) -no-phonon-backend
+ $(qt_use_with/use_enable webkit)
+ $(qt_use_with/use_enable xmlpatterns)
  )
  qt4_multilib_src_configure
 }

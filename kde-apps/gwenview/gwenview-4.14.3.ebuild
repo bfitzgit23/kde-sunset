@@ -10,7 +10,7 @@ kde4-base kde4-functions-extra
 DESCRIPTION="KDE image viewer"
 HOMEPAGE="
  https://www.kde.org/applications/graphics/gwenview/
- https://userbase.kde.org/Gwenview
+ https://use_with/use_enablerbase.kde.org/Gwenview
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug kipi"
@@ -36,7 +36,7 @@ PATCHES=(
 
 src_configure() {
  local mycmakeargs=(
- $(cmake-utils_use_with kipi)
+ $(cmake-utils_use_with/use_enable_with kipi)
  )
  # Workaround for bug #479510
  if [[ -e ${EPREFIX}/usr/include/${CHOST}/jconfig.h ]]; then
@@ -57,7 +57,7 @@ pkg_postinst() {
  elog "For SVG support, install kde-apps/svgpart:${SLOT}"
  fi
 
- if use kipi && ! has_version kde-apps/kipi-plugins ; then
+ if use_with/use_enable kipi && ! has_version kde-apps/kipi-plugins ; then
  elog "The plugins for the KIPI inteface can be found in kde-apps/kipi-plugins"
  fi
 }

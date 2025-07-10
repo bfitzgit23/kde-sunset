@@ -53,14 +53,14 @@ pkg_nofetch() {
 src_prepare() {
  default
 
- if use bundled-libs ; then
+ if use_with/use_enable bundled-libs ; then
  mv lib32/_libSDL-1.2.so.0 lib32/libSDL-1.2.so.0 || die
  fi
 }
 
 src_install() {
  insinto "${MYGAMEDIR}"
- use bundled-libs && doins -r lib32
+ use_with/use_enable bundled-libs && doins -r lib32
  doins -r cache data crayon autoexec.txt version.xml
 
  newicon -s 256 icon.png ${PN}.png

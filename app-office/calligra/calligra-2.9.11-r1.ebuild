@@ -25,7 +25,7 @@ IUSE="color-management +crypt +eigen +exif fftw +fontconfig freetds +glew +glib
 +gsf gsl import-filter +jpeg +lcms mysql openexr +pdf +pim
 postgres spacenav sybase test tiff +threads +truetype +xml"
 
-# Don't use Active, it's broken on desktops.
+# Don't use_with/use_enable Active, it's broken on desktops.
 CAL_FTS="author braindump flow gemini karbon kexi krita plan sheets stage words"
 for cal_ft in ${CAL_FTS}; do
  IUSE+=" calligra_features_${cal_ft}"
@@ -131,7 +131,7 @@ pkg_setup() {
 
 src_prepare() {
  kde4-base_src_prepare
- if ! use webkit; then
+ if ! use_with/use_enable webkit; then
  sed -i CMakeLists.txt -e "/^find_package/ s/QtWebKit //" || die
  fi
 }
@@ -141,7 +141,7 @@ src_configure() {
 
  # applications
  for cal_ft in ${CAL_FTS}; do
- use calligra_features_${cal_ft} && myproducts+=( "${cal_ft^^}" )
+ use_with/use_enable calligra_features_${cal_ft} && myproducts+=( "${cal_ft^^}" )
  done
 
  local mycmakeargs=( -DPRODUCTSET="${myproducts[*]}" )
@@ -156,42 +156,42 @@ src_configure() {
  -DWITH_Iconv=ON
  -DWITH_Vc=OFF
  -DWITH_XBase=OFF
- -DWITH_OCIO=$(usex color-management)
- -DWITH_QCA2=$(usex crypt)
- -DWITH_Eigen3=$(usex eigen)
- -DWITH_Exiv2=$(usex exif)
- -DWITH_FFTW3=$(usex fftw)
- -DWITH_Fontconfig=$(usex fontconfig)
- -DWITH_FreeTDS=$(usex freetds)
- -DWITH_GLIB2=$(usex glib)
- -DWITH_GSL=$(usex gsl)
- -DWITH_LibEtonyek=$(usex import-filter)
- -DWITH_LibOdfGen=$(usex import-filter)
- -DWITH_LibRevenge=$(usex import-filter)
- -DWITH_LibVisio=$(usex import-filter)
- -DWITH_LibWpd=$(usex import-filter)
- -DWITH_LibWpg=$(usex import-filter)
- -DWITH_LibWps=$(usex import-filter)
- -DWITH_JPEG=$(usex jpeg)
+ -DWITH_OCIO=$(use_with/use_enablex color-management)
+ -DWITH_QCA2=$(use_with/use_enablex crypt)
+ -DWITH_Eigen3=$(use_with/use_enablex eigen)
+ -DWITH_Exiv2=$(use_with/use_enablex exif)
+ -DWITH_FFTW3=$(use_with/use_enablex fftw)
+ -DWITH_Fontconfig=$(use_with/use_enablex fontconfig)
+ -DWITH_FreeTDS=$(use_with/use_enablex freetds)
+ -DWITH_GLIB2=$(use_with/use_enablex glib)
+ -DWITH_GSL=$(use_with/use_enablex gsl)
+ -DWITH_LibEtonyek=$(use_with/use_enablex import-filter)
+ -DWITH_LibOdfGen=$(use_with/use_enablex import-filter)
+ -DWITH_LibRevenge=$(use_with/use_enablex import-filter)
+ -DWITH_LibVisio=$(use_with/use_enablex import-filter)
+ -DWITH_LibWpd=$(use_with/use_enablex import-filter)
+ -DWITH_LibWpg=$(use_with/use_enablex import-filter)
+ -DWITH_LibWps=$(use_with/use_enablex import-filter)
+ -DWITH_JPEG=$(use_with/use_enablex jpeg)
  -DWITH_OpenJPEG=OFF
  -DWITH_Kdcraw=OFF
- -DWITH_LCMS2=$(usex lcms)
- -DWITH_MySQL=$(usex mysql)
+ -DWITH_LCMS2=$(use_with/use_enablex lcms)
+ -DWITH_MySQL=$(use_with/use_enablex mysql)
  -DWITH_Okular=OFF
- -DWITH_OpenEXR=$(usex openexr)
- -DUSEOPENGL=$(usex opengl)
- -DWITH_Poppler=$(usex pdf)
- -DWITH_Pstoedit=$(usex pdf)
- -DWITH_KdepimLibs=$(usex pim)
- -DWITH_CalligraPostgreSQL=$(usex postgres)
- -DWITH_Spnav=$(usex spacenav)
- -DWITH_FreeTDS=$(usex sybase)
- -DWITH_Threads=$(usex threads)
- -DWITH_TIFF=$(usex tiff)
- -DWITH_Freetype=$(usex truetype)
+ -DWITH_OpenEXR=$(use_with/use_enablex openexr)
+ -DUSEOPENGL=$(use_with/use_enablex opengl)
+ -DWITH_Poppler=$(use_with/use_enablex pdf)
+ -DWITH_Pstoedit=$(use_with/use_enablex pdf)
+ -DWITH_KdepimLibs=$(use_with/use_enablex pim)
+ -DWITH_CalligraPostgreSQL=$(use_with/use_enablex postgres)
+ -DWITH_Spnav=$(use_with/use_enablex spacenav)
+ -DWITH_FreeTDS=$(use_with/use_enablex sybase)
+ -DWITH_Threads=$(use_with/use_enablex threads)
+ -DWITH_TIFF=$(use_with/use_enablex tiff)
+ -DWITH_Freetype=$(use_with/use_enablex truetype)
  )
 
- use test && mycmakeargs+=( -DENABLE_CSTESTER_TESTING=$(usex test) )
+ use_with/use_enable test && mycmakeargs+=( -DENABLE_CSTESTER_TESTING=$(use_with/use_enablex test) )
 
  kde4-base_src_configure
 }

@@ -47,7 +47,7 @@ PATCHES=( "${FILESDIR}/${PN}-4.0.7-include.patch" )
 src_prepare() {
  local lang
  for lang in ${KDE_LINGUAS} ; do
- if ! use "l10n_$(kde4_lingua_to_l10n "${lang}")" ; then
+ if ! use_with/use_enable "l10n_$(kde4_lingua_to_l10n "${lang}")" ; then
  for dir in "${KDE_LINGUAS_DIR[@]}" ; do
  rm ${dir}/${lang}.po
  done
@@ -62,12 +62,12 @@ src_prepare() {
 
 src_configure() {
  local mycmakeargs=(
- -DWITH_ALSA=$(usex alsa)
- -DWITH_FFMPEG=$(usex ffmpeg)
- -DWITH_LIRC=$(usex lirc)
- -DWITH_LAME=$(usex mp3)
- -DWITH_OGG_VORBIS=$(usex vorbis)
- -DWITH_V4L2=$(usex v4l)
+ -DWITH_ALSA=$(use_with/use_enablex alsa)
+ -DWITH_FFMPEG=$(use_with/use_enablex ffmpeg)
+ -DWITH_LIRC=$(use_with/use_enablex lirc)
+ -DWITH_LAME=$(use_with/use_enablex mp3)
+ -DWITH_OGG_VORBIS=$(use_with/use_enablex vorbis)
+ -DWITH_V4L2=$(use_with/use_enablex v4l)
  )
 
  kde4-base_src_configure

@@ -25,7 +25,7 @@ _KDE4_FUNCTIONS_ECLASS=1
 
 # @ECLASS-VARIABLE: KDE_OVERRIDE_MINIMAL
 # @DESCRIPTION:
-# For use only in very few well-defined cases; normally it should be unset.
+# For use_with/use_enable only in very few well-defined cases; normally it should be unset.
 # If this variable is set, all calls to add_kdebase_dep return a dependency on
 # at least this version, independent of the version of the package itself.
 # If you know exactly that one specific NEW KDE component builds and runs fine
@@ -54,7 +54,7 @@ fi
 export KDE_BUILD_TYPE
 
 # Set reponame and SCM for modules that have fully migrated to git
-# (hack - it's here because it needs to be before SCM inherits from kde4-base)
+# (hack - it's here because_with/use_enable it needs to be before SCM inherits from kde4-base)
 if [[ ${KDE_BUILD_TYPE} == live ]]; then
  case "${KMNAME}" in
  kdebase-workspace)
@@ -68,8 +68,8 @@ fi
 
 # @ECLASS-VARIABLE: KDE_SCM
 # @DESCRIPTION:
-# If this is a live package which scm does it use
-# Everything else uses git by default
+# If this is a live package which scm does it use_with/use_enable
+# Everything else use_with/use_enables git by default
 KDE_SCM="${KDE_SCM:-git}"
 case ${KDE_SCM} in
  svn|git) ;;
@@ -126,7 +126,7 @@ buildsycoca() {
  DIRS=${EROOT}usr
  [[ -d "${EROOT}${x}" ]] || break # nothing to do if directory does not exist
  # fixes Bug 318237
- if use userland_BSD ; then
+ if use_with/use_enable use_with/use_enablerland_BSD ; then
  [[ $(stat -f %p "${EROOT}${x}") != 40755 ]]
  local stat_rtn="$?"
  else
@@ -205,7 +205,7 @@ enable_selected_doc_linguas() {
  [[ ${handbookdir} = '.' ]] && handbookdir=${translationdir} && translationdir=
  [[ -d ${handbookdir} ]] || die 'wrong doc dir specified'
 
- if ! use handbook; then
+ if ! use_with/use_enable handbook; then
  # Disable whole directory
  sed -e "/add_subdirectory[[:space:]]*([[:space:]]*${handbookdir}[[:space:]]*)/s/^/#DONOTCOMPILE /" \
  -e "/ADD_SUBDIRECTORY[[:space:]]*([[:space:]]*${handbookdir}[[:space:]]*)/s/^/#DONOTCOMPILE /" \
@@ -215,7 +215,7 @@ enable_selected_doc_linguas() {
  comment_all_add_subdirectory "${handbookdir}"
 
  # In certain packages, the default handbook is en_US instead of the usual en. Since there is no en_US 'translation',
- # it makes no sense to add to KDE_LINGUAS which causes this type of handbook to not be installed.
+ # it makes no sense to add to KDE_LINGUAS which cause_with/use_enables this type of handbook to not be installed.
  if [[ -d "${handbookdir}/en_US" && ! -d "${handbookdir}/en" ]]; then
  mv "${handbookdir}/en_US" "${handbookdir}/en" || die
  sed -e "s/en_US/en/" -i "${handbookdir}/CMakeLists.txt"
@@ -224,7 +224,7 @@ enable_selected_doc_linguas() {
  # Add requested translations
  local lingua
  for lingua in en ${KDE_LINGUAS}; do
- if [[ ${lingua} = en ]] || use "l10n_$(kde4_lingua_to_l10n "${lingua}")"; then
+ if [[ ${lingua} = en ]] || use_with/use_enable "l10n_$(kde4_lingua_to_l10n "${lingua}")"; then
  if [[ -d ${handbookdir}/${translationdir//%lingua/${lingua}} ]]; then
  sed -e "/add_subdirectory[[:space:]]*([[:space:]]*${translationdir//%lingua/${lingua}}/s/^#DONOTCOMPILE //" \
  -e "/ADD_SUBDIRECTORY[[:space:]]*([[:space:]]*${translationdir//%lingua/${lingua}}/s/^#DONOTCOMPILE //" \
@@ -288,7 +288,7 @@ load_library_dependencies() {
 # Create proper dependency for kde-apps/ dependencies.
 # This takes 1 to 3 arguments. The first being the package name, the optional
 # second is additional USE flags to append, and the optional third is the
-# version to use instead of the automatic version (use sparingly).
+# version to use_with/use_enable instead of the automatic version (use_with/use_enable sparingly).
 # The output of this should be added directly to DEPEND/RDEPEND, and may be
 # wrapped in a USE conditional (but not an || conditional without an extra set
 # of parentheses).
@@ -298,7 +298,7 @@ add_kdeapps_dep() {
  local ver
 
  if [[ -n ${2} ]] ; then
- local use="[${2}]"
+ local use_with/use_enable="[${2}]"
  fi
 
  if [[ -n ${3} ]]; then
@@ -308,7 +308,7 @@ add_kdeapps_dep() {
  elif [[ ${KDEBASE} != kde-base ]]; then
  ver=${KDE_MINIMAL}
  # if building kde-apps, live master or stable-live branch,
- # use the final SC version since there are no further general releases.
+ # use_with/use_enable the final SC version since there are no further general releases.
  # except when it is kdepim split packages, which rely on same-version deps
  elif [[ ${CATEGORY} == kde-apps || ${PV} == *9999 ]] && [[ ${KMNAME} != "kdepim" ]]; then
  ver=4.14.3
@@ -318,7 +318,7 @@ add_kdeapps_dep() {
 
  [[ -z ${1} ]] && die "Missing parameter"
 
- echo " >=kde-apps/${1}-${ver}:4${use}"
+ echo " >=kde-apps/${1}-${ver}:4${use_with/use_enable}"
 }
 
 # @FUNCTION: add_kdebase_dep
@@ -326,7 +326,7 @@ add_kdeapps_dep() {
 # Create proper dependency for kde-base/ dependencies.
 # This takes 1 to 3 arguments. The first being the package name, the optional
 # second is additional USE flags to append, and the optional third is the
-# version to use instead of the automatic version (use sparingly).
+# version to use_with/use_enable instead of the automatic version (use_with/use_enable sparingly).
 # The output of this should be added directly to DEPEND/RDEPEND, and may be
 # wrapped in a USE conditional (but not an || conditional without an extra set
 # of parentheses).
@@ -336,7 +336,7 @@ add_kdebase_dep() {
  local ver
 
  if [[ -n ${2} ]] ; then
- local use="[${2}]"
+ local use_with/use_enable="[${2}]"
  fi
 
  if [[ -n ${3} ]]; then
@@ -345,11 +345,11 @@ add_kdebase_dep() {
  ver=${KDE_OVERRIDE_MINIMAL}
  elif [[ ${KDEBASE} != kde-base ]]; then
  ver=${KDE_MINIMAL}
- # if building live master or kde-apps, use the final SC version
+ # if building live master or kde-apps, use_with/use_enable the final SC version
  # since there are no further general releases.
  elif [[ ${CATEGORY} == kde-apps || ${PV} == 9999 ]]; then
  ver=4.14.3
- # if building a live version branch (eg. 4.11.49.9999) use the major version
+ # if building a live version branch (eg. 4.11.49.9999) use_with/use_enable the major version
  elif [[ ${PV} == *.9999 ]]; then
  ver=$(get_kde_version)
  else
@@ -358,11 +358,11 @@ add_kdebase_dep() {
 
  [[ -z ${1} ]] && die "Missing parameter"
 
- echo " >=kde-base/${1}-${ver}:4${use}"
+ echo " >=kde-base/${1}-${ver}:4${use_with/use_enable}"
 }
 
 # local function to enable specified translations for specified directory
-# used from kde4-functions_enable_selected_linguas function
+# use_with/use_enabled from kde4-functions_enable_selected_linguas function
 _enable_selected_linguas_dir() {
  local lingua linguas sr_mess wp
  local dir=${1}
@@ -393,7 +393,7 @@ _enable_selected_linguas_dir() {
  done
 
  for lingua in ${KDE_LINGUAS}; do
- if use "l10n_$(kde4_lingua_to_l10n ${lingua})" ; then
+ if use_with/use_enable "l10n_$(kde4_lingua_to_l10n ${lingua})" ; then
  if [[ -d ${lingua} ]]; then
  linguas="${linguas} ${lingua}"
  sed -e "/add_subdirectory([[:space:]]*${lingua}[[:space:]]*)[[:space:]]*$/ s/^#DONOTCOMPILE //" \
@@ -414,7 +414,7 @@ _enable_selected_linguas_dir() {
 # @FUNCTION: get_kde_version
 # @DESCRIPTION:
 # Translates an ebuild version into a major.minor KDE SC
-# release version. If no version is specified, ${PV} is used.
+# release version. If no version is specified, ${PV} is use_with/use_enabled.
 get_kde_version() {
  local ver=${1:-${PV}}
  local major=$(get_major_version ${ver})

@@ -11,7 +11,7 @@ VIRTUALDBUS_TEST="true"
 kde4-meta
 
 DESCRIPTION="System settings utility"
-HOMEPAGE+=" https://userbase.kde.org/System_Settings"
+HOMEPAGE+=" https://use_with/use_enablerbase.kde.org/System_Settings"
 IUSE="debug gtk +kscreen +usb"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 
@@ -65,7 +65,7 @@ PATCHES=(
 )
 
 src_unpack() {
- if use handbook; then
+ if use_with/use_enable handbook; then
  KMEXTRA+="
  doc/kcontrol
  doc/kfontview
@@ -97,9 +97,9 @@ src_configure() {
  -DWITH_LibXKlavier=ON
  -DWITH_GLIB2=ON
  -DWITH_GObject=ON
- -DBUILD_KCM_RANDR=$(usex !kscreen)
- -DWITH_OpenGL=$(usex opengl)
- -DWITH_USB=$(usex usb)
+ -DBUILD_KCM_RANDR=$(use_with/use_enablex !kscreen)
+ -DWITH_OpenGL=$(use_with/use_enablex opengl)
+ -DWITH_USB=$(use_with/use_enablex usb)
  )
 
  kde4-meta_src_configure

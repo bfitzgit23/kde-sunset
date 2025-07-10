@@ -18,7 +18,7 @@ RESTRICT=test
 src_prepare() {
  kde4-base_src_prepare
 
- if use test; then
+ if use_with/use_enable test; then
  # beat this stupid test into shape: the test files contain no year, so
  # comparison succeeds only in 2007 !!!
  local theyear=$(date +%Y)

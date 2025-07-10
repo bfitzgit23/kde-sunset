@@ -74,31 +74,31 @@ src_configure() {
  done
  }
 
- use designer || disableQtModule designer uitools
- use qml || disableQtModule qml qmltest
- use sensors || disableQtModule sensors
- use serialport || disableQtModule serialport
- use test || disableQtModule testlib
- use webkit || disableQtModule webkit webkitwidgets
+ use_with/use_enable designer || disableQtModule designer uitools
+ use_with/use_enable qml || disableQtModule qml qmltest
+ use_with/use_enable sensors || disableQtModule sensors
+ use_with/use_enable serialport || disableQtModule serialport
+ use_with/use_enable test || disableQtModule testlib
+ use_with/use_enable webkit || disableQtModule webkit webkitwidgets
 
  local guis=()
- use gtk && guis+=( gtk2 )
- use qt4 && guis+=( qt4 )
- use qt5 && guis+=( qt5 )
- # use gtk3 && guis+=( gtk3 )
+ use_with/use_enable gtk && guis+=( gtk2 )
+ use_with/use_enable qt4 && guis+=( qt4 )
+ use_with/use_enable qt5 && guis+=( qt5 )
+ # use_with/use_enable gtk3 && guis+=( gtk3 )
 
  local myeconfargs=(
  --enable-ssl
- $(use_enable debug)
- $(use_enable doc full-doc)
+ $(use_with/use_enable_enable debug)
+ $(use_with/use_enable_enable doc full-doc)
  --with-docpath="${EPREFIX}/usr/share/doc/${PF}/apidoc"
  )
 
- use qt4 && myeconfargs+=(
+ use_with/use_enable qt4 && myeconfargs+=(
  --with-qt4-moc="$(qt4_get_bindir)/moc"
  --with-qt5-qmake="$(qt4_get_bindir)/qmake"
  )
- use qt5 && myeconfargs+=(
+ use_with/use_enable qt5 && myeconfargs+=(
  --with-qt5-moc="$(qt5_get_bindir)/moc"
  --with-qt5-qmake="$(qt5_get_bindir)/qmake"
  )
@@ -109,11 +109,11 @@ src_configure() {
 
 src_compile() {
  emake
- use doc && emake srcdoc
+ use_with/use_enable doc && emake srcdoc
 }
 
 src_install() {
  default
- use doc && emake DESTDIR="${D}" install-srcdoc
+ use_with/use_enable doc && emake DESTDIR="${D}" install-srcdoc
  find "${ED}" -name '*.la' -delete || die
 }

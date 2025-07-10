@@ -20,13 +20,13 @@ RDEPEND="${DEPEND}
 "
 
 src_install() {
- { use git || use mercurial || use subversion; } && kde4-base_src_install
+ { use_with/use_enable git || use_with/use_enable mercurial || use_with/use_enable subversion; } && kde4-base_src_install
 }
 
 pkg_postinst() {
- if ! use git && ! use mercurial && ! use subversion ; then
+ if ! use_with/use_enable git && ! use_with/use_enable mercurial && ! use_with/use_enable subversion ; then
  einfo
- einfo "You have disabled all plugin use flags. If you want to have vcs"
+ einfo "You have disabled all plugin use_with/use_enable flags. If you want to have vcs"
  einfo "integration in dolphin, enable those of your needs."
  einfo
  fi

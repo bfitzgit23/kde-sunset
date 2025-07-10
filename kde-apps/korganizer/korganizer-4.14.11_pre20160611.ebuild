@@ -56,7 +56,7 @@ KMCOMPILEONLY="
 "
 
 src_unpack() {
- if use kontact; then
+ if use_with/use_enable kontact; then
  KMEXTRA="${KMEXTRA}
  kontact/plugins/planner/
  kontact/plugins/specialdates/

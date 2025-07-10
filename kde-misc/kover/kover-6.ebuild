@@ -7,7 +7,7 @@ KDE_LINGUAS="de es fr it nb no pl"
 QT3SUPPORT_REQUIRED="true"
 kde4-base
 
-DESCRIPTION="An easy to use WYSIWYG CD cover printer with CDDB support"
+DESCRIPTION="An easy to use_with/use_enable WYSIWYG CD cover printer with CDDB support"
 HOMEPAGE="http://lisas.de/kover/"
 SRC_URI="http://lisas.de/${PN}/${P}.tar.bz2"
 

@@ -30,11 +30,11 @@ PATCHES=( "${FILESDIR}/${P}-indilib100.patch" )
 
 src_configure() {
  # Bug 308903
- use ppc64 && append-flags -mminimal-toc
+ use_with/use_enable ppc64 && append-flags -mminimal-toc
 
  local mycmakeargs=(
- $(cmake-utils_use_with fits CFitsio)
- $(cmake-utils_use_with indi)
+ $(cmake-utils_use_with/use_enable_with fits CFitsio)
+ $(cmake-utils_use_with/use_enable_with indi)
  )
 
  kde4-base_src_configure

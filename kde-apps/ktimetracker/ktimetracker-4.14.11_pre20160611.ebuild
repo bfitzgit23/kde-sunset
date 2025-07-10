@@ -30,7 +30,7 @@ KMEXTRACTONLY="
 KMLOADLIBS="kdepim-common-libs"
 
 src_unpack() {
- if use kontact; then
+ if use_with/use_enable kontact; then
  KMEXTRA="${KMEXTRA} kontact/plugins/ktimetracker"
  fi
 

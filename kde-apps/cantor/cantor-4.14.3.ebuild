@@ -30,11 +30,11 @@ RESTRICT="test"
 
 src_configure() {
  local mycmakeargs=(
- $(cmake-utils_use_with analitza)
- $(cmake-utils_use_with postscript LibSpectre)
+ $(cmake-utils_use_with/use_enable_with analitza)
+ $(cmake-utils_use_with/use_enable_with postscript LibSpectre)
  -DWITH_PythonLibs=OFF
- $(cmake-utils_use_with qalculate)
- $(cmake-utils_use_with R)
+ $(cmake-utils_use_with/use_enable_with qalculate)
+ $(cmake-utils_use_with/use_enable_with R)
  )
  kde4-base_src_configure
 }
@@ -42,7 +42,7 @@ src_configure() {
 pkg_postinst() {
  kde4-base_pkg_postinst
 
- if ! use analitza && ! use qalculate && ! use R; then
+ if ! use_with/use_enable analitza && ! use_with/use_enable qalculate && ! use_with/use_enable R; then
  echo
  ewarn "You have decided to build ${PN} with no backend."
  ewarn "To have this application functional, please do one of below:"

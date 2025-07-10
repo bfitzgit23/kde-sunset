@@ -6,7 +6,7 @@ EAPI=7
 KMNAME="kde-workspace"
 kde4-meta
 
-DESCRIPTION="A simple password checker, used by any software in need of user authentication"
+DESCRIPTION="A simple password checker, use_with/use_enabled by any software in need of use_with/use_enabler authentication"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug pam"
 
@@ -23,12 +23,12 @@ RDEPEND="${DEPEND}
 src_prepare() {
  kde4-meta_src_prepare
 
- use pam && PATCHES=(${FILESDIR}/${PN}-4.4.2-no-SUID-no-GUID.patch)
+ use_with/use_enable pam && PATCHES=(${FILESDIR}/${PN}-4.4.2-no-SUID-no-GUID.patch)
 }
 
 src_configure() {
  local mycmakeargs=(
- $(cmake-utils_use_with pam)
+ $(cmake-utils_use_with/use_enable_with pam)
  )
 
  kde4-meta_src_configure

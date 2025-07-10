@@ -10,7 +10,7 @@
 # @DESCRIPTION:
 # This eclass provides all necessary functions for writing split KDE ebuilds.
 #
-# You must define KMNAME to use this eclass, and do so before inheriting it. All other variables are optional.
+# You must define KMNAME to use_with/use_enable this eclass, and do so before inheriting it. All other variables are optional.
 # Do not include the same item in more than one of KMMODULE, KMMEXTRA, KMCOMPILEONLY, KMEXTRACTONLY.
 
 if [[ -z ${_KDE4_META_ECLASS} ]]; then
@@ -60,14 +60,14 @@ esac
 # @DESCRIPTION:
 # Name of the parent-module (e.g. kdebase, kdepim, ...). You _must_ set it
 # _before_ inheriting this eclass, (unlike the other parameters), since it's
-# used to set $SRC_URI.
+# use_with/use_enabled to set $SRC_URI.
 
 # @ECLASS-VARIABLE: KMMODULE
 # @DESCRIPTION:
 # Specify exactly one subdirectory of $KMNAME here. Defaults to $PN.
 # The subdirectory listed here is treated exactly like items in $KMEXTRA.
 #
-# Example: The ebuild name of "kdebase/l10n" is kde-base/kdebase-l10n, because
+# Example: The ebuild name of "kdebase/l10n" is kde-base/kdebase-l10n, because_with/use_enable
 # just 'l10n' would be too confusing. Hence it sets KMMODULE="l10n".
 
 # @ECLASS-VARIABLE: KMNOMODULE
@@ -97,7 +97,7 @@ fi
 # @ECLASS-VARIABLE: KMEXTRACTONLY
 # @DESCRIPTION:
 # All subdirectories listed here will be extracted, but neither compiled nor installed.
-# This can be used to avoid compilation in a subdirectory of a directory in $KMMODULE or $KMEXTRA
+# This can be use_with/use_enabled to avoid compilation in a subdirectory of a directory in $KMMODULE or $KMEXTRA
 
 # @ECLASS-VARIABLE: KMTARPARAMS
 # @DESCRIPTION:
@@ -196,7 +196,7 @@ kde4-meta_src_extract() {
  # Full path to source tarball
  tarfile="${DISTDIR}/${tarball}"
 
- # Detect real toplevel dir from tarball name - it will be used upon extraction
+ # Detect real toplevel dir from tarball name - it will be use_with/use_enabled upon extraction
  # and in _list_needed_subdirectories
  topdir="${tarball%.tar.*}/"
 
@@ -253,15 +253,15 @@ kde4-meta_create_extractlists() {
 
  # Add default handbook locations
  # FIXME - legacy code - remove when 4.4.5 is gone or preferrably port 4.4.5.
- if [[ $(get_kde_version) < 4.5 ]] && in_iuse handbook && use handbook && [[ -z ${KMNOMODULE} ]]; then
- # We use the basename of $KMMODULE because $KMMODULE can contain
+ if [[ $(get_kde_version) < 4.5 ]] && in_iuse_with/use_enable handbook && use_with/use_enable handbook && [[ -z ${KMNOMODULE} ]]; then
+ # We use_with/use_enable the basename of $KMMODULE because_with/use_enable $KMMODULE can contain
  # the path to the module subdirectory.
  KMEXTRA_NONFATAL+="
  doc/${KMMODULE##*/}"
  fi
 
  # Add default handbook locations
- if [[ -z ${KMNOMODULE} ]] && ( [[ ${KDE_HANDBOOK} == always ]] || ( [[ ${KDE_HANDBOOK} == optional ]] && use handbook ) ); then
+ if [[ -z ${KMNOMODULE} ]] && ( [[ ${KDE_HANDBOOK} == always ]] || ( [[ ${KDE_HANDBOOK} == optional ]] && use_with/use_enable handbook ) ); then
  KMEXTRA_NONFATAL+=" doc/${KMMODULE##*/}"
  fi
 
@@ -302,7 +302,7 @@ kde4-meta_create_extractlists() {
  CTestCustom.cmake
  kdepim-version.h.cmake
  kdepim-version.h"
- if in_iuse kontact && use kontact; then
+ if in_iuse_with/use_enable kontact && use_with/use_enable kontact; then
  KMEXTRA+="
  kontact/plugins/${PLUGINNAME:-${PN}}/"
  fi
@@ -427,7 +427,7 @@ kde4-meta_change_cmakelists() {
 
  local i
 
- # KMEXTRACTONLY section - Some ebuilds need to comment out some subdirs in KMMODULE and they use KMEXTRACTONLY
+ # KMEXTRACTONLY section - Some ebuilds need to comment out some subdirs in KMMODULE and they use_with/use_enable KMEXTRACTONLY
  for i in ${KMEXTRACTONLY}; do
  if [[ -d ${i} && -f ${i}/../CMakeLists.txt ]]; then
  sed -e "/([[:space:]]*$(basename $i)[[:space:]]*)/s/^/#DONOTCOMPILE /" \
@@ -528,7 +528,7 @@ kde4-meta_change_cmakelists() {
  -e 's/if[[:space:]]*([[:space:]]*[[:alnum:]]*_FOUND[[:space:]]*)[[:space:]]*$/if(1) # &/' \
  -i CMakeLists.txt || die "failed to disable hardcoded checks"
  # Disable broken or redundant build logic
- if in_iuse kontact && use kontact || [[ ${PN} = kontact ]]; then
+ if in_iuse_with/use_enable kontact && use_with/use_enable kontact || [[ ${PN} = kontact ]]; then
  sed -e 's/if[[:space:]]*([[:space:]]*BUILD_.*)[[:space:]]*$/if(1) # &/' \
  -e 's/if[[:space:]]*([[:space:]]*[[:alnum:]]*_FOUND[[:space:]]*)[[:space:]]*$/if(1) # &/' \
  -i kontact/plugins/CMakeLists.txt || die 'failed to override build logic'

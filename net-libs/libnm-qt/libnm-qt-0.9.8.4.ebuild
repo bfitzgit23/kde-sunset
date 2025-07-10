@@ -37,16 +37,16 @@ S=${WORKDIR}/networkmanager-qt-${PV}
 src_configure() {
  local mycmakeargs=(
  -DBUILD_EXAMPLES=OFF
- $(cmake-utils_use_find_package doc Doxygen)
- $(cmake-utils_use !modemmanager DISABLE_MODEMMANAGERQT)
- $(cmake-utils_use !test DISABLE_TESTING)
+ $(cmake-utils_use_with/use_enable_find_package doc Doxygen)
+ $(cmake-utils_use_with/use_enable !modemmanager DISABLE_MODEMMANAGERQT)
+ $(cmake-utils_use_with/use_enable !test DISABLE_TESTING)
  )
 
  kde4-base_src_configure
 }
 
 src_install() {
- if use doc; then
+ if use_with/use_enable doc; then
  { cd "${BUILD_DIR}" && doxygen; } || die "Generating documentation failed"
  HTML_DOCS=( "${BUILD_DIR}/doc/html/" )
  fi

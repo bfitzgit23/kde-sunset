@@ -82,11 +82,11 @@ multilib_src_configure() {
  -no-cups -no-dbus -no-gtkstyle -no-nas-sound -no-opengl -no-openvg
  -no-sm -no-xshape -no-xvideo -no-xsync -no-xinerama -no-xcursor -no-xfixes
  -no-xrandr -no-xrender -no-mitshm -no-fontconfig -no-freetype -no-xinput -no-xkb
- $(qt_use glib)
- $(qt_use iconv)
+ $(qt_use_with/use_enable glib)
+ $(qt_use_with/use_enable iconv)
  -no-icu
- $(use ssl && echo -openssl-linked || echo -no-openssl)
- $(qt_use qt3support)
+ $(use_with/use_enable ssl && echo -openssl-linked || echo -no-openssl)
+ $(qt_use_with/use_enable qt3support)
  )
  qt4_multilib_src_configure
 }

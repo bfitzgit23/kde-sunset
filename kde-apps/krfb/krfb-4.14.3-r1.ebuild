@@ -34,8 +34,8 @@ src_prepare() {
 
 src_configure() {
  local mycmakeargs=(
- -DWITH_TelepathyQt4=$(usex telepathy)
- -DWITH_KTp=$(use ktp)
+ -DWITH_TelepathyQt4=$(use_with/use_enablex telepathy)
+ -DWITH_KTp=$(use_with/use_enable ktp)
  )
 
  kde4-base_src_configure

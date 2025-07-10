@@ -40,7 +40,7 @@ PLUGINS="+addbookmarks +autoreplace +contactnotes +highlight +history latex
 # Available protocols
 # gadu: net-libs/libgadu @since 4.3
 # groupwise: app-crypt/qca:2-qt4
-# irc: NO DEPS, probably will fail so inform user about it
+# irc: NO DEPS, probably will fail so inform use_with/use_enabler about it
 # xmpp: net-dns/libidn app-crypt/qca:2-qt4 ENABLED BY DEFAULT NETWORK
 # jingle: media-libs/speex net-libs/ortp DISABLED BY UPSTREAM
 # meanwhile: net-libs/meanwhile
@@ -109,7 +109,7 @@ src_configure() {
  -DWITH_LiboRTP=OFF
  -DWITH_Mediastreamer=OFF
  -DWITH_Speex=OFF
- $(cmake-utils_use_disable v4l VIDEOSUPPORT)
+ $(cmake-utils_use_with/use_enable_disable v4l VIDEOSUPPORT)
  )
  # enable protocols
  for x in ${PROTOCOLS}; do
@@ -118,14 +118,14 @@ src_configure() {
  zeroconf) x2=bonjour ;;
  *) x2='' ;;
  esac
- mycmakeargs+=($(cmake-utils_use_with ${x/+/} ${x2}))
+ mycmakeargs+=($(cmake-utils_use_with/use_enable_with ${x/+/} ${x2}))
  done
 
  mycmakeargs+=( -DWITH_libjingle=OFF -DWITH_Libmsn=OFF -DWITH_qq=OFF )
 
  # enable plugins
  for x in ${PLUGINS}; do
- mycmakeargs+=($(cmake-utils_use_with ${x/+/}))
+ mycmakeargs+=($(cmake-utils_use_with/use_enable_with ${x/+/}))
  done
 
  kde4-base_src_configure
@@ -134,16 +134,16 @@ src_configure() {
 pkg_postinst() {
  kde4-base_pkg_postinst
 
- #if use telepathy; then
- # elog "To use kopete telepathy plugins, you need to start gabble first:"
+ #if use_with/use_enable telepathy; then
+ # elog "To use_with/use_enable kopete telepathy plugins, you need to start gabble first:"
  # elog "GABBLE_PERSIST=1 telepathy-gabble &"
  # elog "export TELEPATHY_DATA_PATH='${EPREFIX}/usr/share/telepathy/managers/'"
  #fi
 
- if ! use ssl; then
- if use xmpp ; then # || use irc; then
+ if ! use_with/use_enable ssl; then
+ if use_with/use_enable xmpp ; then # || use_with/use_enable irc; then
  if ! has_version "app-crypt/qca:2-qt4[ssl]" ; then
- elog "In order to use ssl in xmpp you'll need to"
+ elog "In order to use_with/use_enable ssl in xmpp you'll need to"
  elog "install app-crypt/qca package with USE=ssl."
  fi
  fi

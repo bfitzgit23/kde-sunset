@@ -35,11 +35,11 @@ RDEPEND="${DEPEND}
 "
 BDEPEND="virtual/pkgconfig"
 
-PATCHES=( "${FILESDIR}/${P}-no-paused-on-zero-vol.patch" )
+PATCHES=( "${FILESDIR}/${P}-no-pause_with/use_enabled-on-zero-vol.patch" )
 
 src_prepare() {
  cmake_src_prepare
- use minimal && cmake_run_in gstreamer cmake_comment_add_subdirectory icons
+ use_with/use_enable minimal && cmake_run_in gstreamer cmake_comment_add_subdirectory icons
 }
 
 src_configure() {
@@ -48,9 +48,9 @@ src_configure() {
 }
 
 pkg_postinst() {
- use minimal || xdg_icon_cache_update
+ use_with/use_enable minimal || xdg_icon_cache_update
 }
 
 pkg_postrm() {
- use minimal || xdg_icon_cache_update
+ use_with/use_enable minimal || xdg_icon_cache_update
 }

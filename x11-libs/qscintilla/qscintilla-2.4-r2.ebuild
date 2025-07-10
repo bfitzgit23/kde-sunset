@@ -66,7 +66,7 @@ src_install() {
 
  # documentation
  cd "${S}" || die
- if use doc; then
+ if use_with/use_enable doc; then
  docinto html
  dodoc -r doc/html-Qt4/.
  docinto Scintilla

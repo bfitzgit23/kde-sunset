@@ -36,16 +36,16 @@ QCONFIG_ADD="declarative"
 QCONFIG_DEFINE="QT_DECLARATIVE"
 
 pkg_setup() {
- use webkit && QT4_TARGET_DIRECTORIES+="
+ use_with/use_enable webkit && QT4_TARGET_DIRECTORIES+="
  src/3rdparty/webkit/Source/WebKit/qt/declarative"
 }
 
 multilib_src_configure() {
  local myconf=(
  -declarative -no-gtkstyle
- $(qt_use accessibility)
- $(qt_use qt3support)
- $(qt_use webkit)
+ $(qt_use_with/use_enable accessibility)
+ $(qt_use_with/use_enable qt3support)
+ $(qt_use_with/use_enable webkit)
  )
  qt4_multilib_src_configure
 }

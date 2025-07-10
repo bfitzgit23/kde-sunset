@@ -37,8 +37,8 @@ src_configure() {
  -DEIGEN_BUILD_LIB=OFF
  -DEIGEN_BUILD_BTL=OFF
  -DEIGEN_BUILD_PKGCONFIG=ON
- -DEIGEN_BUILD_DEMOS=$(usex examples)
- -DEIGEN_BUILD_TESTS=$(usex test)
+ -DEIGEN_BUILD_DEMOS=$(use_with/use_enablex examples)
+ -DEIGEN_BUILD_TESTS=$(use_with/use_enablex test)
  )
  cmake-utils_src_configure
 }
@@ -46,7 +46,7 @@ src_configure() {
 src_compile() {
  cmake-utils_src_compile -j1
 
- if use doc; then
+ if use_with/use_enable doc; then
  cmake-utils_src_compile -j1 doc
  HTML_DOCS=( "${BUILD_DIR}"/html/. )
  fi
@@ -55,7 +55,7 @@ src_compile() {
 src_install() {
  cmake-utils_src_install -j1
 
- if use examples; then
+ if use_with/use_enable examples; then
  cd "${BUILD_DIR}"/demos || die
  dobin mandelbrot/mandelbrot opengl/quaternion_demo
  fi

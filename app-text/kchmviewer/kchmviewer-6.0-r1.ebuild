@@ -29,11 +29,11 @@ RDEPEND="${DEPEND}
 "
 
 pkg_setup() {
- use kde && kde4-base_pkg_setup
+ use_with/use_enable kde && kde4-base_pkg_setup
 }
 
 src_prepare() {
- if use kde; then
+ if use_with/use_enable kde; then
  kde4-base_src_prepare
  else
  default
@@ -50,7 +50,7 @@ src_prepare() {
 }
 
 src_configure() {
- if use kde; then
+ if use_with/use_enable kde; then
  kde4-base_src_configure
  else
  eqmake4
@@ -58,7 +58,7 @@ src_configure() {
 }
 
 src_compile() {
- if use kde; then
+ if use_with/use_enable kde; then
  kde4-base_src_compile
  else
  default
@@ -66,7 +66,7 @@ src_compile() {
 }
 
 src_install() {
- if use kde; then
+ if use_with/use_enable kde; then
  kde4-base_src_install
  else
  dobin bin/kchmviewer
@@ -78,11 +78,11 @@ src_install() {
 }
 
 pkg_postinst() {
- use kde && kde4-base_pkg_postinst
+ use_with/use_enable kde && kde4-base_pkg_postinst
  xdg_desktop_database_update
 }
 
 pkg_postrm() {
- use kde && kde4-base_pkg_postrm
+ use_with/use_enable kde && kde4-base_pkg_postrm
  xdg_desktop_database_update
 }

@@ -39,7 +39,7 @@ src_prepare() {
  sed -i "/qtscript_phonon/d" qtbindings/qtbindings.pro || die "sed failed"
  sed -i "/qtscript_webkit/d" qtbindings/qtbindings.pro || die "sed failed"
 
- use arm && eapply "${FILESDIR}"/${P}-arm.patch
+ use_with/use_enable arm && eapply "${FILESDIR}"/${P}-arm.patch
 }
 
 src_configure() {

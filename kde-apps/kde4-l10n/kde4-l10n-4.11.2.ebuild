@@ -63,14 +63,14 @@ src_prepare() {
  -exec sed -i -e 's:^ *add_subdirectory( *kdepim *):# no kdepim:g' {} +
 
  # bug 481106, please remove in 4.11.1 and later
- use l10n_pl && rm "${S}"/kde-l10n-pl-${PV}/messages/kde-runtime/{accountwizard*,akonadi_*}.po
+ use_with/use_enable l10n_pl && rm "${S}"/kde-l10n-pl-${PV}/messages/kde-runtime/{accountwizard*,akonadi_*}.po
 
  kde4-base_src_prepare
 }
 
 src_configure() {
  mycmakeargs=(
- $(cmake-utils_use_build handbook docs)
+ $(cmake-utils_use_with/use_enable_build handbook docs)
  )
  [[ -n ${A} ]] && kde4-base_src_configure
 }

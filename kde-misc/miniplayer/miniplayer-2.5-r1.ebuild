@@ -27,7 +27,7 @@ RDEPEND="
 src_prepare() {
  local lang
  for lang in ${KDE_LINGUAS} ; do
- if ! use l10n_${lang} ; then
+ if ! use_with/use_enable l10n_${lang} ; then
  rm ${KDE_LINGUAS_DIR}/${lang}.mo
  fi
  done

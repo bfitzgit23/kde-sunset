@@ -35,19 +35,19 @@ DEPEND="
  ${RDEPEND}
  test? ( dev-qt/qttest:4 )
 "
-# the qt dependencies are needed because with USE=-kde nothing is pulled in
+# the qt dependencies are needed because_with/use_enable with USE=-kde nothing is pulled in
 # by default... bugs 414165 & 429346
 
 REQUIRED_USE="plasma? ( kde )"
 
 src_configure() {
  local mycmakeargs=(
- $(cmake-utils_use_with designer-plugin DESIGNER_PLUGIN)
- $(cmake-utils_use !kde QTONLY)
- $(cmake-utils_use_with phonon)
- $(cmake-utils_use_with plasma)
- $(cmake-utils_use_with shapefile libshp)
- $(cmake-utils_use_with zip quazip)
+ $(cmake-utils_use_with/use_enable_with designer-plugin DESIGNER_PLUGIN)
+ $(cmake-utils_use_with/use_enable !kde QTONLY)
+ $(cmake-utils_use_with/use_enable_with phonon)
+ $(cmake-utils_use_with/use_enable_with plasma)
+ $(cmake-utils_use_with/use_enable_with shapefile libshp)
+ $(cmake-utils_use_with/use_enable_with zip quazip)
  -DBUILD_MARBLE_TESTS=OFF
  -DWITH_liblocation=0
  -DEXPERIMENTAL_PYTHON_BINDINGS=OFF
@@ -62,7 +62,7 @@ src_configure() {
 }
 
 src_test() {
- if use kde; then
+ if use_with/use_enable kde; then
  elog "Marble tests can only be run in the qt-only version"
  else
  local mycmakeargs=(

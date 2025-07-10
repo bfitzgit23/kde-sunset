@@ -51,6 +51,6 @@ pkg_postinst() {
  elog "properly kill the agent when the session ends."
  elog
  elog "${P} has been installed as your default askpass application in KDE4 session."
- elog "If it's not desired, point the one you want to use in ${STARTUPDIR}/${CFG}"
+ elog "If it's not desired, point the one you want to use_with/use_enable in ${STARTUPDIR}/${CFG}"
  elog
 }

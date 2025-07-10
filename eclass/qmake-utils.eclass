@@ -144,7 +144,7 @@ qmake-utils_find_pro_file() {
 # @DESCRIPTION:
 # Wrapper for Qt4's qmake. If project_file is not specified, eqmake4 looks
 # for one in the current directory (non-recursively). If multiple project
-# files are found, then ${PN}.pro is used, if it exists, otherwise eqmake4
+# files are found, then ${PN}.pro is use_with/use_enabled, if it exists, otherwise eqmake4
 # will not be able to continue.
 #
 # All other arguments are appended unmodified to qmake command line.
@@ -178,7 +178,7 @@ eqmake4() {
  # Make sure the CONFIG variable is correctly set for both release and debug builds.
  local config_add=release
  local config_remove=debug
- if in_iuse debug && use debug; then
+ if in_iuse_with/use_enable debug && use_with/use_enable debug; then
  config_add=debug
  config_remove=release
  fi

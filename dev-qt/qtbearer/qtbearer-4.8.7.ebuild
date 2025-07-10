@@ -25,13 +25,13 @@ RDEPEND="${DEPEND}
 pkg_setup() {
  QT4_TARGET_DIRECTORIES="
  src/plugins/bearer/generic
- $(use connman && echo src/plugins/bearer/connman)
- $(use networkmanager && echo src/plugins/bearer/networkmanager)"
+ $(use_with/use_enable connman && echo src/plugins/bearer/connman)
+ $(use_with/use_enable networkmanager && echo src/plugins/bearer/networkmanager)"
 }
 
 multilib_src_configure() {
  local myconf=(
- $(use connman || use networkmanager || echo -no-dbus)
+ $(use_with/use_enable connman || use_with/use_enable networkmanager || echo -no-dbus)
  -no-accessibility -no-xmlpatterns -no-multimedia -no-audio-backend -no-phonon
  -no-phonon-backend -no-svg -no-webkit -no-script -no-scripttools -no-declarative
  -system-zlib -no-gif -no-libtiff -no-libpng -no-libmng -no-libjpeg

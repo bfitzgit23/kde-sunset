@@ -53,7 +53,7 @@ src_prepare() {
  cmake_comment_add_subdirectory test # we don't do tests, don't build them.
 
  # Clang doesn't grok this flag, the configure nicely tests that, but
- # cmake just uses it, so remove it if we use clang
+ # cmake just use_with/use_enables it, so remove it if we use_with/use_enable clang
  if [[ ${CC} == clang ]] ; then
  sed -i -e 's/-fno-check-new//' cmake/modules/PopplerMacros.cmake || die
  fi
@@ -80,31 +80,31 @@ src_configure() {
  -DENABLE_ZLIB=ON
  -DENABLE_ZLIB_UNCOMPRESS=OFF
  -DENABLE_XPDF_HEADERS=ON
- -DENABLE_LIBCURL="$(usex curl)"
+ -DENABLE_LIBCURL="$(use_with/use_enablex curl)"
  -DENABLE_CPP=OFF
  -DENABLE_UTILS=OFF
  -DSPLASH_CMYK=OFF
  -DUSE_FIXEDPOINT=OFF
  -DUSE_FLOAT=OFF
  -DWITH_Cairo=OFF
- -DWITH_JPEG="$(usex jpeg)"
- -DWITH_NSS3="$(usex nss)"
- -DWITH_PNG="$(usex png)"
+ -DWITH_JPEG="$(use_with/use_enablex jpeg)"
+ -DWITH_NSS3="$(use_with/use_enablex nss)"
+ -DWITH_PNG="$(use_with/use_enablex png)"
  -DWITH_Qt4=ON
  -DCMAKE_DISABLE_FIND_PACKAGE_Qt5Core=ON
- -DWITH_TIFF="$(usex tiff)"
+ -DWITH_TIFF="$(use_with/use_enablex tiff)"
  )
- if use jpeg; then
+ if use_with/use_enable jpeg; then
  mycmakeargs+=(-DENABLE_DCTDECODER=libjpeg)
  else
  mycmakeargs+=(-DENABLE_DCTDECODER=none)
  fi
- if use jpeg2k; then
+ if use_with/use_enable jpeg2k; then
  mycmakeargs+=(-DENABLE_LIBOPENJPEG=openjpeg2)
  else
  mycmakeargs+=(-DENABLE_LIBOPENJPEG=none)
  fi
- if use lcms; then
+ if use_with/use_enable lcms; then
  mycmakeargs+=(-DENABLE_CMS=lcms2)
  else
  mycmakeargs+=(-DENABLE_CMS=)

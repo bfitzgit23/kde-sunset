@@ -82,23 +82,23 @@ src_prepare() {
 
 src_configure() {
  # Append minimal-toc cflag for ppc64, see bug 280552 and 292707
- use ppc64 && append-flags -mminimal-toc
+ use_with/use_enable ppc64 && append-flags -mminimal-toc
 
  local mycmakeargs=(
  -DWITH_PLAYER=ON
  -DWITH_NepomukCore=OFF
  -DWITH_Soprano=OFF
  -DWITH_MYSQL_EMBEDDED=OFF
- -DWITH_IPOD=$(usex ipod)
- -DWITH_LibLastFm=$(usex lastfm)
- -DWITH_MP3Tunes=$(usex mp3tunes)
- -DWITH_Mtp=$(usex mtp)
- -DWITH_LibOFA=$(usex ofa)
- -DWITH_UTILITIES=$(usex utils)
+ -DWITH_IPOD=$(use_with/use_enablex ipod)
+ -DWITH_LibLastFm=$(use_with/use_enablex lastfm)
+ -DWITH_MP3Tunes=$(use_with/use_enablex mp3tunes)
+ -DWITH_Mtp=$(use_with/use_enablex mtp)
+ -DWITH_LibOFA=$(use_with/use_enablex ofa)
+ -DWITH_UTILITIES=$(use_with/use_enablex utils)
  )
 
- use ipod && mycmakeargs+=( DWITH_GDKPixBuf=ON )
- use mp3tunes && mycmakeargs+=( -DWITH_Libgcrypt=OFF )
+ use_with/use_enable ipod && mycmakeargs+=( DWITH_GDKPixBuf=ON )
+ use_with/use_enable mp3tunes && mycmakeargs+=( -DWITH_Libgcrypt=OFF )
 
  kde4-base_src_configure
 }
@@ -114,7 +114,7 @@ pkg_postinst() {
  kde4-base_pkg_postinst
 
  elog "You've disabled the amarok support for embedded mysql DBs."
- elog "You'll have to configure amarok to use an external db server."
+ elog "You'll have to configure amarok to use_with/use_enable an external db server."
  elog "Please read https://community.kde.org/Amarok/Community/MySQL for details on how"
  elog "to configure the external db and migrate your data from the embedded database."
 }

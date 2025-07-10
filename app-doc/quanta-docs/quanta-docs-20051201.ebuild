@@ -22,7 +22,7 @@ src_install() {
  dodir /usr/share/apps/quanta/doc
 
  local docdirs="css html javascript php"
- use mysql && docdirs="${docdirs} mysql5"
+ use_with/use_enable mysql && docdirs="${docdirs} mysql5"
 
  for i in ${docdirs}; do
  cd "${S}/${i}"

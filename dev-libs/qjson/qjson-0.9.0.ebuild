@@ -35,14 +35,14 @@ PATCHES=(
 multilib_src_configure() {
  local mycmakeargs=(
  -DQT4_BUILD=ON
- -DQJSON_BUILD_TESTS=$(usex test)
+ -DQJSON_BUILD_TESTS=$(use_with/use_enablex test)
  )
 
  cmake_src_configure
 }
 
 multilib_src_install_all() {
- if use doc && is_final_abi; then
+ if use_with/use_enable doc && is_final_abi; then
  pushd doc > /dev/null || die
  doxygen Doxyfile || die "Generating documentation failed"
  local HTML_DOCS=( doc/html/. )

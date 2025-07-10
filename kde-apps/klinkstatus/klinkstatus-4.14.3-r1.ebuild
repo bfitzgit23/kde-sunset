@@ -24,7 +24,7 @@ PATCHES=( "${FILESDIR}/${P}-tidyhtml5.patch" )
 src_configure() {
  local mycmakeargs=(
  -DWITH_KdepimLibs=ON
- -DWITH_LibTidy=$(usex tidy)
+ -DWITH_LibTidy=$(use_with/use_enablex tidy)
  )
 
  kde4-meta_src_configure
@@ -34,5 +34,5 @@ pkg_postinst() {
  kde4-meta_pkg_postinst
 
  has_version dev-lang/ruby ||
- elog "To use scripting in ${PN}, install dev-lang/ruby."
+ elog "To use_with/use_enable scripting in ${PN}, install dev-lang/ruby."
 }

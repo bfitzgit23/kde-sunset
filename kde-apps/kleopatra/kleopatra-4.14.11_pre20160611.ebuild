@@ -30,7 +30,7 @@ KMEXTRACTONLY="
 "
 
 src_unpack() {
- if use handbook; then
+ if use_with/use_enable handbook; then
  KMEXTRA="
  doc/kwatchgnupg
  "

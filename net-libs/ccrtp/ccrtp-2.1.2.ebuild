@@ -27,7 +27,7 @@ src_configure() {
 }
 
 src_install() {
- use doc && HTML_DOCS="doc/html/*"
+ use_with/use_enable doc && HTML_DOCS="doc/html/*"
  default
  find "${D}" -name '*.la' -delete || die
 }

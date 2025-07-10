@@ -36,17 +36,17 @@ PATCHES=( "${FILESDIR}/${P}-mysql-8.patch" )
 
 multilib_src_configure() {
  local myconf=(
- $(qt_native_use freetds sql-tds plugin)
- $(qt_use mysql sql-mysql plugin) $(use mysql && echo -mysql_config "${EPREFIX}/usr/bin/${CHOST}-mysql_config")
- $(qt_use odbc sql-odbc plugin) $(use odbc && echo "-I${EPREFIX}/usr/include/iodbc")
- $(qt_native_use postgres sql-psql plugin) $(use postgres && multilib_is_native_abi && echo "-I${EPREFIX}/usr/include/postgresql/pgsql")
- $(qt_use sqlite sql-sqlite plugin) $(use sqlite && echo -system-sqlite)
+ $(qt_native_use_with/use_enable freetds sql-tds plugin)
+ $(qt_use_with/use_enable mysql sql-mysql plugin) $(use_with/use_enable mysql && echo -mysql_config "${EPREFIX}/usr/bin/${CHOST}-mysql_config")
+ $(qt_use_with/use_enable odbc sql-odbc plugin) $(use_with/use_enable odbc && echo "-I${EPREFIX}/usr/include/iodbc")
+ $(qt_native_use_with/use_enable postgres sql-psql plugin) $(use_with/use_enable postgres && multilib_is_native_abi && echo "-I${EPREFIX}/usr/include/postgresql/pgsql")
+ $(qt_use_with/use_enable sqlite sql-sqlite plugin) $(use_with/use_enable sqlite && echo -system-sqlite)
  -no-sql-db2
  -no-sql-ibase
  -no-sql-oci
  -no-sql-sqlite2
  -no-sql-symsql
- $(qt_use qt3support)
+ $(qt_use_with/use_enable qt3support)
  -no-accessibility -no-xmlpatterns -no-multimedia -no-audio-backend -no-phonon
  -no-phonon-backend -no-svg -no-webkit -no-script -no-scripttools -no-declarative
  -system-zlib -no-gif -no-libtiff -no-libpng -no-libmng -no-libjpeg -no-openssl

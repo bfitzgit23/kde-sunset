@@ -40,6 +40,6 @@ pkg_postinst() {
 
  if ! has_version kde-apps/kaddressbook:${SLOT}; then
  elog "File templates plugin requires kde-apps/kaddressbook:${SLOT}."
- elog "Please install it if you plan to use this plugin."
+ elog "Please install it if you plan to use_with/use_enable this plugin."
  fi
 }

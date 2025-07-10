@@ -23,6 +23,6 @@ DEPEND="
 RDEPEND=${DEPEND}
 
 pkg_postinst() {
- elog "If you want to use the WorkFlow KWin script, install it from the KWin Script manager."
+ elog "If you want to use_with/use_enable the WorkFlow KWin script, install it from the KWin Script manager."
  elog "The WorkFlow plasmoid package is a dependancy for the WorkFlow KWin script to work."
 }

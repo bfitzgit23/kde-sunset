@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
- multilib desktop user qt4-build-multilib
+ multilib desktop use_with/use_enabler qt4-build-multilib
 
 DESCRIPTION="The GUI module for the Qt toolkit"
 
@@ -16,7 +16,7 @@ REQUIRED_USE="
  gtkstyle? ( glib )
 "
 
-# cairo[-qt4] is needed because of bug 454066
+# cairo[-qt4] is needed because_with/use_enable of bug 454066
 RDEPEND="
  app-eselect/eselect-qtgraphicssystem
  ~dev-qt/qtcore-${PV}[debug=,glib=,qt3support=,${MULTILIB_USEDEP}]
@@ -74,39 +74,39 @@ QT4_TARGET_DIRECTORIES="
  src/plugins/inputmethods"
 
 pkg_setup() {
- use accessibility && QT4_TARGET_DIRECTORIES+=" src/plugins/accessible/widgets"
- use mng && QT4_TARGET_DIRECTORIES+=" src/plugins/imageformats/mng"
- use tiff && QT4_TARGET_DIRECTORIES+=" src/plugins/imageformats/tiff"
- use trace && QT4_TARGET_DIRECTORIES+=" src/plugins/graphicssystems/trace tools/qttracereplay"
+ use_with/use_enable accessibility && QT4_TARGET_DIRECTORIES+=" src/plugins/accessible/widgets"
+ use_with/use_enable mng && QT4_TARGET_DIRECTORIES+=" src/plugins/imageformats/mng"
+ use_with/use_enable tiff && QT4_TARGET_DIRECTORIES+=" src/plugins/imageformats/tiff"
+ use_with/use_enable trace && QT4_TARGET_DIRECTORIES+=" src/plugins/graphicssystems/trace tools/qttracereplay"
 
  [[ ${CHOST} != *-darwin* ]] && QT4_TARGET_DIRECTORIES+=" tools/qtconfig"
 
  QCONFIG_ADD="
  mitshm tablet x11sm xcursor xfixes xinput xkb xrandr xrender xshape xsync
  fontconfig system-freetype gif png system-png jpeg system-jpeg
- $(usev accessibility)
- $(usev cups)
- $(use mng && echo system-mng)
- $(usev nas)
- $(usev nis)
- $(use tiff && echo system-tiff)
- $(usev xinerama)
- $(use xv && echo xvideo)"
+ $(use_with/use_enablev accessibility)
+ $(use_with/use_enablev cups)
+ $(use_with/use_enable mng && echo system-mng)
+ $(use_with/use_enablev nas)
+ $(use_with/use_enablev nis)
+ $(use_with/use_enable tiff && echo system-tiff)
+ $(use_with/use_enablev xinerama)
+ $(use_with/use_enable xv && echo xvideo)"
  QCONFIG_REMOVE="no-freetype no-gif no-jpeg no-png no-gui"
- QCONFIG_DEFINE="$(use accessibility && echo QT_ACCESSIBILITY)
- $(use cups && echo QT_CUPS)
- $(use egl && echo QT_EGL)
+ QCONFIG_DEFINE="$(use_with/use_enable accessibility && echo QT_ACCESSIBILITY)
+ $(use_with/use_enable cups && echo QT_CUPS)
+ $(use_with/use_enable egl && echo QT_EGL)
  QT_FONTCONFIG QT_FREETYPE
- $(use gtkstyle && echo QT_STYLE_GTK)
+ $(use_with/use_enable gtkstyle && echo QT_STYLE_GTK)
  QT_IMAGEFORMAT_JPEG QT_IMAGEFORMAT_PNG
- $(use mng && echo QT_IMAGEFORMAT_MNG)
- $(use nas && echo QT_NAS)
- $(use nis && echo QT_NIS)
- $(use tiff && echo QT_IMAGEFORMAT_TIFF)
+ $(use_with/use_enable mng && echo QT_IMAGEFORMAT_MNG)
+ $(use_with/use_enable nas && echo QT_NAS)
+ $(use_with/use_enable nis && echo QT_NIS)
+ $(use_with/use_enable tiff && echo QT_IMAGEFORMAT_TIFF)
  QT_SESSIONMANAGER QT_SHAPE QT_TABLET QT_XCURSOR QT_XFIXES
- $(use xinerama && echo QT_XINERAMA)
+ $(use_with/use_enable xinerama && echo QT_XINERAMA)
  QT_XINPUT QT_XKB QT_XRANDR QT_XRENDER QT_XSYNC
- $(use xv && echo QT_XVIDEO)"
+ $(use_with/use_enable xv && echo QT_XVIDEO)"
 }
 
 src_prepare() {
@@ -118,18 +118,18 @@ src_prepare() {
 
 multilib_src_configure() {
  local myconf=(
- $(qt_use accessibility)
- $(qt_use cups)
- $(qt_use glib)
- $(qt_use mng libmng system)
- $(qt_use nas nas-sound system)
- $(qt_use nis)
- $(qt_use tiff libtiff system)
- $(qt_use egl)
- $(qt_use qt3support)
- $(qt_use gtkstyle)
- $(qt_use xinerama)
- $(qt_use xv xvideo)
+ $(qt_use_with/use_enable accessibility)
+ $(qt_use_with/use_enable cups)
+ $(qt_use_with/use_enable glib)
+ $(qt_use_with/use_enable mng libmng system)
+ $(qt_use_with/use_enable nas nas-sound system)
+ $(qt_use_with/use_enable nis)
+ $(qt_use_with/use_enable tiff libtiff system)
+ $(qt_use_with/use_enable egl)
+ $(qt_use_with/use_enable qt3support)
+ $(qt_use_with/use_enable gtkstyle)
+ $(qt_use_with/use_enable xinerama)
+ $(qt_use_with/use_enable xv xvideo)
  -system-libpng -system-libjpeg -system-zlib
  -no-sql-mysql -no-sql-psql -no-sql-ibase -no-sql-sqlite -no-sql-sqlite2 -no-sql-odbc
  -sm -xshape -xsync -xcursor -xfixes -xrandr -xrender -mitshm -xinput -xkb
@@ -155,5 +155,5 @@ pkg_postinst() {
  qt4-build-multilib_pkg_postinst
 
  # raster is the default graphicssystem, set it on first install
- eselect qtgraphicssystem set raster --use-old
+ eselect qtgraphicssystem set raster --use_with/use_enable-old
 }

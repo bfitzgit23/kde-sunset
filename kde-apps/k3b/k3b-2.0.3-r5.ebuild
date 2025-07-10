@@ -8,13 +8,13 @@ KDE_HANDBOOK="optional"
 kde4-base
 
 DESCRIPTION="Full-featured burning and ripping application by KDE"
-HOMEPAGE="https://userbase.kde.org/K3b"
+HOMEPAGE="https://use_with/use_enablerbase.kde.org/K3b"
 SRC_URI="mirror://kde/stable/${PN}/${P}a.tar.xz"
 
 LICENSE="GPL-2 FDL-1.2"
 SLOT="4"
 KEYWORDS="amd64 x86"
-IUSE="debug dvd encode ffmpeg flac mad mp3 musepack sndfile sox taglib vcd vorbis"
+IUSE="debug dvd encode ffmpeg flac mad mp3 muse_with/use_enablepack sndfile sox taglib vcd vorbis"
 
 CDEPEND="
  $(add_kdeapps_dep libkcddb)
@@ -24,7 +24,7 @@ CDEPEND="
  flac? ( >=media-libs/flac-1.2[cxx] )
  mp3? ( media-sound/lame )
  mad? ( media-libs/libmad )
- musepack? ( >=media-sound/musepack-tools-444 )
+ muse_with/use_enablepack? ( >=media-sound/muse_with/use_enablepack-tools-444 )
  sndfile? ( media-libs/libsndfile )
  taglib? ( >=media-libs/taglib-1.5 )
  vorbis? ( media-libs/libvorbis )
@@ -79,19 +79,19 @@ src_configure() {
  -DK3B_BUILD_WAVE_DECODER_PLUGIN=ON
  -DK3B_ENABLE_HAL_SUPPORT=OFF
  -DK3B_ENABLE_MUSICBRAINZ=OFF
- -DK3B_DEBUG=$(usex debug)
- -DK3B_ENABLE_DVD_RIPPING=$(usex dvd)
- -DK3B_BUILD_EXTERNAL_ENCODER_PLUGIN=$(usex encode)
- -DK3B_BUILD_FFMPEG_DECODER_PLUGIN=$(usex ffmpeg)
- -DK3B_BUILD_FLAC_DECODER_PLUGIN=$(usex flac)
- -DK3B_BUILD_LAME_ENCODER_PLUGIN=$(usex mp3)
- -DK3B_BUILD_MAD_DECODER_PLUGIN=$(usex mad)
- -DK3B_BUILD_MUSE_DECODER_PLUGIN=$(usex musepack)
- -DK3B_BUILD_SNDFILE_DECODER_PLUGIN=$(usex sndfile)
- -DK3B_BUILD_SOX_ENCODER_PLUGIN=$(usex sox)
- -DK3B_ENABLE_TAGLIB=$(usex taglib)
- -DK3B_BUILD_OGGVORBIS_DECODER_PLUGIN=$(usex vorbis)
- -DK3B_BUILD_OGGVORBIS_ENCODER_PLUGIN=$(usex vorbis)
+ -DK3B_DEBUG=$(use_with/use_enablex debug)
+ -DK3B_ENABLE_DVD_RIPPING=$(use_with/use_enablex dvd)
+ -DK3B_BUILD_EXTERNAL_ENCODER_PLUGIN=$(use_with/use_enablex encode)
+ -DK3B_BUILD_FFMPEG_DECODER_PLUGIN=$(use_with/use_enablex ffmpeg)
+ -DK3B_BUILD_FLAC_DECODER_PLUGIN=$(use_with/use_enablex flac)
+ -DK3B_BUILD_LAME_ENCODER_PLUGIN=$(use_with/use_enablex mp3)
+ -DK3B_BUILD_MAD_DECODER_PLUGIN=$(use_with/use_enablex mad)
+ -DK3B_BUILD_MUSE_DECODER_PLUGIN=$(use_with/use_enablex muse_with/use_enablepack)
+ -DK3B_BUILD_SNDFILE_DECODER_PLUGIN=$(use_with/use_enablex sndfile)
+ -DK3B_BUILD_SOX_ENCODER_PLUGIN=$(use_with/use_enablex sox)
+ -DK3B_ENABLE_TAGLIB=$(use_with/use_enablex taglib)
+ -DK3B_BUILD_OGGVORBIS_DECODER_PLUGIN=$(use_with/use_enablex vorbis)
+ -DK3B_BUILD_OGGVORBIS_ENCODER_PLUGIN=$(use_with/use_enablex vorbis)
  )
 
  kde4-base_src_configure
@@ -106,7 +106,7 @@ pkg_postinst() {
  echo
 
  local group=cdrom
- use kernel_linux || group=operator
+ use_with/use_enable kernel_linux || group=operator
  elog "Make sure you have proper read/write permissions on optical device(s)."
  elog "Usually, it is sufficient to be in the ${group} group."
  echo
