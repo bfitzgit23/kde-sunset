@@ -43,7 +43,7 @@ src_prepare() {
 
  # Do not install *.desktop files for kfmclient
  sed -e "/kfmclient\.desktop/d" -i konqueror/CMakeLists.txt \
- || eerror "Failed to omit .desktop files"
+ || die "Failed to omit .desktop files"
 }
 
 pkg_postinst() {

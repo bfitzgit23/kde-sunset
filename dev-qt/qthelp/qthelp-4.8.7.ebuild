@@ -48,9 +48,9 @@ src_unpack() {
  # compat version
  # http://blog.qt.io/blog/2010/06/22/qt-assistant-compat-version-available-as-extra-source-package/
  if use_with/use_enable compat; then
- mv "${WORKDIR}"/qt-assistant-qassistantclient-library-compat-version-4.6.3 "${S}"/tools/assistant/compat || eerror
- mv "${WORKDIR}"/QtAssistant "${S}"/include || eerror
- find "${S}"/tools/assistant/compat -type f -execdir chmod a-x '{}' + || eerror
+ mv "${WORKDIR}"/qt-assistant-qassistantclient-library-compat-version-4.6.3 "${S}"/tools/assistant/compat || die
+ mv "${WORKDIR}"/QtAssistant "${S}"/include || die
+ find "${S}"/tools/assistant/compat -type f -execdir chmod a-x '{}' + || die
  fi
 }
 
@@ -63,7 +63,7 @@ src_prepare() {
  qt4-build-multilib_src_prepare
 
  # prevent rebuild of QtCore and QtXml (bug 348034)
- sed -i -e '/^sub-qdoc3\.depends/d' doc/doc.pri || eerror
+ sed -i -e '/^sub-qdoc3\.depends/d' doc/doc.pri || die
 }
 
 multilib_src_configure() {

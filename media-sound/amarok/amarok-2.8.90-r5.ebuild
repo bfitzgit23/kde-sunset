@@ -69,15 +69,15 @@ src_prepare() {
  kde4-base_src_prepare
 
  # requires qtwebkit
- sed -i -e "s/wikipedia,//" data/amarok_homerc || eerror
+ sed -i -e "s/wikipedia,//" data/amarok_homerc || die
 
  sed -i -e "/macro_log_feature.*QT_QTOPENGL_FOUND/d" \
  CMakeLists.txt \
- || eerror "failed to remove QT_QTOPENGL detection"
+ || die "failed to remove QT_QTOPENGL detection"
 
  sed -i -e "/if/ s/QT_QTOPENGL_FOUND/FALSE/" \
  src/context/applets/CMakeLists.txt \
- || eerror "failed to sed out QT_QTOPENGL_FOUND"
+ || die "failed to sed out QT_QTOPENGL_FOUND"
 }
 
 src_configure() {

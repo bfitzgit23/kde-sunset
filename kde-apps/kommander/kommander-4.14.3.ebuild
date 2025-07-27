@@ -6,7 +6,7 @@ EAPI=7
 KDE_HANDBOOK="optional"
 KMNAME="kdewebdev"
 KDE_SCM="svn"
-kde4-meta
+inherit kde4-meta
 
 DESCRIPTION="KDE dialog system for scripting"
 HOMEPAGE="https://www.kde.org/applications/development/kommander/"

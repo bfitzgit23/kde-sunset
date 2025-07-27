@@ -4,7 +4,7 @@
 EAPI=7
 
 KMNAME="kde-runtime"
-kde4-meta
+inherit kde4-meta
 
 DESCRIPTION="KDE: Utility to launch applications with special window properties"
 KEYWORDS="amd64 x86"

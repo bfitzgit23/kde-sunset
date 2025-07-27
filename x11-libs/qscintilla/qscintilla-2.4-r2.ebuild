@@ -27,25 +27,25 @@ DOCS=( ChangeLog NEWS )
 PATCHES=( "${FILESDIR}/${PN}-2.4-designer.patch" )
 
 src_configure() {
- cd "${S}"/Qt4 || eerror
+ cd "${S}"/Qt4 || die
  eqmake4 qscintilla.pro
 
- cd "${S}"/designer-Qt4 || eerror
+ cd "${S}"/designer-Qt4 || die
  eqmake4 designer.pro
 }
 
 src_compile() {
- cd "${S}"/Qt4 || eerror
+ cd "${S}"/Qt4 || die
  emake all staticlib
 
- cd "${S}"/designer-Qt4 || eerror
+ cd "${S}"/designer-Qt4 || die
  emake
 }
 
 src_install() {
  einstalldocs
 
- cd "${S}"/Qt4 || eerror
+ cd "${S}"/Qt4 || die
  # header files
  insinto /usr/include/Qsci
  doins Qsci/*.h
@@ -61,11 +61,11 @@ src_install() {
  done
 
  # designer plugin
- cd "${S}"/designer-Qt4 || eerror
+ cd "${S}"/designer-Qt4 || die
  emake INSTALL_ROOT="${D}" install
 
  # documentation
- cd "${S}" || eerror
+ cd "${S}" || die
  if use_with/use_enable doc; then
  docinto html
  dodoc -r doc/html-Qt4/.

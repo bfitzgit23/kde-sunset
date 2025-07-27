@@ -36,7 +36,7 @@ src_configure() {
 
  append-ldflags $(no-as-needed)
 
- econf --disable-dependency-tracking \
+ econf \
  --with-coin \
  --disable-html-help\
  $(use_enable doc html) \

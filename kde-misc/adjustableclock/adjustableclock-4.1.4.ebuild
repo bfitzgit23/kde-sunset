@@ -30,7 +30,7 @@ src_prepare() {
  local lang
  for lang in ${KDE_LINGUAS} ; do
  if ! use_with/use_enable "l10n_$(kde4_lingua_to_l10n "${lang}")" ; then
- rm ${KDE_LINGUAS_DIR}/${lang}.mo || eerror
+ rm ${KDE_LINGUAS_DIR}/${lang}.mo || die
  fi
  done
 }

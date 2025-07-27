@@ -5,13 +5,13 @@ EAPI=7
 
 KMNAME="kde-baseapps"
 KMMODULE="plasma"
-kde4-meta
+inherit kde4-meta
 
 DESCRIPTION="Additional Applets for Plasma"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 DEPEND="
- $(add_kdeapps_dep libkonq)
+	$(add_kdeapps_dep libkonq)
 "
 RDEPEND="${DEPEND}"

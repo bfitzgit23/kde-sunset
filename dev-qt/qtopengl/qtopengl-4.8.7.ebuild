@@ -41,5 +41,5 @@ multilib_src_install_all() {
  qt4_multilib_src_install_all
 
  dodir /usr/share/qt4/graphicssystems
- echo "experimental" > "${ED}"/usr/share/qt4/graphicssystems/opengl || eerror
+ echo "experimental" > "${ED}"/usr/share/qt4/graphicssystems/opengl || die
 }

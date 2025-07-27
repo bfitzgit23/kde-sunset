@@ -3,14 +3,14 @@
 
 EAPI=7
 
-kde4-base kde4-functions-extra
+inherit kde4-base kde4-functions-extra
 
 DESCRIPTION="Widget library for baloo"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 DEPEND="
- $(add_kdeframeworks_dep baloo)
- $(add_kdeframeworks_dep kfilemetadata)
+	$(add_kdeframeworks_dep baloo)
+	$(add_kdeframeworks_dep kfilemetadata)
 "
 RDEPEND="${DEPEND}"

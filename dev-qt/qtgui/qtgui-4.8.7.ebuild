@@ -113,7 +113,7 @@ src_prepare() {
  qt4-build-multilib_src_prepare
 
  # Add -xvideo to the list of accepted configure options
- sed -i -e 's:|-xinerama|:&-xvideo|:' configure || eerror
+ sed -i -e 's:|-xinerama|:&-xvideo|:' configure || die
 }
 
 multilib_src_configure() {
@@ -142,8 +142,8 @@ multilib_src_install_all() {
  qt4_multilib_src_install_all
 
  dodir /usr/share/qt4/graphicssystems
- echo "default" > "${ED}"/usr/share/qt4/graphicssystems/raster || eerror
- echo "" > "${ED}"/usr/share/qt4/graphicssystems/native || eerror
+ echo "default" > "${ED}"/usr/share/qt4/graphicssystems/raster || die
+ echo "" > "${ED}"/usr/share/qt4/graphicssystems/native || die
 
  if has tools/qtconfig ${QT4_TARGET_DIRECTORIES}; then
  newicon tools/qtconfig/images/appicon.png qtconfig.png

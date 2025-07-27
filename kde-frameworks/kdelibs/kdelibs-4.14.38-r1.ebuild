@@ -153,12 +153,12 @@ src_prepare() {
 
  # Rename applications.menu (needs 01_gentoo_set_xdg_menu_prefix-1.patch to work)
  sed -e 's|FILES[[:space:]]applications.menu|FILES applications.menu RENAME kde-4-applications.menu|g' \
- -i kded/CMakeLists.txt || eerror "Sed on CMakeLists.txt for applications.menu failed."
+ -i kded/CMakeLists.txt || die "Sed on CMakeLists.txt for applications.menu failed."
 
  if ! use_with/use_enable opengl; then
  sed -i -e "/if/ s/QT_QTOPENGL_FOUND/FALSE/" \
  plasma/CMakeLists.txt plasma/tests/CMakeLists.txt includes/CMakeLists.txt \
- || eerror "failed to sed out QT_QTOPENGL_FOUND"
+ || die "failed to sed out QT_QTOPENGL_FOUND"
  fi
 }
 
@@ -225,8 +225,8 @@ src_compile() {
  # The building of apidox is not managed anymore by the build system
  if use_with/use_enable doc; then
  einfo "Building API documentation"
- cd "${S}"/doc/api/ || eerror
- ./doxygen.sh "${S}" || eerror "APIDOX generation failed"
+ cd "${S}"/doc/api/ || die
+ ./doxygen.sh "${S}" || die "APIDOX generation failed"
  fi
 }
 
@@ -238,18 +238,18 @@ src_install() {
  cmake_src_install
 
  # use_with/use_enable system certificates
- rm -f "${ED}"/usr/share/apps/kssl/ca-bundle.crt || eerror
+ rm -f "${ED}"/usr/share/apps/kssl/ca-bundle.crt || die
  dosym ../../../../etc/ssl/certs/ca-certificates.crt /usr/share/apps/kssl/ca-bundle.crt
 
  if use_with/use_enable doc; then
  einfo "Installing API documentation. This could take a bit of time."
- cd "${S}"/doc/api/ || eerror
+ cd "${S}"/doc/api/ || die
  docinto html
  dodoc -r ${P}-apidocs/.
  fi
 
  # We don't package it, so don't install headers
- rm -r "${ED}"/usr/include/KDE/Nepomuk || eerror
+ rm -r "${ED}"/usr/include/KDE/Nepomuk || die
 
  einfo Installing environment file.
  # Since 44qt4 is sourced earlier QT_PLUGIN_PATH is defined.
@@ -277,7 +277,7 @@ pkg_postinst() {
 
 pkg_prerm() {
  # Remove ksycoca4 global database
- rm -f "${EROOT}"/usr/share/kde4/services/ksycoca4 || eerror
+ rm -f "${EROOT}"/usr/share/kde4/services/ksycoca4 || die
 }
 
 pkg_postrm() {

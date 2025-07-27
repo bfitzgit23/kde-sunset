@@ -4,7 +4,7 @@
 EAPI=7
 
 KMNAME="kde-runtime"
-kde4-meta
+inherit kde4-meta
 
 DESCRIPTION="KDE mime/file type assocciation editor"
 KEYWORDS="amd64 x86"

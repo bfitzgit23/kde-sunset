@@ -3,7 +3,7 @@
 
 EAPI=7
 
-kde4-base
+inherit kde4-base
 
 DESCRIPTION="KDE utility to translate DocBook XML files using gettext po files"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"

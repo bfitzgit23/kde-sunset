@@ -43,10 +43,10 @@ multilib_src_configure() {
 
 multilib_src_install_all() {
  if use_with/use_enable doc && is_final_abi; then
- pushd doc > /dev/null || eerror
- doxygen Doxyfile || eerror "Generating documentation failed"
+ pushd doc > /dev/null || die
+ doxygen Doxyfile || die "Generating documentation failed"
  local HTML_DOCS=( doc/html/. )
- popd > /dev/null || eerror
+ popd > /dev/null || die
  einstalldocs
  fi
 }

@@ -78,10 +78,10 @@ src_install() {
  cmake-utils_src_install
 
  if use_with/use_enable doc; then
- pushd "${BUILD_DIR}" >/dev/null || eerror
- doxygen Doxyfile || eerror
+ pushd "${BUILD_DIR}" >/dev/null || die
+ doxygen Doxyfile || die
  dodoc -r apidocs/html
- popd >/dev/null || eerror
+ popd >/dev/null || die
  fi
 
  if use_with/use_enable examples; then

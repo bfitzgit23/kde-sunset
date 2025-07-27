@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-kde4-base
+inherit kde4-base
 
 DESCRIPTION="KDE arcade bombing game"
 HOMEPAGE="https://www.kde.org/applications/games/bomber/"

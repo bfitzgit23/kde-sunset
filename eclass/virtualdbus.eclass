@@ -23,7 +23,7 @@
 
 # @ECLASS-VARIABLE: VIRTUALDBUS_DEPEND
 # @DESCRIPTION:
-#  Dep string available for use_with outside of eclass, in case a more
+#  Dep string available for use outside of eclass, in case a more
 #  complicated dep is needed.
 VIRTUALDBUS_DEPEND="dev-util/dbus-test-runner"
 
@@ -45,7 +45,7 @@ case ${VIRTUALDBUS_REQUIRED} in
 		eerror "  always"
 		eerror "  optional (default if unset)"
 		eerror "  manual"
-		eerror "Invalid value (${VIRTUALDBUS_REQUIRED}) for VIRTUALDBUS_REQUIRED"
+		die "Invalid value (${VIRTUALDBUS_REQUIRED}) for VIRTUALDBUS_REQUIRED"
 		;;
 esac
 

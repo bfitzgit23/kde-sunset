@@ -28,5 +28,5 @@ src_prepare() {
  -e "/konqueror\.desktop/s/^/#DONOTWANT/" \
  -e "/install(FILES profile/s/^/#DONOTWANT/" \
  -i konqueror/CMakeLists.txt \
- || eerror "Failed to omit .desktop files"
+ || die "Failed to omit .desktop files"
 }

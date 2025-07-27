@@ -13,7 +13,7 @@
 
 case ${EAPI} in
 	6)	: ;;
-	*)	eerror "qt4-build-multilib.eclass: unsupported EAPI=${EAPI:-0}" ;;
+	*)	die "qt4-build-multilib.eclass: unsupported EAPI=${EAPI:-0}" ;;
 esac
 
 inherit eutils flag-o-matic multilib multilib-minimal toolchain-funcs
@@ -148,13 +148,13 @@ qt4-build-multilib_src_prepare() {
 	if [[ ${PN} != qtcore ]]; then
 		# avoid unnecessary qmake recompilations
 		sed -i -e 's/^if true;/if false;/' configure \
-			|| eerror "sed failed (skip qmake bootstrap)"
+			|| die "sed failed (skip qmake bootstrap)"
 	fi
 
 	# skip X11 tests in non-gui packages to avoid spurious dependencies
 	if has ${PN} qtbearer qtcore qtdbus qtscript qtsql qttest qttranslations qtxmlpatterns; then
 		sed -i -e '/^if.*PLATFORM_X11.*CFG_GUI/,/^fi$/d' configure \
-			|| eerror "sed failed (skip X11 tests)"
+			|| die "sed failed (skip X11 tests)"
 	fi
 
 	# Qt4 is not safe to build with C++14 (the new gcc-6 default).
@@ -172,7 +172,7 @@ qt4-build-multilib_src_prepare() {
 
 		# Bug 503500
 		# undefined reference with -Os and --as-needed
-		if use_with x86 || in_iuse abi_x86_32 && use_with abi_x86_32; then
+		if use x86 || in_iuse abi_x86_32 && use abi_x86_32; then
 			replace-flags -Os -O2
 		fi
 	fi
@@ -180,7 +180,7 @@ qt4-build-multilib_src_prepare() {
 	if [[ ${PN} == qtdeclarative ]]; then
 		# Bug 551560
 		# gcc-4.8 ICE with -Os, fixed in 4.9
-		if use_with x86 && tc-is-gcc && [[ $(gcc-version) == 4.8 ]]; then
+		if use x86 && tc-is-gcc && [[ $(gcc-version) == 4.8 ]]; then
 			replace-flags -Os -O2
 		fi
 	fi
@@ -194,17 +194,17 @@ qt4-build-multilib_src_prepare() {
 	fi
 
 	# Bug 261632
-	if use_with ppc64; then
+	if use ppc64; then
 		append-flags -mminimal-toc
 	fi
 
 	# Teach configure about gcc-6 and later
 	sed -i -e 's:5\*|:[5-9]*|:' \
-		configure || eerror "sed gcc version failed"
+		configure || die "sed gcc version failed"
 
 	# Read also AR from the environment
 	sed -i -e 's/^SYSTEM_VARIABLES="/&AR /' \
-		configure || eerror "sed SYSTEM_VARIABLES failed"
+		configure || die "sed SYSTEM_VARIABLES failed"
 
 	# Reset QMAKE_*FLAGS_{RELEASE,DEBUG} variables,
 	# or they will override the user's flags (via .qmake.cache)
@@ -215,25 +215,25 @@ qt4-build-multilib_src_prepare() {
 		QMakeVar set QMAKE_CXXFLAGS_DEBUG\
 		QMakeVar set QMAKE_LFLAGS_RELEASE\
 		QMakeVar set QMAKE_LFLAGS_DEBUG\n' \
-		configure || eerror "sed QMAKE_*FLAGS_{RELEASE,DEBUG} failed"
+		configure || die "sed QMAKE_*FLAGS_{RELEASE,DEBUG} failed"
 
 	# Drop -nocache from qmake invocation in all configure tests, to ensure that the
 	# correct toolchain and build flags are picked up from config.tests/.qmake.cache
 	find config.tests/unix -name '*.test' -type f -execdir \
-		sed -i -e '/bin\/qmake/s/-nocache//' '{}' + || eerror "sed -nocache failed"
+		sed -i -e '/bin\/qmake/s/-nocache//' '{}' + || die "sed -nocache failed"
 
 	# compile.test needs additional patching so that it doesn't create another cache file
 	# inside the test subdir, which would incorrectly override config.tests/.qmake.cache
 	sed -i -e '/echo.*QT_BUILD_TREE.*\.qmake\.cache/d' \
 		-e '/bin\/qmake/s/ "$SRCDIR/ "QT_BUILD_TREE=$OUTDIR"&/' \
-		config.tests/unix/compile.test || eerror "sed compile.test failed"
+		config.tests/unix/compile.test || die "sed compile.test failed"
 
 	# Delete references to the obsolete /usr/X11R6 directory
 	# On prefix, this also prevents looking at non-prefix stuff
 	sed -i -re '/^QMAKE_(LIB|INC)DIR(_X11|_OPENGL|)\s+/ s/=.*/=/' \
 		mkspecs/common/linux.conf \
 		mkspecs/$(qt4_get_mkspec)/qmake.conf \
-		|| eerror "sed QMAKE_(LIB|INC)DIR failed"
+		|| die "sed QMAKE_(LIB|INC)DIR failed"
 
 	if [[ ${CHOST} == *-darwin* ]]; then
 		# Set FLAGS and remove -arch, since our gcc-apple is multilib crippled (by design)
@@ -243,7 +243,7 @@ qt4-build-multilib_src_prepare() {
 			-e "s:QMAKE_LFLAGS_RELEASE.*=.*:QMAKE_LFLAGS_RELEASE=-headerpad_max_install_names ${LDFLAGS}:" \
 			-e "s:-arch\s\w*::g" \
 			mkspecs/common/g++-macx.conf \
-			|| eerror "sed g++-macx.conf failed"
+			|| die "sed g++-macx.conf failed"
 
 		# Fix configure's -arch settings that appear in qmake/Makefile and also
 		# fix arch handling (automagically duplicates our -arch arg and breaks
@@ -259,7 +259,7 @@ qt4-build-multilib_src_prepare() {
 			-e "s:-Xarch_x86_64::g" \
 			-e "s:-Xarch_ppc64::g" \
 			configure mkspecs/common/gcc-base-macx.conf mkspecs/common/g++-macx.conf \
-			|| eerror "sed -arch/-Xarch failed"
+			|| die "sed -arch/-Xarch failed"
 
 		# On Snow Leopard don't fall back to 10.5 deployment target.
 		if [[ ${CHOST} == *-apple-darwin10 ]]; then
@@ -267,13 +267,13 @@ qt4-build-multilib_src_prepare() {
 				-e "s:QMakeVar set QMAKE_MACOSX_DEPLOYMENT_TARGET.*:QMakeVar set QMAKE_MACOSX_DEPLOYMENT_TARGET 10.6:g" \
 				-e "s:-mmacosx-version-min=10.[0-9]:-mmacosx-version-min=10.6:g" \
 				configure mkspecs/common/g++-macx.conf \
-				|| eerror "sed deployment target failed"
+				|| die "sed deployment target failed"
 		fi
 	fi
 
 	if [[ ${CHOST} == *-solaris* ]]; then
 		sed -i -e '/^QMAKE_LFLAGS_THREAD/a QMAKE_LFLAGS_DYNAMIC_LIST = -Wl,--dynamic-list,' \
-			mkspecs/$(qt4_get_mkspec)/qmake.conf || eerror
+			mkspecs/$(qt4_get_mkspec)/qmake.conf || die
 	fi
 
 	# apply patches
@@ -339,7 +339,7 @@ qt4_multilib_src_configure() {
 		-demosdir "${QT4_DEMOSDIR}"
 
 		# debug/release
-		$(in_iuse debug && use_with debug && echo -debug || echo -release)
+		$(in_iuse debug && use debug && echo -debug || echo -release)
 		-no-separate-debug-info
 
 		# licensing stuff
@@ -409,13 +409,13 @@ qt4_multilib_src_configure() {
 	)
 
 	einfo "Configuring with: ${conf[@]}"
-	"${S}"/configure "${conf[@]}" || eerror "configure failed"
+	"${S}"/configure "${conf[@]}" || die "configure failed"
 
 	# configure is stupid and assigns QMAKE_LFLAGS twice,
 	# thus the previous -rpath-link flag gets overwritten
 	# and some packages (e.g. qthelp) fail to link
 	sed -i -e '/^QMAKE_LFLAGS =/ s:$: $$QMAKE_LFLAGS:' \
-		.qmake.cache || eerror "sed .qmake.cache failed"
+		.qmake.cache || die "sed .qmake.cache failed"
 
 	qt4_qmake
 	qt4_foreach_target_subdir qt4_qmake
@@ -469,7 +469,7 @@ qt4_multilib_src_install() {
 
 	# move pkgconfig directory to the correct location
 	if [[ -d ${D}${QT4_LIBDIR}/pkgconfig ]]; then
-		mv "${D}${QT4_LIBDIR}"/pkgconfig "${ED}usr/$(get_libdir)" || eerror
+		mv "${D}${QT4_LIBDIR}"/pkgconfig "${ED}usr/$(get_libdir)" || die
 	fi
 
 	qt4_install_module_qconfigs
@@ -480,10 +480,10 @@ qt4_multilib_src_install_all() {
 		# include gentoo-qconfig.h at the beginning of Qt{,Core}/qconfig.h
 		sed -i -e '1i #include <Gentoo/gentoo-qconfig.h>\n' \
 			"${D}${QT4_HEADERDIR}"/Qt{,Core}/qconfig.h \
-			|| eerror "sed failed (qconfig.h)"
+			|| die "sed failed (qconfig.h)"
 
 		dodir "${QT4_DATADIR#${EPREFIX}}"/mkspecs/gentoo
-		mv "${D}${QT4_DATADIR}"/mkspecs/{qconfig.pri,gentoo/} || eerror
+		mv "${D}${QT4_DATADIR}"/mkspecs/{qconfig.pri,gentoo/} || die
 	fi
 
 	# install private headers of a few modules
@@ -494,7 +494,7 @@ qt4_multilib_src_install_all() {
 
 		einfo "Installing private headers into ${QT4_HEADERDIR}/${modulename}/private"
 		insinto "${QT4_HEADERDIR#${EPREFIX}}"/${modulename}/private
-		find "${S}"/src/${moduledir} -type f -name '*_p.h' -exec doins '{}' + || eerror
+		find "${S}"/src/${moduledir} -type f -name '*_p.h' -exec doins '{}' + || die
 	fi
 
 	prune_libtool_files
@@ -526,7 +526,7 @@ qt4-build-multilib_pkg_postrm() {
 # otherwise. If [feature] is not specified, <flag> is used in its place.
 # If [enableval] is not specified, the "-${enableval}" prefix is omitted.
 qt_use() {
-	[[ $# -ge 1 ]] || eerror "${FUNCNAME}() requires at least one argument"
+	[[ $# -ge 1 ]] || die "${FUNCNAME}() requires at least one argument"
 
 	usex "$1" "${3:+-$3}-${2:-$1}" "-no-${2:-$1}"
 }
@@ -541,7 +541,7 @@ qt_use() {
 # specified, <flag> is used in its place. If [enableval] is not specified,
 # the "-${enableval}" prefix is omitted.
 qt_native_use() {
-	[[ $# -ge 1 ]] || eerror "${FUNCNAME}() requires at least one argument"
+	[[ $# -ge 1 ]] || die "${FUNCNAME}() requires at least one argument"
 
 	multilib_is_native_abi && qt_use "$@" || echo "-no-${2:-$1}"
 }
@@ -584,14 +584,14 @@ qt4_prepare_env() {
 qt4_foreach_target_subdir() {
 	local ret=0 subdir=
 	for subdir in ${QT4_TARGET_DIRECTORIES}; do
-		mkdir -p "${subdir}" || eerror
-		pushd "${subdir}" >/dev/null || eerror
+		mkdir -p "${subdir}" || die
+		pushd "${subdir}" >/dev/null || die
 
 		einfo "Running $* ${subdir:+in ${subdir}}"
 		"$@"
 		((ret+=$?))
 
-		popd >/dev/null || eerror
+		popd >/dev/null || die
 	done
 
 	return ${ret}
@@ -608,15 +608,15 @@ qt4_symlink_tools_to_build_dir() {
 		tools+=(qmake moc rcc uic)
 	fi
 
-	mkdir -p "${BUILD_DIR}"/bin || eerror
-	pushd "${BUILD_DIR}"/bin >/dev/null || eerror
+	mkdir -p "${BUILD_DIR}"/bin || die
+	pushd "${BUILD_DIR}"/bin >/dev/null || die
 
 	for tool in "${tools[@]}"; do
 		[[ -e ${QT4_BINDIR}/${tool} ]] || continue
-		ln -s "${QT4_BINDIR}/${tool}" . || eerror "failed to symlink ${tool}"
+		ln -s "${QT4_BINDIR}/${tool}" . || die "failed to symlink ${tool}"
 	done
 
-	popd >/dev/null || eerror
+	popd >/dev/null || die
 }
 
 # @FUNCTION: qt4_qmake
@@ -632,7 +632,7 @@ qt4_qmake() {
 		CONFIG+=nostrip \
 		LIBS+=-L"${QT4_LIBDIR}" \
 		"${myqmakeargs[@]}" \
-		|| eerror "qmake failed (${projectdir#${S}/})"
+		|| die "qmake failed (${projectdir#${S}/})"
 }
 
 # @FUNCTION: qt4_install_module_qconfigs
@@ -662,7 +662,7 @@ qt4_install_module_qconfigs() {
 # @INTERNAL
 # @DESCRIPTION:
 # Generates Gentoo-specific qconfig.{h,pri} according to the build configuration.
-# Don't call eerror here because dying in pkg_post{inst,rm} only makes things worse.
+# Don't call die here because dying in pkg_post{inst,rm} only makes things worse.
 qt4_regenerate_global_qconfigs() {
 	if [[ -n ${QCONFIG_ADD} || -n ${QCONFIG_REMOVE} || -n ${QCONFIG_DEFINE} || ${PN} == qtcore ]]; then
 		local x qconfig_add qconfig_remove qconfig_new
@@ -744,7 +744,7 @@ qt4_get_mkspec() {
 		*-solaris*)
 			spec=solaris ;;
 		*)
-			eerror "qt4-build-multilib.eclass: unsupported CHOST '${CHOST}'" ;;
+			die "qt4-build-multilib.eclass: unsupported CHOST '${CHOST}'" ;;
 	esac
 
 	case $(tc-getCXX) in
@@ -765,13 +765,13 @@ qt4_get_mkspec() {
 				spec+=-g++
 			fi ;;
 		*)
-			eerror "qt4-build-multilib.eclass: unsupported compiler '$(tc-getCXX)'" ;;
+			die "qt4-build-multilib.eclass: unsupported compiler '$(tc-getCXX)'" ;;
 	esac
 
 	# Add -64 for 64-bit prefix profiles
-	if use_with amd64-linux || use_with ppc64-linux ||
-		use_with x64-macos ||
-		use_with sparc64-solaris || use_with x64-solaris
+	if use amd64-linux || use ppc64-linux ||
+		use x64-macos ||
+		use sparc64-solaris || use x64-solaris
 	then
 		[[ -d ${S}/mkspecs/${spec}-64 ]] && spec+=-64
 	fi

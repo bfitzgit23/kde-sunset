@@ -70,7 +70,7 @@ src_configure() {
  disableQtModule() {
  local module
  for module in ${@}; do
- sed -e "/qtHaveModule(${module})/s|^|#DONT|" -i configure || eerror
+ sed -e "/qtHaveModule(${module})/s|^|#DONT|" -i configure || die
  done
  }
 
@@ -104,7 +104,7 @@ src_configure() {
  )
 
  guis_config="--with-guis=${guis[@]}"
- econf --disable-dependency-tracking ${myeconfargs[@]} "${guis_config}"
+ econf ${myeconfargs[@]} "${guis_config}"
 }
 
 src_compile() {
@@ -115,5 +115,5 @@ src_compile() {
 src_install() {
  default
  use_with/use_enable doc && emake DESTDIR="${D}" install-srcdoc
- find "${ED}" -name '*.la' -delete || eerror
+ find "${ED}" -name '*.la' -delete || die
 }

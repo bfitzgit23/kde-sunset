@@ -4,7 +4,7 @@
 EAPI=7
 
 OPENGL_REQUIRED=always
-kde4-base
+inherit kde4-base
 
 MY_P=gx_mail_notify-${PV}
 

@@ -8,7 +8,7 @@ RESTRICT="binchecks strip"
 KMMODULE="emoticons"
 KMNAME="kdeartwork"
 KDE_SCM="svn"
-kde4-meta
+inherit kde4-meta
 
 DESCRIPTION="EmotIcons (icons for things like smilies :-) for kde"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"

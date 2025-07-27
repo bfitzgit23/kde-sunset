@@ -34,7 +34,7 @@ S="${WORKDIR}/${PN}-${COMMIT}"
 
 src_prepare() {
  sed -e '/add_subdirectory(icons)/d' \
- -i CMakeLists.txt || eerror
+ -i CMakeLists.txt || die
 
  kde4-base_src_prepare
 }

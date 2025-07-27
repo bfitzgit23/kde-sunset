@@ -33,7 +33,7 @@ src_prepare() {
  for plugin in ${DESIGNER_PLUGINS}; do
  if ! use_with/use_enable ${plugin} || [[ ${plugin} == phonon ]]; then
  sed -i -e "/\<${plugin}\>/d" \
- tools/designer/src/plugins/plugins.pro || eerror
+ tools/designer/src/plugins/plugins.pro || die
  fi
  done
 }

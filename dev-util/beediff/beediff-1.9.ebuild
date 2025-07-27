@@ -24,7 +24,7 @@ S="${WORKDIR}/${PN}"
 
 src_prepare() {
  default
- sed -e '/QMAKE_CXXFLAGS/d' -i beediff.pro || eerror
+ sed -e '/QMAKE_CXXFLAGS/d' -i beediff.pro || die
 }
 
 src_configure() {

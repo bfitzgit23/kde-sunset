@@ -13,12 +13,12 @@ if [[ ! ${_VIRTUAL_X} ]]; then
 
 case "${EAPI:-0}" in
 	0|1|2|3)
-		eerror "virtualx.eclass: EAPI ${EAPI} is too old."
+		die "virtualx.eclass: EAPI ${EAPI} is too old."
 		;;
 	4|5|6|7)
 		;;
 	*)
-		eerror "virtualx.eclass: EAPI ${EAPI} is not supported yet."
+		die "virtualx.eclass: EAPI ${EAPI} is not supported yet."
 		;;
 esac
 
@@ -36,7 +36,7 @@ esac
 
 # @ECLASS-VARIABLE: VIRTUALX_DEPEND
 # @DESCRIPTION:
-# Dep string available for use_with outside of eclass, in case a more
+# Dep string available for use outside of eclass, in case a more
 # complicated dep is needed.
 # You can specify the variable BEFORE inherit to add more dependencies.
 VIRTUALX_DEPEND="${VIRTUALX_DEPEND}
@@ -63,7 +63,7 @@ case ${VIRTUALX_REQUIRED} in
 		;;
 	optional|tests)
 		[[ ${EAPI} == [45] ]] \
-			|| eerror 'Values "optional" and "tests" for VIRTUALX_REQUIRED are banned in EAPI > 5'
+			|| die 'Values "optional" and "tests" for VIRTUALX_REQUIRED are banned in EAPI > 5'
 		# deprecated section YAY.
 		eqawarn "VIRTUALX_REQUIRED=optional and VIRTUALX_REQUIRED=tests are deprecated."
 		eqawarn "You can drop the variable definition completely from ebuild,"
@@ -72,7 +72,7 @@ case ${VIRTUALX_REQUIRED} in
 		if [[ -n ${VIRTUALX_USE} ]]; then
 			# so they like to specify the useflag
 			eqawarn "VIRTUALX_USE variable is deprecated."
-			eqawarn "Please read eclass manpage to find out how to use_with VIRTUALX_REQUIRED"
+			eqawarn "Please read eclass manpage to find out how to use VIRTUALX_REQUIRED"
 			eqawarn "to achieve the same behaviour."
 		fi
 
@@ -102,13 +102,13 @@ virtualmake() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	[[ ${EAPI} == [45] ]] \
-		|| eerror "${FUNCNAME} is unsupported in EAPI > 5, please use_with virtx"
+		|| die "${FUNCNAME} is unsupported in EAPI > 5, please use virtx"
 
 	# backcompat for maketype
 	if [[ -n ${maketype} ]]; then
-		[[ ${EAPI} == [45] ]] || eerror "maketype is banned in EAPI > 5"
+		[[ ${EAPI} == [45] ]] || die "maketype is banned in EAPI > 5"
 		eqawarn "ebuild is exporting \$maketype=${maketype}"
-		eqawarn "Ebuild should be migrated to use_with 'virtx command' instead."
+		eqawarn "Ebuild should be migrated to use 'virtx command' instead."
 		VIRTUALX_COMMAND=${maketype}
 	fi
 
@@ -125,11 +125,11 @@ virtualmake() {
 #
 # This means we are checking for the return code and raise an exception if it
 # isn't 0. So you need to make sure that all commands return a proper
-# code and not just eerror. All eclass function used should support nonfatal
+# code and not just die. All eclass function used should support nonfatal
 # calls properly.
 #
 # The rational behind this is the tear down of the started Xfvb session. A
-# straight eerror would leave a running session behind.
+# straight die would leave a running session behind.
 #
 # Example:
 #
@@ -158,15 +158,15 @@ virtualmake() {
 virtx() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	[[ $# -lt 1 ]] && eerror "${FUNCNAME} needs at least one argument"
+	[[ $# -lt 1 ]] && die "${FUNCNAME} needs at least one argument"
 
 	local i=0
 	local retval=0
 	local OLD_SANDBOX_ON="${SANDBOX_ON}"
 	local XVFB XHOST XDISPLAY
 	local xvfbargs="-screen 0 1280x1024x24 +extension RANDR"
-	XVFB=$(type -p Xvfb) || eerror
-	XHOST=$(type -p xhost) || eerror
+	XVFB=$(type -p Xvfb) || die
+	XHOST=$(type -p xhost) || die
 
 	debug-print "${FUNCNAME}: running Xvfb hack"
 	export XAUTHORITY=
@@ -202,7 +202,7 @@ virtx() {
 			${XVFB} :${XDISPLAY} ${xvfbargs}
 			echo
 			eerror "If possible, correct the above error and try your emerge again."
-			eerror "Unable to start Xvfb"
+			die "Unable to start Xvfb"
 		fi
 			((XDISPLAY++))
 		debug-print "${FUNCNAME}: ${XVFB} :${XDISPLAY} ${xvfbargs}"
@@ -225,8 +225,8 @@ virtx() {
 	# Now kill Xvfb
 	kill $(cat /tmp/.X${XDISPLAY}-lock)
 
-	# eerror if our command failed
-	[[ ${retval} -ne 0 ]] && eerror "Failed to run '$@'"
+	# die if our command failed
+	[[ ${retval} -ne 0 ]] && die "Failed to run '$@'"
 
 	return 0 # always return 0, it can be altered by failed kill for Xvfb
 }
@@ -239,7 +239,7 @@ Xmake() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	[[ ${EAPI} == [45] ]] \
-		|| eerror "${FUNCNAME} is unsupported in EAPI > 5, please use_with 'virtx emake -j1 ....'"
+		|| die "${FUNCNAME} is unsupported in EAPI > 5, please use 'virtx emake -j1 ....'"
 
 	eqawarn "you should not execute make directly"
 	eqawarn "rather execute Xemake -j1 if you have issues with parallel make"
@@ -253,21 +253,21 @@ Xemake() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	[[ ${EAPI} == [45] ]] \
-		|| eerror "${FUNCNAME} is unsupported in EAPI > 5, please use_with 'virtx emake ....'"
+		|| die "${FUNCNAME} is unsupported in EAPI > 5, please use 'virtx emake ....'"
 
 	VIRTUALX_COMMAND="emake" virtualmake "$@"
 }
 
 # @FUNCTION: Xeconf
 # @DESCRIPTION:
-# Same as "econf --disable-dependency-tracking", but set up the Xvfb hack if needed.
+# Same as "econf", but set up the Xvfb hack if needed.
 Xeconf() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	[[ ${EAPI} == [45] ]] \
-		|| eerror "${FUNCNAME} is unsupported in EAPI > 5, please use_with 'virtx econf --disable-dependency-tracking ....'"
+		|| die "${FUNCNAME} is unsupported in EAPI > 5, please use 'virtx econf ....'"
 
-	VIRTUALX_COMMAND="econf --disable-dependency-tracking" virtualmake "$@"
+	VIRTUALX_COMMAND="econf" virtualmake "$@"
 }
 
 _VIRTUAL_X=1

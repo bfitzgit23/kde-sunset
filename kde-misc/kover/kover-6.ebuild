@@ -5,9 +5,9 @@ EAPI=7
 
 KDE_LINGUAS="de es fr it nb no pl"
 QT3SUPPORT_REQUIRED="true"
-kde4-base
+inherit kde4-base
 
-DESCRIPTION="An easy to use_with/use_enable WYSIWYG CD cover printer with CDDB support"
+DESCRIPTION="An easy to use WYSIWYG CD cover printer with CDDB support"
 HOMEPAGE="http://lisas.de/kover/"
 SRC_URI="http://lisas.de/${PN}/${P}.tar.bz2"
 
@@ -17,11 +17,11 @@ KEYWORDS="~amd64 ~x86"
 IUSE="nls"
 
 RDEPEND="
- dev-libs/libcdio-paranoia
- media-libs/libcddb
+	dev-libs/libcdio-paranoia
+	media-libs/libcddb
 "
 DEPEND="${RDEPEND}
- nls? ( sys-devel/gettext )
+	nls? ( sys-devel/gettext )
 "
 
 PATCHES=( "${FILESDIR}/${PN}-4-cflags.patch" )

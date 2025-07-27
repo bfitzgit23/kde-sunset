@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-kde4-base
+inherit kde4-base
 
 DESCRIPTION="KDE Task Scheduler"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"

@@ -4,7 +4,7 @@
 EAPI=7
 
 CMAKE_REMOVE_MODULES_LIST=( FindQt4 )
-kde4-base
+inherit kde4-base
 
 DESCRIPTION="Qt wrapper for bluez used in the KDE bluetooth stack"
 HOMEPAGE="https://projects.kde.org/projects/playground/libs/libbluedevil"

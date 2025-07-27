@@ -5,7 +5,7 @@ EAPI=7
 
 KMNAME="kdevelop"
 WEBKIT_REQUIRED="always"
-kde4-base
+inherit kde4-base
 
 DESCRIPTION="PHP documentation plugin for KDevelop 4"
 

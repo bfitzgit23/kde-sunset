@@ -19,7 +19,7 @@ src_configure() {
  # to /${PREFIX}/bin/ , so I'm doing that now already.
  sed -e '/kdesu_executable/s:LIBEXEC_INSTALL_DIR:BIN_INSTALL_DIR:' \
  -i "${S}"/kdesu/kdesu/CMakeLists.txt || \
- eerror "Moving kdesu from libexec to bin failed."
+ die "Moving kdesu from libexec to bin failed."
 
  kde4-meta_src_configure
 }

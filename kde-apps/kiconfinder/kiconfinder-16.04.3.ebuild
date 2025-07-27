@@ -4,7 +4,7 @@
 EAPI=7
 
 KMNAME="kde-runtime"
-kde4-meta
+inherit kde4-meta
 
 DESCRIPTION="Finds an icon based on its name"
 KEYWORDS="amd64 x86"

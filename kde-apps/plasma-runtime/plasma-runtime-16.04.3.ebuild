@@ -7,14 +7,14 @@ KMNAME="kde-runtime"
 KMMODULE="plasma"
 DECLARATIVE_REQUIRED="always"
 WEBKIT_REQUIRED="always"
-kde4-meta
+inherit kde4-meta
 
 DESCRIPTION="Script engine and package tool for plasma"
 KEYWORDS="amd64 x86"
 IUSE="debug"
 
 DEPEND="
- kde-frameworks/kactivities:4
+	kde-frameworks/kactivities:4
 "
 RDEPEND="${DEPEND}"
 

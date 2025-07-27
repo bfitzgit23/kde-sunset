@@ -76,7 +76,7 @@ EXPORT_FUNCTIONS pkg_setup pkg_nofetch src_unpack src_prepare src_configure src_
 
 # @ECLASS-VARIABLE: KDE_DOC_DIR
 # @DESCRIPTION:
-# Defaults to "doc". Otherwise, use_with alternative KDE handbook path.
+# Defaults to "doc". Otherwise, use alternative KDE handbook path.
 : ${KDE_DOC_DIR:=doc}
 
 # @ECLASS-VARIABLE: KDE_TEST
@@ -362,7 +362,7 @@ _calculate_live_repo() {
 			# @ECLASS-VARIABLE: EGIT_MIRROR
 			# @DESCRIPTION:
 			# This variable allows easy overriding of default kde mirror service
-			# (anongit) with anything else you might want to use_with.
+			# (anongit) with anything else you might want to use.
 			EGIT_MIRROR=${EGIT_MIRROR:=https://anongit.kde.org}
 
 			local _kmname
@@ -461,7 +461,7 @@ kde5_src_unpack() {
 	elif [[ ${KDEBASE} = kdel10n ]]; then
 		local l10npart=5
 		[[ ${PN} = kde4-l10n ]] && l10npart=4
-		mkdir -p "${S}" || eerror "Failed to create source dir ${S}"
+		mkdir -p "${S}" || die "Failed to create source dir ${S}"
 		cd "${S}"
 		for my_tar in ${A}; do
 			tar -xpf "${DISTDIR}/${my_tar}" --xz \
@@ -483,24 +483,24 @@ kde5_src_prepare() {
 		local l10npart=5
 		[[ ${PN} = kde4-l10n ]] && l10npart=4
 		# move known variant subdirs to root dir, currently sr@*
-		in_iuse l10n_sr-ijekavsk && use_with l10n_sr-ijekavsk && _l10n_variant_subdir2root sr-ijekavsk sr
-		in_iuse l10n_sr-Latn-ijekavsk && use_with l10n_sr-Latn-ijekavsk && _l10n_variant_subdir2root sr-Latn-ijekavsk sr
-		in_iuse l10n_sr-Latn && use_with l10n_sr-Latn && _l10n_variant_subdir2root sr-Latn sr
-		if in_iuse l10n_sr && use_with l10n_sr; then
-			rm -rf kde-l10n-sr-${PV}/${l10npart}/sr/sr@* || eerror "Failed to cleanup L10N=sr"
+		in_iuse l10n_sr-ijekavsk && use l10n_sr-ijekavsk && _l10n_variant_subdir2root sr-ijekavsk sr
+		in_iuse l10n_sr-Latn-ijekavsk && use l10n_sr-Latn-ijekavsk && _l10n_variant_subdir2root sr-Latn-ijekavsk sr
+		in_iuse l10n_sr-Latn && use l10n_sr-Latn && _l10n_variant_subdir2root sr-Latn sr
+		if in_iuse l10n_sr && use l10n_sr; then
+			rm -rf kde-l10n-sr-${PV}/${l10npart}/sr/sr@* || die "Failed to cleanup L10N=sr"
 			_l10n_variant_subdir_buster sr
 		elif [[ -d kde-l10n-sr-${PV} ]]; then
 			# having any variant selected means parent lingua will be unpacked as well
-			rm -r kde-l10n-sr-${PV} || eerror "Failed to remove sr parent lingua"
+			rm -r kde-l10n-sr-${PV} || die "Failed to remove sr parent lingua"
 		fi
 
-		cat <<-EOF > CMakeLists.txt || eerror
+		cat <<-EOF > CMakeLists.txt || die
 		project(${PN})
 		cmake_minimum_required(VERSION 2.8.12)
 		EOF
 		# add all l10n directories to cmake
 		if [[ -n ${A} ]]; then
-			cat <<-EOF >> CMakeLists.txt || eerror
+			cat <<-EOF >> CMakeLists.txt || die
 			$(printf "add_subdirectory( %s )\n" \
 				`find . -mindepth 1 -maxdepth 1 -type d | sed -e "s:^\./::"`)
 			EOF
@@ -509,21 +509,21 @@ kde5_src_prepare() {
 		# for KF5: drop KDE4-based part; for KDE4: drop KF5-based part
 		case ${l10npart} in
 			5) find -maxdepth 2 -type f -name CMakeLists.txt -exec \
-				sed -i -e "/add_subdirectory(4)/ s/^/#DONT/" {} + || eerror ;;
+				sed -i -e "/add_subdirectory(4)/ s/^/#DONT/" {} + || die ;;
 			4) find -maxdepth 2 -type f -name CMakeLists.txt -exec \
-				sed -i -e "/add_subdirectory(5)/ s/^/#DONT/" {} + || eerror ;;
+				sed -i -e "/add_subdirectory(5)/ s/^/#DONT/" {} + || die ;;
 		esac
 	fi
 
 	cmake-utils_src_prepare
 
 	# only build examples when required
-	if ! in_iuse examples && use_with examples || ! use_with examples ; then
+	if ! in_iuse examples && use examples || ! use examples ; then
 		cmake_comment_add_subdirectory examples
 	fi
 
 	# only enable handbook when required
-	if ! in_iuse handbook && use_with handbook ; then
+	if ! in_iuse handbook && use handbook ; then
 		cmake_comment_add_subdirectory ${KDE_DOC_DIR}
 
 		if [[ ${KDE_HANDBOOK} = forceoptional ]] ; then
@@ -532,40 +532,40 @@ kde5_src_prepare() {
 	fi
 
 	# drop translations when nls is not wanted
-	if [[ -d po ]] && in_iuse nls && ! use_with nls ; then
-		rm -r po || eerror
+	if [[ -d po ]] && in_iuse nls && ! use nls ; then
+		rm -r po || die
 	fi
 
 	# enable only the requested translations
 	# when required
 	if [[ -d po && -v LINGUAS ]] ; then
-		pushd po > /dev/null || eerror
+		pushd po > /dev/null || die
 		local lang
 		for lang in *; do
 			if [[ -d ${lang} ]] && ! has ${lang} ${LINGUAS} ; then
-				rm -r ${lang} || eerror
+				rm -r ${lang} || die
 				if [[ -e CMakeLists.txt ]] ; then
 					cmake_comment_add_subdirectory ${lang}
 				fi
 			elif [[ -f ${lang} ]] && ! has ${lang/.po/} ${LINGUAS} ; then
 				if [[ ${lang} != CMakeLists.txt && ${lang} != ${PN}.pot ]] ; then
-					rm ${lang} || eerror
+					rm ${lang} || die
 				fi
 			fi
 		done
-		popd > /dev/null || eerror
+		popd > /dev/null || die
 	fi
 
 	if [[ ${KDE_BUILD_TYPE} = release && ${CATEGORY} != kde-apps ]] ; then
 		if [[ ${KDE_HANDBOOK} != false && -d ${KDE_DOC_DIR} && -v LINGUAS ]] ; then
-			pushd ${KDE_DOC_DIR} > /dev/null || eerror
+			pushd ${KDE_DOC_DIR} > /dev/null || die
 			local lang
 			for lang in *; do
 				if ! has ${lang} ${LINGUAS} ; then
 					cmake_comment_add_subdirectory ${lang}
 				fi
 			done
-			popd > /dev/null || eerror
+			popd > /dev/null || die
 		fi
 	fi
 
@@ -575,7 +575,7 @@ kde5_src_prepare() {
 	fi
 
 	# only build unit tests when required
-	if ! in_iuse test && use_with test ; then
+	if ! in_iuse test && use test ; then
 		if [[ ${KDE_TEST} = forceoptional ]] ; then
 			punt_bogus_dep Qt5 Test
 			# if forceoptional, also cover non-kde categories
@@ -584,10 +584,10 @@ kde5_src_prepare() {
 			punt_bogus_dep Qt5 Test
 			local d
 			for d in $(find . -type d -name "autotests" -or -name "tests" -or -name "test" -or -name "unittests"); do
-				pushd ${d%/*} > /dev/null || eerror
+				pushd ${d%/*} > /dev/null || die
 					punt_bogus_dep Qt5 Test
 					cmake_comment_add_subdirectory autotests test tests
-				popd > /dev/null || eerror
+				popd > /dev/null || die
 			done
 		elif [[ ${CATEGORY} = kde-frameworks || ${CATEGORY} = kde-plasma || ${CATEGORY} = kde-apps ]] ; then
 			cmake_comment_add_subdirectory autotests test tests
@@ -602,13 +602,13 @@ kde5_src_configure() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	# we rely on cmake-utils.eclass to append -DNDEBUG too
-	if ! in_iuse debug && use_with debug; then
+	if ! in_iuse debug && use debug; then
 		append-cppflags -DQT_NO_DEBUG
 	fi
 
 	local cmakeargs
 
-	if ! in_iuse test && use_with test ; then
+	if ! in_iuse test && use test ; then
 		cmakeargs+=( -DBUILD_TESTING=OFF )
 
 		if [[ ${KDE_TEST} = optional ]] ; then
@@ -616,11 +616,11 @@ kde5_src_configure() {
 		fi
 	fi
 
-	if ! in_iuse handbook && use_with handbook && [[ ${KDE_HANDBOOK} = optional ]] ; then
+	if ! in_iuse handbook && use handbook && [[ ${KDE_HANDBOOK} = optional ]] ; then
 		cmakeargs+=( -DCMAKE_DISABLE_FIND_PACKAGE_KF5DocTools=ON )
 	fi
 
-	if ! in_iuse designer && use_with designer && [[ ${KDE_DESIGNERPLUGIN} != false ]] ; then
+	if ! in_iuse designer && use designer && [[ ${KDE_DESIGNERPLUGIN} != false ]] ; then
 		cmakeargs+=( -DCMAKE_DISABLE_FIND_PACKAGE_Qt5Designer=ON )
 	fi
 
@@ -743,15 +743,15 @@ _l10n_variant_subdir2root() {
 	local dest=kde-l10n-${lingua}-${PV}/${l10npart}
 
 	# create variant rootdir structure from parent lingua and adapt it
-	mkdir -p ${dest} || eerror "Failed to create ${dest}"
-	mv ${src}/${l10npart}/${2}/${lingua} ${dest}/${lingua} || eerror "Failed to create ${dest}/${lingua}"
-	cp -f ${src}/CMakeLists.txt kde-l10n-${lingua}-${PV} || eerror "Failed to prepare L10N=${1} subdir"
+	mkdir -p ${dest} || die "Failed to create ${dest}"
+	mv ${src}/${l10npart}/${2}/${lingua} ${dest}/${lingua} || die "Failed to create ${dest}/${lingua}"
+	cp -f ${src}/CMakeLists.txt kde-l10n-${lingua}-${PV} || die "Failed to prepare L10N=${1} subdir"
 	echo "add_subdirectory(${lingua})" > ${dest}/CMakeLists.txt ||
-		eerror "Failed to prepare ${dest}/CMakeLists.txt"
+		die "Failed to prepare ${dest}/CMakeLists.txt"
 	cp -f ${src}/${l10npart}/${2}/CMakeLists.txt ${dest}/${lingua} ||
-		eerror "Failed to create ${dest}/${lingua}/CMakeLists.txt"
+		die "Failed to create ${dest}/${lingua}/CMakeLists.txt"
 	sed -e "s/${2}/${lingua}/" -i ${dest}/${lingua}/CMakeLists.txt ||
-		eerror "Failed to prepare ${dest}/${lingua}/CMakeLists.txt"
+		die "Failed to prepare ${dest}/${lingua}/CMakeLists.txt"
 
 	_l10n_variant_subdir_buster ${1}
 }
@@ -762,13 +762,13 @@ _l10n_variant_subdir_buster() {
 	local dir=kde-l10n-$(kde_l10n2lingua ${1})-${PV}/${l10npart}/$(kde_l10n2lingua ${1})
 
 	case ${l10npart} in
-		5) sed -e "/^add_subdirectory(/d" -i ${dir}/CMakeLists.txt || eerror "Failed to cleanup ${dir} subdir" ;;
-		4) sed -e "/^macro.*subdirectory(/d" -i ${dir}/CMakeLists.txt || eerror "Failed to cleanup ${dir} subdir" ;;
+		5) sed -e "/^add_subdirectory(/d" -i ${dir}/CMakeLists.txt || die "Failed to cleanup ${dir} subdir" ;;
+		4) sed -e "/^macro.*subdirectory(/d" -i ${dir}/CMakeLists.txt || die "Failed to cleanup ${dir} subdir" ;;
 	esac
 
 	for subdir in $(find ${dir} -mindepth 1 -maxdepth 1 -type d | sed -e "s:^\./::"); do
 		if [[ ${subdir##*/} != "cmake_modules" ]] ; then
-			echo "add_subdirectory(${subdir##*/})" >> ${dir}/CMakeLists.txt || eerror
+			echo "add_subdirectory(${subdir##*/})" >> ${dir}/CMakeLists.txt || die
 		fi
 	done
 }

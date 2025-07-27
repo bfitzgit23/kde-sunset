@@ -4,18 +4,18 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-kde4-base
+inherit kde4-base
 
 DESCRIPTION="KDE UML Modeller"
 HOMEPAGE="
- https://www.kde.org/applications/development/umbrello
- https://umbrello.kde.org
+	https://www.kde.org/applications/development/umbrello
+	https://umbrello.kde.org
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 RDEPEND="
- dev-libs/libxml2
- dev-libs/libxslt
+	dev-libs/libxml2
+	dev-libs/libxslt
 "
 DEPEND="${RDEPEND}"

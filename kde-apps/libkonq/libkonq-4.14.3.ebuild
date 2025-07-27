@@ -6,7 +6,7 @@ EAPI=7
 KMNAME="kde-baseapps"
 KMMODULE="lib/konq"
 CPPUNIT_REQUIRED="optional"
-kde4-meta
+inherit kde4-meta
 
 DESCRIPTION="The embeddable part of konqueror"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"

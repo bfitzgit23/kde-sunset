@@ -3,31 +3,31 @@
 
 EAPI=7
 
-kde4-base
+inherit kde4-base
 
 DESCRIPTION="Extra Dolphin plugins"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug git mercurial subversion"
 
 DEPEND="
- $(add_kdeapps_dep libkonq)
+	$(add_kdeapps_dep libkonq)
 "
 RDEPEND="${DEPEND}
- $(add_kdeapps_dep kompare)
- git? ( dev-vcs/git )
- mercurial? ( dev-vcs/mercurial )
- subversion? ( dev-vcs/subversion )
+	$(add_kdeapps_dep kompare)
+	git? ( dev-vcs/git )
+	mercurial? ( dev-vcs/mercurial )
+	subversion? ( dev-vcs/subversion )
 "
 
 src_install() {
- { use_with/use_enable git || use_with/use_enable mercurial || use_with/use_enable subversion; } && kde4-base_src_install
+	{ use git || use mercurial || use subversion; } && kde4-base_src_install
 }
 
 pkg_postinst() {
- if ! use_with/use_enable git && ! use_with/use_enable mercurial && ! use_with/use_enable subversion ; then
- einfo
- einfo "You have disabled all plugin use_with/use_enable flags. If you want to have vcs"
- einfo "integration in dolphin, enable those of your needs."
- einfo
- fi
+	if ! use git && ! use mercurial && ! use subversion ; then
+		einfo
+		einfo "You have disabled all plugin use flags. If you want to have vcs"
+		einfo "integration in dolphin, enable those of your needs."
+		einfo
+	fi
 }

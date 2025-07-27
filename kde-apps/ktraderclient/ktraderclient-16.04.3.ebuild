@@ -4,7 +4,7 @@
 EAPI=7
 
 KMNAME="kde-runtime"
-kde4-meta
+inherit kde4-meta
 
 DESCRIPTION="A command-line tool for querying the KDE trader system"
 IUSE="debug"

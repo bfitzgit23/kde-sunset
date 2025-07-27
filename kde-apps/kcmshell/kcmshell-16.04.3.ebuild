@@ -4,7 +4,7 @@
 EAPI=7
 
 KMNAME="kde-runtime"
-kde4-meta
+inherit kde4-meta
 
 DESCRIPTION="Utility to host KDE control modules independently of SystemSettings"
 KEYWORDS="amd64 x86"

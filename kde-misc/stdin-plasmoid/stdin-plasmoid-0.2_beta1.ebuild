@@ -3,7 +3,7 @@
 
 EAPI=7
 
- kde4-base 
+inherit kde4-base versionator
 
 MY_P="$(replace_version_separator 2 '-')"
 
@@ -17,7 +17,7 @@ SLOT="4"
 IUSE="debug"
 
 RDEPEND="
- kde-plasma/plasma-workspace:4
+	kde-plasma/plasma-workspace:4
 "
 
 S="${WORKDIR}/${MY_P}"

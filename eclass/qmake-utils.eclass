@@ -15,7 +15,7 @@
 if [[ -z ${_QMAKE_UTILS_ECLASS} ]]; then
 _QMAKE_UTILS_ECLASS=1
 
-[[ ${EAPI:-0} == [01234] ]] && eerror "qmake-utils.eclass: unsupported EAPI=${EAPI:-0}"
+[[ ${EAPI:-0} == [01234] ]] && die "qmake-utils.eclass: unsupported EAPI=${EAPI:-0}"
 [[ ${EAPI:-0} == 5 ]] && inherit eutils multilib
 inherit estack toolchain-funcs
 
@@ -170,7 +170,7 @@ eqmake4() {
 			eerror "No project files found in '${PWD}'"
 			eerror "This shouldn't happen - please send a bug report to https://bugs.gentoo.org/"
 			echo
-			eerror "eqmake4 failed"
+			die "eqmake4 failed"
 		fi
 		qmake_args+=("${project_file}")
 	fi
@@ -178,7 +178,7 @@ eqmake4() {
 	# Make sure the CONFIG variable is correctly set for both release and debug builds.
 	local config_add=release
 	local config_remove=debug
-	if in_iuse debug && use_with debug; then
+	if in_iuse debug && use debug; then
 		config_add=debug
 		config_remove=release
 	fi
@@ -228,7 +228,7 @@ eqmake4() {
 			einfo " - fixed CONFIG in ${file}"
 		elif [[ ${retval} != 0 ]]; then
 			eerror " - error while processing ${file}"
-			eerror "eqmake4 failed to process ${file}"
+			die "eqmake4 failed to process ${file}"
 		fi
 	done < <(find . -type f -name '*.pr[io]' -printf '%P\n' 2>/dev/null)
 
@@ -263,7 +263,7 @@ eqmake4() {
 		eerror "Running qmake has failed! (see above for details)"
 		eerror "This shouldn't happen - please send a bug report to https://bugs.gentoo.org/"
 		echo
-		eerror "eqmake4 failed"
+		die "eqmake4 failed"
 	fi
 }
 
@@ -310,7 +310,7 @@ eqmake5() {
 		eerror "Running qmake has failed! (see above for details)"
 		eerror "This shouldn't happen - please send a bug report to https://bugs.gentoo.org/"
 		echo
-		eerror "eqmake5 failed"
+		die "eqmake5 failed"
 	fi
 }
 

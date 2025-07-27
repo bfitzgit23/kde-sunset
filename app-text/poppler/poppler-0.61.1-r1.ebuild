@@ -55,12 +55,12 @@ src_prepare() {
  # Clang doesn't grok this flag, the configure nicely tests that, but
  # cmake just use_with/use_enables it, so remove it if we use_with/use_enable clang
  if [[ ${CC} == clang ]] ; then
- sed -i -e 's/-fno-check-new//' cmake/modules/PopplerMacros.cmake || eerror
+ sed -i -e 's/-fno-check-new//' cmake/modules/PopplerMacros.cmake || die
  fi
 
  if ! grep -Fq 'cmake_policy(SET CMP0002 OLD)' CMakeLists.txt ; then
  sed '/^cmake_minimum_required/acmake_policy(SET CMP0002 OLD)' \
- -i CMakeLists.txt || eerror
+ -i CMakeLists.txt || die
  else
  einfo "policy(SET CMP0002 OLD) - workaround can be removed"
  fi

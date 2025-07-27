@@ -24,7 +24,7 @@ RDEPEND="${DEPEND}"
 
 src_prepare() {
  default
- sed -e "/^Categories/s/Application;//" -i ptbatterysystemtray.desktop || eerror
+ sed -e "/^Categories/s/Application;//" -i ptbatterysystemtray.desktop || die
 }
 
 src_configure() {

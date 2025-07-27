@@ -3,7 +3,7 @@
 
 EAPI=7
 
-kde4-base
+inherit kde4-base
 
 DESCRIPTION="Islamic Prayer Times Plasmoid"
 HOMEPAGE="http://kprayertime.sourceforge.net/"

@@ -10,13 +10,13 @@
 # @DESCRIPTION:
 # This eclass provides all necessary functions for writing split KDE ebuilds.
 #
-# You must define KMNAME to use_with this eclass, and do so before inheriting it. All other variables are optional.
+# You must define KMNAME to use this eclass, and do so before inheriting it. All other variables are optional.
 # Do not include the same item in more than one of KMMODULE, KMMEXTRA, KMCOMPILEONLY, KMEXTRACTONLY.
 
 if [[ -z ${_KDE4_META_ECLASS} ]]; then
 _KDE4_META_ECLASS=1
 
-[[ -z ${KMNAME} ]] && eerror "kde4-meta.eclass inherited but KMNAME not defined - broken ebuild"
+[[ -z ${KMNAME} ]] && die "kde4-meta.eclass inherited but KMNAME not defined - broken ebuild"
 
 inherit kde4-base
 
@@ -161,11 +161,11 @@ kde4-meta_src_extract() {
 
 				# Copy ${KMNAME} non-recursively (toplevel files)
 				rsync ${rsync_options} "${wc_path}"/* "${S}" \
-					|| eerror "${escm}: can't export toplevel files to '${S}'."
+					|| die "${escm}: can't export toplevel files to '${S}'."
 				# Copy cmake directory
 				if [[ -d "${wc_path}/cmake" ]]; then
 					rsync --recursive ${rsync_options} "${wc_path}/cmake" "${S}" \
-						|| eerror "${escm}: can't export cmake files to '${S}'."
+						|| die "${escm}: can't export cmake files to '${S}'."
 				fi
 				# Copy all subdirectories
 				for subdir in $(_list_needed_subdirectories); do
@@ -176,7 +176,7 @@ kde4-meta_src_extract() {
 
 					[[ ${subdir%/} = */* ]] && targetdir=${subdir%/} && targetdir=${targetdir%/*} && mkdir -p "${S}/${targetdir}"
 					rsync --recursive ${rsync_options} "${wc_path}/${subdir%/}" "${S}/${targetdir}" \
-						|| eerror "${escm}: can't export subdirectory '${subdir}' to '${S}/${targetdir}'."
+						|| die "${escm}: can't export subdirectory '${subdir}' to '${S}/${targetdir}'."
 				done
 				;;
 		esac
@@ -210,7 +210,7 @@ kde4-meta_src_extract() {
 		done
 		extractlist+=" $(_list_needed_subdirectories)"
 
-		pushd "${WORKDIR}" > /dev/null || eerror
+		pushd "${WORKDIR}" > /dev/null || die
 
 		# @ECLASS-VARIABLE: KDE4_STRICTER
 		# @DESCRIPTION:
@@ -221,10 +221,10 @@ kde4-meta_src_extract() {
 
 		# Default $S is based on $P; rename the extracted directory to match $S if necessary
 		if [[ ${KMNAME} != ${PN} ]]; then
-			mv ${topdir} ${P} || eerror "Died while moving \"${topdir}\" to \"${P}\""
+			mv ${topdir} ${P} || die "Died while moving \"${topdir}\" to \"${P}\""
 		fi
 
-		popd > /dev/null || eerror
+		popd > /dev/null || die
 
 		eend $?
 
@@ -235,7 +235,7 @@ kde4-meta_src_extract() {
 					abort=true
 				fi
 			done
-			[[ -n ${abort} ]] && eerror "There were missing files."
+			[[ -n ${abort} ]] && die "There were missing files."
 		fi
 
 		# We don't need it anymore
@@ -253,15 +253,15 @@ kde4-meta_create_extractlists() {
 
 	# Add default handbook locations
 	# FIXME - legacy code - remove when 4.4.5 is gone or preferrably port 4.4.5.
-	if [[ $(get_kde_version) < 4.5 ]] && in_iuse handbook && use_with handbook && [[ -z ${KMNOMODULE} ]]; then
-		# We use_with the basename of $KMMODULE because $KMMODULE can contain
+	if [[ $(get_kde_version) < 4.5 ]] && in_iuse handbook && use handbook && [[ -z ${KMNOMODULE} ]]; then
+		# We use the basename of $KMMODULE because $KMMODULE can contain
 		# the path to the module subdirectory.
 		KMEXTRA_NONFATAL+="
 			doc/${KMMODULE##*/}"
 	fi
 
 	# Add default handbook locations
-	if [[ -z ${KMNOMODULE} ]] && ( [[ ${KDE_HANDBOOK} == always ]] || ( [[ ${KDE_HANDBOOK} == optional ]] && use_with handbook ) ); then
+	if [[ -z ${KMNOMODULE} ]] && ( [[ ${KDE_HANDBOOK} == always ]] || ( [[ ${KDE_HANDBOOK} == optional ]] && use handbook ) ); then
 		KMEXTRA_NONFATAL+=" doc/${KMMODULE##*/}"
 	fi
 
@@ -302,7 +302,7 @@ kde4-meta_create_extractlists() {
 				CTestCustom.cmake
 				kdepim-version.h.cmake
 				kdepim-version.h"
-			if in_iuse kontact && use_with kontact; then
+			if in_iuse kontact && use kontact; then
 				KMEXTRA+="
 					kontact/plugins/${PLUGINNAME:-${PN}}/"
 			fi
@@ -388,7 +388,7 @@ _change_cmakelists_parent_dirs() {
 		if [[ -f ${_dir}/CMakeLists.txt ]]; then
 			sed -e "/add_subdirectory[[:space:]]*([[:space:]]*${_olddir}[[:space:]]*)/s/#DONOTCOMPILE //g" \
 				-e "/ADD_SUBDIRECTORY[[:space:]]*([[:space:]]*${_olddir}[[:space:]]*)/s/#DONOTCOMPILE //g" \
-				-i ${_dir}/CMakeLists.txt || eerror "${LINENO}: died in ${FUNCNAME} while processing ${_dir}"
+				-i ${_dir}/CMakeLists.txt || die "${LINENO}: died in ${FUNCNAME} while processing ${_dir}"
 		fi
 	done
 }
@@ -399,7 +399,7 @@ _change_cmakelists_parent_dirs() {
 kde4-meta_change_cmakelists() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	pushd "${S}" > /dev/null || eerror
+	pushd "${S}" > /dev/null || die
 
 	comment_all_add_subdirectory ./
 
@@ -407,32 +407,32 @@ kde4-meta_change_cmakelists() {
 	if [[ -f CMakeLists.txt ]]; then
 		sed -e '/add_subdirectory[[:space:]]*([[:space:]]*cmake[[:space:]]*)/s/^#DONOTCOMPILE //' \
 			-e '/ADD_SUBDIRECTORY[[:space:]]*([[:space:]]*cmake[[:space:]]*)/s/^#DONOTCOMPILE //' \
-			-i CMakeLists.txt || eerror "${LINENO}: cmake sed died"
+			-i CMakeLists.txt || die "${LINENO}: cmake sed died"
 	fi
 
 	# Restore "add_subdirectory( ${ ..." (this is done in kdesdk)
 	if [[ -f CMakeLists.txt ]]; then
 		sed -e '/add_subdirectory[[:space:]]*([[:space:]]*\${/s/^#DONOTCOMPILE //' \
 			-e '/ADD_SUBDIRECTORY[[:space:]]*([[:space:]]*\${/s/^#DONOTCOMPILE //' \
-			-i CMakeLists.txt || eerror "${LINENO}: cmake sed died"
+			-i CMakeLists.txt || die "${LINENO}: cmake sed died"
 	fi
 
 	if [[ -z ${KMNOMODULE} ]]; then
 		# Restore "add_subdirectory" in $KMMODULE subdirectories
 		find "${S}"/${KMMODULE} -name CMakeLists.txt -print0 | \
 			xargs -0 sed -i -e 's/^#DONOTCOMPILE //g' || \
-				eerror "${LINENO}: died in KMMODULE section"
+				die "${LINENO}: died in KMMODULE section"
 		_change_cmakelists_parent_dirs ${KMMODULE}
 	fi
 
 	local i
 
-	# KMEXTRACTONLY section - Some ebuilds need to comment out some subdirs in KMMODULE and they use_with KMEXTRACTONLY
+	# KMEXTRACTONLY section - Some ebuilds need to comment out some subdirs in KMMODULE and they use KMEXTRACTONLY
 	for i in ${KMEXTRACTONLY}; do
 		if [[ -d ${i} && -f ${i}/../CMakeLists.txt ]]; then
 			sed -e "/([[:space:]]*$(basename $i)[[:space:]]*)/s/^/#DONOTCOMPILE /" \
 				-i ${i}/../CMakeLists.txt || \
-				eerror "${LINENO}: sed died while working in the KMEXTRACTONLY section while processing ${i}"
+				die "${LINENO}: sed died while working in the KMEXTRACTONLY section while processing ${i}"
 		fi
 	done
 
@@ -446,7 +446,7 @@ kde4-meta_change_cmakelists() {
 				-e '/install(.*)/I{s/^/#DONOTINSTALL /;}' \
 				-e '/^install(/,/)/I{s/^/#DONOTINSTALL /;}' \
 				-e '/kde4_install_icons(.*)/I{s/^/#DONOTINSTALL /;}' || \
-				eerror "${LINENO}: sed died in the KMCOMPILEONLY section while processing ${i}"
+				die "${LINENO}: sed died in the KMCOMPILEONLY section while processing ${i}"
 		_change_cmakelists_parent_dirs ${i}
 	done
 
@@ -455,7 +455,7 @@ kde4-meta_change_cmakelists() {
 		debug-print "${LINENO}: KMEXTRA section, processing ${i}"
 		find "${S}"/${i} -name CMakeLists.txt -print0 | \
 			xargs -0 sed -i -e 's/^#DONOTCOMPILE //g' || \
-			eerror "${LINENO}: sed died uncommenting add_subdirectory instructions in KMEXTRA section while processing ${i}"
+			die "${LINENO}: sed died uncommenting add_subdirectory instructions in KMEXTRA section while processing ${i}"
 		_change_cmakelists_parent_dirs ${i}
 	done
 	# KMEXTRA_NONFATAL section
@@ -463,7 +463,7 @@ kde4-meta_change_cmakelists() {
 		if [[ -d "${S}"/${i} ]]; then
 			find "${S}"/${i} -name CMakeLists.txt -print0 | \
 				xargs -0 sed -i -e 's/^#DONOTCOMPILE //g' || \
-					eerror "${LINENO}: sed died uncommenting add_subdirectory instructions in KMEXTRA section while processing ${i}"
+					die "${LINENO}: sed died uncommenting add_subdirectory instructions in KMEXTRA section while processing ${i}"
 			_change_cmakelists_parent_dirs ${i}
 		fi
 	done
@@ -476,48 +476,48 @@ kde4-meta_change_cmakelists() {
 			if [[ ${PN} != kdebase-startkde && -f CMakeLists.txt ]]; then
 				# The startkde script moved to kdebase-workspace for KDE4 versions > 3.93.0.
 				sed -e '/startkde/s/^/#DONOTINSTALL /' \
-					-i CMakeLists.txt || eerror "${LINENO}: sed died in the kdebase-startkde collision prevention section"
+					-i CMakeLists.txt || die "${LINENO}: sed died in the kdebase-startkde collision prevention section"
 			fi
 			# Remove workspace target prefix in order to get direct linking to workspace libs
 			sed -e '/set(KDE4WORKSPACE_TARGET_PREFIX/s/^/#OVERRIDE /' \
-				-i CMakeLists.txt || eerror "${LINENO}: sed died in KDE4WORKSPACE_TARGET_PREFIX removal section"
+				-i CMakeLists.txt || die "${LINENO}: sed died in KDE4WORKSPACE_TARGET_PREFIX removal section"
 			# Strip EXPORT feature section from workspace for KDE4 versions > 4.1.82
 			if [[ ${PN} != libkworkspace ]]; then
 				sed -e '/install(FILES ${CMAKE_CURRENT_BINARY_DIR}\/KDE4WorkspaceConfig.cmake/,/^[[:space:]]*FILE KDE4WorkspaceLibraryTargets.cmake )[[:space:]]*^/d' \
-					-i CMakeLists.txt || eerror "${LINENO}: sed died in kde-workspace strip config install and fix EXPORT section"
+					-i CMakeLists.txt || die "${LINENO}: sed died in kde-workspace strip config install and fix EXPORT section"
 			fi
 			# <KDE/4.11
 			if [[ ${PN} != plasma-workspace ]]; then
 				sed -e '/KActivities/s/REQUIRED//' \
-					-i CMakeLists.txt || eerror "${LINENO}: sed died in kde-workspace dep reduction section"
+					-i CMakeLists.txt || die "${LINENO}: sed died in kde-workspace dep reduction section"
 			fi
 			sed -e '/QImageBlitz/s/REQUIRED//' \
-				-i CMakeLists.txt || eerror "${LINENO}: sed died in kde-workspace dep reduction section 2"
+				-i CMakeLists.txt || die "${LINENO}: sed died in kde-workspace dep reduction section 2"
 
 			# >=KDE/4.11
 			sed -e 's/TYPE REQUIRED/TYPE OPTIONAL/' -e 's/XCB REQUIRED/XCB/' -e 's/X11 REQUIRED/X11/' \
 				-e 's/message(FATAL_ERROR/message(/' -i CMakeLists.txt \
-				|| eerror "${LINENO}: sed died in kde-workspace dep reduction section"
+				|| die "${LINENO}: sed died in kde-workspace dep reduction section"
 			if [[ "${PN}" != "kwin" ]]; then
 				sed -i -e "/^    macro_log_feature(OPENGL_OR_ES_FOUND/s/TRUE/FALSE/" \
-					"${S}"/CMakeLists.txt || eerror "${LINENO}: sed died removing kde-workspace opengl dependency"
+					"${S}"/CMakeLists.txt || die "${LINENO}: sed died removing kde-workspace opengl dependency"
 			fi
 			;;
 		kde-runtime)
 			sed -e 's/TYPE REQUIRED/TYPE OPTIONAL/' -e '/LibGcrypt/s/REQUIRED//' -i CMakeLists.txt \
-				|| eerror "${LINENO}: sed died in kde-runtime dep reduction section"
+				|| die "${LINENO}: sed died in kde-runtime dep reduction section"
 
 			# COLLISION PROTECT section
 			# Only install the kde4 script as part of kde-base/kdebase-data
 			if [[ ${PN} != kdebase-data && -f CMakeLists.txt ]]; then
 				sed -e '/^install(PROGRAMS[[:space:]]*[^[:space:]]*\/kde4[[:space:]]/s/^/#DONOTINSTALL /' \
-					-i CMakeLists.txt || eerror "Sed to exclude bin/kde4 failed"
+					-i CMakeLists.txt || die "Sed to exclude bin/kde4 failed"
 			fi
 			;;
 		kdenetwork)
 			# Disable hardcoded kdepimlibs check
 			sed -e 's/find_package(KdepimLibs REQUIRED)/macro_optional_find_package(KdepimLibs)/' \
-				-i CMakeLists.txt || eerror "failed to disable hardcoded checks"
+				-i CMakeLists.txt || die "failed to disable hardcoded checks"
 			;;
 		kdepim)
 			# Disable hardcoded checks
@@ -526,12 +526,12 @@ kde4-meta_change_cmakelists() {
 				-e '/macro_log_feature\((Boost|QGPGME|Akonadi|ZLIB|STRIGI|SHAREDDESKTOPONTOLOGIES|Soprano|Nepomuk)_FOUND/s/ TRUE / FALSE /' \
 				-e 's/if[[:space:]]*([[:space:]]*BUILD_.*)[[:space:]]*/if(1) # &/' \
 				-e 's/if[[:space:]]*([[:space:]]*[[:alnum:]]*_FOUND[[:space:]]*)[[:space:]]*$/if(1) # &/' \
-				-i CMakeLists.txt || eerror "failed to disable hardcoded checks"
+				-i CMakeLists.txt || die "failed to disable hardcoded checks"
 			# Disable broken or redundant build logic
-			if in_iuse kontact && use_with kontact || [[ ${PN} = kontact ]]; then
+			if in_iuse kontact && use kontact || [[ ${PN} = kontact ]]; then
 				sed -e 's/if[[:space:]]*([[:space:]]*BUILD_.*)[[:space:]]*$/if(1) # &/' \
 					-e 's/if[[:space:]]*([[:space:]]*[[:alnum:]]*_FOUND[[:space:]]*)[[:space:]]*$/if(1) # &/' \
-					-i kontact/plugins/CMakeLists.txt || eerror 'failed to override build logic'
+					-i kontact/plugins/CMakeLists.txt || die 'failed to override build logic'
 			fi
 			case ${PV} in
 				4.4*)
@@ -539,7 +539,7 @@ kde4-meta_change_cmakelists() {
 						kalarm|kmailcvt|kontact|korganizer|korn)
 							sed -n -e '/qt4_generate_dbus_interface(.*org\.kde\.kmail\.\(kmail\|mailcomposer\)\.xml/p' \
 								-e '/add_custom_target(kmail_xml /,/)/p' \
-								-i kmail/CMakeLists.txt || eerror "uncommenting xml failed"
+								-i kmail/CMakeLists.txt || die "uncommenting xml failed"
 							_change_cmakelists_parent_dirs kmail
 							;;
 					esac
@@ -548,7 +548,7 @@ kde4-meta_change_cmakelists() {
 			;;
 	esac
 
-	popd > /dev/null || eerror
+	popd > /dev/null || die
 }
 
 # @FUNCTION: kde4-meta_src_configure

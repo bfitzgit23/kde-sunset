@@ -16,7 +16,7 @@
 
 case ${EAPI} in
 	7|8) ;;
-	*) eerror "EAPI=${EAPI:-0} is not supported" ;;
+	*) die "EAPI=${EAPI:-0} is not supported" ;;
 esac
 
 if [[ -z ${_KDE4_ORG_ECLASS} ]]; then
@@ -140,7 +140,7 @@ has ${PV} "${KDE_PV_UNRELEASED[*]}" && KDE_ORG_UNRELEASED=true
 # @ECLASS_VARIABLE: EGIT_MIRROR
 # @DESCRIPTION:
 # This variable allows easy overriding of default kde mirror service
-# (anongit) with anything else you might want to use_with.
+# (anongit) with anything else you might want to use.
 
 # @ECLASS_VARIABLE: EGIT_REPONAME
 # @DESCRIPTION:
@@ -185,7 +185,7 @@ esac
 
 # @FUNCTION: kde4.org_pkg_nofetch
 # @DESCRIPTION:
-# Intended for use_with in the KDE overlay. If this package matches something in
+# Intended for use in the KDE overlay. If this package matches something in
 # KDE_UNRELEASED, display a giant warning that the package has not yet been
 # released upstream and should not be used.
 kde4.org_pkg_nofetch() {

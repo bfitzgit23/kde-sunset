@@ -27,7 +27,7 @@ DEPEND="${RDEPEND}
 
 src_unpack() {
  unpack ${A}
- mv ${PN}* ${P} || eerror
+ mv ${PN}* ${P} || die
 }
 
 src_configure() {
@@ -56,7 +56,7 @@ src_install() {
  cmake-utils_src_install -j1
 
  if use_with/use_enable examples; then
- cd "${BUILD_DIR}"/demos || eerror
+ cd "${BUILD_DIR}"/demos || die
  dobin mandelbrot/mandelbrot opengl/quaternion_demo
  fi
 }

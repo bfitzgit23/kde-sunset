@@ -37,11 +37,11 @@ src_prepare() {
  # fix .desktop file
  sed -i \
  -e '/Encoding/d' starter/"${PN}".desktop \
- || eerror "sed on qt4-fsarchiver.desktop failed"
+ || die "sed on qt4-fsarchiver.desktop failed"
  # fix icon installation location
  sed -i \
  -e "/icon.path/s:app-install/icons:${PN}:" "${PN}.pro" \
- || eerror "sed on ${PN}.pro failed"
+ || die "sed on ${PN}.pro failed"
 }
 
 src_compile() {

@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_LINGUAS="it"
 KDE_LINGUAS_DIR="translations"
-kde4-base
+inherit kde4-base
 
 DESCRIPTION="Connector for web Steam service from Valve"
 HOMEPAGE="http://kde-look.org/content/show.php/Steam+Companion?content=141713"

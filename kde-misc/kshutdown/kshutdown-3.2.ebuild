@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_MINIMAL="4.8"
-kde4-base
+inherit kde4-base
 
 MY_P=${PN}-source-${PV/_}
 

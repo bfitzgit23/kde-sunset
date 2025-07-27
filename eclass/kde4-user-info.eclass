@@ -8,7 +8,7 @@
 
 case ${EAPI} in
 	5|6|7|8) ;;
-	*) eerror "${ECLASS}: EAPI ${EAPI:-0} not supported" ;;
+	*) die "${ECLASS}: EAPI ${EAPI:-0} not supported" ;;
 esac
 
 if [[ -z ${_KDE4_USER_INFO_ECLASS} ]]; then
@@ -25,11 +25,11 @@ _KDE4_USER_INFO_ECLASS=1
 egetent() {
 	local db=$1 key=$2
 
-	[[ $# -ge 3 ]] && eerror "usage: egetent <database> <key>"
+	[[ $# -ge 3 ]] && die "usage: egetent <database> <key>"
 
 	case ${db} in
 	passwd|group) ;;
-	*) eerror "sorry, database '${db}' not yet supported; file a bug" ;;
+	*) die "sorry, database '${db}' not yet supported; file a bug" ;;
 	esac
 
 	case ${CHOST} in
@@ -76,7 +76,7 @@ egetent() {
 # @DESCRIPTION:
 # Gets the username for given UID.
 egetusername() {
-	[[ $# -eq 1 ]] || eerror "usage: egetusername <uid>"
+	[[ $# -eq 1 ]] || die "usage: egetusername <uid>"
 
 	egetent passwd "$1" | cut -d: -f1
 }
@@ -86,7 +86,7 @@ egetusername() {
 # @DESCRIPTION:
 # Gets the group name for given GID.
 egetgroupname() {
-	[[ $# -eq 1 ]] || eerror "usage: egetgroupname <gid>"
+	[[ $# -eq 1 ]] || die "usage: egetgroupname <gid>"
 
 	egetent group "$1" | cut -d: -f1
 }
@@ -98,7 +98,7 @@ egetgroupname() {
 egethome() {
 	local pos
 
-	[[ $# -eq 1 ]] || eerror "usage: egethome <user>"
+	[[ $# -eq 1 ]] || die "usage: egethome <user>"
 
 	case ${CHOST} in
 	*-freebsd*|*-dragonfly*)
@@ -119,7 +119,7 @@ egethome() {
 egetshell() {
 	local pos
 
-	[[ $# -eq 1 ]] || eerror "usage: egetshell <user>"
+	[[ $# -eq 1 ]] || die "usage: egetshell <user>"
 
 	case ${CHOST} in
 	*-freebsd*|*-dragonfly*)
@@ -140,7 +140,7 @@ egetshell() {
 egetcomment() {
 	local pos
 
-	[[ $# -eq 1 ]] || eerror "usage: egetcomment <user>"
+	[[ $# -eq 1 ]] || die "usage: egetcomment <user>"
 
 	case ${CHOST} in
 	*-freebsd*|*-dragonfly*)
@@ -160,7 +160,7 @@ egetcomment() {
 # Gets all the groups user belongs to.  The primary group is returned
 # first, then all supplementary groups.  Groups are ','-separated.
 egetgroups() {
-	[[ $# -eq 1 ]] || eerror "usage: egetgroups <user>"
+	[[ $# -eq 1 ]] || die "usage: egetgroups <user>"
 
 	local egroups_arr
 	if [[ -n "${ROOT}" ]]; then

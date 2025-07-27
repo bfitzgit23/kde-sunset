@@ -69,7 +69,7 @@ src_prepare() {
  kde4-base_src_prepare
 
  # bug 558640
- sed -i -e "/^add_subdirectory( doc )/d" CMakeLists.txt || eerror
+ sed -i -e "/^add_subdirectory( doc )/d" CMakeLists.txt || die
 }
 
 src_configure() {

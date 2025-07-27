@@ -41,16 +41,16 @@ case ${EAPI} in
 			cmake-utils|cmake) ;;
 			*)
 				eerror "Unknown value for \${CMAKE_ECLASS}"
-				eerror "Value ${CMAKE_ECLASS} is not supported"
+				die "Value ${CMAKE_ECLASS} is not supported"
 				;;
 		esac
 		_CMAKE_ECLASS_IMPL=${CMAKE_ECLASS}
 		;;
-	*) eerror "${ECLASS}: EAPI=${EAPI:-0} is not supported" ;;
+	*) die "${ECLASS}: EAPI=${EAPI:-0} is not supported" ;;
 esac
 
 if [[ ${CMAKE_IN_SOURCE_BUILD} ]]; then
-	eerror "${ECLASS}: multilib support requires out-of-source builds."
+	die "${ECLASS}: multilib support requires out-of-source builds."
 fi
 
 if [[ -z ${_CMAKE_MULTILIB_ECLASS} ]]; then

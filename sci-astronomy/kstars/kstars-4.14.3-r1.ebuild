@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_MINIMAL="${PV}"
 KDE_HANDBOOK="optional"
-flag-o-matic kde4-base
+inherit flag-o-matic kde4-base
 
 DESCRIPTION="KDE Desktop Planetarium"
 HOMEPAGE="https://kde.org/applications/en/education/org.kde.kstars https://edu.kde.org/kstars"
@@ -19,23 +19,23 @@ IUSE="debug fits indi"
 REQUIRED_USE="indi? ( fits )"
 
 DEPEND="
- dev-cpp/eigen:3
- $(add_kdeapps_dep libkdeedu)
- fits? ( >=sci-libs/cfitsio-0.390 )
- indi? ( >=sci-libs/indilib-0.9.8 )
+	dev-cpp/eigen:3
+	$(add_kdeapps_dep libkdeedu)
+	fits? ( >=sci-libs/cfitsio-0.390 )
+	indi? ( >=sci-libs/indilib-0.9.8 )
 "
 RDEPEND="${DEPEND}"
 
 PATCHES=( "${FILESDIR}/${P}-indilib100.patch" )
 
 src_configure() {
- # Bug 308903
- use_with/use_enable ppc64 && append-flags -mminimal-toc
+	# Bug 308903
+	use ppc64 && append-flags -mminimal-toc
 
- local mycmakeargs=(
- $(cmake-utils_use_with/use_enable_with fits CFitsio)
- $(cmake-utils_use_with/use_enable_with indi)
- )
+	local mycmakeargs=(
+		$(cmake-utils_use_with fits CFitsio)
+		$(cmake-utils_use_with indi)
+	)
 
- kde4-base_src_configure
+	kde4-base_src_configure
 }

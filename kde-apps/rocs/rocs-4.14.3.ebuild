@@ -33,5 +33,5 @@ src_test() {
  emake DESTDIR="${T}/tests" install
  export KDEDIRS="${KDEDIRS}:${T}/tests/${PREFIX}"
  kbuildsycoca4
- ctest || eerror "tests failed"
+ ctest || die "tests failed"
 }

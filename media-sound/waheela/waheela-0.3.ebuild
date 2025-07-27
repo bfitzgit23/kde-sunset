@@ -3,7 +3,7 @@
 
 EAPI=7
 
-kde4-base
+inherit kde4-base
 
 MY_P=${P/-/_}
 

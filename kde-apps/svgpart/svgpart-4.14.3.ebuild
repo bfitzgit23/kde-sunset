@@ -3,7 +3,7 @@
 
 EAPI=7
 
-kde4-base
+inherit kde4-base
 
 DESCRIPTION="Svgpart is a kpart for viewing SVGs"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"

@@ -26,7 +26,7 @@ _KDE4_BASE_ECLASS=1
 
 # @ECLASS-VARIABLE: VIRTUALDBUS_TEST
 # @DESCRIPTION:
-# If defined, launch and use_with a private dbus session during src_test.
+# If defined, launch and use a private dbus session during src_test.
 
 # @ECLASS-VARIABLE: VIRTUALX_REQUIRED
 # @DESCRIPTION:
@@ -401,7 +401,7 @@ if [[ ${KDEBASE} != "kde-base" && -n ${KDE_LINGUAS} ]]; then
 	for _lingua in $(kde4_lingua_to_l10n ${KDE_LINGUAS}); do
 		# if our package has linguas, pull in kde4-l10n with selected lingua enabled,
 		# but only for selected ones.
-		# this can't be done on one line because if user doesn't use_with any localisation
+		# this can't be done on one line because if user doesn't use any localisation
 		# then he is probably not interested in kde4-l10n at all.
 		kderdepend+="
 		l10n_${_lingua}? ( $(add_kdeapps_dep kde4-l10n "l10n_${_lingua}(+)") )
@@ -560,7 +560,7 @@ _calculate_live_repo() {
 			# @ECLASS-VARIABLE: ESVN_MIRROR
 			# @DESCRIPTION:
 			# This variable allows easy overriding of default kde mirror service
-			# (anonsvn) with anything else you might want to use_with.
+			# (anonsvn) with anything else you might want to use.
 			ESVN_MIRROR=${ESVN_MIRROR:=svn://anonsvn.kde.org/home/kde}
 			# Split ebuild, or extragear stuff
 			if [[ -n ${KMNAME} ]]; then
@@ -613,7 +613,7 @@ _calculate_live_repo() {
 			# @ECLASS-VARIABLE: EGIT_MIRROR
 			# @DESCRIPTION:
 			# This variable allows easy overriding of default kde mirror service
-			# (anongit) with anything else you might want to use_with.
+			# (anongit) with anything else you might want to use.
 			EGIT_MIRROR=${EGIT_MIRROR:=https://anongit.kde.org}
 
 			# @ECLASS-VARIABLE: EGIT_REPONAME
@@ -687,7 +687,7 @@ kde4-base_pkg_setup() {
 # @FUNCTION: kde4-base_src_unpack
 # @DESCRIPTION:
 # This function unpacks the source tarballs for KDE4 applications.
-kde.org_src_unpack()) {
+kde4-base_src_unpack() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	if [[ ${KDE_BUILD_TYPE} = live ]]; then
@@ -710,7 +710,7 @@ kde.org_src_unpack()) {
 # It also handles translations if KDE_LINGUAS is defined. See KDE_LINGUAS and
 # enable_selected_linguas() and enable_selected_doc_linguas()
 # in kde4-functions.eclass(5) for further details.
-kde.org_src_prepare()) {
+kde4-base_src_prepare() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	# enable handbook and linguas only when not using live ebuild
@@ -724,7 +724,7 @@ kde.org_src_prepare()) {
 	# kde4-l10n inherits kde4-base but is metapackage, so no check for doc
 	if ! has kde4-meta ${INHERITED} && in_iuse handbook; then
 		if [[ ${KDEBASE} == kde-base ]]; then
-			if [[ ${PN} != kde4-l10n && ${PN} != kdepim-l10n ]] && use_with !handbook; then
+			if [[ ${PN} != kde4-l10n && ${PN} != kdepim-l10n ]] && use !handbook; then
 				# documentation in kde4-functions
 				: ${KDE_DOC_DIRS:=doc}
 				local dir
@@ -733,7 +733,7 @@ kde.org_src_prepare()) {
 						-e "\!^[[:space:]]*ADD_SUBDIRECTORY[[:space:]]*([[:space:]]*${dir}[[:space:]]*)!s/^/#DONOTCOMPILE /" \
 						-e "\!^[[:space:]]*macro_optional_add_subdirectory[[:space:]]*([[:space:]]*${dir}[[:space:]]*)!s/^/#DONOTCOMPILE /" \
 						-e "\!^[[:space:]]*MACRO_OPTIONAL_ADD_SUBDIRECTORY[[:space:]]*([[:space:]]*${dir}[[:space:]]*)!s/^/#DONOTCOMPILE /" \
-						-i CMakeLists.txt || eerror "failed to comment out handbook"
+						-i CMakeLists.txt || die "failed to comment out handbook"
 				done
 			fi
 		else
@@ -766,20 +766,20 @@ kde.org_src_prepare()) {
 		find "${S}" -name "*.docbook" \
 			-exec sed -i -r \
 				-e 's:-//KDE//DTD DocBook XML V4\.1(\..)?-Based Variant V1\.[01]//EN:-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN:g' {} + \
-			|| eerror 'failed to fix DocBook variant version'
+			|| die 'failed to fix DocBook variant version'
 	fi
 }
 
 # @FUNCTION: kde4-base_src_configure
 # @DESCRIPTION:
 # Function for configuring the build of KDE4 applications.
-kde.org_src_configure()) {
+kde4-base_src_configure() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	# Build tests in src_test only, where we override this value
 	local cmakeargs=(-DKDE4_BUILD_TESTS=OFF)
 
-	if in_iuse debug && use_with debug; then
+	if in_iuse debug && use debug; then
 		# Set "real" debug mode
 		CMAKE_KDE_BUILD_TYPE="Debugfull"
 	else
@@ -819,7 +819,7 @@ kde.org_src_configure()) {
 # @FUNCTION: kde4-base_src_compile
 # @DESCRIPTION:
 # General function for compiling KDE4 applications.
-kde.org_src_compile()) {
+kde4-base_src_compile() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	cmake-utils_src_compile "$@"
@@ -828,7 +828,7 @@ kde.org_src_compile()) {
 # @FUNCTION: kde4-base_src_test
 # @DESCRIPTION:
 # Function for testing KDE4 applications.
-kde.org_src_test()) {
+kde4-base_src_test() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	local kded4_pid
@@ -849,7 +849,7 @@ kde.org_src_test()) {
 	# > make sure it does not happen, so bad tests can be recognized and disabled
 	unset DBUS_SESSION_BUS_ADDRESS DBUS_SESSION_BUS_PID
 
-	# Override this value, set in kde.org_src_configure())
+	# Override this value, set in kde4-base_src_configure()
 	mycmakeargs+=(-DKDE4_BUILD_TESTS=ON)
 	cmake-utils_src_configure
 	kde4-base_src_compile
@@ -882,7 +882,7 @@ kde.org_src_test()) {
 # @FUNCTION: kde4-base_src_install
 # @DESCRIPTION:
 # Function for installing KDE4 applications.
-kde.org_src_install()) {
+kde4-base_src_install() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	if [[ -n ${KMSAVELIBS} ]] ; then

@@ -5,7 +5,7 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KDE_SELINUX_MODULE="games"
-kde4-base
+inherit kde4-base
 
 DESCRIPTION="KDE Blackbox Game"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"

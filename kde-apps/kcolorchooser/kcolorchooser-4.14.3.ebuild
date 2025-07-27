@@ -3,7 +3,7 @@
 
 EAPI=7
 
-kde4-base
+inherit kde4-base
 
 DESCRIPTION="KDE color selector/editor"
 HOMEPAGE="https://www.kde.org/applications/graphics/kcolorchooser/"

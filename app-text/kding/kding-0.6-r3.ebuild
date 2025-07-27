@@ -25,7 +25,7 @@ PATCHES=(
 
 src_prepare() {
  sed -e "/Encoding=UTF-8/d" \
- -i resources/kding.desktop || eerror "fixing .desktop file failed"
+ -i resources/kding.desktop || die "fixing .desktop file failed"
 
  kde4-base_src_prepare
 }
@@ -36,5 +36,5 @@ src_install() {
  # bug 510510
  pngfix -q --out=out.png "${ED}/usr/share/icons/hicolor/22x22/apps/kding.png"
  mv -f out.png "${ED}/usr/share/icons/hicolor/22x22/apps/kding.png" \
- || eerror "fixing broken png file failed"
+ || die "fixing broken png file failed"
 }

@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-kde4-base
+inherit kde4-base
 
 DESCRIPTION="KDE Go game"
 HOMEPAGE="https://www.kde.org/applications/games/kigo/"
@@ -13,6 +13,6 @@ IUSE="debug"
 
 DEPEND="$(add_kdeapps_dep libkdegames)"
 RDEPEND="
- ${DEPEND}
- games-board/gnugo
+	${DEPEND}
+	games-board/gnugo
 "

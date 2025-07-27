@@ -29,7 +29,7 @@ PATCHES=( "${FILESDIR}"/${P}-install_qt.patch )
 
 src_prepare() {
  default
- sed -e "/QwtVersion/s:5.2.2.:${PV}:g" -i ${PN}.prf || eerror
+ sed -e "/QwtVersion/s:5.2.2.:${PV}:g" -i ${PN}.prf || die
 
  cat > qwtconfig.pri <<-EOF
  target.path = "${EPREFIX}/usr/$(get_libdir)"
@@ -42,7 +42,7 @@ src_prepare() {
  QWT_INSTALL_PLUGINS = "${EPREFIX}/usr/$(get_libdir)/qt4/plugins/designer"
  QWT_INSTALL_FEATURES = "${EPREFIX}/usr/share/qt4/mkspecs/features"
  EOF
- sed -i -e 's/headers doc/headers/' src/src.pro || eerror
+ sed -i -e 's/headers doc/headers/' src/src.pro || die
  use_with/use_enable svg && echo >> qwtconfig.pri "CONFIG += QwtSVGItem"
 
  echo "CONFIG += QwtDll" >> qwtconfig.pri
@@ -70,8 +70,8 @@ src_install() {
  DEPENDPATH += "${EPREFIX}/usr/include/qwt5"
  LIBS += -lqwt
  EOF
- sed -i -e 's:../qwtconfig:qwtconfig:' examples/examples.pro || eerror
- cp *.pri examples/ || eerror
+ sed -i -e 's:../qwtconfig:qwtconfig:' examples/examples.pro || die
+ cp *.pri examples/ || die
  docinto examples
  dodoc -r examples/.
  fi

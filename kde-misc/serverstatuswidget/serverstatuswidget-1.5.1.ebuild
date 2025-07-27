@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_LINGUAS="de fr"
-kde4-base
+inherit kde4-base
 
 DESCRIPTION="KDE plasma widget used for monitoring servers via ping or tcp connect"
 HOMEPAGE="http://www.kde-look.org/content/show.php?content=101336"

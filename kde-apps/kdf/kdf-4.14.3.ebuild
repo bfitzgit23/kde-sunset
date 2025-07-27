@@ -4,7 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="optional"
-kde4-base
+inherit kde4-base
 
 DESCRIPTION="KDE free disk space utility"
 HOMEPAGE="https://utils.kde.org/projects/kdf"

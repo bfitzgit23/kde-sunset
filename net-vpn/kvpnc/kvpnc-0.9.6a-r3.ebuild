@@ -34,15 +34,15 @@ PATCHES=(
 )
 
 src_prepare() {
- mv -vf "${WORKDIR}"/${P/a}-kde4-locale/po . || eerror
+ mv -vf "${WORKDIR}"/${P/a}-kde4-locale/po . || die
 
- echo "find_package ( Msgfmt REQUIRED )" >> CMakeLists.txt || eerror
- echo "find_package ( Gettext REQUIRED )" >> CMakeLists.txt || eerror
- echo "add_subdirectory ( po )" >> CMakeLists.txt || eerror
+ echo "find_package ( Msgfmt REQUIRED )" >> CMakeLists.txt || die
+ echo "find_package ( Gettext REQUIRED )" >> CMakeLists.txt || die
+ echo "add_subdirectory ( po )" >> CMakeLists.txt || die
 
  sed -i \
  -e "s:0.9.2-svn:${PV}:" \
- CMakeLists.txt || eerror
+ CMakeLists.txt || die
 
  kde4-base_src_prepare
 }

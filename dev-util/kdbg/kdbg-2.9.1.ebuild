@@ -24,9 +24,9 @@ DOCS=( BUGS README ReleaseNotes-${PV} TODO )
 
 src_prepare() {
  # allow documentation to be handled by eclass
- mv kdbg/doc . || eerror
- sed -i -e '/add_subdirectory(doc)/d' kdbg/CMakeLists.txt || eerror
- echo "add_subdirectory ( doc ) " >> CMakeLists.txt || eerror
+ mv kdbg/doc . || die
+ sed -i -e '/add_subdirectory(doc)/d' kdbg/CMakeLists.txt || die
+ echo "add_subdirectory ( doc ) " >> CMakeLists.txt || die
  kde4-base_src_prepare
 }
 

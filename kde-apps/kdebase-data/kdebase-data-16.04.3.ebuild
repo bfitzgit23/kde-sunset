@@ -30,7 +30,7 @@ src_configure() {
  # Remove remnants of hicolor-icon-theme
  sed -e "s:add_subdirectory[[:space:]]*([[:space:]]*hicolor[[:space:]]*):#donotwant:g" \
  -i pics/CMakeLists.txt \
- || eerror "failed to remove remnants of hicolor-icon-theme"
+ || die "failed to remove remnants of hicolor-icon-theme"
 
  kde4-meta_src_configure
 }

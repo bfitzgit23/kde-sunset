@@ -21,12 +21,12 @@ inherit versionator
 # Currently kde4 eclasses support EAPI 5 and 6.
 case ${EAPI} in
 	5|6) : ;;
-	*) eerror "EAPI=${EAPI:-0} is not supported" ;;
+	*) die "EAPI=${EAPI:-0} is not supported" ;;
 esac
 
 # @ECLASS-VARIABLE: KDE_OVERRIDE_MINIMAL
 # @DESCRIPTION:
-# For use_with only in very few well-defined cases; normally it should be unset.
+# For use only in very few well-defined cases; normally it should be unset.
 # If this variable is set, all calls to add_kdebase_dep return a dependency on
 # at least this version, independent of the version of the package itself.
 # If you know exactly that one specific NEW KDE component builds and runs fine
@@ -69,12 +69,12 @@ fi
 
 # @ECLASS-VARIABLE: KDE_SCM
 # @DESCRIPTION:
-# If this is a live package which scm does it use_with
+# If this is a live package which scm does it use
 # Everything else uses git by default
 KDE_SCM="${KDE_SCM:-git}"
 case ${KDE_SCM} in
 	svn|git) ;;
-	*) eerror "KDE_SCM: ${KDE_SCM} is not supported" ;;
+	*) die "KDE_SCM: ${KDE_SCM} is not supported" ;;
 esac
 
 # @FUNCTION: kde4_lingua_to_l10n
@@ -92,7 +92,7 @@ kde4_lingua_to_l10n() {
 			sr@ijekavianlatin) echo sr-Latn-ijekavsk;;
 			sr@latin|sr@Latn) echo sr-Latn;;
 			uz@cyrillic) echo uz-Cyrl;;
-			*@*) eerror "${FUNCNAME}: Unhandled KDE_LINGUAS: ${l}";;
+			*@*) die "${FUNCNAME}: Unhandled KDE_LINGUAS: ${l}";;
 			*) echo "${l/_/-}";;
 		esac
 	done
@@ -127,7 +127,7 @@ buildsycoca() {
 		DIRS=${EROOT}usr
 		[[ -d "${EROOT}${x}" ]] || break # nothing to do if directory does not exist
 		# fixes Bug 318237
-		if use_with userland_BSD ; then
+		if use userland_BSD ; then
 			[[ $(stat -f %p "${EROOT}${x}") != 40755 ]]
 			local stat_rtn="$?"
 		else
@@ -156,7 +156,7 @@ comment_all_add_subdirectory() {
 			-e '/^[[:space:]]*ADD_SUBDIRECTORY/s/^/#DONOTCOMPILE /' \
 			-e '/^[[:space:]]*macro_optional_add_subdirectory/s/^/#DONOTCOMPILE /' \
 			-e '/^[[:space:]]*MACRO_OPTIONAL_ADD_SUBDIRECTORY/s/^/#DONOTCOMPILE /' \
-			|| eerror "${LINENO}: Initial sed died"
+			|| die "${LINENO}: Initial sed died"
 }
 
 # @FUNCTION: enable_selected_linguas
@@ -204,13 +204,13 @@ enable_selected_doc_linguas() {
 		local translationdir=`basename ${pattern}`
 		# Do filename pattern supplied, treat as directory
 		[[ ${handbookdir} = '.' ]] && handbookdir=${translationdir} && translationdir=
-		[[ -d ${handbookdir} ]] || eerror 'wrong doc dir specified'
+		[[ -d ${handbookdir} ]] || die 'wrong doc dir specified'
 
-		if ! use_with handbook; then
+		if ! use handbook; then
 			# Disable whole directory
 			sed -e "/add_subdirectory[[:space:]]*([[:space:]]*${handbookdir}[[:space:]]*)/s/^/#DONOTCOMPILE /" \
 				-e "/ADD_SUBDIRECTORY[[:space:]]*([[:space:]]*${handbookdir}[[:space:]]*)/s/^/#DONOTCOMPILE /" \
-				-i CMakeLists.txt || eerror 'failed to comment out all handbooks'
+				-i CMakeLists.txt || die 'failed to comment out all handbooks'
 		else
 			# Disable subdirectories recursively
 			comment_all_add_subdirectory "${handbookdir}"
@@ -218,14 +218,14 @@ enable_selected_doc_linguas() {
 			# In certain packages, the default handbook is en_US instead of the usual en. Since there is no en_US 'translation',
 			# it makes no sense to add to KDE_LINGUAS which causes this type of handbook to not be installed.
 			if [[ -d "${handbookdir}/en_US" && ! -d "${handbookdir}/en" ]]; then
-				mv "${handbookdir}/en_US" "${handbookdir}/en" || eerror
+				mv "${handbookdir}/en_US" "${handbookdir}/en" || die
 				sed -e "s/en_US/en/" -i "${handbookdir}/CMakeLists.txt"
 			fi
 
 			# Add requested translations
 			local lingua
 			for lingua in en ${KDE_LINGUAS}; do
-				if [[ ${lingua} = en ]] || use_with "l10n_$(kde4_lingua_to_l10n "${lingua}")"; then
+				if [[ ${lingua} = en ]] || use "l10n_$(kde4_lingua_to_l10n "${lingua}")"; then
 					if [[ -d ${handbookdir}/${translationdir//%lingua/${lingua}} ]]; then
 						sed -e "/add_subdirectory[[:space:]]*([[:space:]]*${translationdir//%lingua/${lingua}}/s/^#DONOTCOMPILE //" \
 							-e "/ADD_SUBDIRECTORY[[:space:]]*([[:space:]]*${translationdir//%lingua/${lingua}}/s/^#DONOTCOMPILE //" \
@@ -249,7 +249,7 @@ save_library_dependencies() {
 
 	ebegin "Saving library dependencies in ${depsfile##*/}"
 	echo "EXPORT_LIBRARY_DEPENDENCIES(\"${depsfile}\")" >> "${S}/CMakeLists.txt" || \
-		eerror "Failed to save the library dependencies."
+		die "Failed to save the library dependencies."
 	eend $?
 }
 
@@ -261,7 +261,7 @@ install_library_dependencies() {
 
 	ebegin "Installing library dependencies as ${depsfile##*/}"
 	insinto /var/lib/kde
-	doins "${depsfile}" || eerror "Failed to install library dependencies."
+	doins "${depsfile}" || die "Failed to install library dependencies."
 	eend $?
 }
 
@@ -277,9 +277,9 @@ load_library_dependencies() {
 		((i++))
 		depsfile="${EPREFIX}/var/lib/kde/${pn}"
 		[[ -r ${depsfile} ]] || depsfile="${EPREFIX}/var/lib/kde/${pn}:$(get_kde_version)"
-		[[ -r ${depsfile} ]] || eerror "Depsfile '${depsfile}' not accessible. You probably need to reinstall ${pn}."
+		[[ -r ${depsfile} ]] || die "Depsfile '${depsfile}' not accessible. You probably need to reinstall ${pn}."
 		sed -i -e "${i}iINCLUDE(\"${depsfile}\")" "${S}/CMakeLists.txt" || \
-			eerror "Failed to include library dependencies for ${pn}"
+			die "Failed to include library dependencies for ${pn}"
 	done
 	eend $?
 }
@@ -289,7 +289,7 @@ load_library_dependencies() {
 # Create proper dependency for kde-apps/ dependencies.
 # This takes 1 to 3 arguments. The first being the package name, the optional
 # second is additional USE flags to append, and the optional third is the
-# version to use_with instead of the automatic version (use_with sparingly).
+# version to use instead of the automatic version (use sparingly).
 # The output of this should be added directly to DEPEND/RDEPEND, and may be
 # wrapped in a USE conditional (but not an || conditional without an extra set
 # of parentheses).
@@ -299,7 +299,7 @@ add_kdeapps_dep() {
 	local ver
 
 	if [[ -n ${2} ]] ; then
-		local use_with="[${2}]"
+		local use="[${2}]"
 	fi
 
 	if [[ -n ${3} ]]; then
@@ -309,7 +309,7 @@ add_kdeapps_dep() {
 	elif [[ ${KDEBASE} != kde-base ]]; then
 		ver=${KDE_MINIMAL}
 	# if building kde-apps, live master or stable-live branch,
-	# use_with the final SC version since there are no further general releases.
+	# use the final SC version since there are no further general releases.
 	# except when it is kdepim split packages, which rely on same-version deps
 	elif [[ ${CATEGORY} == kde-apps || ${PV} == *9999 ]] && [[ ${KMNAME} != "kdepim" ]]; then
 		ver=4.14.3
@@ -317,9 +317,9 @@ add_kdeapps_dep() {
 		ver=${PV}
 	fi
 
-	[[ -z ${1} ]] && eerror "Missing parameter"
+	[[ -z ${1} ]] && die "Missing parameter"
 
-	echo " >=kde-apps/${1}-${ver}:4${use_with}"
+	echo " >=kde-apps/${1}-${ver}:4${use}"
 }
 
 # @FUNCTION: add_kdebase_dep
@@ -327,7 +327,7 @@ add_kdeapps_dep() {
 # Create proper dependency for kde-base/ dependencies.
 # This takes 1 to 3 arguments. The first being the package name, the optional
 # second is additional USE flags to append, and the optional third is the
-# version to use_with instead of the automatic version (use_with sparingly).
+# version to use instead of the automatic version (use sparingly).
 # The output of this should be added directly to DEPEND/RDEPEND, and may be
 # wrapped in a USE conditional (but not an || conditional without an extra set
 # of parentheses).
@@ -337,7 +337,7 @@ add_kdebase_dep() {
 	local ver
 
 	if [[ -n ${2} ]] ; then
-		local use_with="[${2}]"
+		local use="[${2}]"
 	fi
 
 	if [[ -n ${3} ]]; then
@@ -346,20 +346,20 @@ add_kdebase_dep() {
 		ver=${KDE_OVERRIDE_MINIMAL}
 	elif [[ ${KDEBASE} != kde-base ]]; then
 		ver=${KDE_MINIMAL}
-	# if building live master or kde-apps, use_with the final SC version
+	# if building live master or kde-apps, use the final SC version
 	# since there are no further general releases.
 	elif [[ ${CATEGORY} == kde-apps || ${PV} == 9999 ]]; then
 		ver=4.14.3
-	# if building a live version branch (eg. 4.11.49.9999) use_with the major version
+	# if building a live version branch (eg. 4.11.49.9999) use the major version
 	elif [[ ${PV} == *.9999 ]]; then
 		ver=$(get_kde_version)
 	else
 		ver=${PV}
 	fi
 
-	[[ -z ${1} ]] && eerror "Missing parameter"
+	[[ -z ${1} ]] && die "Missing parameter"
 
-	echo " >=kde-base/${1}-${ver}:4${use_with}"
+	echo " >=kde-base/${1}-${ver}:4${use}"
 }
 
 # local function to enable specified translations for specified directory
@@ -368,12 +368,12 @@ _enable_selected_linguas_dir() {
 	local lingua linguas sr_mess wp
 	local dir=${1}
 
-	[[ -d  ${dir} ]] || eerror "linguas dir \"${dir}\" does not exist"
+	[[ -d  ${dir} ]] || die "linguas dir \"${dir}\" does not exist"
 	comment_all_add_subdirectory "${dir}"
-	pushd "${dir}" > /dev/null || eerror
+	pushd "${dir}" > /dev/null || die
 
 	# fix all various crazy sr@Latn variations
-	# this part is only ease for ebuilds, so there wont be any eerror when this
+	# this part is only ease for ebuilds, so there wont be any die when this
 	# fail at any point
 	sr_mess="sr@latn sr@latin sr@Latin"
 	for wp in ${sr_mess}; do
@@ -394,12 +394,12 @@ _enable_selected_linguas_dir() {
 	done
 
 	for lingua in ${KDE_LINGUAS}; do
-		if use_with "l10n_$(kde4_lingua_to_l10n ${lingua})" ; then
+		if use "l10n_$(kde4_lingua_to_l10n ${lingua})" ; then
 			if [[ -d ${lingua} ]]; then
 				linguas="${linguas} ${lingua}"
 				sed -e "/add_subdirectory([[:space:]]*${lingua}[[:space:]]*)[[:space:]]*$/ s/^#DONOTCOMPILE //" \
 					-e "/ADD_SUBDIRECTORY([[:space:]]*${lingua}[[:space:]]*)[[:space:]]*$/ s/^#DONOTCOMPILE //" \
-					-i CMakeLists.txt || eerror "Sed to uncomment linguas_${lingua} failed."
+					-i CMakeLists.txt || die "Sed to uncomment linguas_${lingua} failed."
 			fi
 			if [[ -e ${lingua}.po.old ]]; then
 				linguas="${linguas} ${lingua}"
@@ -409,7 +409,7 @@ _enable_selected_linguas_dir() {
 	done
 	[[ -n ${linguas} ]] && echo ">>> Enabling languages: ${linguas}"
 
-	popd > /dev/null || eerror
+	popd > /dev/null || die
 }
 
 # @FUNCTION: get_kde_version

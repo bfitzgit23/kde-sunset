@@ -61,7 +61,7 @@ src_prepare() {
  if ! use_with/use_enable plasma; then
  sed -i \
  -e "s:add_subdirectory(plasma):#nada:g" \
- CMakeLists.txt || eerror "Failed to make plasmoid optional"
+ CMakeLists.txt || die "Failed to make plasmoid optional"
  fi
 
  kde4-base_src_prepare

@@ -4,7 +4,7 @@
 EAPI=7
 
 DECLARATIVE_REQUIRED="always"
-kde4-base
+inherit kde4-base
 
 DESCRIPTION="Qt Quick 1 plugin for beautiful and interactive charts"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"

@@ -77,7 +77,7 @@ PATCHES=( "${FILESDIR}/${P}-CVE-2017-9604.patch" )
 src_prepare() {
  kde4-meta_src_prepare
  sed -e '/folderarchiveagent.desktop/d' \
- -i agents/CMakeLists.txt || eerror
+ -i agents/CMakeLists.txt || die
 }
 
 src_configure() {
