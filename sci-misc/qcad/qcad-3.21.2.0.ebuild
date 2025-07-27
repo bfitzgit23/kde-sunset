@@ -1,9 +1,9 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=6
 
-inherit desktop patch multilib desktop user  qmake-utils xdg
+inherit desktop eutils qmake-utils xdg
 
 DESCRIPTION="Open Source 2D CAD"
 HOMEPAGE="https://www.qcad.org/en/"

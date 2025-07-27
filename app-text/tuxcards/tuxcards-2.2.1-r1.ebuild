@@ -1,8 +1,8 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
-inherit patch multilib desktop user  qmake-utils
+EAPI=6
+inherit eutils qmake-utils
 
 DESCRIPTION="A hierarchical notebook"
 HOMEPAGE="http://www.tuxcards.de/"

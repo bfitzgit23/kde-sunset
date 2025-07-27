@@ -1,9 +1,9 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=6
 
-inherit patch multilib desktop user  gnome2-utils qmake-utils
+inherit eutils gnome2-utils qmake-utils
 
 MY_PN=MP3Diags
 MY_P=${MY_PN}-${PV}

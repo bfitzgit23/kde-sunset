@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=5
 
 KMNAME="kde-workspace"
 inherit kde4-meta
@@ -23,7 +23,7 @@ RDEPEND="${DEPEND}
 src_prepare() {
 	kde4-meta_src_prepare
 
-	use pam && PATCHES=(${FILESDIR}/${PN}-4.4.2-no-SUID-no-GUID.patch)
+	use pam && epatch "${FILESDIR}/${PN}-4.4.2-no-SUID-no-GUID.patch"
 }
 
 src_configure() {
