@@ -21,6 +21,8 @@ RDEPEND="${DEPEND}"
 PATCHES=(
 	"${FILESDIR}/${PN}-4.7-qdbusintegrator-no-const.patch"
 	"${FILESDIR}/${PN}-4.8.4-qdbusconnection-silence-warning.patch"
+	"${FILESDIR}/qt4-gcc9.patch"
+	"{FILESDIR}/disable-sslv3.patch"
 )
 
 QT4_TARGET_DIRECTORIES="

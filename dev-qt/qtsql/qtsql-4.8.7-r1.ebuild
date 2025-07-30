@@ -32,7 +32,9 @@ QT4_TARGET_DIRECTORIES="
 	src/sql
 	src/plugins/sqldrivers"
 
-PATCHES=( "${FILESDIR}/${P}-mysql-8.patch" )
+PATCHES=( "${FILESDIR}/${P}-mysql-8.patch"
+	  "${FILESDIR}/qt4-gcc9.patch"
+	  "$FILESDIR}/disable-sslv3.patch" )
 
 multilib_src_configure() {
 	local myconf=(
