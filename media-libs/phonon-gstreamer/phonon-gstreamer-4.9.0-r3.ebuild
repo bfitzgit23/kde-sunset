@@ -5,7 +5,7 @@ EAPI=7
 
 MY_PN="phonon-backend-gstreamer"
 MY_P=${MY_PN}-${PV}
-inherit cmake xdg-utils
+inherit cmake-utils xdg-utils
 
 DESCRIPTION="Phonon GStreamer backend"
 HOMEPAGE="https://community.kde.org/Phonon"
@@ -38,13 +38,13 @@ BDEPEND="virtual/pkgconfig"
 PATCHES=( "${FILESDIR}/${P}-no-paused-on-zero-vol.patch" )
 
 src_prepare() {
-	cmake_src_prepare
+	cmake-utils_src_prepare
 	use minimal && cmake_run_in gstreamer cmake_comment_add_subdirectory icons
 }
 
 src_configure() {
 	local mycmakeargs=( -DPHONON_BUILD_PHONON4QT5=OFF )
-	cmake_src_configure
+	cmake-utils_src_configure
 }
 
 pkg_postinst() {

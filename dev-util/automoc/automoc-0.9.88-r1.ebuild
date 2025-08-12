@@ -5,7 +5,7 @@ EAPI=7
 
 MY_PN="automoc4"
 MY_P="${MY_PN}-${PV}"
-inherit cmake flag-o-matic
+inherit cmake-utils flag-o-matic
 
 DESCRIPTION="KDE Meta Object Compiler"
 HOMEPAGE="https://www.kde.org"
@@ -24,7 +24,7 @@ S="${WORKDIR}/${MY_P}"
 PATCHES=( "${FILESDIR}/${PN}-0.9.88-objc++.patch" )
 
 src_prepare() {
-	cmake_src_prepare
+	cmake-utils_src_prepare
 
 	if [[ ${ELIBC} = uclibc ]]; then
 		append-flags -pthread

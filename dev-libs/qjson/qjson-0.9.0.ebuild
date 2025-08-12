@@ -3,7 +3,7 @@
 
 EAPI=7
 
-CMAKE_ECLASS=cmake
+CMAKE_ECLASS=cmake-utils
 inherit cmake-multilib
 
 DESCRIPTION="Library for mapping JSON data to QVariant objects"
@@ -38,7 +38,7 @@ multilib_src_configure() {
 		-DQJSON_BUILD_TESTS=$(usex test)
 	)
 
-	cmake_src_configure
+	cmake-utils_src_configure
 }
 
 multilib_src_install_all() {

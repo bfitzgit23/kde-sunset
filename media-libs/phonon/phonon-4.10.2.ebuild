@@ -3,7 +3,7 @@
 
 EAPI=7
 
-CMAKE_ECLASS=cmake
+CMAKE_ECLASS=cmake-utils
 inherit cmake-multilib qmake-utils
 
 DESCRIPTION="KDE multimedia API"
@@ -45,5 +45,5 @@ multilib_src_configure() {
 		-DWITH_PulseAudio=$(usex pulseaudio)
 		-DQT_QMAKE_EXECUTABLE="$(qt4_get_bindir)"/qmake
 	)
-	cmake_src_configure
+	cmake-utils_src_configure
 }

@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit cmake
+inherit cmake-utils
 
 DESCRIPTION="Graphical effect and filter library by KDE"
 HOMEPAGE="https://websvn.kde.org/trunk/kdesupport/qimageblitz/"
@@ -35,5 +35,5 @@ src_configure() {
 	)
 	use ppc && mycmakeargs+=( -DHAVE_ALTIVEC=$(usex altivec) )
 
-	cmake_src_configure
+	cmake-utils_src_configure
 }

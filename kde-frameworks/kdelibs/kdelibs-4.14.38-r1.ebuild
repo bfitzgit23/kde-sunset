@@ -4,7 +4,7 @@
 EAPI=7
 
 QT_MINIMAL="4.8.7"
-inherit cmake flag-o-matic toolchain-funcs xdg-utils
+inherit cmake-utils flag-o-matic toolchain-funcs xdg-utils
 
 DESCRIPTION="Libraries needed for programs by KDE"
 HOMEPAGE="https://kde.org/"
@@ -149,7 +149,7 @@ PATCHES=(
 )
 
 src_prepare() {
-	cmake_src_prepare
+	cmake-utils_src_prepare
 
 	# Rename applications.menu (needs 01_gentoo_set_xdg_menu_prefix-1.patch to work)
 	sed -e 's|FILES[[:space:]]applications.menu|FILES applications.menu RENAME kde-4-applications.menu|g' \
@@ -216,11 +216,11 @@ src_configure() {
 	#kde-config -path data unavailable when cross-compiling
 	tc-is-cross-compiler && cmakeargs+=( -DKDE4_DATA_DIR="${ROOT}"/usr/share/apps/ )
 
-	cmake_src_configure
+	cmake-utils_src_configure
 }
 
 src_compile() {
-	cmake_src_compile
+	cmake-utils_src_compile
 
 	# The building of apidox is not managed anymore by the build system
 	if use doc; then
@@ -235,7 +235,7 @@ src_install() {
 		[[ -f ${doc} && -s ${doc} ]] && newdoc "${doc}" "$(basename $(dirname ${doc})).$(basename ${doc})"
 	done
 
-	cmake_src_install
+	cmake-utils_src_install
 
 	# use system certificates
 	rm -f "${ED}"/usr/share/apps/kssl/ca-bundle.crt || die

@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit cmake flag-o-matic toolchain-funcs xdg-utils
+inherit cmake-utils flag-o-matic toolchain-funcs xdg-utils
 
 DESCRIPTION="PDF rendering library based on the xpdf-3.0 code base"
 HOMEPAGE="https://poppler.freedesktop.org/"
@@ -49,7 +49,7 @@ PATCHES=(
 )
 
 src_prepare() {
-	cmake_src_prepare
+	cmake-utils_src_prepare
 	cmake_comment_add_subdirectory test # we don't do tests, don't build them.
 
 	# Clang doesn't grok this flag, the configure nicely tests that, but
@@ -110,5 +110,5 @@ src_configure() {
 		mycmakeargs+=(-DENABLE_CMS=)
 	fi
 
-	cmake_src_configure
+	cmake-utils_src_configure
 }
