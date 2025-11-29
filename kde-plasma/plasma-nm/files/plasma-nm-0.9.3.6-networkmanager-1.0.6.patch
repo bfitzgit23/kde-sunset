@@ -1,9 +1,5 @@
-Fixes build with networkmanager-1.0.6.
-
-Triggered by http://cgit.freedesktop.org/NetworkManager/NetworkManager/commit/?h=nm-1-0&id=6f616d4c4b04d5478f60d0311317bc84c5459ea4.
-
---- CMakeLists.txt
-+++ CMakeLists.txt
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
 @@ -49,6 +49,7 @@
                      ${CMAKE_CURRENT_SOURCE_DIR}/libs
                      ${CMAKE_CURRENT_SOURCE_DIR}/libs/editor/

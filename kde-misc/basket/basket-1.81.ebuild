@@ -1,3 +1,6 @@
+# ================= ORIGINAL FILE BELOW =================
+# (Preserved as requested)
+# --------------------------------------------------------
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -25,7 +28,41 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_find_package crypt Gpgme)
+		-DCMAKE_DISABLE_FIND_PACKAGE_Gpgme="$(usex !crypt)"
+	)
+	kde4-base_src_configure
+}
+
+
+# ================= MODERNIZED EBUILD BELOW ==============
+# Copyright 1999-2020 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=7
+
+VIRTUALX_REQUIRED="test"
+inherit kde4-base
+
+DESCRIPTION="Multiple information organizer - a DropDrawers clone"
+HOMEPAGE="https://userbase.kde.org/BasKet https://github.com/basket-notepads/basket"
+SRC_URI="mirror://local/basket-1.81.tar.xz"
+
+LICENSE="GPL-2"
+SLOT="4"
+KEYWORDS="~amd64 ~x86"
+IUSE="debug crypt"
+
+DEPEND="
+	$(add_kdeapps_dep kdepimlibs)
+	media-libs/qimageblitz
+	x11-libs/libX11
+	crypt? ( >=app-crypt/gpgme-1.0 )
+"
+RDEPEND="${DEPEND}"
+
+src_configure() {
+	local mycmakeargs=(
+		-DCMAKE_DISABLE_FIND_PACKAGE_Gpgme="$(usex !crypt)"
 	)
 	kde4-base_src_configure
 }

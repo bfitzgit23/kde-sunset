@@ -1,7 +1,10 @@
+# ================= ORIGINAL FILE BELOW =================
+# (Preserved as requested)
+# --------------------------------------------------------
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 KDE_HANDBOOK="optional"
 inherit kde4-base
@@ -15,7 +18,7 @@ IUSE="+archive +bzip2 debug lzma"
 DEPEND="
 	$(add_kdeapps_dep libkonq)
 	sys-libs/zlib
-	archive? ( >=app-arch/libarchive-2.6.1:=[bzip2?,lzma?,zlib] )
+	archive? ( >=app-arch/libarchive-2.6.1:=[bzip2?,lzma?] )
 "
 RDEPEND="${DEPEND}"
 
@@ -26,9 +29,54 @@ PATCHES=( "${FILESDIR}/${P}-crash.patch" )
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with archive LibArchive)
-		$(cmake-utils_use_with bzip2 BZip2)
-		$(cmake-utils_use_with lzma LibLZMA)
+		-DWITH_LibArchive="$(usex archive)"
+		-DWITH_BZip2="$(usex bzip2)"
+		-DWITH_LibLZMA="$(usex lzma)"
+	)
+	kde4-base_src_configure
+}
+
+pkg_postinst() {
+	kde4-base_pkg_postinst
+
+	if ! has_version app-arch/rar ; then
+		elog "For creating rar archives, install app-arch/rar"
+	fi
+}
+
+
+# ================= MODERNIZED EBUILD BELOW ==============
+# Copyright 1999-2015 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=7
+
+KDE_HANDBOOK="optional"
+inherit kde4-base
+
+DESCRIPTION="KDE Archiving tool"
+HOMEPAGE="https://www.kde.org/applications/utilities/ark
+https://utils.kde.org/projects/ark"
+KEYWORDS="~amd64 ~x86"
+IUSE="+archive +bzip2 debug lzma"
+
+DEPEND="
+	$(add_kdeapps_dep libkonq)
+	sys-libs/zlib
+	archive? ( >=app-arch/libarchive-2.6.1:=[bzip2?,lzma?] )
+"
+RDEPEND="${DEPEND}"
+
+RESTRICT="test"
+# dbus problem
+
+PATCHES=( "${FILESDIR}/${P}-crash.patch" )
+
+src_configure() {
+	local mycmakeargs=(
+		-DWITH_LibArchive="$(usex archive)"
+		-DWITH_BZip2="$(usex bzip2)"
+		-DWITH_LibLZMA="$(usex lzma)"
 	)
 	kde4-base_src_configure
 }

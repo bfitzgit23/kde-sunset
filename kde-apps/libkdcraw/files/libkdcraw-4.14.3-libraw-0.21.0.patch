@@ -1,0 +1,13 @@
+diff --git a/libkdcraw/kdcraw.cpp b/libkdcraw/kdcraw.cpp
+index a58a474..eb0aad7 100644
+--- a/libkdcraw/kdcraw.cpp
++++ b/libkdcraw/kdcraw.cpp
+@@ -384,7 +384,7 @@ bool KDcraw::extractRAWData(const QString& filePath, QByteArray& rawData, DcrawI
+     d->setProgress(0.3);
+ 
+     raw.imgdata.params.output_bps  = 16;
+-    raw.imgdata.params.shot_select = shotSelect;
++    raw.imgdata.rawparams.shot_select = shotSelect;
+     ret                            = raw.unpack();
+ 
+     if (ret != LIBRAW_SUCCESS)

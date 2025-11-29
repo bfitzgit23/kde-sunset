@@ -1,13 +1,40 @@
+# ================= ORIGINAL FILE BELOW =================
+# (Preserved as requested)
+# --------------------------------------------------------
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 inherit kde4-base
 
 DESCRIPTION="A device monitor for NVIDIA cards"
 HOMEPAGE="http://kde-look.org/content/show.php/NVidia+Device+Monitor?content=148658"
 SRC_URI="http://kde-look.org/CONTENT/content-files/148658-NVidiaDeviceMonitor-${PV}.tar.gz"
+
+LICENSE="GPL-2+"
+SLOT="4"
+KEYWORDS="~amd64 ~x86"
+IUSE="debug"
+S="${WORKDIR}/NVidiaDeviceMonitor"
+
+DEPEND=""
+RDEPEND="
+	x11-drivers/nvidia-drivers
+"
+
+
+# ================= MODERNIZED EBUILD BELOW ==============
+# Copyright 1999-2017 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=7
+
+inherit kde4-base
+
+DESCRIPTION="A device monitor for NVIDIA cards"
+HOMEPAGE="http://kde-look.org/content/show.php/NVidia+Device+Monitor?content=148658"
+SRC_URI="mirror://local/nvdevmon-0.1.2.tar.xz"
 
 LICENSE="GPL-2+"
 SLOT="4"

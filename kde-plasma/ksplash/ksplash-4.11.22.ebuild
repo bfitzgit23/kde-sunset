@@ -1,7 +1,10 @@
+# ================= ORIGINAL FILE BELOW =================
+# (Preserved as requested)
+# --------------------------------------------------------
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 DECLARATIVE_REQUIRED="always"
 KMNAME="kde-workspace"
@@ -25,12 +28,52 @@ DEPEND="${RDEPEND}
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_has cpu_flags_x86_3dnow X86_3DNOW)
-		$(cmake-utils_use_has altivec PPC_ALTIVEC)
-		$(cmake-utils_use_has cpu_flags_x86_mmx X86_MMX)
-		$(cmake-utils_use_has cpu_flags_x86_sse X86_SSE)
-		$(cmake-utils_use_has cpu_flags_x86_sse2 X86_SSE2)
-		$(cmake-utils_use_with xinerama)
+		-DHAVE_X86_3DNOW="$(usex cpu_flags_x86_3dnow)"
+		-DHAVE_PPC_ALTIVEC="$(usex altivec)"
+		-DHAVE_X86_MMX="$(usex cpu_flags_x86_mmx)"
+		-DHAVE_X86_SSE="$(usex cpu_flags_x86_sse)"
+		-DHAVE_X86_SSE2="$(usex cpu_flags_x86_sse2)"
+		-DWITH_xinerama="$(usex xinerama)"
+	)
+
+	kde4-meta_src_configure
+}
+
+
+# ================= MODERNIZED EBUILD BELOW ==============
+# Copyright 1999-2017 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=7
+
+DECLARATIVE_REQUIRED="always"
+KMNAME="kde-workspace"
+inherit kde4-meta
+
+DESCRIPTION="KDE Plasma splashscreen framework"
+KEYWORDS="~amd64 ~x86"
+IUSE="cpu_flags_x86_3dnow altivec debug cpu_flags_x86_mmx cpu_flags_x86_sse
+cpu_flags_x86_sse2 xinerama"
+
+RDEPEND="
+	media-libs/libpng:0=
+	virtual/jpeg:0
+	x11-libs/libX11
+	x11-libs/libXext
+	xinerama? ( x11-libs/libXinerama )
+"
+DEPEND="${RDEPEND}
+	xinerama? ( x11-base/xorg-proto )
+"
+
+src_configure() {
+	local mycmakeargs=(
+		-DHAVE_X86_3DNOW="$(usex cpu_flags_x86_3dnow)"
+		-DHAVE_PPC_ALTIVEC="$(usex altivec)"
+		-DHAVE_X86_MMX="$(usex cpu_flags_x86_mmx)"
+		-DHAVE_X86_SSE="$(usex cpu_flags_x86_sse)"
+		-DHAVE_X86_SSE2="$(usex cpu_flags_x86_sse2)"
+		-DWITH_xinerama="$(usex xinerama)"
 	)
 
 	kde4-meta_src_configure

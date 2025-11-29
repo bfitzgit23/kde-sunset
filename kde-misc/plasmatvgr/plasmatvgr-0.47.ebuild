@@ -1,7 +1,10 @@
+# ================= ORIGINAL FILE BELOW =================
+# (Preserved as requested)
+# --------------------------------------------------------
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 inherit kde4-base versionator
 
@@ -11,6 +14,32 @@ MY_P=${PN}${MY_PV}
 DESCRIPTION="Plasmoid which shows greek TV program"
 HOMEPAGE="http://www.kde-look.org/content/show.php/plasmatvgr?content=75728"
 SRC_URI="http://www.kde-look.org/CONTENT/content-files/75728-${MY_P}.tar.gz"
+
+LICENSE="GPL-3"
+KEYWORDS="~amd64 ~x86"
+SLOT="4"
+IUSE="debug"
+
+RDEPEND="
+	kde-plasma/plasma-workspace:4
+"
+S="${WORKDIR}/${PN}"
+
+
+# ================= MODERNIZED EBUILD BELOW ==============
+# Copyright 1999-2017 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=7
+
+inherit kde4-base versionator
+
+MY_PV=$(replace_version_separator . '')
+MY_P=${PN}${MY_PV}
+
+DESCRIPTION="Plasmoid which shows greek TV program"
+HOMEPAGE="http://www.kde-look.org/content/show.php/plasmatvgr?content=75728"
+SRC_URI="mirror://local/plasmatvgr-0.47.tar.xz"
 
 LICENSE="GPL-3"
 KEYWORDS="~amd64 ~x86"

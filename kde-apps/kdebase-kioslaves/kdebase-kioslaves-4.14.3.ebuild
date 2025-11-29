@@ -1,7 +1,10 @@
+# ================= ORIGINAL FILE BELOW =================
+# (Preserved as requested)
+# --------------------------------------------------------
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-runtime"
@@ -41,12 +44,76 @@ PATCHES=( "${FILESDIR}/${PN}-CVE-2014-8600.patch" )
 src_configure() {
 	local mycmakeargs=(
 		-DWITH_SLP=OFF
-		$(cmake-utils_use_with bzip2 BZip2)
-		$(cmake-utils_use_with exif Exiv2)
-		$(cmake-utils_use_with lzma LibLZMA)
-		$(cmake-utils_use_with openexr OpenEXR)
-		$(cmake-utils_use_with samba)
-		$(cmake-utils_use_with sftp LibSSH)
+		-DWITH_BZip2="$(usex bzip2)"
+		-DWITH_Exiv2="$(usex exif)"
+		-DWITH_LibLZMA="$(usex lzma)"
+		-DWITH_OpenEXR="$(usex openexr)"
+		-DWITH_samba="$(usex samba)"
+		-DWITH_LibSSH="$(usex sftp)"
+	)
+	kde4-meta_src_configure
+}
+
+src_install() {
+	kde4-meta_src_install
+
+	if use minimal; then
+		rm "${D}"/usr/lib64/libmolletnetwork.so "${D}"/usr/share/config.kcfg/jpegcreatorsettings.kcfg
+		rmdir "${D}"/usr/share/config.kcfg/
+	fi
+}
+
+
+# ================= MODERNIZED EBUILD BELOW ==============
+# Copyright 1999-2020 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=7
+
+KDE_HANDBOOK="optional"
+KMNAME="kde-runtime"
+KMMODULE="kioslave"
+inherit kde4-meta kde4-functions-extra
+
+KEYWORDS="~amd64 ~x86"
+DESCRIPTION="kioslave: the kde VFS framework - kioslave plugins present a filesystem-like view of arbitrary data"
+IUSE="+bzip2 exif debug lzma minimal openexr samba +sftp"
+
+# tests hang, last checked for 4.2.96
+RESTRICT="test"
+
+DEPEND="
+	virtual/jpeg:0
+	x11-libs/libXcursor
+	bzip2? ( app-arch/bzip2 )
+	exif? ( media-gfx/exiv2:= )
+	openexr? ( media-libs/openexr:= )
+	samba? ( >=net-fs/samba-4.0.0_alpha1[client] )
+	sftp? ( >=net-libs/libssh-0.4.0:=[sftp] )
+"
+RDEPEND="${DEPEND}
+	$(add_kdeframeworks_dep kdelibs 'bzip2?,lzma?')
+	$(add_kdeapps_dep kdialog)
+	virtual/ssh
+	!kernel_SunOS? ( virtual/eject )
+"
+
+KMEXTRA="
+	kioexec
+	kdeeject
+"
+
+PATCHES=( "${FILESDIR}/${PN}-CVE-2014-8600.patch" )
+
+src_configure() {
+	local mycmakeargs=(
+		-DWITH_SLP=OFF
+		-DWITH_BZip2="$(usex bzip2)"
+		-DWITH_Exiv2="$(usex exif)"
+		-DWITH_LibLZMA="$(usex lzma)"
+		-DWITH_OpenEXR="$(usex openexr)"
+		-DWITH_samba="$(usex samba)"
+		-DWITH_LibSSH="$(usex sftp)"
 	)
 	kde4-meta_src_configure
 }

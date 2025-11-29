@@ -1,0 +1,14 @@
+--- a/libs/dimg/filters/lens/lensfuniface.h
++++ b/libs/dimg/filters/lens/lensfuniface.h
+@@ -24,10 +24,7 @@
+ 
+ // Lib LensFun includes
+ 
+-extern "C"
+-{
+ #include <lensfun.h>
+-}
+ 
+ // Local includes
+ 
+

@@ -1,7 +1,10 @@
+# ================= ORIGINAL FILE BELOW =================
+# (Preserved as requested)
+# --------------------------------------------------------
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-workspace"
@@ -23,7 +26,40 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use_with prison)
+		-DWITH_prison="$(usex prison)"
+	)
+
+	kde4-meta_src_configure
+}
+
+
+# ================= MODERNIZED EBUILD BELOW ==============
+# Copyright 1999-2017 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=7
+
+KDE_HANDBOOK="optional"
+KMNAME="kde-workspace"
+inherit kde4-meta
+
+DESCRIPTION="Applet for KDE Plasma and X clipboard management"
+HOMEPAGE+=" https://userbase.kde.org/Klipper"
+KEYWORDS="~amd64 ~x86"
+IUSE="debug prison"
+
+DEPEND="
+	kde-plasma/libkworkspace:4
+	kde-plasma/libtaskmanager:4
+	sys-libs/zlib
+	x11-libs/libX11
+	prison? ( kde-frameworks/prison:4 )
+"
+RDEPEND="${DEPEND}"
+
+src_configure() {
+	local mycmakeargs=(
+		-DWITH_prison="$(usex prison)"
 	)
 
 	kde4-meta_src_configure

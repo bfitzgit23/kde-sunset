@@ -1,7 +1,10 @@
+# ================= ORIGINAL FILE BELOW =================
+# (Preserved as requested)
+# --------------------------------------------------------
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 QT3SUPPORT_REQUIRED="true"
 inherit kde4-base
@@ -13,6 +16,43 @@ SRC_URI="https://api.opensuse.org/public/source/home:eduardhc/${PN}-kde4/${P}.ta
 LICENSE="GPL-2 LGPL-2"
 SLOT="4"
 KEYWORDS="amd64 x86"
+IUSE="debug"
+
+DEPEND="kde-frameworks/kdelibs:4[plasma(+)]"
+RDEPEND="${DEPEND}"
+
+src_configure() {
+	local mycmakeargs=(
+		-DWITH_Plasma=OFF
+	)
+
+	kde4-base_src_configure
+}
+
+pkg_postinst() {
+	if ! has_version net-p2p/mldonkey ; then
+		elog ${PN} is a only a client, and requires access to an instance of
+		elog net-p2p/mldonkey to function.
+	fi
+}
+
+
+# ================= MODERNIZED EBUILD BELOW ==============
+# Copyright 1999-2018 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=7
+
+QT3SUPPORT_REQUIRED="true"
+inherit kde4-base
+
+DESCRIPTION="Provides integration for the MLDonkey P2P software"
+HOMEPAGE="https://www.kde.org/"
+SRC_URI="mirror://local/kmldonkey-2.0.7.tar.xz"
+
+LICENSE="GPL-2 LGPL-2"
+SLOT="4"
+KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 DEPEND="kde-frameworks/kdelibs:4[plasma(+)]"

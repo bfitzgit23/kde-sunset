@@ -9,10 +9,10 @@
 # @BLURB: Eclass for Qt4 split ebuilds with multilib support.
 # @DESCRIPTION:
 # This eclass contains various functions that are used when building Qt4.
-# Requires EAPI 5.
+# Requires EAPI 6.
 
 case ${EAPI} in
-	5)	: ;;
+	6)	: ;;
 	*)	die "qt4-build-multilib.eclass: unsupported EAPI=${EAPI:-0}" ;;
 esac
 
@@ -21,6 +21,7 @@ inherit eutils flag-o-matic multilib multilib-minimal toolchain-funcs
 HOMEPAGE="https://www.qt.io/"
 LICENSE="|| ( LGPL-2.1 LGPL-3 GPL-3 ) FDL-1.3"
 SLOT="4"
+PATCH_VERSION="1"
 
 case ${PV} in
 	4.?.9999)
@@ -32,7 +33,10 @@ case ${PV} in
 		# official stable release
 		QT4_BUILD_TYPE="release"
 		MY_P=qt-everywhere-opensource-src-${PV/_/-}
-		SRC_URI="http://download.qt.io/archive/qt/${PV%.*}/${PV}/${MY_P}.tar.gz"
+		PATCHNAME="${MY_P}-patches-${PATCH_VERSION}"
+		SRC_URI="
+			http://download.qt.io/official_releases/qt/${PV%.*}/${PV}/${MY_P}.tar.gz
+			mirror://kde-sunset/${PATCHNAME}.tgz"
 		S=${WORKDIR}/${MY_P}
 		;;
 esac
@@ -168,7 +172,7 @@ qt4-build-multilib_src_prepare() {
 
 		# Bug 503500
 		# undefined reference with -Os and --as-needed
-		if use x86 || use_if_iuse abi_x86_32; then
+		if use x86 || in_iuse abi_x86_32 && use abi_x86_32; then
 			replace-flags -Os -O2
 		fi
 	fi
@@ -273,8 +277,21 @@ qt4-build-multilib_src_prepare() {
 	fi
 
 	# apply patches
+	# EPATCH_SOURCE="${WORKDIR}/patch" EPATCH_SUFFIX="patch" EPATCH_FORCE="yes" epatch
+
+	# patching individually
+	epatch "${WORKDIR}/patch/fix-build-icu59.patch"
+	epatch "${WORKDIR}/patch/qt4-openssl-1.1.patch"
+	# epatch "${WORKDIR}/patch/gcc9-qforeach.patch"
+	epatch "${WORKDIR}/patch/CVE-2018-19873.patch"
+	epatch "${WORKDIR}/patch/CVE-2018-19872.patch"
+	epatch "${WORKDIR}/patch/CVE-2018-19871.patch"
+	epatch "${WORKDIR}/patch/CVE-2018-19870.patch"
+	epatch "${WORKDIR}/patch/CVE-2018-19869.patch"
+	epatch "${WORKDIR}/patch/CVE-2018-15518.patch"
+
 	[[ ${PATCHES[@]} ]] && epatch "${PATCHES[@]}"
-	epatch_user
+	eapply_user
 }
 
 qt4_multilib_src_configure() {
@@ -322,7 +339,7 @@ qt4_multilib_src_configure() {
 		-demosdir "${QT4_DEMOSDIR}"
 
 		# debug/release
-		$(use_if_iuse debug && echo -debug || echo -release)
+		$(in_iuse debug && use debug && echo -debug || echo -release)
 		-no-separate-debug-info
 
 		# licensing stuff

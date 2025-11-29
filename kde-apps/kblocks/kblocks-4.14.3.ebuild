@@ -1,7 +1,10 @@
+# ================= ORIGINAL FILE BELOW =================
+# (Preserved as requested)
+# --------------------------------------------------------
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 KDE_HANDBOOK="optional"
 inherit kde4-base
@@ -9,6 +12,24 @@ inherit kde4-base
 DESCRIPTION="KDE: Kblocks is a single-player Tetris-like game"
 HOMEPAGE="https://www.kde.org/applications/games/kblocks/"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
+IUSE="debug"
+
+DEPEND="$(add_kdeapps_dep libkdegames)"
+RDEPEND="${DEPEND}"
+
+
+# ================= MODERNIZED EBUILD BELOW ==============
+# Copyright 1999-2015 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=7
+
+KDE_HANDBOOK="optional"
+inherit kde4-base
+
+DESCRIPTION="KDE: Kblocks is a single-player Tetris-like game"
+HOMEPAGE="https://www.kde.org/applications/games/kblocks/"
+KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 DEPEND="$(add_kdeapps_dep libkdegames)"
