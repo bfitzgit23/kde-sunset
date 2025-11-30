@@ -4,7 +4,7 @@
 EAPI=8
 
 KMNAME="kde-workspace"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="KDE Plasma screensaver framework"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -19,3 +19,4 @@ DEPEND="${RDEPEND}"
 PATCHES=(
 	"${FILESDIR}/${PN}-4.5.95-nsfw.patch"
 )
+SLOT=0

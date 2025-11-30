@@ -4,7 +4,7 @@
 EAPI=8
 
 KMNAME="kde-workspace"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="Embeds applications given as argument into the system tray"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -12,3 +12,4 @@ IUSE="debug"
 
 DEPEND="x11-libs/libX11"
 RDEPEND="${DEPEND}"
+SLOT=0

@@ -4,7 +4,7 @@
 EAPI=8
 
 KMNAME="kde-workspace"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="A simple password checker, used by any software in need of user authentication"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -33,3 +33,4 @@ src_configure() {
 
 	_src_configure
 }
+SLOT=0

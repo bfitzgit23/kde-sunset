@@ -8,7 +8,7 @@ KMNAME="kde-workspace"
 OPENGL_REQUIRED="optional"
 VIRTUALX_REQUIRED="test"
 VIRTUALDBUS_TEST="true"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="System settings utility"
 HOMEPAGE+=" https://userbase.kde.org/System_Settings"
@@ -104,3 +104,4 @@ src_configure() {
 
 	_src_configure
 }
+SLOT=0

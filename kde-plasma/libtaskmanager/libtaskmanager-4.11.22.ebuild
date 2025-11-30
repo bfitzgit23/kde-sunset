@@ -5,7 +5,7 @@ EAPI=8
 
 KMNAME="kde-workspace"
 KMMODULE="libs/taskmanager"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="A library that provides basic taskmanager functionality"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -32,3 +32,4 @@ src_prepare() {
 	sed -e 's:ksysguard/processcore/processes.h:ksysguard/processes.h:g' -i "${S}/libs/taskmanager/taskitem.cpp" || die
 	sed -e 's:ksysguard/processcore/process.h:ksysguard/process.h:g' -i "${S}/libs/taskmanager/taskitem.cpp" || die
 }
+SLOT=0

@@ -6,7 +6,7 @@ EAPI=8
 KDE_HANDBOOK="optional"
 KMNAME="kde-workspace"
 OPENGL_REQUIRED="optional"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="A utility that provides information about a computer system"
 HOMEPAGE="https://www.kde.org/applications/system/kinfocenter/"
@@ -34,3 +34,4 @@ src_configure() {
 
 	_src_configure
 }
+SLOT=0

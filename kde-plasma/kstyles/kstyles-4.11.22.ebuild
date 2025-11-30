@@ -4,7 +4,7 @@
 EAPI=8
 
 KMNAME="kde-workspace"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="A set of different KDE Plasma styles"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -19,3 +19,4 @@ RDEPEND="${DEPEND}"
 KMEXTRACTONLY="
 	libs/oxygen
 "
+SLOT=0

@@ -4,7 +4,7 @@
 EAPI=8
 
 KMNAME="kde-workspace"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="KDE Plasma daemon listening for wall and write messages"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -12,3 +12,4 @@ IUSE="debug"
 
 DEPEND=">=sys-libs/libutempter-1.1.5"
 RDEPEND="${DEPEND}"
+SLOT=0

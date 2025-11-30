@@ -5,7 +5,7 @@ EAPI=8
 
 KMNAME="kde-workspace"
 KMMODULE="libs/kdm"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="Conversation widgets for KDM greeter"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -16,3 +16,4 @@ DEPEND="
 "
 
 RDEPEND="${DEPEND}"
+SLOT=0

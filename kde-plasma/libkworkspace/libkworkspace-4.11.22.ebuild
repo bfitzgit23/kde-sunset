@@ -5,7 +5,7 @@ EAPI=8
 
 KMNAME="kde-workspace"
 KMMODULE="libs/kworkspace"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="A library for Plasma desktop applications"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -31,3 +31,4 @@ src_prepare() {
 
 	_src_prepare
 }
+SLOT=0

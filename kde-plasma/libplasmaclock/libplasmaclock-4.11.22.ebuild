@@ -5,7 +5,7 @@ EAPI=8
 
 KMNAME="kde-workspace"
 KMMODULE="libs/plasmaclock"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="Libraries for KDE Plasma's clocks"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -30,3 +30,4 @@ src_configure() {
 
 	_src_configure
 }
+SLOT=0

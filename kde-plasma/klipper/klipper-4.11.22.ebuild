@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-workspace"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="Applet for KDE Plasma and X clipboard management"
 HOMEPAGE+=" https://userbase.kde.org/Klipper"
@@ -28,3 +28,4 @@ src_configure() {
 
 	_src_configure
 }
+SLOT=0

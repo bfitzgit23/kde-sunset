@@ -4,7 +4,7 @@
 EAPI=8
 
 KMNAME="kde-workspace"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="KDE Plasma workspace hotkey module"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -20,3 +20,4 @@ RDEPEND="${DEPEND}"
 KMEXTRACTONLY="
 	libs/kworkspace/
 "
+SLOT=0

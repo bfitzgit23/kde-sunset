@@ -4,7 +4,7 @@
 EAPI=8
 
 KMNAME="kactivities"
-inherit kde4-base
+inherit kde4-meta
 
 DESCRIPTION="KDE Activity Manager Daemon"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -21,9 +21,10 @@ src_configure() {
 		-DCMAKE_SKIP_RPATH=ON
 		-DWITH_NepomukCore=OFF
 	)
-	kde4-base_src_configure
+	kde4-meta_src_configure
 }
 
 src_install() {
 	dobin "${BUILD_DIR}/src/service/${PN}"
 }
+SLOT=0

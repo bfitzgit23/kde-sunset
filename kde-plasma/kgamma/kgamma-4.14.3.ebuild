@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-base
+inherit kde4-meta
 
 DESCRIPTION="KDE screen gamma values kcontrol module"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -18,3 +18,4 @@ DEPEND="${RDEPEND}
 "
 
 PATCHES=( "${FILESDIR}/${P}-cmake34.patch" )
+SLOT=0

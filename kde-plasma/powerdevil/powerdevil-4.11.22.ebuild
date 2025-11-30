@@ -4,7 +4,7 @@
 EAPI=8
 
 KMNAME="kde-workspace"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="PowerDevil is an utility for KDE4 for Laptop Powermanagement"
 HOMEPAGE="https://solid.kde.org"
@@ -25,3 +25,4 @@ KMEXTRACTONLY="
 	ksmserver/org.kde.KSMServerInterface.xml
 	ksmserver/screenlocker/dbus/org.freedesktop.ScreenSaver.xml
 "
+SLOT=0

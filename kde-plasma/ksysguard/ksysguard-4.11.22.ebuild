@@ -8,7 +8,7 @@ KMNAME="kde-workspace"
 CPPUNIT_REQUIRED="optional"
 VIRTUALX_REQUIRED="test"
 WEBKIT_REQUIRED="always"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="Network-enabled task manager and system monitor"
 HOMEPAGE+=" https://userbase.kde.org/KSysGuard"
@@ -44,3 +44,4 @@ pkg_postinst() {
 	ewarn "programs with elevated privileges (as data sources). So be careful opening worksheets"
 	ewarn "from untrusted sources!"
 }
+SLOT=0

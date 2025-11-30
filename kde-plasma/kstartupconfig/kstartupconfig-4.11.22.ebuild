@@ -4,9 +4,10 @@
 EAPI=8
 
 KMNAME="kde-workspace"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="Utility to launch applications with special window properties"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 RDEPEND="${DEPEND}"
+SLOT=0

@@ -5,7 +5,7 @@ EAPI=8
 
 KMNAME="kde-workspace"
 KMMODULE="libs/kephal"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="Allows handling of multihead systems via the XRandR extension"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -26,3 +26,4 @@ KMEXTRACTONLY+="
 PATCHES=(
 	"${FILESDIR}/${P}-gcc6.patch"
 )
+SLOT=0

@@ -73,3 +73,4 @@ src_configure() {
 
 	_src_configure
 }
+SLOT=0

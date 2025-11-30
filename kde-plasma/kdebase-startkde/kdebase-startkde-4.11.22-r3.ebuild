@@ -149,3 +149,4 @@ pkg_postinst () {
 	elog "configuration files, you will need to change it to"
 	elog "XSESSION=\"KDE-4\""
 }
+SLOT=0

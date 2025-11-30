@@ -1,0 +1,6 @@
+--- a/src/corelib/tools/qstring.h
++++ b/src/corelib/tools/qstring.h
+@@ -45,6 +45,7 @@
+ #include <stdio.h>
+ #include <string.h>
++#include <algorithm>

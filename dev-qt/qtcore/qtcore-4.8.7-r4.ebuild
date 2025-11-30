@@ -59,6 +59,7 @@ QT4_TARGET_DIRECTORIES="
 QCONFIG_DEFINE="QT_ZLIB"
 
 src_prepare() {
+    eapply "${FILESDIR}/gcc-algorithm-fix.patch"
 	-multilib_src_prepare
 
 	# bug 172219
@@ -90,3 +91,4 @@ multilib_src_configure() {
 	)
 	qt4_multilib_src_configure
 }
+SLOT=0

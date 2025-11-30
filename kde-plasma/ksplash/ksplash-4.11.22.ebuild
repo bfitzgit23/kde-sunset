@@ -5,7 +5,7 @@ EAPI=8
 
 DECLARATIVE_REQUIRED="always"
 KMNAME="kde-workspace"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="KDE Plasma splashscreen framework"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -35,3 +35,4 @@ src_configure() {
 
 	_src_configure
 }
+SLOT=0

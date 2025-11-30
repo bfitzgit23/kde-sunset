@@ -9,7 +9,7 @@ KMNAME="kde-workspace"
 KMMODULE="plasma"
 OPENGL_REQUIRED="always"
 WEBKIT_REQUIRED="always"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="Plasma: KDE desktop framework"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -88,3 +88,4 @@ src_configure() {
 
 	_src_configure
 }
+SLOT=0

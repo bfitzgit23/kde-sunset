@@ -5,7 +5,7 @@ EAPI=8
 
 KMNAME="kde-workspace"
 OPENGL_REQUIRED="optional"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="KDE Plasma Command Runner"
 HOMEPAGE+=" https://userbase.kde.org/Plasma/Krunner"
@@ -46,3 +46,4 @@ src_configure() {
 
 	_src_configure
 }
+SLOT=0

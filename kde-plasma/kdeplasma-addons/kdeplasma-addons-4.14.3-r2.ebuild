@@ -4,7 +4,7 @@
 EAPI=8
 
 WEBKIT_REQUIRED="always"
-inherit flag-o-matic kde4-base
+inherit flag-o-matic kde4-meta
 
 DESCRIPTION="Extra Plasma applets and engines"
 LICENSE="GPL-2 LGPL-2"
@@ -62,5 +62,6 @@ src_configure() {
 		-DBUILD_scim="$(usex scim)"
 	)
 
-	kde4-base_src_configure
+	kde4-meta_src_configure
 }
+SLOT=0

@@ -6,7 +6,7 @@ EAPI=8
 DECLARATIVE_REQUIRED="always"
 KMNAME="kde-workspace"
 KMMODULE="libs/plasmagenericshell"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="Libraries for the KDE Plasma shell"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -25,3 +25,4 @@ KMEXTRACTONLY="
 	libs/kephal/kephal/
 	plasma/desktop/shell/data/
 "
+SLOT=0

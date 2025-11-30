@@ -5,9 +5,10 @@ EAPI=8
 
 KMNAME="kde-workspace"
 KMMODULE="cursors"
-inherit 
+inherit kde4-meta
 
 DESCRIPTION="Oxygen cursors for KDE Plasma"
 IUSE=""
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 RDEPEND="${DEPEND}"
+SLOT=0

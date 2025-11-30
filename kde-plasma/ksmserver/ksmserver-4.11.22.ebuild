@@ -40,3 +40,4 @@ src_install() {
 	# bug #483236
 	pax-mark m "${ED}/usr/$(get_libdir)/kde4/libexec/kscreenlocker_greet"
 }
+SLOT=0

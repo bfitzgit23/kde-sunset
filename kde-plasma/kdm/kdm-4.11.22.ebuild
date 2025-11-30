@@ -161,3 +161,4 @@ pkg_postinst() {
 		echo
 	fi
 }
+SLOT=0
