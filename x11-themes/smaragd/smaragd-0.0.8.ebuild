@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit kde4-base
 
@@ -27,30 +24,3 @@ RDEPEND="${DEPEND}
 
 S="${WORKDIR}/${PN}-v${PV}"
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2020 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit kde4-base
-
-DESCRIPTION="KWin theme engine that uses Emerald themes"
-HOMEPAGE="https://invent.kde.org/plasma/smaragd https://store.kde.org/p/1167274"
-SRC_URI="mirror://local/smaragd-0.0.8.tar.xz"
-
-LICENSE="GPL-2"
-SLOT="4"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-DEPEND="
-	kde-plasma/libkworkspace:4
-	x11-libs/cairo
-"
-RDEPEND="${DEPEND}
-	kde-plasma/kwin:4
-"
-
-S="${WORKDIR}/${PN}-v${PV}"

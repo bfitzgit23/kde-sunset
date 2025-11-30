@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit cmake-utils
 
@@ -28,31 +25,3 @@ RDEPEND="${DEPEND}"
 DOCS=( ChangeLog TODO )
 PATCHES=( "${FILESDIR}/${P}-gcc-4.7.patch" )
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2020 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit cmake-utils
-
-DESCRIPTION="Simple SMS tool"
-HOMEPAGE="https://www.linux-apps.com/content/show.php/past+-+SMS+Tool?content=74036"
-SRC_URI="mirror://local/past-0.0.4.tar.xz"
-
-LICENSE="GPL-2"
-SLOT="0"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-DEPEND="
-	app-mobilephone/gnokii[sms]
-	dev-qt/qtcore:4
-	dev-qt/qtdbus:4
-	dev-qt/qtgui:4
-"
-RDEPEND="${DEPEND}"
-
-DOCS=( ChangeLog TODO )
-PATCHES=( "${FILESDIR}/${P}-gcc-4.7.patch" )

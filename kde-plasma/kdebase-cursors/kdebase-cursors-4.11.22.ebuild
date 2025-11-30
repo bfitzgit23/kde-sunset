@@ -1,21 +1,4 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=6
-
-KMNAME="kde-workspace"
-KMMODULE="cursors"
-inherit kde4-meta
-
-DESCRIPTION="Oxygen cursors for KDE Plasma"
-IUSE=""
-KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-
-
-# ================= MODERNIZED EBUILD BELOW ==============
+inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -27,4 +10,5 @@ inherit kde4-meta
 
 DESCRIPTION="Oxygen cursors for KDE Plasma"
 IUSE=""
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
+

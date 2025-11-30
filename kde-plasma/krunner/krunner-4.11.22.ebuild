@@ -1,10 +1,9 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit cmake
+inherit kde4-base
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KMNAME="kde-workspace"
 OPENGL_REQUIRED="optional"
@@ -50,53 +49,3 @@ src_configure() {
 	kde4-meta_src_configure
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2018 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KMNAME="kde-workspace"
-OPENGL_REQUIRED="optional"
-inherit kde4-meta
-
-DESCRIPTION="KDE Plasma Command Runner"
-HOMEPAGE+=" https://userbase.kde.org/Plasma/Krunner"
-IUSE="debug"
-KEYWORDS="~amd64 ~x86"
-
-DEPEND="
-	kde-plasma/kcheckpass:4
-	kde-plasma/kephal:4
-	kde-plasma/ksmserver:4
-	kde-plasma/ksysguard:4
-	kde-plasma/libkworkspace:4
-	kde-plasma/libplasmagenericshell:4
-	x11-libs/libX11
-	x11-libs/libXcursor
-	x11-libs/libXext
-"
-RDEPEND="${DEPEND}"
-
-KMEXTRACTONLY="
-	libs/kdm/
-	libs/kephal/
-	libs/ksysguard/
-	libs/kworkspace/
-	libs/plasmagenericshell/
-	kcheckpass/
-	ksmserver/org.kde.KSMServerInterface.xml
-	ksysguard/
-	plasma/screensaver/shell/org.kde.plasma-overlay.App.xml
-"
-
-KMLOADLIBS="libkworkspace"
-
-src_configure() {
-	local mycmakeargs=(
-		-DWITH_OpenGL="$(usex opengl)"
-	)
-
-	kde4-meta_src_configure
-}

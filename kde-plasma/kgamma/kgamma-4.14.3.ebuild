@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit cmake
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_HANDBOOK="optional"
 inherit kde4-base
@@ -22,25 +20,3 @@ DEPEND="${RDEPEND}
 
 PATCHES=( "${FILESDIR}/${P}-cmake34.patch" )
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2015 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KDE_HANDBOOK="optional"
-inherit kde4-base
-
-DESCRIPTION="KDE screen gamma values kcontrol module"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-RDEPEND="
-	x11-libs/libXxf86vm
-"
-DEPEND="${RDEPEND}
-	x11-base/xorg-proto
-"
-
-PATCHES=( "${FILESDIR}/${P}-cmake34.patch" )

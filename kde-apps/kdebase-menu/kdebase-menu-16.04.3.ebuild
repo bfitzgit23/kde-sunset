@@ -1,21 +1,4 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
-# Copyright 1999-2016 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=6
-
-KMNAME="kde-runtime"
-KMMODULE="kde-menu"
-inherit kde4-meta
-
-DESCRIPTION="KDE Menu query tool"
-KEYWORDS="amd64 x86"
-IUSE="debug"
-
-
-# ================= MODERNIZED EBUILD BELOW ==============
+inherit kde4-base
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -26,5 +9,6 @@ KMMODULE="kde-menu"
 inherit kde4-meta
 
 DESCRIPTION="KDE Menu query tool"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="debug"
+

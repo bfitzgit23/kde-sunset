@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_LINGUAS="de es fr gl nl pt_BR sv tr zh_CN"
 inherit kde4-base
@@ -28,31 +25,3 @@ RDEPEND="${DEPEND}
 
 S="${WORKDIR}/${MY_P}"
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KDE_LINGUAS="de es fr gl nl pt_BR sv tr zh_CN"
-inherit kde4-base
-
-MY_PN="plasma-widget-${PN}"
-MY_P="${MY_PN}-${PV}-2"
-
-DESCRIPTION="Plasmoid for the panel provides quick access to the most used folders"
-HOMEPAGE="http://kde-look.org/content/show.php?content=134442"
-SRC_URI="mirror://local/quickaccess-0.8.2-r1.tar.xz"
-
-LICENSE="GPL-3"
-KEYWORDS="~amd64 ~x86"
-SLOT="4"
-IUSE="debug"
-
-DEPEND="$(add_kdeapps_dep libkonq)"
-RDEPEND="${DEPEND}
-	kde-plasma/plasma-workspace:4
-"
-
-S="${WORKDIR}/${MY_P}"

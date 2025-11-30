@@ -1,10 +1,9 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit cmake
+inherit kde4-base
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_HANDBOOK="optional"
 inherit flag-o-matic kde4-base
@@ -32,35 +31,3 @@ src_configure() {
 	kde4-base_src_configure
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2016 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KDE_HANDBOOK="optional"
-inherit flag-o-matic kde4-base
-
-DESCRIPTION="The KDE physics simulator"
-HOMEPAGE="https://edu.kde.org/step"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug +gsl +qalculate"
-
-DEPEND="
-	>=dev-cpp/eigen-2.0.3:2
-	gsl? ( >=sci-libs/gsl-1.9-r1 )
-	qalculate? ( >=sci-libs/libqalculate-0.9.5 )
-"
-RDEPEND="${DEPEND}"
-
-src_configure() {
-	# bug 560884
-	use ppc64 && append-flags -mno-altivec
-
-	local mycmakeargs=(
-		-DWITH_gsl="$(usex gsl)"
-		-DWITH_qalculate="$(usex qalculate)"
-	)
-	kde4-base_src_configure
-}

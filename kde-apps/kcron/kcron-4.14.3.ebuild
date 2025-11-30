@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_HANDBOOK="optional"
 inherit kde4-base
@@ -15,18 +12,3 @@ IUSE="debug"
 
 RDEPEND="!prefix? ( virtual/cron )"
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2015 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KDE_HANDBOOK="optional"
-inherit kde4-base
-
-DESCRIPTION="KDE Task Scheduler"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-RDEPEND="!prefix? ( virtual/cron )"

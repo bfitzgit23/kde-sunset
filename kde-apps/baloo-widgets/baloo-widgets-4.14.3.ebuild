@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit kde4-base kde4-functions-extra
 
@@ -18,19 +15,3 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2015 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit kde4-base kde4-functions-extra
-
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-DEPEND="
-	$(add_kdeframeworks_dep kfilemetadata)
-"
-RDEPEND="${DEPEND}"

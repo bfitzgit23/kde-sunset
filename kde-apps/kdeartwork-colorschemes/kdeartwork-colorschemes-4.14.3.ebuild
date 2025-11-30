@@ -1,22 +1,4 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
-# Copyright 1999-2015 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=6
-
-KMNAME="kdeartwork"
-KMMODULE="ColorSchemes"
-KDE_SCM="svn"
-inherit kde4-meta
-
-DESCRIPTION="KDE extra colorschemes"
-KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE=""
-
-
-# ================= MODERNIZED EBUILD BELOW ==============
+inherit kde4-base
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -28,5 +10,6 @@ KDE_SCM="svn"
 inherit kde4-meta
 
 DESCRIPTION="KDE extra colorschemes"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE=""
+

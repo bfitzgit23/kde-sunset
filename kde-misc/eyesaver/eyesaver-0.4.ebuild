@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit kde4-base
 
@@ -26,29 +23,3 @@ RDEPEND="
 
 PATCHES=( "${FILESDIR}/eyesaver-0.2a-fix.patch" )
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit kde4-base
-
-DESCRIPTION="Plasmoid, which reminds us to take our eyes off the screen"
-HOMEPAGE="http://www.kde-look.org/content/show.php/Eyesaver?content=89989"
-SRC_URI="mirror://local/eyesaver-0.4.tar.xz"
-
-LICENSE="GPL-1"
-# License unclear, HOMEPAGE and .desktop file have "GPL", assuming GPL-1.
-KEYWORDS="~amd64 ~x86"
-SLOT="4"
-IUSE="debug"
-
-DEPEND="media-libs/phonon:0-qt4"
-RDEPEND="
-	${DEPEND}
-	kde-plasma/plasma-workspace:4
-"
-
-PATCHES=( "${FILESDIR}/eyesaver-0.2a-fix.patch" )

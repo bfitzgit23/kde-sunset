@@ -1,10 +1,9 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit cmake
+inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KMNAME="kde-baseapps"
 inherit kde4-meta
@@ -34,37 +33,3 @@ src_configure() {
 	kde4-meta_src_configure
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2020 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KMNAME="kde-baseapps"
-inherit kde4-meta
-
-DESCRIPTION="Various plugins for konqueror"
-
-KEYWORDS="~amd64 ~x86"
-IUSE="debug tidy"
-
-DEPEND="
-	$(add_kdeapps_dep libkonq)
-	tidy? ( app-text/tidy-html5 )
-"
-RDEPEND="${DEPEND}
-	!kde-misc/konq-plugins
-	$(add_kdeapps_dep kcmshell)
-	$(add_kdeapps_dep konqueror)
-"
-
-PATCHES=( "${FILESDIR}/${P}-tidyhtml5.patch" ) # bug 671450
-
-src_configure() {
-	local mycmakeargs=(
-		-DWITH_LibTidy=$(usex tidy)
-	)
-
-	kde4-meta_src_configure
-}

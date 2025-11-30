@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit kde4-base
 
@@ -18,21 +15,3 @@ RDEPEND="
 	!kde-base/kuiviewer:4
 "
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2015 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit kde4-base
-
-DESCRIPTION="KDE Development Utilities"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-RDEPEND="
-	!kde-base/kdesdk-misc:4
-	!kde-base/kstartperf:4
-	!kde-base/kuiviewer:4
-"

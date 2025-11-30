@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit kde4-base
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-baseapps"
@@ -22,25 +20,3 @@ RDEPEND="${DEPEND}
 	sys-apps/accountsservice
 "
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2015 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KDE_HANDBOOK="optional"
-KMNAME="kde-baseapps"
-inherit kde4-meta
-
-DESCRIPTION="KDE GUI for passwd"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-DEPEND="
-	$(add_kdeapps_dep libkonq)
-"
-RDEPEND="${DEPEND}
-	$(add_kdeapps_dep kdesu)
-	sys-apps/accountsservice
-"

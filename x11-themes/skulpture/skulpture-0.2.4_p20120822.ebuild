@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 COMMIT=4e36baf0032c9f2e1c78cf11175e726d9582778a
 inherit kde4-base
@@ -23,26 +20,3 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${PN}-${COMMIT}"
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2020 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-COMMIT=4e36baf0032c9f2e1c78cf11175e726d9582778a
-inherit kde4-base
-
-DESCRIPTION="Classical style and window decorations for KDE Plasma"
-HOMEPAGE="https://github.com/cfeck/skulpture"
-SRC_URI="mirror://local/skulpture-0.2.4_p20120822.tar.xz"
-
-LICENSE="GPL-3"
-SLOT="4"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-DEPEND="kde-plasma/kwin:4"
-RDEPEND="${DEPEND}"
-
-S="${WORKDIR}/${PN}-${COMMIT}"

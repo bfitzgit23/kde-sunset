@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit kde4-base
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KMNAME="kde-workspace"
 KMMODULE="libs/kephal"
@@ -30,33 +28,3 @@ PATCHES=(
 	"${FILESDIR}/${P}-gcc6.patch"
 )
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2018 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KMNAME="kde-workspace"
-KMMODULE="libs/kephal"
-inherit kde4-meta
-
-DESCRIPTION="Allows handling of multihead systems via the XRandR extension"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-RDEPEND="
-	x11-libs/libX11
-	x11-libs/libXrandr
-"
-DEPEND="${RDEPEND}
-	x11-base/xorg-proto
-"
-
-KMEXTRACTONLY+="
-	kephal/kephal/screens.h
-"
-
-PATCHES=(
-	"${FILESDIR}/${P}-gcc6.patch"
-)

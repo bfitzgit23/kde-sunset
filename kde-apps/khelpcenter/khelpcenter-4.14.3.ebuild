@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit kde4-base
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_HANDBOOK="always"
 KMNAME="kde-runtime"
@@ -26,29 +24,3 @@ KMEXTRA="
 	doc/onlinehelp/
 "
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2016 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KDE_HANDBOOK="always"
-KMNAME="kde-runtime"
-inherit kde4-meta
-
-DESCRIPTION="The KDE Help Center"
-HOMEPAGE+=" https://userbase.kde.org/KHelpCenter"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-RDEPEND="
-	$(add_kdeapps_dep kdesu)
-	>=www-misc/htdig-3.2.0_beta6-r1
-"
-
-KMEXTRA="
-	doc/documentationnotfound/
-	doc/glossary/
-	doc/onlinehelp/
-"

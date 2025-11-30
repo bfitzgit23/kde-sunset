@@ -1,10 +1,9 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit cmake
+inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit mono-env kde4-base
 
@@ -44,46 +43,3 @@ src_configure() {
 	kde4-base_src_configure
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2020 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit mono-env kde4-base
-
-DESCRIPTION="C# bindings for KDE"
-KEYWORDS="~amd64 ~x86"
-IUSE="akonadi debug plasma"
-
-DEPEND="
-	dev-lang/mono
-	$(add_kdebase_dep qyoto 'webkit')
-	$(add_kdebase_dep smokeqt)
-	$(add_kdebase_dep smokekde)
-	plasma? ( $(add_kdebase_dep smokeqt 'webkit') )
-"
-RDEPEND="${DEPEND}"
-
-pkg_setup() {
-	mono-env_pkg_setup
-	kde4-base_pkg_setup
-}
-
-src_prepare() {
-	kde4-base_src_prepare
-
-	sed -e "/add_subdirectory( examples )/ s:^:#:" \
-		-i plasma/CMakeLists.txt || die
-}
-
-src_configure() {
-	local mycmakeargs=(
-		-DWITH_Soprano=OFF
-		-DWITH_akonadi="$(usex akonadi)"
-		-DWITH_KdepimLibs="$(usex akonadi)"
-		-DDISABLE_plasma="$(usex !plasma)"
-	)
-	kde4-base_src_configure
-}

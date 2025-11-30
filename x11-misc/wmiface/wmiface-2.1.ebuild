@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit cmake-utils
 
@@ -25,28 +22,3 @@ DEPEND="${DEPEND}
 	dev-qt/qtgui:4
 "
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2020 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit cmake-utils
-
-DESCRIPTION="Command line tool allowing user scripting of the running window manager"
-HOMEPAGE="http://kde-apps.org/content/show.php/WMIface?content=40425"
-SRC_URI="mirror://local/wmiface-2.1.tar.xz"
-
-LICENSE="GPL-3"
-SLOT="0"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-RDEPEND="
-	dev-qt/qtcore:4
-	x11-libs/libX11
-"
-DEPEND="${DEPEND}
-	dev-qt/qtgui:4
-"

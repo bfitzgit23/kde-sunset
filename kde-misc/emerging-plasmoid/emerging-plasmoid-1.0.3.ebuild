@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit kde4-base
 
@@ -25,28 +22,3 @@ RDEPEND="${DEPEND}
 	kde-plasma/plasma-workspace:4
 "
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2020 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit kde4-base
-
-DESCRIPTION="Portage emerge progress plasmoid"
-HOMEPAGE="https://www.linux-apps.com/p/999027"
-SRC_URI="mirror://local/emerging-plasmoid-1.0.3.tar.xz"
-
-LICENSE="GPL-3"
-KEYWORDS="~amd64 ~x86"
-SLOT="4"
-IUSE="debug"
-
-DEPEND="
-	dev-lang/perl
-	dev-perl/Date-Manip
-"
-RDEPEND="${DEPEND}
-	kde-plasma/plasma-workspace:4
-"

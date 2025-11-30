@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 MY_PV="4.14.3"
 inherit kde4-base
@@ -32,30 +29,3 @@ PATCHES=( "${WORKDIR}/${P}" ) # intevation branch + disable non-PIM stuff
 
 S="${WORKDIR}/${PN}-${MY_PV}"
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2020 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-MY_PV="4.14.3"
-inherit kde4-base
-
-DESCRIPTION="Framework for searching and managing metadata"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-DEPEND="
-	$(add_kdeapps_dep kdepimlibs)
-	dev-libs/qjson
-	dev-libs/xapian:=[chert(+)]
-"
-RDEPEND="${DEPEND}
-"
-
-RESTRICT="test"
-
-PATCHES=( "${WORKDIR}/${P}" ) # intevation branch + disable non-PIM stuff
-
-S="${WORKDIR}/${PN}-${MY_PV}"

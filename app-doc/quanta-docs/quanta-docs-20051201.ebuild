@@ -1,6 +1,3 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -33,32 +30,3 @@ src_install() {
 	done
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2020 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-DESCRIPTION="Language documentation files for Quanta."
-HOMEPAGE="http://quanta.kdewebdev.org/"
-SRC_URI="mirror://local/quanta-docs-20051201.tar.xz"
-# These files resemble the unversioned ones at
-# http://sourceforge.net/project/showfiles.php?group_id=4113
-
-LICENSE="GPL-2"
-SLOT="0"
-KEYWORDS="~amd64 ~x86"
-IUSE="mysql"
-
-S=${WORKDIR}
-
-src_install() {
-	dodir /usr/share/apps/quanta/doc
-
-	local docdirs="css html javascript php"
-	use mysql && docdirs="${docdirs} mysql5"
-
-	for i in ${docdirs}; do
-		cd "${S}/${i}"
-		cp -R "$i" "$i.docrc" "${D}/usr/share/apps/quanta/doc"
-	done
-}

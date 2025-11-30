@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KMNAME="kde-workspace"
 inherit kde4-meta
@@ -16,19 +14,3 @@ IUSE="debug"
 DEPEND="x11-libs/libX11"
 RDEPEND="${DEPEND}"
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KMNAME="kde-workspace"
-inherit kde4-meta
-
-DESCRIPTION="Embeds applications given as argument into the system tray"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-DEPEND="x11-libs/libX11"
-RDEPEND="${DEPEND}"

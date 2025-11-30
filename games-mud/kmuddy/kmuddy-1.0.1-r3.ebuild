@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit cmake
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 QT3SUPPORT_REQUIRED="true"
 KDE_LINGUAS="es"
@@ -39,42 +37,3 @@ src_configure() {
 	kde4-base_src_configure
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-QT3SUPPORT_REQUIRED="true"
-KDE_LINGUAS="es"
-KDE_DOC_DIRS="doc/${PN}"
-KDE_HANDBOOK=optional
-inherit kde4-base
-
-DESCRIPTION="MUD client by KDE"
-HOMEPAGE="https://cgit.kde.org/kmuddy.git/"
-SRC_URI="mirror://local/kmuddy-1.0.1-r3.tar.xz"
-
-LICENSE="GPL-2"
-SLOT="4"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-DOC=( AUTHORS README CHANGELOG Scripting-HOWTO TODO DESIGN )
-
-PATCHES=(
-	"${FILESDIR}"/${P}-{gcc,kde}45.patch
-	"${FILESDIR}"/${P}-underlinking.patch
-	"${FILESDIR}"/${P}-tempnam.patch
-	"${FILESDIR}"/${P}-desktopvalidation.patch
-	"${FILESDIR}"/${P}-gcc6.patch
-)
-
-src_configure() {
-	# not in portage yet
-	local mycmakeargs=(
-		-DWITH_MXP=OFF
-	)
-	kde4-base_src_configure
-}

@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit kde4-base
 
@@ -19,22 +16,3 @@ RDEPEND="${DEPEND}
 	$(add_kdeapps_dep kdebase-kioslaves)
 "
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2020 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit kde4-base
-
-DESCRIPTION="A FFmpeg based thumbnail Generator for Video Files"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-DEPEND="
-	media-video/ffmpeg:0=
-"
-RDEPEND="${DEPEND}
-	$(add_kdeapps_dep kdebase-kioslaves)
-"

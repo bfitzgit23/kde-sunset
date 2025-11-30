@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit kde4-base
 
@@ -30,33 +27,3 @@ DEPEND="${RDEPEND}
 
 S="${WORKDIR}/photo-of-the-day"
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit kde4-base
-
-LINGUAS="bg de"
-CONTENT_NUMBER="104631"
-
-DESCRIPTION="Photo of the Day plasmoid"
-HOMEPAGE="http://www.kde-look.org/content/show.php/Photo+of+the+Day?content=104631"
-LICENSE="GPL-2+"
-IUSE="debug"
-
-KEYWORDS="~amd64 ~x86"
-SLOT="4"
-
-SRC_URI="mirror://local/plasma-photooftheday-2.1.1.tar.xz"
-
-RDEPEND="
-	kde-plasma/plasma-workspace:4
-"
-DEPEND="${RDEPEND}
-	sys-devel/gettext
-"
-
-S="${WORKDIR}/photo-of-the-day"

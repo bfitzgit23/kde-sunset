@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit kde4-base
 
@@ -23,26 +20,3 @@ PATCHES=(
 	"${FILESDIR}/${P}-libraw-0.21.0.patch"
 )
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2015 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit kde4-base
-
-DESCRIPTION="KDE digital camera raw image library wrapper"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-DEPEND="
-	>=media-libs/libraw-0.16_beta1-r1:=
-"
-RDEPEND="${DEPEND}"
-
-PATCHES=(
-	"${FILESDIR}/${P}-libraw-0.16.1.patch"
-	"${FILESDIR}/${P}-libraw-0.19.0.patch"
-	"${FILESDIR}/${P}-libraw-0.21.0.patch"
-)

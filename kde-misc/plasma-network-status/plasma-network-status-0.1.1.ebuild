@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit kde4-base
 
@@ -24,27 +21,3 @@ RDEPEND="${DEPEND}
 
 S="${WORKDIR}/${P}-Source"
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit kde4-base
-
-DESCRIPTION="Plasma applet to monitor the network interface status"
-HOMEPAGE="https://sourceforge.net/projects/pa-net-stat/"
-SRC_URI="mirror://local/plasma-network-status-0.1.1.tar.xz"
-
-SLOT="4"
-KEYWORDS="~amd64 ~x86"
-LICENSE="GPL-2"
-IUSE="debug"
-
-DEPEND=""
-RDEPEND="${DEPEND}
-	kde-plasma/plasma-workspace:4
-"
-
-S="${WORKDIR}/${P}-Source"

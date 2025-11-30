@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit kde4-base
 
@@ -22,25 +19,3 @@ RDEPEND="${DEPEND}
 "
 DEPEND="${RDEPEND}"
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit kde4-base
-
-DESCRIPTION="Friendly Kodama (Japanese ghost) wandering on your desktop"
-HOMEPAGE="http://kde-look.org/content/show.php/bkodama?content=106528"
-SRC_URI="mirror://local/bkodama-0.3.1.tar.xz"
-
-LICENSE="GPL-3"
-SLOT="4"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-RDEPEND="${DEPEND}
-	kde-plasma/plasma-workspace:4
-"
-DEPEND="${RDEPEND}"

@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KMNAME="kde-workspace"
 inherit kde4-meta
@@ -16,19 +14,3 @@ IUSE="debug"
 DEPEND=">=sys-libs/libutempter-1.1.5"
 RDEPEND="${DEPEND}"
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2020 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KMNAME="kde-workspace"
-inherit kde4-meta
-
-DESCRIPTION="KDE Plasma daemon listening for wall and write messages"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-DEPEND=">=sys-libs/libutempter-1.1.5"
-RDEPEND="${DEPEND}"

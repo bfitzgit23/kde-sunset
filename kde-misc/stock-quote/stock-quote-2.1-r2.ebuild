@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit kde4-base
 
@@ -34,37 +31,3 @@ src_prepare() {
 	kde4-base_src_prepare
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit kde4-base
-
-MY_P=plasma_${PN/-/_}-${PV}
-
-DESCRIPTION="Displays stock quotes pulled from the Yahoo! servers"
-HOMEPAGE="http://www.kde-look.org/content/show.php/Stock+Quote?content=90695"
-SRC_URI="mirror://local/stock-quote-2.1-r2.tar.xz"
-
-LICENSE="GPL-2"
-SLOT="4"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-RDEPEND="
-	kde-plasma/plasma-workspace:4
-"
-S=${WORKDIR}/${MY_P}
-
-DOCS=( CHANGELOG README )
-
-src_prepare() {
-	sed -e 's:^[ \t]*::' \
-		-i applet/plasma-applet-stock-quote.desktop || die "fixing .desktop file failed"
-	sed -e 's:^[ \t]*::' \
-		-i dataengine/plasma-dataengine-stockquote.desktop || die "fixing .desktop file failed"
-	kde4-base_src_prepare
-}

@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_LINGUAS="cs de es fr it pl pt_BR ru uk"
 KDE_HANDBOOK="optional"
@@ -29,32 +26,3 @@ DOCS=( ChangeLog )
 
 S="${WORKDIR}/${MY_P}"
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2020 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KDE_LINGUAS="cs de es fr it pl pt_BR ru uk"
-KDE_HANDBOOK="optional"
-MY_P="knc${PV//./}"
-inherit kde4-base
-
-DESCRIPTION="Visual client for UPS systems based on kdelibs-4"
-HOMEPAGE="https://sites.google.com/a/prynych.cz/knutclient/"
-SRC_URI="mirror://local/knutclient-1.0.5.tar.xz"
-
-LICENSE="GPL-2"
-SLOT="4"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-PATCHES=(
-	"${FILESDIR}/${P}-desktop.patch"
-	"${FILESDIR}/${P}-gcc6.patch"
-)
-
-DOCS=( ChangeLog )
-
-S="${WORKDIR}/${MY_P}"

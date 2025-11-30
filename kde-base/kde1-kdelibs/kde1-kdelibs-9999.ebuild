@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit cmake-utils git-r3
 
@@ -27,30 +25,3 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2020 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit cmake-utils git-r3
-
-DESCRIPTION="KDE libraries, adapted to compile on modern systems (circa. 2016)"
-HOMEPAGE="https://invent.kde.org/historical/kde1-kdelibs"
-EGIT_REPO_URI="https://invent.kde.org/historical/kde1-kdelibs.git"
-
-LICENSE="GPL-2+ LGPL-2+"
-SLOT="0"
-KEYWORDS="~amd64 ~x86"
-IUSE="+debug"
-
-DEPEND="
-	dev-qt/qt1
-	media-libs/libpng:0=
-	media-libs/tiff:0
-	virtual/jpeg:0
-	x11-libs/libX11
-	x11-libs/libXext
-"
-RDEPEND="${DEPEND}"

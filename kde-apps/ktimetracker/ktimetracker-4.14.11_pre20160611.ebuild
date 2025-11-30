@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kdepim"
@@ -40,43 +38,3 @@ src_unpack() {
 	kde4-meta_src_unpack
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KDE_HANDBOOK="optional"
-KMNAME="kdepim"
-inherit kde4-meta
-
-DESCRIPTION="Tracks time spent on various tasks"
-HOEMPAGE="https://www.kde.org/applications/utilities/ktimetracker/"
-
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-RDEPEND="
-	$(add_kdeapps_dep kdepim-common-libs)
-	$(add_kdeapps_dep kdepim-kresources)
-	$(add_kdeapps_dep kdepimlibs)
-	x11-libs/libXScrnSaver
-"
-DEPEND="${RDEPEND}
-	x11-base/xorg-proto
-"
-
-KMEXTRACTONLY="
-	kresources/
-"
-
-KMLOADLIBS="kdepim-common-libs"
-
-src_unpack() {
-	if use kontact; then
-		KMEXTRA="${KMEXTRA} kontact/plugins/ktimetracker"
-	fi
-
-	kde4-meta_src_unpack
-}

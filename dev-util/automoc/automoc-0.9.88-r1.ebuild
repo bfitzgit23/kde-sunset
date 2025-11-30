@@ -1,6 +1,3 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -34,37 +31,3 @@ src_prepare() {
 	fi
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2021 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-MY_PN="automoc4"
-MY_P="${MY_PN}-${PV}"
-inherit cmake flag-o-matic
-
-DESCRIPTION="KDE Meta Object Compiler"
-HOMEPAGE="https://www.kde.org"
-SRC_URI="mirror://local/automoc-0.9.88-r1.tar.xz"
-
-LICENSE="BSD-2"
-SLOT="0"
-KEYWORDS="~amd64 ~x86"
-IUSE=""
-
-DEPEND="dev-qt/qtcore:4"
-RDEPEND="${DEPEND}"
-
-S="${WORKDIR}/${MY_P}"
-
-PATCHES=( "${FILESDIR}/${PN}-0.9.88-objc++.patch" )
-
-src_prepare() {
-	cmake_src_prepare
-
-	if [[ ${ELIBC} = uclibc ]]; then
-		append-flags -pthread
-	fi
-}

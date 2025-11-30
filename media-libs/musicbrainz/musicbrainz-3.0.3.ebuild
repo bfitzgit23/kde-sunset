@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit cmake-utils
 
@@ -38,41 +35,3 @@ src_configure() {
 	cmake-utils_src_configure
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit cmake-utils
-
-DESCRIPTION="Client library to access metadata of mp3/vorbis/CD media"
-HOMEPAGE="https://musicbrainz.org/"
-SRC_URI="mirror://local/musicbrainz-3.0.3.tar.xz"
-
-LICENSE="LGPL-2.1"
-SLOT="3"
-KEYWORDS="~amd64 ~x86"
-IUSE="test"
-
-RDEPEND="net-libs/neon
-	media-libs/libdiscid"
-
-DEPEND="${RDEPEND}
-	test? ( dev-util/cppunit )"
-
-S=${WORKDIR}/lib${P}
-
-CMAKE_IN_SOURCE_BUILD=true
-
-DOCS="README.txt NEWS.txt AUTHORS.txt"
-
-PATCHES=( "${FILESDIR}/${PN}-3.0.2-gcc44.patch" )
-
-src_configure() {
-	local mycmakeargs=(
-		-DCMAKE_DISABLE_FIND_PACKAGE_CppUnit="$(usex !test)"
-	)
-	cmake-utils_src_configure
-}

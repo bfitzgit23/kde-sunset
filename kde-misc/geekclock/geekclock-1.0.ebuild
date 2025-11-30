@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit kde4-base
 
@@ -25,28 +22,3 @@ RDEPEND="
 
 S="${WORKDIR}/${MY_PN}-${PV}-src"
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit kde4-base
-
-MY_PN="geek-clock-plasmoid"
-
-DESCRIPTION="Geeky Clock Plasmoid"
-HOMEPAGE="http://kde-look.org/content/show.php/Geek+Clock?content=107807"
-SRC_URI="mirror://local/geekclock-1.0.tar.xz"
-
-LICENSE="GPL-2+"
-SLOT="4"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-RDEPEND="
-	kde-plasma/plasma-workspace:4
-"
-
-S="${WORKDIR}/${MY_PN}-${PV}-src"

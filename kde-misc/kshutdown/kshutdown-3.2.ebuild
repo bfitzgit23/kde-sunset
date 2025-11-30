@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_MINIMAL="4.8"
 inherit kde4-base
@@ -25,28 +22,3 @@ RDEPEND=""
 
 S=${WORKDIR}/${P/_}
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2020 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KDE_MINIMAL="4.8"
-inherit kde4-base
-
-MY_P=${PN}-source-${PV/_}
-
-DESCRIPTION="A shutdown manager for KDE"
-HOMEPAGE="http://kshutdown.sourceforge.net"
-SRC_URI="mirror://local/kshutdown-3.2.tar.xz"
-
-LICENSE="GPL-2"
-SLOT="4"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-DEPEND="app-arch/unzip"
-RDEPEND=""
-
-S=${WORKDIR}/${P/_}

@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KMNAME="kde-workspace"
 KMMODULE="libs/kdm"
@@ -20,23 +18,3 @@ DEPEND="
 
 RDEPEND="${DEPEND}"
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KMNAME="kde-workspace"
-KMMODULE="libs/kdm"
-inherit kde4-meta
-
-DESCRIPTION="Conversation widgets for KDM greeter"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-DEPEND="
-	!<kde-plasma/kdm-4.11.17-r1:4
-"
-
-RDEPEND="${DEPEND}"

@@ -1,10 +1,9 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit cmake
+inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KMNAME="kde-workspace"
 KMMODULE="libs/plasmaclock"
@@ -34,37 +33,3 @@ src_configure() {
 	kde4-meta_src_configure
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KMNAME="kde-workspace"
-KMMODULE="libs/plasmaclock"
-inherit kde4-meta
-
-DESCRIPTION="Libraries for KDE Plasma's clocks"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug +pim"
-
-DEPEND="
-	kde-plasma/kephal:4
-	pim? ( $(add_kdeapps_dep kdepimlibs) )
-"
-RDEPEND="${DEPEND}"
-
-KMSAVELIBS="true"
-
-KMEXTRACTONLY="
-	libs/kephal/
-"
-
-src_configure() {
-	local mycmakeargs=(
-		-DWITH_KdepimLibs="$(usex pim)"
-	)
-
-	kde4-meta_src_configure
-}

@@ -1,11 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-inherit eutils qmake-utils
+EAPI=7
+ qmake-utils
 
 DESCRIPTION="A hierarchical notebook"
 HOMEPAGE="http://www.tuxcards.de/"
@@ -28,39 +25,7 @@ src_configure() {
 src_install() {
 	dobin ${PN}
 	newicon src/icons/lo32-app-tuxcards.png ${PN}.png
-	make_desktop_entry ${PN} TuxCards ${PN} "Qt;Utility"
+	# make_desktop_entry removed – create .desktop manually ${PN} TuxCards ${PN} "Qt;Utility"
 	dodoc AUTHORS README
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2020 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-inherit eutils qmake-utils
-
-DESCRIPTION="A hierarchical notebook"
-HOMEPAGE="http://www.tuxcards.de/"
-SRC_URI="mirror://local/tuxcards-2.2.1-r1.tar.xz"
-
-LICENSE="GPL-2"
-SLOT="0"
-KEYWORDS="~amd64 ~x86"
-IUSE=""
-
-DEPEND="dev-qt/qtgui:4"
-RDEPEND="${DEPEND}"
-
-S=${WORKDIR}/${PN}
-
-src_configure() {
-	eqmake4 tuxcards.pro
-}
-
-src_install() {
-	dobin ${PN}
-	newicon src/icons/lo32-app-tuxcards.png ${PN}.png
-	make_desktop_entry ${PN} TuxCards ${PN} "Qt;Utility"
-	dodoc AUTHORS README
-}

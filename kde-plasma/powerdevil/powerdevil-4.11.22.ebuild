@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit kde4-base
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KMNAME="kde-workspace"
 inherit kde4-meta
@@ -29,32 +27,3 @@ KMEXTRACTONLY="
 	ksmserver/screenlocker/dbus/org.freedesktop.ScreenSaver.xml
 "
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2021 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KMNAME="kde-workspace"
-inherit kde4-meta
-
-DESCRIPTION="PowerDevil is an utility for KDE4 for Laptop Powermanagement"
-HOMEPAGE="https://solid.kde.org"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-DEPEND="
-	kde-frameworks/kactivities:4
-	kde-plasma/libkworkspace:4
-	x11-libs/libX11
-	x11-libs/libXext
-	x11-libs/libXrandr
-"
-RDEPEND="${DEPEND}"
-
-KMEXTRACTONLY="
-	krunner/
-	ksmserver/org.kde.KSMServerInterface.xml
-	ksmserver/screenlocker/dbus/org.freedesktop.ScreenSaver.xml
-"

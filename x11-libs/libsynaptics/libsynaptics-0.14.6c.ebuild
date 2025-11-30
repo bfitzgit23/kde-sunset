@@ -1,6 +1,3 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -24,27 +21,3 @@ src_install() {
 	einstalldocs
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2020 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-DESCRIPTION="Library for accessing synaptics touchpads"
-HOMEPAGE="http://qsynaptics.sourceforge.net/"
-SRC_URI="mirror://local/libsynaptics-0.14.6c.tar.xz"
-
-LICENSE="GPL-2"
-SLOT="0"
-KEYWORDS="~amd64 ~x86"
-IUSE=""
-
-RDEPEND=">=x11-drivers/xf86-input-synaptics-0.15.0"
-
-PATCHES=( "${FILESDIR}/libsynaptics-0.14.6c-add-missing-includes.patch" )
-
-src_install() {
-	emake DESTDIR="${D}" install
-	einstalldocs
-}

@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 MY_P="kwin-deco-${PN}-${PV}"
 inherit kde4-base
@@ -25,28 +22,3 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-MY_P="kwin-deco-${PN}-${PV}"
-inherit kde4-base
-
-DESCRIPTION="Titlebar-less decoration inspired by Google Chrome and Nitrogen minimal mod"
-HOMEPAGE="http://kde-look.org/content/show.php/Chromi?content=119069"
-SRC_URI="mirror://local/chromi-0.2_p20141209.tar.xz"
-
-LICENSE="GPL-2+"
-SLOT="4"
-KEYWORDS="~amd64 ~x86"
-IUSE=""
-
-S="${WORKDIR}/${MY_P}"
-
-DEPEND="
-	kde-plasma/kwin:4
-"
-RDEPEND="${DEPEND}"

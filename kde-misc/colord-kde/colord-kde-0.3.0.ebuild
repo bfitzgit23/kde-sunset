@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit cmake
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit kde4-base
 
@@ -35,38 +33,3 @@ pkg_postinst() {
 	fi
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2016 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit kde4-base
-
-DESCRIPTION="Provides interfaces and session daemon to colord"
-HOMEPAGE="https://projects.kde.org/projects/playground/graphics/colord-kde"
-SRC_URI="mirror://local/colord-kde-0.3.0.tar.xz"
-
-LICENSE="GPL-2+"
-SLOT="4"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-DEPEND="
-	media-libs/lcms:2
-	>=x11-libs/libXrandr-1.3.0
-"
-RDEPEND="${DEPEND}
-	x11-misc/colord
-"
-
-PATCHES=( "${FILESDIR}/${P}-cmake34.patch" )
-
-pkg_postinst() {
-	kde4-base_pkg_postinst
-	if ! has_version "gnome-extra/gnome-color-manager"; then
-		elog "You may want to install gnome-extra/gnome-color-manager to add support for"
-		elog "colorhug calibration devices."
-	fi
-}

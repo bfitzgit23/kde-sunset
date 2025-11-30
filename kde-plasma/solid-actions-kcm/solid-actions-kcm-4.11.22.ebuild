@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KMNAME="kde-workspace"
 CPPUNIT_REQUIRED="test"
@@ -20,23 +18,3 @@ RDEPEND="
 	!kde-base/solid:4
 "
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KMNAME="kde-workspace"
-CPPUNIT_REQUIRED="test"
-inherit kde4-meta
-
-DESCRIPTION="KDE Plasma control module for Solid actions"
-HOMEPAGE="https://solid.kde.org"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-RDEPEND="
-	$(add_kdeapps_dep solid-runtime)
-	!kde-base/solid:4
-"

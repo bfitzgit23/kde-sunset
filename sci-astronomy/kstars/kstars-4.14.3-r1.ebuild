@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit cmake
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_MINIMAL="${PV}"
 KDE_HANDBOOK="optional"
@@ -43,46 +41,3 @@ src_configure() {
 	kde4-base_src_configure
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2020 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KDE_MINIMAL="${PV}"
-KDE_HANDBOOK="optional"
-inherit flag-o-matic kde4-base
-
-DESCRIPTION="KDE Desktop Planetarium"
-HOMEPAGE="https://kde.org/applications/en/education/org.kde.kstars https://edu.kde.org/kstars"
-SRC_URI="mirror://local/kstars-4.14.3-r1.tar.xz"
-
-LICENSE="GPL-2"
-SLOT=4/$(get_version_component_range 1-2)
-KEYWORDS="~amd64 ~x86"
-IUSE="debug fits indi"
-
-REQUIRED_USE="indi? ( fits )"
-
-DEPEND="
-	dev-cpp/eigen:3
-	$(add_kdeapps_dep libkdeedu)
-	fits? ( >=sci-libs/cfitsio-0.390 )
-	indi? ( >=sci-libs/indilib-0.9.8 )
-"
-RDEPEND="${DEPEND}"
-
-PATCHES=( "${FILESDIR}/${P}-indilib100.patch" )
-
-src_configure() {
-	# Bug 308903
-	use ppc64 && append-flags -mminimal-toc
-
-	local mycmakeargs=(
-		-DWITH_CFitsio="$(usex fits)"
-		-DWITH_indi="$(usex indi)"
-	)
-
-	kde4-base_src_configure
-}

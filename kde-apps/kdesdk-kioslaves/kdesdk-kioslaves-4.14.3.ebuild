@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit cmake
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit kde4-base
 
@@ -32,35 +30,3 @@ src_configure() {
 	kde4-base_src_configure
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2015 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit kde4-base
-
-DESCRIPTION="kioslaves from kdesdk package"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug subversion"
-KMNAME="kdesdk-kioslaves"
-
-DEPEND="
-	subversion? (
-		dev-libs/apr
-		dev-vcs/subversion
-	)
-"
-RDEPEND="${DEPEND}
-	subversion? ( !>=dev-vcs/kdesvn-1.5.2:4 )
-"
-
-src_configure() {
-	local mycmakeargs=(
-		-DAPRCONFIG_EXECUTABLE="${EPREFIX}"/usr/bin/apr-1-config
-		-DWITH_SVN="$(usex subversion)"
-	)
-
-	kde4-base_src_configure
-}

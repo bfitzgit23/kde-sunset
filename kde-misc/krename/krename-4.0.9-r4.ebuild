@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit cmake
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_LINGUAS="bs cs de el es fr hu it ja lt nl pl pt ru sl sv tr uk zh_CN"
 inherit kde4-base
@@ -47,50 +45,3 @@ src_configure() {
 	kde4-base_src_configure
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2016 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KDE_LINGUAS="bs cs de el es fr hu it ja lt nl pl pt ru sl sv tr uk zh_CN"
-inherit kde4-base
-
-DESCRIPTION="Powerful batch file renamer"
-HOMEPAGE="https://kde.org/applications/utilities/org.kde.krename
-https://userbase.kde.org/KRename"
-SRC_URI="mirror://local/krename-4.0.9-r4.tar.xz"
-
-LICENSE="GPL-2"
-SLOT="4"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug exif pdf taglib truetype"
-
-RDEPEND="
-	exif? ( >=media-gfx/exiv2-0.13:= )
-	pdf? ( >=app-text/podofo-0.8 )
-	taglib? ( >=media-libs/taglib-1.5 )
-	truetype? ( media-libs/freetype:2 )
-"
-DEPEND="${RDEPEND}
-	sys-devel/gettext
-"
-
-PATCHES=(
-	"${FILESDIR}/${P}-freetype-include.patch"
-	"${FILESDIR}/${P}-desktop-file.patch"
-	"${FILESDIR}/${P}-gcc6.patch"
-)
-DOCS=( AUTHORS README TODO )
-
-src_configure() {
-	local mycmakeargs=(
-		-DWITH_Exiv2=$(usex exif)
-		-DWITH_Taglib=$(usex taglib)
-		-DWITH_LIBPODOFO=$(usex pdf)
-		-DWITH_Freetype=$(usex truetype)
-	)
-
-	kde4-base_src_configure
-}

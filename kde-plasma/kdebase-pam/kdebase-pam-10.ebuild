@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit pam
 
@@ -26,29 +24,3 @@ src_install() {
 	newpamd "${FILESDIR}/kde-np.pam-${PV}" kde-np
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit pam
-
-DESCRIPTION="pam.d files used by several KDE components"
-HOMEPAGE="https://www.kde.org"
-
-LICENSE="GPL-2"
-SLOT="0"
-KEYWORDS="~amd64 ~x86"
-IUSE=""
-
-DEPEND="sys-libs/pam"
-RDEPEND="${DEPEND}"
-
-S=${WORKDIR}
-
-src_install() {
-	newpamd "${FILESDIR}/kde.pam-${PV}" kde
-	newpamd "${FILESDIR}/kde-np.pam-${PV}" kde-np
-}

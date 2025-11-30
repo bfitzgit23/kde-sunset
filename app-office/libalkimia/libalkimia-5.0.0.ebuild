@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit cmake-utils
 
@@ -27,30 +24,3 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 "
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit cmake-utils
-
-DESCRIPTION="Library with common classes and functionality used by KDE finance applications"
-HOMEPAGE="https://community.kde.org/Alkimia/libalkimia"
-SRC_URI="mirror://local/libalkimia-5.0.0.tar.xz"
-
-LICENSE="LGPL-2.1+"
-KEYWORDS="~amd64 ~x86"
-SLOT="0/5"
-IUSE=""
-
-RDEPEND="
-	dev-libs/gmp:0=[cxx]
-	dev-qt/qtcore:4
-	dev-qt/qtdbus:4
-	kde-frameworks/kdelibs:4
-"
-DEPEND="${RDEPEND}
-	virtual/pkgconfig
-"

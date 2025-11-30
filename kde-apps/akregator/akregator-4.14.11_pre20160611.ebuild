@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kdepim"
@@ -24,27 +22,3 @@ RDEPEND="${DEPEND}"
 
 KMLOADLIBS="kdepim-common-libs"
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KDE_HANDBOOK="optional"
-KMNAME="kdepim"
-inherit kde4-meta
-
-DESCRIPTION="News feed aggregator"
-HOMEPAGE="https://www.kde.org/applications/internet/akregator"
-
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-DEPEND="
-	$(add_kdeapps_dep kdepim-common-libs)
-	$(add_kdeapps_dep kdepimlibs)
-"
-RDEPEND="${DEPEND}"
-
-KMLOADLIBS="kdepim-common-libs"

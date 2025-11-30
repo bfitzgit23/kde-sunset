@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 MY_PN="kcmsystemd"
 inherit kde4-base
@@ -29,32 +26,3 @@ RDEPEND="${DEPEND}
 # only needed for 0.7.0 and 1.1.0
 S="${WORKDIR}"/${MY_PN}-${PV}
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2016 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-MY_PN="kcmsystemd"
-inherit kde4-base
-
-DESCRIPTION="KDE control module for systemd"
-HOMEPAGE="https://projects.kde.org/projects/playground/sysadmin/systemd-kcm"
-SRC_URI="mirror://local/systemd-kcm-0.7.0.tar.xz"
-
-IUSE="debug"
-LICENSE="GPL-3"
-SLOT="4"
-KEYWORDS="~amd64 ~x86"
-
-DEPEND="
-	>=dev-libs/boost-1.45
-"
-RDEPEND="${DEPEND}
-	$(add_kdeapps_dep kcmshell)
-	sys-apps/systemd
-"
-
-# only needed for 0.7.0 and 1.1.0
-S="${WORKDIR}"/${MY_PN}-${PV}

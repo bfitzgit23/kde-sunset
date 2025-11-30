@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_LINGUAS="cs de es fr it"
 inherit kde4-base
@@ -22,25 +19,3 @@ DEPEND="kde-plasma/plasma-workspace:4"
 RDEPEND="${DEPEND}
 	x11-misc/redshift"
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KDE_LINGUAS="cs de es fr it"
-inherit kde4-base
-
-DESCRIPTION="KDE4 plasmoid for redshift"
-HOMEPAGE="http://kde-apps.org/content/show.php/Redshift+Plasmoid?content=148737 https://github.com/simgunz/redshift-plasmoid/"
-SRC_URI="mirror://local/redshift-plasmoid-1.0.tar.xz"
-
-LICENSE="GPL-3"
-KEYWORDS="~amd64 ~x86"
-SLOT="4"
-IUSE="debug"
-
-DEPEND="kde-plasma/plasma-workspace:4"
-RDEPEND="${DEPEND}
-	x11-misc/redshift"

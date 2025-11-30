@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit cmake
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit kde4-base
 
@@ -32,35 +30,3 @@ src_configure() {
 	kde4-base_src_configure
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2014 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit kde4-base
-
-DESCRIPTION="A program to convert audio formats with FFmpeg"
-HOMEPAGE="http://www.kde-apps.org/content/show.php/Konvertible?content=116892"
-SRC_URI="mirror://local/konvertible-1.0.1.tar.xz"
-
-LICENSE="GPL-2"
-SLOT="4"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug +handbook taglib"
-
-DEPEND="taglib? ( media-libs/taglib )"
-RDEPEND="${DEPEND}
-	media-video/ffmpeg
-"
-
-DOCS=( ChangeLog README TODO )
-
-src_configure() {
-	local mycmakeargs=(
-		-DWITH_taglib="$(usex taglib)"
-	)
-
-	kde4-base_src_configure
-}

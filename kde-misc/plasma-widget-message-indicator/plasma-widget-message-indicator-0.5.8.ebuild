@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 VIRTUALX_REQUIRED="test"
 inherit kde4-base
@@ -31,34 +28,3 @@ RESTRICT="test"
 
 PATCHES=( "${FILESDIR}/${P}-libindicate.patch" )
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2020 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-VIRTUALX_REQUIRED="test"
-inherit kde4-base
-
-DESCRIPTION="Plasmoid for displaying Ayatana indications"
-HOMEPAGE="https://launchpad.net/plasma-widget-message-indicator"
-SRC_URI="mirror://local/plasma-widget-message-indicator-0.5.8.tar.xz"
-
-LICENSE="GPL-3"
-SLOT="4"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-RDEPEND="
-	>=dev-libs/libdbusmenu-qt-0.3.0[qt4(-)]
-	>=dev-libs/libindicate-qt-0.2.5
-"
-DEPEND="${RDEPEND}
-	dev-libs/libindicate
-"
-
-# 1 test fails
-RESTRICT="test"
-
-PATCHES=( "${FILESDIR}/${P}-libindicate.patch" )

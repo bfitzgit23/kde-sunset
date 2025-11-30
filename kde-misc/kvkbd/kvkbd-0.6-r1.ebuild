@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit kde4-base
 
@@ -23,26 +20,3 @@ PATCHES=(
 	"${FILESDIR}/${P}-underlinking.patch"
 )
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit kde4-base
-
-KDEAPPS_ID="94374"
-
-DESCRIPTION="A virtual keyboard for KDE"
-HOMEPAGE="http://www.kde-apps.org/content/show.php?content=94374"
-SRC_URI="mirror://local/kvkbd-0.6-r1.tar.xz"
-
-LICENSE="GPL-2"
-SLOT="4"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-PATCHES=(
-	"${FILESDIR}/${P}-underlinking.patch"
-)

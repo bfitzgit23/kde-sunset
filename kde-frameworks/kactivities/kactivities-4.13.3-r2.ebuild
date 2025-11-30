@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit cmake
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 DECLARATIVE_REQUIRED="always"
 inherit kde4-base kde4-functions-extra
@@ -29,31 +27,3 @@ src_configure() {
 	kde4-base_src_configure
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2020 Gentoo Authors
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-DECLARATIVE_REQUIRED="always"
-inherit kde4-base kde4-functions-extra
-
-DESCRIPTION="KDE Activity Manager"
-
-KEYWORDS="~amd64 ~x86"
-IUSE=""
-
-RDEPEND="
-	|| (
-		$(add_kdeplasma_dep kactivitymanagerd)
-		kde-plasma/kactivitymanagerd:5
-	)
-"
-
-src_configure() {
-	local mycmakeargs=(
-		-DKACTIVITIES_LIBRARY_ONLY=ON
-	)
-	kde4-base_src_configure
-}

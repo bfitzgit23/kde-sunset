@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit kde4-base
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_HANDBOOK="optional"
 KMNAME="kate"
@@ -20,23 +18,3 @@ RDEPEND="
 	$(add_kdeapps_dep katepart)
 "
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2015 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KDE_HANDBOOK="optional"
-KMNAME="kate"
-KMEXTRACTONLY="doc/kate"
-inherit kde4-meta
-
-DESCRIPTION="KDE MDI editor/IDE"
-HOMEPAGE="https://www.kde.org/applications/utilities/kwrite"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-RDEPEND="
-	$(add_kdeapps_dep katepart)
-"

@@ -1,28 +1,4 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
-# Copyright 1999-2016 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=6
-
-RESTRICT="binchecks strip"
-
-KMMODULE="wallpapers"
-KMNAME="kdeartwork"
-KDE_SCM="svn"
-inherit kde4-meta
-
-DESCRIPTION="Wallpapers from kde"
-KEYWORDS="~amd64 ~x86"
-IUSE=""
-
-KMEXTRA="
-	HighResolutionWallpapers/
-"
-
-
-# ================= MODERNIZED EBUILD BELOW ==============
+inherit kde4-base
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -42,3 +18,4 @@ IUSE=""
 KMEXTRA="
 	HighResolutionWallpapers/
 "
+

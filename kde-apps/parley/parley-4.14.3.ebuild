@@ -1,10 +1,8 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
+inherit cmake
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_HANDBOOK="optional"
 inherit kde4-base
@@ -32,35 +30,3 @@ src_configure() {
 	kde4-base_src_configure
 }
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2015 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-KDE_HANDBOOK="optional"
-inherit kde4-base
-
-DESCRIPTION="KDE Educational: vocabulary trainer"
-HOMEPAGE="https://www.kde.org/applications/education/parley
-https://edu.kde.org/applications/school/parley"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug +plasma"
-
-DEPEND="
-	$(add_kdeapps_dep libkdeedu)
-"
-RDEPEND="${DEPEND}"
-
-KMEXTRACTONLY="
-	libkdeedu/keduvocdocument
-"
-
-src_configure() {
-	local mycmakeargs=(
-		-DWITH_plasma="$(usex plasma)"
-	)
-
-	kde4-base_src_configure
-}

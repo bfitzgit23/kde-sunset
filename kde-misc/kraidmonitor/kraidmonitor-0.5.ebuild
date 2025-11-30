@@ -1,10 +1,7 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit kde4-base
 
@@ -23,26 +20,3 @@ RDEPEND="
 
 S=${WORKDIR}/${PN}
 
-
-# ================= MODERNIZED EBUILD BELOW ==============
-# Copyright 1999-2017 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=7
-
-inherit kde4-base
-
-DESCRIPTION="Indicator widget for raid arrays"
-HOMEPAGE="http://kde-apps.org/content/show.php/K+Raid+Monitor?content=68553"
-SRC_URI="mirror://local/kraidmonitor-0.5.tar.xz"
-
-LICENSE="GPL-3+"
-SLOT="4"
-KEYWORDS="~amd64 ~x86"
-IUSE="debug"
-
-RDEPEND="
-	kde-plasma/plasma-workspace:4
-"
-
-S=${WORKDIR}/${PN}

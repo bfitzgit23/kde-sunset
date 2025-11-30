@@ -1,24 +1,4 @@
-# ================= ORIGINAL FILE BELOW =================
-# (Preserved as requested)
-# --------------------------------------------------------
-# Copyright 1999-2016 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-
-EAPI=6
-
-RESTRICT="binchecks strip"
-
-KMMODULE="emoticons"
-KMNAME="kdeartwork"
-KDE_SCM="svn"
-inherit kde4-meta
-
-DESCRIPTION="EmotIcons (icons for things like smilies :-) for kde"
-KEYWORDS="~amd64 ~x86"
-IUSE=""
-
-
-# ================= MODERNIZED EBUILD BELOW ==============
+inherit kde4-base
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -34,3 +14,4 @@ inherit kde4-meta
 DESCRIPTION="EmotIcons (icons for things like smilies :-) for kde"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
+
