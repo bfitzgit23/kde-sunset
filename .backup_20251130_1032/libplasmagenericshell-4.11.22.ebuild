@@ -9,6 +9,7 @@ KMMODULE="libs/plasmagenericshell"
 inherit kde4-meta
 
 DESCRIPTION="Libraries for the KDE Plasma shell"
+SLOT="0"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 

@@ -5,7 +5,7 @@
 EAPI=8
 
 ARTS_REQUIRED=never
-inherit kde eutils
+inherit kde kde4-functions
 
 PATCH_LEVEL=3
 

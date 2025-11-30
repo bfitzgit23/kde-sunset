@@ -11,6 +11,7 @@ WEBKIT_REQUIRED="always"
 inherit kde4-meta
 
 DESCRIPTION="Network-enabled task manager and system monitor"
+SLOT="0"
 HOMEPAGE+=" https://userbase.kde.org/KSysGuard"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug lm-sensors test"

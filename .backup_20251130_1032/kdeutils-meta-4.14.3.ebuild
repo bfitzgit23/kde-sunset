@@ -4,7 +4,7 @@
 EAPI=8
 inherit kde4-meta
 
-DESCRIPTION="kdeutils - merge this to pull in all kdeutils-derived packages"
+DESCRIPTION="kdkde4-functions - merge this to pull in all kdkde4-functions-derived packages"
 HOMEPAGE="https://www.kde.org/applications/utilities https://utils.kde.org"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="cups floppy lirc"

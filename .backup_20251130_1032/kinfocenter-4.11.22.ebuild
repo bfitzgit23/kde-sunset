@@ -9,6 +9,7 @@ OPENGL_REQUIRED="optional"
 inherit kde4-meta
 
 DESCRIPTION="A utility that provides information about a computer system"
+SLOT="0"
 HOMEPAGE="https://www.kde.org/applications/system/kinfocenter/"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug ieee1394"

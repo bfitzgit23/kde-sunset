@@ -1,4 +1,5 @@
 # Copyright 1999-2020 Gentoo Authors
+inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -8,6 +9,7 @@ KMNAME="kde-workspace"
 inherit  pax-utils
 
 DESCRIPTION="The reliable Plasma session manager that talks the standard X11R6"
+SLOT="0"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 

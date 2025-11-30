@@ -12,6 +12,7 @@ WEBKIT_REQUIRED="always"
 inherit kde4-meta
 
 DESCRIPTION="Plasma: KDE desktop framework"
+SLOT="0"
 KEYWORDS="~amd64 ~arm ~x86 ~amd64-linux ~x86-linux"
 IUSE="debug gps json +pim qalculate"
 

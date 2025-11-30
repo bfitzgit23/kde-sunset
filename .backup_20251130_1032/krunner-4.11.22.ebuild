@@ -8,6 +8,7 @@ OPENGL_REQUIRED="optional"
 inherit kde4-meta
 
 DESCRIPTION="KDE Plasma Command Runner"
+SLOT="0"
 HOMEPAGE+=" https://userbase.kde.org/Plasma/Krunner"
 IUSE="debug"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"

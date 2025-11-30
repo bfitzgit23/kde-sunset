@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-inherit eutils systemd
+inherit kde4-functions systemd
 
 DESCRIPTION="The upstream upower 0.9 git branch for use with sys-power/pm-utils"
 HOMEPAGE="https://upower.freedesktop.org/"

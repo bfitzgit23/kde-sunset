@@ -7,6 +7,7 @@ KMNAME="kactivities"
 inherit kde4-meta
 
 DESCRIPTION="KDE Activity Manager Daemon"
+SLOT="0"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE=""
 

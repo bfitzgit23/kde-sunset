@@ -18,7 +18,7 @@ RDEPEND="
 	$(add_kdeapps_dep kdegraphics-meta)
 	$(add_kdeapps_dep kdemultimedia-meta)
 	$(add_kdeapps_dep kdenetwork-meta)
-	$(add_kdeapps_dep kdeutils-meta)
+	$(add_kdeapps_dep kdkde4-functions-meta)
 	accessibility? ( $(add_kdeapps_dep kdeaccessibility-meta) )
 	kdepim? ( $(add_kdeapps_dep kdepim-meta '' 4.4.11.1) )
 	nls? ( $(add_kdeapps_dep kde4-l10n '' 4.11) )

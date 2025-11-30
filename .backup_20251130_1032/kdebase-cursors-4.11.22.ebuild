@@ -8,6 +8,7 @@ KMMODULE="cursors"
 inherit kde4-meta
 
 DESCRIPTION="Oxygen cursors for KDE Plasma"
+SLOT="0"
 IUSE=""
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 RDEPEND="${DEPEND}"

@@ -7,6 +7,7 @@ KMNAME="kde-workspace"
 inherit kde4-meta
 
 DESCRIPTION="Runs startups initialization for KDE Plasma Control Modules"
+SLOT="0"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 

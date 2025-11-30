@@ -1,4 +1,5 @@
 # Copyright 1999-2020 Gentoo Authors
+inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -10,6 +11,7 @@ OPENGL_REQUIRED="always"
 inherit flag-o-matic 
 
 DESCRIPTION="KDE window manager"
+SLOT="0"
 HOMEPAGE+=" https://userbase.kde.org/KWin"
 
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"

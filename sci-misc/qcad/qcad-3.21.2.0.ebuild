@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit desktop eutils qmake-utils xdg
+inherit desktop kde4-functions qmake-utils xdg
 
 DESCRIPTION="Open Source 2D CAD"
 HOMEPAGE="https://www.qcad.org/en/"

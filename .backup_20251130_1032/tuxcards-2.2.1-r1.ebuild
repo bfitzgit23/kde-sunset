@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-inherit eutils qmake-utils
+inherit kde4-functions qmake-utils
 
 DESCRIPTION="A hierarchical notebook"
 HOMEPAGE="http://www.tuxcards.de/"

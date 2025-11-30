@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit eutils gnome2-utils qmake-utils
+inherit kde4-functions gnome2-utils qmake-utils
 
 MY_PN=MP3Diags
 MY_P=${MY_PN}-${PV}
