@@ -11,7 +11,7 @@ DESCRIPTION="Legacy NetworkManager glib and util libraries"
 HOMEPAGE="https://wiki.gnome.org/Projects/NetworkManager"
 
 LICENSE="GPL-2+"
-SLOT="0"
+SLOT="4"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc ~x86"
 IUSE="gnutls +nss"
 REQUIRED_USE="|| ( nss gnutls )"
@@ -109,5 +109,3 @@ multilib_src_install() {
 multilib_src_install_all() {
 	:
 }
-
-

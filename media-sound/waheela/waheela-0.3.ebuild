@@ -12,12 +12,10 @@ HOMEPAGE="http://kde-apps.org/content/show.php?content=108863"
 SRC_URI="http://linux.wuertz.org/dists/sid/main/source/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="0"
+SLOT="4"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 RDEPEND="media-sound/amarok:4"
 
 S=${WORKDIR}/${PN}
-
-

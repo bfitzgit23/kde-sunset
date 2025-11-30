@@ -20,5 +20,4 @@ pkg_postinst() {
 	fi
 	ewarn "NOTE: kgrubeditor can not handle grub-2.x configuration files!"
 }
-
-
+RDEPEND="${DEPEND}"

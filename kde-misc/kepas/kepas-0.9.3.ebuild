@@ -21,5 +21,3 @@ RDEPEND="
 "
 
 PATCHES=( "${FILESDIR}/${P}-as-needed.patch" )
-
-

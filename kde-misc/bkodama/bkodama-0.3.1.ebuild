@@ -18,5 +18,3 @@ RDEPEND="${DEPEND}
 	kde-plasma/plasma-workspace:4
 "
 DEPEND="${RDEPEND}"
-
-

@@ -12,7 +12,7 @@ HOMEPAGE="https://launchpad.net/libdbusmenu-qt/"
 SRC_URI="https://launchpad.net/ubuntu/+archive/primary/+files/${PN}_${MY_PV}.orig.tar.gz"
 
 LICENSE="LGPL-2"
-SLOT="0"
+SLOT="4"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
 IUSE="+qt4 qt5"
 
@@ -93,5 +93,3 @@ src_install() {
 	}
 	multibuild_foreach_variant myinstall
 }
-
-

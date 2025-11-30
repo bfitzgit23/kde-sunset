@@ -15,5 +15,3 @@ DEPEND="
 	app-accessibility/speech-dispatcher
 "
 RDEPEND="${DEPEND}"
-
-

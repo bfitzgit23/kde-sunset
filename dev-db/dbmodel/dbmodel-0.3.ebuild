@@ -10,7 +10,7 @@ HOMEPAGE="https://oxygene.sk/projects/dbmodel/"
 SRC_URI="https://launchpad.net/dbmodel/trunk/${PV}/+download/${P}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="0"
+SLOT="4"
 KEYWORDS="amd64 x86"
 IUSE="debug"
 
@@ -31,5 +31,3 @@ src_install() {
 	emake INSTALL_ROOT="${D}" install
 	einstalldocs
 }
-
-

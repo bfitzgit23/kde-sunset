@@ -25,5 +25,3 @@ S=${WORKDIR}/${PN}
 DOCS=( TODO.odt )
 
 PATCHES=( "${FILESDIR}/${P}-nodebuglog.patch" )
-
-

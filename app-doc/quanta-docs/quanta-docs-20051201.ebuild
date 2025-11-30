@@ -1,4 +1,3 @@
-EAPI=8
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -13,7 +12,7 @@ SRC_URI="mirror://gentoo/quanta-css-${PV}.tar.bz2
 # http://sourceforge.net/project/showfiles.php?group_id=4113
 
 LICENSE="GPL-2"
-SLOT="0"
+SLOT="4"
 KEYWORDS="~alpha amd64 ~hppa mips ~ppc ~ppc64 ~sparc x86"
 IUSE="mysql"
 
@@ -30,5 +29,4 @@ src_install() {
 		cp -R "$i" "$i.docrc" "${D}/usr/share/apps/quanta/doc"
 	done
 }
-
-
+RDEPEND="${DEPEND}"

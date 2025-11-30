@@ -13,5 +13,3 @@ DEPEND="
 	$(add_kdeapps_dep libksane)
 "
 RDEPEND="${DEPEND}"
-
-

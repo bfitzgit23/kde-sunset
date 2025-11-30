@@ -55,5 +55,3 @@ pkg_postinst() {
 
 	kde4-base_pkg_postinst
 }
-
-

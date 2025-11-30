@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -24,5 +23,3 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 PATCHES=( "${FILESDIR}/${P}-cmake-3.patch" )
-
-

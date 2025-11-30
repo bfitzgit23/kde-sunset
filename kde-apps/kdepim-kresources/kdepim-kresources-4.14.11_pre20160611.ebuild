@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -6,7 +5,7 @@ EAPI=8
 
 KMNAME="kdepim"
 KMMODULE="kresources"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="KDE PIM groupware plugin collection"
 
@@ -26,5 +25,3 @@ KMEXTRACTONLY="
 "
 
 KMLOADLIBS="kdepim-common-libs"
-
-

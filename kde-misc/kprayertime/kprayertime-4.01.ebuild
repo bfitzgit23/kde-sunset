@@ -17,5 +17,4 @@ IUSE="debug"
 DOCS=(README)
 
 S="${WORKDIR}/src"
-
-
+RDEPEND="${DEPEND}"

@@ -16,5 +16,3 @@ RDEPEND="
 	${DEPEND}
 	games-board/gnugo
 "
-
-

@@ -13,5 +13,3 @@ IUSE="debug"
 DEPEND="x11-libs/libX11
 	x11-libs/libXext"
 RDEPEND="${DEPEND}"
-
-

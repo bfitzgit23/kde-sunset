@@ -11,7 +11,7 @@ SRC_URI="http://ponce.cc/slackware/sources/repo/${P/_/.}.tar.bz2"
 S="${WORKDIR}/${P/_/.}"
 
 LICENSE="GPL-3"
-SLOT="0"
+SLOT="4"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
@@ -35,5 +35,3 @@ src_install() {
 	emake INSTALL_ROOT="${D}" install
 	einstalldocs
 }
-
-

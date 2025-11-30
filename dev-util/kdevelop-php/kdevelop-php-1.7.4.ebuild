@@ -29,5 +29,3 @@ RDEPEND="
 "
 
 PATCHES=( "${FILESDIR}/${PN}"-1.2.0-parmake.patch )
-
-

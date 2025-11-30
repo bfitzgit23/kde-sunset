@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -72,12 +71,12 @@ src_prepare() {
 	# requires qtwebkit
 	sed -i -e "s/wikipedia,//" data/amarok_homerc || die
 
-	sed -i -e "/macro_log_feature.*QT_QTOPENGL_FOUND/d" \
-		CMakeLists.txt \
+	sed -i -e "/macro_log_feature.*QT_QTOPENGL_FOUND/d" 
+		CMakeLists.txt 
 		|| die "failed to remove QT_QTOPENGL detection"
 
-	sed -i -e "/if/ s/QT_QTOPENGL_FOUND/FALSE/" \
-		src/context/applets/CMakeLists.txt \
+	sed -i -e "/if/ s/QT_QTOPENGL_FOUND/FALSE/" 
+		src/context/applets/CMakeLists.txt 
 		|| die "failed to sed out QT_QTOPENGL_FOUND"
 }
 
@@ -119,5 +118,3 @@ pkg_postinst() {
 	elog "Please read https://community.kde.org/Amarok/Community/MySQL for details on how"
 	elog "to configure the external db and migrate your data from the embedded database."
 }
-
-

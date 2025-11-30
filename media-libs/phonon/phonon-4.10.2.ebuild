@@ -11,7 +11,7 @@ HOMEPAGE="https://community.kde.org/Phonon"
 SRC_URI="mirror://kde/stable/phonon/${PV}/${P}.tar.xz"
 
 LICENSE="|| ( LGPL-2.1 LGPL-3 )"
-SLOT="0-qt4"
+SLOT="4"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86"
 IUSE="debug designer gstreamer pulseaudio +vlc"
 
@@ -47,5 +47,3 @@ multilib_src_configure() {
 	)
 	cmake_src_configure
 }
-
-

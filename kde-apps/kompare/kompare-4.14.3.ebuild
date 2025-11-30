@@ -14,5 +14,3 @@ IUSE="debug"
 
 DEPEND="$(add_kdeapps_dep libkomparediff2)"
 RDEPEND="${DEPEND}"
-
-

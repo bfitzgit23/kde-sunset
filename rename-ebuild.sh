@@ -1,1 +1,0 @@
-find . -type f -name ".ebuild"  -exec mv "(1)(1).ebuild" {} \;

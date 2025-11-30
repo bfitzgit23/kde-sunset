@@ -1,5 +1,3 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -8,7 +6,7 @@ EAPI=8
 KDE_HANDBOOK="optional"
 KMNAME="kde-runtime"
 KMMODULE="kioslave"
-inherit kde4-meta kde4-functions-extra
+inherit  -extra
 
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 DESCRIPTION="kioslave: the kde VFS framework - kioslave plugins present a filesystem-like view of arbitrary data"
@@ -50,16 +48,14 @@ src_configure() {
 		-DWITH_samba="$(usex samba)"
 		-DWITH_LibSSH="$(usex sftp)"
 	)
-	kde4-meta_src_configure
+	_src_configure
 }
 
 src_install() {
-	kde4-meta_src_install
+	_src_install
 
 	if use minimal; then
 		rm "${D}"/usr/lib64/libmolletnetwork.so "${D}"/usr/share/config.kcfg/jpegcreatorsettings.kcfg
 		rmdir "${D}"/usr/share/config.kcfg/
 	fi
 }
-
-

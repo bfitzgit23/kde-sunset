@@ -6,7 +6,7 @@ EAPI=8
 MY_PN="${PN}-kde"
 DECLARATIVE_REQUIRED="always"
 KDE_LINGUAS="ar bg bs ca cs da de es fi fr gl hu it ja ko lt nl pl pt pt_BR ro ru sk sv tr uk"
-inherit kde4-base kde4-functions-extra
+inherit kde4-base -extra
 
 if [[ ${KDE_BUILD_TYPE} != live ]]; then
 	MY_P="${MY_PN}-${PV}"
@@ -55,5 +55,3 @@ pkg_postinst(){
 	elog "https://play.google.com/store/apps/details?id=org.kde.kdeconnect_tp"
 	elog
 }
-
-

@@ -27,5 +27,3 @@ pkg_postinst() {
 		elog "For improved key search functionality, install app-crypt/dirmngr."
 	fi
 }
-
-

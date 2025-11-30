@@ -1,5 +1,3 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -7,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 KMNAME="kate"
-inherit kde4-meta kde4-functions-extra
+inherit  -extra
 
 DESCRIPTION="Kate is an MDI texteditor"
 HOMEPAGE="https://www.kde.org/applications/utilities/kate http://kate-editor.org"
@@ -34,16 +32,14 @@ src_configure() {
 		-DBUILD_pate=OFF
 	)
 
-	kde4-meta_src_configure
+	_src_configure
 }
 
 pkg_postinst() {
-	kde4-meta_pkg_postinst
+	_pkg_postinst
 
 	if ! has_version kde-apps/kaddressbook:${SLOT}; then
 		elog "File templates plugin requires kde-apps/kaddressbook:${SLOT}."
 		elog "Please install it if you plan to use this plugin."
 	fi
 }
-
-

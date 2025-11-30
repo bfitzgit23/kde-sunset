@@ -31,5 +31,3 @@ pkg_postinst() {
 	einfo "the following command:"
 	einfo "usermod -a -G portage <your_user_here>"
 }
-
-

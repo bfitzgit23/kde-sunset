@@ -25,5 +25,4 @@ PATCHES=(
 DOCS=( ChangeLog )
 
 S="${WORKDIR}/${MY_P}"
-
-
+RDEPEND="${DEPEND}"

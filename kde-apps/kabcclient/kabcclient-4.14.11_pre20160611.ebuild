@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -7,7 +6,7 @@ EAPI=8
 KDE_HANDBOOK="optional"
 KMNAME="kdepim"
 KMMODULE="console/${PN}"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="Command line client for accessing the KDE addressbook"
 
@@ -20,10 +19,8 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 src_install() {
-	kde4-meta_src_install
+	_src_install
 
 	# work around NULL DT_RPATH in kabc2mutt
 	dosym kabcclient /usr/bin/kabc2mutt
 }
-
-

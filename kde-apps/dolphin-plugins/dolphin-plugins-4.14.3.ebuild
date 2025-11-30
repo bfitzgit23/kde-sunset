@@ -31,5 +31,3 @@ pkg_postinst() {
 		einfo
 	fi
 }
-
-

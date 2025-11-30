@@ -20,5 +20,3 @@ DEPEND="
 	sys-libs/zlib
 "
 RDEPEND="${DEPEND}"
-
-

@@ -16,5 +16,3 @@ IUSE="debug"
 DEPEND="kde-plasma/plasma-workspace:4"
 RDEPEND="${DEPEND}
 	app-laptop/hdapsd"
-
-

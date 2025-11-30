@@ -26,5 +26,3 @@ DEPEND="${RDEPEND}
 "
 
 S="${WORKDIR}/photo-of-the-day"
-
-

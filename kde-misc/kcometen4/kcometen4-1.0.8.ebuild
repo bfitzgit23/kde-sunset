@@ -23,5 +23,3 @@ DEPEND="
 	virtual/opengl
 "
 RDEPEND="${DEPEND}"
-
-

@@ -17,5 +17,4 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 S=${WORKDIR}/${PN}
-
-
+RDEPEND="${DEPEND}"

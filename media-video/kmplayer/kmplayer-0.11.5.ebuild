@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -34,7 +33,7 @@ PATCHES=( "${FILESDIR}/${PN}-0.11.3d-cmake34.patch" )
 S="${WORKDIR}/${PN}-${COMMIT}"
 
 src_prepare() {
-	sed -e '/add_subdirectory(icons)/d' \
+	sed -e '/add_subdirectory(icons)/d' 
 		-i CMakeLists.txt || die
 
 	kde4-base_src_prepare
@@ -49,5 +48,3 @@ src_configure() {
 
 	kde4-base_src_configure
 }
-
-

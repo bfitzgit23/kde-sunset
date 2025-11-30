@@ -22,5 +22,3 @@ RDEPEND="
 "
 
 DOCS=( AUTHORS ChangeLog README )
-
-

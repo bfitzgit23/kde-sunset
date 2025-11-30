@@ -9,7 +9,7 @@ DESCRIPTION="X-ray diffraction/control image viewer in the context of data proce
 HOMEPAGE="http://xds-viewer.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
-SLOT="0"
+SLOT="4"
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE=""
@@ -22,5 +22,3 @@ DEPEND="${RDEPEND}"
 
 HTML_DOCS=( src/doc/. )
 PATCHES=( "${FILESDIR}"/${P}-fix-c++14.patch )
-
-

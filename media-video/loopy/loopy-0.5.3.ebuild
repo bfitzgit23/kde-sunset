@@ -20,5 +20,4 @@ IUSE="debug"
 S=${WORKDIR}/${MY_P}
 
 DOCS=( THEMING )
-
-
+RDEPEND="${DEPEND}"

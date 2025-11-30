@@ -2,14 +2,14 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
- systemd
+inherit eutils systemd
 
 DESCRIPTION="The upstream upower 0.9 git branch for use with sys-power/pm-utils"
 HOMEPAGE="https://upower.freedesktop.org/"
 SRC_URI="https://upower.freedesktop.org/releases/upower-${PV}.tar.xz"
 
 LICENSE="GPL-2"
-SLOT="0"
+SLOT="4"
 KEYWORDS="alpha amd64 arm ia64 ~mips ppc ppc64 sparc x86 ~x86-fbsd"
 IUSE="+introspection ios kernel_FreeBSD kernel_linux"
 
@@ -52,16 +52,16 @@ src_prepare() {
 	sed -i -e 's|Cflags: |&-DUPOWER_ENABLE_DEPRECATED |' upower-glib.pc.in || die
 
 	# From upstream 0.9 git branch:
-	eapply \
-		"${FILESDIR}"/${P}-create-dir-runtime.patch \
-		"${FILESDIR}"/${P}-fix-segfault.patch \
+	epatch 
+		"${FILESDIR}"/${P}-create-dir-runtime.patch 
+		"${FILESDIR}"/${P}-fix-segfault.patch 
 		"${FILESDIR}"/${P}-clamp_percentage_for_overfull_batt.patch
 
 	# From Debian:
-	eapply "${FILESDIR}"/${P}-always_use_pm-utils_backend.patch
+	epatch "${FILESDIR}"/${P}-always_use_pm-utils_backend.patch
 
 	# glib g_type_class_add_private fix
-	eapply "${FILESDIR}"/${P}-glib.patch
+	epatch "${FILESDIR}"/${P}-glib.patch
 }
 
 src_configure() {
@@ -76,18 +76,18 @@ src_configure() {
 		backend=dummy
 	fi
 
-	econf \
-		--libexecdir="${EPREFIX}"/usr/lib/upower \
-		--localstatedir="${EPREFIX}"/var \
-		$(use_enable introspection) \
-		--disable-static \
-		${myconf} \
-		--enable-man-pages \
-		--disable-tests \
-		--with-html-dir="${EPREFIX}"/usr/share/doc/${PF}/html \
-		--with-backend=${backend} \
-		$(use_with ios idevice) \
-		"$(systemd_with_utildir)" \
+	econf 
+		--libexecdir="${EPREFIX}"/usr/lib/upower 
+		--localstatedir="${EPREFIX}"/var 
+		$(use_enable introspection) 
+		--disable-static 
+		${myconf} 
+		--enable-man-pages 
+		--disable-tests 
+		--with-html-dir="${EPREFIX}"/usr/share/doc/${PF}/html 
+		--with-backend=${backend} 
+		$(use_with ios idevice) 
+		"$(systemd_with_utildir)" 
 		"$(systemd_with_unitdir)"
 }
 
@@ -102,5 +102,3 @@ src_install() {
 	keepdir /var/lib/upower #383091
 	prune_libtool_files
 }
-
-

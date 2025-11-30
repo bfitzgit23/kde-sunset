@@ -16,5 +16,3 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 KMSAVELIBS="true"
-
-

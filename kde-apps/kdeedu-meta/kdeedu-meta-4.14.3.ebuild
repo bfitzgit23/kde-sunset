@@ -1,10 +1,9 @@
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
-inherit kde4-meta-pkg
+inherit -pkg
 
 DESCRIPTION="KDE educational apps - merge this to pull in all kdeedu-derived packages"
 HOMEPAGE="https://edu.kde.org"
@@ -37,5 +36,3 @@ RDEPEND="
 	$(add_kdeapps_dep step)
 "
 #	$(add_kdeapps_dep kig)
-
-

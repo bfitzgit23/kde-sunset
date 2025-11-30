@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
- qt4-build-multilib
+inherit eutils -multilib
 
 DESCRIPTION="WYSIWYG tool for designing and building Qt-based GUIs"
 
@@ -27,12 +27,12 @@ PDEPEND="phonon? ( media-libs/phonon:0-qt4[designer] )"
 QT4_TARGET_DIRECTORIES="tools/designer"
 
 src_prepare() {
-	qt4-build-multilib_src_prepare
+	-multilib_src_prepare
 
 	local plugin
 	for plugin in ${DESIGNER_PLUGINS}; do
 		if ! use ${plugin} || [[ ${plugin} == phonon ]]; then
-			sed -i -e "/\<${plugin}\>/d" \
+			sed -i -e "/\<${plugin}\>/d" 
 				tools/designer/src/plugins/plugins.pro || die
 		fi
 	done
@@ -52,7 +52,5 @@ multilib_src_install_all() {
 	qt4_multilib_src_install_all
 
 	doicon tools/designer/src/designer/images/designer.png
-	# # make_desktop_entry removed – create .desktop manually removed – create .desktop manually designer Designer designer 'Qt;Development;GUIDesigner'
+	make_desktop_entry designer Designer designer 'Qt;Development;GUIDesigner'
 }
-
-

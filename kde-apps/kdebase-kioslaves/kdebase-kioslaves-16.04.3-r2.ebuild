@@ -1,5 +1,3 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -9,7 +7,7 @@ KDE_HANDBOOK="optional"
 KMNAME="kde-runtime"
 KMMODULE="kioslave"
 WEBKIT_REQUIRED="optional"
-inherit kde4-meta
+inherit 
 
 KEYWORDS="amd64 x86"
 DESCRIPTION="KDE VFS framework - kioslaves present a filesystem-like view of arbitrary data"
@@ -56,7 +54,5 @@ src_configure() {
 		-DWITH_KDEWEBKIT=$(usex webkit)
 	)
 
-	kde4-meta_src_configure
+	_src_configure
 }
-
-

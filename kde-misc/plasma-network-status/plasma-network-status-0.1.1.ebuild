@@ -20,5 +20,3 @@ RDEPEND="${DEPEND}
 "
 
 S="${WORKDIR}/${P}-Source"
-
-

@@ -13,7 +13,7 @@ S="${WORKDIR}/${PN}-${COMMIT}"
 
 LICENSE="GPL-3"
 KEYWORDS="amd64 ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
-SLOT="0-qt4"
+SLOT="4"
 IUSE="fingerprint test"
 
 # 1 of 2 (UrlBuilderTest) is failing, last checked version 1.0.9
@@ -45,5 +45,3 @@ src_configure() {
 	)
 	cmake_src_configure
 }
-
-

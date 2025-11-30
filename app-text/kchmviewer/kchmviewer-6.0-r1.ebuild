@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -13,7 +12,7 @@ HOMEPAGE="https://www.ulduzsoft.com/linux/kchmviewer/"
 SRC_URI="mirror://sourceforge/kchmviewer/${P}.tar.gz"
 
 LICENSE="GPL-3"
-SLOT="0"
+SLOT="4"
 KEYWORDS="amd64 x86"
 IUSE="debug kde"
 
@@ -39,14 +38,14 @@ src_prepare() {
 	else
 		default
 	fi
-	sed -e "s:KDE4_ICON_INSTALL_DIR:ICON_INSTALL_DIR:" \
-		-e "s:KDE4_XDG_APPS_INSTALL_DIR:XDG_APPS_INSTALL_DIR:" \
+	sed -e "s:KDE4_ICON_INSTALL_DIR:ICON_INSTALL_DIR:" 
+		-e "s:KDE4_XDG_APPS_INSTALL_DIR:XDG_APPS_INSTALL_DIR:" 
 			-i packages/CMakeLists.txt || die
-	sed -e "s:KDE4_BIN_INSTALL_DIR:BIN_INSTALL_DIR:" \
+	sed -e "s:KDE4_BIN_INSTALL_DIR:BIN_INSTALL_DIR:" 
 			-i src/CMakeLists.txt || die
 	echo "CONFIG += ordered" >> kchmviewer.pro # parallel build fix #281954
 
-	sed -e "/Encoding=UTF-8/d" \
+	sed -e "/Encoding=UTF-8/d" 
 		-i packages/kchmviewer.desktop || die "fixing .desktop file failed"
 }
 
@@ -87,5 +86,3 @@ pkg_postrm() {
 	use kde && kde4-base_pkg_postrm
 	xdg_desktop_database_update
 }
-
-

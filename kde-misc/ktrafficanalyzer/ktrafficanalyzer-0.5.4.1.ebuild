@@ -19,5 +19,4 @@ IUSE="debug"
 S=${WORKDIR}/${MY_P}
 
 DOCS=(CHANGELOG SSHUsage TODO)
-
-
+RDEPEND="${DEPEND}"

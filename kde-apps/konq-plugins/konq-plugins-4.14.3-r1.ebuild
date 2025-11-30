@@ -1,12 +1,10 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
 KMNAME="kde-baseapps"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="Various plugins for konqueror"
 
@@ -30,7 +28,5 @@ src_configure() {
 		-DWITH_LibTidy=$(usex tidy)
 	)
 
-	kde4-meta_src_configure
+	_src_configure
 }
-
-

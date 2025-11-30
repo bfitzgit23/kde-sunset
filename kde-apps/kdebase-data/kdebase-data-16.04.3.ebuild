@@ -1,5 +1,3 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -7,7 +5,7 @@ EAPI=8
 
 KMNAME="kde-runtime"
 KMNOMODULE="true"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="Icons, localization data and various .desktop files from kdebase"
 IUSE=""
@@ -30,11 +28,9 @@ KMEXTRACTONLY="
 
 src_configure() {
 	# Remove remnants of hicolor-icon-theme
-	sed -e "s:add_subdirectory[[:space:]]*([[:space:]]*hicolor[[:space:]]*):#donotwant:g" \
-		-i pics/CMakeLists.txt \
+	sed -e "s:add_subdirectory[[:space:]]*([[:space:]]*hicolor[[:space:]]*):#donotwant:g" 
+		-i pics/CMakeLists.txt 
 		|| die "failed to remove remnants of hicolor-icon-theme"
 
-	kde4-meta_src_configure
+	_src_configure
 }
-
-

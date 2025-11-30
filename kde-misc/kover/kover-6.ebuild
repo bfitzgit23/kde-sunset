@@ -25,5 +25,3 @@ DEPEND="${RDEPEND}
 "
 
 PATCHES=( "${FILESDIR}/${PN}-4-cflags.patch" )
-
-

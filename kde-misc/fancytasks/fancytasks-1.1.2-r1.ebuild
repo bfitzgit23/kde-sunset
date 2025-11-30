@@ -41,5 +41,3 @@ src_prepare() {
 		fi
 	done
 }
-
-

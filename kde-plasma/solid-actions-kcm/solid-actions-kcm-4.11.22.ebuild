@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -6,7 +5,7 @@ EAPI=8
 
 KMNAME="kde-workspace"
 CPPUNIT_REQUIRED="test"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="KDE Plasma control module for Solid actions"
 HOMEPAGE="https://solid.kde.org"
@@ -17,5 +16,3 @@ RDEPEND="
 	$(add_kdeapps_dep solid-runtime)
 	!kde-base/solid:4
 "
-
-

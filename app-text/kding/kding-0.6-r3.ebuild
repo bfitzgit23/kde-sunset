@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -25,7 +24,7 @@ PATCHES=(
 )
 
 src_prepare() {
-	sed -e "/Encoding=UTF-8/d" \
+	sed -e "/Encoding=UTF-8/d" 
 		-i resources/kding.desktop || die "fixing .desktop file failed"
 
 	kde4-base_src_prepare
@@ -36,8 +35,7 @@ src_install() {
 
 	# bug 510510
 	pngfix -q --out=out.png "${ED}/usr/share/icons/hicolor/22x22/apps/kding.png"
-	mv -f out.png "${ED}/usr/share/icons/hicolor/22x22/apps/kding.png" \
+	mv -f out.png "${ED}/usr/share/icons/hicolor/22x22/apps/kding.png" 
 	|| die "fixing broken png file failed"
 }
-
-
+RDEPEND="${DEPEND}"

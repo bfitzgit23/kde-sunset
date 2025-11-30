@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -65,7 +64,7 @@ src_unpack() {
 src_prepare() {
 	cat <<-EOF > CMakeLists.txt || die
 project(${PN})
-$(printf "add_subdirectory( %s )\n" \
+$(printf "add_subdirectory( %s )\n" 
 	`find . -mindepth 1 -maxdepth 1 -type d | sed -e "s:^\./::"`)
 EOF
 
@@ -73,12 +72,12 @@ EOF
 	for cal_ft in ${CAL_FTS}; do
 		if ! use calligra_features_${cal_ft} ; then
 			if ls -U ./*/messages/calligra/${cal_ft}*po > /dev/null 2>&1; then
-				rm ./*/messages/calligra/${cal_ft}*po || \
+				rm ./*/messages/calligra/${cal_ft}*po || 
 					die "Failed to remove ${cal_ft} messages"
 			fi
 			if ls -U ./*/docs/calligra/${cal_ft} > /dev/null 2>&1; then
-				sed -e "\:add_subdirectory(\s*${cal_ft}\s*): s:^:#:" \
-					-i ./*/docs/calligra/CMakeLists.txt || \
+				sed -e "\:add_subdirectory(\s*${cal_ft}\s*): s:^:#:" 
+					-i ./*/docs/calligra/CMakeLists.txt || 
 					die "Failed to comment out ${cal_ft} docs"
 			fi
 		fi
@@ -105,5 +104,3 @@ src_test() { :; }
 src_install() {
 	[[ -n ${A} ]] && kde4-base_src_install
 }
-
-

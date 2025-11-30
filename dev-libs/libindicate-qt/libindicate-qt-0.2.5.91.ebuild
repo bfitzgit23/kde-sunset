@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -14,7 +13,7 @@ SRC_URI="mirror://ubuntu/pool/main/libi/${PN}/${PN}_${PV}.orig.tar.bz2
 	mirror://ubuntu/pool/main/libi/${PN}/${PN}_${PV}-${_UBUNTU_REVISION}.debian.tar.gz"
 
 LICENSE="LGPL-3"
-SLOT="0"
+SLOT="4"
 KEYWORDS="~amd64 ~x86"
 IUSE="test"
 
@@ -54,5 +53,3 @@ src_test() {
 
 	VIRTUALX_COMMAND="ctest ${ctestargs}" virtualmake || die
 }
-
-

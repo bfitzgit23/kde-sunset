@@ -35,5 +35,3 @@ src_install() {
 	insinto /usr/share/${PN}
 	doins "${DISTDIR}"/glogo-small.png
 }
-
-

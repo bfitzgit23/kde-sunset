@@ -44,5 +44,3 @@ pkg_postinst() {
 	elog "for example."
 	einfo
 }
-
-

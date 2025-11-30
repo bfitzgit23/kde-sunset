@@ -1,5 +1,3 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -9,7 +7,7 @@ KMMODULE="kscreensaver"
 KMNAME="kdeartwork"
 OPENGL_REQUIRED="optional"
 KDE_SCM="svn"
-inherit kde4-meta kde4-functions-extra
+inherit  -extra
 
 DESCRIPTION="Extra screensavers for kde"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -46,7 +44,5 @@ src_configure() {
 		-DWITH_xscreensaver="$(usex xscreensaver)"
 	)
 
-	kde4-meta_src_configure
+	_src_configure
 }
-
-

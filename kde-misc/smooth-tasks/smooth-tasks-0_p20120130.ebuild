@@ -26,5 +26,3 @@ RDEPEND="${DEPEND}
 PATCHES=( "${FILESDIR}/${P}-kde48.patch" )
 
 S="${WORKDIR}/${PN}"
-
-

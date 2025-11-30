@@ -20,5 +20,3 @@ DEPEND="
 	dev-libs/qjson
 "
 RDEPEND="${DEPEND}"
-
-

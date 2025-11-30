@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -10,7 +9,7 @@ SRC_URI=""
 
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
 LICENSE="GPL-2"
-SLOT="4/4.14"
+SLOT="4"
 IUSE=""
 
 S="${WORKDIR}"
@@ -32,5 +31,4 @@ if [ -z "\${XDG_MENU_PREFIX}" ] && [ "\${DESKTOP_SESSION}" = "KDE-4" ]; then
 fi
 EOF
 }
-
-
+RDEPEND="${DEPEND}"

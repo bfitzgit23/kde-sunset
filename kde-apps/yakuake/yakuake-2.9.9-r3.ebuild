@@ -25,5 +25,3 @@ DEPEND="${RDEPEND}
 DOCS=( AUTHORS ChangeLog KDE4FAQ NEWS README TODO )
 
 PATCHES=( "${FILESDIR}/${P}-lastsession.patch" )
-
-

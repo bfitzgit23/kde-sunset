@@ -1,11 +1,10 @@
-inherit kde4-base
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
 KMNAME="kde-workspace"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="PowerDevil is an utility for KDE4 for Laptop Powermanagement"
 HOMEPAGE="https://solid.kde.org"
@@ -26,5 +25,3 @@ KMEXTRACTONLY="
 	ksmserver/org.kde.KSMServerInterface.xml
 	ksmserver/screenlocker/dbus/org.freedesktop.ScreenSaver.xml
 "
-
-

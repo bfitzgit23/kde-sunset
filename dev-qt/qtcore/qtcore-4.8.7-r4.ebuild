@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-inherit qt4-build-multilib
+inherit -multilib
 
 DESCRIPTION="Cross-platform application development framework"
 
@@ -59,18 +59,18 @@ QT4_TARGET_DIRECTORIES="
 QCONFIG_DEFINE="QT_ZLIB"
 
 src_prepare() {
-	qt4-build-multilib_src_prepare
+	-multilib_src_prepare
 
 	# bug 172219
-	sed -i -e "s:CXXFLAGS.*=:CXXFLAGS=${CXXFLAGS} :" \
-		-e "s:LFLAGS.*=:LFLAGS=${LDFLAGS} :" \
+	sed -i -e "s:CXXFLAGS.*=:CXXFLAGS=${CXXFLAGS} :" 
+		-e "s:LFLAGS.*=:LFLAGS=${LDFLAGS} :" 
 		qmake/Makefile.unix || die "sed qmake/Makefile.unix failed"
 
 	# bug 427782
-	sed -i -e '/^CPPFLAGS\s*=/ s/-g //' \
+	sed -i -e '/^CPPFLAGS\s*=/ s/-g //' 
 		qmake/Makefile.unix || die "sed CPPFLAGS in qmake/Makefile.unix failed"
-	sed -i -e 's/setBootstrapVariable QMAKE_CFLAGS_RELEASE/QMakeVar set QMAKE_CFLAGS_RELEASE/' \
-		-e 's/setBootstrapVariable QMAKE_CXXFLAGS_RELEASE/QMakeVar set QMAKE_CXXFLAGS_RELEASE/' \
+	sed -i -e 's/setBootstrapVariable QMAKE_CFLAGS_RELEASE/QMakeVar set QMAKE_CFLAGS_RELEASE/' 
+		-e 's/setBootstrapVariable QMAKE_CXXFLAGS_RELEASE/QMakeVar set QMAKE_CXXFLAGS_RELEASE/' 
 		configure || die "sed configure setBootstrapVariable failed"
 }
 
@@ -90,5 +90,3 @@ multilib_src_configure() {
 	)
 	qt4_multilib_src_configure
 }
-
-

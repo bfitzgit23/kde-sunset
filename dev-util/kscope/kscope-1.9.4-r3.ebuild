@@ -33,9 +33,9 @@ src_prepare() {
 	default
 
 	sed -e "s:/usr/local:/usr:" -i config || die
-	sed -e "s:\$\${QSCI_ROOT_PATH}/include/Qsci:& /usr/include/qt4/Qsci:g" \
-		-e "s:\$\${QSCI_ROOT_PATH}/lib:& -L/usr/lib/qt4:g" \
-		-e "s:/lib:/$(get_libdir):g" \
+	sed -e "s:\$\${QSCI_ROOT_PATH}/include/Qsci:& /usr/include/qt4/Qsci:g" 
+		-e "s:\$\${QSCI_ROOT_PATH}/lib:& -L/usr/lib/qt4:g" 
+		-e "s:/lib:/$(get_libdir):g" 
 		-i app/app.pro core/core.pro cscope/cscope.pro editor/editor.pro || die
 
 	# fix build failure with parallel make
@@ -49,8 +49,6 @@ src_configure() {
 src_install() {
 	emake INSTALL_ROOT="${D}" install
 	doicon app/images/kscope.png
-	# # make_desktop_entry removed – create .desktop manually removed – create .desktop manually kscopeapp KScope ${PN} "Qt;Development"
+	make_desktop_entry kscopeapp KScope ${PN} "Qt;Development"
 	einstalldocs
 }
-
-

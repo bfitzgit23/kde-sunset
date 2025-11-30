@@ -1,11 +1,10 @@
-inherit kde4-base
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
 KMNAME="kde-runtime"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="Open Collaboration Services provider management"
 KEYWORDS="amd64 x86"
@@ -15,5 +14,3 @@ DEPEND="
 	dev-libs/libattica
 "
 RDEPEND="${DEPEND}"
-
-

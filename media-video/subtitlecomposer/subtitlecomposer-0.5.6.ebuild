@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -43,5 +42,3 @@ pkg_postinst() {
 	elog "or dev-lang/python to be installed."
 	echo
 }
-
-

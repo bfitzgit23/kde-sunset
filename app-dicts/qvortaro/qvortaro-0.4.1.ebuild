@@ -10,7 +10,7 @@ HOMEPAGE="https://sourceforge.net/projects/qvortaro.berlios/"
 SRC_URI="mirror://sourceforge/${PN}.berlios/${P}.tar.gz"
 
 LICENSE="GPL-3"
-SLOT="0"
+SLOT="4"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
@@ -29,8 +29,7 @@ src_configure() {
 src_install() {
 	dobin qvortaro
 	newicon src/img/icon_16.png ${PN}.png
-	# # make_desktop_entry removed – create .desktop manually removed – create .desktop manually ${PN} qVortaro
+	make_desktop_entry ${PN} qVortaro
 	dodoc readme.txt
 }
-
-
+RDEPEND="${DEPEND}"

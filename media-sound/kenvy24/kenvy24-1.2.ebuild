@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -24,5 +23,3 @@ RDEPEND="${DEPEND}"
 DOCS=( AUTHORS ChangeLog NEWS README TODO )
 
 S=${WORKDIR}/${P}-src
-
-

@@ -19,5 +19,3 @@ IUSE="debug"
 
 DEPEND="kde-plasma/libtaskmanager:4"
 RDEPEND="${DEPEND}"
-
-

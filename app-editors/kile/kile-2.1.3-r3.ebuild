@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -47,10 +46,8 @@ src_prepare() {
 	kde4-base_src_prepare
 
 	# I know upstream wants to help us but it doesn't work..
-	sed -e '/INSTALL( FILES AUTHORS/s/^/#DISABLED /' \
+	sed -e '/INSTALL( FILES AUTHORS/s/^/#DISABLED /' 
 		-i CMakeLists.txt || die
 
 	use handbook || rm -fr doc
 }
-
-

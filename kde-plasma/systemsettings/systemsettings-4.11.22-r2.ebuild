@@ -1,5 +1,3 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -10,7 +8,7 @@ KMNAME="kde-workspace"
 OPENGL_REQUIRED="optional"
 VIRTUALX_REQUIRED="test"
 VIRTUALDBUS_TEST="true"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="System settings utility"
 HOMEPAGE+=" https://userbase.kde.org/System_Settings"
@@ -74,20 +72,20 @@ src_unpack() {
 		"
 	fi
 
-	kde4-meta_src_unpack
+	_src_unpack
 }
 
 src_prepare() {
 	eapply "${FILESDIR}/${P}-strigi-removal.patch"
 
-	sed -i -e 's/systemsettingsrc DESTINATION ${SYSCONF_INSTALL_DIR}/systemsettingsrc DESTINATION ${CONFIG_INSTALL_DIR}/' \
-		systemsettings/CMakeLists.txt \
+	sed -i -e 's/systemsettingsrc DESTINATION ${SYSCONF_INSTALL_DIR}/systemsettingsrc DESTINATION ${CONFIG_INSTALL_DIR}/' 
+		systemsettings/CMakeLists.txt 
 		|| die "Failed to fix systemsettingsrc install location"
 
-	sed -i -e '/kde4_install_icons/ s/^/#/' kcontrol/kfontinst/kio/CMakeLists.txt \
+	sed -i -e '/kde4_install_icons/ s/^/#/' kcontrol/kfontinst/kio/CMakeLists.txt 
 		|| die "Failed to disable icons"
 
-	kde4-meta_src_prepare
+	_src_prepare
 }
 
 # FIXME: is have_openglxvisual found without screensaver
@@ -104,7 +102,5 @@ src_configure() {
 		-DWITH_USB=$(usex usb)
 	)
 
-	kde4-meta_src_configure
+	_src_configure
 }
-
-

@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
@@ -15,7 +14,7 @@ HOMEPAGE="http://www.digikam.org/"
 SRC_URI="mirror://kde/stable/digikam/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
-SLOT="4/3"
+SLOT="4"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
@@ -36,5 +35,3 @@ src_configure() {
 
 	kde4-base_src_configure
 }
-
-

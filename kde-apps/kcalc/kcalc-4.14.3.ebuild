@@ -16,5 +16,3 @@ DEPEND="
 	dev-libs/gmp
 "
 RDEPEND="${DEPEND}"
-
-

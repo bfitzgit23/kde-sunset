@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -41,8 +40,8 @@ src_prepare() {
 	echo "find_package ( Gettext REQUIRED )" >> CMakeLists.txt || die
 	echo "add_subdirectory ( po )" >> CMakeLists.txt || die
 
-	sed -i \
-		-e "s:0.9.2-svn:${PV}:" \
+	sed -i 
+		-e "s:0.9.2-svn:${PV}:" 
 		CMakeLists.txt || die
 
 	kde4-base_src_prepare
@@ -54,5 +53,3 @@ src_configure() {
 	)
 	kde4-base_src_configure
 }
-
-

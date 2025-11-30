@@ -15,5 +15,3 @@ IUSE="debug"
 RDEPEND="
 	media-gfx/graphviz
 "
-
-

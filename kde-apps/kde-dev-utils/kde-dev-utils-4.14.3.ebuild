@@ -14,5 +14,3 @@ RDEPEND="
 	!kde-base/kstartperf:4
 	!kde-base/kuiviewer:4
 "
-
-

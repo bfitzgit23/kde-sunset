@@ -36,5 +36,3 @@ RDEPEND="
 	>=dev-qt/qtxmlpatterns-${PV}:4
 	media-libs/phonon:0-qt4
 "
-
-

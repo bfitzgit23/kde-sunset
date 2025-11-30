@@ -21,5 +21,3 @@ DEPEND="
 	>=media-libs/libmtp-1.1.3
 "
 RDEPEND="${DEPEND}"
-
-

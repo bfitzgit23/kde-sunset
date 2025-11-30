@@ -26,5 +26,3 @@ RDEPEND="${DEPEND}
 
 # last checked 0.1.18
 RESTRICT="test"
-
-

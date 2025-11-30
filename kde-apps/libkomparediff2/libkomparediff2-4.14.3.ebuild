@@ -12,5 +12,3 @@ IUSE="debug"
 RDEPEND="${DEPEND}
 	!<=kde-base/kompare-4.11.50:4
 "
-
-

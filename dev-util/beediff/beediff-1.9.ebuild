@@ -10,7 +10,7 @@ HOMEPAGE="http://www.beesoft.pl/index.php?id=beediff"
 SRC_URI="http://www.beesoft.pl/download/${PN}_${PV}_src.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="0"
+SLOT="4"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
@@ -34,8 +34,6 @@ src_configure() {
 src_install() {
 	dobin ${PN}
 	doicon img/${PN}.png
-	# # make_desktop_entry removed – create .desktop manually removed – create .desktop manually ${PN} "Beesoft Differ" ${PN} "Qt;Development;"
+	make_desktop_entry ${PN} "Beesoft Differ" ${PN} "Qt;Development;"
 	dodoc ChangeLog.txt
 }
-
-

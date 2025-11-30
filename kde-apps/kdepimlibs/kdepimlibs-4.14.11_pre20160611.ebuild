@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -55,5 +54,3 @@ src_install() {
 	# contains constants/defines only
 	QA_DT_NEEDED="$(find "${ED}" -type f -name 'libakonadi-kabc.so.*' -printf '/%P\n')"
 }
-
-

@@ -21,5 +21,3 @@ DEPEND="app-arch/unzip"
 RDEPEND=""
 
 S=${WORKDIR}/${P/_}
-
-

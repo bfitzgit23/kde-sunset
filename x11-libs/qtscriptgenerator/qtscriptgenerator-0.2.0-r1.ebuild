@@ -12,7 +12,7 @@ HOMEPAGE="https://code.google.com/p/qtscriptgenerator/"
 SRC_URI="https://dev.gentoo.org/~johu/distfiles/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="0"
+SLOT="4"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86"
 IUSE="debug"
 
@@ -64,5 +64,3 @@ src_install() {
 	insopts -m0755
 	doins "${S}"/plugins/script/*
 }
-
-

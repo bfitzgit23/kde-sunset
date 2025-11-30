@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -58,9 +57,9 @@ src_unpack() {
 }
 
 src_prepare() {
-	find "${S}" -name CMakeLists.txt -type f \
+	find "${S}" -name CMakeLists.txt -type f 
 		-exec sed -i -e 's:^ *add_subdirectory( *kdepim-runtime *):# no kdepim-runtime:g' {} +
-	find "${S}" -name CMakeLists.txt -type f \
+	find "${S}" -name CMakeLists.txt -type f 
 		-exec sed -i -e 's:^ *add_subdirectory( *kdepim *):# no kdepim:g' {} +
 
 	# bug 481106, please remove in 4.11.1 and later
@@ -87,5 +86,3 @@ src_test() {
 src_install() {
 	[[ -n ${A} ]] && kde4-base_src_install
 }
-
-

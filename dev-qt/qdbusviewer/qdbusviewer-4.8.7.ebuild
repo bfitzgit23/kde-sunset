@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
- qt4-build-multilib
+inherit eutils -multilib
 
 DESCRIPTION="Graphical tool that lets you introspect D-Bus objects and messages"
 
@@ -35,7 +35,5 @@ multilib_src_install_all() {
 	qt4_multilib_src_install_all
 
 	newicon tools/qdbus/qdbusviewer/images/qdbusviewer-128.png qdbusviewer.png
-	# # make_desktop_entry removed – create .desktop manually removed – create .desktop manually qdbusviewer QDBusViewer qdbusviewer 'Qt;Development'
+	make_desktop_entry qdbusviewer QDBusViewer qdbusviewer 'Qt;Development'
 }
-
-

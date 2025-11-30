@@ -10,5 +10,4 @@ DESCRIPTION="A shell script to create the necessary framework to develop KDE app
 HOMEPAGE="https://www.kde.org/applications/development/kapptemplate"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
-
-
+RDEPEND="${DEPEND}"

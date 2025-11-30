@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -58,5 +57,3 @@ src_install() {
 	rm "${ED}"usr/share/kde4/services/ServiceMenus/konsolehere.desktop || die
 	rm "${ED}"usr/share/kde4/services/ServiceMenus/konsolerun.desktop || die
 }
-
-

@@ -10,7 +10,7 @@ HOMEPAGE="http://kde-apps.org/content/show.php/WMIface?content=40425"
 SRC_URI="https://home.kde.org/~seli/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-3"
-SLOT="0"
+SLOT="4"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
@@ -21,5 +21,3 @@ RDEPEND="
 DEPEND="${DEPEND}
 	dev-qt/qtgui:4
 "
-
-

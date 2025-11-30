@@ -19,5 +19,3 @@ DEPEND="kde-plasma/kwin:4"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${PN}-${COMMIT}"
-
-

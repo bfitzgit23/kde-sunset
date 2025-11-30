@@ -28,5 +28,3 @@ DEPEND="
 "
 
 S="${WORKDIR}/${PN}-${COMMIT}"
-
-

@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -67,7 +66,7 @@ src_prepare() {
 					einfo "   ${SUBDIR} subdirectory"
 					echo > "${S}/${DIR}/${SUBDIR}/CMakeLists.txt"
 					for pim in ${PIM_L10N}; do
-						[[ -d "${S}/${DIR}/${SUBDIR}/${pim}" ]] && \
+						[[ -d "${S}/${DIR}/${SUBDIR}/${pim}" ]] && 
 							( echo "add_subdirectory(${pim})" >> "${S}/${DIR}/${SUBDIR}/CMakeLists.txt" )
 					done
 				fi
@@ -84,7 +83,7 @@ src_prepare() {
 							einfo "      ${SUBDIR} subdirectory"
 							echo > "${XSUBDIR}/${SUBDIR}/CMakeLists.txt"
 							for pim in ${PIM_L10N}; do
-								[[ -d "${XSUBDIR}/${SUBDIR}/${pim}" ]] && \
+								[[ -d "${XSUBDIR}/${SUBDIR}/${pim}" ]] && 
 									( echo "add_subdirectory(${pim})" >> "${XSUBDIR}/${SUBDIR}/CMakeLists.txt" )
 							done
 						fi
@@ -116,5 +115,3 @@ src_test() {
 src_install() {
 	[[ -n ${A} ]] && kde4-base_src_install
 }
-
-

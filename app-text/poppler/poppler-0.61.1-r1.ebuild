@@ -10,7 +10,7 @@ HOMEPAGE="https://poppler.freedesktop.org/"
 SRC_URI="https://poppler.freedesktop.org/${P}.tar.xz"
 
 LICENSE="GPL-2"
-SLOT="0-qt4/72" # CHECK THIS WHEN BUMPING!!! SUBSLOT IS libpoppler.so SOVERSION
+SLOT="4"
 KEYWORDS="amd64 ~arm ~hppa ~mips ~ppc ~ppc64 ~s390 ~sparc x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="cjk curl debug doc +jpeg +jpeg2k +lcms nss png tiff"
 
@@ -59,7 +59,7 @@ src_prepare() {
 	fi
 
 	if ! grep -Fq 'cmake_policy(SET CMP0002 OLD)' CMakeLists.txt ; then
-		sed '/^cmake_minimum_required/acmake_policy(SET CMP0002 OLD)' \
+		sed '/^cmake_minimum_required/acmake_policy(SET CMP0002 OLD)' 
 			-i CMakeLists.txt || die
 	else
 		einfo "policy(SET CMP0002 OLD) - workaround can be removed"
@@ -112,5 +112,3 @@ src_configure() {
 
 	cmake_src_configure
 }
-
-

@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -7,7 +6,7 @@ EAPI=8
 DECLARATIVE_REQUIRED="always"
 KMNAME="kde-workspace"
 KMMODULE="libs/plasmagenericshell"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="Libraries for the KDE Plasma shell"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -26,5 +25,3 @@ KMEXTRACTONLY="
 	libs/kephal/kephal/
 	plasma/desktop/shell/data/
 "
-
-

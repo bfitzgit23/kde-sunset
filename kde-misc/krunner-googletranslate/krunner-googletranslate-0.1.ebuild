@@ -26,5 +26,3 @@ DEPEND="
 DOCS=( Changelog README )
 
 S="${WORKDIR}/${PN}"
-
-

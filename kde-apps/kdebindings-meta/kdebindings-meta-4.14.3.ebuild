@@ -1,10 +1,9 @@
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
-inherit kde4-meta-pkg
+inherit -pkg
 
 DESCRIPTION="KDE bindings - merge this to pull in all kdebindings-derived packages"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -20,5 +19,3 @@ RDEPEND="
 		$(add_kdebase_dep perlqt)
 	)
 "
-
-

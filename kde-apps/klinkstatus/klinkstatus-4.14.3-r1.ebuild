@@ -1,5 +1,3 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -7,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 KMNAME="kdewebdev"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="KDE web development - link validity checker"
 HOMEPAGE="https://apps.kde.org/en/klinkstatus"
@@ -29,14 +27,12 @@ src_configure() {
 		-DWITH_LibTidy=$(usex tidy)
 	)
 
-	kde4-meta_src_configure
+	_src_configure
 }
 
 pkg_postinst() {
-	kde4-meta_pkg_postinst
+	_pkg_postinst
 
 	has_version dev-lang/ruby ||
 		elog "To use scripting in ${PN}, install dev-lang/ruby."
 }
-
-

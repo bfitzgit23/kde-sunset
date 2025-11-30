@@ -23,5 +23,3 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 
 DOCS=( ChangeLog README TODO )
-
-

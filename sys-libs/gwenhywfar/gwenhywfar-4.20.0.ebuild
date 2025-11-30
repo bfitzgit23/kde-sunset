@@ -10,7 +10,7 @@ HOMEPAGE="https://www.aquamaniac.de/aqbanking/"
 SRC_URI="https://www.aquamaniac.de/sites/download/download.php?package=01&release=208&file=02&dummy=${P}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
-SLOT="0/60" # correspond with libgwenhywfar.so version
+SLOT="4"
 KEYWORDS="amd64 ~hppa ~ppc ~ppc64 x86"
 IUSE="debug designer doc gtk libressl qml qt4 qt5 sensors serialport test webkit"
 
@@ -117,5 +117,3 @@ src_install() {
 	use doc && emake DESTDIR="${D}" install-srcdoc
 	find "${ED}" -name '*.la' -delete || die
 }
-
-

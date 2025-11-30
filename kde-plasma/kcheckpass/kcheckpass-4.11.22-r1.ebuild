@@ -1,12 +1,10 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
 KMNAME="kde-workspace"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="A simple password checker, used by any software in need of user authentication"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -23,9 +21,9 @@ RDEPEND="${DEPEND}
 "
 
 src_prepare() {
-	kde4-meta_src_prepare
+	_src_prepare
 
-	use pam && eapply "${FILESDIR}/${PN}-4.4.2-no-SUID-no-GUID.patch"
+	use pam && epatch "${FILESDIR}/${PN}-4.4.2-no-SUID-no-GUID.patch"
 }
 
 src_configure() {
@@ -33,7 +31,5 @@ src_configure() {
 		-DWITH_pam="$(usex pam)"
 	)
 
-	kde4-meta_src_configure
+	_src_configure
 }
-
-

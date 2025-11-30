@@ -15,5 +15,3 @@ DEPEND="
 	dev-qt/qtcore:4
 "
 RDEPEND="${DEPEND}"
-
-

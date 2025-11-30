@@ -19,5 +19,3 @@ DEPEND="
 	media-libs/libdmtx
 "
 RDEPEND="${DEPEND}"
-
-

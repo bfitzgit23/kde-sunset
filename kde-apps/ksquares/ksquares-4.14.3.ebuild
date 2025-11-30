@@ -16,5 +16,3 @@ IUSE="debug"
 
 DEPEND="$(add_kdeapps_dep libkdegames)"
 RDEPEND="${DEPEND}"
-
-

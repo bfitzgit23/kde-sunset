@@ -10,7 +10,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 KEYWORDS="amd64 ~ppc ~ppc64 x86"
 LICENSE="GPL-2"
 IUSE="doc"
-SLOT="0/2"
+SLOT="4"
 
 RDEPEND="
 	>=dev-cpp/commoncpp2-1.3.0:0=
@@ -31,5 +31,3 @@ src_install() {
 	default
 	find "${D}" -name '*.la' -delete || die
 }
-
-

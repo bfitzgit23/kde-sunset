@@ -12,7 +12,7 @@ HOMEPAGE="https://www.kde.org/"
 SRC_URI="mirror://kde/stable/${MY_PN}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2"
-SLOT="0"
+SLOT="4"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug test"
 
@@ -39,5 +39,3 @@ src_configure() {
 	)
 	cmake-utils_src_configure
 }
-
-

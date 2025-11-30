@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -11,7 +10,7 @@ HOMEPAGE="https://invent.kde.org/historical/kde1-kdebase"
 EGIT_REPO_URI="https://invent.kde.org/historical/kde1-kdebase.git"
 
 LICENSE="GPL-2+"
-SLOT="0"
+SLOT="4"
 KEYWORDS=""
 IUSE=""
 
@@ -28,5 +27,3 @@ src_compile() {
 	nonfatal emake
 	emake
 }
-
-

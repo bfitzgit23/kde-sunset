@@ -21,5 +21,3 @@ DEPEND="x11-drivers/xf86-input-synaptics
         x11-libs/libxcb
 "
 RDEPEND="${DEPEND}"
-
-

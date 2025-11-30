@@ -25,5 +25,3 @@ DEPEND="
 RDEPEND="${DEPEND}
 	dev-util/kdevelop:4
 "
-
-

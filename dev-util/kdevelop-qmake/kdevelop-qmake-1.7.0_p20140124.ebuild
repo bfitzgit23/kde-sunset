@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -33,9 +32,7 @@ src_configure() {
 src_install() {
 	kde4-base_src_install
 	#Move this file to prevent a collision with kappwizard
-	mv "${D}"/usr/share/apps/kdevappwizard/templates/qmake_qt4guiapp.tar.bz2 \
-		"${D}"/usr/share/apps/kdevappwizard/templates/kdevelop-qmake_qt4guiapp.tar.bz2 \
+	mv "${D}"/usr/share/apps/kdevappwizard/templates/qmake_qt4guiapp.tar.bz2 
+		"${D}"/usr/share/apps/kdevappwizard/templates/kdevelop-qmake_qt4guiapp.tar.bz2 
 		|| die
 }
-
-

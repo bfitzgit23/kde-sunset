@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -13,7 +12,7 @@ SRC_URI="mirror://kde/stable/applications/17.08.2/src/${P}.tar.xz"
 
 KEYWORDS="amd64 ~arm x86 ~amd64-linux ~x86-linux"
 LICENSE="LGPL-2.1"
-SLOT="4/4.14"
+SLOT="4"
 IUSE="cpu_flags_x86_3dnow acl altivec +bzip2 debug doc fam +handbook kerberos
 libressl lzma cpu_flags_x86_mmx nls openexr opengl +plasma +policykit qt3support spell
 test cpu_flags_x86_sse cpu_flags_x86_sse2 ssl +udev +udisks +upower webkit zeroconf"
@@ -144,12 +143,12 @@ src_prepare() {
 	cmake-utils_src_prepare
 
 	# Rename applications.menu (needs 01_gentoo_set_xdg_menu_prefix-1.patch to work)
-	sed -e 's|FILES[[:space:]]applications.menu|FILES applications.menu RENAME kde-4-applications.menu|g' \
+	sed -e 's|FILES[[:space:]]applications.menu|FILES applications.menu RENAME kde-4-applications.menu|g' 
 		-i kded/CMakeLists.txt || die "Sed on CMakeLists.txt for applications.menu failed."
 
 	if ! use opengl; then
-		sed -i -e "/if/ s/QT_QTOPENGL_FOUND/FALSE/" \
-			plasma/CMakeLists.txt plasma/tests/CMakeLists.txt includes/CMakeLists.txt \
+		sed -i -e "/if/ s/QT_QTOPENGL_FOUND/FALSE/" 
+			plasma/CMakeLists.txt plasma/tests/CMakeLists.txt includes/CMakeLists.txt 
 			|| die "failed to sed out QT_QTOPENGL_FOUND"
 	fi
 }
@@ -281,5 +280,3 @@ pkg_postrm() {
 	xdg_desktop_database_update
 	xdg_mimeinfo_database_update
 }
-
-

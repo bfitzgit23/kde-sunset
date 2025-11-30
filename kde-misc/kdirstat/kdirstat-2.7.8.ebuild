@@ -1,5 +1,3 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -32,5 +30,3 @@ src_configure() {
 	local mycmakeargs=( -DK4DIRSTAT_GIT_VERSION=OFF )
 	cmake_src_configure
 }
-
-

@@ -11,7 +11,7 @@ SRC_URI="https://github.com/coin3d/soqt/archive/${P}.tar.gz"
 S="${WORKDIR}/soqt-${P}"
 
 LICENSE="|| ( GPL-2 PEL )"
-SLOT="0"
+SLOT="4"
 KEYWORDS="~amd64 x86"
 IUSE="doc"
 
@@ -36,10 +36,10 @@ src_configure() {
 
 	append-ldflags $(no-as-needed)
 
-	econf \
-		--with-coin \
-		--disable-html-help\
-		$(use_enable doc html) \
+	econf 
+		--with-coin 
+		--disable-html-help
+		$(use_enable doc html) 
 		htmldir=/usr/share/doc/${PF}/html
 }
 
@@ -51,5 +51,3 @@ src_install() {
 	emake DESTDIR="${D}" install
 	dodoc AUTHORS ChangeLog NEWS README*
 }
-
-

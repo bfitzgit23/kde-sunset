@@ -31,5 +31,3 @@ RDEPEND="
 # Fails 2 out of 6, check later again.
 # With virtualx/virtualdbus it hangs
 RESTRICT="test"
-
-

@@ -28,5 +28,3 @@ RESTRICT="test"
 PATCHES=( "${WORKDIR}/${P}" ) # intevation branch + disable non-PIM stuff
 
 S="${WORKDIR}/${PN}-${MY_PV}"
-
-

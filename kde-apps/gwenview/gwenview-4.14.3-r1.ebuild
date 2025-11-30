@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -6,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 OPENGL_REQUIRED="always"
-inherit kde4-base kde4-functions-extra
+inherit kde4-base -extra
 
 DESCRIPTION="KDE image viewer"
 HOMEPAGE="
@@ -55,5 +54,4 @@ pkg_postinst() {
 		elog "The plugins for the KIPI inteface can be found in media-plugins/kipi-plugins"
 	fi
 }
-
-
+RDEPEND="${DEPEND}"

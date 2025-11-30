@@ -11,5 +11,3 @@ IUSE="debug"
 
 DEPEND="sys-devel/gettext"
 RDEPEND="${DEPEND}"
-
-

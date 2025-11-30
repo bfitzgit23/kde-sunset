@@ -10,5 +10,4 @@ DESCRIPTION="Visualise disk usage with interactive map of concentric, segmented 
 HOMEPAGE="https://utils.kde.org/projects/filelight"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
-
-
+RDEPEND="${DEPEND}"

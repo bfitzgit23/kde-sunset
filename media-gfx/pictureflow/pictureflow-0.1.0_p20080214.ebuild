@@ -13,7 +13,7 @@ SRC_URI="https://github.com/ariya/${PN}/archive/${COMMIT}.tar.gz -> ${P}.tar.gz"
 S="${WORKDIR}/${PN}-${COMMIT}"
 
 LICENSE="MIT"
-SLOT="0"
+SLOT="4"
 KEYWORDS="amd64 ~sparc x86"
 IUSE=""
 
@@ -30,5 +30,3 @@ src_install() {
 	dobin ${PN}
 	dodoc ChangeLog
 }
-
-

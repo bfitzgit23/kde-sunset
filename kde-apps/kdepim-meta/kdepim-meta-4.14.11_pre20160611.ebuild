@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -38,5 +37,3 @@ RDEPEND="
 		>=kde-apps/kdepim-l10n-4.14.3-r1:4
 	)
 "
-
-

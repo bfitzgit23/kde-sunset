@@ -21,5 +21,3 @@ RDEPEND="
 	${DEPEND}
 	kde-plasma/plasma-workspace:4
 "
-
-

@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -33,5 +32,3 @@ pkg_postinst() {
 		elog net-p2p/mldonkey to function.
 	fi
 }
-
-

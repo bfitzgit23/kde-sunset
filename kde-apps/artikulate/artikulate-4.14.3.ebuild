@@ -19,5 +19,3 @@ DEPEND="
 RDEPEND="${DEPEND}
 	$(add_kdeapps_dep kqtquickcharts)
 "
-
-

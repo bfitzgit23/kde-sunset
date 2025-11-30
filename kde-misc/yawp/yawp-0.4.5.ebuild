@@ -16,5 +16,3 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 RDEPEND="kde-plasma/plasma-workspace:4"
-
-

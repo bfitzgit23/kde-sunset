@@ -1,5 +1,3 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -7,7 +5,7 @@ EAPI=8
 
 KMNAME="kde-workspace"
 KMMODULE="libs/kworkspace"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="A library for Plasma desktop applications"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -28,10 +26,8 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 src_prepare() {
-	sed -i -e 's/install( FILES kdisplaymanager.h/install( FILES kdisplaymanager.h screenpreviewwidget.h/' \
+	sed -i -e 's/install( FILES kdisplaymanager.h/install( FILES kdisplaymanager.h screenpreviewwidget.h/' 
 		libs/kworkspace/CMakeLists.txt || die "failed to provide screenpreviewwidget.h"
 
-	kde4-meta_src_prepare
+	_src_prepare
 }
-
-

@@ -1,5 +1,3 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -28,7 +26,7 @@ pkg_setup() {
 src_prepare() {
 	kde4-base_src_prepare
 
-	sed -e "/add_subdirectory( examples )/ s:^:#:" \
+	sed -e "/add_subdirectory( examples )/ s:^:#:" 
 		-i plasma/CMakeLists.txt || die
 }
 
@@ -42,5 +40,3 @@ src_configure() {
 	)
 	kde4-base_src_configure
 }
-
-

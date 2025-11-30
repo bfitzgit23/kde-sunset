@@ -19,5 +19,3 @@ DEPEND=""
 RDEPEND="
 	x11-drivers/nvidia-drivers
 "
-
-

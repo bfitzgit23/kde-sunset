@@ -10,7 +10,7 @@ HOMEPAGE="http://qt-apps.org/content/show.php/?content=103312"
 SRC_URI="https://netfleet.googlecode.com/files/${PN}_${PV}.tar.bz2"
 
 LICENSE="GPL-3"
-SLOT="0"
+SLOT="4"
 KEYWORDS="amd64 x86"
 IUSE=""
 
@@ -29,5 +29,3 @@ src_configure() {
 src_install() {
 	emake INSTALL_ROOT="${D}" install
 }
-
-

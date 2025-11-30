@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -7,7 +6,7 @@ EAPI=8
 KMNAME="kdeartwork"
 KMMODULE="IconThemes"
 KDE_SCM="svn"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="Icon themes for kde"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -17,5 +16,3 @@ IUSE=""
 RDEPEND="
 	!x11-themes/nuvola
 "
-
-

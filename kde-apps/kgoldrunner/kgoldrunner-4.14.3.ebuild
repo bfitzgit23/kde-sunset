@@ -21,5 +21,3 @@ DEPEND="
 	media-libs/openal
 "
 RDEPEND="${DEPEND}"
-
-

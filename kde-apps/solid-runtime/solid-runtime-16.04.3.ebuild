@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -6,7 +5,7 @@ EAPI=8
 
 KMNAME="kde-runtime"
 KMNOMODULE=true
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="KDE SC solid runtime modules (autoeject, automounter and others)"
 HOMEPAGE="https://solid.kde.org"
@@ -28,5 +27,3 @@ RDEPEND="${DEPEND}
 "
 
 PATCHES=( "${FILESDIR}/${PN}-4.14.3-networkmanager-1.0.6.patch" )
-
-

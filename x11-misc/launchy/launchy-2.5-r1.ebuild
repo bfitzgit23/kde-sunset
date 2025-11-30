@@ -10,7 +10,7 @@ HOMEPAGE="https://www.launchy.net/"
 SRC_URI="http://www.launchy.net/downloads/src/${P}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="0"
+SLOT="4"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
@@ -36,5 +36,3 @@ src_install() {
 	emake INSTALL_ROOT="${D}" install
 	einstalldocs
 }
-
-

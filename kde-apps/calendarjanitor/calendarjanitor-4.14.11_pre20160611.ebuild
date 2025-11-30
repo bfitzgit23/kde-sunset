@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -7,7 +6,7 @@ EAPI=8
 KDE_HANDBOOK="optional"
 KMNAME="kdepim"
 KMMODULE="console/${PN}"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="Tool to scan calendar data for buggy instances"
 HOMEPAGE="https://www.kde.org/"
@@ -26,5 +25,3 @@ KMEXTRACTONLY="
 "
 
 KMLOADLIBS="kdepim-common-libs"
-
-

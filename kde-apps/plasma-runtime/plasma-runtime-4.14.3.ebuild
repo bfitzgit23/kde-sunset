@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -7,7 +6,7 @@ EAPI=8
 KMNAME="kde-runtime"
 KMMODULE="plasma"
 DECLARATIVE_REQUIRED="always"
-inherit kde4-meta kde4-functions-extra
+inherit  -extra
 
 DESCRIPTION="Script engine and package tool for plasma"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -21,5 +20,3 @@ RDEPEND="${DEPEND}"
 
 RESTRICT=test
 # bug 443748
-
-

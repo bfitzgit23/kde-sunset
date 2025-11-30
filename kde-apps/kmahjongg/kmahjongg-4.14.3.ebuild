@@ -20,5 +20,3 @@ DEPEND="
 	$(add_kdeapps_dep libkmahjongg)
 "
 RDEPEND="${DEPEND}"
-
-

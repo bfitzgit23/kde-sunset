@@ -10,7 +10,7 @@ HOMEPAGE="https://drumstick.sourceforge.io/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
-SLOT="0"
+SLOT="4"
 KEYWORDS="amd64 x86"
 IUSE="dbus doc"
 
@@ -46,5 +46,3 @@ src_configure() {
 	)
 	cmake-utils_src_configure
 }
-
-

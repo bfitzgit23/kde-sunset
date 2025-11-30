@@ -10,7 +10,7 @@ HOMEPAGE="https://musicbrainz.org/doc/libmusicbrainz"
 SRC_URI="https://github.com/metabrainz/lib${PN}/releases/download/release-${PV}/lib${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
-SLOT="5/1"	# soname of libmusicbrainz5.so
+SLOT="4"
 KEYWORDS="alpha amd64 arm ~arm64 ~hppa ia64 ppc ppc64 sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux"
 IUSE="examples test"
 
@@ -38,5 +38,3 @@ src_install() {
 		docompress -x /usr/share/doc/${PF}/examples
 	fi
 }
-
-

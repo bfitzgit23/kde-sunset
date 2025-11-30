@@ -19,5 +19,3 @@ RDEPEND="
 "
 
 PATCHES=( "${FILESDIR}/${P}-qt47.patch" )
-
-

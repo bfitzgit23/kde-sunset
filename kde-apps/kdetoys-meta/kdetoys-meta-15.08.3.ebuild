@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -16,5 +15,3 @@ RDEPEND="
 	>=kde-apps/amor-15.08.3:4
 	>=kde-apps/ktux-15.08.3:4
 "
-
-

@@ -10,7 +10,7 @@ HOMEPAGE="https://launchpad.net/appmenu-qt"
 SRC_URI="https://launchpad.net/${PN}/trunk/${PV}/+download/${P}.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2.1"
-SLOT="0"
+SLOT="4"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
@@ -23,5 +23,3 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 DOCS=( NEWS README )
-
-

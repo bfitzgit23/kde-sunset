@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -6,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 KMNAME="kdepim"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="News feed aggregator"
 HOMEPAGE="https://www.kde.org/applications/internet/akregator"
@@ -21,5 +20,3 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 KMLOADLIBS="kdepim-common-libs"
-
-

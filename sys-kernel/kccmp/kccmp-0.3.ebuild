@@ -10,7 +10,7 @@ HOMEPAGE="http://stoopidsimple.com/kccmp/"
 SRC_URI="http://stoopidsimple.com/files/${P}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="0"
+SLOT="4"
 KEYWORDS="amd64 x86"
 IUSE=""
 
@@ -32,5 +32,3 @@ src_install() {
 	dobin kccmp
 	dodoc README
 }
-
-

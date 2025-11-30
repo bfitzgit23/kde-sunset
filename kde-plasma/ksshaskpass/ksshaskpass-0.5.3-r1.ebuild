@@ -54,5 +54,3 @@ pkg_postinst() {
 	elog "If it's not desired, point the one you want to use in ${STARTUPDIR}/${CFG}"
 	elog
 }
-
-

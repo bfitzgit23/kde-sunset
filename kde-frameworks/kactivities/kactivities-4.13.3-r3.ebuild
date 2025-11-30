@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -6,7 +5,7 @@ EAPI=8
 
 DECLARATIVE_REQUIRED="always"
 EGIT_BRANCH="KDE/4.13"
-inherit kde4-base kde4-functions-extra
+inherit kde4-base -extra
 
 DESCRIPTION="KDE Activity Manager"
 
@@ -23,5 +22,3 @@ src_configure() {
 	)
 	kde4-base_src_configure
 }
-
-

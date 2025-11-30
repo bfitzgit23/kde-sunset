@@ -1,5 +1,3 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -10,7 +8,7 @@ KMNAME="kde-workspace"
 CPPUNIT_REQUIRED="optional"
 VIRTUALX_REQUIRED="test"
 WEBKIT_REQUIRED="always"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="Network-enabled task manager and system monitor"
 HOMEPAGE+=" https://userbase.kde.org/KSysGuard"
@@ -37,14 +35,12 @@ src_configure() {
 		-DWITH_Sensors="$(usex lm-sensors)"
 	)
 
-	kde4-meta_src_configure
+	_src_configure
 }
 
 pkg_postinst() {
-	kde4-meta_pkg_postinst
+	_pkg_postinst
 	ewarn "Note that ksysguard has powerful features; one of these is the executing of arbitrary"
 	ewarn "programs with elevated privileges (as data sources). So be careful opening worksheets"
 	ewarn "from untrusted sources!"
 }
-
-

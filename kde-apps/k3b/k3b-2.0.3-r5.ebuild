@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -112,5 +111,3 @@ pkg_postinst() {
 	elog "Usually, it is sufficient to be in the ${group} group."
 	echo
 }
-
-

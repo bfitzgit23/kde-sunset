@@ -8,7 +8,7 @@ HOMEPAGE="https://github.com/gentoo/eselect-qtgraphicssystem"
 SRC_URI="https://github.com/gentoo/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="0"
+SLOT="4"
 KEYWORDS="~alpha amd64 ~arm ~hppa ~mips ~ppc ~ppc64 ~sparc x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x64-solaris ~x86-solaris"
 IUSE=""
 
@@ -18,5 +18,3 @@ src_install() {
 	insinto /usr/share/eselect/modules
 	doins qtgraphicssystem.eselect
 }
-
-

@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -11,7 +10,7 @@ HOMEPAGE="http://kaptain.sourceforge.net/"
 SRC_URI="mirror://sourceforge/kaptain/${P}.tgz"
 
 LICENSE="GPL-2"
-SLOT="0"
+SLOT="4"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
@@ -29,5 +28,3 @@ src_install() {
 	emake DESTDIR="${D}" install
 	dodoc AUTHORS ChangeLog README TODO
 }
-
-

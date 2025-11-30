@@ -11,7 +11,7 @@ HOMEPAGE="https://telepathy.freedesktop.org/"
 SRC_URI="https://telepathy.freedesktop.org/releases/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
-SLOT="0-qt4"
+SLOT="4"
 KEYWORDS="amd64 ~arm x86"
 IUSE="debug farstream"
 
@@ -55,5 +55,3 @@ src_configure() {
 	)
 	cmake_src_configure
 }
-
-

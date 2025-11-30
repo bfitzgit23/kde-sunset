@@ -13,5 +13,3 @@ KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 RDEPEND="!kde-base/kwallet:4"
-
-

@@ -10,7 +10,7 @@ HOMEPAGE="http://qwt.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 
 LICENSE="qwt"
-SLOT="5"
+SLOT="4"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 ~sparc x86"
 IUSE="doc examples svg"
 
@@ -76,5 +76,3 @@ src_install() {
 		dodoc -r examples/.
 	fi
 }
-
-

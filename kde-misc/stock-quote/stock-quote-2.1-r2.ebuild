@@ -24,11 +24,9 @@ S=${WORKDIR}/${MY_P}
 DOCS=( CHANGELOG README )
 
 src_prepare() {
-	sed -e 's:^[ \t]*::' \
+	sed -e 's:^[ \t]*::' 
 		-i applet/plasma-applet-stock-quote.desktop || die "fixing .desktop file failed"
-	sed -e 's:^[ \t]*::' \
+	sed -e 's:^[ \t]*::' 
 		-i dataengine/plasma-dataengine-stockquote.desktop || die "fixing .desktop file failed"
 	kde4-base_src_prepare
 }
-
-

@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -43,5 +42,3 @@ src_install() {
 	rm "${ED}"usr/share/kde4/services/konsolepart.desktop || die
 	rm -r "${ED}"usr/share/kde4/servicetypes || die
 }
-
-

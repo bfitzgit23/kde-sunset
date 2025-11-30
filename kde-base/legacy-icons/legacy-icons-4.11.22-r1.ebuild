@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
@@ -40,7 +39,7 @@ src_prepare() {
 		local _dir=${3}
 		echo "add_subdirectory(${_dest})" >> CMakeLists.txt || die
 		mv ${_source}/${_dir} ${_dest} || die
-		echo "kde4_install_icons( \${ICON_INSTALL_DIR} )" > \
+		echo "kde4_install_icons( \${ICON_INSTALL_DIR} )" > 
 			${_dest}/CMakeLists.txt || die
 		rm -r ${_source} || die
 	}
@@ -60,5 +59,3 @@ EOF
 
 	kde4-base_src_prepare
 }
-
-

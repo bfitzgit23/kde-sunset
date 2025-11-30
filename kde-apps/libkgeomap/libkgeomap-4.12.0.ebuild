@@ -14,7 +14,7 @@ HOMEPAGE="http://www.digikam.org/"
 SRC_URI="mirror://kde/stable/digikam/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
-SLOT="4/2.1"
+SLOT="4"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
@@ -25,5 +25,3 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}/extra/${PN}"
-
-

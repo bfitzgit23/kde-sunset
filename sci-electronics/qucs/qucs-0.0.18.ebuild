@@ -10,7 +10,7 @@ HOMEPAGE="http://qucs.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="0"
+SLOT="4"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
@@ -30,12 +30,12 @@ src_prepare() {
 	# oh my, they strip -g out of C*FLAGS and force -s into LDFLAGS
 	# note: edit .ac first, then generated files, so that the latter
 	# have newer timestamp and not trigger regen
-	sed -i \
-		-e 's/C.*FLAGS.*sed.*-g.*$/:/' \
-		-e 's/C.*FLAGS.*-O0.*$/:/' \
-		-e 's/LDFLAGS.*-s.*$/:/' \
-		configure.ac asco/configure.ac qucs-core/configure.ac \
-		configure asco/configure qucs-core/configure \
+	sed -i 
+		-e 's/C.*FLAGS.*sed.*-g.*$/:/' 
+		-e 's/C.*FLAGS.*-O0.*$/:/' 
+		-e 's/LDFLAGS.*-s.*$/:/' 
+		configure.ac asco/configure.ac qucs-core/configure.ac 
+		configure asco/configure qucs-core/configure 
 		|| die "C*FLAGS and LDFLAGS sanitization sed failed"
 }
 
@@ -54,7 +54,7 @@ src_configure() {
 
 	# the package doesn't use pkg-config on Linux, only on Darwin
 	# very smart of upstream...
-	append-ldflags $( $(tc-getPKG_CONFIG) --libs-only-L \
+	append-ldflags $( $(tc-getPKG_CONFIG) --libs-only-L 
 			QtCore QtGui QtScript QtSvg QtXml Qt3Support )
 
 	econf "${myconf[@]}"
@@ -66,5 +66,3 @@ pkg_postinst() {
 		elog "  sci-electronics/freehdl"
 	fi
 }
-
-

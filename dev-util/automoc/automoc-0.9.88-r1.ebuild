@@ -12,7 +12,7 @@ HOMEPAGE="https://www.kde.org"
 SRC_URI="mirror://kde/stable/${MY_PN}/${PV}/${MY_P}.tar.bz2"
 
 LICENSE="BSD-2"
-SLOT="0"
+SLOT="4"
 KEYWORDS="amd64 ~arm ~hppa ~ppc ~ppc64 ~sparc x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
@@ -30,5 +30,3 @@ src_prepare() {
 		append-flags -pthread
 	fi
 }
-
-

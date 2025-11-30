@@ -10,5 +10,4 @@ DESCRIPTION="KDE application that reads what you type out loud. Doesn't include 
 HOMEPAGE="https://www.kde.org/applications/utilities/kmouth/"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
-
-
+RDEPEND="${DEPEND}"

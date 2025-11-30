@@ -25,5 +25,3 @@ DEPEND="${RDEPEND}"
 DOCS=( AUTHORS Changelog README TODO )
 
 S=${WORKDIR}/${MY_P}
-
-

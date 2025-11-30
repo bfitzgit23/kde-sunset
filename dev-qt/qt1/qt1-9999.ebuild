@@ -10,7 +10,7 @@ HOMEPAGE="https://invent.kde.org/historical/qt1"
 EGIT_REPO_URI="https://invent.kde.org/historical/qt1.git"
 
 LICENSE="Qt-Free-Edition"
-SLOT="0"
+SLOT="4"
 KEYWORDS=""
 IUSE=""
 
@@ -22,9 +22,9 @@ RDEPEND="${DEPEND}"
 
 src_prepare() {
 	default
-	sed -i configs/linux-g++-shared \
-		-e '/SYSCONF_LFLAGS_QT/s/lib/src/' \
-		-e "/SYSCONF_CXX/s/g++/$(tc-getCC)/" \
+	sed -i configs/linux-g++-shared 
+		-e '/SYSCONF_LFLAGS_QT/s/lib/src/' 
+		-e "/SYSCONF_CXX/s/g++/$(tc-getCC)/" 
 		|| die
 }
 
@@ -42,5 +42,3 @@ src_install() {
 	insinto /opt/qt1/include
 	doins include/*
 }
-
-

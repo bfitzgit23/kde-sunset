@@ -6,14 +6,14 @@ EAPI=8
 KDE_HANDBOOK="optional"
 KDE_MINIMAL="${PV}"
 KMNAME="kdepim"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="Note taking utility by KDE"
 HOMEPAGE="https://www.kde.org/applications/utilities/kjots/"
 SRC_URI="https://dev.gentoo.org/~asturm/distfiles/${KMNAME}-${PV}.tar.xz"
 
 LICENSE="GPL-2"
-SLOT=4/$(get_version_component_range 1-2)
+SLOT="4"
 KEYWORDS="amd64 x86"
 IUSE="debug"
 
@@ -28,5 +28,3 @@ KMEXTRACTONLY="
 	akonadi_next/
 	noteshared/
 "
-
-

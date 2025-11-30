@@ -1,5 +1,3 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -58,5 +56,3 @@ src_configure() {
 
 	kde4-base_src_configure
 }
-
-

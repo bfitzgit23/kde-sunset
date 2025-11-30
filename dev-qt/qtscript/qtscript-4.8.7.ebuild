@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-inherit qt4-build-multilib
+inherit -multilib
 
 DESCRIPTION="The QtScript module for the Qt toolkit"
 
@@ -39,5 +39,3 @@ multilib_src_configure() {
 	)
 	qt4_multilib_src_configure
 }
-
-

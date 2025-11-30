@@ -1,5 +1,3 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -11,7 +9,7 @@ KMNAME="kde-workspace"
 KMMODULE="plasma"
 OPENGL_REQUIRED="always"
 WEBKIT_REQUIRED="always"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="Plasma: KDE desktop framework"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -72,7 +70,7 @@ src_unpack() {
 		KMEXTRA+=" doc/plasma-desktop"
 	fi
 
-	kde4-meta_src_unpack
+	_src_unpack
 }
 
 src_configure() {
@@ -88,7 +86,5 @@ src_configure() {
 		-DWITH_qalculate="$(usex qalculate)"
 	)
 
-	kde4-meta_src_configure
+	_src_configure
 }
-
-

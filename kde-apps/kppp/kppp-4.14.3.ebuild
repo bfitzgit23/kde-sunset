@@ -14,5 +14,3 @@ IUSE="debug"
 RDEPEND="
 	net-dialup/ppp
 "
-
-

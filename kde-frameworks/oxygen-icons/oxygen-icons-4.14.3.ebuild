@@ -13,7 +13,7 @@ inherit kde4-base
 
 DESCRIPTION="Oxygen SVG icon theme"
 HOMEPAGE="http://www.oxygen-icons.org/"
-[[ ${PV} == *9999 ]] || \
+[[ ${PV} == *9999 ]] || 
 SRC_URI="
 	!sources? ( https://dev.gentoo.org/~kensington/distfiles/${P}.repacked.tar.xz )
 	sources? ( ${SRC_URI} )
@@ -25,5 +25,3 @@ IUSE="sources"
 
 DEPEND=""
 RDEPEND="${DEPEND}"
-
-

@@ -36,5 +36,3 @@ PATCHES=(
 	"${FILESDIR}/${P}-kde45.patch"
 	"${FILESDIR}/${P}-underlinking.patch"
 )
-
-

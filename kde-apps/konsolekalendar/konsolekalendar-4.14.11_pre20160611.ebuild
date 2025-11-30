@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -7,7 +6,7 @@ EAPI=8
 KDE_HANDBOOK="optional"
 KMNAME="kdepim"
 KMMODULE="console/${PN}"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="Command line interface to KDE calendars"
 HOMEPAGE+=" https://userbase.kde.org/KonsoleKalendar"
@@ -46,5 +45,3 @@ KMEXTRACTONLY="
 "
 
 KMLOADLIBS="kdepim-common-libs"
-
-

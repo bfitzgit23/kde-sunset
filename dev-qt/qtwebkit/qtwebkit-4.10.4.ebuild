@@ -63,16 +63,16 @@ src_prepare() {
 	sed -i -e '/SUBDIRS += examples/d' Source/QtWebKit.pro || die
 
 	# respect CXXFLAGS
-	sed -i -e '/QMAKE_CXXFLAGS_RELEASE.*=/d' \
-		Source/WTF/WTF.pro \
+	sed -i -e '/QMAKE_CXXFLAGS_RELEASE.*=/d' 
+		Source/WTF/WTF.pro 
 		Source/JavaScriptCore/Target.pri || die
 
 	default
 }
 
 multilib_src_compile() {
-	local -x \
-		QTDIR=${EPREFIX}/usr/$(get_libdir)/qt4 \
+	local -x 
+		QTDIR=${EPREFIX}/usr/$(get_libdir)/qt4 
 		WEBKITOUTPUTDIR=${BUILD_DIR}
 
 	local myconf=(
@@ -119,5 +119,3 @@ multilib_src_install() {
 	# move pkgconfig file to the correct location
 	mv "${ED}"/usr/$(get_libdir){/qt4/pkgconfig,} || die
 }
-
-

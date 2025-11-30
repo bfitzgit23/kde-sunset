@@ -18,5 +18,3 @@ IUSE="debug"
 DEPEND="kde-plasma/plasma-workspace:4"
 RDEPEND="${DEPEND}
 	x11-misc/redshift"
-
-

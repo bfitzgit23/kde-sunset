@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
- qt4-build-multilib
+inherit eutils -multilib
 
 DESCRIPTION="The GUI module for the Qt toolkit"
 
@@ -110,7 +110,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	qt4-build-multilib_src_prepare
+	-multilib_src_prepare
 
 	# Add -xvideo to the list of accepted configure options
 	sed -i -e 's:|-xinerama|:&-xvideo|:' configure || die
@@ -147,15 +147,13 @@ multilib_src_install_all() {
 
 	if has tools/qtconfig ${QT4_TARGET_DIRECTORIES}; then
 		newicon tools/qtconfig/images/appicon.png qtconfig.png
-		# # make_desktop_entry removed – create .desktop manually removed – create .desktop manually qtconfig 'Qt Configuration Tool' qtconfig 'Qt;Settings;DesktopSettings'
+		make_desktop_entry qtconfig 'Qt Configuration Tool' qtconfig 'Qt;Settings;DesktopSettings'
 	fi
 }
 
 pkg_postinst() {
-	qt4-build-multilib_pkg_postinst
+	-multilib_pkg_postinst
 
 	# raster is the default graphicssystem, set it on first install
 	eselect qtgraphicssystem set raster --use-old
 }
-
-

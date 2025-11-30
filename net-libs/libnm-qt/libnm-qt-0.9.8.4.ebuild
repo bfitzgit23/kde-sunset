@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -16,7 +15,7 @@ DESCRIPTION="NetworkManager bindings for Qt"
 HOMEPAGE="https://projects.kde.org/projects/extragear/libs/libnm-qt"
 
 LICENSE="LGPL-2"
-SLOT="0/1"
+SLOT="4"
 IUSE="debug doc modemmanager test"
 
 RDEPEND="
@@ -54,5 +53,3 @@ src_install() {
 
 	cmake-utils_src_install
 }
-
-

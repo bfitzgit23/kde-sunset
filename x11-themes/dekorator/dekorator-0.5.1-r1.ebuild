@@ -21,5 +21,3 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 DOCS=( AUTHORS ChangeLog CHANGELOG.original README README.original TODO )
-
-

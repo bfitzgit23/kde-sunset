@@ -24,5 +24,3 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	sys-devel/gettext
 "
-
-

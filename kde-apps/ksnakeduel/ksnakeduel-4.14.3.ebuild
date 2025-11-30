@@ -15,5 +15,3 @@ DEPEND="$(add_kdeapps_dep libkdegames)"
 RDEPEND="${DEPEND}
 	!kde-base/ktron:4
 "
-
-

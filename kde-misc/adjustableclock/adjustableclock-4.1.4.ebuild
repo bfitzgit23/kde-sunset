@@ -39,5 +39,3 @@ pkg_postinst() {
 	elog "Version 4.0 (and newer) is not backwards compatible with 3.x."
 	elog "All custom formats need to be exported and manually converted."
 }
-
-

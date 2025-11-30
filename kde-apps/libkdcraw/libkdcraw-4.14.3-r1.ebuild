@@ -19,5 +19,3 @@ PATCHES=(
 	"${FILESDIR}/${P}-libraw-0.19.0.patch"
 	"${FILESDIR}/${P}-libraw-0.21.0.patch"
 )
-
-

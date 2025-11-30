@@ -21,5 +21,3 @@ RDEPEND="
 "
 
 S="${WORKDIR}/${MY_PN}-${PV}-src"
-
-

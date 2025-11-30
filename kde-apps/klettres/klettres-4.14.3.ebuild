@@ -15,5 +15,3 @@ IUSE="debug"
 RDEPEND="
 	$(add_kdeapps_dep knotify)
 "
-
-

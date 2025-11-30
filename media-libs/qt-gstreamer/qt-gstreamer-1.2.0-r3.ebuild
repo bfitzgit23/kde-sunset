@@ -10,7 +10,7 @@ HOMEPAGE="https://gstreamer.freedesktop.org/modules/qt-gstreamer.html"
 SRC_URI="https://gstreamer.freedesktop.org/src/qt-gstreamer/${P}.tar.xz"
 
 LICENSE="LGPL-2.1"
-SLOT="0-qt4"
+SLOT="4"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86"
 IUSE="test"
 
@@ -53,5 +53,3 @@ src_configure() {
 	)
 	cmake_src_configure
 }
-
-

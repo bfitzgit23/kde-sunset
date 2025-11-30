@@ -25,5 +25,3 @@ RDEPEND="${DEPEND}
 
 # only needed for 0.7.0 and 1.1.0
 S="${WORKDIR}"/${MY_PN}-${PV}
-
-

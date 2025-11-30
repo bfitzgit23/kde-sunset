@@ -1,5 +1,3 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -7,7 +5,7 @@ EAPI=8
 
 KMNAME="kde-workspace"
 OPENGL_REQUIRED="optional"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="KDE Plasma Command Runner"
 HOMEPAGE+=" https://userbase.kde.org/Plasma/Krunner"
@@ -46,7 +44,5 @@ src_configure() {
 		-DWITH_OpenGL="$(usex opengl)"
 	)
 
-	kde4-meta_src_configure
+	_src_configure
 }
-
-

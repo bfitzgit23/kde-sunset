@@ -10,5 +10,4 @@ DESCRIPTION="KDE Educational: Learn calculating with fractions"
 HOMEPAGE="https://www.kde.org/applications/education/kbruch https://edu.kde.org/kbruch"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
-
-
+RDEPEND="${DEPEND}"

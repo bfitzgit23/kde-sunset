@@ -10,7 +10,7 @@ HOMEPAGE="https://github.com/steveire/grantlee"
 SRC_URI="http://downloads.grantlee.org/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
-SLOT="0"
+SLOT="4"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86"
 IUSE="debug doc test"
 
@@ -51,5 +51,3 @@ src_install() {
 
 	cmake-utils_src_install
 }
-
-

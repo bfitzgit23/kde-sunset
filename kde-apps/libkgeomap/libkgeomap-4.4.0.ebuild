@@ -18,7 +18,7 @@ HOMEPAGE="http://www.digikam.org/"
 LICENSE="GPL-2"
 KEYWORDS="amd64 x86"
 IUSE=""
-SLOT=4
+SLOT="4"
 
 DEPEND="
 	kde-apps/libkexiv2:4=
@@ -27,5 +27,3 @@ DEPEND="
 RDEPEND=${DEPEND}
 
 S="${WORKDIR}/${MY_P}/extra/${PN}"
-
-

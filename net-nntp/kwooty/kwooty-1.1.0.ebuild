@@ -25,5 +25,3 @@ RDEPEND="
 "
 
 DOCS=( README.txt TODO )
-
-

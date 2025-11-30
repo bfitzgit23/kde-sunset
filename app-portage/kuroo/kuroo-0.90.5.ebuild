@@ -11,7 +11,7 @@ HOMEPAGE="https://sourceforge.net/projects/kuroo/"
 SRC_URI="mirror://sourceforge/kuroo/${PN}4-${PV}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="0"
+SLOT="4"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
@@ -24,5 +24,3 @@ RDEPEND="${DEPEND}
 "
 
 S="${WORKDIR}/${PN}4-${PV}"
-
-

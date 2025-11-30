@@ -21,5 +21,3 @@ DEPEND="
 	kde-plasma/kwin:4
 "
 RDEPEND="${DEPEND}"
-
-

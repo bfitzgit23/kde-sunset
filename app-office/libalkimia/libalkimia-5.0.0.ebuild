@@ -11,7 +11,7 @@ SRC_URI="mirror://kde/stable/${PN/lib/}/${PV}/src/${P}.tar.xz"
 
 LICENSE="LGPL-2.1+"
 KEYWORDS="amd64 x86"
-SLOT="0/5"
+SLOT="4"
 IUSE=""
 
 RDEPEND="
@@ -23,5 +23,3 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 "
-
-

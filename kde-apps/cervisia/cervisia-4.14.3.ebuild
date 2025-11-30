@@ -14,5 +14,3 @@ IUSE="debug"
 RDEPEND="
 	dev-vcs/cvs
 "
-
-

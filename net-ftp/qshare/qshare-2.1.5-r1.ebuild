@@ -10,7 +10,7 @@ HOMEPAGE="http://www.zuzuf.net/qshare/"
 SRC_URI="http://www.zuzuf.net/qshare/files/${P}-src.tar.bz2"
 
 LICENSE="GPL-3"
-SLOT="0"
+SLOT="4"
 KEYWORDS="amd64 x86"
 IUSE=""
 
@@ -21,5 +21,3 @@ DEPEND="${RDEPEND}"
 
 DOCS=( AUTHORS README )
 PATCHES=( "${FILESDIR}/${P}-desktop.patch" )
-
-

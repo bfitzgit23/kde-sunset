@@ -17,5 +17,4 @@ src_install() {
 
 	rm "${D}"/usr/share/apps/${PN}/README.packagers
 }
-
-
+RDEPEND="${DEPEND}"

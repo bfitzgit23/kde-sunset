@@ -31,5 +31,3 @@ DEPEND="${COMMON_DEPEND}
 PATCHES=( "${FILESDIR}/${P}-new-folder.patch" )
 
 S="${WORKDIR}/${MY_P}"
-
-

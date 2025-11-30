@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -18,7 +17,7 @@ else
 	LIBKT_VERSION_MAX="99999999"
 fi
 
-inherit kde4-base kde4-functions-extra
+inherit kde4-base -extra
 
 DESCRIPTION="Powerful BitTorrent client by KDE"
 HOMEPAGE="http://ktorrent.pwsp.net/"
@@ -60,8 +59,8 @@ PATCHES=(
 
 src_prepare() {
 	if ! use plasma; then
-		sed -i \
-			-e "s:add_subdirectory(plasma):#nada:g" \
+		sed -i 
+			-e "s:add_subdirectory(plasma):#nada:g" 
 			CMakeLists.txt || die "Failed to make plasmoid optional"
 	fi
 
@@ -90,5 +89,3 @@ src_configure() {
 	)
 	kde4-base_src_configure
 }
-
-

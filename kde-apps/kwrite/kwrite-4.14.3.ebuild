@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -7,7 +6,7 @@ EAPI=8
 KDE_HANDBOOK="optional"
 KMNAME="kate"
 KMEXTRACTONLY="doc/kate"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="KDE MDI editor/IDE"
 HOMEPAGE="https://www.kde.org/applications/utilities/kwrite"
@@ -17,5 +16,3 @@ IUSE="debug"
 RDEPEND="
 	$(add_kdeapps_dep katepart)
 "
-
-

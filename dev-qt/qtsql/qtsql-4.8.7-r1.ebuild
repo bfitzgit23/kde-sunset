@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit multilib qt4-build-multilib
+inherit multilib -multilib
 
 DESCRIPTION="The SQL module for the Qt toolkit"
 
@@ -57,5 +57,3 @@ multilib_src_configure() {
 	)
 	qt4_multilib_src_configure
 }
-
-

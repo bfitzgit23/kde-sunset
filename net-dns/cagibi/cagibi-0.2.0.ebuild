@@ -11,7 +11,7 @@ SRC_URI="mirror://kde/stable/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
-SLOT="0"
+SLOT="4"
 IUSE="debug"
 
 RDEPEND="
@@ -23,5 +23,3 @@ DEPEND="${RDEPEND}
 "
 
 DOCS=( Changelog README TODO )
-
-

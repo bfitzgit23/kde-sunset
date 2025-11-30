@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -39,5 +38,3 @@ src_prepare() {
 	# do not build non-installed example binary
 	sed -i -e '/add_subdirectory(examples)/d' CMakeLists.txt || die
 }
-
-

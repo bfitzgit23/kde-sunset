@@ -1,5 +1,3 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -7,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-runtime"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="The KDE Control Center"
 KEYWORDS="amd64 x86"
@@ -19,11 +17,9 @@ RDEPEND="
 "
 
 src_prepare() {
-	kde4-meta_src_prepare
+	_src_prepare
 	if use handbook; then
 		sed -i -e "/add_subdirectory(kcm_ssl)/d" doc/kcontrol/CMakeLists.txt || die
 		sed -i -e "/add_subdirectory(trash)/d" doc/kcontrol/CMakeLists.txt || die
 	fi
 }
-
-

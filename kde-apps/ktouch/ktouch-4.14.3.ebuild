@@ -16,5 +16,3 @@ RDEPEND="
 	$(add_kdeapps_dep kqtquickcharts)
 	$(add_kdeapps_dep plasma-runtime)
 "
-
-

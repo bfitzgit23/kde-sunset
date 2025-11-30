@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit qt4-build-multilib
+inherit -multilib
 
 DESCRIPTION="Demonstration module and examples for the Qt toolkit"
 
@@ -39,7 +39,7 @@ QT4_TARGET_DIRECTORIES="
 	examples"
 
 src_prepare() {
-	qt4-build-multilib_src_prepare
+	-multilib_src_prepare
 
 	# Array mapping USE flags to subdirs
 	local flags_subdirs_map=(
@@ -56,19 +56,19 @@ src_prepare() {
 	for flag in "${flags_subdirs_map[@]}"; do
 		if ! use ${flag%:*}; then
 			einfo "Disabling ${flag%:*} examples"
-			sed -i -e "/SUBDIRS += ${flag%:*}/d" \
+			sed -i -e "/SUBDIRS += ${flag%:*}/d" 
 				examples/examples.pro || die
 
 			if [[ ${flag} == *:* ]]; then
 				einfo "Disabling ${flag%:*} demos"
-				sed -i -re "/SUBDIRS \+= demos_(${flag#*:})/d" \
+				sed -i -re "/SUBDIRS \+= demos_(${flag#*:})/d" 
 					demos/demos.pro || die
 			fi
 		fi
 	done
 
 	# Remove bogus dependency on qt3support (bug 510042)
-	sed -i -e 's/contains(QT_CONFIG, qt3support)://' \
+	sed -i -e 's/contains(QT_CONFIG, qt3support)://' 
 		examples/graphicsview/graphicsview.pro || die
 }
 
@@ -85,5 +85,3 @@ multilib_src_configure() {
 	)
 	qt4_multilib_src_configure
 }
-
-

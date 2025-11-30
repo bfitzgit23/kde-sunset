@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -28,7 +27,7 @@ RESTRICT="test"
 src_prepare() {
 	default
 	# adapt to Gentoo paths
-	sed -e s,documentation.path.*$,documentation.path\ =\ "${EPREFIX}"/usr/share/doc/"${PF}", \
+	sed -e s,documentation.path.*$,documentation.path\ =\ "${EPREFIX}"/usr/share/doc/"${PF}", 
 		-e s,target.path.*$,target.path\ =\ "${EPREFIX}"/usr/bin, -i src-QT4/kdiff3.pro || die
 }
 
@@ -39,5 +38,3 @@ src_configure() {
 src_install() {
 	emake INSTALL_ROOT="${D}" install
 }
-
-

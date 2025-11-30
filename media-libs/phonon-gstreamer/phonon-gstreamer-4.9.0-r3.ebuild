@@ -12,7 +12,7 @@ HOMEPAGE="https://community.kde.org/Phonon"
 SRC_URI="mirror://kde/stable/phonon/${MY_PN}/${PV}/${MY_P}.tar.xz"
 
 LICENSE="LGPL-2.1+ || ( LGPL-2.1 LGPL-3 )"
-SLOT="0-qt4"
+SLOT="4"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86"
 IUSE="alsa debug minimal +network"
 
@@ -54,5 +54,3 @@ pkg_postinst() {
 pkg_postrm() {
 	use minimal || xdg_icon_cache_update
 }
-
-

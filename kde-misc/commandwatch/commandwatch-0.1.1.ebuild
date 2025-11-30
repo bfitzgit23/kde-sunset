@@ -17,5 +17,3 @@ IUSE="debug"
 RDEPEND="
 	kde-plasma/plasma-workspace:4
 "
-
-

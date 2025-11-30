@@ -19,5 +19,3 @@ RDEPEND="
 "
 
 S=${WORKDIR}/${PN}
-
-

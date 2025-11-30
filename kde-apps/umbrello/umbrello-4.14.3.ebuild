@@ -19,5 +19,3 @@ RDEPEND="
 	dev-libs/libxslt
 "
 DEPEND="${RDEPEND}"
-
-

@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-inherit qt4-build-multilib
+inherit -multilib
 
 DESCRIPTION="The Help module for the Qt toolkit"
 SRC_URI+="
@@ -43,7 +43,7 @@ pkg_setup() {
 }
 
 src_unpack() {
-	qt4-build-multilib_src_unpack
+	-multilib_src_unpack
 
 	# compat version
 	# http://blog.qt.io/blog/2010/06/22/qt-assistant-compat-version-available-as-extra-source-package/
@@ -60,7 +60,7 @@ src_prepare() {
 		"${FILESDIR}/${PN}-4.8.6-compat-syncqt.patch"
 	)
 
-	qt4-build-multilib_src_prepare
+	-multilib_src_prepare
 
 	# prevent rebuild of QtCore and QtXml (bug 348034)
 	sed -i -e '/^sub-qdoc3\.depends/d' doc/doc.pri || die
@@ -109,5 +109,3 @@ multilib_src_install_all() {
 		doins tools/assistant/compat/features/assistant.prf
 	fi
 }
-
-

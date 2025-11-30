@@ -1,5 +1,3 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -7,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-baseapps"
-inherit kde4-meta kde4-functions-extra
+inherit  -extra
 
 DESCRIPTION="A KDE filemanager focusing on usability"
 HOMEPAGE="https://dolphin.kde.org https://www.kde.org/applications/system/dolphin"
@@ -45,7 +43,7 @@ src_configure() {
 		-DWITH_KFileMetaData="$(usex semantic-desktop)"
 	)
 
-	kde4-meta_src_configure
+	_src_configure
 }
 
 pkg_postinst() {
@@ -55,5 +53,3 @@ pkg_postinst() {
 		elog "For .exe file preview support, install media-gfx/icoutils."
 	fi
 }
-
-

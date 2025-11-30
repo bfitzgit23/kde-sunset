@@ -1,4 +1,3 @@
-inherit cmake
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -12,7 +11,7 @@ HOMEPAGE="https://opencv.org"
 SRC_URI="https://github.com/Itseez/opencv/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="BSD"
-SLOT="2.4"
+SLOT="4"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux"
 IUSE="cuda +eigen examples ffmpeg gstreamer gtk ieee1394 jpeg opencl openexr opengl openmp pch png qt5 testprograms threads tiff v4l vtk xine"
 
@@ -87,8 +86,8 @@ src_prepare() {
 
 	# remove bundled stuff
 	rm -rf 3rdparty || die "Removing 3rd party components failed"
-	sed -i \
-		-e '/add_subdirectory(3rdparty)/ d' \
+	sed -i 
+		-e '/add_subdirectory(3rdparty)/ d' 
 		CMakeLists.txt || die
 
 	java-pkg-opt-2_src_prepare
@@ -124,7 +123,7 @@ src_configure() {
 		-DWITH_PNG=$(usex png)
 		-DWITH_PVAPI=OFF
 		-DWITH_QT=$(usex qt5 5 OFF)
-		-DWITH_GIGEAPI=8
+		-DWITH_GIGEAPI=OFF
 		-DWITH_WIN32UI=OFF
 		-DWITH_QUICKTIME=OFF
 		-DWITH_TBB=$(usex threads)
@@ -218,5 +217,3 @@ src_install () {
 	cmake-utils_src_install
 	rm -f "${ED%/}"/usr/$(get_libdir)/*so
 }
-
-

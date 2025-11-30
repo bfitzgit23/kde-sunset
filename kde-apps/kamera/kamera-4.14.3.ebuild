@@ -14,5 +14,3 @@ DEPEND="
 	media-libs/libgphoto2:=
 "
 RDEPEND="${DEPEND}"
-
-

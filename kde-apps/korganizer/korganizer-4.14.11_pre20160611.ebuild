@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -6,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 KMNAME="kdepim"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="Organizational assistant, providing calendars and other similar functionality"
 HOMEPAGE="https://www.kde.org/applications/office/korganizer/"
@@ -64,18 +63,18 @@ src_unpack() {
 		"
 	fi
 
-	kde4-meta_src_unpack
+	_src_unpack
 }
 
 src_install() {
-	kde4-meta_src_install
+	_src_install
 	# colliding with kdepim-common-libs
 	rm -rf "${ED}"usr/share/kde4/servicetypes/calendarplugin.desktop || die
 	rm -rf "${ED}"usr/share/kde4/servicetypes/calendardecoration.desktop || die
 }
 
 pkg_postinst() {
-	kde4-meta_pkg_postinst
+	_pkg_postinst
 
 	if ! has_version kde-apps/kdepim-kresources:${SLOT}; then
 		echo
@@ -83,5 +82,3 @@ pkg_postinst() {
 		echo
 	fi
 }
-
-

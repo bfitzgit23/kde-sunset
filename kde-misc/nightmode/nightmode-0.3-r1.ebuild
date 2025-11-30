@@ -21,5 +21,3 @@ RDEPEND="${DEPEND}"
 S=${WORKDIR}
 
 PATCHES=( "${FILESDIR}/${P}-kde-4.10.patch" )
-
-

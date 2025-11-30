@@ -15,7 +15,7 @@ DESCRIPTION="Modemmanager bindings for Qt"
 HOMEPAGE="https://projects.kde.org/projects/extragear/libs/libmm-qt"
 
 LICENSE="LGPL-2"
-SLOT="0"
+SLOT="4"
 IUSE="debug"
 
 RDEPEND="
@@ -27,5 +27,3 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 
 PATCHES=( "${FILESDIR}/${P}-cxxflags.patch" )
-
-

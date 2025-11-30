@@ -22,5 +22,3 @@ PATCHES=( "${FILESDIR}/${P}-gcc-4.7.patch" )
 RDEPEND="${RDEPEND}
 	sys-apps/mlocate
 "
-
-

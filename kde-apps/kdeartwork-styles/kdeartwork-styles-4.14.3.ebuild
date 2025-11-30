@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -7,7 +6,7 @@ EAPI=8
 KMMODULE="styles"
 KMNAME="kdeartwork"
 KDE_SCM="svn"
-inherit kde4-meta kde4-functions-extra
+inherit  -extra
 
 DESCRIPTION="Extra KWin styles and window decorations"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -21,5 +20,3 @@ RDEPEND="${DEPEND}"
 KMEXTRA="
 	kwin-styles/
 "
-
-

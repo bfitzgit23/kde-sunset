@@ -19,5 +19,4 @@ IUSE="debug"
 PATCHES=(
 	"${FILESDIR}/${P}-underlinking.patch"
 )
-
-
+RDEPEND="${DEPEND}"

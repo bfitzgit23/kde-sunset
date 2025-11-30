@@ -40,5 +40,3 @@ src_compile() {
 
 	kde4-base_src_compile
 }
-
-

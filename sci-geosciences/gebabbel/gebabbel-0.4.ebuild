@@ -12,7 +12,7 @@ HOMEPAGE="http://gebabbel.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${MY_P}-Src.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="0"
+SLOT="4"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
@@ -33,8 +33,8 @@ S=${WORKDIR}/${MY_P}
 src_prepare() {
 	default
 	# do not mess with cflags
-	sed \
-		-e "/QMAKE_CXXFLAGS/s:=.*$:= ${CXXFLAGS}:g" \
+	sed 
+		-e "/QMAKE_CXXFLAGS/s:=.*$:= ${CXXFLAGS}:g" 
 		-i *.pro || die
 }
 
@@ -46,5 +46,3 @@ src_install() {
 	dobin bin/${PN}
 	einstalldocs
 }
-
-

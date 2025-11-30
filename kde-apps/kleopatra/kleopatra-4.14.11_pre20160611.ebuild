@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -6,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 KMNAME="kdepim"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="Certificate manager and GUI for OpenPGP and CMS cryptography"
 HOMEPAGE="https://www.kde.org/applications/utilities/kleopatra/"
@@ -37,7 +36,5 @@ src_unpack() {
 		"
 	fi
 
-	kde4-meta_src_unpack
+	_src_unpack
 }
-
-

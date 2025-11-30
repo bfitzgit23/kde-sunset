@@ -16,5 +16,3 @@ DEPEND="
 	$(add_kdeapps_dep libkdeedu)
 "
 RDEPEND=${DEPEND}
-
-

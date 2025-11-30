@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -6,7 +5,7 @@ EAPI=8
 
 KMNAME="kde-workspace"
 KMMODULE="libs/kephal"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="Allows handling of multihead systems via the XRandR extension"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -27,5 +26,3 @@ KMEXTRACTONLY+="
 PATCHES=(
 	"${FILESDIR}/${P}-gcc6.patch"
 )
-
-

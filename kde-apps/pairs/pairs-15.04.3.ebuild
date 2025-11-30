@@ -15,5 +15,3 @@ IUSE="debug"
 
 DEPEND=""
 RDEPEND="${DEPEND}"
-
-

@@ -32,5 +32,3 @@ src_prepare() {
 	# Coinstallability with kde-plasma/polkit-kde-agent
 	use minimal && rm -rf po
 }
-
-

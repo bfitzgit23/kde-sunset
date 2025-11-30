@@ -10,7 +10,7 @@ HOMEPAGE="http://eigen.tuxfamily.org/"
 SRC_URI="https://bitbucket.org/eigen/eigen/get/${PV}.tar.bz2 -> ${P}.tar.bz2"
 
 LICENSE="GPL-3"
-SLOT="2"
+SLOT="4"
 KEYWORDS="amd64 ~arm ~hppa ~ppc ~ppc64 ~sparc x86 ~amd64-linux ~x86-linux"
 IUSE="debug doc examples test"
 # bugs 426236, 455460, 467288
@@ -60,5 +60,3 @@ src_install() {
 		dobin mandelbrot/mandelbrot opengl/quaternion_demo
 	fi
 }
-
-

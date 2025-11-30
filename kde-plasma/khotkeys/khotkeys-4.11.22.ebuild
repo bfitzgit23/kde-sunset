@@ -1,11 +1,10 @@
-inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
 KMNAME="kde-workspace"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="KDE Plasma workspace hotkey module"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -21,5 +20,3 @@ RDEPEND="${DEPEND}"
 KMEXTRACTONLY="
 	libs/kworkspace/
 "
-
-

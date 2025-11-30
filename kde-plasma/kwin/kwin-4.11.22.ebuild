@@ -1,5 +1,3 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -9,7 +7,7 @@ KMNAME="kde-workspace"
 DECLARATIVE_REQUIRED="always"
 OPENGL_REQUIRED="always"
 #VIRTUALX_REQUIRED=test
-inherit flag-o-matic kde4-meta
+inherit flag-o-matic 
 
 DESCRIPTION="KDE window manager"
 HOMEPAGE+=" https://userbase.kde.org/KWin"
@@ -73,7 +71,5 @@ src_configure() {
 		-DWITH_OpenGL=$(usex !gles2-only)
 	)
 
-	kde4-meta_src_configure
+	_src_configure
 }
-
-

@@ -1,5 +1,3 @@
-inherit cmake
-inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -8,7 +6,7 @@ EAPI=8
 KMNAME="kdepim"
 KMNOMODULE="true"
 WEBKIT_REQUIRED="always"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="Common libraries for KDE PIM apps"
 
@@ -77,8 +75,8 @@ KMSAVELIBS="true"
 PATCHES=( "${FILESDIR}/${P}-CVE-2017-9604.patch" )
 
 src_prepare() {
-	kde4-meta_src_prepare
-	sed -e '/folderarchiveagent.desktop/d' \
+	_src_prepare
+	sed -e '/folderarchiveagent.desktop/d' 
 		-i agents/CMakeLists.txt || die
 }
 
@@ -87,7 +85,5 @@ src_configure() {
 		-DCMAKE_DISABLE_FIND_PACKAGE_LibKGAPI2="$(usex !google)"
 	)
 
-	kde4-meta_src_configure
+	_src_configure
 }
-
-

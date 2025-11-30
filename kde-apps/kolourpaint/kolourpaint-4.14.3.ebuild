@@ -23,5 +23,3 @@ pkg_postinst() {
 		elog "To enable scanner support, please install kde-apps/ksaneplugin:${SLOT}"
 	fi
 }
-
-

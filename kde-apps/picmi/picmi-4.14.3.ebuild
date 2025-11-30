@@ -15,5 +15,3 @@ RDEPEND="${DEPEND}"
 
 RESTRICT=test
 # needs X server
-
-

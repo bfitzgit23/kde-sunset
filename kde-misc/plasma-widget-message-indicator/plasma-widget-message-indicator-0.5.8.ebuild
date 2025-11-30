@@ -27,5 +27,3 @@ DEPEND="${RDEPEND}
 RESTRICT="test"
 
 PATCHES=( "${FILESDIR}/${P}-libindicate.patch" )
-
-

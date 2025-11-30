@@ -34,5 +34,3 @@ src_prepare() {
 
 	kde4-base_src_prepare
 }
-
-

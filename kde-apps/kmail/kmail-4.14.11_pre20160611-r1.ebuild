@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -8,7 +7,7 @@ KDE_HANDBOOK="optional"
 KMNAME="kdepim"
 VIRTUALX_REQUIRED="test"
 WEBKIT_REQUIRED="always"
-inherit flag-o-matic kde4-meta
+inherit flag-o-matic 
 
 DESCRIPTION="Email client, supporting POP3 and IMAP mailboxes."
 HOMEPAGE="https://www.kde.org/applications/internet/kmail/"
@@ -75,12 +74,12 @@ KMLOADLIBS="kdepim-common-libs"
 PATCHES=( "${FILESDIR}/${P}-CVE-2017-9604.patch" )
 
 src_compile() {
-	kde4-meta_src_compile kmail_xml
-	kde4-meta_src_compile
+	_src_compile kmail_xml
+	_src_compile
 }
 
 pkg_postinst() {
-	kde4-meta_pkg_postinst
+	_pkg_postinst
 
 	if ! has_version kde-apps/kdepim-kresources:${SLOT}; then
 		echo
@@ -106,5 +105,3 @@ pkg_postinst() {
 		ewarn
 	fi
 }
-
-

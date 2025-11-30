@@ -25,5 +25,3 @@ PATCHES=( "${FILESDIR}/${PN}-qt-4.7.patch" )
 S=${WORKDIR}/${MY_P}
 
 DOCS=( README )
-
-

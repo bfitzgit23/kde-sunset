@@ -1,9 +1,8 @@
-inherit kde4-base
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-inherit kde4-meta-pkg kde4-functions-extra
+inherit -pkg -extra
 
 DESCRIPTION="kdegraphics - merge this to pull in all kdegraphics-derived packages"
 HOMEPAGE="https://www.kde.org/applications/graphics/"
@@ -30,5 +29,3 @@ RDEPEND="
 		$(add_kdeapps_dep libksane)
 	)
 "
-
-

@@ -29,5 +29,3 @@ src_install() {
 	insinto /usr/share/${MY_P}
 	doins input-shadow.svg || die
 }
-
-

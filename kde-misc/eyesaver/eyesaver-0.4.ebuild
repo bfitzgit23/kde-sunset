@@ -22,5 +22,3 @@ RDEPEND="
 "
 
 PATCHES=( "${FILESDIR}/eyesaver-0.2a-fix.patch" )
-
-

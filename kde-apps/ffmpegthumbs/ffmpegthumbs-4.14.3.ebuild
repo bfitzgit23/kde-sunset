@@ -15,5 +15,3 @@ DEPEND="
 RDEPEND="${DEPEND}
 	$(add_kdeapps_dep kdebase-kioslaves)
 "
-
-

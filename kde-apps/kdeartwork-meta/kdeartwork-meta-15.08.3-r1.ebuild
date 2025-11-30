@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
@@ -20,5 +19,3 @@ RDEPEND="
 	>=kde-apps/kdeartwork-wallpapers-15.08.3:4
 	>=kde-apps/kdeartwork-weatherwallpapers-15.08.3:4
 "
-
-

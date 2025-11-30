@@ -1,9 +1,8 @@
-inherit kde4-base
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-inherit kde4-meta-pkg kde4-functions-extra
+inherit -pkg -extra
 
 DESCRIPTION="Merge this to pull in all kdebase-derived packages"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -62,5 +61,3 @@ RDEPEND="
 		!prefix? ( display-manager? ( || ( $(add_kdeplasma_dep kdm '' 4.11) x11-misc/lightdm x11-misc/sddm ) ) )
 	)
 "
-
-

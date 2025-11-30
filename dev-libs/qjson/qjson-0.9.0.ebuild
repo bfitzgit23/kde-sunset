@@ -11,7 +11,7 @@ HOMEPAGE="http://qjson.sourceforge.net/"
 SRC_URI="https://github.com/flavio/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
-SLOT="0"
+SLOT="4"
 KEYWORDS="amd64 ~arm ~hppa ~ppc ~ppc64 x86"
 IUSE="debug doc test"
 
@@ -50,5 +50,3 @@ multilib_src_install_all() {
 		einstalldocs
 	fi
 }
-
-

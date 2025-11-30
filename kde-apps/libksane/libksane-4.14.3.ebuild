@@ -14,5 +14,3 @@ DEPEND="
 	media-gfx/sane-backends
 "
 RDEPEND="${DEPEND}"
-
-

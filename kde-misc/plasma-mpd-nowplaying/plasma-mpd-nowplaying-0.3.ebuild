@@ -21,5 +21,3 @@ DEPEND="media-libs/libmpdclient"
 RDEPEND=${DEPEND}
 
 S=${WORKDIR}/${MY_PN}
-
-

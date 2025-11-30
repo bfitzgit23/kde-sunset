@@ -10,7 +10,7 @@ HOMEPAGE="https://github.com/ibus/ibus/wiki"
 SRC_URI="https://github.com/ibus/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="0"
+SLOT="4"
 KEYWORDS="amd64 ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
 IUSE="doc"
 
@@ -51,5 +51,3 @@ src_install() {
 
 	cmake-utils_src_install
 }
-
-

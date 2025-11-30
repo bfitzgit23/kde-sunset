@@ -10,5 +10,4 @@ DESCRIPTION="KDE Japanese dictionary and reference"
 HOMEPAGE="https://www.kde.org/applications/education/kiten https://edu.kde.org/kiten"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
-
-
+RDEPEND="${DEPEND}"

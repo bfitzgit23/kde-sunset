@@ -29,5 +29,3 @@ PATCHES=(
 	"${FILESDIR}/${P}-desktop.patch"
 	"${FILESDIR}/${P}-gcc6.patch"
 )
-
-

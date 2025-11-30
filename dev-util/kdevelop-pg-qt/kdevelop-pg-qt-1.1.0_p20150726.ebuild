@@ -20,5 +20,3 @@ DEPEND="
 	sys-devel/flex
 "
 RDEPEND="dev-util/kdevelop:4"
-
-

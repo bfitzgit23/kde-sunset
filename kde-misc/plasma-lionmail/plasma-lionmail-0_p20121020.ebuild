@@ -25,5 +25,3 @@ DEPEND="
 RDEPEND="${DEPEND}
 	$(add_kdeapps_dep kdepim-runtime)
 "
-
-

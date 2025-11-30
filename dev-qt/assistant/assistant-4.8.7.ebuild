@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
- qt4-build-multilib
+inherit eutils -multilib
 
 DESCRIPTION="Tool for viewing on-line documentation in Qt help file format"
 
@@ -31,7 +31,7 @@ src_prepare() {
 	# bug 401173
 	use webkit || PATCHES+=("${FILESDIR}/disable-webkit.patch")
 
-	qt4-build-multilib_src_prepare
+	-multilib_src_prepare
 }
 
 multilib_src_configure() {
@@ -49,7 +49,5 @@ multilib_src_install_all() {
 	qt4_multilib_src_install_all
 
 	doicon tools/assistant/tools/assistant/images/assistant.png
-	# # make_desktop_entry removed – create .desktop manually removed – create .desktop manually assistant Assistant assistant 'Qt;Development;Documentation'
+	make_desktop_entry assistant Assistant assistant 'Qt;Development;Documentation'
 }
-
-

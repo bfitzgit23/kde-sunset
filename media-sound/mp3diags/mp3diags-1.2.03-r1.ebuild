@@ -3,7 +3,7 @@
 
 EAPI=8
 
- gnome2-utils qmake-utils
+inherit eutils gnome2-utils qmake-utils
 
 MY_PN=MP3Diags
 MY_P=${MY_PN}-${PV}
@@ -13,7 +13,7 @@ HOMEPAGE="http://mp3diags.sourceforge.net"
 SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.gz"
 
 LICENSE="LGPL-3 GPL-2"
-SLOT="0"
+SLOT="4"
 KEYWORDS="amd64 x86"
 IUSE=""
 
@@ -56,5 +56,3 @@ pkg_postinst() {
 pkg_postrm() {
 	gnome2_icon_cache_update
 }
-
-

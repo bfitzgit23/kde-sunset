@@ -1,4 +1,3 @@
-inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
@@ -6,7 +5,7 @@ EAPI=8
 
 KMNAME="kde-workspace"
 KMMODULE="libs/taskmanager"
-inherit kde4-meta
+inherit 
 
 DESCRIPTION="A library that provides basic taskmanager functionality"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -29,9 +28,7 @@ KMEXTRACTONLY="
 "
 
 src_prepare() {
-	kde4-meta_src_prepare
+	_src_prepare
 	sed -e 's:ksysguard/processcore/processes.h:ksysguard/processes.h:g' -i "${S}/libs/taskmanager/taskitem.cpp" || die
 	sed -e 's:ksysguard/processcore/process.h:ksysguard/process.h:g' -i "${S}/libs/taskmanager/taskitem.cpp" || die
 }
-
-

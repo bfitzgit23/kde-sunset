@@ -24,5 +24,3 @@ RDEPEND="${DEPEND}
 "
 
 S="${WORKDIR}/${MY_P}"
-
-

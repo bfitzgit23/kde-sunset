@@ -9,5 +9,4 @@ DESCRIPTION="KDE color selector/editor"
 HOMEPAGE="https://www.kde.org/applications/graphics/kcolorchooser/"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
-
-
+RDEPEND="${DEPEND}"

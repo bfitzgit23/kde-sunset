@@ -18,5 +18,3 @@ RDEPEND="$(add_kdeapps_dep libkdegames)
 DEPEND="${RDEPEND}
 	virtual/opengl
 "
-
-

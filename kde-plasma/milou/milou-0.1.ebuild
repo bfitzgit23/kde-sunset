@@ -24,5 +24,3 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	kde-frameworks/kfilemetadata:4
 "
-
-

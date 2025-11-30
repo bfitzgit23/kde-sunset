@@ -10,5 +10,4 @@ DESCRIPTION="KDE free disk space utility"
 HOMEPAGE="https://utils.kde.org/projects/kdf"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
-
-
+RDEPEND="${DEPEND}"

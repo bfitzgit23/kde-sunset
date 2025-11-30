@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-base versionator
+inherit kde4-base 
 
 MY_P="$(replace_version_separator 2 '-')"
 
@@ -21,5 +21,3 @@ RDEPEND="
 "
 
 S="${WORKDIR}/${MY_P}"
-
-
