@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 COMMIT=f8192f1a521235b765cb85a4459706256ec331ff
 inherit kde4-base
@@ -54,4 +54,5 @@ pkg_postinst() {
 	elog "If it's not desired, point the one you want to use in ${STARTUPDIR}/${CFG}"
 	elog
 }
+
 

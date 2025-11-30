@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 MY_P="QScintilla-gpl-${PV/_pre/-snapshot-}"
 inherit qmake-utils
@@ -78,4 +78,5 @@ pkg_postinst() {
 	ewarn "Please remerge dev-python/PyQt4 if you have problems with eric or other"
 	ewarn "qscintilla related packages before submitting bug reports."
 }
+
 

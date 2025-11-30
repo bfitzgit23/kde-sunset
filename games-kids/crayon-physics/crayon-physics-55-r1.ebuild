@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit desktop gnome2-utils
 
@@ -64,7 +64,7 @@ src_install() {
 	doins -r cache data crayon autoexec.txt version.xml
 
 	newicon -s 256 icon.png ${PN}.png
-	# make_desktop_entry removed – create .desktop manually ${PN}
+	# # make_desktop_entry removed – create .desktop manually removed – create .desktop manually ${PN}
 	make_wrapper ${PN} "./crayon" "${MYGAMEDIR}" "${MYGAMEDIR}/lib32"
 
 	einstalldocs
@@ -79,4 +79,5 @@ pkg_postinst() {
 pkg_postrm() {
 	gnome2_icon_cache_update
 }
+
 

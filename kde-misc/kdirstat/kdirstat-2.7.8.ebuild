@@ -3,7 +3,7 @@ inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 MY_PN=k4dirstat
 inherit xdg cmake
@@ -32,4 +32,5 @@ src_configure() {
 	local mycmakeargs=( -DK4DIRSTAT_GIT_VERSION=OFF )
 	cmake_src_configure
 }
+
 

@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 KDE_LINGUAS="de fr"
 inherit kde4-base
@@ -14,4 +14,5 @@ LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug"
+
 

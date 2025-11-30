@@ -1,7 +1,7 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 MY_PN="kcmsystemd"
 inherit kde4-base
@@ -25,4 +25,5 @@ RDEPEND="${DEPEND}
 
 # only needed for 0.7.0 and 1.1.0
 S="${WORKDIR}"/${MY_PN}-${PV}
+
 

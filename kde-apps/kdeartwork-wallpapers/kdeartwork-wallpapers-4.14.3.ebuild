@@ -2,7 +2,7 @@ inherit kde4-base
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 RESTRICT="binchecks strip"
 
@@ -20,4 +20,5 @@ KMEXTRA="
 "
 
 RDEPEND="!<kde-base/kde-wallpapers-4.9.50:4"
+
 

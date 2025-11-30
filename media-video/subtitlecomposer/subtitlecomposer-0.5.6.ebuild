@@ -2,7 +2,7 @@ inherit cmake
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 KDE_LINGUAS="bg cs de el es fr hu pl pt_BR ru sr sr@latin uk"
 KDE_LINGUAS_LIVE_OVERRIDE="true"
@@ -43,4 +43,5 @@ pkg_postinst() {
 	elog "or dev-lang/python to be installed."
 	echo
 }
+
 

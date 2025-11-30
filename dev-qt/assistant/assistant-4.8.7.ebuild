@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
  qt4-build-multilib
 
 DESCRIPTION="Tool for viewing on-line documentation in Qt help file format"
@@ -49,6 +49,7 @@ multilib_src_install_all() {
 	qt4_multilib_src_install_all
 
 	doicon tools/assistant/tools/assistant/images/assistant.png
-	# make_desktop_entry removed – create .desktop manually assistant Assistant assistant 'Qt;Development;Documentation'
+	# # make_desktop_entry removed – create .desktop manually removed – create .desktop manually assistant Assistant assistant 'Qt;Development;Documentation'
 }
+
 

@@ -2,7 +2,7 @@ inherit cmake
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 CMAKE_REMOVE_MODULES_LIST=( FindQt4 )
 inherit kde4-base
@@ -18,4 +18,5 @@ IUSE="debug"
 
 RDEPEND=">=net-wireless/bluez-5"
 export QT_SELECT="4"
+
 

@@ -2,7 +2,7 @@ inherit cmake
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 DECLARATIVE_REQUIRED="always"
 KMNAME="kdevelop"
@@ -52,4 +52,5 @@ src_configure() {
 
 	kde4-base_src_configure
 }
+
 

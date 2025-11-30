@@ -2,7 +2,7 @@ inherit cmake
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 KDE_LINGUAS="cs da de es fr hr hu it ja nb nn pl pt ro ru sk sr sv tr zh_CN"
 KDE_HANDBOOK="optional"
@@ -37,4 +37,5 @@ src_install() {
 	# hack since ChangeLog-* is automagically installed by eclass
 	rm -f "${ED}"usr/share/doc/${PF}/ChangeLog-pre*
 }
+
 

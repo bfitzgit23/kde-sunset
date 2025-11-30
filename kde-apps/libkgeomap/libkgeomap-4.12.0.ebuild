@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=7
+EAPI=8
 
 MY_PV="${PV/_/-}"
 MY_P="digikam-${MY_PV}"
@@ -25,4 +25,5 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}/extra/${PN}"
+
 

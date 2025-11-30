@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 KDE_MINIMAL="${PV}"
 KDE_HANDBOOK="optional"
@@ -21,4 +21,5 @@ DEPEND="
 	app-crypt/qca:2-qt4
 "
 RDEPEND="${DEPEND}"
+
 

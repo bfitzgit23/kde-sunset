@@ -2,7 +2,7 @@ inherit cmake
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 COMMIT=562da6111ab1ea817360c20b6a54e918817c31bf
 KDEBASE="kdevelop"
@@ -37,4 +37,5 @@ src_install() {
 		"${D}"/usr/share/apps/kdevappwizard/templates/kdevelop-qmake_qt4guiapp.tar.bz2 \
 		|| die
 }
+
 

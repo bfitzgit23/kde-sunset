@@ -2,7 +2,7 @@ inherit kde4-base
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 inherit kde4-meta-pkg
 
 DESCRIPTION="kdemultimedia - merge this to pull in all kdemultimedia-derived packages"
@@ -23,4 +23,5 @@ RDEPEND="
 	$(add_kdeapps_dep libkcompactdisc)
 	ffmpeg? ( $(add_kdeapps_dep ffmpegthumbs) )
 "
+
 

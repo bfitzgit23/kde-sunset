@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 OPENGL_REQUIRED=always
 inherit kde4-base
@@ -25,4 +25,5 @@ PATCHES=( "${FILESDIR}/${PN}-qt-4.7.patch" )
 S=${WORKDIR}/${MY_P}
 
 DOCS=( README )
+
 

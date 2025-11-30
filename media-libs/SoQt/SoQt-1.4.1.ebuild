@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit flag-o-matic
 
@@ -51,4 +51,5 @@ src_install() {
 	emake DESTDIR="${D}" install
 	dodoc AUTHORS ChangeLog NEWS README*
 }
+
 

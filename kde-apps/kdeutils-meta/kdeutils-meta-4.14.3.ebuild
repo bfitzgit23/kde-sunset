@@ -2,7 +2,7 @@ inherit kde4-base
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 inherit kde4-meta-pkg
 
 DESCRIPTION="kdeutils - merge this to pull in all kdeutils-derived packages"
@@ -24,4 +24,5 @@ RDEPEND="
 	floppy? ( $(add_kdeapps_dep kfloppy) )
 	lirc? ( $(add_kdeapps_dep kremotecontrol) )
 "
+
 

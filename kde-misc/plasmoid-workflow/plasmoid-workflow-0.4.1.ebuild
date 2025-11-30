@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 KDE_LINGUAS="de el en es fr pt"
 inherit kde4-base
@@ -26,4 +26,5 @@ pkg_postinst() {
 	elog "If you want to use the WorkFlow KWin script, install it from the KWin Script manager."
 	elog "The WorkFlow plasmoid package is a dependancy for the WorkFlow KWin script to work."
 }
+
 

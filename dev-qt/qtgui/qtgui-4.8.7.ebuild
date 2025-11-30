@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
  qt4-build-multilib
 
 DESCRIPTION="The GUI module for the Qt toolkit"
@@ -147,7 +147,7 @@ multilib_src_install_all() {
 
 	if has tools/qtconfig ${QT4_TARGET_DIRECTORIES}; then
 		newicon tools/qtconfig/images/appicon.png qtconfig.png
-		# make_desktop_entry removed – create .desktop manually qtconfig 'Qt Configuration Tool' qtconfig 'Qt;Settings;DesktopSettings'
+		# # make_desktop_entry removed – create .desktop manually removed – create .desktop manually qtconfig 'Qt Configuration Tool' qtconfig 'Qt;Settings;DesktopSettings'
 	fi
 }
 
@@ -157,4 +157,5 @@ pkg_postinst() {
 	# raster is the default graphicssystem, set it on first install
 	eselect qtgraphicssystem set raster --use-old
 }
+
 

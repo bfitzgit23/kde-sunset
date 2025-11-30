@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit desktop qmake-utils
 
@@ -33,6 +33,7 @@ src_install() {
 	dobin ${PN}
 	newicon res/touchpad.svg ${PN}.svg
 	einstalldocs
-	# make_desktop_entry removed – create .desktop manually ${PN} TouchFreeze ${PN} 'Qt;System'
+	# # make_desktop_entry removed – create .desktop manually removed – create .desktop manually ${PN} TouchFreeze ${PN} 'Qt;System'
 }
+
 

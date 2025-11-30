@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=7
+EAPI=8
 
 KDE_HANDBOOK="optional"
 inherit kde4-base
@@ -23,4 +23,5 @@ src_install() {
 	kde4-base_src_install
 	rm -r "${ED}"usr/share/icons  || die
 }
+
 

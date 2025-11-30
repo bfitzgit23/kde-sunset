@@ -2,7 +2,7 @@ inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 KMNAME="kross-interpreters"
 KMMODULE="java"
@@ -54,4 +54,5 @@ pkg_preinst() {
 	kde4-meta_pkg_preinst
 	java-pkg-2_pkg_preinst
 }
+
 

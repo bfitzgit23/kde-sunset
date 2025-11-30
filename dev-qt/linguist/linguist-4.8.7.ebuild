@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
  qt4-build-multilib
 
 DESCRIPTION="Graphical tool for translating Qt applications"
@@ -35,6 +35,7 @@ multilib_src_install_all() {
 	qt4_multilib_src_install_all
 
 	newicon tools/linguist/linguist/images/icons/linguist-128-32.png linguist.png
-	# make_desktop_entry removed – create .desktop manually linguist Linguist linguist 'Qt;Development;Translation'
+	# # make_desktop_entry removed – create .desktop manually removed – create .desktop manually linguist Linguist linguist 'Qt;Development;Translation'
 }
+
 

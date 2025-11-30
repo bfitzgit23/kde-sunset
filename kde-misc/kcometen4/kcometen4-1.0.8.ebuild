@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 OPENGL_REQUIRED="always"
 KDE_MINIMAL="4.10.3"
@@ -23,4 +23,5 @@ DEPEND="
 	virtual/opengl
 "
 RDEPEND="${DEPEND}"
+
 

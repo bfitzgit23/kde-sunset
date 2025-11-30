@@ -2,7 +2,7 @@ inherit cmake
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 KDE_LINGUAS="cs da de es et ga ja it nds nl pl pt pt_BR sk sv uk zh_CN"
 inherit kde4-base kde4-functions-extra
@@ -32,4 +32,5 @@ src_configure() {
 
 	kde4-base_src_configure
 }
+
 

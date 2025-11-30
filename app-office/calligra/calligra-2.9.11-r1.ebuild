@@ -6,7 +6,7 @@ inherit cmake
 # CMakeLists.txt, kexi/CMakeLists.txt kexi/migration/CMakeLists.txt
 # krita/CMakeLists.txt
 
-EAPI=7
+EAPI=8
 
 CHECKREQS_DISK_BUILD="4G"
 KDE_HANDBOOK="optional"
@@ -203,4 +203,5 @@ src_install() {
 	# bug 613414
 	QA_DT_NEEDED="usr/lib64/libkoversion.so.14.0.0"
 }
+
 

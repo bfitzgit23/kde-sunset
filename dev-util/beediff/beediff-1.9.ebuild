@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit desktop qmake-utils xdg
 
@@ -34,7 +34,8 @@ src_configure() {
 src_install() {
 	dobin ${PN}
 	doicon img/${PN}.png
-	# make_desktop_entry removed – create .desktop manually ${PN} "Beesoft Differ" ${PN} "Qt;Development;"
+	# # make_desktop_entry removed – create .desktop manually removed – create .desktop manually ${PN} "Beesoft Differ" ${PN} "Qt;Development;"
 	dodoc ChangeLog.txt
 }
+
 

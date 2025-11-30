@@ -2,7 +2,7 @@ inherit cmake
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 QT3SUPPORT_REQUIRED="true"
 inherit kde4-base
@@ -33,4 +33,5 @@ pkg_postinst() {
 		elog net-p2p/mldonkey to function.
 	fi
 }
+
 

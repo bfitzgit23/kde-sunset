@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 MY_PN="${PN}-1"
 inherit kde4-base
@@ -32,4 +32,5 @@ src_prepare() {
 	# Coinstallability with kde-plasma/polkit-kde-agent
 	use minimal && rm -rf po
 }
+
 

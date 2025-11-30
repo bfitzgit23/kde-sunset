@@ -2,7 +2,7 @@ inherit cmake
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 KMNAME="konsole"
 KDE_HANDBOOK="never"
@@ -58,4 +58,5 @@ src_install() {
 	rm "${ED}"usr/share/kde4/services/ServiceMenus/konsolehere.desktop || die
 	rm "${ED}"usr/share/kde4/services/ServiceMenus/konsolerun.desktop || die
 }
+
 

@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
  qt4-build-multilib
 
 DESCRIPTION="WYSIWYG tool for designing and building Qt-based GUIs"
@@ -52,6 +52,7 @@ multilib_src_install_all() {
 	qt4_multilib_src_install_all
 
 	doicon tools/designer/src/designer/images/designer.png
-	# make_desktop_entry removed – create .desktop manually designer Designer designer 'Qt;Development;GUIDesigner'
+	# # make_desktop_entry removed – create .desktop manually removed – create .desktop manually designer Designer designer 'Qt;Development;GUIDesigner'
 }
+
 

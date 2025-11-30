@@ -2,7 +2,7 @@ inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit cmake-utils git-r3
 
@@ -28,4 +28,5 @@ src_compile() {
 	nonfatal emake
 	emake
 }
+
 

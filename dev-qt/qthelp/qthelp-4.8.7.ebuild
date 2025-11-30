@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 inherit qt4-build-multilib
 
 DESCRIPTION="The Help module for the Qt toolkit"
@@ -109,4 +109,5 @@ multilib_src_install_all() {
 		doins tools/assistant/compat/features/assistant.prf
 	fi
 }
+
 

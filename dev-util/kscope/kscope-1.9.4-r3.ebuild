@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit desktop qmake-utils xdg
 
@@ -49,7 +49,8 @@ src_configure() {
 src_install() {
 	emake INSTALL_ROOT="${D}" install
 	doicon app/images/kscope.png
-	# make_desktop_entry removed – create .desktop manually kscopeapp KScope ${PN} "Qt;Development"
+	# # make_desktop_entry removed – create .desktop manually removed – create .desktop manually kscopeapp KScope ${PN} "Qt;Development"
 	einstalldocs
 }
+
 

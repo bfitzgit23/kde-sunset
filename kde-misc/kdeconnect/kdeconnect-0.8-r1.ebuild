@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 MY_PN="${PN}-kde"
 DECLARATIVE_REQUIRED="always"
@@ -55,4 +55,5 @@ pkg_postinst(){
 	elog "https://play.google.com/store/apps/details?id=org.kde.kdeconnect_tp"
 	elog
 }
+
 

@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=7
+EAPI=8
 
 KDE_MINIMAL="4.10"
 VIRTUALX_REQUIRED="test"
@@ -27,4 +27,5 @@ DEPEND="
 RDEPEND=${DEPEND}
 
 S="${WORKDIR}/${MY_P}/extra/${PN}"
+
 

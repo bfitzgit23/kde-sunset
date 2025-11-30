@@ -8,7 +8,7 @@ inherit kde4-base
 # TODO: complete packaging of qtsoap and qtkoauth, see dilfridge overlay for work in progress
 #
 
-EAPI=7
+EAPI=8
 
 OPENGL_REQUIRED="optional"
 KDE_HANDBOOK="optional"
@@ -145,4 +145,5 @@ src_configure() {
 
 	kde4-base_src_configure
 }
+
 

@@ -3,7 +3,7 @@ inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 KDE_HANDBOOK="optional"
 KMNAME="kdewebdev"
@@ -38,4 +38,5 @@ pkg_postinst() {
 	has_version dev-lang/ruby ||
 		elog "To use scripting in ${PN}, install dev-lang/ruby."
 }
+
 

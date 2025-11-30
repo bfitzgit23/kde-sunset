@@ -2,7 +2,7 @@ inherit cmake
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 DECLARATIVE_REQUIRED="optional"
 MULTIMEDIA_REQUIRED="optional"
@@ -48,4 +48,5 @@ src_configure() {
 src_test() {
 	PERL5LIB="${BUILD_DIR}/blib/arch:${BUILD_DIR}/blib/lib" kde4-base_src_test
 }
+
 

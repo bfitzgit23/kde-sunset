@@ -2,7 +2,7 @@ inherit cmake
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 KDE_HANDBOOK="optional"
 KDE_DOC_DIRS="doc/manual"
@@ -43,4 +43,5 @@ src_install() {
 	rm "${ED}"usr/share/kde4/services/konsolepart.desktop || die
 	rm -r "${ED}"usr/share/kde4/servicetypes || die
 }
+
 

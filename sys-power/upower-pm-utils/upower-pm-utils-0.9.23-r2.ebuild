@@ -1,7 +1,7 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
  systemd
 
 DESCRIPTION="The upstream upower 0.9 git branch for use with sys-power/pm-utils"
@@ -102,4 +102,5 @@ src_install() {
 	keepdir /var/lib/upower #383091
 	prune_libtool_files
 }
+
 

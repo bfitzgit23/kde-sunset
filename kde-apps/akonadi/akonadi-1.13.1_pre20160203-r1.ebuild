@@ -2,7 +2,7 @@ inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 if [[ ${PV} = *_pre* ]]; then
 	# KDE quickgit https certificate issue
@@ -125,4 +125,5 @@ pkg_postinst() {
 	elog "You can override it in your ~/.config/akonadi/akonadiserverrc."
 	elog "Available drivers are: ${AVAILABLE}"
 }
+
 

@@ -1,7 +1,7 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 DESCRIPTION="Utility to change the active Qt Graphics System"
 HOMEPAGE="https://github.com/gentoo/eselect-qtgraphicssystem"
@@ -18,4 +18,5 @@ src_install() {
 	insinto /usr/share/eselect/modules
 	doins qtgraphicssystem.eselect
 }
+
 

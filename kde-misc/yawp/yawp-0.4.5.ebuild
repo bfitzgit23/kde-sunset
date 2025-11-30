@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 KDE_LINGUAS="af cs de es fr he it pl ru sk sl tr uk"
 inherit kde4-base
@@ -16,4 +16,5 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 RDEPEND="kde-plasma/plasma-workspace:4"
+
 

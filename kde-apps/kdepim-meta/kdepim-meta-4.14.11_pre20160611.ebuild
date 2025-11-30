@@ -2,7 +2,7 @@ inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 DESCRIPTION="kdepim - merge this to pull in all kdepim-derived packages"
 HOMEPAGE+=" https://community.kde.org/KDE_PIM"
@@ -38,4 +38,5 @@ RDEPEND="
 		>=kde-apps/kdepim-l10n-4.14.3-r1:4
 	)
 "
+
 

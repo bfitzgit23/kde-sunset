@@ -2,7 +2,7 @@ inherit kde4-base
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 KDE_HANDBOOK="optional"
 KMNAME="kate"
@@ -22,4 +22,5 @@ KMEXTRA="
 "
 
 PATCHES=( "${FILESDIR}/${PN}-4.14.3-gcc7.patch" )
+
 

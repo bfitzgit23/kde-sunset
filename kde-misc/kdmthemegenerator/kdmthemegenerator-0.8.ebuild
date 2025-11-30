@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit kde4-base
 
@@ -29,4 +29,5 @@ src_install() {
 	insinto /usr/share/${MY_P}
 	doins input-shadow.svg || die
 }
+
 

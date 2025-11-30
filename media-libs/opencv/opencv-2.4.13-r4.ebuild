@@ -2,7 +2,7 @@ inherit cmake
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit toolchain-funcs cmake-utils java-pkg-opt-2 java-ant-2
 
@@ -124,7 +124,7 @@ src_configure() {
 		-DWITH_PNG=$(usex png)
 		-DWITH_PVAPI=OFF
 		-DWITH_QT=$(usex qt5 5 OFF)
-		-DWITH_GIGEAPI=7
+		-DWITH_GIGEAPI=8
 		-DWITH_WIN32UI=OFF
 		-DWITH_QUICKTIME=OFF
 		-DWITH_TBB=$(usex threads)
@@ -218,4 +218,5 @@ src_install () {
 	cmake-utils_src_install
 	rm -f "${ED%/}"/usr/$(get_libdir)/*so
 }
+
 

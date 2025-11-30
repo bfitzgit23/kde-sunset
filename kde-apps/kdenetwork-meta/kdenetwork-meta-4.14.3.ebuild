@@ -2,7 +2,7 @@ inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit kde4-meta-pkg
 
@@ -19,4 +19,5 @@ RDEPEND="
 	$(add_kdeapps_dep zeroconf-ioslave)
 	!arm? ( ppp? ( $(add_kdeapps_dep kppp) ) )
 "
+
 

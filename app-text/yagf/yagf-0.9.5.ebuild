@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 PLOCALES="fr ru"
 inherit cmake l10n
@@ -59,4 +59,5 @@ src_install() {
 	cmake_src_install
 	l10n_for_each_disabled_locale_do remove_translation
 }
+
 

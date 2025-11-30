@@ -1,7 +1,7 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 MY_PV=${PV/4.10/2.3}
 inherit qmake-utils toolchain-funcs multilib-minimal
@@ -119,4 +119,5 @@ multilib_src_install() {
 	# move pkgconfig file to the correct location
 	mv "${ED}"/usr/$(get_libdir){/qt4/pkgconfig,} || die
 }
+
 

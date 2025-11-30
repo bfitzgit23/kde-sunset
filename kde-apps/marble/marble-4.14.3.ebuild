@@ -2,7 +2,7 @@ inherit cmake
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 KDE_HANDBOOK="optional"
 KDE_REQUIRED="optional"
@@ -72,4 +72,5 @@ src_test() {
 		kde4-base_src_test
 	fi
 }
+
 

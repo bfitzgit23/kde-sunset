@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
  gnome2-utils qmake-utils
 
@@ -56,4 +56,5 @@ pkg_postinst() {
 pkg_postrm() {
 	gnome2_icon_cache_update
 }
+
 

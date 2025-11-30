@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=7
+EAPI=8
 
 if [[ ${PV} == *9999 ]]; then
 	KMNAME="kdesupport"
@@ -25,4 +25,5 @@ IUSE="sources"
 
 DEPEND=""
 RDEPEND="${DEPEND}"
+
 

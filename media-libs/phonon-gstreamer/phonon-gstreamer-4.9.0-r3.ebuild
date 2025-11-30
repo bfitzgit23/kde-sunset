@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 MY_PN="phonon-backend-gstreamer"
 MY_P=${MY_PN}-${PV}
@@ -54,4 +54,5 @@ pkg_postinst() {
 pkg_postrm() {
 	use minimal || xdg_icon_cache_update
 }
+
 

@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-power/kpowersave/kpowersave-0.7.3-r1.ebuild,v 1.3 2009/11/11 02:07:23 ssuominen Exp $
 
-EAPI=7
+EAPI=8
 
 ARTS_REQUIRED=never
 inherit kde eutils
@@ -44,4 +44,5 @@ pkg_postinst() {
 	einfo "chmod 755 ${ROOT}/usr/share/config"
 	chmod 755 "${ROOT}/usr/share/config"
 }
+
 

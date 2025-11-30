@@ -1,7 +1,7 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit multilib-build
 
@@ -19,4 +19,5 @@ RDEPEND="
 		dev-db/mariadb-galera:${SLOT}[client-libs(+),static-libs?,${MULTILIB_USEDEP}]
 		dev-db/mysql-cluster:${SLOT}[client-libs(+),static-libs?,${MULTILIB_USEDEP}]
 	)"
+
 

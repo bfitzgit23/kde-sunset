@@ -3,7 +3,7 @@ inherit cmake
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=7
+EAPI=8
 
 KDE_LINGUAS="ar be bg bs ca cs da de el en_GB eo es et eu fa fi fr ga gl he hi
 hr hu is it ja km ko lt lv ms nb nds ne nl nn pa pl pt pt_BR ro ru se sk sl sq
@@ -136,4 +136,5 @@ src_install() {
 	# install the api documentation
 	use doc && dodoc -r ${CMAKE_BUILD_DIR}/api/html
 }
+
 

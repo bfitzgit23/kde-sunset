@@ -3,7 +3,7 @@ inherit kde4-base
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-workspace"
@@ -46,4 +46,5 @@ pkg_postinst() {
 	ewarn "programs with elevated privileges (as data sources). So be careful opening worksheets"
 	ewarn "from untrusted sources!"
 }
+
 

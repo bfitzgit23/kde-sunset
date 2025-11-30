@@ -1,7 +1,7 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit kde4-base kde4-functions-extra
 
@@ -16,4 +16,5 @@ DEPEND="
 	$(add_kdeplasma_dep libkworkspace '' 4.11)
 "
 RDEPEND="${DEPEND}"
+
 

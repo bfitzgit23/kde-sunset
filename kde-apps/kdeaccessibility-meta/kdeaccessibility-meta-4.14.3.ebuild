@@ -2,7 +2,7 @@ inherit kde4-base
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 inherit kde4-meta-pkg
 
 DESCRIPTION="kdeaccessibility - merge this to pull in all kdeaccessiblity-derived packages"
@@ -16,4 +16,5 @@ RDEPEND="
 	$(add_kdeapps_dep kmousetool)
 	$(add_kdeapps_dep kmouth)
 "
+
 

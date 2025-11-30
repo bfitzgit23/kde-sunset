@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 DECLARATIVE_REQUIRED="always"
 VIRTUALX_REQUIRED="test"
@@ -31,4 +31,5 @@ RDEPEND="
 # Fails 2 out of 6, check later again.
 # With virtualx/virtualdbus it hangs
 RESTRICT="test"
+
 

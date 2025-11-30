@@ -2,7 +2,7 @@ inherit cmake
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 COMMIT="a28ff105e76a227b799c2bbf6e732791de5fb84e"
 inherit kde4-base
@@ -49,4 +49,5 @@ src_configure() {
 
 	kde4-base_src_configure
 }
+
 

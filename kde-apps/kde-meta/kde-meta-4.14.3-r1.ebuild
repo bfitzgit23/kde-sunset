@@ -2,7 +2,7 @@ inherit kde4-base
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 inherit kde4-meta-pkg kde4-functions-extra
 
 DESCRIPTION="KDE - merge this to pull in all split kde-base/* packages"
@@ -31,4 +31,5 @@ RDEPEND="
 	!minimal? ( $(add_kdeplasma_dep kdeplasma-addons) )
 "
 REQUIRED_USE="minimal? ( !kdepim )"
+
 
