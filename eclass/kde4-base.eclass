@@ -1,6 +1,8 @@
-inherit cmake
+inherit cmake kde4-functions
 
 EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install
+
+kde4-base_pkg_setup() { :; }
 
 kde4-base_src_unpack()   { default; }
 kde4-base_src_prepare()  { cmake_src_prepare; }
