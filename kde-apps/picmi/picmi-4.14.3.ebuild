@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Nonogram logic game for KDE"
 HOMEPAGE="https://games.kde.org/game.php?game=picmi"
@@ -15,4 +15,5 @@ RDEPEND="${DEPEND}"
 
 RESTRICT=test
 # needs X server
-SLOT=0
+
+

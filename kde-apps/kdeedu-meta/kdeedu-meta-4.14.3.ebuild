@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-meta-pkg
 
 DESCRIPTION="KDE educational apps - merge this to pull in all kdeedu-derived packages"
 HOMEPAGE="https://edu.kde.org"
@@ -36,4 +36,5 @@ RDEPEND="
 	$(add_kdeapps_dep step)
 "
 #	$(add_kdeapps_dep kig)
-SLOT=0
+
+

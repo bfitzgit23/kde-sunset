@@ -13,7 +13,7 @@ KDE_HANDBOOK="optional"
 KDE_LINGUAS="ar be bg bs ca cs da de el en_GB eo es et eu fi fr ga gl he hi hr
 hu id is it ja km ko lt lv ms nb nds nl nn oc pa pl pt pt_BR ro ru se sk sl sq
 sv th tr uk zh_CN zh_TW"
-inherit flag-o-matic kde4-meta
+inherit flag-o-matic kde4-base
 
 MY_PV=${PV/_/-}
 MY_P="digikam-${MY_PV}"
@@ -111,7 +111,7 @@ src_prepare() {
 		sed -i -e "/DETECT_OPENCV/d" CMakeLists.txt || die
 	fi
 
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 }
 
 src_configure() {
@@ -141,5 +141,7 @@ src_configure() {
 		-DENABLE_panorama="$(usex panorama)"
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
+
+

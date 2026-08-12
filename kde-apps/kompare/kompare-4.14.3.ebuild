@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Kompare is a program to view the differences between files"
 HOMEPAGE="https://www.kde.org/applications/development/kompare
@@ -14,4 +14,5 @@ IUSE="debug"
 
 DEPEND="$(add_kdeapps_dep libkomparediff2)"
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

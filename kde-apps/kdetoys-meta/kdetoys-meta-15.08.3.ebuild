@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
+inherit kde4-base
 
 DESCRIPTION="KDE toys - merge this to pull in all kdetoys-derived packages"
 HOMEPAGE+=" https://techbase.kde.org/Projects/Kdetoys"
@@ -15,4 +16,5 @@ RDEPEND="
 	>=kde-apps/amor-15.08.3:4
 	>=kde-apps/ktux-15.08.3:4
 "
-inherit kde4-meta
+
+

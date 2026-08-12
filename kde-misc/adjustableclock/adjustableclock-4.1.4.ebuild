@@ -6,7 +6,7 @@ EAPI=8
 KDE_LINGUAS_DIR="applet/locale"
 KDE_LINGUAS="de et pl pt pt_BR sv tr uk"
 WEBKIT_REQUIRED="always"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Plasmoid to show date and time in adjustable format using rich text"
 HOMEPAGE="https://store.kde.org/p/999193"
@@ -25,7 +25,7 @@ RDEPEND="${DEPEND}
 "
 
 src_prepare() {
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 
 	local lang
 	for lang in ${KDE_LINGUAS} ; do
@@ -39,3 +39,5 @@ pkg_postinst() {
 	elog "Version 4.0 (and newer) is not backwards compatible with 3.x."
 	elog "All custom formats need to be exported and manually converted."
 }
+
+

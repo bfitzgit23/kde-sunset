@@ -12,4 +12,5 @@ IUSE="debug"
 
 DEPEND=">=sys-libs/libutempter-1.1.5"
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

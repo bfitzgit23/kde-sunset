@@ -12,5 +12,5 @@ IUSE="debug"
 
 # test fails, last checked for 4.2.89
 RESTRICT=test
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

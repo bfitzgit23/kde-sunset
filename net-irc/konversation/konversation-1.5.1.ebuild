@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="User friendly IRC Client for KDE4"
 HOMEPAGE="https://kde.org/applications/en/internet/org.kde.konversation
@@ -30,5 +30,7 @@ src_configure() {
 		-DWITH_QCA2=$(usex crypt)
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
+
+

@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="never"
 OPENGL_REQUIRED="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE library for mathematical features"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -23,6 +23,7 @@ src_configure() {
 		-DWITH_readline="$(usex readline)"
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

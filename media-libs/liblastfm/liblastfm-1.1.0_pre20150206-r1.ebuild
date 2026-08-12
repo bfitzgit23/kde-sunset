@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -14,7 +13,7 @@ S="${WORKDIR}/${PN}-${COMMIT}"
 
 LICENSE="GPL-3"
 KEYWORDS="amd64 ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
-SLOT="4"
+SLOT="0-qt4"
 IUSE="fingerprint test"
 
 # 1 of 2 (UrlBuilderTest) is failing, last checked version 1.0.9
@@ -46,3 +45,5 @@ src_configure() {
 	)
 	cmake_src_configure
 }
+
+

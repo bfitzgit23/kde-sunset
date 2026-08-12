@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="A krunner plug-in that allows you to open conversation with your contact"
 HOMEPAGE="http://www.kde-apps.org/content/show.php?action=content&content=105263"
@@ -21,3 +21,5 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 DOCS=(README)
+
+

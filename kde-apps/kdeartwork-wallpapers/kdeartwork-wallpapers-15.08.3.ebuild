@@ -17,5 +17,5 @@ IUSE=""
 KMEXTRA="
 	HighResolutionWallpapers/
 "
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

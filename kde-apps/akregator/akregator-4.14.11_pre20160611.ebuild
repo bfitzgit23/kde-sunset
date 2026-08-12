@@ -20,4 +20,5 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 KMLOADLIBS="kdepim-common-libs"
-SLOT=0
+
+

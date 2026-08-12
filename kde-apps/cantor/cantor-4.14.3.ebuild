@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE4 interface for doing mathematics and scientific computing"
 HOMEPAGE="https://apps.kde.org/en/cantor https://edu.kde.org/cantor"
@@ -36,11 +36,11 @@ src_configure() {
 		-DWITH_qalculate="$(usex qalculate)"
 		-DWITH_R="$(usex R)"
 	)
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
 
 pkg_postinst() {
-	kde4-meta_pkg_postinst
+	kde4-base_pkg_postinst
 
 	if ! use analitza && ! use qalculate && ! use R; then
 		echo
@@ -51,4 +51,5 @@ pkg_postinst() {
 		echo
 	fi
 }
-SLOT=0
+
+

@@ -4,7 +4,7 @@
 EAPI=8
 
 MY_PV="4.14.3"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Framework for searching and managing metadata"
 SRC_URI="
@@ -28,4 +28,5 @@ RESTRICT="test"
 PATCHES=( "${WORKDIR}/${P}" ) # intevation branch + disable non-PIM stuff
 
 S="${WORKDIR}/${PN}-${MY_PV}"
-SLOT=0
+
+

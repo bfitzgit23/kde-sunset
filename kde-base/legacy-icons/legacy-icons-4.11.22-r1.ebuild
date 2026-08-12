@@ -4,7 +4,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE legacy icons"
 SRC_URI="
@@ -39,7 +39,7 @@ src_prepare() {
 		local _dir=${3}
 		echo "add_subdirectory(${_dest})" >> CMakeLists.txt || die
 		mv ${_source}/${_dir} ${_dest} || die
-		echo "kde4_install_icons( \${ICON_INSTALL_DIR} )" > 
+		echo "kde4_install_icons( \${ICON_INSTALL_DIR} )" > \
 			${_dest}/CMakeLists.txt || die
 		rm -r ${_source} || die
 	}
@@ -57,6 +57,7 @@ EOF
 	# bug 574778 (kde-frameworks/oxygen-icons-5.19.0)
 	prepare_icons kde-workspace-4.11.22 systemsettings kcontrol/kfontinst/kio
 
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 }
-SLOT=0
+
+

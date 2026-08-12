@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Port of the board game risk"
 HOMEPAGE="
@@ -20,4 +20,5 @@ DEPEND="
 	sys-libs/zlib
 "
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

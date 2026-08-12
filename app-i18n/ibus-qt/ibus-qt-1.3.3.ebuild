@@ -1,5 +1,4 @@
 # Copyright 1999-2018 Gentoo Foundation
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -11,7 +10,7 @@ HOMEPAGE="https://github.com/ibus/ibus/wiki"
 SRC_URI="https://github.com/ibus/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="4"
+SLOT="0"
 KEYWORDS="amd64 ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
 IUSE="doc"
 
@@ -52,3 +51,5 @@ src_install() {
 
 	cmake-utils_src_install
 }
+
+

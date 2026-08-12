@@ -21,14 +21,14 @@ KMEXTRACTONLY="
 "
 
 src_prepare() {
-	_src_prepare
+	kde4-meta_src_prepare
 
 	# Do not install non-kfmclient *.desktop files
-	sed -e "/konqbrowser\.desktop/d" 
-		-e "/konqueror\.desktop/s/^/#DONOTWANT/" 
-		-e "/install(FILES profile/s/^/#DONOTWANT/" 
-		-i konqueror/CMakeLists.txt 
+	sed -e "/konqbrowser\.desktop/d" \
+		-e "/konqueror\.desktop/s/^/#DONOTWANT/" \
+		-e "/install(FILES profile/s/^/#DONOTWANT/" \
+		-i konqueror/CMakeLists.txt \
 		|| die "Failed to omit .desktop files"
 }
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

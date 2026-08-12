@@ -9,7 +9,7 @@ KDE_HANDBOOK="optional"
 RESTRICT=test
 # test 2: parttest hangs
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Universal document viewer based on KPDF by KDE"
 HOMEPAGE="https://okular.kde.org https://www.kde.org/applications/graphics/okular"
@@ -52,6 +52,7 @@ src_configure() {
 		-DWITH_tiff="$(usex tiff)"
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

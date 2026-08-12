@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KFloppy - formats disks and puts a DOS or ext2fs filesystem on them"
 HOMEPAGE="
@@ -13,5 +13,5 @@ HOMEPAGE="
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

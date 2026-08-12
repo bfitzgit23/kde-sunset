@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE: KLettres helps a very young child or an adult learning "
 HOMEPAGE="https://www.kde.org/applications/education/klettres
@@ -15,4 +15,5 @@ IUSE="debug"
 RDEPEND="
 	$(add_kdeapps_dep knotify)
 "
-SLOT=0
+
+

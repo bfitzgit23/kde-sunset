@@ -1,10 +1,9 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
-inherit qmake-utils 
+inherit qmake-utils versionator
 
 MY_P="${PN}-$(replace_version_separator 3 '-')"
 MIN_PV="$(get_version_component_range 1-3)"
@@ -14,7 +13,7 @@ HOMEPAGE="http://qt4-fsarchiver.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/source/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="4"
+SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
 IUSE=""
@@ -36,12 +35,12 @@ S="${WORKDIR}/${PN}"
 
 src_prepare() {
 	# fix .desktop file
-	sed -i 
-		-e '/Encoding/d' starter/"${PN}".desktop 
+	sed -i \
+		-e '/Encoding/d' starter/"${PN}".desktop \
 		|| die "sed on qt4-fsarchiver.desktop failed"
 	# fix icon installation location
-	sed -i 
-		-e "/icon.path/s:app-install/icons:${PN}:" "${PN}.pro" 
+	sed -i \
+		-e "/icon.path/s:app-install/icons:${PN}:" "${PN}.pro" \
 		|| die "sed on ${PN}.pro failed"
 }
 
@@ -64,3 +63,5 @@ pkg_postinst() {
 	elog "  net-fs/sshfs"
 	elog "  sys-fs/xfsprogs"
 }
+
+

@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 VIRTUALX_REQUIRED="test"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Kill the bots or they kill you!"
 HOMEPAGE="https://www.kde.org/applications/games/killbots/"
@@ -14,4 +14,5 @@ IUSE="debug"
 
 DEPEND="$(add_kdeapps_dep libkdegames)"
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

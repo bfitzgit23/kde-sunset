@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_MINIMAL="4.10.0"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="A Plasma widget to display menubar of application windows"
 HOMEPAGE="https://launchpad.net/plasma-widget-menubar"
@@ -26,3 +26,5 @@ RDEPEND="${DEPEND}
 
 # last checked 0.1.18
 RESTRICT="test"
+
+

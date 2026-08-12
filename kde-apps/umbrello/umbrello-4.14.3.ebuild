@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE UML Modeller"
 HOMEPAGE="
@@ -19,4 +19,5 @@ RDEPEND="
 	dev-libs/libxslt
 "
 DEPEND="${RDEPEND}"
-SLOT=0
+
+

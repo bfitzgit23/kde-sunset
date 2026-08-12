@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE internationalization package"
 HOMEPAGE="https://l10n.kde.org"
@@ -57,33 +57,34 @@ src_unpack() {
 }
 
 src_prepare() {
-	find "${S}" -name CMakeLists.txt -type f 
+	find "${S}" -name CMakeLists.txt -type f \
 		-exec sed -i -e 's:^ *add_subdirectory( *kdepim-runtime *):# no kdepim-runtime:g' {} +
-	find "${S}" -name CMakeLists.txt -type f 
+	find "${S}" -name CMakeLists.txt -type f \
 		-exec sed -i -e 's:^ *add_subdirectory( *kdepim *):# no kdepim:g' {} +
 
 	# bug 481106, please remove in 4.11.1 and later
 	use l10n_pl && rm "${S}"/kde-l10n-pl-${PV}/messages/kde-runtime/{accountwizard*,akonadi_*}.po
 
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 }
 
 src_configure() {
 	mycmakeargs=(
 		-DBUILD_docs="$(usex handbook)"
 	)
-	[[ -n ${A} ]] && kde4-meta_src_configure
+	[[ -n ${A} ]] && kde4-base_src_configure
 }
 
 src_compile() {
-	[[ -n ${A} ]] && kde4-meta_src_compile
+	[[ -n ${A} ]] && kde4-base_src_compile
 }
 
 src_test() {
-	[[ -n ${A} ]] && kde4-meta_src_test
+	[[ -n ${A} ]] && kde4-base_src_test
 }
 
 src_install() {
-	[[ -n ${A} ]] && kde4-meta_src_install
+	[[ -n ${A} ]] && kde4-base_src_install
 }
-SLOT=0
+
+

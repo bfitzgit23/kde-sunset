@@ -1,10 +1,9 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
-inherit toolchain-funcs cmake-utils java-opt-2 java-ant-2
+inherit toolchain-funcs cmake-utils java-pkg-opt-2 java-ant-2
 
 DESCRIPTION="A collection of algorithms and sample code for various computer vision problems"
 HOMEPAGE="https://opencv.org"
@@ -12,7 +11,7 @@ HOMEPAGE="https://opencv.org"
 SRC_URI="https://github.com/Itseez/opencv/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="BSD"
-SLOT="4"
+SLOT="2.4"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux"
 IUSE="cuda +eigen examples ffmpeg gstreamer gtk ieee1394 jpeg opencl openexr opengl openmp pch png qt5 testprograms threads tiff v4l vtk xine"
 
@@ -70,7 +69,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-2.4.3-gcc47.patch"
 	"${FILESDIR}/${PN}-2.4.2-cflags.patch"
 	"${FILESDIR}/${PN}-2.4.8-javamagic.patch"
-	"${FILESDIR}/${PN}-2.4.9-cuda-config.patch"
+	"${FILESDIR}/${PN}-2.4.9-cuda-pkg-config.patch"
 	"${FILESDIR}/${PN}-2.4.13-sysctl.patch"
 	"${FILESDIR}/${PN}-3.0.0-gles.patch"
 	"${FILESDIR}/${P}-gcc-6.0.patch"
@@ -79,7 +78,7 @@ PATCHES=(
 
 pkg_setup() {
 	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
-	java-opt-2_pkg_setup
+	java-pkg-opt-2_pkg_setup
 }
 
 src_prepare() {
@@ -87,11 +86,11 @@ src_prepare() {
 
 	# remove bundled stuff
 	rm -rf 3rdparty || die "Removing 3rd party components failed"
-	sed -i 
-		-e '/add_subdirectory(3rdparty)/ d' 
+	sed -i \
+		-e '/add_subdirectory(3rdparty)/ d' \
 		CMakeLists.txt || die
 
-	java-opt-2_src_prepare
+	java-pkg-opt-2_src_prepare
 }
 
 src_configure() {
@@ -124,7 +123,7 @@ src_configure() {
 		-DWITH_PNG=$(usex png)
 		-DWITH_PVAPI=OFF
 		-DWITH_QT=$(usex qt5 5 OFF)
-		-DWITH_GIGEAPI=OFF
+		-DWITH_GIGEAPI=8
 		-DWITH_WIN32UI=OFF
 		-DWITH_QUICKTIME=OFF
 		-DWITH_TBB=$(usex threads)
@@ -218,3 +217,5 @@ src_install () {
 	cmake-utils_src_install
 	rm -f "${ED%/}"/usr/$(get_libdir)/*so
 }
+
+

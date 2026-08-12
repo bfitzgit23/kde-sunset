@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_LINGUAS="bg bs ca cs da de el es fi fr gl hu ja ko lt nl pl pt pt_BR ro ru
 sk sl sv tr ug uk"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KCM displaying distribution and system information"
 HOMEPAGE="https://projects.kde.org/projects/playground/base/about-distro"
@@ -27,7 +27,7 @@ RDEPEND="${DEPEND}
 "
 
 src_install() {
-	kde4-meta_src_install
+	kde4-base_src_install
 
 	insinto /usr/share/config
 	doins "${FILESDIR}"/kcm-about-distrorc
@@ -35,3 +35,5 @@ src_install() {
 	insinto /usr/share/${PN}
 	doins "${DISTDIR}"/glogo-small.png
 }
+
+

@@ -6,7 +6,7 @@ EAPI=8
 
 KDE_MINIMAL="4.10"
 VIRTUALX_REQUIRED="test"
-inherit kde4-meta
+inherit kde4-base
 
 MY_PV=${PV/_/-}
 MY_P="digikam-${MY_PV}"
@@ -18,7 +18,7 @@ HOMEPAGE="http://www.digikam.org/"
 LICENSE="GPL-2"
 KEYWORDS="amd64 x86"
 IUSE=""
-SLOT="4"
+SLOT=4
 
 DEPEND="
 	kde-apps/libkexiv2:4=
@@ -27,3 +27,5 @@ DEPEND="
 RDEPEND=${DEPEND}
 
 S="${WORKDIR}/${MY_P}/extra/${PN}"
+
+

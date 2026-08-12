@@ -6,7 +6,7 @@ EAPI=8
 KDE_MINIMAL="4.8"
 KDE_LINGUAS_DIR="applet/po"
 KDE_LINGUAS="bs de el fr hu it pl pt ru sr tr"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Simple application launcher for KDE 4's plasma desktop"
 HOMEPAGE="http://cdlszm.org/"
@@ -19,3 +19,5 @@ IUSE="debug"
 
 DEPEND="kde-plasma/libtaskmanager:4"
 RDEPEND="${DEPEND}"
+
+

@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Window decoration engine for KDE"
 HOMEPAGE="https://store.kde.org/p/1167273"
@@ -21,3 +21,5 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 DOCS=( AUTHORS ChangeLog CHANGELOG.original README README.original TODO )
+
+

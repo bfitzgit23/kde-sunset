@@ -11,5 +11,5 @@ inherit kde4-meta
 DESCRIPTION="KDE extra colorschemes"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

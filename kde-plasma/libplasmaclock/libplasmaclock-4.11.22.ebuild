@@ -28,6 +28,7 @@ src_configure() {
 		-DWITH_KdepimLibs="$(usex pim)"
 	)
 
-	_src_configure
+	kde4-meta_src_configure
 }
-SLOT=0
+
+

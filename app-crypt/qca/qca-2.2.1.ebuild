@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -11,7 +10,7 @@ HOMEPAGE="https://userbase.kde.org/QCA"
 SRC_URI="mirror://kde/stable/${PN}/${PV}/${P}.tar.xz"
 
 LICENSE="LGPL-2.1"
-SLOT="4"
+SLOT="2-qt4"
 KEYWORDS="amd64 ~arm ~hppa ~ppc ~ppc64 ~sparc x86 ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 
 IUSE="botan debug doc examples gcrypt gpg logger nss pkcs11 sasl softstore +ssl test"
@@ -89,3 +88,5 @@ src_install() {
 		dodoc -r "${S}"/examples
 	fi
 }
+
+

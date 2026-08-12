@@ -14,7 +14,7 @@ if [[ ${PV} != 9999* ]]; then
 	KEYWORDS="amd64 ~arm x86"
 fi
 VIRTUALX_REQUIRED="test"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="BitTorrent library based on KDELibs4 Platform"
 HOMEPAGE="https://apps.kde.org/ktorrent/ https://userbase.kde.org/KTorrent"
@@ -34,7 +34,9 @@ DEPEND="${RDEPEND}
 "
 
 src_prepare() {
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 	# do not build non-installed example binary
 	sed -i -e '/add_subdirectory(examples)/d' CMakeLists.txt || die
 }
+
+

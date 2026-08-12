@@ -4,7 +4,7 @@
 EAPI=8
 KDE_LINGUAS="cs de fr"
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Friendly nzb linux usenet binary client"
 HOMEPAGE="https://www.linux-apps.com/content/show.php/Kwooty?content=114385"
@@ -25,3 +25,5 @@ RDEPEND="
 "
 
 DOCS=( README.txt TODO )
+
+

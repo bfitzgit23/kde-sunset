@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-meta-pkg
 
 DESCRIPTION="Merge this to pull in all kdebase-runtime-derived packages"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -50,4 +50,5 @@ RDEPEND="
 	)
 "
 REQUIRED_USE="minimal? ( !crash-reporter )"
-SLOT=0
+
+

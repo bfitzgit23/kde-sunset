@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_LINGUAS="br cs da de el es et fi fr he hr hu is it ja nb nl nn pl pt pt_BR ro ru sk sl sv tr uk zh_TW"
 QT3SUPPORT_REQUIRED="true"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="New mail notification utility"
 HOMEPAGE="http://www.kbiff.org"
@@ -15,4 +15,5 @@ LICENSE="GPL-2"
 KEYWORDS="amd64 x86"
 SLOT="4"
 IUSE=""
-RDEPEND="${DEPEND}"
+
+

@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_LINGUAS_DIR="applet/locale"
 KDE_LINGUAS="de et pl pt ru sv uk"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Multimedia player plasmoid"
 HOMEPAGE="http://kde-look.org/content/show.php?content=95501"
@@ -32,5 +32,7 @@ src_prepare() {
 		fi
 	done
 
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 }
+
+

@@ -4,10 +4,10 @@
 EAPI=8
 
 KDE_SCM="svn"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE base artwork"
 IUSE=""
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

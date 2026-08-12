@@ -5,7 +5,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE Wallet Management Tool"
 HOMEAGE="https://www.kde.org/applications/system/kwalletmanager
@@ -20,7 +20,8 @@ RDEPEND="
 "
 
 src_install() {
-	kde4-meta_src_install
+	kde4-base_src_install
 	rm -r "${ED}"usr/share/icons  || die
 }
-SLOT=0
+
+

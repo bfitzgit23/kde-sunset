@@ -4,7 +4,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KCM, daemon and applet for touchpad"
 HOMEPAGE="https://wiki.gentoo.org/wiki/No_homepage"
@@ -21,3 +21,5 @@ DEPEND="x11-drivers/xf86-input-synaptics
         x11-libs/libxcb
 "
 RDEPEND="${DEPEND}"
+
+

@@ -17,7 +17,7 @@ else
 	LIBKT_VERSION_MAX="99999999"
 fi
 
-inherit kde4-meta 
+inherit kde4-base kde4-functions-extra
 
 DESCRIPTION="Powerful BitTorrent client by KDE"
 HOMEPAGE="http://ktorrent.pwsp.net/"
@@ -59,12 +59,12 @@ PATCHES=(
 
 src_prepare() {
 	if ! use plasma; then
-		sed -i 
-			-e "s:add_subdirectory(plasma):#nada:g" 
+		sed -i \
+			-e "s:add_subdirectory(plasma):#nada:g" \
 			CMakeLists.txt || die "Failed to make plasmoid optional"
 	fi
 
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 }
 
 src_configure() {
@@ -87,5 +87,7 @@ src_configure() {
 		-DENABLE_WEBINTERFACE_PLUGIN="$(usex webinterface)"
 		-DENABLE_ZEROCONF_PLUGIN="$(usex zeroconf)"
 	)
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
+
+

@@ -10,5 +10,5 @@ inherit kde4-meta
 DESCRIPTION="Dialog box for setting preferences for debug output"
 KEYWORDS="amd64 x86"
 IUSE="debug"
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

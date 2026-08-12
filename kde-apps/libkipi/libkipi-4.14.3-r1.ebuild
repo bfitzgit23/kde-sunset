@@ -4,7 +4,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="A library for image plugins accross KDE applications"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
@@ -14,7 +14,8 @@ DEPEND=""
 RDEPEND="|| ( >=kde-base/legacy-icons-4.11.22-r1 kde-apps/libkipi:5 )"
 
 src_install() {
-	kde4-meta_src_install
+	kde4-base_src_install
 	rm -r "${ED}"usr/share/icons || die
 }
-SLOT=0
+
+

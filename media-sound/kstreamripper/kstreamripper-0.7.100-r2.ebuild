@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Program for ripping internet radios"
 HOMEPAGE="https://www.linux-apps.com/p/1126631"
@@ -25,3 +25,5 @@ S=${WORKDIR}/${PN}
 DOCS=( TODO.odt )
 
 PATCHES=( "${FILESDIR}/${P}-nodebuglog.patch" )
+
+

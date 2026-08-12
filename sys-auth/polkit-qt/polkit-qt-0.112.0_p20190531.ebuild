@@ -13,7 +13,7 @@ SRC_URI="https://invent.kde.org/libraries/${KDE_ORG_NAME}/-/archive/${COMMIT}/${
 S="${WORKDIR}/${KDE_ORG_NAME}-${COMMIT}"
 
 LICENSE="LGPL-2"
-SLOT="4"
+SLOT="0-qt4"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86"
 IUSE="debug"
 
@@ -38,3 +38,5 @@ src_configure() {
 	)
 	cmake_src_configure
 }
+
+

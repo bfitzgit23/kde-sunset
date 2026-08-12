@@ -19,4 +19,5 @@ RDEPEND="${DEPEND}"
 KMEXTRACTONLY="
 	lib/konq/
 "
-SLOT=0
+
+

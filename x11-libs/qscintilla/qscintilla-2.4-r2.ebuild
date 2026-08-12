@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -14,7 +13,7 @@ mirror://kde-sunset/${MY_P}.tar.gz"
 S="${WORKDIR}"/${MY_P}
 
 LICENSE="|| ( GPL-2 GPL-3 )"
-SLOT="4"
+SLOT="0-qt4"
 KEYWORDS="amd64 ~hppa ~ppc ~ppc64 ~sparc x86"
 IUSE="doc"
 
@@ -79,3 +78,5 @@ pkg_postinst() {
 	ewarn "Please remerge dev-python/PyQt4 if you have problems with eric or other"
 	ewarn "qscintilla related packages before submitting bug reports."
 }
+
+

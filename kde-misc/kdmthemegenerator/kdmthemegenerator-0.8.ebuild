@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 MY_P=KdmThemeGenerator
 
@@ -23,9 +23,11 @@ RDEPEND="
 S=${WORKDIR}/${MY_P}
 
 src_install() {
-	kde4-meta_src_install
+	kde4-base_src_install
 	exeinto /usr/share/${MY_P}
 	doexe copyFromUserToSystem.sh || die
 	insinto /usr/share/${MY_P}
 	doins input-shadow.svg || die
 }
+
+

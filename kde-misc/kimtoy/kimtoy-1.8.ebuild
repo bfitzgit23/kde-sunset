@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_LINGUAS="cs da de es et ga ja it nds nl pl pt pt_BR sk sv uk zh_CN"
-inherit kde4-meta 
+inherit kde4-base kde4-functions-extra
 
 DESCRIPTION="An input method frontend for KDE"
 HOMEPAGE="http://kde-apps.org/content/show.php/KIMToy?content=140967"
@@ -29,5 +29,7 @@ src_configure() {
 		-DWITH_IBus=OFF
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
+
+

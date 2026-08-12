@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta 
+inherit kde4-base kde4-functions-extra
 
 DESCRIPTION="Advanced download manager by KDE"
 HOMEPAGE="https://www.kde.org/applications/internet/kget/"
@@ -34,6 +34,7 @@ src_configure() {
 		-DWITH_LibMms="$(usex mms)"
 		-DWITH_sqlite="$(usex sqlite)"
 	)
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

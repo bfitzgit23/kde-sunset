@@ -5,7 +5,7 @@ EAPI=8
 
 COMMIT=8e6845216dc1f7bae64311459042e528b8e78de1
 KDEBASE="kdevelop"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="A LL(1) parser generator used mainly by KDevelop language plugins"
 SRC_URI="https://invent.kde.org/${KDEBASE}/${PN}/-/archive/${COMMIT}/${PN}-${COMMIT}.tar.gz -> ${P}.tar.gz"
@@ -20,4 +20,5 @@ DEPEND="
 	sys-devel/flex
 "
 RDEPEND="dev-util/kdevelop:4"
-SLOT=0
+
+

@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="VNC-compatible server to share KDE desktops"
 HOMEPAGE="https://apps.kde.org/en/krfb"
@@ -29,7 +29,7 @@ src_prepare() {
 	# bug 518824, patch before eclass magic
 	eapply "${FILESDIR}/${PN}-4.14.0-CVE-2014-4607-unbundle-libvncserver.patch"
 
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 }
 
 src_configure() {
@@ -38,6 +38,7 @@ src_configure() {
 		-DWITH_KTp=$(use ktp)
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

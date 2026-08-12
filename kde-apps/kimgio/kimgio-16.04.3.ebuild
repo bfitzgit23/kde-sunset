@@ -12,4 +12,5 @@ IUSE="debug"
 
 DEPEND="media-libs/libwebp:="
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

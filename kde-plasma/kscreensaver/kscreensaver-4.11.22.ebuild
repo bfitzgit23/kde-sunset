@@ -19,4 +19,5 @@ DEPEND="${RDEPEND}"
 PATCHES=(
 	"${FILESDIR}/${PN}-4.5.95-nsfw.patch"
 )
-SLOT=0
+
+

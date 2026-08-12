@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 KMNAME="kate"
-inherit kde4-meta
+inherit kde4-meta kde4-functions-extra
 
 DESCRIPTION="Kate is an MDI texteditor"
 HOMEPAGE="https://www.kde.org/applications/utilities/kate http://kate-editor.org"
@@ -32,15 +32,16 @@ src_configure() {
 		-DBUILD_pate=OFF
 	)
 
-	_src_configure
+	kde4-meta_src_configure
 }
 
 pkg_postinst() {
-	_pkg_postinst
+	kde4-meta_pkg_postinst
 
 	if ! has_version kde-apps/kaddressbook:${SLOT}; then
 		elog "File templates plugin requires kde-apps/kaddressbook:${SLOT}."
 		elog "Please install it if you plan to use this plugin."
 	fi
 }
-SLOT=0
+
+

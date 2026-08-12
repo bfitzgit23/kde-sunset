@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 KDE_SELINUX_MODULE="games"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KMines is a classic mine sweeper game"
 HOMEPAGE="
@@ -17,4 +17,5 @@ IUSE="debug"
 
 DEPEND="$(add_kdeapps_dep libkdegames)"
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

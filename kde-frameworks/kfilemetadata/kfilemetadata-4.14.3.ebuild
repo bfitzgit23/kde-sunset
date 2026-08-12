@@ -4,7 +4,7 @@
 EAPI=8
 
 CMAKE_REMOVE_MODULES_LIST=( FindPopplerQt4 )
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Library for extracting file metadata"
 
@@ -32,5 +32,7 @@ src_configure() {
 		-DCMAKE_DISABLE_FIND_PACKAGE_Taglib="$(usex !taglib)"
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
+
+

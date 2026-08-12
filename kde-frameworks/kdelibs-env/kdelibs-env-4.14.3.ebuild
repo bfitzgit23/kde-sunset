@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
+inherit kde4-base
 
 DESCRIPTION="Environment setting required for all KDELibs4 apps to run"
 HOMEPAGE="https://www.kde.org/"
@@ -9,7 +10,7 @@ SRC_URI=""
 
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
 LICENSE="GPL-2"
-SLOT="4"
+SLOT="4/4.14"
 IUSE=""
 
 S="${WORKDIR}"
@@ -31,5 +32,5 @@ if [ -z "\${XDG_MENU_PREFIX}" ] && [ "\${DESKTOP_SESSION}" = "KDE-4" ]; then
 fi
 EOF
 }
-RDEPEND="${DEPEND}"
-inherit kde4-meta
+
+

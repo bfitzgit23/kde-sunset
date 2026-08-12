@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Plasmoid, which reminds us to take our eyes off the screen"
 HOMEPAGE="http://www.kde-look.org/content/show.php/Eyesaver?content=89989"
@@ -22,3 +22,5 @@ RDEPEND="
 "
 
 PATCHES=( "${FILESDIR}/eyesaver-0.2a-fix.patch" )
+
+

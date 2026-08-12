@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE: A program that helps you to learn and practice touch typing"
 HOMEPAGE="https://edu.kde.org/applications/miscellaneous/ktouch"
@@ -16,4 +16,5 @@ RDEPEND="
 	$(add_kdeapps_dep kqtquickcharts)
 	$(add_kdeapps_dep plasma-runtime)
 "
-SLOT=0
+
+

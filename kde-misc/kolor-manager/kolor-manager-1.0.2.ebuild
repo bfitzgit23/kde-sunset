@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KControl module for Oyranos CMS cross desktop settings"
 HOMEPAGE="http://www.oyranos.org/wiki/index.php?title=Kolor-manager"
@@ -23,3 +23,5 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 PATCHES=( "${FILESDIR}/${P}-cmake-3.patch" )
+
+

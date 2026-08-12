@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Common library for KDE educational apps"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -12,5 +12,5 @@ IUSE="debug"
 # 4 of 4 tests fail. Last checked for 4.6.1. Tests are fundamentally broken,
 # see bug 258857 for details.
 RESTRICT=test
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

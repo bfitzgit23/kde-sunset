@@ -10,7 +10,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 KEYWORDS="amd64 ~ppc ~ppc64 x86"
 LICENSE="GPL-2"
 IUSE="doc"
-SLOT="4"
+SLOT="0/2"
 
 RDEPEND="
 	>=dev-cpp/commoncpp2-1.3.0:0=
@@ -31,4 +31,5 @@ src_install() {
 	default
 	find "${D}" -name '*.la' -delete || die
 }
-inherit kde4-meta
+
+

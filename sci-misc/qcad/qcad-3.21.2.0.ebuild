@@ -3,14 +3,14 @@
 
 EAPI=8
 
-inherit desktop kde4-functions qmake-utils xdg
+inherit desktop qmake-utils xdg
 
 DESCRIPTION="Open Source 2D CAD"
 HOMEPAGE="https://www.qcad.org/en/"
 SRC_URI="https://github.com/${PN}/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3"
-SLOT="4"
+SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
 DEPEND="
@@ -53,3 +53,5 @@ src_install () {
 	dodoc -r examples/*
 	docompress -x /usr/share/doc/${PF}/examples
 }
+
+

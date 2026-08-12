@@ -4,12 +4,12 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE character selection utility"
 HOMEPAGE="https://www.kde.org/applications/utilities/kcharselect
 https://utils.kde.org/projects/kcharselect"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

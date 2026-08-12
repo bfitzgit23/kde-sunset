@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Simple kdelibs4-based live data viewer for collectd"
 HOMEPAGE="https://www.forwiss.uni-passau.de/~berberic/Linux/kcollectd.html"
@@ -29,3 +29,5 @@ PATCHES=(
 	"${FILESDIR}/${P}-desktop.patch"
 	"${FILESDIR}/${P}-gcc6.patch"
 )
+
+

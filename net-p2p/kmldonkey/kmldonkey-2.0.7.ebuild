@@ -4,7 +4,7 @@
 EAPI=8
 
 QT3SUPPORT_REQUIRED="true"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Provides integration for the MLDonkey P2P software"
 HOMEPAGE="https://www.kde.org/"
@@ -23,7 +23,7 @@ src_configure() {
 		-DWITH_Plasma=OFF
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
 
 pkg_postinst() {
@@ -32,3 +32,5 @@ pkg_postinst() {
 		elog net-p2p/mldonkey to function.
 	fi
 }
+
+

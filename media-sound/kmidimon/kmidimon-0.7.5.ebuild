@@ -6,7 +6,7 @@ EAPI=8
 KDE_LINGUAS="cs es ja"
 KDE_HANDBOOK="optional"
 QT3SUPPORT_REQUIRED="true"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="A MIDI monitor for ALSA sequencer"
 HOMEPAGE="http://kmidimon.sourceforge.net/"
@@ -32,5 +32,7 @@ src_configure() {
 		-DSTATIC_DRUMSTICK=OFF
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
+
+

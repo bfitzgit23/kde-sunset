@@ -1,5 +1,4 @@
 # Copyright 1999-2018 Gentoo Foundation
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -22,7 +21,7 @@ fi
 : ${JASPER_MEM_LIMIT:=134217728}
 
 LICENSE="JasPer2.0"
-SLOT="4"
+SLOT="0/4"
 IUSE="doc jpeg opengl test"
 
 RDEPEND="
@@ -64,5 +63,7 @@ multilib_src_configure() {
 
 		#-DJAS_ENABLE_PROGRAMS=$(usex test)
 	)
-	cmake-utils_src_configure
+	cmake_src_configure
 }
+
+

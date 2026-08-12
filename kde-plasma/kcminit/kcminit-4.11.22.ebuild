@@ -14,4 +14,5 @@ DEPEND="
 	x11-libs/libX11
 "
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

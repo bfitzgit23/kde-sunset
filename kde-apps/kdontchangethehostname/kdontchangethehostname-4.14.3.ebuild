@@ -13,4 +13,5 @@ IUSE="debug"
 RDEPEND="
 	x11-apps/xauth
 "
-SLOT=0
+
+

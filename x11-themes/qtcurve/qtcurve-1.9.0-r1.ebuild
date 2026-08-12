@@ -11,7 +11,7 @@ DESCRIPTION="Widget styles for Qt and GTK2"
 HOMEPAGE="https://invent.kde.org/system/qtcurve"
 
 LICENSE="LGPL-2+"
-SLOT="4"
+SLOT="0"
 IUSE="gtk nls plasma qt4 +qt5 test +X"
 
 if [[ ${KDE_BUILD_TYPE} = release ]] ; then
@@ -97,3 +97,5 @@ src_configure() {
 
 	cmake-utils_src_configure
 }
+
+

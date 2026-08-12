@@ -4,7 +4,7 @@
 EAPI=8
 
 DECLARATIVE_REQUIRED="always"
-inherit kde4-meta 
+inherit kde4-base kde4-functions-extra
 
 DESCRIPTION="KDE Activity Manager"
 
@@ -23,6 +23,7 @@ src_configure() {
 		-DKACTIVITIES_LIBRARY_ONLY=ON
 		-DWITH_NepomukCore=OFF
 	)
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

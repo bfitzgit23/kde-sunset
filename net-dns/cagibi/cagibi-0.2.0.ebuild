@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -12,7 +11,7 @@ SRC_URI="mirror://kde/stable/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
-SLOT="4"
+SLOT="0"
 IUSE="debug"
 
 RDEPEND="
@@ -24,3 +23,5 @@ DEPEND="${RDEPEND}
 "
 
 DOCS=( Changelog README TODO )
+
+

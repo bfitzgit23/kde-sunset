@@ -14,4 +14,5 @@ DEPEND="
 	dev-libs/libattica
 "
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

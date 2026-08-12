@@ -5,7 +5,7 @@ EAPI=8
 
 OPENGL_REQUIRED="always"
 KDE_MINIMAL="4.10.3"
-inherit kde4-meta
+inherit kde4-base
 
 HOMEPAGE="http://www.kde-apps.org/content/show.php?content=87586"
 DESCRIPTION="OpenGL KDE4 screensaver"
@@ -23,3 +23,5 @@ DEPEND="
 	virtual/opengl
 "
 RDEPEND="${DEPEND}"
+
+

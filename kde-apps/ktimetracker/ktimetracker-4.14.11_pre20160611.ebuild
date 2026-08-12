@@ -34,6 +34,7 @@ src_unpack() {
 		KMEXTRA="${KMEXTRA} kontact/plugins/ktimetracker"
 	fi
 
-	_src_unpack
+	kde4-meta_src_unpack
 }
-SLOT=0
+
+

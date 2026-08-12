@@ -26,4 +26,5 @@ KMEXTRACTONLY+="
 PATCHES=(
 	"${FILESDIR}/${P}-gcc6.patch"
 )
-SLOT=0
+
+

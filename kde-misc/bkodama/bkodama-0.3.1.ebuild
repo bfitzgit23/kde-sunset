@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Friendly Kodama (Japanese ghost) wandering on your desktop"
 HOMEPAGE="http://kde-look.org/content/show.php/bkodama?content=106528"
@@ -18,3 +18,5 @@ RDEPEND="${DEPEND}
 	kde-plasma/plasma-workspace:4
 "
 DEPEND="${RDEPEND}"
+
+

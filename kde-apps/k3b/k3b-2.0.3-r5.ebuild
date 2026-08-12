@@ -5,7 +5,7 @@ EAPI=8
 
 MULTIMEDIA_REQUIRED="always"
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Full-featured burning and ripping application by KDE"
 HOMEPAGE="https://userbase.kde.org/K3b"
@@ -66,7 +66,7 @@ PATCHES=(
 )
 
 src_prepare() {
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 
 	# bug 558640
 	sed -i -e "/^add_subdirectory( doc )/d" CMakeLists.txt || die
@@ -94,11 +94,11 @@ src_configure() {
 		-DK3B_BUILD_OGGVORBIS_ENCODER_PLUGIN=$(usex vorbis)
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
 
 pkg_postinst() {
-	kde4-meta_pkg_postinst
+	kde4-base_pkg_postinst
 
 	echo
 	elog "If you get warnings on start-up, uncheck the \"Check system"
@@ -111,3 +111,5 @@ pkg_postinst() {
 	elog "Usually, it is sufficient to be in the ${group} group."
 	echo
 }
+
+

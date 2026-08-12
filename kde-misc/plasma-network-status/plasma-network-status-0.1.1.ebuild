@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Plasma applet to monitor the network interface status"
 HOMEPAGE="https://sourceforge.net/projects/pa-net-stat/"
@@ -20,3 +20,5 @@ RDEPEND="${DEPEND}
 "
 
 S="${WORKDIR}/${P}-Source"
+
+

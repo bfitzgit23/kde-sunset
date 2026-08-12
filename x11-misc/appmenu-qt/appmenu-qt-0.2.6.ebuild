@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -11,7 +10,7 @@ HOMEPAGE="https://launchpad.net/appmenu-qt"
 SRC_URI="https://launchpad.net/${PN}/trunk/${PV}/+download/${P}.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2.1"
-SLOT="4"
+SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
@@ -24,3 +23,5 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 DOCS=( NEWS README )
+
+

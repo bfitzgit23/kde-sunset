@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -11,7 +10,7 @@ HOMEPAGE="https://invent.kde.org/historical/qt1"
 EGIT_REPO_URI="https://invent.kde.org/historical/qt1.git"
 
 LICENSE="Qt-Free-Edition"
-SLOT="4"
+SLOT="0"
 KEYWORDS=""
 IUSE=""
 
@@ -23,9 +22,9 @@ RDEPEND="${DEPEND}"
 
 src_prepare() {
 	default
-	sed -i configs/linux-g++-shared 
-		-e '/SYSCONF_LFLAGS_QT/s/lib/src/' 
-		-e "/SYSCONF_CXX/s/g++/$(tc-getCC)/" 
+	sed -i configs/linux-g++-shared \
+		-e '/SYSCONF_LFLAGS_QT/s/lib/src/' \
+		-e "/SYSCONF_CXX/s/g++/$(tc-getCC)/" \
 		|| die
 }
 
@@ -43,3 +42,5 @@ src_install() {
 	insinto /opt/qt1/include
 	doins include/*
 }
+
+

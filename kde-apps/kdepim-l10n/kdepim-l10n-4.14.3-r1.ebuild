@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK=optional
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE PIM internationalization package"
 HOMEPAGE="http://l10n.kde.org"
@@ -66,7 +66,7 @@ src_prepare() {
 					einfo "   ${SUBDIR} subdirectory"
 					echo > "${S}/${DIR}/${SUBDIR}/CMakeLists.txt"
 					for pim in ${PIM_L10N}; do
-						[[ -d "${S}/${DIR}/${SUBDIR}/${pim}" ]] && 
+						[[ -d "${S}/${DIR}/${SUBDIR}/${pim}" ]] && \
 							( echo "add_subdirectory(${pim})" >> "${S}/${DIR}/${SUBDIR}/CMakeLists.txt" )
 					done
 				fi
@@ -83,7 +83,7 @@ src_prepare() {
 							einfo "      ${SUBDIR} subdirectory"
 							echo > "${XSUBDIR}/${SUBDIR}/CMakeLists.txt"
 							for pim in ${PIM_L10N}; do
-								[[ -d "${XSUBDIR}/${SUBDIR}/${pim}" ]] && 
+								[[ -d "${XSUBDIR}/${SUBDIR}/${pim}" ]] && \
 									( echo "add_subdirectory(${pim})" >> "${XSUBDIR}/${SUBDIR}/CMakeLists.txt" )
 							done
 						fi
@@ -101,18 +101,19 @@ src_configure() {
 	mycmakeargs=(
 		-DBUILD_docs="$(usex handbook)"
 	)
-	[[ -n ${A} ]] && kde4-meta_src_configure
+	[[ -n ${A} ]] && kde4-base_src_configure
 }
 
 src_compile() {
-	[[ -n ${A} ]] && kde4-meta_src_compile
+	[[ -n ${A} ]] && kde4-base_src_compile
 }
 
 src_test() {
-	[[ -n ${A} ]] && kde4-meta_src_test
+	[[ -n ${A} ]] && kde4-base_src_test
 }
 
 src_install() {
-	[[ -n ${A} ]] && kde4-meta_src_install
+	[[ -n ${A} ]] && kde4-base_src_install
 }
-SLOT=0
+
+

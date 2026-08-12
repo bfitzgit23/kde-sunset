@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Five-in-a-row Board Game"
 HOMEPAGE="https://www.kde.org/applications/games/bovo/"
@@ -13,4 +13,5 @@ IUSE="debug"
 
 DEPEND="$(add_kdeapps_dep libkdegames)"
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

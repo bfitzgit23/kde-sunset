@@ -10,5 +10,5 @@ inherit kde4-meta
 DESCRIPTION="Oxygen Plasma 4 desktop theme"
 IUSE=""
 KEYWORDS="amd64 x86"
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

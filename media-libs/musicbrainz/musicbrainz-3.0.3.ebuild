@@ -1,5 +1,4 @@
 # Copyright 1999-2017 Gentoo Foundation
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -11,7 +10,7 @@ HOMEPAGE="https://musicbrainz.org/"
 SRC_URI="http://ftp.musicbrainz.org/pub/musicbrainz/lib${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
-SLOT="4"
+SLOT="3"
 KEYWORDS="alpha amd64 arm hppa ia64 ppc ppc64 sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux"
 IUSE="test"
 
@@ -35,3 +34,5 @@ src_configure() {
 	)
 	cmake-utils_src_configure
 }
+
+

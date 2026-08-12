@@ -4,7 +4,7 @@
 EAPI=8
 
 QT3SUPPORT_REQUIRED="true"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDELibs4-based frontend for various VPN clients"
 HOMEPAGE="https://userbase.kde.org/KVpnc"
@@ -40,16 +40,18 @@ src_prepare() {
 	echo "find_package ( Gettext REQUIRED )" >> CMakeLists.txt || die
 	echo "add_subdirectory ( po )" >> CMakeLists.txt || die
 
-	sed -i 
-		-e "s:0.9.2-svn:${PV}:" 
+	sed -i \
+		-e "s:0.9.2-svn:${PV}:" \
 		CMakeLists.txt || die
 
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 }
 
 src_configure() {
 	local mycmakeargs=(
 		-DWITH_libgcrypt=ON
 	)
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
+
+

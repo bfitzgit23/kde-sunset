@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE Bomberman game"
 HOMEPAGE="https://www.kde.org/applications/games/granatier/"
@@ -15,4 +15,5 @@ DEPEND="
 	$(add_kdeapps_dep libkdegames)
 "
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

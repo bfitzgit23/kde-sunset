@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="A zeroconf Plasma 4 filetransfer tool"
 HOMEPAGE="http://www.kde-apps.org/content/show.php?content=73968"
@@ -21,3 +21,5 @@ RDEPEND="
 "
 
 PATCHES=( "${FILESDIR}/${P}-as-needed.patch" )
+
+

@@ -5,7 +5,7 @@
 EAPI=8
 
 ARTS_REQUIRED=never
-inherit kde kde4-functions
+inherit kde
 
 PATCH_LEVEL=3
 
@@ -16,7 +16,7 @@ SRC_URI="mirror://sourceforge/powersave/${P}.tar.bz2
 	mirror://debian/pool/main/${PN:0:1}/${PN}/${P/-/_}-${PATCH_LEVEL}.diff.gz"
 
 LICENSE="GPL-2"
-SLOT="4"
+SLOT="0"
 KEYWORDS="amd64 ~ppc ~x86"
 IUSE=""
 
@@ -35,8 +35,8 @@ src_unpack() {
 	unpack ${A}
 	rm -rf "${S}/admin" "${S}/configure"
 	ln -s "${WORKDIR}/admin" "${S}/admin"
-	epatch "${WORKDIR}/${P/-/_}-${PATCH_LEVEL}.diff"
-	epatch "${S}/debian/patches/05-battery_rescan.patch"
+	eapply "${WORKDIR}/${P/-/_}-${PATCH_LEVEL}.diff"
+	eapply "${S}/debian/patches/05-battery_rescan.patch"
 }
 
 pkg_postinst() {
@@ -44,3 +44,5 @@ pkg_postinst() {
 	einfo "chmod 755 ${ROOT}/usr/share/config"
 	chmod 755 "${ROOT}/usr/share/config"
 }
+
+

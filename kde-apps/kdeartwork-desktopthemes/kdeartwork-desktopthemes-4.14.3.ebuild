@@ -11,5 +11,5 @@ inherit kde4-meta
 DESCRIPTION="Additional KDE4 Plasma themes"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE=""
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

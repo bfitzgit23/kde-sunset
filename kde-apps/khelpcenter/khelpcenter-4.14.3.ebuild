@@ -22,4 +22,5 @@ KMEXTRA="
 	doc/glossary/
 	doc/onlinehelp/
 "
-SLOT=0
+
+

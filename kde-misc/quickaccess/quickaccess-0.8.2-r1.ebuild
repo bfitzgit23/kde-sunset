@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_LINGUAS="de es fr gl nl pt_BR sv tr zh_CN"
-inherit kde4-meta
+inherit kde4-base
 
 MY_PN="plasma-widget-${PN}"
 MY_P="${MY_PN}-${PV}-2"
@@ -24,3 +24,5 @@ RDEPEND="${DEPEND}
 "
 
 S="${WORKDIR}/${MY_P}"
+
+

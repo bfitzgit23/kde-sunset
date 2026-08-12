@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="kioslaves from kdesdk package"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -26,6 +26,7 @@ src_configure() {
 		-DWITH_SVN="$(usex subversion)"
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

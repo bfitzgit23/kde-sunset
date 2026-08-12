@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Plasmoid which periodically runs a system command and displays its output"
 HOMEPAGE="http://www.kde-look.org/content/show.php/Command+Watch?content=84523"
@@ -17,3 +17,5 @@ IUSE="debug"
 RDEPEND="
 	kde-plasma/plasma-workspace:4
 "
+
+

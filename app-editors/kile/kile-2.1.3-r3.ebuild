@@ -6,7 +6,7 @@ EAPI=8
 KDE_DOC_DIRS="doc"
 KDE_HANDBOOK="optional"
 MY_P=${P/_beta/b}
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="A Latex Editor and TeX shell by KDE"
 HOMEPAGE="https://kile.sourceforge.io/"
@@ -43,11 +43,13 @@ S=${WORKDIR}/${MY_P}
 DOCS=( kile-remote-control.txt )
 
 src_prepare() {
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 
 	# I know upstream wants to help us but it doesn't work..
-	sed -e '/INSTALL( FILES AUTHORS/s/^/#DISABLED /' 
+	sed -e '/INSTALL( FILES AUTHORS/s/^/#DISABLED /' \
 		-i CMakeLists.txt || die
 
 	use handbook || rm -fr doc
 }
+
+

@@ -5,7 +5,7 @@ EAPI=8
 
 MY_P="plasmoid-${P}"
 KDE_LINGUAS="cs da de el es et fr ga it km nds nl pl pt pt_BR ru sk sv uk"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Plasmoid showing the events from Akonadi resources"
 HOMEPAGE="http://kde-look.org/content/show.php/Eventlist?content=107779"
@@ -25,3 +25,5 @@ DEPEND="${RDEPEND}"
 DOCS=( AUTHORS Changelog README TODO )
 
 S=${WORKDIR}/${MY_P}
+
+

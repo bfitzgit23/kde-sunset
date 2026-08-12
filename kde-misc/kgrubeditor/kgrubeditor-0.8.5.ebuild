@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="A KDE utility that edits GRUB configuration files"
 HOMEPAGE="https://www.linux-apps.com/p/1127871 https://sourceforge.net/projects/kgrubeditor/"
@@ -20,4 +20,5 @@ pkg_postinst() {
 	fi
 	ewarn "NOTE: kgrubeditor can not handle grub-2.x configuration files!"
 }
-RDEPEND="${DEPEND}"
+
+

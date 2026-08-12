@@ -18,4 +18,5 @@ RDEPEND="${DEPEND}
 	$(add_kdeapps_dep kdesu)
 	sys-apps/accountsservice
 "
-SLOT=0
+
+

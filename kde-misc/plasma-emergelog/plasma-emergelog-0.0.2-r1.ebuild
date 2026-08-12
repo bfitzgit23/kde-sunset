@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Plasmoid for monitoring emerge progress"
 HOMEPAGE="http://www.kde-look.org/content/show.php?content=103928"
@@ -25,9 +25,11 @@ PATCHES=(
 )
 
 pkg_postinst() {
-	kde4-meta_pkg_postinst
+	kde4-base_pkg_postinst
 	einfo "You need to add your user to 'portage' group"
 	einfo "in order to use this plasmoid. To do that, use"
 	einfo "the following command:"
 	einfo "usermod -a -G portage <your_user_here>"
 }
+
+

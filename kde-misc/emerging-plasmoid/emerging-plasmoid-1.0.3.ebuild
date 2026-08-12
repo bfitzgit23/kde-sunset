@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Portage emerge progress plasmoid"
 HOMEPAGE="https://www.linux-apps.com/p/999027"
@@ -21,3 +21,5 @@ DEPEND="
 RDEPEND="${DEPEND}
 	kde-plasma/plasma-workspace:4
 "
+
+

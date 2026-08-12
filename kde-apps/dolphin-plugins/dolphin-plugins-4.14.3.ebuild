@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Extra Dolphin plugins"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -20,7 +20,7 @@ RDEPEND="${DEPEND}
 "
 
 src_install() {
-	{ use git || use mercurial || use subversion; } && kde4-meta_src_install
+	{ use git || use mercurial || use subversion; } && kde4-base_src_install
 }
 
 pkg_postinst() {
@@ -31,4 +31,5 @@ pkg_postinst() {
 		einfo
 	fi
 }
-SLOT=0
+
+

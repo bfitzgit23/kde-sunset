@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE frontend for the Linux Infrared Remote Control system"
 HOMEPAGE="https://www.kde.org/applications/utilities/kremotecontrol
@@ -15,4 +15,5 @@ IUSE="debug"
 RDEPEND="
 	app-misc/lirc
 "
-SLOT=0
+
+

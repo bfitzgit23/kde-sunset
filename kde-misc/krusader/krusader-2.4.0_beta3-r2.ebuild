@@ -5,7 +5,7 @@ EAPI=8
 
 MY_P="${P/_/-}"
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Advanced twin-panel (commander-style) file-manager with many extras"
 HOMEPAGE="https://krusader.org/"
@@ -31,3 +31,5 @@ DEPEND="${COMMON_DEPEND}
 PATCHES=( "${FILESDIR}/${P}-new-folder.patch" )
 
 S="${WORKDIR}/${MY_P}"
+
+

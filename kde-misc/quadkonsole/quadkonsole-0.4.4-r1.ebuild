@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK=optional
 KDE_LINGUAS_DIR="i18n"
-inherit kde4-meta
+inherit kde4-base
 
 MY_P=${PN}4-${PV}
 
@@ -27,3 +27,5 @@ DEPEND="${RDEPEND}"
 DOCS=( AUTHORS ChangeLog )
 
 S=${WORKDIR}/${MY_P}
+
+

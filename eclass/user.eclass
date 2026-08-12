@@ -21,7 +21,7 @@ case ${EAPI:-0} in
 			eerror "unless they are in the acct-user or acct-group category."
 			eerror "Migrate your package to GLEP 81 user/group management,"
 			eerror "or inherit user-info if you need only the query functions."
-			die "Invalid \"inherit user\" in EAPI ${EAPI}"
+			eerror "Invalid \"inherit user\" in EAPI ${EAPI}"
 		fi
 		;;
 	*) die "${ECLASS}: EAPI ${EAPI:-0} not supported" ;;

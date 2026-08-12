@@ -1,5 +1,4 @@
 # Copyright 1999-2018 Gentoo Foundation
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -11,7 +10,7 @@ HOMEPAGE="http://www.crayonphysics.com/"
 SRC_URI="crayon_physics_deluxe-linux-release${PV}.tar.gz"
 
 LICENSE="CRAYON-PHYSICS"
-SLOT="4"
+SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
 IUSE="bundled-libs"
 RESTRICT="bindist fetch splitdebug"
@@ -65,7 +64,7 @@ src_install() {
 	doins -r cache data crayon autoexec.txt version.xml
 
 	newicon -s 256 icon.png ${PN}.png
-	make_desktop_entry ${PN}
+	# make_desktop_entry ${PN}
 	make_wrapper ${PN} "./crayon" "${MYGAMEDIR}" "${MYGAMEDIR}/lib32"
 
 	einstalldocs
@@ -80,3 +79,5 @@ pkg_postinst() {
 pkg_postrm() {
 	gnome2_icon_cache_update
 }
+
+

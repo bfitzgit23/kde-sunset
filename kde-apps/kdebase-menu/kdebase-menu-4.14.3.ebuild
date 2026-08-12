@@ -10,5 +10,5 @@ inherit kde4-meta
 DESCRIPTION="KDE Menu query tool"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

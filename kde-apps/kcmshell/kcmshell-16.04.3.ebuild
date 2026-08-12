@@ -9,5 +9,5 @@ inherit kde4-meta
 DESCRIPTION="Utility to host KDE control modules independently of SystemSettings"
 KEYWORDS="amd64 x86"
 IUSE="debug"
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

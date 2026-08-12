@@ -7,14 +7,14 @@ EAPI=8
 MY_PV="${PV/_/-}"
 MY_P="digikam-${MY_PV}"
 VIRTUALX_REQUIRED="test"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Wrapper library for world map components as marble, openstreetmap and googlemap"
 HOMEPAGE="http://www.digikam.org/"
 SRC_URI="mirror://kde/stable/digikam/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
-SLOT="4"
+SLOT="4/2.1"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
@@ -25,3 +25,5 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}/extra/${PN}"
+
+

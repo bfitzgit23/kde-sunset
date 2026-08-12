@@ -4,7 +4,7 @@
 EAPI=8
 
 VIRTUALX_REQUIRED="test"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Plasmoid for displaying Ayatana indications"
 HOMEPAGE="https://launchpad.net/plasma-widget-message-indicator"
@@ -27,3 +27,5 @@ DEPEND="${RDEPEND}
 RESTRICT="test"
 
 PATCHES=( "${FILESDIR}/${P}-libindicate.patch" )
+
+

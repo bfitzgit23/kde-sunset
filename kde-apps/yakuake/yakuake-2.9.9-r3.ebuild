@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Quake-style terminal emulator based on konsole"
 HOMEPAGE="https://kde.org/applications/en/system/org.kde.yakuake"
@@ -25,3 +25,5 @@ DEPEND="${RDEPEND}
 DOCS=( AUTHORS ChangeLog KDE4FAQ NEWS README TODO )
 
 PATCHES=( "${FILESDIR}/${P}-lastsession.patch" )
+
+

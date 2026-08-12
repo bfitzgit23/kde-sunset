@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE utility to translate DocBook XML files using gettext po files"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -11,4 +11,5 @@ IUSE="debug"
 
 DEPEND="sys-devel/gettext"
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

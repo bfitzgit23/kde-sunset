@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="A program to convert audio formats with FFmpeg"
 HOMEPAGE="http://www.kde-apps.org/content/show.php/Konvertible?content=116892"
@@ -26,5 +26,7 @@ src_configure() {
 		-DWITH_taglib="$(usex taglib)"
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
+
+

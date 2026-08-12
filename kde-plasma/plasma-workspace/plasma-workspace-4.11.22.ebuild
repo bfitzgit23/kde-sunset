@@ -70,7 +70,7 @@ src_unpack() {
 		KMEXTRA+=" doc/plasma-desktop"
 	fi
 
-	_src_unpack
+	kde4-meta_src_unpack
 }
 
 src_configure() {
@@ -86,6 +86,7 @@ src_configure() {
 		-DWITH_qalculate="$(usex qalculate)"
 	)
 
-	_src_configure
+	kde4-meta_src_configure
 }
-SLOT=0
+
+

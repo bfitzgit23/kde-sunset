@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="never"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE memory and pairs game"
 HOMEPAGE="https://edu.kde.org/applications/miscellaneous/pairs"
@@ -15,4 +15,5 @@ IUSE="debug"
 
 DEPEND=""
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

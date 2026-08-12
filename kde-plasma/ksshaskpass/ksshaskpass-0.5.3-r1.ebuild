@@ -4,7 +4,7 @@
 EAPI=8
 
 COMMIT=f8192f1a521235b765cb85a4459706256ec331ff
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE implementation of ssh-askpass with Kwallet integration"
 HOMEPAGE="http://www.kde-apps.org/content/show.php?content=50971&forumpage=0"
@@ -25,11 +25,11 @@ src_prepare() {
 	STARTUPDIR=/etc/kde/startup
 	SHUTDOWNDIR=/etc/kde/shutdown
 
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 }
 
 src_install() {
-	kde4-meta_src_install
+	kde4-base_src_install
 
 	cat <<-EOF > "${T}/${CFG}"
 export SSH_ASKPASS="${PREFIX}/bin/ksshaskpass"
@@ -39,7 +39,7 @@ EOF
 }
 
 pkg_postinst() {
-	kde4-meta_pkg_postinst
+	kde4-base_pkg_postinst
 
 	elog
 	elog "In order to have ksshagent start at kde startup,"
@@ -54,3 +54,5 @@ pkg_postinst() {
 	elog "If it's not desired, point the one you want to use in ${STARTUPDIR}/${CFG}"
 	elog
 }
+
+

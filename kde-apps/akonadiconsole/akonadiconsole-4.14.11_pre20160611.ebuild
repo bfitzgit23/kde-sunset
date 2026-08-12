@@ -23,4 +23,5 @@ KMEXTRACTONLY="
 	calendarsupport/
 	messageviewer/
 "
-SLOT=0
+
+

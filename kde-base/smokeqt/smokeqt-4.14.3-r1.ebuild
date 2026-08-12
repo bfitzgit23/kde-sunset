@@ -8,7 +8,7 @@ MULTIMEDIA_REQUIRED="optional"
 QTHELP_REQUIRED="optional"
 OPENGL_REQUIRED="optional"
 KDE_REQUIRED="never"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Scripting Meta Object Kompiler Engine - Qt bindings"
 HOMEPAGE="https://techbase.kde.org/Development/Languages/Smoke"
@@ -52,6 +52,7 @@ src_configure() {
 		-DDISABLE_QtWebKit="$(usex !webkit)"
 		-DDISABLE_QtXmlPatterns="$(usex !xmlpatterns)"
 	)
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

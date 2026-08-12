@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -31,3 +30,5 @@ src_configure() {
 	local mycmakeargs=( -DK4DIRSTAT_GIT_VERSION=OFF )
 	cmake_src_configure
 }
+
+

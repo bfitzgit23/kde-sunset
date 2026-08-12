@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -11,7 +10,7 @@ HOMEPAGE="http://kde-apps.org/content/show.php/WMIface?content=40425"
 SRC_URI="https://home.kde.org/~seli/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-3"
-SLOT="4"
+SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
@@ -22,3 +21,5 @@ RDEPEND="
 DEPEND="${DEPEND}
 	dev-qt/qtgui:4
 "
+
+

@@ -4,7 +4,7 @@
 EAPI=8
 
 VIRTUALX_REQUIRED="test"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Multiple information organizer - a DropDrawers clone"
 HOMEPAGE="https://userbase.kde.org/BasKet https://github.com/basket-notepads/basket"
@@ -27,5 +27,7 @@ src_configure() {
 	local mycmakeargs=(
 		-DCMAKE_DISABLE_FIND_PACKAGE_Gpgme="$(usex !crypt)"
 	)
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
+
+

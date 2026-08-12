@@ -12,5 +12,5 @@ IUSE="debug"
 
 RESTRICT=test
 # bug 420255
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

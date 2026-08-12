@@ -1,9 +1,8 @@
 # Copyright 1999-2017 Gentoo Foundation
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-inherit -multilib
+inherit qt4-build-multilib
 
 DESCRIPTION="The WebKit module for the Qt toolkit"
 
@@ -39,23 +38,23 @@ QCONFIG_DEFINE="QT_WEBKIT"
 
 src_prepare() {
 	# Remove -Werror from CXXFLAGS
-	sed -i -e '/QMAKE_CXXFLAGS\s*+=/ s:-Werror::g' 
+	sed -i -e '/QMAKE_CXXFLAGS\s*+=/ s:-Werror::g' \
 		src/3rdparty/webkit/Source/WebKit.pri || die
 
 	# Fix version number in generated pkgconfig file (bug 406443)
-	sed -i -e 's/^isEmpty(QT_BUILD_TREE)://' 
+	sed -i -e 's/^isEmpty(QT_BUILD_TREE)://' \
 		src/3rdparty/webkit/Source/WebKit/qt/QtWebKit.pro || die
 
 	# Prevent automagic dependency on qt-mobility (bug 547350)
-	sed -i -e 's/contains(MOBILITY_CONFIG,\s*\w\+)/false/' 
+	sed -i -e 's/contains(MOBILITY_CONFIG,\s*\w\+)/false/' \
 		src/3rdparty/webkit/Source/WebCore/features.pri || die
 
 	if use icu; then
-		sed -i -e '/CONFIG\s*+=\s*text_breaking_with_icu/ s:^#\s*::' 
+		sed -i -e '/CONFIG\s*+=\s*text_breaking_with_icu/ s:^#\s*::' \
 			src/3rdparty/webkit/Source/JavaScriptCore/JavaScriptCore.pri || die
 	fi
 
-	-multilib_src_prepare
+	qt4-build-multilib_src_prepare
 }
 
 multilib_src_configure() {
@@ -68,4 +67,5 @@ multilib_src_configure() {
 	)
 	qt4_multilib_src_configure
 }
-SLOT=0
+
+

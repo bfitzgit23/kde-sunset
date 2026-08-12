@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE Development Scripts"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -21,6 +21,7 @@ src_prepare() {
 	# bug 275069
 	sed -ie 's:colorsvn::' CMakeLists.txt || die
 
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 }
-SLOT=0
+
+

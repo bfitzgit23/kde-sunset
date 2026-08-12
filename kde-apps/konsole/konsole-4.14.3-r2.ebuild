@@ -7,7 +7,7 @@ KDE_HANDBOOK="optional"
 KDE_DOC_DIRS="doc/manual"
 VIRTUALX_REQUIRED="test"
 VIRTUALDBUS_TEST="true"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="X terminal for use with KDE"
 HOMEPAGE="https://www.kde.org/applications/system/konsole https://konsole.kde.org"
@@ -23,7 +23,7 @@ RESTRICT="test"
 src_prepare() {
 	cmake_comment_add_subdirectory data
 
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 }
 
 src_configure() {
@@ -31,15 +31,16 @@ src_configure() {
 		-DWITH_LibKonq=OFF
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
 
 src_install() {
-	kde4-meta_src_install
+	kde4-base_src_install
 
 	rm -r "${ED}"usr/$(get_libdir) || die
 	rm -r "${ED}"usr/share/apps || die
 	rm "${ED}"usr/share/kde4/services/konsolepart.desktop || die
 	rm -r "${ED}"usr/share/kde4/servicetypes || die
 }
-SLOT=0
+
+

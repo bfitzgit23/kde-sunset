@@ -4,14 +4,14 @@
 EAPI=8
 
 QT3SUPPORT_REQUIRED="true"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Graphical Portage frontend based on KDELibs4/Qt4"
 HOMEPAGE="https://sourceforge.net/projects/kuroo/"
 SRC_URI="mirror://sourceforge/kuroo/${PN}4-${PV}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="4"
+SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
@@ -24,3 +24,5 @@ RDEPEND="${DEPEND}
 "
 
 S="${WORKDIR}/${PN}4-${PV}"
+
+

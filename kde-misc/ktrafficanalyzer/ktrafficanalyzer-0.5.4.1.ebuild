@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 MY_P=KTrafficAnalyzer-${PV}
 
@@ -19,4 +19,5 @@ IUSE="debug"
 S=${WORKDIR}/${MY_P}
 
 DOCS=(CHANGELOG SSHUsage TODO)
-RDEPEND="${DEPEND}"
+
+

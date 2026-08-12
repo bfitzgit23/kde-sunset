@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -13,7 +12,7 @@ HOMEPAGE="http://gebabbel.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${MY_P}-Src.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="4"
+SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
@@ -34,8 +33,8 @@ S=${WORKDIR}/${MY_P}
 src_prepare() {
 	default
 	# do not mess with cflags
-	sed 
-		-e "/QMAKE_CXXFLAGS/s:=.*$:= ${CXXFLAGS}:g" 
+	sed \
+		-e "/QMAKE_CXXFLAGS/s:=.*$:= ${CXXFLAGS}:g" \
 		-i *.pro || die
 }
 
@@ -47,3 +46,5 @@ src_install() {
 	dobin bin/${PN}
 	einstalldocs
 }
+
+

@@ -19,9 +19,10 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 src_install() {
-	_src_install
+	kde4-meta_src_install
 
 	# work around NULL DT_RPATH in kabc2mutt
 	dosym kabcclient /usr/bin/kabc2mutt
 }
-SLOT=0
+
+

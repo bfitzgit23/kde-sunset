@@ -16,4 +16,5 @@ IUSE="debug"
 RDEPEND="
 	$(add_kdeapps_dep katepart)
 "
-SLOT=0
+
+

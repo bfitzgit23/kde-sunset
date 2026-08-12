@@ -1,12 +1,11 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
 KMNAME="kde-workspace"
 KMNOMODULE="true"
-inherit  prefix
+inherit kde4-meta prefix
 
 DESCRIPTION="Script which starts a complete Plasma session, and associated scripts"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -108,7 +107,7 @@ PATCHES=(
 )
 
 src_prepare() {
-	_src_prepare
+	kde4-meta_src_prepare
 
 	cp "${FILESDIR}/KDE-4" "${T}"
 
@@ -117,7 +116,7 @@ src_prepare() {
 }
 
 src_install() {
-	_src_install
+	kde4-meta_src_install
 
 	# startup and shutdown scripts
 	insinto /etc/kde/startup
@@ -131,14 +130,14 @@ src_install() {
 	doexe "${T}/KDE-4"
 
 	# freedesktop compliant session script
-	sed -e "s:\${BIN_INSTALL_DIR}:${EPREFIX}/usr/bin:g" 
+	sed -e "s:\${BIN_INSTALL_DIR}:${EPREFIX}/usr/bin:g" \
 		"${S}/kdm/kfrontend/sessions/kde-plasma.desktop.cmake" > "${T}/KDE-4.desktop"
 	insinto /usr/share/xsessions
 	doins "${T}/KDE-4.desktop"
 }
 
 pkg_postinst () {
-	_pkg_postinst
+	kde4-meta_pkg_postinst
 
 	echo
 	elog "To enable gpg-agent and/or ssh-agent in KDE sessions,"
@@ -150,4 +149,5 @@ pkg_postinst () {
 	elog "configuration files, you will need to change it to"
 	elog "XSESSION=\"KDE-4\""
 }
-SLOT=0
+
+

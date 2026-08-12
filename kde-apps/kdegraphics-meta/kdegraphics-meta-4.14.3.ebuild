@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-inherit kde4-meta
+inherit kde4-meta-pkg kde4-functions-extra
 
 DESCRIPTION="kdegraphics - merge this to pull in all kdegraphics-derived packages"
 HOMEPAGE="https://www.kde.org/applications/graphics/"
@@ -29,4 +29,5 @@ RDEPEND="
 		$(add_kdeapps_dep libksane)
 	)
 "
-SLOT=0
+
+

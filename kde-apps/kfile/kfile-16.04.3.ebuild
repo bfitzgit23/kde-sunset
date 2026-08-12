@@ -9,5 +9,5 @@ inherit kde4-meta
 DESCRIPTION="Commandline frontend to KFileMetaInfo"
 KEYWORDS="amd64 x86"
 IUSE="debug"
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

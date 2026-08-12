@@ -16,4 +16,5 @@ DEPEND="
 	$(add_kdeapps_dep libkonq)
 "
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

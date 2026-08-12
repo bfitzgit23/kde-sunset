@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_MINIMAL="4.13.1"
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="A collection manager for the KDE environment"
 HOMEPAGE="https://tellico-project.org/"
@@ -53,5 +53,7 @@ src_configure() {
 		-DWITH_Yaz=$(usex yaz)
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
+
+

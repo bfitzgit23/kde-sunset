@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -11,7 +10,7 @@ HOMEPAGE="https://www.launchy.net/"
 SRC_URI="http://www.launchy.net/downloads/src/${P}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="4"
+SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
@@ -37,3 +36,5 @@ src_install() {
 	emake INSTALL_ROOT="${D}" install
 	einstalldocs
 }
+
+

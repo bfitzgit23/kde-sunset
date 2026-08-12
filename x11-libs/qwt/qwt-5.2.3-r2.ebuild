@@ -1,5 +1,4 @@
 # Copyright 1999-2021 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -11,7 +10,7 @@ HOMEPAGE="http://qwt.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 
 LICENSE="qwt"
-SLOT="4"
+SLOT="5"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 ~sparc x86"
 IUSE="doc examples svg"
 
@@ -77,3 +76,5 @@ src_install() {
 		dodoc -r examples/.
 	fi
 }
+
+

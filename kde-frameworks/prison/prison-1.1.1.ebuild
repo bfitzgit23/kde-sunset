@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="QRCode and data matrix barcode library"
 HOMEPAGE="https://cgit.kde.org/prison.git"
@@ -19,3 +19,5 @@ DEPEND="
 	media-libs/libdmtx
 "
 RDEPEND="${DEPEND}"
+
+

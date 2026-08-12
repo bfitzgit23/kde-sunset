@@ -42,7 +42,7 @@ KMEXTRACTONLY="
 KMLOADLIBS="kdepim-common-libs"
 
 pkg_postinst() {
-	_pkg_postinst
+	kde4-meta_pkg_postinst
 
 	if ! has_version kde-apps/kdepim-kresources:${SLOT}; then
 		echo
@@ -50,4 +50,5 @@ pkg_postinst() {
 		echo
 	fi
 }
-SLOT=0
+
+

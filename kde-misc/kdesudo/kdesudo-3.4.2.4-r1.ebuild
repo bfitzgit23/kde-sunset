@@ -6,7 +6,7 @@ EAPI=8
 KDE_LINGUAS="ar cs da de el en_GB es et fa fi fr gl he hr hu id is it ja kk ko
 lt lv ms nb nl oc pl pt pt_BR ro ru sk sv tl tr uk zh_CN zh_TW"
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="A frontend for sudo. Unlike kdesu, it uses directly sudo as backend"
 HOMEPAGE="https://launchpad.net/kdesudo/"
@@ -22,3 +22,5 @@ RDEPEND="
 "
 
 DOCS=( AUTHORS ChangeLog README )
+
+

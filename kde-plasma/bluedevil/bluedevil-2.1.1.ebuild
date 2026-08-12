@@ -6,7 +6,7 @@ EAPI=8
 KDE_LINGUAS="ar bg bs ca ca@valencia cs da de el en_GB eo es et eu fa fi fr ga gl
 hu it ja kk km ko lt mai mr ms nb nds nl pa pl pt pt_BR ro ru sk sl sr
 sr@ijekavian sr@ijekavianlatin sr@Latn sv th tr ug uk zh_CN zh_TW"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Bluetooth stack for KDE Plasma"
 HOMEPAGE="https://projects.kde.org/projects/extragear/base/bluedevil"
@@ -24,3 +24,5 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	sys-devel/gettext
 "
+
+

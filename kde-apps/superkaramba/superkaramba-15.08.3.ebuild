@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="A tool to create interactive applets for the KDE desktop"
 HOMEPAGE="https://techbase.kde.org/Projects/SuperKaramba/FAQ"
@@ -20,6 +20,7 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=( -DWITH_PythonLibs=OFF )
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

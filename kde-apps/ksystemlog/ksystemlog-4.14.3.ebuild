@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 VIRTUALX_REQUIRED=test
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE system log viewer"
 HOMEPAGE="https://www.kde.org/applications/system/ksystemlog/"
@@ -16,7 +16,7 @@ RESTRICT=test
 # bug 378101
 
 src_prepare() {
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 
 	if use test; then
 		# beat this stupid test into shape: the test files contain no year, so
@@ -29,5 +29,5 @@ src_prepare() {
 		sed -e "s:systemAnalyzerTest:# dont run systemAnalyzerTest:g" -i ksystemlog/tests/CMakeLists.txt
 	fi
 }
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

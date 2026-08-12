@@ -5,12 +5,12 @@ EAPI=8
 
 KMNAME="kdevelop"
 WEBKIT_REQUIRED="always"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="PHP documentation plugin for KDevelop 4"
 
 LICENSE="GPL-2 LGPL-2"
 IUSE="debug"
 KEYWORDS="~amd64 ~x86"
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

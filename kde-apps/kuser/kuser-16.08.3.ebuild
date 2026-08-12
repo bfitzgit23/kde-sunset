@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE application that helps you manage system users"
 HOMEPAGE="https://www.kde.org/applications/system/kuser/"
@@ -18,4 +18,5 @@ DEPEND="
 RDEPEND="${DEPEND}
 	$(add_kdeapps_dep knotify)
 "
-SLOT=0
+
+

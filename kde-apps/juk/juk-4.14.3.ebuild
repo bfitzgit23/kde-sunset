@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Jukebox and music manager for KDE"
 HOMEPAGE="https://www.kde.org/applications/multimedia/juk/"
@@ -22,6 +22,7 @@ src_configure() {
 		-DWITH_TunePimp=OFF
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

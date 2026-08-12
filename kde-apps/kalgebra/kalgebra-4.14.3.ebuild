@@ -6,7 +6,7 @@ EAPI=8
 KDE_HANDBOOK="optional"
 DECLARATIVE_REQUIRED="always"
 OPENGL_REQUIRED="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="MathML-based graph calculator for KDE"
 HOMEPAGE="https://www.kde.org/applications/education/kalgebra
@@ -26,6 +26,7 @@ src_configure() {
 		-DWITH_OpenGL="$(usex opengl)"
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

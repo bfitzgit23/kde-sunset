@@ -10,7 +10,7 @@ pt_BR ru sk sl sv th tr uk zh_CN zh_TW"
 VIRTUALDBUS_TEST="true"
 VIRTUALX_REQUIRED="test"
 WEBKIT_REQUIRED="always"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE development support libraries and apps"
 LICENSE="GPL-2 LGPL-2"
@@ -49,6 +49,7 @@ src_configure() {
 		-DBUILD_subversion=$(usex subversion)
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

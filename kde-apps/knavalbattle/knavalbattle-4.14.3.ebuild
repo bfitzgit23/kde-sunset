@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 KDE_SELINUX_MODULE="games"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="The KDE Battleship clone"
 HOMEPAGE="
@@ -19,4 +19,5 @@ DEPEND="$(add_kdeapps_dep libkdegames)"
 RDEPEND="${DEPEND}
 	!kde-base/kbattleship:4
 "
-SLOT=0
+
+

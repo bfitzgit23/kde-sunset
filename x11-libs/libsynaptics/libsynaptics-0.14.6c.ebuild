@@ -8,7 +8,7 @@ HOMEPAGE="http://qsynaptics.sourceforge.net/"
 SRC_URI="http://qsynaptics.sourceforge.net/${P}.tar.bz2"
 
 LICENSE="GPL-2"
-SLOT="4"
+SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE=""
 
@@ -20,4 +20,5 @@ src_install() {
 	emake DESTDIR="${D}" install
 	einstalldocs
 }
-inherit kde4-meta
+
+

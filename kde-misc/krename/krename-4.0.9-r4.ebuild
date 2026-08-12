@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_LINGUAS="bs cs de el es fr hu it ja lt nl pl pt ru sl sv tr uk zh_CN"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Powerful batch file renamer"
 HOMEPAGE="https://kde.org/applications/utilities/org.kde.krename
@@ -41,5 +41,7 @@ src_configure() {
 		-DWITH_Freetype=$(usex truetype)
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
+
+

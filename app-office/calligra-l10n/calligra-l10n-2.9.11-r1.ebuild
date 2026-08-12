@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Calligra localization package"
 HOMEPAGE="https://www.kde.org/"
@@ -64,7 +64,7 @@ src_unpack() {
 src_prepare() {
 	cat <<-EOF > CMakeLists.txt || die
 project(${PN})
-$(printf "add_subdirectory( %s )\n" 
+$(printf "add_subdirectory( %s )\n" \
 	`find . -mindepth 1 -maxdepth 1 -type d | sed -e "s:^\./::"`)
 EOF
 
@@ -72,18 +72,18 @@ EOF
 	for cal_ft in ${CAL_FTS}; do
 		if ! use calligra_features_${cal_ft} ; then
 			if ls -U ./*/messages/calligra/${cal_ft}*po > /dev/null 2>&1; then
-				rm ./*/messages/calligra/${cal_ft}*po || 
+				rm ./*/messages/calligra/${cal_ft}*po || \
 					die "Failed to remove ${cal_ft} messages"
 			fi
 			if ls -U ./*/docs/calligra/${cal_ft} > /dev/null 2>&1; then
-				sed -e "\:add_subdirectory(\s*${cal_ft}\s*): s:^:#:" 
-					-i ./*/docs/calligra/CMakeLists.txt || 
+				sed -e "\:add_subdirectory(\s*${cal_ft}\s*): s:^:#:" \
+					-i ./*/docs/calligra/CMakeLists.txt || \
 					die "Failed to comment out ${cal_ft} docs"
 			fi
 		fi
 	done
 
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 }
 
 src_configure() {
@@ -92,15 +92,17 @@ src_configure() {
 		-DBUILD_DOC=$(usex doc)
 		-DBUILD_MESSAGES=ON
 	)
-	[[ -n ${A} ]] && kde4-meta_src_configure
+	[[ -n ${A} ]] && kde4-base_src_configure
 }
 
 src_compile() {
-	[[ -n ${A} ]] && kde4-meta_src_compile
+	[[ -n ${A} ]] && kde4-base_src_compile
 }
 
 src_test() { :; }
 
 src_install() {
-	[[ -n ${A} ]] && kde4-meta_src_install
+	[[ -n ${A} ]] && kde4-base_src_install
 }
+
+

@@ -4,7 +4,7 @@
 EAPI=8
 
 WEBKIT_REQUIRED="always"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Library for accessing Google calendar and contact resources"
 HOMEPAGE="https://projects.kde.org/projects/extragear/libs/libkgapi"
@@ -20,3 +20,5 @@ DEPEND="
 	dev-libs/qjson
 "
 RDEPEND="${DEPEND}"
+
+

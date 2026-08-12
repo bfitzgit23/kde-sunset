@@ -1,5 +1,4 @@
 # Copyright 1999-2018 Gentoo Foundation
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -13,7 +12,7 @@ HOMEPAGE="https://code.google.com/p/qtscriptgenerator/"
 SRC_URI="https://dev.gentoo.org/~johu/distfiles/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="4"
+SLOT="0"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86"
 IUSE="debug"
 
@@ -65,3 +64,5 @@ src_install() {
 	insopts -m0755
 	doins "${S}"/plugins/script/*
 }
+
+

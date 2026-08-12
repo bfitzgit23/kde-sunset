@@ -54,6 +54,7 @@ src_configure() {
 		-DWITH_KDEWEBKIT=$(usex webkit)
 	)
 
-	_src_configure
+	kde4-meta_src_configure
 }
-SLOT=0
+
+

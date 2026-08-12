@@ -1,12 +1,11 @@
 # Copyright 1999-2015 Gentoo Foundation
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-baseapps"
-inherit flag-o-matic 
+inherit flag-o-matic kde4-meta
 
 DESCRIPTION="KDE: Web browser and file manager"
 HOMEPAGE="
@@ -40,15 +39,15 @@ KMEXTRACTONLY="
 src_prepare() {
 	[[ ${CHOST} == *-solaris* ]] && append-ldflags -lmalloc
 
-	_src_prepare
+	kde4-meta_src_prepare
 
 	# Do not install *.desktop files for kfmclient
-	sed -e "/kfmclient\.desktop/d" -i konqueror/CMakeLists.txt 
+	sed -e "/kfmclient\.desktop/d" -i konqueror/CMakeLists.txt \
 		|| die "Failed to omit .desktop files"
 }
 
 pkg_postinst() {
-	_pkg_postinst
+	kde4-meta_pkg_postinst
 
 	if ! has_version kde-apps/dolphin:${SLOT} ; then
 		elog "If you want to use konqueror as a filemanager, install the dolphin kpart:"
@@ -59,4 +58,5 @@ pkg_postinst() {
 		elog "To use Java on webpages install virtual/jre."
 	fi
 }
-SLOT=0
+
+

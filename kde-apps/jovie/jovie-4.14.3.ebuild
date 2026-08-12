@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Jovie is a text to speech application"
 HOMEPAGE="https://www.kde.org/applications/utilities/jovie/"
@@ -15,4 +15,5 @@ DEPEND="
 	app-accessibility/speech-dispatcher
 "
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

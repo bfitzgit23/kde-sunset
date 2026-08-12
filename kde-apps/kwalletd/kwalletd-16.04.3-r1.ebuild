@@ -1,11 +1,10 @@
 # Copyright 1999-2017 Gentoo Foundation
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
 KMNAME="kde-runtime"
-inherit  flag-o-matic
+inherit kde4-meta flag-o-matic
 
 DESCRIPTION="KDE Password Server"
 KEYWORDS="amd64 x86"
@@ -30,7 +29,7 @@ src_configure() {
 		-DCMAKE_DISABLE_FIND_PACKAGE_Gpgmepp="$(usex !gpg)"
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
 
 pkg_postinst() {
@@ -41,4 +40,5 @@ pkg_postinst() {
 		elog
 	fi
 }
-SLOT=0
+
+

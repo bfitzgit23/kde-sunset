@@ -7,7 +7,7 @@ KMMODULE="kscreensaver"
 KMNAME="kdeartwork"
 OPENGL_REQUIRED="optional"
 KDE_SCM="svn"
-inherit kde4-meta
+inherit kde4-meta kde4-functions-extra
 
 DESCRIPTION="Extra screensavers for kde"
 KEYWORDS="~amd64 ~x86"
@@ -44,6 +44,7 @@ src_configure() {
 		-DWITH_xscreensaver="$(usex xscreensaver)"
 	)
 
-	_src_configure
+	kde4-meta_src_configure
 }
-SLOT=0
+
+

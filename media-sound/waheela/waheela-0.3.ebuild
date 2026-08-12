@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 MY_P=${P/-/_}
 
@@ -12,10 +12,12 @@ HOMEPAGE="http://kde-apps.org/content/show.php?content=108863"
 SRC_URI="http://linux.wuertz.org/dists/sid/main/source/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="4"
+SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 RDEPEND="media-sound/amarok:4"
 
 S=${WORKDIR}/${PN}
+
+

@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE: Knetwalk is the kde version of the popular NetWalk game for system administrators"
 HOMEPAGE="
@@ -16,4 +16,5 @@ IUSE="debug"
 
 DEPEND="$(add_kdeapps_dep libkdegames)"
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

@@ -4,7 +4,7 @@
 EAPI=8
 KDE_MINIMAL=4.13.0
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Alternative configuration module for the Baloo search framework"
 HOMEPAGE="https://gitlab.com/baloo-kcmadv/baloo-kcmadv"
@@ -23,3 +23,5 @@ DEPEND="
 	kde-frameworks/kfilemetadata:4
 "
 RDEPEND="${DEPEND}"
+
+

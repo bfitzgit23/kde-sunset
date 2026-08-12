@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-inherit kde4-meta
+inherit kde4-meta-pkg
 
 DESCRIPTION="kdeartwork - merge this to pull in all kdeartwork-derived packages"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -18,4 +18,5 @@ RDEPEND="
 	$(add_kdeapps_dep kdeartwork-weatherwallpapers)
 	!minimal? ( $(add_kdeapps_dep kdeartwork-styles) )
 "
-SLOT=0
+
+

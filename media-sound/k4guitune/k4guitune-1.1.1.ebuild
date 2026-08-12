@@ -5,7 +5,7 @@ EAPI=8
 
 QT3SUPPORT_REQUIRED="true"
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Program to tune musical instruments using your computer's mic- or line- input"
 HOMEPAGE="http://wspinell.altervista.org/k4guitune/ http://www.kde-apps.org/content/show.php/K4Guitune?content=117669"
@@ -28,5 +28,7 @@ src_configure() {
 		-DBUILD_doc=$(usex handbook)
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
+
+

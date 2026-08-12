@@ -8,7 +8,7 @@ ja kk km ko lt mr nb nds nl nn pl pt pt_BR ro ru se sk sl sr sr@ijekavian
 sr@ijekavianlatin sr@Latn sv tr uk zh_CN zh_TW"
 KDE_SCM="git"
 KDE_MINIMAL="4.11"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE frontend for NetworkManager"
 HOMEPAGE="https://projects.kde.org/projects/extragear/base/networkmanagement"
@@ -36,5 +36,7 @@ src_configure() {
 	local mycmakeargs=(
 		-DWITH_openconnect="$(usex openconnect)"
 	)
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
+
+

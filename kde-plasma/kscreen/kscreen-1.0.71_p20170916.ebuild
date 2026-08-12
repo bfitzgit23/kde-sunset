@@ -6,7 +6,7 @@ EAPI=8
 COMMIT=2269c30f4e75c4490af8cd91e512e7ffbb4c8729
 VIRTUALX_REQUIRED="test"
 DECLARATIVE_REQUIRED="always"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Plasma screen management"
 HOMEPAGE="https://invent.kde.org/plasma/kscreen"
@@ -33,7 +33,7 @@ pkg_preinst() {
 		DISPLAY_MESSAGE=true
 	fi
 
-	kde4-meta_pkg_preinst
+	kde4-base_pkg_preinst
 }
 
 pkg_postinst() {
@@ -53,5 +53,7 @@ pkg_postinst() {
 
 	unset DISPLAY_MESSAGE
 
-	kde4-meta_pkg_postinst
+	kde4-base_pkg_postinst
 }
+
+

@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE kioslaves from the kdemultimedia package"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -28,6 +28,7 @@ src_configure() {
 		-DWITH_OggVorbis="$(usex vorbis)"
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

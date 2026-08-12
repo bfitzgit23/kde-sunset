@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 KDE_SELINUX_MODULE="games"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE: KGoldrunner is a game of action and puzzle solving"
 HOMEPAGE="
@@ -21,4 +21,5 @@ DEPEND="
 	media-libs/openal
 "
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_MINIMAL="4.8"
 KDE_LINGUAS="cs de fr hu pl ru zh_CN"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Alternate taskbar KDE plasmoid, similar to Windows 7"
 HOMEPAGE="https://bitbucket.org/flupp/smooth-tasks-fork"
@@ -26,3 +26,5 @@ RDEPEND="${DEPEND}
 PATCHES=( "${FILESDIR}/${P}-kde48.patch" )
 
 S="${WORKDIR}/${PN}"
+
+

@@ -9,7 +9,7 @@ pa pl pt pt_BR ro ru se sk sl sv ta tg th tr uk vi wa xh zh_CN zh_HK zh_TW"
 KDE_DOC_DIRS="doc-translations/%lingua_${PN}"
 KDE_HANDBOOK="optional"
 QT3SUPPORT_REQUIRED="true"
-inherit kde4-meta
+inherit kde4-base
 
 KDE_VERSION=4.4.0
 MY_P=${P}-kde${KDE_VERSION}
@@ -36,3 +36,5 @@ PATCHES=(
 	"${FILESDIR}/${P}-kde45.patch"
 	"${FILESDIR}/${P}-underlinking.patch"
 )
+
+

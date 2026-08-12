@@ -13,7 +13,7 @@ SRC_URI="mirror://gentoo/quanta-css-${PV}.tar.bz2
 # http://sourceforge.net/project/showfiles.php?group_id=4113
 
 LICENSE="GPL-2"
-SLOT="4"
+SLOT="0"
 KEYWORDS="~alpha amd64 ~hppa mips ~ppc ~ppc64 ~sparc x86"
 IUSE="mysql"
 
@@ -30,5 +30,5 @@ src_install() {
 		cp -R "$i" "$i.docrc" "${D}/usr/share/apps/quanta/doc"
 	done
 }
-RDEPEND="${DEPEND}"
-inherit kde4-meta
+
+

@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE version of the Simon Says game"
 HOMEPAGE="https://www.kde.org/applications/education/blinken
@@ -13,9 +13,9 @@ KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
 src_install() {
-	kde4-meta_src_install
+	kde4-base_src_install
 
 	rm "${D}"/usr/share/apps/${PN}/README.packagers
 }
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

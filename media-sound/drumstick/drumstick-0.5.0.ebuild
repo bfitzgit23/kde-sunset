@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -11,7 +10,7 @@ HOMEPAGE="https://drumstick.sourceforge.io/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
-SLOT="4"
+SLOT="0"
 KEYWORDS="amd64 x86"
 IUSE="dbus doc"
 
@@ -47,3 +46,5 @@ src_configure() {
 	)
 	cmake-utils_src_configure
 }
+
+

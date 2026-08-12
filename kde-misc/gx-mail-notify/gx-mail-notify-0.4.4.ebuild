@@ -4,7 +4,7 @@
 EAPI=8
 
 OPENGL_REQUIRED=always
-inherit kde4-meta
+inherit kde4-base
 
 MY_P=gx_mail_notify-${PV}
 
@@ -25,3 +25,5 @@ PATCHES=( "${FILESDIR}/${PN}-qt-4.7.patch" )
 S=${WORKDIR}/${MY_P}
 
 DOCS=( README )
+
+

@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -13,7 +12,7 @@ SRC_URI="mirror://kde/stable/phonon/${MY_PN}/${PV}/${MY_PN}-${PV}.tar.xz"
 S="${WORKDIR}/${MY_PN}-${PV}"
 
 LICENSE="LGPL-2.1+ || ( LGPL-2.1 LGPL-3 )"
-SLOT="4"
+SLOT="0-qt4"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86"
 IUSE="debug"
 
@@ -32,3 +31,5 @@ src_configure() {
 	local mycmakeargs=( -DPHONON_BUILD_PHONON4QT5=OFF )
 	cmake_src_configure
 }
+
+

@@ -19,4 +19,5 @@ RDEPEND="${DEPEND}"
 KMEXTRACTONLY="
 	libs/oxygen
 "
-SLOT=0
+
+

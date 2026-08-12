@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_LINGUAS="bs ca ca@valencia cs da de el es et eu fi fr ga gl hu id it ja kk
 km lt mr nb nds nl pl pt pt_BR ro ru sk sl sv uk zh_CN zh_TW"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE Plasma systemsettings kcm to set GTK application look&feel"
 HOMEPAGE="https://projects.kde.org/kde-gtk-config"
@@ -37,10 +37,12 @@ PATCHES=(
 )
 
 pkg_postinst() {
-	kde4-meta_pkg_postinst
+	kde4-base_pkg_postinst
 	einfo
 	elog "If you notice missing icons in your GTK applications, you may have to install"
 	elog "the corresponding themes for GTK. A good guess would be x11-themes/oxygen-gtk"
 	elog "for example."
 	einfo
 }
+
+

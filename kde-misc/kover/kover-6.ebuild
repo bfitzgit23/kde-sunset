@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_LINGUAS="de es fr it nb no pl"
 QT3SUPPORT_REQUIRED="true"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="An easy to use WYSIWYG CD cover printer with CDDB support"
 HOMEPAGE="http://lisas.de/kover/"
@@ -25,3 +25,5 @@ DEPEND="${RDEPEND}
 "
 
 PATCHES=( "${FILESDIR}/${PN}-4-cflags.patch" )
+
+

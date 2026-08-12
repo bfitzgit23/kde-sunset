@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 MY_P=plasma_${PN/-/_}-${PV}
 
@@ -24,9 +24,11 @@ S=${WORKDIR}/${MY_P}
 DOCS=( CHANGELOG README )
 
 src_prepare() {
-	sed -e 's:^[ \t]*::' 
+	sed -e 's:^[ \t]*::' \
 		-i applet/plasma-applet-stock-quote.desktop || die "fixing .desktop file failed"
-	sed -e 's:^[ \t]*::' 
+	sed -e 's:^[ \t]*::' \
 		-i dataengine/plasma-dataengine-stockquote.desktop || die "fixing .desktop file failed"
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 }
+
+

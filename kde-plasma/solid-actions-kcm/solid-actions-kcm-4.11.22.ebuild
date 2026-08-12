@@ -16,4 +16,5 @@ RDEPEND="
 	$(add_kdeapps_dep solid-runtime)
 	!kde-base/solid:4
 "
-SLOT=0
+
+

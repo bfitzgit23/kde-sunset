@@ -25,4 +25,5 @@ KMEXTRACTONLY="
 	libs/kephal/kephal/
 	plasma/desktop/shell/data/
 "
-SLOT=0
+
+

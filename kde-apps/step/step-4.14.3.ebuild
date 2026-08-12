@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit flag-o-matic kde4-meta
+inherit flag-o-matic kde4-base
 
 DESCRIPTION="The KDE physics simulator"
 HOMEPAGE="https://edu.kde.org/step"
@@ -26,6 +26,7 @@ src_configure() {
 		-DWITH_gsl="$(usex gsl)"
 		-DWITH_qalculate="$(usex qalculate)"
 	)
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

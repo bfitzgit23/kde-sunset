@@ -6,7 +6,7 @@ EAPI=8
 KDE_HANDBOOK="optional"
 CPPUNIT_REQUIRED="optional"
 OPENGL_REQUIRED="always"
-inherit kde4-meta flag-o-matic
+inherit kde4-base flag-o-matic
 
 DESCRIPTION="KDE: periodic table of the elements"
 HOMEPAGE="https://www.kde.org/applications/education/kalzium
@@ -38,6 +38,7 @@ src_configure(){
 		-DWITH_Libfacile="$(usex solver)"
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

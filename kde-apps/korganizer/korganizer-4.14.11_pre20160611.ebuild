@@ -63,18 +63,18 @@ src_unpack() {
 		"
 	fi
 
-	_src_unpack
+	kde4-meta_src_unpack
 }
 
 src_install() {
-	_src_install
+	kde4-meta_src_install
 	# colliding with kdepim-common-libs
 	rm -rf "${ED}"usr/share/kde4/servicetypes/calendarplugin.desktop || die
 	rm -rf "${ED}"usr/share/kde4/servicetypes/calendardecoration.desktop || die
 }
 
 pkg_postinst() {
-	_pkg_postinst
+	kde4-meta_pkg_postinst
 
 	if ! has_version kde-apps/kdepim-kresources:${SLOT}; then
 		echo
@@ -82,4 +82,5 @@ pkg_postinst() {
 		echo
 	fi
 }
-SLOT=0
+
+

@@ -1,9 +1,8 @@
 # Copyright 1999-2018 Gentoo Foundation
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-inherit -multilib
+inherit qt4-build-multilib
 
 DESCRIPTION="Qt screen magnifier"
 
@@ -31,4 +30,5 @@ multilib_src_configure() {
 	)
 	qt4_multilib_src_configure
 }
-SLOT=0
+
+

@@ -75,8 +75,8 @@ KMSAVELIBS="true"
 PATCHES=( "${FILESDIR}/${P}-CVE-2017-9604.patch" )
 
 src_prepare() {
-	_src_prepare
-	sed -e '/folderarchiveagent.desktop/d' 
+	kde4-meta_src_prepare
+	sed -e '/folderarchiveagent.desktop/d' \
 		-i agents/CMakeLists.txt || die
 }
 
@@ -85,6 +85,7 @@ src_configure() {
 		-DCMAKE_DISABLE_FIND_PACKAGE_LibKGAPI2="$(usex !google)"
 	)
 
-	_src_configure
+	kde4-meta_src_configure
 }
-SLOT=0
+
+

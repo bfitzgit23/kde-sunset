@@ -8,7 +8,7 @@ KMNAME="kdev-python"
 KDE_LINGUAS="bs ca ca@valencia de en_GB es et fi fr gl it nl pl pt pt_BR sk sl sv tr uk"
 PYTHON_COMPAT=( python2_7 )
 MY_P="${KMNAME}-${PV}"
-inherit kde4-meta python-any-r1
+inherit kde4-base python-any-r1
 
 if [[ ${KDE_BUILD_TYPE} = release ]]; then
 	SRC_URI="mirror://kde/stable/kdevelop/${KMNAME}/${PV}/${MY_P}.tar.xz"
@@ -30,7 +30,7 @@ RESTRICT="test"
 
 pkg_setup() {
 	python-any-r1_pkg_setup
-	kde4-meta_pkg_setup
+	kde4-base_pkg_setup
 }
 
 src_compile() {
@@ -38,6 +38,7 @@ src_compile() {
 	emake parser
 	popd > /dev/null || die
 
-	kde4-meta_src_compile
+	kde4-base_src_compile
 }
-SLOT=0
+
+

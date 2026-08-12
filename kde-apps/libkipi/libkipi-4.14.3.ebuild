@@ -3,10 +3,10 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="A library for image plugins accross KDE applications"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

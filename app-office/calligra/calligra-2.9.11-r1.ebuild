@@ -12,7 +12,7 @@ KDE_HANDBOOK="optional"
 KDE_LINGUAS_LIVE_OVERRIDE="true"
 OPENGL_REQUIRED="optional"
 WEBKIT_REQUIRED="optional"
-inherit check-reqs kde4-meta
+inherit check-reqs kde4-base
 
 DESCRIPTION="KDE Office Suite"
 HOMEPAGE="https://calligra.org/"
@@ -58,7 +58,7 @@ RDEPEND="
 	fontconfig? ( media-libs/fontconfig )
 	freetds? ( dev-db/freetds )
 	glib? ( dev-libs/glib:2 )
-	gsf? ( gnome/libgsf )
+	gsf? ( gnome-extra/libgsf )
 	gsl? ( sci-libs/gsl:= )
 	import-filter? (
 		app-text/libetonyek
@@ -125,12 +125,12 @@ pkg_pretend() {
 }
 
 pkg_setup() {
-	kde4-meta_pkg_setup
+	kde4-base_pkg_setup
 	check-reqs_pkg_setup
 }
 
 src_prepare() {
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 	if ! use webkit; then
 		sed -i CMakeLists.txt -e "/^find_package/ s/QtWebKit //" || die
 	fi
@@ -193,12 +193,14 @@ src_configure() {
 
 	use test && mycmakeargs+=( -DENABLE_CSTESTER_TESTING=$(usex test) )
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
 
 src_install() {
-	kde4-meta_src_install
+	kde4-base_src_install
 
 	# bug 613414
 	QA_DT_NEEDED="usr/lib64/libkoversion.so.14.0.0"
 }
+
+

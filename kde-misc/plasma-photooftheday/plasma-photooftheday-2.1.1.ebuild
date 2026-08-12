@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 LINGUAS="bg de"
 CONTENT_NUMBER="104631"
@@ -26,3 +26,5 @@ DEPEND="${RDEPEND}
 "
 
 S="${WORKDIR}/photo-of-the-day"
+
+

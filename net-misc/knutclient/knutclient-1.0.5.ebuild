@@ -6,7 +6,7 @@ EAPI=8
 KDE_LINGUAS="cs de es fr it pl pt_BR ru uk"
 KDE_HANDBOOK="optional"
 MY_P="knc${PV//./}"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Visual client for UPS systems based on kdelibs-4"
 HOMEPAGE="https://sites.google.com/a/prynych.cz/knutclient/"
@@ -25,4 +25,5 @@ PATCHES=(
 DOCS=( ChangeLog )
 
 S="${WORKDIR}/${MY_P}"
-RDEPEND="${DEPEND}"
+
+

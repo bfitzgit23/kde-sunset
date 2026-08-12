@@ -13,7 +13,7 @@ HOMEPAGE="https://kde.org/"
 SRC_URI="mirror://kde/Attic/applications/${PV}/src/${KMNAME}-${PV}.tar.xz"
 
 LICENSE="GPL-2"
-SLOT="4"
+SLOT=4/$(get_version_component_range 1-2)
 KEYWORDS="amd64 x86"
 IUSE="debug"
 
@@ -23,9 +23,11 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 pkg_postinst() {
-	_pkg_postinst
+	kde4-meta_pkg_postinst
 	if ! has_version "sys-devel/gdb"; then
 		elog "For more usability consider installing following packages:"
 		elog "    sys-devel/gdb - Easier debugging support"
 	fi
 }
+
+

@@ -4,7 +4,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="SANE Library interface for KDE"
 KEYWORDS="amd64 ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
@@ -19,7 +19,8 @@ RDEPEND="${DEPEND}
 "
 
 src_install() {
-	kde4-meta_src_install
+	kde4-base_src_install
 	rm -r "${ED}"usr/share/icons || die
 }
-SLOT=0
+
+

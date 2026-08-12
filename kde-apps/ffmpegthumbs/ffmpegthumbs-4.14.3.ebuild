@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="A FFmpeg based thumbnail Generator for Video Files"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -15,4 +15,5 @@ DEPEND="
 RDEPEND="${DEPEND}
 	$(add_kdeapps_dep kdebase-kioslaves)
 "
-SLOT=0
+
+

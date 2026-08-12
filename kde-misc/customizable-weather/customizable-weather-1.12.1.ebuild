@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_LINGUAS="br de el es fr hu it nb nl pl ro ru sr sr@Latn tr zh_CN"
-inherit kde4-meta
+inherit kde4-base
 
 MY_P="cwp-${PV}"
 
@@ -23,3 +23,5 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_P}
+
+

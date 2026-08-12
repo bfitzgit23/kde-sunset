@@ -6,7 +6,7 @@ EAPI=8
 KMMODULE="styles"
 KMNAME="kdeartwork"
 KDE_SCM="svn"
-inherit kde4-meta
+inherit kde4-meta kde4-functions-extra
 
 DESCRIPTION="Extra KWin styles and window decorations"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -20,4 +20,5 @@ RDEPEND="${DEPEND}"
 KMEXTRA="
 	kwin-styles/
 "
-SLOT=0
+
+

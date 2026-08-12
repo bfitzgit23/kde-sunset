@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 MY_PN="geek-clock-plasmoid"
 
@@ -21,3 +21,5 @@ RDEPEND="
 "
 
 S="${WORKDIR}/${MY_PN}-${PV}-src"
+
+

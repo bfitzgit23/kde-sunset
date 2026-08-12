@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_REQUIRED="never"
-inherit kde4-meta
+inherit kde4-base
 
 if [[ ${KDE_BUILD_TYPE} != live ]]; then
 	KEYWORDS="amd64 x86"
@@ -15,7 +15,7 @@ DESCRIPTION="NetworkManager bindings for Qt"
 HOMEPAGE="https://projects.kde.org/projects/extragear/libs/libnm-qt"
 
 LICENSE="LGPL-2"
-SLOT="4"
+SLOT="0/1"
 IUSE="debug doc modemmanager test"
 
 RDEPEND="
@@ -42,7 +42,7 @@ src_configure() {
 		-DDISABLE_TESTING="$(usex !test)"
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
 
 src_install() {
@@ -51,5 +51,7 @@ src_install() {
 		HTML_DOCS=( "${BUILD_DIR}/doc/html/" )
 	fi
 
-	cmake-utils_src_install
+	cmake_src_install
 }
+
+

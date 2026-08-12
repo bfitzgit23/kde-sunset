@@ -16,4 +16,5 @@ IUSE=""
 RDEPEND="
 	!x11-themes/nuvola
 "
-SLOT=0
+
+

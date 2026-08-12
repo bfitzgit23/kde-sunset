@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Plasmoid that shows the state of keyboard leds"
 HOMEPAGE="https://websvn.kde.org/trunk/playground/base/plasma/applets/kbstateapplet"
@@ -21,3 +21,5 @@ RDEPEND="
 	${DEPEND}
 	kde-plasma/plasma-workspace:4
 "
+
+

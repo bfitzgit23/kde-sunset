@@ -6,7 +6,7 @@ EAPI=8
 KDE_HANDBOOK="optional"
 KDE_REQUIRED="optional"
 CPPUNIT_REQUIRED="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Generic geographical map widget"
 HOMEPAGE="https://marble.kde.org/"
@@ -58,7 +58,7 @@ src_configure() {
 		-DWITH_libgps=OFF
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
 
 src_test() {
@@ -68,7 +68,8 @@ src_test() {
 		local mycmakeargs=(
 			-DBUILD_MARBLE_TESTS=ON
 		)
-		kde4-meta_src_test
+		kde4-base_src_test
 	fi
 }
-SLOT=0
+
+

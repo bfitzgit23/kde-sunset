@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_REQUIRED="never"
-inherit kde4-meta
+inherit kde4-base
 
 if [[ ${KDE_BUILD_TYPE} != live ]]; then
 	KEYWORDS="amd64 x86"
@@ -15,7 +15,7 @@ DESCRIPTION="Modemmanager bindings for Qt"
 HOMEPAGE="https://projects.kde.org/projects/extragear/libs/libmm-qt"
 
 LICENSE="LGPL-2"
-SLOT="4"
+SLOT="0"
 IUSE="debug"
 
 RDEPEND="
@@ -27,3 +27,5 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 
 PATCHES=( "${FILESDIR}/${P}-cxxflags.patch" )
+
+

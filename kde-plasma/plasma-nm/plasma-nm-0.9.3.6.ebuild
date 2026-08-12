@@ -7,7 +7,7 @@ KDE_LINGUAS="ar bg bs ca ca@valencia cs da de el en_GB eo es et fa fi fr ga gl
 hr hu is it ja km ko lt lv mai mr ms nb nds nl nn pa pl pt pt_BR ro ru sk
 sl sr sr@ijekavian sr@ijekavianlatin sr@latin sv th tr ug uk zh_CN zh_TW"
 DECLARATIVE_REQUIRED="always"
-inherit kde4-meta
+inherit kde4-base
 
 if [[ ${KDE_BUILD_TYPE} != live ]]; then
 	KEYWORDS="amd64 x86"
@@ -44,5 +44,7 @@ src_configure() {
 		-DCMAKE_DISABLE_FIND_PACKAGE_OpenConnect="$(usex !openconnect)"
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
+
+

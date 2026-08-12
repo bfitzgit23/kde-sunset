@@ -4,7 +4,7 @@
 EAPI=8
 
 COMMIT="a28ff105e76a227b799c2bbf6e732791de5fb84e"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Video player plugin for Konqueror and basic MPlayer frontend"
 HOMEPAGE="https://kmplayer.kde.org"
@@ -33,10 +33,10 @@ PATCHES=( "${FILESDIR}/${PN}-0.11.3d-cmake34.patch" )
 S="${WORKDIR}/${PN}-${COMMIT}"
 
 src_prepare() {
-	sed -e '/add_subdirectory(icons)/d' 
+	sed -e '/add_subdirectory(icons)/d' \
 		-i CMakeLists.txt || die
 
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 }
 
 src_configure() {
@@ -46,5 +46,7 @@ src_configure() {
 		-DKMPLAYER_BUILT_WITH_NPP=OFF
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
+
+

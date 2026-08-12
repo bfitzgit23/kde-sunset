@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -13,7 +12,7 @@ HOMEPAGE="https://launchpad.net/libdbusmenu-qt/"
 SRC_URI="https://launchpad.net/ubuntu/+archive/primary/+files/${PN}_${MY_PV}.orig.tar.gz"
 
 LICENSE="LGPL-2"
-SLOT="4"
+SLOT="0"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
 IUSE="+qt4 qt5"
 
@@ -94,3 +93,5 @@ src_install() {
 	}
 	multibuild_foreach_variant myinstall
 }
+
+

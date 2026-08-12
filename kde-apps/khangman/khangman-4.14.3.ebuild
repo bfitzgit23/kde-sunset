@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Classical hangman game for KDE"
 HOMEPAGE="https://www.kde.org/applications/education/khangman
@@ -16,4 +16,5 @@ DEPEND="
 	$(add_kdeapps_dep libkdeedu)
 "
 RDEPEND=${DEPEND}
-SLOT=0
+
+

@@ -1,5 +1,4 @@
 # Copyright 1999-2021 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -12,7 +11,7 @@ HOMEPAGE="http://qjson.sourceforge.net/"
 SRC_URI="https://github.com/flavio/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
-SLOT="4"
+SLOT="0"
 KEYWORDS="amd64 ~arm ~hppa ~ppc ~ppc64 x86"
 IUSE="debug doc test"
 
@@ -51,3 +50,5 @@ multilib_src_install_all() {
 		einstalldocs
 	fi
 }
+
+

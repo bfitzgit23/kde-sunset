@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE library for CDDB"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -22,7 +22,7 @@ RDEPEND="${DEPEND}"
 KMSAVELIBS="true"
 
 src_prepare() {
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 
 	if ! use handbook ; then
 		pushd kcmcddb > /dev/null
@@ -36,6 +36,7 @@ src_configure() {
 		-DWITH_MusicBrainz5="$(usex musicbrainz)"
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

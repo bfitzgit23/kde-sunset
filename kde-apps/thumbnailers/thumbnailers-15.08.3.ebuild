@@ -4,7 +4,7 @@
 EAPI=8
 
 KMNAME="kdegraphics-thumbnailers"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE 4 thumbnail generators for PDF/PS files"
 KEYWORDS="~amd64 ~x86"
@@ -21,4 +21,5 @@ RDEPEND="${DEPEND}
 if [[ ${KDE_BUILD_TYPE} != live ]]; then
 	S="${WORKDIR}/${KMNAME}-${PV}"
 fi
-SLOT=0
+
+

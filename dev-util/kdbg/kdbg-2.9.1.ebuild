@@ -6,7 +6,7 @@ EAPI=8
 KDE_LINGUAS="cs da de es fr hr hu it ja nb nn pl pt ro ru sk sr sv tr zh_CN"
 KDE_HANDBOOK="optional"
 QT3SUPPORT_REQUIRED="true"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Graphical debugger interface"
 HOMEPAGE="https://www.kdbg.org/"
@@ -27,12 +27,14 @@ src_prepare() {
 	mv kdbg/doc . || die
 	sed -i -e '/add_subdirectory(doc)/d' kdbg/CMakeLists.txt || die
 	echo "add_subdirectory ( doc ) " >> CMakeLists.txt || die
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 }
 
 src_install() {
-	kde4-meta_src_install
+	kde4-base_src_install
 
 	# hack since ChangeLog-* is automagically installed by eclass
 	rm -f "${ED}"usr/share/doc/${PF}/ChangeLog-pre*
 }
+
+

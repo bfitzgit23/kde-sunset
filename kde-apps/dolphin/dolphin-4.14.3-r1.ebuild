@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-baseapps"
-inherit kde4-meta
+inherit kde4-meta kde4-functions-extra
 
 DESCRIPTION="A KDE filemanager focusing on usability"
 HOMEPAGE="https://dolphin.kde.org https://www.kde.org/applications/system/dolphin"
@@ -43,14 +43,15 @@ src_configure() {
 		-DWITH_KFileMetaData="$(usex semantic-desktop)"
 	)
 
-	_src_configure
+	kde4-meta_src_configure
 }
 
 pkg_postinst() {
-	kde4-meta_pkg_postinst
+	kde4-base_pkg_postinst
 
 	if ! has_version media-gfx/icoutils ; then
 		elog "For .exe file preview support, install media-gfx/icoutils."
 	fi
 }
-SLOT=0
+
+

@@ -7,7 +7,7 @@ QT3SUPPORT_REQUIRED="true"
 KDE_LINGUAS="es"
 KDE_DOC_DIRS="doc/${PN}"
 KDE_HANDBOOK=optional
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="MUD client by KDE"
 HOMEPAGE="https://cgit.kde.org/kmuddy.git/"
@@ -33,6 +33,7 @@ src_configure() {
 	local mycmakeargs=(
 		-DWITH_MXP=OFF
 	)
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-RDEPEND="${DEPEND}"
+
+

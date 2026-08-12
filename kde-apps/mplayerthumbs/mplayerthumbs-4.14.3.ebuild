@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="A Thumbnail Generator for Video Files on KDE filemanagers"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -18,6 +18,7 @@ src_configure() {
 		-DENABLE_PHONON_SUPPORT=ON
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

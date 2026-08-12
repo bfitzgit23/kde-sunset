@@ -9,5 +9,5 @@ inherit kde4-meta
 DESCRIPTION="The KDE notification daemon"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 OPENGL_REQUIRED="always"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="A game based on the \"Rubik's Cube\" puzzle"
 HOMEPAGE="https://www.kde.org/applications/games/kubrick/"
@@ -18,4 +18,5 @@ RDEPEND="$(add_kdeapps_dep libkdegames)
 DEPEND="${RDEPEND}
 	virtual/opengl
 "
-SLOT=0
+
+

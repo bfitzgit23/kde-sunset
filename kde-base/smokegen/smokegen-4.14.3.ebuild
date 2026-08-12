@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_REQUIRED="never"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Scripting Meta Object Kompiler Engine - generators"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
@@ -15,4 +15,5 @@ DEPEND="
 	dev-qt/qtcore:4
 "
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

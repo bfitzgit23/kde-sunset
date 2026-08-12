@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 #VIRTUALX_REQUIRED=test
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Universal document viewer based on KPDF"
 HOMEPAGE="https://okular.kde.org https://apps.kde.org/en/okular"
@@ -53,6 +53,7 @@ src_configure() {
 		-DWITH_TIFF=$(usex tiff)
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

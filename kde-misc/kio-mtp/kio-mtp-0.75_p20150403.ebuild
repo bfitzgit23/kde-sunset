@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="MTP KIO-Client for KDE"
 HOMEPAGE="https://projects.kde.org/projects/playground/base/kio-mtp"
@@ -21,3 +21,5 @@ DEPEND="
 	>=media-libs/libmtp-1.1.3
 "
 RDEPEND="${DEPEND}"
+
+

@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_LINGUAS="cs de hu pt_BR"
-inherit kde4-meta
+inherit kde4-base
 
 MY_P=${P/-/_}
 
@@ -20,4 +20,5 @@ IUSE="debug"
 S=${WORKDIR}/${MY_P}
 
 DOCS=( THEMING )
-RDEPEND="${DEPEND}"
+
+

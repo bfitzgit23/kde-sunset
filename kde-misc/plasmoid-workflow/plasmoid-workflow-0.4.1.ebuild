@@ -4,14 +4,14 @@
 EAPI=8
 
 KDE_LINGUAS="de el en es fr pt"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Integrates Activities, Virtual Desktops and Tasks in one component"
 HOMEPAGE="http://kde-look.org/content/show.php/?content=147428"
 SRC_URI="http://www.opentoolsandspace.org/Art/WorkFlow/0.4.x/${P}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="4"
+SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
@@ -26,3 +26,5 @@ pkg_postinst() {
 	elog "If you want to use the WorkFlow KWin script, install it from the KWin Script manager."
 	elog "The WorkFlow plasmoid package is a dependancy for the WorkFlow KWin script to work."
 }
+
+

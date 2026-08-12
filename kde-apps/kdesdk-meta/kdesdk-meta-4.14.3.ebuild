@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-meta-pkg
 
 DESCRIPTION="KDE SDK - merge this to pull in all kdesdk-derived packages"
 HOMEPAGE="https://www.kde.org/applications/development"
@@ -26,4 +26,5 @@ RDEPEND="
 	$(add_kdeapps_dep umbrello)
 "
 #	$(add_kdeapps_dep lokalize)
-SLOT=0
+
+

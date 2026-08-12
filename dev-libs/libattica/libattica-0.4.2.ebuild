@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -13,7 +12,7 @@ HOMEPAGE="https://www.kde.org/"
 SRC_URI="mirror://kde/stable/${MY_PN}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2"
-SLOT="4"
+SLOT="0"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug test"
 
@@ -40,3 +39,5 @@ src_configure() {
 	)
 	cmake-utils_src_configure
 }
+
+

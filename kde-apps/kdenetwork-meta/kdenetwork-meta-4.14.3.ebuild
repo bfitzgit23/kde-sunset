@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-meta-pkg
 
 DESCRIPTION="kdenetwork - merge this to pull in all kdenetwork-derived packages"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -18,4 +18,5 @@ RDEPEND="
 	$(add_kdeapps_dep zeroconf-ioslave)
 	!arm? ( ppp? ( $(add_kdeapps_dep kppp) ) )
 "
-SLOT=0
+
+

@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_LINGUAS="cs de el fr"
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Locate KIO slave for KDE"
 HOMEPAGE="http://www.kde-apps.org/content/show.php/kio-locate?content=120965"
@@ -22,3 +22,5 @@ PATCHES=( "${FILESDIR}/${P}-gcc-4.7.patch" )
 RDEPEND="${RDEPEND}
 	sys-apps/mlocate
 "
+
+

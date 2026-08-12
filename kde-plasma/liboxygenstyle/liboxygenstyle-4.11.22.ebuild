@@ -10,7 +10,7 @@ inherit kde4-meta
 DESCRIPTION="Library to support the Oxygen style in KDE Plasma"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
-SLOT="4"
+SLOT="4/${PV}"
 
 DEPEND="x11-libs/libX11"
 RDEPEND="${DEPEND}"
@@ -18,3 +18,5 @@ RDEPEND="${DEPEND}"
 PATCHES=(
 	"${FILESDIR}/${P}-gcc6.patch"
 )
+
+

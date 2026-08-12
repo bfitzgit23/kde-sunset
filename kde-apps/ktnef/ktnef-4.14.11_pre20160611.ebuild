@@ -22,4 +22,5 @@ RDEPEND="${DEPEND}"
 KMEXTRACTONLY="
 	akonadi/
 "
-SLOT=0
+
+

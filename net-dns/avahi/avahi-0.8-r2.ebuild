@@ -1,5 +1,4 @@
 # Copyright 1999-2021 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -13,7 +12,7 @@ HOMEPAGE="https://avahi.org/"
 SRC_URI="https://github.com/lathiat/avahi/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
-SLOT="4"
+SLOT="0"
 KEYWORDS="amd64 ~arm ~hppa ~mips ~ppc ~ppc64 ~s390 ~sparc x86 ~x86-linux"
 IUSE="autoipd bookmarks +dbus doc gdbm gtk gtk2 howl-compat +introspection ipv6 kernel_linux mdnsresponder-compat mono nls python qt4 qt5 selinux systemd test"
 
@@ -96,13 +95,13 @@ src_prepare() {
 	default
 
 	if ! use ipv6; then
-		sed -i 
-			-e "s/use-ipv6=yes/use-ipv6=no/" 
+		sed -i \
+			-e "s/use-ipv6=yes/use-ipv6=no/" \
 			avahi-daemon/avahi-daemon.conf || die
 	fi
 
-	sed -i 
-		-e "s:\\.\\./\\.\\./\\.\\./doc/avahi-docs/html/:../../../doc/${PF}/html/:" 
+	sed -i \
+		-e "s:\\.\\./\\.\\./\\.\\./doc/avahi-docs/html/:../../../doc/${PF}/html/:" \
 		doxygen_to_devhelp.xsl || die
 
 	eautoreconf
@@ -171,7 +170,7 @@ multilib_src_compile() {
 
 multilib_src_install() {
 	emake install DESTDIR="${D}"
-	use bookmarks && use python && use dbus && use gtk2 || 
+	use bookmarks && use python && use dbus && use gtk2 || \
 		rm -f "${ED}"/usr/bin/avahi-bookmarks
 
 	# https://github.com/lathiat/avahi/issues/28
@@ -213,3 +212,5 @@ pkg_postinst() {
 
 	systemd_reenable avahi-daemon.service
 }
+
+

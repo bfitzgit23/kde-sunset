@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 CPPUNIT_REQUIRED="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Common library for KDE PIM apps"
 SRC_URI="https://dev.gentoo.org/~asturm/distfiles/${P/10_p/11_pre}.tar.xz"
@@ -47,11 +47,11 @@ src_configure() {
 		-DCMAKE_DISABLE_FIND_PACKAGE_Prison="$(usex !prison)"
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
 
 src_install() {
-	kde4-meta_src_install
+	kde4-base_src_install
 
 	# Collides with net-im/choqok
 	rm "${ED}"usr/share/apps/cmake/modules/FindQtOAuth.cmake || die
@@ -59,4 +59,5 @@ src_install() {
 	# contains constants/defines only
 	QA_DT_NEEDED="$(find "${ED}" -type f -name 'libakonadi-kabc.so.*' -printf '/%P\n')"
 }
-SLOT=0
+
+

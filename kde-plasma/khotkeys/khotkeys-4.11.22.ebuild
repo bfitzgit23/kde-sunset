@@ -20,4 +20,5 @@ RDEPEND="${DEPEND}"
 KMEXTRACTONLY="
 	libs/kworkspace/
 "
-SLOT=0
+
+

@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE digital camera raw image library wrapper"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -19,4 +19,5 @@ PATCHES=(
 	"${FILESDIR}/${P}-libraw-0.19.0.patch"
 	"${FILESDIR}/${P}-libraw-0.21.0.patch"
 )
-SLOT=0
+
+

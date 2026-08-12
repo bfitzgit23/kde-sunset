@@ -6,7 +6,7 @@ EAPI=8
 KDE_MINIMAL="4.13"
 KDE_LINGUAS="bs ca cs da de el es fi fr hu ja ko lt nds nl pl pt pt_BR ro sk sv
 uk zh_CN zh_TW"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Dedicated search application built on top of Baloo"
 HOMEPAGE="https://projects.kde.org/projects/extragear/base/milou"
@@ -24,3 +24,5 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	kde-frameworks/kfilemetadata:4
 "
+
+

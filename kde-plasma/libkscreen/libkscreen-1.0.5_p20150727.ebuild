@@ -5,7 +5,7 @@ EAPI=8
 
 COMMIT=76aba9ff19cf10f7e8fbf6753235bbb47cd2d295
 VIRTUALX_REQUIRED="test"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Plasma screen management library"
 HOMEPAGE="https://invent.kde.org/plasma/libkscreen"
@@ -28,3 +28,5 @@ DEPEND="
 "
 
 S="${WORKDIR}/${PN}-${COMMIT}"
+
+

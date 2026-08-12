@@ -21,9 +21,9 @@ RDEPEND="${DEPEND}
 "
 
 src_prepare() {
-	_src_prepare
+	kde4-meta_src_prepare
 
-	use pam && epatch "${FILESDIR}/${PN}-4.4.2-no-SUID-no-GUID.patch"
+	use pam && eapply "${FILESDIR}/${PN}-4.4.2-no-SUID-no-GUID.patch"
 }
 
 src_configure() {
@@ -31,6 +31,7 @@ src_configure() {
 		-DWITH_pam="$(usex pam)"
 	)
 
-	_src_configure
+	kde4-meta_src_configure
 }
-SLOT=0
+
+

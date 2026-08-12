@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 KDE_SELINUX_MODULE="games"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="A KDE game similiar to Mahjongg"
 HOMEPAGE="
@@ -20,4 +20,5 @@ DEPEND="
 	$(add_kdeapps_dep libkmahjongg)
 "
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

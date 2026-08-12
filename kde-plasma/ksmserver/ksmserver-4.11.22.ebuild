@@ -1,12 +1,11 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
 DECLARATIVE_REQUIRED="always"
 KMNAME="kde-workspace"
-inherit  pax-utils
+inherit kde4-meta pax-utils
 
 DESCRIPTION="The reliable Plasma session manager that talks the standard X11R6"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -36,9 +35,10 @@ KMEXTRACTONLY="
 KMLOADLIBS="libkworkspace"
 
 src_install() {
-	_src_install
+	kde4-meta_src_install
 
 	# bug #483236
 	pax-mark m "${ED}/usr/$(get_libdir)/kde4/libexec/kscreenlocker_greet"
 }
-SLOT=0
+
+

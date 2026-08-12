@@ -25,4 +25,5 @@ DEPEND="${RDEPEND}"
 KMEXTRACTONLY="
 	kmail/
 "
-SLOT=0
+
+

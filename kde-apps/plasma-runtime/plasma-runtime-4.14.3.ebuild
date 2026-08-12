@@ -6,7 +6,7 @@ EAPI=8
 KMNAME="kde-runtime"
 KMMODULE="plasma"
 DECLARATIVE_REQUIRED="always"
-inherit kde4-meta
+inherit kde4-meta kde4-functions-extra
 
 DESCRIPTION="Script engine and package tool for plasma"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -20,4 +20,5 @@ RDEPEND="${DEPEND}"
 
 RESTRICT=test
 # bug 443748
-SLOT=0
+
+

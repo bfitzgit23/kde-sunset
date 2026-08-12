@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_LINGUAS="ar bg br bs cs cy da de el en_GB eo es et fi fr ga gl hr hu is it
 ja ka km lt ms nb nds nl pl pt pt_BR ro ru rw sk sl sr sv tr ug uk zh_CN zh_TW"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="The KDE Network Monitor"
 HOMEPAGE="http://kde-apps.org/content/show.php?content=12956"
@@ -33,5 +33,7 @@ src_configure() {
 		-DNO_WIRELESS_SUPPORT="$(usex !wifi)"
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
+
+

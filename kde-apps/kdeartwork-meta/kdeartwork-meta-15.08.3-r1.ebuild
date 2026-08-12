@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
+inherit kde4-base
 
 DESCRIPTION="kdeartwork - merge this to pull in all kdeartwork-derived packages"
 HOMEPAGE="https://www.kde.org/"
@@ -19,4 +20,5 @@ RDEPEND="
 	>=kde-apps/kdeartwork-wallpapers-15.08.3:4
 	>=kde-apps/kdeartwork-weatherwallpapers-15.08.3:4
 "
-inherit kde4-meta
+
+

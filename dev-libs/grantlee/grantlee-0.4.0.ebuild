@@ -1,5 +1,4 @@
 # Copyright 1999-2017 Gentoo Foundation
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -11,7 +10,7 @@ HOMEPAGE="https://github.com/steveire/grantlee"
 SRC_URI="http://downloads.grantlee.org/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
-SLOT="4"
+SLOT="0"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86"
 IUSE="debug doc test"
 
@@ -52,3 +51,5 @@ src_install() {
 
 	cmake-utils_src_install
 }
+
+

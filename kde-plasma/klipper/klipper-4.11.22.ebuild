@@ -26,6 +26,7 @@ src_configure() {
 		-DWITH_prison="$(usex prison)"
 	)
 
-	_src_configure
+	kde4-meta_src_configure
 }
-SLOT=0
+
+

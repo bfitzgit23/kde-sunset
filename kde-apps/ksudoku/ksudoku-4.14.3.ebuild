@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 OPENGL_REQUIRED="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE Sudoku"
 HOMEPAGE="
@@ -25,6 +25,7 @@ src_configure() {
 	local mycmakeargs=(
 		-DWITH_OpenGL="$(usex opengl)"
 	)
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

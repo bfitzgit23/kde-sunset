@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE4 interface to work with Graph Theory"
 HOMEPAGE="https://www.kde.org/applications/education/rocs
@@ -26,8 +26,8 @@ RESTRICT=test
 
 src_test() {
 	local mycmakeargs=(-DKDE4_BUILD_TESTS=ON)
-	cmake-utils_src_configure
-	kde4-meta_src_compile
+	cmake_src_configure
+	kde4-base_src_compile
 
 	cd "${BUILD_DIR}"
 	emake DESTDIR="${T}/tests" install
@@ -35,4 +35,5 @@ src_test() {
 	kbuildsycoca4
 	ctest || die "tests failed"
 }
-SLOT=0
+
+

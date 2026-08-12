@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta 
+inherit kde4-base kde4-functions-extra
 
 DESCRIPTION="KDE multi-protocol IM client"
 HOMEPAGE="https://kopete.kde.org https://apps.kde.org/en/kopete"
@@ -128,11 +128,11 @@ src_configure() {
 		mycmakeargs+=(-DWITH_${x/+/})="$(usex ${x/+/}))"
 	done
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
 
 pkg_postinst() {
-	kde4-meta_pkg_postinst
+	kde4-base_pkg_postinst
 
 	#if use telepathy; then
 	#	elog "To use kopete telepathy plugins, you need to start gabble first:"
@@ -149,4 +149,5 @@ pkg_postinst() {
 		fi
 	fi
 }
-SLOT=0
+
+

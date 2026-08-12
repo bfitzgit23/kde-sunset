@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE library for playing & ripping CDs"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -13,7 +13,7 @@ src_configure() {
 	local mycmakeargs=(
 		-DWITH_alsa="$(usex alsa)"
 	)
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

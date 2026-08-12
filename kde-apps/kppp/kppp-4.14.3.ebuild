@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE: A dialer and front-end to pppd"
 HOMEPAGE="https://www.kde.org/applications/internet/kppp"
@@ -14,4 +14,5 @@ IUSE="debug"
 RDEPEND="
 	net-dialup/ppp
 "
-SLOT=0
+
+

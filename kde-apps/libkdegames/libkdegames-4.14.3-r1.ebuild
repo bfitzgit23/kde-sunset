@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Base library common to many KDE games"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -16,4 +16,5 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 KMSAVELIBS="true"
-SLOT=0
+
+

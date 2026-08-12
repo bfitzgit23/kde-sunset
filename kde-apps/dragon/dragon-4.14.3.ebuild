@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Dragon Player is a simple video player for KDE 4"
 HOMEPAGE="https://www.kde.org/applications/multimedia/dragonplayer"
@@ -17,4 +17,5 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	sys-devel/gettext
 "
-SLOT=0
+
+

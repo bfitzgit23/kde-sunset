@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 KDEAPPS_ID="94374"
 
@@ -19,4 +19,5 @@ IUSE="debug"
 PATCHES=(
 	"${FILESDIR}/${P}-underlinking.patch"
 )
-RDEPEND="${DEPEND}"
+
+

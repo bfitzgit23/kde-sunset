@@ -13,5 +13,5 @@ inherit kde4-meta
 DESCRIPTION="EmotIcons (icons for things like smilies :-) for kde"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE=""
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

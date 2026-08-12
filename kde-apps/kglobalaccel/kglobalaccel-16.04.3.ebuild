@@ -16,7 +16,7 @@ src_configure() {
 		-DKDEBASE_KGLOBALACCEL_REMOVE_OBSOLETE_KDED_PLUGIN=NOTFOUND
 	)
 
-	_src_configure
+	kde4-meta_src_configure
 }
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

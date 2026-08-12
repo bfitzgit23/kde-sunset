@@ -1,5 +1,4 @@
 # Copyright 1999-2021 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -12,7 +11,7 @@ DESCRIPTION="Legacy NetworkManager glib and util libraries"
 HOMEPAGE="https://wiki.gnome.org/Projects/NetworkManager"
 
 LICENSE="GPL-2+"
-SLOT="4"
+SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~ia64 ~ppc ~ppc64 ~sparc ~x86"
 IUSE="gnutls +nss"
 REQUIRED_USE="|| ( nss gnutls )"
@@ -110,3 +109,5 @@ multilib_src_install() {
 multilib_src_install_all() {
 	:
 }
+
+

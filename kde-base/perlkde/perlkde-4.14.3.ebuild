@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE Perl bindings"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -33,6 +33,7 @@ src_configure() {
 		-DDISABLE_kate="$(usex !kate)"
 		-DWITH_okular="$(usex okular)"
 	)
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

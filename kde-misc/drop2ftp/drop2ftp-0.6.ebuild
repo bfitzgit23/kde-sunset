@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Plasmoid to add files over KIO supported protocols, like ftp and ssh"
 HOMEPAGE="http://www.kde-look.org/content/show.php/Drop2FTP?content=97281"
@@ -19,3 +19,5 @@ RDEPEND="
 "
 
 PATCHES=( "${FILESDIR}/${P}-qt47.patch" )
+
+

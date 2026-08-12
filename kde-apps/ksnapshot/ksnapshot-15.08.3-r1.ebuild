@@ -5,7 +5,7 @@ EAPI=8
 MY_PV=2015.12
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE Screenshot Utility"
 HOMEPAGE="https://www.kde.org/applications/graphics/ksnapshot/"
@@ -31,6 +31,7 @@ src_configure() {
 		-DWITH_kipi="$(usex kipi)"
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

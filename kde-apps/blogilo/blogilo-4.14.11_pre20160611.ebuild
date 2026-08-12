@@ -24,4 +24,5 @@ KMEXTRACTONLY="
 	composereditor-ng/
 	pimcommon/
 "
-SLOT=0
+
+

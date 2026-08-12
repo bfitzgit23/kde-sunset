@@ -15,4 +15,5 @@ IUSE=""
 RDEPEND="
 	$(add_kdeapps_dep kdeartwork-wallpapers)
 "
-SLOT=0
+
+

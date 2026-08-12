@@ -9,7 +9,7 @@ KDE_LINGUAS="bs ca ca@valencia da de el en_GB es et fi fr gl it kk nb nds nl pl
 pt pt_BR ru sl sv uk zh_CN zh_TW"
 MY_P="${KMNAME}-${PV}"
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="QML and javascript plugin for KDevelop 4"
 LICENSE="GPL-2 LGPL-2"
@@ -25,4 +25,5 @@ DEPEND="
 RDEPEND="${DEPEND}
 	dev-util/kdevelop:4
 "
-SLOT=0
+
+

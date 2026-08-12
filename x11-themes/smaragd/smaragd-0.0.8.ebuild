@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KWin theme engine that uses Emerald themes"
 HOMEPAGE="https://invent.kde.org/plasma/smaragd https://store.kde.org/p/1167274"
@@ -23,3 +23,5 @@ RDEPEND="${DEPEND}
 "
 
 S="${WORKDIR}/${PN}-v${PV}"
+
+

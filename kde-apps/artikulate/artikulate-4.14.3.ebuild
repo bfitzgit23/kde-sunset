@@ -5,7 +5,7 @@ EAPI=8
 
 DECLARATIVE_REQUIRED="always"
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Language learning application that helps improving pronunciation skills"
 HOMEPAGE="https://edu.kde.org/applications/language/artikulate"
@@ -19,4 +19,5 @@ DEPEND="
 RDEPEND="${DEPEND}
 	$(add_kdeapps_dep kqtquickcharts)
 "
-SLOT=0
+
+

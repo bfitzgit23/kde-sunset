@@ -20,4 +20,5 @@ RDEPEND="${DEPEND}"
 
 # bug 443748
 RESTRICT=test
-SLOT=0
+
+

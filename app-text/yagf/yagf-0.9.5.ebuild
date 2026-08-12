@@ -1,18 +1,17 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
 PLOCALES="fr ru"
-inherit cmake l10n
+inherit cmake plocale
 
 DESCRIPTION="Graphical front-end for cuneiform and tesseract OCR tools"
 HOMEPAGE="https://sourceforge.net/projects/yagf-ocr/"
 SRC_URI="mirror://sourceforge/project/yagf-ocr/${P}.tar.gz"
 
 LICENSE="GPL-3"
-SLOT="4"
+SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="cuneiform pdf scanner +tesseract"
 
@@ -36,11 +35,11 @@ src_prepare() {
 	# uk translation generation is broken
 	rm src/translations/yagf_uk.ts || die
 	# respect CFLAGS and fix translations path
-	sed -e '/add_definitions(-Wall -g)/d' 
-		-e '/-DQML_INSTALL_PATH=/s:${QML_DESTINATION}:/${QML_DESTINATION}:' 
+	sed -e '/add_definitions(-Wall -g)/d' \
+		-e '/-DQML_INSTALL_PATH=/s:${QML_DESTINATION}:/${QML_DESTINATION}:' \
 		-i CMakeLists.txt || die 'sed on CMakeLists.txt failed'
 
-	l10n_find_plocales_changes "src/translations" "${PN}_" '.ts'
+	plocale_find_changes "src/translations" "${PN}_" '.ts'
 	cmake_src_prepare
 }
 
@@ -58,5 +57,7 @@ src_install() {
 			die "remove '${PN}_${1}.qm' file failed"
 	}
 	cmake_src_install
-	l10n_for_each_disabled_locale_do remove_translation
+	plocale_for_each_disabled_locale_do remove_translation
 }
+
+

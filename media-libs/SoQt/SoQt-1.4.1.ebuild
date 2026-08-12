@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -12,7 +11,7 @@ SRC_URI="https://github.com/coin3d/soqt/archive/${P}.tar.gz"
 S="${WORKDIR}/soqt-${P}"
 
 LICENSE="|| ( GPL-2 PEL )"
-SLOT="4"
+SLOT="0"
 KEYWORDS="~amd64 x86"
 IUSE="doc"
 
@@ -37,10 +36,10 @@ src_configure() {
 
 	append-ldflags $(no-as-needed)
 
-	econf 
-		--with-coin 
-		--disable-html-help
-		$(use_enable doc html) 
+	econf \
+		--with-coin \
+		--disable-html-help\
+		$(use_enable doc html) \
 		htmldir=/usr/share/doc/${PF}/html
 }
 
@@ -52,3 +51,5 @@ src_install() {
 	emake DESTDIR="${D}" install
 	dodoc AUTHORS ChangeLog NEWS README*
 }
+
+

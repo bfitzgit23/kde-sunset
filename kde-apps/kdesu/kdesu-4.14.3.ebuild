@@ -17,11 +17,11 @@ IUSE="debug"
 src_configure() {
 	# Upstream moved kdesu to libexec first, then decided to move it back
 	# to /${PREFIX}/bin/ , so I'm doing that now already.
-	sed -e '/kdesu_executable/s:LIBEXEC_INSTALL_DIR:BIN_INSTALL_DIR:' 
-		-i "${S}"/kdesu/kdesu/CMakeLists.txt || 
+	sed -e '/kdesu_executable/s:LIBEXEC_INSTALL_DIR:BIN_INSTALL_DIR:' \
+		-i "${S}"/kdesu/kdesu/CMakeLists.txt || \
 		die "Moving kdesu from libexec to bin failed."
 
-	_src_configure
+	kde4-meta_src_configure
 }
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

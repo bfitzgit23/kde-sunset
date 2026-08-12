@@ -6,7 +6,7 @@ EAPI=8
 KMNAME="kdepim-runtime"
 QT_MINIMAL="4.8.7"
 EGIT_BRANCH="KDE/4.14"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE PIM runtime plugin collection"
 COMMIT_ID="bb194cc299839cb00b808c9c5740169815ba9e39"
@@ -38,6 +38,7 @@ src_configure() {
 		-DCMAKE_DISABLE_FIND_PACKAGE_LibKGAPI2="$(usex !google)"
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

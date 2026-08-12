@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE Development Utilities"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -14,4 +14,5 @@ RDEPEND="
 	!kde-base/kstartperf:4
 	!kde-base/kuiviewer:4
 "
-SLOT=0
+
+

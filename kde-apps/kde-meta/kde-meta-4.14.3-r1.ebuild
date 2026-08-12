@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-inherit kde4-meta
+inherit kde4-meta-pkg kde4-functions-extra
 
 DESCRIPTION="KDE - merge this to pull in all split kde-base/* packages"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -18,7 +18,7 @@ RDEPEND="
 	$(add_kdeapps_dep kdegraphics-meta)
 	$(add_kdeapps_dep kdemultimedia-meta)
 	$(add_kdeapps_dep kdenetwork-meta)
-	$(add_kdeapps_dep kdkde4-functions-meta)
+	$(add_kdeapps_dep kdeutils-meta)
 	accessibility? ( $(add_kdeapps_dep kdeaccessibility-meta) )
 	kdepim? ( $(add_kdeapps_dep kdepim-meta '' 4.4.11.1) )
 	nls? ( $(add_kdeapps_dep kde4-l10n '' 4.11) )
@@ -30,4 +30,5 @@ RDEPEND="
 	!minimal? ( $(add_kdeplasma_dep kdeplasma-addons) )
 "
 REQUIRED_USE="minimal? ( !kdepim )"
-SLOT=0
+
+

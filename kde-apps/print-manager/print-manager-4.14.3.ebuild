@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Manage print jobs and printers in KDE"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -35,4 +35,5 @@ pkg_postinst(){
 		ewarn
 	fi
 }
-SLOT=0
+
+

@@ -9,7 +9,7 @@ OPENGL_REQUIRED="optional"
 QTHELP_REQUIRED="optional"
 KDE_REQUIRED="never"
 VIRTUALX_REQUIRED="test"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Qt Perl bindings"
 KEYWORDS="amd64 ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
@@ -41,10 +41,11 @@ src_configure() {
 		-DDISABLE_qwt="$(usex !qwt)"
 		-DDISABLE_QtWebKit="$(usex !webkit)"
 	)
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
 
 src_test() {
-	PERL5LIB="${BUILD_DIR}/blib/arch:${BUILD_DIR}/blib/lib" kde4-meta_src_test
+	PERL5LIB="${BUILD_DIR}/blib/arch:${BUILD_DIR}/blib/lib" kde4-base_src_test
 }
-SLOT=0
+
+

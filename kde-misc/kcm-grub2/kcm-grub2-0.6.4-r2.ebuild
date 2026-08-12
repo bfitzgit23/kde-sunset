@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_LINGUAS="ca ca@valencia cs da de el es et fi fr ga gl hu it lt nl pa pl pt
 pt_BR ro ru sk sl sv uk tr zh_TW"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KCModule for configuring the GRUB2 bootloader"
 HOMEPAGE="http://kde-apps.org/content/show.php?content=139643"
@@ -43,5 +43,7 @@ src_configure() {
 		-DWITH_ImageMagick="$(usex imagemagick)"
 		-DWITH_HD="$(usex hwinfo)"
 	)
-	cmake-utils_src_configure
+	cmake_src_configure
 }
+
+

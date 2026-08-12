@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta 
+inherit kde4-base versionator
 
 MY_PV=$(replace_version_separator . '')
 MY_P=${PN}${MY_PV}
@@ -21,3 +21,5 @@ RDEPEND="
 	kde-plasma/plasma-workspace:4
 "
 S="${WORKDIR}/${PN}"
+
+

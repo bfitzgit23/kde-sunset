@@ -72,20 +72,20 @@ src_unpack() {
 		"
 	fi
 
-	_src_unpack
+	kde4-meta_src_unpack
 }
 
 src_prepare() {
 	eapply "${FILESDIR}/${P}-strigi-removal.patch"
 
-	sed -i -e 's/systemsettingsrc DESTINATION ${SYSCONF_INSTALL_DIR}/systemsettingsrc DESTINATION ${CONFIG_INSTALL_DIR}/' 
-		systemsettings/CMakeLists.txt 
+	sed -i -e 's/systemsettingsrc DESTINATION ${SYSCONF_INSTALL_DIR}/systemsettingsrc DESTINATION ${CONFIG_INSTALL_DIR}/' \
+		systemsettings/CMakeLists.txt \
 		|| die "Failed to fix systemsettingsrc install location"
 
-	sed -i -e '/kde4_install_icons/ s/^/#/' kcontrol/kfontinst/kio/CMakeLists.txt 
+	sed -i -e '/kde4_install_icons/ s/^/#/' kcontrol/kfontinst/kio/CMakeLists.txt \
 		|| die "Failed to disable icons"
 
-	_src_prepare
+	kde4-meta_src_prepare
 }
 
 # FIXME: is have_openglxvisual found without screensaver
@@ -102,6 +102,7 @@ src_configure() {
 		-DWITH_USB=$(usex usb)
 	)
 
-	_src_configure
+	kde4-meta_src_configure
 }
-SLOT=0
+
+

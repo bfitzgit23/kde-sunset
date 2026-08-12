@@ -31,10 +31,11 @@ PATCHES=( "${FILESDIR}/${P}-lithuania-euro.patch" )
 
 src_configure() {
 	# Remove remnants of hicolor-icon-theme
-	sed -e "s:add_subdirectory[[:space:]]*([[:space:]]*hicolor[[:space:]]*):#donotwant:g" 
-		-i pics/CMakeLists.txt 
+	sed -e "s:add_subdirectory[[:space:]]*([[:space:]]*hicolor[[:space:]]*):#donotwant:g" \
+		-i pics/CMakeLists.txt \
 		|| die "failed to remove remnants of hicolor-icon-theme"
 
-	_src_configure
+	kde4-meta_src_configure
 }
-SLOT=0
+
+

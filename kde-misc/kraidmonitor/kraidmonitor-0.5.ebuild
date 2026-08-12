@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Indicator widget for raid arrays"
 HOMEPAGE="http://kde-apps.org/content/show.php/K+Raid+Monitor?content=68553"
@@ -19,3 +19,5 @@ RDEPEND="
 "
 
 S=${WORKDIR}/${PN}
+
+

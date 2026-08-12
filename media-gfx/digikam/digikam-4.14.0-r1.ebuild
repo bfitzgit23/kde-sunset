@@ -9,7 +9,7 @@ hr hu is it ja km ko lt lv ms nb nds ne nl nn pa pl pt pt_BR ro ru se sk sl sq
 sv th tr uk vi zh_CN zh_TW"
 KDE_HANDBOOK="optional"
 KDE_DOC_DIRS="doc-digikam doc-showfoto"
-inherit kde4-meta
+inherit kde4-base
 
 MY_PV=${PV/_/-}
 MY_P=${PN}-${MY_PV}
@@ -94,7 +94,7 @@ src_prepare() {
 	echo "find_package(Gettext REQUIRED)" >> CMakeLists.txt || die
 	echo "add_subdirectory( po )" >> CMakeLists.txt || die
 
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 
 	if use handbook; then
 		echo "add_subdirectory( doc-digikam )" >> CMakeLists.txt || die
@@ -119,19 +119,21 @@ src_configure() {
 		-DENABLE_THUMBS_DB="$(usex thumbnails)"
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
 
 src_compile() {
 	local mytargets="all"
 	use doc && mytargets+=" doc"
 
-	kde4-meta_src_compile ${mytargets}
+	kde4-base_src_compile ${mytargets}
 }
 
 src_install() {
-	kde4-meta_src_install
+	kde4-base_src_install
 
 	# install the api documentation
 	use doc && dodoc -r ${CMAKE_BUILD_DIR}/api/html
 }
+
+

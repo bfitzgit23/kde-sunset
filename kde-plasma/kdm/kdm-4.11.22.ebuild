@@ -1,12 +1,11 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
 KDE_HANDBOOK="optional"
 KMNAME="kde-workspace"
-inherit systemd  flag-o-matic user
+inherit systemd kde4-meta flag-o-matic user
 
 DESCRIPTION="Login manager by KDE, similar to xdm and gdm"
 
@@ -48,7 +47,7 @@ PATCHES=(
 )
 
 pkg_setup() {
-	_pkg_setup
+	kde4-meta_pkg_setup
 
 	# Create kdm:kdm user
 	KDM_HOME=/var/lib/kdm
@@ -64,13 +63,13 @@ src_configure() {
 		-DWITH_CkConnector="$(usex consolekit)"
 	)
 
-	_src_configure
+	kde4-meta_src_configure
 }
 
 src_install() {
 	export GENKDMCONF_FLAGS="--no-old --no-backup"
 
-	_src_install
+	kde4-meta_src_install
 
 	# an equivalent file is already installed by kde-base/startkde, bug 377151
 	rm "${ED}/usr/share/apps/kdm/sessions/kde-plasma.desktop" || die
@@ -81,12 +80,12 @@ src_install() {
 	# - TerminateServer=true to workaround X server regen bug, bug 278473
 	# - DataDir set to /var/lib/kdm
 	# - FaceDir set to /var/lib/kdm/faces
-	sed -e "s|^.*SessionsDirs=.*$|#&\nSessionsDirs=${EPREFIX}/usr/share/apps/kdm/sessions,${EPREFIX}/usr/share/xsessions|" 
-		-e "/#ServerTimeout=/s/^.*$/ServerTimeout=30/" 
-		-e "/#TerminateServer=/s/^.*$/TerminateServer=true/" 
-		-e "s|^.*DataDir=.*$|#&\nDataDir=${EPREFIX}${KDM_HOME}|" 
-		-e "s|^.*FaceDir=.*$|#&\nFaceDir=${EPREFIX}${KDM_HOME}/faces|" 
-		-i "${ED}"/usr/share/config/kdm/kdmrc 
+	sed -e "s|^.*SessionsDirs=.*$|#&\nSessionsDirs=${EPREFIX}/usr/share/apps/kdm/sessions,${EPREFIX}/usr/share/xsessions|" \
+		-e "/#ServerTimeout=/s/^.*$/ServerTimeout=30/" \
+		-e "/#TerminateServer=/s/^.*$/TerminateServer=true/" \
+		-e "s|^.*DataDir=.*$|#&\nDataDir=${EPREFIX}${KDM_HOME}|" \
+		-e "s|^.*FaceDir=.*$|#&\nFaceDir=${EPREFIX}${KDM_HOME}/faces|" \
+		-i "${ED}"/usr/share/config/kdm/kdmrc \
 		|| die "Failed to set ServerTimeout and SessionsDirs correctly in kdmrc."
 
 	# Don't install empty dir
@@ -105,7 +104,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	_pkg_postinst
+	kde4-meta_pkg_postinst
 
 	local file src dest dir old_dirs=(
 		/var/lib/kdm-live
@@ -132,7 +131,7 @@ pkg_postinst() {
 				fi
 			done
 			if [[ -n ${src} ]]; then
-				cp "${EROOT}/usr/share/apps/kdm/pics/users/${src}" 
+				cp "${EROOT}/usr/share/apps/kdm/pics/users/${src}" \
 					"${EROOT}${KDM_HOME}/${dest}"
 			fi
 		fi
@@ -162,4 +161,5 @@ pkg_postinst() {
 		echo
 	fi
 }
-SLOT=0
+
+

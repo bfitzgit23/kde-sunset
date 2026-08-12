@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 DECLARATIVE_REQUIRED="always"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE: A Breakout-like game for KDE"
 HOMEPAGE="
@@ -17,4 +17,5 @@ IUSE="debug"
 
 DEPEND="$(add_kdeapps_dep libkdegames)"
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

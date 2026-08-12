@@ -1,5 +1,4 @@
 # Copyright 1999-2017 Gentoo Foundation
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -10,7 +9,7 @@ DESCRIPTION="pam.d files used by several KDE components"
 HOMEPAGE="https://www.kde.org"
 
 LICENSE="GPL-2"
-SLOT="4"
+SLOT="0"
 KEYWORDS="amd64 x86"
 IUSE=""
 
@@ -23,3 +22,5 @@ src_install() {
 	newpamd "${FILESDIR}/kde.pam-${PV}" kde
 	newpamd "${FILESDIR}/kde-np.pam-${PV}" kde-np
 }
+
+

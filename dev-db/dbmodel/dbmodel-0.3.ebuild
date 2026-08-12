@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -11,7 +10,7 @@ HOMEPAGE="https://oxygene.sk/projects/dbmodel/"
 SRC_URI="https://launchpad.net/dbmodel/trunk/${PV}/+download/${P}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="4"
+SLOT="0"
 KEYWORDS="amd64 x86"
 IUSE="debug"
 
@@ -32,3 +31,5 @@ src_install() {
 	emake INSTALL_ROOT="${D}" install
 	einstalldocs
 }
+
+

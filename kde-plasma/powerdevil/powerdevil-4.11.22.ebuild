@@ -25,4 +25,5 @@ KMEXTRACTONLY="
 	ksmserver/org.kde.KSMServerInterface.xml
 	ksmserver/screenlocker/dbus/org.freedesktop.ScreenSaver.xml
 "
-SLOT=0
+
+

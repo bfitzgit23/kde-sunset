@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_MINIMAL="4.8"
-inherit kde4-meta
+inherit kde4-base
 
 MY_P=${PN}-source-${PV/_}
 
@@ -21,3 +21,5 @@ DEPEND="app-arch/unzip"
 RDEPEND=""
 
 S=${WORKDIR}/${P/_}
+
+

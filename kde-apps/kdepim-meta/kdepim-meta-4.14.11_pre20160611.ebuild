@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
+inherit kde4-base
 
 DESCRIPTION="kdepim - merge this to pull in all kdepim-derived packages"
 HOMEPAGE+=" https://community.kde.org/KDE_PIM"
@@ -37,4 +38,5 @@ RDEPEND="
 		>=kde-apps/kdepim-l10n-4.14.3-r1:4
 	)
 "
-inherit kde4-meta
+
+

@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -11,7 +10,7 @@ HOMEPAGE="https://www.aquamaniac.de/aqbanking/"
 SRC_URI="https://www.aquamaniac.de/sites/download/download.php?package=01&release=208&file=02&dummy=${P}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
-SLOT="4"
+SLOT="0/60" # correspond with libgwenhywfar.so version
 KEYWORDS="amd64 ~hppa ~ppc ~ppc64 x86"
 IUSE="debug designer doc gtk libressl qml qt4 qt5 sensors serialport test webkit"
 
@@ -118,3 +117,5 @@ src_install() {
 	use doc && emake DESTDIR="${D}" install-srcdoc
 	find "${ED}" -name '*.la' -delete || die
 }
+
+

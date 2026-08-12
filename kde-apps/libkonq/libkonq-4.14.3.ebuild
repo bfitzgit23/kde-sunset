@@ -16,5 +16,5 @@ RESTRICT="test"
 KMSAVELIBS="true"
 
 PATCHES=( "${FILESDIR}/${PN}-4.9.0-cmake.patch" )
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

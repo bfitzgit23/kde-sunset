@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit mono-env kde4-meta
+inherit mono-env kde4-base
 
 DESCRIPTION="C# bindings for KDE"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
@@ -20,13 +20,13 @@ RDEPEND="${DEPEND}"
 
 pkg_setup() {
 	mono-env_pkg_setup
-	kde4-meta_pkg_setup
+	kde4-base_pkg_setup
 }
 
 src_prepare() {
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 
-	sed -e "/add_subdirectory( examples )/ s:^:#:" 
+	sed -e "/add_subdirectory( examples )/ s:^:#:" \
 		-i plasma/CMakeLists.txt || die
 }
 
@@ -38,6 +38,7 @@ src_configure() {
 		-DWITH_KdepimLibs="$(usex akonadi)"
 		-DDISABLE_plasma="$(usex !plasma)"
 	)
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

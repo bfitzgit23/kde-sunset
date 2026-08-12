@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -14,7 +13,7 @@ SRC_URI="mirror://ubuntu/pool/main/libi/${PN}/${PN}_${PV}.orig.tar.bz2
 	mirror://ubuntu/pool/main/libi/${PN}/${PN}_${PV}-${_UBUNTU_REVISION}.debian.tar.gz"
 
 LICENSE="LGPL-3"
-SLOT="4"
+SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="test"
 
@@ -48,9 +47,11 @@ src_configure() {
 
 src_test() {
 	local ctestargs
-	[[ -n ${TEST_VERBOSE} ]] && ctestargs="--verbose --output-on-failure"
+	[[ -n ${TEST_VERBOSE} ]] && ctestargs="--extra-verbose --output-on-failure"
 
 	cd "${CMAKE_BUILD_DIR}"/tests
 
 	VIRTUALX_COMMAND="ctest ${ctestargs}" virtualmake || die
 }
+
+

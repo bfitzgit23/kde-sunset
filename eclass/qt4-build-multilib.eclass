@@ -13,10 +13,11 @@
 
 case ${EAPI} in
 	6)	: ;;
+	7|8)	: ;;
 	*)	die "qt4-build-multilib.eclass: unsupported EAPI=${EAPI:-0}" ;;
 esac
 
-inherit eutils flag-o-matic multilib multilib-minimal toolchain-funcs
+inherit flag-o-matic multilib multilib-minimal toolchain-funcs
 
 HOMEPAGE="https://www.qt.io/"
 LICENSE="|| ( LGPL-2.1 LGPL-3 GPL-3 ) FDL-1.3"
@@ -280,17 +281,17 @@ qt4-build-multilib_src_prepare() {
 	# EPATCH_SOURCE="${WORKDIR}/patch" EPATCH_SUFFIX="patch" EPATCH_FORCE="yes" epatch
 
 	# patching individually
-	epatch "${WORKDIR}/patch/fix-build-icu59.patch"
-	epatch "${WORKDIR}/patch/qt4-openssl-1.1.patch"
-	# epatch "${WORKDIR}/patch/gcc9-qforeach.patch"
-	epatch "${WORKDIR}/patch/CVE-2018-19873.patch"
-	epatch "${WORKDIR}/patch/CVE-2018-19872.patch"
-	epatch "${WORKDIR}/patch/CVE-2018-19871.patch"
-	epatch "${WORKDIR}/patch/CVE-2018-19870.patch"
-	epatch "${WORKDIR}/patch/CVE-2018-19869.patch"
-	epatch "${WORKDIR}/patch/CVE-2018-15518.patch"
+	eapply "${WORKDIR}/patch/fix-build-icu59.patch"
+	eapply "${WORKDIR}/patch/qt4-openssl-1.1.patch"
+	# eapply "${WORKDIR}/patch/gcc9-qforeach.patch"
+	eapply "${WORKDIR}/patch/CVE-2018-19873.patch"
+	eapply "${WORKDIR}/patch/CVE-2018-19872.patch"
+	eapply "${WORKDIR}/patch/CVE-2018-19871.patch"
+	eapply "${WORKDIR}/patch/CVE-2018-19870.patch"
+	eapply "${WORKDIR}/patch/CVE-2018-19869.patch"
+	eapply "${WORKDIR}/patch/CVE-2018-15518.patch"
 
-	[[ ${PATCHES[@]} ]] && epatch "${PATCHES[@]}"
+	[[ ${PATCHES[@]} ]] && eapply "${PATCHES[@]}"
 	eapply_user
 }
 
@@ -473,6 +474,18 @@ qt4_multilib_src_install() {
 	fi
 
 	qt4_install_module_qconfigs
+}
+
+# @FUNCTION: prune_libtool_files
+# @DESCRIPTION:
+# Local replacement for the function removed from libtool.eclass upstream.
+# Clears dependency_libs from libtool archives, then removes them entirely
+# (this eclass only supports EAPI 6+, where the archives serve no purpose).
+prune_libtool_files() {
+	debug-print-function ${FUNCNAME} "$@"
+
+	find "${ED}" -name '*.la' -exec sed -i -e "/^dependency_libs=/s/=.*/=''/" {} +
+	find "${ED}" -name '*.la' -delete
 }
 
 qt4_multilib_src_install_all() {

@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-inherit kde4-functions -multilib
+inherit qt4-build-multilib
 
 DESCRIPTION="Graphical tool for translating Qt applications"
 
@@ -35,6 +35,7 @@ multilib_src_install_all() {
 	qt4_multilib_src_install_all
 
 	newicon tools/linguist/linguist/images/icons/linguist-128-32.png linguist.png
-	make_desktop_entry linguist Linguist linguist 'Qt;Development;Translation'
+	# make_desktop_entry linguist Linguist linguist 'Qt;Development;Translation'
 }
-SLOT=0
+
+

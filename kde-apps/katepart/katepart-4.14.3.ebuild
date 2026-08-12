@@ -21,5 +21,5 @@ KMEXTRA="
 "
 
 PATCHES=( "${FILESDIR}/${PN}-4.14.3-gcc7.patch" )
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

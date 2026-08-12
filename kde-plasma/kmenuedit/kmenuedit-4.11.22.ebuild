@@ -21,11 +21,12 @@ KMEXTRACTONLY="
 "
 
 src_configure() {
-	sed -i -e 
-		"s:\${CMAKE_CURRENT_BINARY_DIR}/../khotkeys/app/org.kde.khotkeys.xml:${EPREFIX}/usr/share/dbus-1/interfaces/org.kde.khotkeys.xml:g" 
-		kmenuedit/CMakeLists.txt 
+	sed -i -e \
+		"s:\${CMAKE_CURRENT_BINARY_DIR}/../khotkeys/app/org.kde.khotkeys.xml:${EPREFIX}/usr/share/dbus-1/interfaces/org.kde.khotkeys.xml:g" \
+		kmenuedit/CMakeLists.txt \
 		|| die "sed failed"
 
-	_src_configure
+	kde4-meta_src_configure
 }
-SLOT=0
+
+

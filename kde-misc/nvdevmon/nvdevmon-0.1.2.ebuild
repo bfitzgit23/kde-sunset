@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="A device monitor for NVIDIA cards"
 HOMEPAGE="http://kde-look.org/content/show.php/NVidia+Device+Monitor?content=148658"
@@ -19,3 +19,5 @@ DEPEND=""
 RDEPEND="
 	x11-drivers/nvidia-drivers
 "
+
+

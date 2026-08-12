@@ -8,7 +8,7 @@ VIRTUALX_REQUIRED="test"
 VIRTUALDBUS_TEST="true"
 KDE_LINGUAS="ca ca@valencia cs da de el es fi fr gl hu it nl pl pt pt_BR ro sk
 sl sv tr uk zh_CN"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Application launcher for KDE Plasma desktop"
 HOMEPAGE="https://projects.kde.org/projects/playground/base/homerun"
@@ -31,3 +31,5 @@ RDEPEND="
 # Fails 2 out of 6, check later again.
 # With virtualx/virtualdbus it hangs
 RESTRICT="test"
+
+

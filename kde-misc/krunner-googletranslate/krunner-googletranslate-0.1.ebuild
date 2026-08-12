@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Krunner plug-in for Google translate service"
 HOMEPAGE="http://kde-apps.org/content/show.php/krunner-googletranslate?content=144348"
@@ -26,3 +26,5 @@ DEPEND="
 DOCS=( Changelog README )
 
 S="${WORKDIR}/${PN}"
+
+

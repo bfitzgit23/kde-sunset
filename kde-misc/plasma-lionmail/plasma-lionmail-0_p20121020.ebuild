@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Plasma widget displaying new and important email"
 HOMEPAGE="https://www.kde.org http://www.vizzzion.org"
@@ -25,3 +25,5 @@ DEPEND="
 RDEPEND="${DEPEND}
 	$(add_kdeapps_dep kdepim-runtime)
 "
+
+

@@ -29,4 +29,5 @@ KMEXTRACTONLY="
 "
 
 KMLOADLIBS="kdepim-common-libs"
-SLOT=0
+
+

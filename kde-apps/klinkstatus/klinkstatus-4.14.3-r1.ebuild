@@ -27,13 +27,14 @@ src_configure() {
 		-DWITH_LibTidy=$(usex tidy)
 	)
 
-	_src_configure
+	kde4-meta_src_configure
 }
 
 pkg_postinst() {
-	_pkg_postinst
+	kde4-meta_pkg_postinst
 
 	has_version dev-lang/ruby ||
 		elog "To use scripting in ${PN}, install dev-lang/ruby."
 }
-SLOT=0
+
+

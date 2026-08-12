@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -14,7 +13,7 @@ SRC_URI="https://github.com/ariya/${PN}/archive/${COMMIT}.tar.gz -> ${P}.tar.gz"
 S="${WORKDIR}/${PN}-${COMMIT}"
 
 LICENSE="MIT"
-SLOT="4"
+SLOT="0"
 KEYWORDS="amd64 ~sparc x86"
 IUSE=""
 
@@ -31,3 +30,5 @@ src_install() {
 	dobin ${PN}
 	dodoc ChangeLog
 }
+
+

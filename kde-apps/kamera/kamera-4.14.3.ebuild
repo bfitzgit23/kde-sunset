@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE digital camera manager"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -14,4 +14,5 @@ DEPEND="
 	media-libs/libgphoto2:=
 "
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

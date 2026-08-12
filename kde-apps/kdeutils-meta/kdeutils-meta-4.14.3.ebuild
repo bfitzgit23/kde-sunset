@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-inherit kde4-meta
+inherit kde4-meta-pkg
 
-DESCRIPTION="kdkde4-functions - merge this to pull in all kdkde4-functions-derived packages"
+DESCRIPTION="kdeutils - merge this to pull in all kdeutils-derived packages"
 HOMEPAGE="https://www.kde.org/applications/utilities https://utils.kde.org"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="cups floppy lirc"
@@ -23,4 +23,5 @@ RDEPEND="
 	floppy? ( $(add_kdeapps_dep kfloppy) )
 	lirc? ( $(add_kdeapps_dep kremotecontrol) )
 "
-SLOT=0
+
+

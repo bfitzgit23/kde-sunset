@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_LINGUAS="bg cs de el es fr hu pl pt_BR ru sr sr@latin uk"
 KDE_LINGUAS_LIVE_OVERRIDE="true"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Text-based subtitles editor"
 HOMEPAGE="https://github.com/maxrd2/subtitlecomposer"
@@ -31,14 +31,16 @@ src_configure() {
 		-DWITH_ICU="$(usex unicode)"
 		-DWITH_xine="$(usex xine)"
 	)
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
 
 pkg_postinst() {
-	kde4-meta_pkg_postinst
+	kde4-base_pkg_postinst
 
 	echo
 	elog "Some example scripts provided by ${PV} require dev-lang/ruby"
 	elog "or dev-lang/python to be installed."
 	echo
 }
+
+

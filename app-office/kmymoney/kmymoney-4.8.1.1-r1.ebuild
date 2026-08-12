@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -63,7 +62,7 @@ src_prepare() {
 					*) rm -r ${lang} || die ;;
 				esac
 				cmake_comment_add_subdirectory ${lang}
-				sed -e "/add_subdirectory([[:space:]]*${lang}\/.*[[:space:]]*)/d" 
+				sed -e "/add_subdirectory([[:space:]]*${lang}\/.*[[:space:]]*)/d" \
 					-i CMakeLists.txt || die
 			fi
 		done
@@ -86,7 +85,7 @@ src_prepare() {
 	fi
 
 	# don't install as executable
-	sed -i kmymoney/CMakeLists.txt 
+	sed -i kmymoney/CMakeLists.txt \
 		-e "/install.*kmymoney.appdata/ s/PROGRAMS/FILES/" || die
 }
 
@@ -157,3 +156,5 @@ pkg_postrm() {
 	xdg_desktop_database_update
 	xdg_mimeinfo_database_update
 }
+
+

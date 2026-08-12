@@ -16,4 +16,5 @@ DEPEND="
 "
 
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

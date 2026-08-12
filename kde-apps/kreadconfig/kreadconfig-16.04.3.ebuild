@@ -9,5 +9,5 @@ inherit kde4-meta
 DESCRIPTION="Command-line tool to read KConfig entries"
 KEYWORDS="amd64 x86"
 IUSE="debug"
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

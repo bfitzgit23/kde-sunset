@@ -5,7 +5,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE internationalization package"
 HOMEPAGE="http://l10n.kde.org"
@@ -62,9 +62,9 @@ src_unpack() {
 }
 
 src_prepare() {
-	find "${S}" -name CMakeLists.txt -type f 
+	find "${S}" -name CMakeLists.txt -type f \
 		-exec sed -i -e 's:^ *add_subdirectory( *kdepim-runtime *):# no kdepim-runtime:g' {} +
-	find "${S}" -name CMakeLists.txt -type f 
+	find "${S}" -name CMakeLists.txt -type f \
 		-exec sed -i -e 's:^ *add_subdirectory( *kdepim *):# no kdepim:g' {} +
 
 	# quick workaround for bug 493278
@@ -74,91 +74,92 @@ src_prepare() {
 				if use minimal; then
 
 					# KDE Workspace 4
-					rm -f "${S}"/*/messages/kde-workspace/{freespacenotifier,
-joystick,kaccess,kcmaccess,kcm_autostart,kcmbell,kcmcolors,kcm_desktoppaths,
-kcm_desktopthemedetails,kcmdevinfo,kcmfonts,kcm_infobase,kcminfo,
-kcm_infosummary,kcminit,kcminput,kcmkclock,kcmkeyboard,kcmkeys,
-kcmkwincompositing,kcmkwindecoration,kcm_kwindesktop,kcmkwinrules,
-kcmkwinscreenedges,kcm-kwin-scripts,kcm_kwintabbox,kcmkwm,kcmlaunch,kcm_memory,
-kcmnic,kcmopengl,kcm_pci,kcmsamba,kcmsmserver,kcm_solid_actions,
-kcm_standard_actions,kcmstyle,kcmusb,kcmview1394,kcmworkspaceoptions,kfontinst,
-khotkeys,kinfocenter,klipper,kmenuedit,krdb,krunner,kscreenlocker_greet,
-kscreenlocker,ksgrd,ksmserver,ksplashthemes,ksysguardlsofwidgets,ksysguard,
-ktouchpadenabler,kwin_clients,kwin_effects,kwin,kwin_scripting,libkdecorations,
-libkworkspace,liboxygenstyleconfig,libpowerdevilcommonconfig,libtaskmanager,
-plasma_applet_quicklaunch,plasma_applet_system-monitor,
-plasma_applet_webbrowser,plasma_containmentactions_contextmenu,
-plasma_containmentactions_switchwindow,plasma_engine_keystate,
-plasma_engine_mpris2,plasma_engine_network,plasma_engine_notifications,
-plasma_engine_rss,plasma_engine_share,plasma_engine_soliddevice,
-plasma_engine_weather,plasma_runner_activities,plasma_runner_bookmarksrunner,
-plasma_runner_calculatorrunner,plasma_runner_kill,plasma_runner_locations,
-plasma_runner_placesrunner,plasma_runner_plasma-desktop,
-plasma_runner_powerdevil,plasma_runner_recentdocuments,plasma_runner_services,
-plasma_runner_sessions,plasma_runner_shell,plasma_runner_solid,
-plasma_runner_webshortcuts,plasma_runner_windowedwidgets,plasma_runner_windows,
-powerdevilactivitiesconfig,powerdevilglobalconfig,powerdevil,
+					rm -f "${S}"/*/messages/kde-workspace/{freespacenotifier,\
+joystick,kaccess,kcmaccess,kcm_autostart,kcmbell,kcmcolors,kcm_desktoppaths,\
+kcm_desktopthemedetails,kcmdevinfo,kcmfonts,kcm_infobase,kcminfo,\
+kcm_infosummary,kcminit,kcminput,kcmkclock,kcmkeyboard,kcmkeys,\
+kcmkwincompositing,kcmkwindecoration,kcm_kwindesktop,kcmkwinrules,\
+kcmkwinscreenedges,kcm-kwin-scripts,kcm_kwintabbox,kcmkwm,kcmlaunch,kcm_memory,\
+kcmnic,kcmopengl,kcm_pci,kcmsamba,kcmsmserver,kcm_solid_actions,\
+kcm_standard_actions,kcmstyle,kcmusb,kcmview1394,kcmworkspaceoptions,kfontinst,\
+khotkeys,kinfocenter,klipper,kmenuedit,krdb,krunner,kscreenlocker_greet,\
+kscreenlocker,ksgrd,ksmserver,ksplashthemes,ksysguardlsofwidgets,ksysguard,\
+ktouchpadenabler,kwin_clients,kwin_effects,kwin,kwin_scripting,libkdecorations,\
+libkworkspace,liboxygenstyleconfig,libpowerdevilcommonconfig,libtaskmanager,\
+plasma_applet_quicklaunch,plasma_applet_system-monitor,\
+plasma_applet_webbrowser,plasma_containmentactions_contextmenu,\
+plasma_containmentactions_switchwindow,plasma_engine_keystate,\
+plasma_engine_mpris2,plasma_engine_network,plasma_engine_notifications,\
+plasma_engine_rss,plasma_engine_share,plasma_engine_soliddevice,\
+plasma_engine_weather,plasma_runner_activities,plasma_runner_bookmarksrunner,\
+plasma_runner_calculatorrunner,plasma_runner_kill,plasma_runner_locations,\
+plasma_runner_placesrunner,plasma_runner_plasma-desktop,\
+plasma_runner_powerdevil,plasma_runner_recentdocuments,plasma_runner_services,\
+plasma_runner_sessions,plasma_runner_shell,plasma_runner_solid,\
+plasma_runner_webshortcuts,plasma_runner_windowedwidgets,plasma_runner_windows,\
+powerdevilactivitiesconfig,powerdevilglobalconfig,powerdevil,\
 powerdevilprofilesconfig,processcore,processui,systemsettings}.po
 
 					# KDE Runtime 4
-					rm -f "${S}"/*/messages/kde-runtime/{attica_kde,drkonqi,
-filetypes,htmlsearch,kcmcomponentchooser,kcm_emoticons,kcmhtmlsearch,
-kcmicons,kcmkded,kcmnotify,kcm_phonon,kcmshell,kdesu,kglobalaccel,
-khelpcenter,kio_applications,kio_archive,kio_bookmarks,kioclient,
-kio_fish,kio_info,kio_man,kio_nfs,kio_recentdocuments,kio_remote,
-kio_sftp,kio_smb,kio_thumbnail,kmimetypefinder,knetattach,kstart,
+					rm -f "${S}"/*/messages/kde-runtime/{attica_kde,drkonqi,\
+filetypes,htmlsearch,kcmcomponentchooser,kcm_emoticons,kcmhtmlsearch,\
+kcmicons,kcmkded,kcmnotify,kcm_phonon,kcmshell,kdesu,kglobalaccel,\
+khelpcenter,kio_applications,kio_archive,kio_bookmarks,kioclient,\
+kio_fish,kio_info,kio_man,kio_nfs,kio_recentdocuments,kio_remote,\
+kio_sftp,kio_smb,kio_thumbnail,kmimetypefinder,knetattach,kstart,\
 ktraderclient,phonon_kde,soliduiserver}.po
 
 					# KDE Plasma Addons 4
-					rm -f "${S}"/*/messages/kdeplasma-addons/{konqprofiles,
-konsoleprofiles,lancelot,liblancelot-datamodels,libplasma_groupingcontainment,
-libplasmaweather,plasma_applet_binaryclock,plasma_applet_bookmarks,
-plasma_applet_bubblemon,plasma_applet_CharSelectApplet,plasma_applet_comic,
-plasma_applet_fifteenPuzzle,plasma_applet_fileWatcher,plasma_applet_frame,
-plasma_applet_groupingpanel,plasma_applet_incomingmsg,
-plasma_applet_knowledgebase,plasma_applet_kolourpicker,plasma_applet_leavenote,
-plasma_applet_life,plasma_applet_luna,plasma_applet_magnifique,
-plasma_applet_microblog,plasma_applet_news,plasma_applet_plasmaboard,
-plasma_applet_previewer,plasma_applet_qalculate,plasma_applet_qstardict,
-plasma_applet_rssnow,plasma_applet_showdashboard,plasma_applet_showdesktop,
-plasma_applet_spellcheck,plasma_applet_unitconverter,plasma_applet_weather,
-plasma_applet_weatherstation,plasma_applet_webslice,
-plasma_packagestructure_comic,plasma_runner_audioplayercontrol,
-plasma_runner_browserhistory,plasma_runner_CharacterRunner,
-plasma_runner_contacts,plasma_runner_converterrunner,plasma_runner_datetime,
-plasma_runner_events,plasma_runner_katesessions,
-plasma_runner_konquerorsessions,plasma_runner_konsolesessions,
-plasma_runner_kopete,plasma_runner_krunner_dictionary,plasma_runner_mediawiki,
+					rm -f "${S}"/*/messages/kdeplasma-addons/{konqprofiles,\
+konsoleprofiles,lancelot,liblancelot-datamodels,libplasma_groupingcontainment,\
+libplasmaweather,plasma_applet_binaryclock,plasma_applet_bookmarks,\
+plasma_applet_bubblemon,plasma_applet_CharSelectApplet,plasma_applet_comic,\
+plasma_applet_fifteenPuzzle,plasma_applet_fileWatcher,plasma_applet_frame,\
+plasma_applet_groupingpanel,plasma_applet_incomingmsg,\
+plasma_applet_knowledgebase,plasma_applet_kolourpicker,plasma_applet_leavenote,\
+plasma_applet_life,plasma_applet_luna,plasma_applet_magnifique,\
+plasma_applet_microblog,plasma_applet_news,plasma_applet_plasmaboard,\
+plasma_applet_previewer,plasma_applet_qalculate,plasma_applet_qstardict,\
+plasma_applet_rssnow,plasma_applet_showdashboard,plasma_applet_showdesktop,\
+plasma_applet_spellcheck,plasma_applet_unitconverter,plasma_applet_weather,\
+plasma_applet_weatherstation,plasma_applet_webslice,\
+plasma_packagestructure_comic,plasma_runner_audioplayercontrol,\
+plasma_runner_browserhistory,plasma_runner_CharacterRunner,\
+plasma_runner_contacts,plasma_runner_converterrunner,plasma_runner_datetime,\
+plasma_runner_events,plasma_runner_katesessions,\
+plasma_runner_konquerorsessions,plasma_runner_konsolesessions,\
+plasma_runner_kopete,plasma_runner_krunner_dictionary,plasma_runner_mediawiki,\
 plasma_runner_spellcheckrunner,plasma_runner_translator,plasma_runner_youtube}.po
 
 					# KDELIBS 4
-					rm -f "${S}"/*/messages/kdelibs/{akonadi_baloo_indexer,
-baloo_file,baloo_file_extractor,baloosearch,balooshow,kcm_baloofile,kfilemetadata,
+					rm -f "${S}"/*/messages/kdelibs/{akonadi_baloo_indexer,\
+baloo_file,baloo_file_extractor,baloosearch,balooshow,kcm_baloofile,kfilemetadata,\
 kio_baloosearch,kio_tags,kio_timeline,plasma_runner_baloosearchrunner}.po
 
 					# KDE Applications 4
 					rm -f "${S}"/*/messages/applications/useraccount.po
 				fi
 
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 }
 
 src_configure() {
 	mycmakeargs=(
 		-DBUILD_docs="$(usex handbook)"
 	)
-	[[ -n ${A} ]] && kde4-meta_src_configure
+	[[ -n ${A} ]] && kde4-base_src_configure
 }
 
 src_compile() {
-	[[ -n ${A} ]] && kde4-meta_src_compile
+	[[ -n ${A} ]] && kde4-base_src_compile
 }
 
 src_test() {
-	[[ -n ${A} ]] && kde4-meta_src_test
+	[[ -n ${A} ]] && kde4-base_src_test
 }
 
 src_install() {
-	[[ -n ${A} ]] && kde4-meta_src_install
+	[[ -n ${A} ]] && kde4-base_src_install
 }
-SLOT=0
+
+

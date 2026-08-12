@@ -6,7 +6,7 @@ EAPI=8
 COMMIT=562da6111ab1ea817360c20b6a54e918817c31bf
 KDEBASE="kdevelop"
 KMNAME="kdev-qmake"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="qmake plugin for KDevelop 4"
 SRC_URI="https://invent.kde.org/unmaintained/${KMNAME}/-/archive/${COMMIT}/${KMNAME}-${COMMIT}.tar.gz -> ${P}.tar.gz"
@@ -26,14 +26,15 @@ src_configure() {
 	local mycmakeargs=(
 		-DBUILD_qmake_parser="$(usex tools)"
 	)
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
 
 src_install() {
-	kde4-meta_src_install
+	kde4-base_src_install
 	#Move this file to prevent a collision with kappwizard
-	mv "${D}"/usr/share/apps/kdevappwizard/templates/qmake_qt4guiapp.tar.bz2 
-		"${D}"/usr/share/apps/kdevappwizard/templates/kdevelop-qmake_qt4guiapp.tar.bz2 
+	mv "${D}"/usr/share/apps/kdevappwizard/templates/qmake_qt4guiapp.tar.bz2 \
+		"${D}"/usr/share/apps/kdevappwizard/templates/kdevelop-qmake_qt4guiapp.tar.bz2 \
 		|| die
 }
-SLOT=0
+
+

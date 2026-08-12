@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-meta-pkg
 
 DESCRIPTION="kdegames - merge this to pull in all kdegames-derived packages"
 HOMEPAGE="https://games.kde.org/"
@@ -52,4 +52,5 @@ RDEPEND="
 	$(add_kdeapps_dep picmi)
 	opengl? ( $(add_kdeapps_dep ksudoku) )
 "
-SLOT=0
+
+

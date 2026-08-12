@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE library to compare files and strings"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
@@ -12,4 +12,5 @@ IUSE="debug"
 RDEPEND="${DEPEND}
 	!<=kde-base/kompare-4.11.50:4
 "
-SLOT=0
+
+

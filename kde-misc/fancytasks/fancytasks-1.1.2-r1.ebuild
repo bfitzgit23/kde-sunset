@@ -5,7 +5,7 @@ EAPI=8
 KDE_LINGUAS="de en_GB es et fr km nds pl pt ru sv tr uk"
 KDE_LINGUAS_DIR=( applet/locale containment/locale )
 KDE_MINIMAL="4.8"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="Task and launch representation plasmoid"
 HOMEPAGE="http://kde-look.org/content/show.php/Fancy+Tasks?content=99737"
@@ -27,7 +27,7 @@ RDEPEND="${DEPEND}"
 DOCS=( CHANGELOG README TODO )
 
 src_prepare() {
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 
 	local lang
 	for lang in ${KDE_LINGUAS} ; do
@@ -41,3 +41,5 @@ src_prepare() {
 		fi
 	done
 }
+
+

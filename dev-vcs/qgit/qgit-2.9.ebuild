@@ -1,5 +1,4 @@
 # Copyright 1999-2020 Gentoo Authors
-inherit kde4-base
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -12,7 +11,7 @@ SRC_URI="https://github.com/tibirna/qgit/archive/${P}.tar.gz
 https://raw.githubusercontent.com/tibirna/${PN}/fb47a8006bb9342e46dadb2883ba8eda86642ee1/src/resources/tab_remove.png -> ${PN}-tab_remove.png"
 
 LICENSE="GPL-2"
-SLOT="4"
+SLOT="0"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86"
 IUSE=""
 
@@ -28,7 +27,7 @@ S="${WORKDIR}/${PN}-${P}"
 
 DOCS=( README.adoc )
 
-PATCHES=( "${FILESDIR}"/${P}-fix--{1,2}.patch )
+PATCHES=( "${FILESDIR}"/${P}-fix-qt4-build-{1,2}.patch )
 
 src_prepare() {
 	cmake_src_prepare
@@ -39,3 +38,5 @@ src_configure() {
 	local mycmakeargs=( -DUseQt5=OFF )
 	cmake_src_configure
 }
+
+

@@ -6,7 +6,7 @@ EAPI=8
 KDE_HANDBOOK="optional"
 KMNAME="kde-runtime"
 KMMODULE="kioslave"
-inherit kde4-meta
+inherit kde4-meta kde4-functions-extra
 
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
 DESCRIPTION="kioslave: the kde VFS framework - kioslave plugins present a filesystem-like view of arbitrary data"
@@ -53,15 +53,16 @@ src_configure() {
 		-DWITH_samba="$(usex samba)"
 		-DWITH_LibSSH="$(usex sftp)"
 	)
-	_src_configure
+	kde4-meta_src_configure
 }
 
 src_install() {
-	_src_install
+	kde4-meta_src_install
 
 	if use minimal; then
 		rm "${D}"/usr/lib64/libmolletnetwork.so "${D}"/usr/share/config.kcfg/jpegcreatorsettings.kcfg
 		rmdir "${D}"/usr/share/config.kcfg/
 	fi
 }
-SLOT=0
+
+

@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE screen magnifier"
 HOMEPAGE="https://www.kde.org/applications/utilities/kmag/"
@@ -14,4 +14,5 @@ IUSE="debug"
 RDEPEND="
 	$(add_kdeapps_dep kaccessible)
 "
-SLOT=0
+
+

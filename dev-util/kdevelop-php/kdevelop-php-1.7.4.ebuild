@@ -8,7 +8,7 @@ pt_BR ru sk sl sv tr uk zh_CN zh_TW"
 VIRTUALX_REQUIRED=test
 KDEBASE="kdevelop"
 KMNAME="kdev-php"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="PHP plugin for KDevelop 4"
 LICENSE="GPL-2 LGPL-2"
@@ -29,4 +29,5 @@ RDEPEND="
 "
 
 PATCHES=( "${FILESDIR}/${PN}"-1.2.0-parmake.patch )
-SLOT=0
+
+

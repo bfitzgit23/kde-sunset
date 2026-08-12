@@ -4,7 +4,7 @@
 EAPI=8
 
 MY_PN="${PN}-1"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="PolKit agent module for KDE Plasma"
 HOMEPAGE="https://kde.org/"
@@ -27,8 +27,10 @@ RDEPEND="${COMMON_DEPEND}
 "
 
 src_prepare() {
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 
 	# Coinstallability with kde-plasma/polkit-kde-agent
 	use minimal && rm -rf po
 }
+
+

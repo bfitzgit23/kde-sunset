@@ -4,7 +4,7 @@
 EAPI=8
 
 MY_PN="kcmsystemd"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE control module for systemd"
 HOMEPAGE="https://projects.kde.org/projects/playground/sysadmin/systemd-kcm"
@@ -25,3 +25,5 @@ RDEPEND="${DEPEND}
 
 # only needed for 0.7.0 and 1.1.0
 S="${WORKDIR}"/${MY_PN}-${PV}
+
+

@@ -11,7 +11,7 @@ PLUGINS=(
 )
 KDE_LINGUAS="cs de es is it pl pt pt_BR ru sk sr@latin tr uk"
 QT3SUPPORT_REQUIRED="true"
-inherit kde4-meta
+inherit kde4-base
 
 MY_P=${PN}4-${PV/_/-}
 
@@ -57,7 +57,7 @@ src_prepare() {
 		fi
 	done
 
-	kde4-meta_src_prepare
+	kde4-base_src_prepare
 }
 
 src_configure() {
@@ -70,5 +70,7 @@ src_configure() {
 		-DWITH_V4L2=$(usex v4l)
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
+
+

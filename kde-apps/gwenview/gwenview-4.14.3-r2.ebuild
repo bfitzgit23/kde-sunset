@@ -5,7 +5,7 @@ EAPI=8
 
 KDE_HANDBOOK="optional"
 OPENGL_REQUIRED="always"
-inherit kde4-meta 
+inherit kde4-base kde4-functions-extra
 
 DESCRIPTION="KDE image viewer"
 HOMEPAGE="
@@ -47,11 +47,11 @@ src_configure() {
 
 	append-cppflags -fexceptions
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
 
 pkg_postinst() {
-	kde4-meta_pkg_postinst
+	kde4-base_pkg_postinst
 
 	if ! has_version kde-apps/svgpart:${SLOT} ; then
 		elog "For SVG support, install kde-apps/svgpart:${SLOT}"
@@ -61,5 +61,5 @@ pkg_postinst() {
 		elog "The plugins for the KIPI inteface can be found in media-plugins/kipi-plugins"
 	fi
 }
-RDEPEND="${DEPEND}"
-SLOT=0
+
+

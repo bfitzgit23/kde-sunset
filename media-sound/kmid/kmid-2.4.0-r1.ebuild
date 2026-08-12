@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="A MIDI/Karaoke player based on kdelibs"
 HOMEPAGE="https://userbase.kde.org/KMid"
@@ -23,3 +23,5 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 
 DOCS=( ChangeLog README TODO )
+
+

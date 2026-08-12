@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE Go game"
 HOMEPAGE="https://www.kde.org/applications/games/kigo/"
@@ -16,4 +16,5 @@ RDEPEND="
 	${DEPEND}
 	games-board/gnugo
 "
-SLOT=0
+
+

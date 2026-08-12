@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE calculator"
 HOMEPAGE="https://www.kde.org/applications/utilities/kcalc
@@ -16,4 +16,5 @@ DEPEND="
 	dev-libs/gmp
 "
 RDEPEND="${DEPEND}"
-SLOT=0
+
+

@@ -33,6 +33,7 @@ src_configure() {
 		-DCMAKE_DISABLE_FIND_PACKAGE_QGpgme="$(usex !gpg)"
 	)
 
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
-SLOT=0
+
+

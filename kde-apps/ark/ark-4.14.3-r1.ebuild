@@ -4,7 +4,7 @@
 EAPI=8
 
 KDE_HANDBOOK="optional"
-inherit kde4-meta
+inherit kde4-base
 
 DESCRIPTION="KDE Archiving tool"
 HOMEPAGE="https://www.kde.org/applications/utilities/ark
@@ -30,14 +30,15 @@ src_configure() {
 		-DWITH_BZip2="$(usex bzip2)"
 		-DWITH_LibLZMA="$(usex lzma)"
 	)
-	kde4-meta_src_configure
+	kde4-base_src_configure
 }
 
 pkg_postinst() {
-	kde4-meta_pkg_postinst
+	kde4-base_pkg_postinst
 
 	if ! has_version app-arch/rar ; then
 		elog "For creating rar archives, install app-arch/rar"
 	fi
 }
-SLOT=0
+
+
