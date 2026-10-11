@@ -3,9 +3,9 @@
 
 EAPI=8
 
-inherit kde4-base versionator
+inherit kde4-base
 
-MY_P="$(replace_version_separator 2 '-')"
+MY_P="$(ver_rs 2 '-')"
 
 DESCRIPTION="Plasmoid for executing a process and capturing its stderr and stdout"
 HOMEPAGE="http://www.kde-look.org/content/show.php/STDIN+Plasmoid?content=92309"

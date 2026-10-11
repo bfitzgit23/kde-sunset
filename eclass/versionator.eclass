@@ -5,7 +5,7 @@
 # @MAINTAINER:
 # Jonathan Callen <jcallen@gentoo.org>
 # base-system@gentoo.org
-# @SUPPORTED_EAPIS: 0 1 2 3 4 5 6
+# @SUPPORTED_EAPIS: 0 1 2 3 4 5 6 7 8
 # @BLURB: functions which simplify manipulation of ${PV} and similar version strings
 # @DEPRECATED: ver_* functions from EAPI 7
 # @DESCRIPTION:
@@ -31,7 +31,7 @@ if [[ -z ${_VERSIONATOR_ECLASS} ]]; then
 _VERSIONATOR_ECLASS=1
 
 case ${EAPI:-0} in
-	0|1|2|3|4|5|6)
+	0|1|2|3|4|5|6|7|8)
 		;;
 	*)
 		die "${ECLASS}: banned in EAPI=${EAPI}; use ver_* instead";;

@@ -51,7 +51,7 @@ src_test() {
 
 	cd "${CMAKE_BUILD_DIR}"/tests
 
-	VIRTUALX_COMMAND="ctest ${ctestargs}" virtualmake || die
+	virtx ctest ${ctestargs} || die
 }
 
 

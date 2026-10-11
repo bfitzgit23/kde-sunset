@@ -4,8 +4,9 @@
 
 EAPI=8
 
-ARTS_REQUIRED=never
-inherit kde
+# kde-sunset: this KDE 3 ebuild used to inherit kde.eclass, which Gentoo removed
+# in 2015.  It is kept for the historical record only - it depends on HAL and
+# KDE 3 libraries that no longer exist in the tree.
 
 PATCH_LEVEL=3
 
@@ -29,7 +30,6 @@ RDEPEND=">=sys-apps/hal-0.5.4
 DEPEND="${RDEPEND}
 	x11-base/xorg-proto"
 
-need-kde 3.5
 
 src_unpack() {
 	unpack ${A}
@@ -40,8 +40,8 @@ src_unpack() {
 }
 
 pkg_postinst() {
-	einfo "Making sure that config directory is readable"
-	einfo "chmod 755 ${ROOT}/usr/share/config"
+	e	einfo "Making sure that config directory is readable"
+	e	einfo "chmod 755 ${ROOT}/usr/share/config"
 	chmod 755 "${ROOT}/usr/share/config"
 }
 

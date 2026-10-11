@@ -3,10 +3,10 @@
 
 EAPI=8
 
-inherit qmake-utils versionator
+inherit qmake-utils
 
-MY_P="${PN}-$(replace_version_separator 3 '-')"
-MIN_PV="$(get_version_component_range 1-3)"
+MY_P="${PN}-$(ver_rs 3 '-')"
+MIN_PV="$(ver_cut 1-3)"
 
 DESCRIPTION="Qt4 frontend for fsarchiver"
 HOMEPAGE="http://qt4-fsarchiver.sourceforge.net/"

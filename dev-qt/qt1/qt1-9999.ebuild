@@ -37,7 +37,7 @@ src_compile() {
 src_install() {
 	into /opt/qt1
 	dobin bin/moc
-	dolib src/libqt.so*
+	dolib.so src/libqt.so*
 
 	insinto /opt/qt1/include
 	doins include/*

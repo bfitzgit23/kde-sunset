@@ -6,7 +6,7 @@
 # x11@gentoo.org
 # @AUTHOR:
 # Original author: Martin Schlemmer <azarah@gentoo.org>
-# @SUPPORTED_EAPIS: 4 5 6 7
+# @SUPPORTED_EAPIS: 4 5 6 7 8
 # @BLURB: This eclass can be used for packages that needs a working X environment to build.
 
 if [[ ! ${_VIRTUAL_X} ]]; then
@@ -15,7 +15,7 @@ case "${EAPI:-0}" in
 	0|1|2|3)
 		die "virtualx.eclass: EAPI ${EAPI} is too old."
 		;;
-	4|5|6|7)
+	4|5|6|7|8|9)
 		;;
 	*)
 		die "virtualx.eclass: EAPI ${EAPI} is not supported yet."

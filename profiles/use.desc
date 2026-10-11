@@ -1,65 +1,67 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2026 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # use flags used in the kde-sunset overlay
 
-# dropped 2017-12-27 in 2dbbacd
-linguas_ar
-linguas_bg
-linguas_bs
-linguas_ca
-linguas_ca@valencia
-linguas_cs
-linguas_cy
-linguas_da
-linguas_de
-linguas_el
-linguas_en
-linguas_en_GB
-linguas_es
-linguas_et
-linguas_eu
-linguas_fa
-linguas_fi
-linguas_fr
-linguas_ga
-linguas_gl
-linguas_he
-linguas_hi
-linguas_hr
-linguas_hu
-linguas_ia
-linguas_is
-linguas_it
-linguas_ja
-linguas_kk
-linguas_km
-linguas_ko
-linguas_lt
-linguas_lv
-linguas_mr
-linguas_nb
-linguas_nds
-linguas_nl
-linguas_nn
-linguas_pa
-linguas_pl
-linguas_pt
-linguas_pt_BR
-linguas_ro
-linguas_ru
-linguas_sk
-linguas_sl
-linguas_sr
-linguas_sv
-linguas_tg
-linguas_tr
-linguas_ug
-linguas_uk
-linguas_vi
-linguas_wa
-linguas_zh_CN
-linguas_zh_TW
+# LINGUAS flags declared by kde-apps/kde4-l10n and friends.  The main tree
+# dropped them from its use.desc on 2017-12-27 (2dbbacd); this overlay keeps
+# descriptions in the "<flag> - <description>" format.
+linguas_ar - Arabic
+linguas_bg - Bulgarian
+linguas_bs - Bosnian
+linguas_ca - Catalan
+linguas_ca@valencia - Valencian
+linguas_cs - Czech
+linguas_cy - Welsh
+linguas_da - Danish
+linguas_de - German
+linguas_el - Modern Greek
+linguas_en - English
+linguas_en_GB - English (United Kingdom)
+linguas_es - Spanish
+linguas_et - Estonian
+linguas_eu - Basque
+linguas_fa - Persian
+linguas_fi - Finnish
+linguas_fr - French
+linguas_ga - Irish
+linguas_gl - Galician
+linguas_he - Hebrew
+linguas_hi - Hindi
+linguas_hr - Croatian
+linguas_hu - Hungarian
+linguas_ia - Interlingua
+linguas_is - Icelandic
+linguas_it - Italian
+linguas_ja - Japanese
+linguas_kk - Kazakh
+linguas_km - Central Khmer
+linguas_ko - Korean
+linguas_lt - Lithuanian
+linguas_lv - Latvian
+linguas_mr - Marathi
+linguas_nb - Norwegian Bokmål
+linguas_nds - Low German
+linguas_nl - Dutch
+linguas_nn - Norwegian Nynorsk
+linguas_pa - Punjabi
+linguas_pl - Polish
+linguas_pt - Portuguese
+linguas_pt_BR - Portuguese (Brazil)
+linguas_ro - Romanian
+linguas_ru - Russian
+linguas_sk - Slovak
+linguas_sl - Slovenian
+linguas_sr - Serbian
+linguas_sv - Swedish
+linguas_tg - Tajik
+linguas_tr - Turkish
+linguas_ug - Uyghur
+linguas_uk - Ukrainian
+linguas_vi - Vietnamese
+linguas_wa - Walloon
+linguas_zh_CN - Chinese (China)
+linguas_zh_TW - Chinese (Taiwan)
 
 # dropped 2017-12-30
 kontact - Enable support for the KDE personal information manager (kde-apps/kdepim*)

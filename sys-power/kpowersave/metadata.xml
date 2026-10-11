@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<!-- maintainer-needed -->
+	<longdescription>
+		KDE 3 front-end to the powersave daemon.  Kept for the historical record:
+		it depends on sys-apps/hal and KDE 3 libraries, neither of which exist in
+		current Gentoo.
+	</longdescription>
+</pkgmetadata>

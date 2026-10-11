@@ -13,17 +13,13 @@
 if [[ -z ${_USER_ECLASS} ]]; then
 _USER_ECLASS=1
 
+# NOTE (kde-sunset): this eclass is vendored because Gentoo removed user.eclass
+# in 2022 (GLEP 81).  The KDE 4 packages here still create their service accounts
+# at install time and no acct-user/acct-group package exists for them, so allow
+# EAPI 8 for non-acct-* categories instead of emitting eerrors during metadata
+# generation.
 case ${EAPI:-0} in
-	5|6|7) ;;
-	8)
-		if [[ ${CATEGORY} != acct-* ]]; then
-			eerror "In EAPI ${EAPI}, packages must not inherit user.eclass"
-			eerror "unless they are in the acct-user or acct-group category."
-			eerror "Migrate your package to GLEP 81 user/group management,"
-			eerror "or inherit user-info if you need only the query functions."
-			eerror "Invalid \"inherit user\" in EAPI ${EAPI}"
-		fi
-		;;
+	5|6|7|8) ;;
 	*) die "${ECLASS}: EAPI ${EAPI:-0} not supported" ;;
 esac
 
