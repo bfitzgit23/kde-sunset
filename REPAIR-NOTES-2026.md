@@ -453,3 +453,23 @@ moved    .backup_20251130_1032/  ->  ../kde-sunset-repair/
 
 Nothing is committed or pushed. `git status` shows the changes unstaged so you
 can review them; the two deletions are `git checkout`-able.
+
+## Line endings: the entire repository was CRLF
+
+The September 2026 commit ("fixes for september 2026") rewrote 2725 files with
+CRLF line endings.  On the target host that is a defect, not cosmetics:
+
+* bash on Linux keeps the trailing CR as part of the shell word, so a line
+  `EAPI=8` written as `EAPI=8\r` assigns the literal string `8\r`;
+* Portage parses the EAPI line with the PMS 7.3.1 pattern in
+  `lib/portage/__init__.py` (`_pms_eapi_re`), whose value character class
+  `[A-Za-z0-9+_.-]` does not contain CR, so EAPI detection can fail outright for
+  every ebuild in the tree;
+* every metadata value that bash assigns (KEYWORDS, IUSE, SRC_URI, DEPEND,
+  DESCRIPTION, ...) can carry a trailing CR into the md5-cache and into every
+  tool that consumes it.
+
+`c5e69c0a` restores LF for all 2725 text files; blob content is otherwise
+unchanged.  The 6 binary files (PNG icons, qt4-aur tarball) and the 7 files that
+were already LF were left untouched.  The overlay is now LF everywhere: 2739
+text blobs, 0 containing CR.
