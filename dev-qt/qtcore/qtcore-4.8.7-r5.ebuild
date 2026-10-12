@@ -65,8 +65,6 @@ src_prepare() {
 	# this patch is not -p1 compatible
 	eapply -p0 "${FILESDIR}/${PN}-4.8.5-qeventdispatcher-recursive.patch"
 
-	eapply "${FILESDIR}/gcc-algorithm-fix.patch"
-
 	# bug 172219
 	sed -i -e "s:CXXFLAGS.*=:CXXFLAGS=${CXXFLAGS} :" \
 		-e "s:LFLAGS.*=:LFLAGS=${LDFLAGS} :" \

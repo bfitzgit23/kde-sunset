@@ -1,0 +1,26 @@
+--- kdelibs-4.14.38/dnssd/servicemodel.cpp.orig	2017-11-05 02:51:22.000000000 +0100
++++ kdelibs-4.14.38/dnssd/servicemodel.cpp	2022-01-18 14:28:11.023786338 +0100
+@@ -87,7 +87,7 @@
+ 		case Host: return srv[index.row()]->hostName();
+ 		case Port: return srv[index.row()]->port();
+ 	    }
+-	case ServicePtrRole: QVariant ret;
++	case (int) ServicePtrRole: QVariant ret;
+ 			     ret.setValue(srv[index.row()]);
+ 			    return ret;
+     }
+--- kdelibs-4.14.38/kdecore/io/kfilesystemtype_p.cpp.orig	2017-11-05 02:51:22.000000000 +0100
++++ kdelibs-4.14.38/kdecore/io/kfilesystemtype_p.cpp	2022-01-18 18:36:10.743711677 +0100
+@@ -104,10 +104,9 @@
+         return KFileSystemType::Smb;
+     case MSDOS_SUPER_MAGIC:
+         return KFileSystemType::Fat;
+-    case RAMFS_MAGIC:
+-        return KFileSystemType::Ramfs;
+     default:
+-        return KFileSystemType::Other;
++	if (buf.f_type == RAMFS_MAGIC) return KFileSystemType::Ramfs;
++	else return KFileSystemType::Other;
+     }
+ }
+ 

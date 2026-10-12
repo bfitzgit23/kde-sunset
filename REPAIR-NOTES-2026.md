@@ -529,3 +529,54 @@ set survives GCC 15, glibc 2.4x, ICU 7x and OpenSSL 3 is exactly what
 `./verify-on-gentoo.sh` and then a real `emerge` have to show; a patch that
 applies is not a patch that builds. `CVE-2018-19872` remains unfixed for lack of
 a published patch.
+
+## Second wave: modern-toolchain (GCC 10–15) fixes and a build-stopping defect
+
+While wiring GCC 10–15 support I replayed the eclass's `src_prepare` in its real
+order for the first time (seds first, then the bundle) and found that the
+tree could not build at all: the eclass's `sed -i -e 's:5\*|:[5-9]*|:'` had been
+rewriting the two `configure` compiler-version lines that `qt4-gcc6.patch`
+patches, so **both** of that patch's hunks failed and `eapply` aborted
+`src_prepare` for every `dev-qt/qt*` package. My earlier verification had applied
+the bundle without replaying the seds, which is why it passed. The sed is
+removed, and `verify-patchsets.py` now replays the whole pipeline so this class
+of failure is caught locally.
+
+What GCC 10+ actually hit, with evidence:
+
+* `configure` matches the compiler version with a glob list; an unmatched version
+  (every GCC from 10 up) sets `canBuildWebKit="no"` *and*
+  `canBuildQtXmlPatterns="no"`, silently dropping both modules. New
+  `qt4-gcc10.patch` fixes that case and the `COMPILER_VERSION` mapping below it;
+  the first hunk is PLD Linux's `gcc9.patch` verbatim, the second extends the same
+  treatment to the mapping PLD misses.
+* The eclass now appends `-Wno-error=implicit-function-declaration` for GCC 14+,
+  because GCC 14 errors on implicit function declarations in C and GCC 15
+  defaults C to C23. This one change is pre-emptive, not reproduced — no compiler
+  on this machine.
+* kdelibs gains PLD's `build.patch` (two genuinely new files) and a one-line
+  JasPer 2.x `const char *` write-callback fix; the other four files PLD touches
+  are already covered by patches this overlay carries, which the ebuild-order
+  replay proves.
+
+Rejected after testing, not by guesswork: PLD's `qt-less-warnings` and
+`webkit-no_Werror` (qtwebkit-4.8.7 strips `-Werror` itself), `qt-asm-volatile`
+(already in the qtscript patch), `cxx11.patch` (the eclass seds do exactly that),
+OpenMandriva's `gcc8_qtscript` and the AUR's `-fpermissive -Wno-narrowing` (this
+ebuild's werror/fatalwarnings/narrowing patches cover it). No GCC 14/15-specific
+Qt 4.8.7 patch exists in Alpine, Debian, Ubuntu, Fedora, PLD, OpenMandriva or
+Qt's own 4.8 branch — the compiler-era fixes stop at GCC 11.
+
+* `dev-qt/qtcore/files/gcc-algorithm-fix.patch` was itself unreachable: its hunk
+  header claims 6/7 lines but it holds 3/4, so `patch` says `unexpected end of
+  file in patch`, and its context lines do not exist in 4.8.7's `qstring.h`.
+  `eapply` died on it in every `qtcore` build, so the file and its three `eapply`
+  lines are removed. Nothing in `src/corelib/tools` uses a `std::` algorithm
+  without including `<algorithm>`, so no fix is lost.
+
+Verified after these changes: 14/14 bundle patches and every per-package patch
+apply in eclass order against a pristine 4.8.7 tree, 29/29 kdelibs patches apply
+in ebuild order, `bash -n` clean on both changed files, all 22 `dev-qt` Manifests
+carry the rebuilt bundle's hash, and the checker still reports only the known
+`sys-power/kpowersave` Manifest gap. Still not verified: anything that needs a
+compiler or Portage, which this host does not have.

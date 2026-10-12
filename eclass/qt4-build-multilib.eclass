@@ -164,6 +164,14 @@ qt4-build-multilib_src_prepare() {
 	# See bugs 582522, 582618, 583662, 583744.
 	append-cxxflags -std=gnu++98
 
+	# GCC 14 makes implicit function declarations in C an error and GCC 15 defaults
+	# C to C23, so the bundled 3rdparty C sources (webkit, javascriptcore) can fail
+	# before anything is even built.  Keep that one diagnostic a warning.
+	# See https://gcc.gnu.org/gcc-14/porting_to.html
+	if tc-is-gcc && [[ $(gcc-major-version) -ge 14 ]]; then
+		append-cflags -Wno-error=implicit-function-declaration
+	fi
+
 	if [[ ${PN} == qtcore ]]; then
 		# Bug 373061
 		# qmake bus errors with -O2 or -O3 but -O1 works
@@ -199,9 +207,11 @@ qt4-build-multilib_src_prepare() {
 		append-flags -mminimal-toc
 	fi
 
-	# Teach configure about gcc-6 and later
-	sed -i -e 's:5\*|:[5-9]*|:' \
-		configure || die "sed gcc version failed"
+	# GCC compiler-version detection in configure is done by the patch set below
+	# (qt4-gcc6.patch and qt4-gcc10.patch), which matches 3.4 right through
+	# two-digit versions.  Do not "teach configure about gcc-6 and later" with a
+	# sed here: it edits the very lines qt4-gcc6.patch expects to find, which made
+	# that patch fail, so every qt4 build died in src_prepare.
 
 	# Read also AR from the environment
 	sed -i -e 's/^SYSTEM_VARIABLES="/&AR /' \
@@ -281,6 +291,7 @@ qt4-build-multilib_src_prepare() {
 	# every patch is documented in patchsets/README.md; the set is applied by all
 	# dev-qt/qt* modules and must not overlap with a module's own PATCHES array.
 	eapply -p1 "${WORKDIR}"/patch/qt4-gcc6.patch
+	eapply -p1 "${WORKDIR}"/patch/qt4-gcc10.patch
 	eapply -p0 "${WORKDIR}"/patch/qt4-gcc9.patch
 	eapply -p0 "${WORKDIR}"/patch/qt4-gcc11.patch
 	eapply -p1 "${WORKDIR}"/patch/qt4-glibc-2.25.patch

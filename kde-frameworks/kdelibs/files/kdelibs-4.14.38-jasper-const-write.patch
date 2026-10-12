@@ -1,0 +1,11 @@
+--- kdelibs-4.14.38/kimgio/jp2.cpp
++++ kdelibs-4.14.38/kimgio/jp2.cpp
+@@ -109,7 +109,7 @@
+         return io->read(buf, cnt);
+ }
+ 
+-static int qiodevice_write(jas_stream_obj_t *obj, char *buf, unsigned int cnt)
++static int qiodevice_write(jas_stream_obj_t *obj, const char *buf, unsigned int cnt)
+ {
+         QIODevice *io = (QIODevice*) obj;
+         return io->write(buf, cnt);

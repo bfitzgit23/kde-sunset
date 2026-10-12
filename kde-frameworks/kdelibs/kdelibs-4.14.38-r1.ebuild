@@ -151,6 +151,9 @@ PATCHES=(
 	"${FILESDIR}/${P}-ordered.patch"
 	"${FILESDIR}/${P}-klocale-kde.patch"
 	"${FILESDIR}/${P}-libjasper-functions.patch"
+	# taken from PLD Linux's kde4-kdelibs build.patch (see patchsets/README.md)
+	"${FILESDIR}/${P}-build.patch"
+	"${FILESDIR}/${P}-jasper-const-write.patch"
 )
 
 src_prepare() {
