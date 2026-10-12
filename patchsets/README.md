@@ -71,6 +71,11 @@ is applied at the strip level the AUR uses:
 | `kdebase-startkde-4.11.22-etc-scripts.patch` | 0 | ditto (startkde reads `/etc/kde/lib`) |
 | `kdm-4.11.22-terminate-server.patch` | 0 | `kde-plasma/kdm` |
 
+The AUR's own `patch-klocale-kde.cpp.patch` carries no trailing newline, which
+makes `patch` report "unexpectedly ends in middle of line" and apply its hunk
+with fuzz 1. The vendored copy is identical apart from one trailing `\n`, so it
+now applies cleanly (verified both ways against `kdelibs-4.14.38`).
+
 Skipped on purpose: Arch's menu patches (`kde-applications-menu`,
 `archlinux-menu`), `kdelibs-no-kdewebkit` and `no-webkit` (they exist only
 because Arch's kdelibs has no `kdewebkit`; this overlay has one),
