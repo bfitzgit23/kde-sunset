@@ -147,6 +147,10 @@ PATCHES=(
 	"${FILESDIR}/${P}-library-doc-policy-links.patch"
 	"${FILESDIR}/${P}-gentoo-slotted-FindPopplerQt4.patch"
 	"${FILESDIR}/${P}-gentoo-docbundledir.patch" # bug 667138
+	# taken from the AUR kdelibs PKGBUILD (same upstream 17.08.3 tarball)
+	"${FILESDIR}/${P}-ordered.patch"
+	"${FILESDIR}/${P}-klocale-kde.patch"
+	"${FILESDIR}/${P}-libjasper-functions.patch"
 )
 
 src_prepare() {

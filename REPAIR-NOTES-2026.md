@@ -473,3 +473,59 @@ CRLF line endings.  On the target host that is a defect, not cosmetics:
 unchanged.  The 6 binary files (PNG icons, qt4-aur tarball) and the 7 files that
 were already LF were left untouched.  The overlay is now LF everywhere: 2739
 text blobs, 0 containing CR.
+
+## Qt 4 and KDE 4 patch sets, rebuilt from live sources
+
+The blocker in the previous section is gone. `qt-everywhere-opensource-src-4.8.7-patches-1.tgz`
+now exists, is built from sources that are still live, and is committed to this
+repository as `patchsets/qt-everywhere-opensource-src-4.8.7-patches-1.tgz`; the
+dead `kde-sunset` mirrors in `profiles/thirdpartymirrors` now point at this
+repository's raw URL. The 22 `dev-qt/*` Manifests carry the new checksum.
+
+`eclass/qt4-build-multilib.eclass` applies 13 patches with explicit strip levels
+(the old list referenced a bundle nobody could fetch, asked for a
+`CVE-2018-19872` patch that has never been published, and relied on whatever
+fuzz the missing tarball happened to give) and then the build fixes for a
+C++17 toolchain that the AUR qt4 PKGBUILD carries as `sed` edits. What the set
+contains and where each patch comes from is tabulated in
+[patchsets/README.md](patchsets/README.md).
+
+Three pre-existing bugs surfaced while doing this, all of which would have
+stopped the build before any patch content mattered:
+
+* `qtcore-4.8.5-qeventdispatcher-recursive.patch`,
+  `qtdbus-4.7-qdbusintegrator-no-const.patch`,
+  `assistant-4.8.2+gcc-4.7.patch` and `4.8.2-javascriptcore-x32.patch` are not
+  `-p1` compatible but were listed in `PATCHES`, so `eapply` would fail. They
+  now run from `src_prepare` as `eapply -p0`.
+* `qtcore-4.8.7-libressl.patch` does not apply to the released 4.8.7 tree at any
+  strip level and `qtcore-4.8.7-moc.patch` only applies when the AUR's
+  `moc-boost-workaround` has not been applied first. The shared set now carries
+  the OpenSSL work and the moc work stays with the per-package patch, so the two
+  never overlap.
+* The AUR patches that this overlay already carried per-package (cups, systray,
+  the glib-event-loop pair, the clipboard pair, JIT) are deliberately **not** in
+  the shared set: applying both copies makes `eapply` fail, and each is listed in
+  `patchsets/README.md`.
+
+For the AUR `kdelibs` and `kdebase-workspace` packages named in the same request,
+the three non-Arch-specific kdelibs patches (`ordered`, `klocale-kde`,
+`libjasper-functions`) and the startkde/kdm patches (`dbus-update-environment`,
+`etc-scripts`, `terminate-server`) are now wired in. `kdm-xinitrd` is skipped
+because `kdm-4-gentoo-xinitrc.d.patch` already generates the same
+`/etc/X11/xinit/xinitrc.d` loop; the Arch menu patches, `no-webkit` and
+`khotkeys-qt4` are Arch-specific and skipped.
+
+**What is proven.** Every patch in the shipped bundle was applied, in the eclass's
+own order and at the eclass's own strip level, to a freshly extracted
+`qt-everywhere-opensource-src-4.8.7` tree (tarball size 241075567 bytes, matching
+this overlay's Manifest): 13/13 patches apply and all 15 `sed` statements run
+clean, with no `.rej` files. The same was done for the per-package patch lists of
+all 22 `dev-qt/*` packages and for `kdelibs-4.14.38`, `kdm-4.11.22` and
+`kdebase-startkde-4.11.22`.
+
+**What is not proven.** Nothing was compiled. Whether Qt 4.8.7 with this patch
+set survives GCC 15, glibc 2.4x, ICU 7x and OpenSSL 3 is exactly what
+`./verify-on-gentoo.sh` and then a real `emerge` have to show; a patch that
+applies is not a patch that builds. `CVE-2018-19872` remains unfixed for lack of
+a published patch.

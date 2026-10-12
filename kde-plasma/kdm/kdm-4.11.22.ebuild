@@ -46,6 +46,16 @@ PATCHES=(
 	"${FILESDIR}/${PN}-4-gentoo-xinitrc.d.patch"
 )
 
+# AUR kdebase-workspace's kdm-xinitrd.patch is deliberately not applied: the
+# gentoo-xinitrc.d patch above already generates the /etc/X11/xinit/xinitrc.d
+# loop and applying both would emit it twice (KDEBUG#202629 fix is kept).
+src_prepare() {
+	kde4-meta_src_prepare
+
+	# this patch is not -p1 compatible
+	eapply -p0 "${FILESDIR}/${PN}-4.11.22-terminate-server.patch"
+}
+
 pkg_setup() {
 	kde4-meta_pkg_setup
 

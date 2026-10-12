@@ -277,19 +277,76 @@ qt4-build-multilib_src_prepare() {
 			mkspecs/$(qt4_get_mkspec)/qmake.conf || die
 	fi
 
-	# apply patches
-	# EPATCH_SOURCE="${WORKDIR}/patch" EPATCH_SUFFIX="patch" EPATCH_FORCE="yes" epatch
+	# Qt 4.8.7 patch set, rebuilt in-tree.  Provenance and the exact -p level of
+	# every patch is documented in patchsets/README.md; the set is applied by all
+	# dev-qt/qt* modules and must not overlap with a module's own PATCHES array.
+	eapply -p1 "${WORKDIR}"/patch/qt4-gcc6.patch
+	eapply -p0 "${WORKDIR}"/patch/qt4-gcc9.patch
+	eapply -p0 "${WORKDIR}"/patch/qt4-gcc11.patch
+	eapply -p1 "${WORKDIR}"/patch/qt4-glibc-2.25.patch
+	eapply -p1 "${WORKDIR}"/patch/qt4-icu59.patch
+	eapply -p1 "${WORKDIR}"/patch/qt4-openssl-1.1.patch
+	eapply -p1 "${WORKDIR}"/patch/disable-sslv3.patch
+	eapply -p0 "${WORKDIR}"/patch/kde4-settings.patch
+	# CVE-2018-19872 (qppmhandler division by zero) is deliberately absent: no
+	# patch for Qt 4.8.7 was ever published, and the other five Qt 4.8.7 CVEs are
+	# covered below.
+	eapply -p1 "${WORKDIR}"/patch/CVE-2018-19869.patch
+	eapply -p1 "${WORKDIR}"/patch/CVE-2018-19870.patch
+	eapply -p1 "${WORKDIR}"/patch/CVE-2018-19871.patch
+	eapply -p1 "${WORKDIR}"/patch/CVE-2018-19873.patch
+	eapply -p1 "${WORKDIR}"/patch/CVE-2018-15518.patch
 
-	# patching individually
-	eapply "${WORKDIR}/patch/fix-build-icu59.patch"
-	eapply "${WORKDIR}/patch/qt4-openssl-1.1.patch"
-	# eapply "${WORKDIR}/patch/gcc9-qforeach.patch"
-	eapply "${WORKDIR}/patch/CVE-2018-19873.patch"
-	eapply "${WORKDIR}/patch/CVE-2018-19872.patch"
-	eapply "${WORKDIR}/patch/CVE-2018-19871.patch"
-	eapply "${WORKDIR}/patch/CVE-2018-19870.patch"
-	eapply "${WORKDIR}/patch/CVE-2018-19869.patch"
-	eapply "${WORKDIR}/patch/CVE-2018-15518.patch"
+	# Build fixes for a >= C++17 toolchain, taken verbatim from the AUR qt4
+	# PKGBUILD's prepare() step (see patchsets/README.md).
+	# Remove usage of "requires" reserved keyword in qmake
+	sed -i 's|requires|qmakeRequires|g' qmake/generators/makefile.cpp
+	### JavaScriptCore mess (TODO: Turn these into patches) ###
+	# Replace obsolete TR1 functions
+	sed -i -e 's|tr1::has_trivial_constructor|is_trivially_constructible|' \
+	  -e 's|tr1::has_trivial_destructor|is_trivially_destructible|' \
+	  src/3rdparty/javascriptcore/JavaScriptCore/wtf/TypeTraits.h
+	# Use rvalue of m_attributesInPrevious
+	# (https://bugs.webkit.org/show_bug.cgi?id=59261)
+	sed -i 's|, existingTransition->m_attributesInPrevious|, +existingTransition->m_attributesInPrevious|' \
+	  src/3rdparty/javascriptcore/JavaScriptCore/runtime/Structure.h
+	sed -i 's|, m_attributesInPrevious)|, +m_attributesInPrevious)|' \
+	  src/3rdparty/javascriptcore/JavaScriptCore/runtime/Structure.cpp
+	# Remove auto_ptr deprecation warnings
+	sed -i 's|auto_ptr|unique_ptr|g' \
+	  src/3rdparty/javascriptcore/JavaScriptCore/wtf/*.h \
+	  src/3rdparty/javascriptcore/JavaScriptCore/parser/Nodes.h \
+	  src/3rdparty/javascriptcore/JavaScriptCore/wtf/unicode/Collator*
+	sed -i 's|(data)|(std::move(data))|' \
+	  src/3rdparty/javascriptcore/JavaScriptCore/parser/Nodes.h
+
+	# Remove invalid template usage in ctors (this is only currently a warning though)
+	sed -i 's|StringTypeAdapter<.*>(|StringTypeAdapter(|' \
+	  src/3rdparty/javascriptcore/JavaScriptCore/runtime/UString.h
+	# Use the ASSERT macro that masks unused variables
+	sed -i 's|ASSERT(differenceBetween(label|ASSERT_UNUSED(label, differenceBetween(label|' \
+	  src/3rdparty/javascriptcore/JavaScriptCore/assembler/MacroAssemblerX86_64.h
+	# Use a proper compile-time assert function
+	sed -i 's|COMPILE_ASSERT(exp, name) .*|COMPILE_ASSERT(exp, name) static_assert((exp), #name)|' \
+	  src/3rdparty/javascriptcore/JavaScriptCore/wtf/Assertions.h
+	# Correct the swap function name
+	sed -i -e 's|swap(from|hashTableSwap(from|' \
+	  -e 's|inline void swap|inline void hashTableSwap|' \
+	  src/3rdparty/javascriptcore/JavaScriptCore/wtf/HashTable.h
+	sed -i 's|// swap pairs|template<typename T> inline void hashTableSwap(T\& a, T\& b) { swap(a, b); }\n\n&|' \
+	  src/3rdparty/javascriptcore/JavaScriptCore/wtf/HashTable.h
+	# Fixup obviously wrong return value
+	sed -i 's|return false|return nullptr|' \
+	  src/3rdparty/javascriptcore/JavaScriptCore/yarr/RegexCompiler.cpp
+	# Silence -Wclass-memaccess warnings
+	sed -i 's|memcpy(dst|memcpy(reinterpret_cast<char*>(dst)|' \
+	  src/3rdparty/javascriptcore/JavaScriptCore/wtf/Vector.h
+	sed -i -e 's|memcpy(x.p|memcpy(reinterpret_cast<char*>(x.p)|' \
+	  -e 's|memmove(i|memmove(reinterpret_cast<char*>(i)|' \
+	  src/corelib/tools/qvector.h
+	# Do a SelectionFlags cast in accessible plugin
+	sed -i 's|QItemSelectionModel::Columns \& QItemSelectionModel::Deselect|QItemSelectionModel::SelectionFlags(&)|' \
+	  src/plugins/accessible/widgets/itemviews.cpp
 
 	[[ ${PATCHES[@]} ]] && eapply "${PATCHES[@]}"
 	eapply_user

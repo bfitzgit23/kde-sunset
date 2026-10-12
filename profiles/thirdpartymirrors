@@ -1,1 +1,4 @@
-kde-sunset http://mirror.krakonos.org/kde-sunset ftp://punk.uchicago.edu/pub/kde-sunset http://punk.uchicago.edu/pub/kde-sunset http://mirror.hasnoname.de/kde-sunset
+# The original kde-sunset mirrors are gone (404/403 since 2021).  The distfiles the
+# overlay still needs are vendored in this repository under patchsets/ and served
+# from its raw GitHub URL.
+kde-sunset https://raw.githubusercontent.com/bfitzgit23/kde-sunset/master/patchsets

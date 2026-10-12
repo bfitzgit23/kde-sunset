@@ -24,9 +24,7 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 
-PATCHES=(
-	"${FILESDIR}/4.8.2-javascriptcore-x32.patch"
-)
+PATCHES=()
 
 QT4_TARGET_DIRECTORIES="
 	src/3rdparty/webkit/Source/JavaScriptCore
@@ -37,6 +35,8 @@ QCONFIG_ADD="webkit"
 QCONFIG_DEFINE="QT_WEBKIT"
 
 src_prepare() {
+	# this patch is not -p1 compatible
+	eapply -p0 "${FILESDIR}/4.8.2-javascriptcore-x32.patch"
 	# Remove -Werror from CXXFLAGS
 	sed -i -e '/QMAKE_CXXFLAGS\s*+=/ s:-Werror::g' \
 		src/3rdparty/webkit/Source/WebKit.pri || die

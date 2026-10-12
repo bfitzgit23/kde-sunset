@@ -102,12 +102,17 @@ KMEXTRACTONLY="
 
 PATCHES=(
 	"${FILESDIR}/gentoo-startkde4-4.patch"
+	"${FILESDIR}/${PN}-4.11.22-dbus-update-environment.patch"
 	"${FILESDIR}/${PN}-kscreen.patch"
 	"${FILESDIR}/${PN}-kwalletd-pam.patch"
 )
 
 src_prepare() {
 	kde4-meta_src_prepare
+
+	# AUR kdebase-workspace: let startkde read the shell scripts in /etc/kde/lib
+	# (this patch is not -p1 compatible)
+	eapply -p0 "${FILESDIR}/${PN}-4.11.22-etc-scripts.patch"
 
 	cp "${FILESDIR}/KDE-4" "${T}"
 

@@ -35,8 +35,9 @@ MULTILIB_WRAPPED_HEADERS=(
 
 PATCHES=(
 	"${FILESDIR}/${PN}-4.8.5-honor-ExcludeSocketNotifiers-in-glib-event-loop.patch" # bug 514968
-	"${FILESDIR}/${PN}-4.8.5-qeventdispatcher-recursive.patch" # bug 514968
-	"${FILESDIR}/${PN}-4.8.7-libressl.patch" # bug 584796
+	# openssl/libressl support and the qeventdispatcher fixes now come from the
+	# shared patch set in qt4-build-multilib.eclass so that every qt4 module gets
+	# them; keeping a second copy here would make eapply fail.
 	"${FILESDIR}/${PN}-4.8.7-moc.patch" # bug 556104, 635394
 )
 
@@ -60,6 +61,9 @@ QCONFIG_DEFINE="QT_ZLIB"
 
 src_prepare() {
 	qt4-build-multilib_src_prepare
+
+	# this patch is not -p1 compatible
+	eapply -p0 "${FILESDIR}/${PN}-4.8.5-qeventdispatcher-recursive.patch"
 
 	eapply "${FILESDIR}/gcc-algorithm-fix.patch"
 
