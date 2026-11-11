@@ -1,0 +1,72 @@
+diff --git a/src/backend.cpp b/src/backend.cpp
+index 80f0f92..700ce12 100644
+--- a/src/backend.cpp
++++ b/src/backend.cpp
+@@ -23,7 +23,7 @@
+ 
+ #include <QApplication>
+ #include <QIcon>
+-#include <QLatin1Literal>
++#include <QLatin1String>
+ #include <QMessageBox>
+ #include <QtPlugin>
+ #include <QVariant>
+diff --git a/src/mediaobject.cpp b/src/mediaobject.cpp
+index 1f4af72..8069e7b 100644
+--- a/src/mediaobject.cpp
++++ b/src/mediaobject.cpp
+@@ -335,16 +335,16 @@ void MediaObject::setSource(const MediaSource &source)
+             error() << Q_FUNC_INFO << "the MediaSource::Disc doesn't specify which one (Phonon::NoDisc)";
+             return;
+         case Phonon::Cd:
+-            loadMedia(QLatin1Literal("cdda://") % m_mediaSource.deviceName());
++            loadMedia(QLatin1String("cdda://") % m_mediaSource.deviceName());
+             break;
+         case Phonon::Dvd:
+-            loadMedia(QLatin1Literal("dvd://") % m_mediaSource.deviceName());
++            loadMedia(QLatin1String("dvd://") % m_mediaSource.deviceName());
+             break;
+         case Phonon::Vcd:
+-            loadMedia(QLatin1Literal("vcd://") % m_mediaSource.deviceName());
++            loadMedia(QLatin1String("vcd://") % m_mediaSource.deviceName());
+             break;
+         case Phonon::BluRay:
+-            loadMedia(QLatin1Literal("bluray://") % m_mediaSource.deviceName());
++            loadMedia(QLatin1String("bluray://") % m_mediaSource.deviceName());
+             break;
+         }
+         break;
+@@ -362,7 +362,7 @@ void MediaObject::setSource(const MediaSource &source)
+         deviceName = source.deviceAccessList().first().second;
+ 
+         if (driverName == QByteArray("v4l2")) {
+-            loadMedia(QLatin1Literal("v4l2://") % deviceName);
++            loadMedia(QLatin1String("v4l2://") % deviceName);
+         } else if (driverName == QByteArray("alsa")) {
+             /*
+              * Replace "default" and "plughw" and "x-phonon" with "hw" for capture device names, because
+@@ -381,9 +381,9 @@ void MediaObject::setSource(const MediaSource &source)
+                 deviceName.replace(0, 8, "hw");
+             }
+ 
+-            loadMedia(QLatin1Literal("alsa://") % deviceName);
++            loadMedia(QLatin1String("alsa://") % deviceName);
+         } else if (driverName == "screen") {
+-            loadMedia(QLatin1Literal("screen://") % deviceName);
++            loadMedia(QLatin1String("screen://") % deviceName);
+ 
+             // Set the isScreen flag needed to add extra options in playInternal
+             m_isScreen = true;
+diff --git a/src/mediaplayer.cpp b/src/mediaplayer.cpp
+index e489280..c60ca22 100644
+--- a/src/mediaplayer.cpp
++++ b/src/mediaplayer.cpp
+@@ -210,7 +210,7 @@ void MediaPlayer::setChapter(int chapter)
+ 
+ QImage MediaPlayer::snapshot() const
+ {
+-    QTemporaryFile tempFile(QDir::tempPath() % QDir::separator() % QLatin1Literal("phonon-vlc-snapshot"));
++    QTemporaryFile tempFile(QDir::tempPath() % QDir::separator() % QLatin1String("phonon-vlc-snapshot"));
+     tempFile.open();
+ 
+     // This function is sync.
