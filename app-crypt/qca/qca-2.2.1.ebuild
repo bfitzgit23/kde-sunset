@@ -48,6 +48,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-disable-pgp-test.patch"
 	"${FILESDIR}/${P}-cmake4.patch"
 	"${FILESDIR}/${P}-openssl4.patch"
+	"${FILESDIR}/${P}-openssl3-const.patch"
 )
 
 qca_plugin_use() {
