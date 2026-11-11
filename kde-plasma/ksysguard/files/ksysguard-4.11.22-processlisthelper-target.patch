@@ -1,12 +1,12 @@
-CMake 4 rejects target names containing dots/spaces. kde4_install_auth_actions()
-creates add_custom_target("actions for ${HELPER_ID}"), which is invalid for
-org.kde.ksysguard.processlisthelper. Pass an underscore-only id to the actions
-macro; polkit matches actions by the id inside the file, not its filename, and
-the DBus helper registration above keeps the real id.
+CMake 4 rejects target names containing dots or spaces. kde4_install_auth_actions()
+creates add_custom_target("actions for ${HELPER_ID}"), which is invalid for the
+dotted org.kde.ksysguard.processlisthelper id. Pass an underscore-only id to that
+macro; polkit matches actions by the id inside the file, not by its filename, and
+the DBus helper registration on the line above keeps the real id.
 
---- a/libs/ksysguard/processcore/CMakeLists.txt
-+++ b/libs/ksysguard/processcore/CMakeLists.txt
-@@ -42,6 +42,6 @@
+--- a/libs/ksysguard/processcore/CMakeLists.txt	2026-11-11 18:30:32.208982700 -0500
++++ b/libs/ksysguard/processcore/CMakeLists.txt	2026-11-11 18:30:33.443929800 -0500
+@@ -42,7 +42,7 @@
  install(TARGETS ksysguardprocesslist_helper DESTINATION ${LIBEXEC_INSTALL_DIR})
  
  kde4_install_auth_helper_files(ksysguardprocesslist_helper org.kde.ksysguard.processlisthelper root)
@@ -14,3 +14,4 @@ the DBus helper registration above keeps the real id.
 +kde4_install_auth_actions(org_kde_ksysguard_processlisthelper actions.actions)
  
  set_target_properties(ksysguardprocesslist_helper PROPERTIES COMPILE_FLAGS "-Wall -ggdb")
+ 
