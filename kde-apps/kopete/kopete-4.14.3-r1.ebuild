@@ -10,7 +10,7 @@ DESCRIPTION="KDE multi-protocol IM client"
 HOMEPAGE="https://kopete.kde.org https://apps.kde.org/en/kopete"
 
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug ssl v4l +handbook"
+IUSE="debug v4l +handbook"
 
 # tests hang, last checked for 4.2.96
 RESTRICT=test
@@ -94,7 +94,6 @@ RDEPEND="${COMMONDEPEND}
 		)
 		virtual/latex-base
 	)
-	ssl? ( app-crypt/qca:2-qt4[ssl] )
 	winpopup? ( net-fs/samba )
 "
 DEPEND="${COMMONDEPEND}
@@ -140,14 +139,6 @@ pkg_postinst() {
 	#	elog "export TELEPATHY_DATA_PATH='${EPREFIX}/usr/share/telepathy/managers/'"
 	#fi
 
-	if ! use ssl; then
-		if use xmpp ; then # || use irc; then
-			if ! has_version "app-crypt/qca:2-qt4[ssl]" ; then
-				elog "In order to use ssl in xmpp you'll need to"
-				elog "install app-crypt/qca package with USE=ssl."
-			fi
-		fi
-	fi
 }
 
 
