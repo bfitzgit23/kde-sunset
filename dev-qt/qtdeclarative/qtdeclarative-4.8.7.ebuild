@@ -10,7 +10,7 @@ if [[ ${QT4_BUILD_TYPE} == release ]]; then
 	KEYWORDS="amd64 ~arm ~hppa ~ppc ~ppc64 ~sparc x86"
 fi
 
-IUSE="+accessibility qt3support webkit"
+IUSE="+accessibility qt3support"
 
 DEPEND="
 	~dev-qt/qtcore-${PV}[debug=,qt3support=,${MULTILIB_USEDEP}]
@@ -21,7 +21,6 @@ DEPEND="
 	~dev-qt/qtsvg-${PV}[accessibility=,debug=,${MULTILIB_USEDEP}]
 	~dev-qt/qtxmlpatterns-${PV}[debug=,${MULTILIB_USEDEP}]
 	qt3support? ( ~dev-qt/qt3support-${PV}[accessibility=,debug=,${MULTILIB_USEDEP}] )
-	webkit? ( >=dev-qt/qtwebkit-${PV}:4[debug=,${MULTILIB_USEDEP}] )
 "
 RDEPEND="${DEPEND}"
 
@@ -35,17 +34,13 @@ QT4_TARGET_DIRECTORIES="
 QCONFIG_ADD="declarative"
 QCONFIG_DEFINE="QT_DECLARATIVE"
 
-pkg_setup() {
-	use webkit && QT4_TARGET_DIRECTORIES+="
-		src/3rdparty/webkit/Source/WebKit/qt/declarative"
-}
 
 multilib_src_configure() {
 	local myconf=(
 		-declarative -no-gtkstyle
 		$(qt_use accessibility)
 		$(qt_use qt3support)
-		$(qt_use webkit)
+		-no-webkit
 	)
 	qt4_multilib_src_configure
 }

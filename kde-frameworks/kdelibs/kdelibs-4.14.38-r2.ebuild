@@ -15,7 +15,7 @@ SLOT="4/4.14"
 KEYWORDS="~amd64 ~arm ~x86 ~amd64-linux ~x86-linux"
 IUSE="cpu_flags_x86_3dnow acl altivec +bzip2 +dbusmenu debug +declarative doc fam +handbook kerberos
 libressl lzma cpu_flags_x86_mmx nls openexr opengl +plasma +policykit qca qt3support spell
-test cpu_flags_x86_sse cpu_flags_x86_sse2 ssl +udev +udisks +upower webkit zeroconf"
+test cpu_flags_x86_sse cpu_flags_x86_sse2 ssl +udev +udisks +upower zeroconf"
 
 REQUIRED_USE="
 	opengl? ( plasma )
@@ -85,7 +85,6 @@ COMMON_DEPEND="
 		!libressl? ( dev-libs/openssl:0= )
 	)
 	udev? ( virtual/udev )
-	webkit? ( >=dev-qt/qtwebkit-${QT_MINIMAL}:4 )
 	zeroconf? ( net-dns/avahi[mdnsresponder-compat] )
 "
 DEPEND="${COMMON_DEPEND}
@@ -208,7 +207,7 @@ src_configure() {
 		-DWITH_OpenSSL=$(usex ssl)
 		-DWITH_UDev=$(usex udev)
 		-DWITH_SOLID_UDISKS2=$(usex udisks)
-		-DWITH_KDEWEBKIT=$(usex webkit)
+		-DWITH_KDEWEBKIT=OFF
 		-DWITH_Avahi=$(usex zeroconf)
 	)
 
