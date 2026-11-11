@@ -14,8 +14,8 @@ LICENSE="LGPL-2.1"
 SLOT="4/4.14"
 KEYWORDS="~amd64 ~arm ~x86 ~amd64-linux ~x86-linux"
 IUSE="cpu_flags_x86_3dnow acl altivec +bzip2 +dbusmenu debug +declarative doc fam kerberos
-libressl lzma cpu_flags_x86_mmx nls openexr opengl +plasma +policykit qca qt3support spell
-test cpu_flags_x86_sse cpu_flags_x86_sse2 ssl +udev +udisks +upower zeroconf"
+lzma cpu_flags_x86_mmx nls openexr opengl +plasma +policykit qca qt3support spell
+test cpu_flags_x86_sse cpu_flags_x86_sse2 +udev +udisks +upower zeroconf"
 
 REQUIRED_USE="
 	opengl? ( plasma )
@@ -36,7 +36,7 @@ COMMON_DEPEND="
 	dev-libs/libxml2
 	dev-libs/libxslt
 	>=dev-qt/designer-${QT_MINIMAL}:4
-	>=dev-qt/qtcore-${QT_MINIMAL}:4[qt3support?,ssl]
+	>=dev-qt/qtcore-${QT_MINIMAL}:4[qt3support?]
 	>=dev-qt/qtdbus-${QT_MINIMAL}:4
 	>=dev-qt/qtgui-${QT_MINIMAL}:4[accessibility,dbus(+)]
 	>=dev-qt/qtscript-${QT_MINIMAL}:4
@@ -80,10 +80,6 @@ COMMON_DEPEND="
 	)
 	policykit? ( sys-auth/polkit-qt:0-qt4 )
 	spell? ( app-text/enchant:= )
-	ssl? (
-		libressl? ( dev-libs/libressl:0= )
-		!libressl? ( dev-libs/openssl:0= )
-	)
 	udev? ( virtual/udev )
 	zeroconf? ( net-dns/avahi[mdnsresponder-compat] )
 "
@@ -206,7 +202,7 @@ src_configure() {
 		-DWITH_PolkitQt-1=$(usex policykit)
 		-DWITH_KDE3SUPPORT=$(usex qt3support)
 		-DWITH_ENCHANT=$(usex spell)
-		-DWITH_OpenSSL=$(usex ssl)
+		-DWITH_OpenSSL=OFF
 		-DWITH_UDev=$(usex udev)
 		-DWITH_SOLID_UDISKS2=$(usex udisks)
 		-DWITH_KDEWEBKIT=OFF
