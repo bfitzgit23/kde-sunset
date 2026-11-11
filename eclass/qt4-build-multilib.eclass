@@ -296,6 +296,12 @@ qt4-build-multilib_src_prepare() {
 	eapply -p0 "${WORKDIR}"/patch/qt4-gcc11.patch
 	eapply -p1 "${WORKDIR}"/patch/qt4-glibc-2.25.patch
 	eapply -p1 "${WORKDIR}"/patch/qt4-icu59.patch
+
+	# The standalone ICU configure probe is compiled without Qt's C++11
+	# handling.  Modern ICU headers require C++11 even for this test.
+	echo 'QMAKE_CXXFLAGS += -std=c++11' \
+		>> config.tests/unix/icu/icu.pro || die "failed to update ICU configure test"
+
 	eapply -p1 "${WORKDIR}"/patch/qt4-openssl-1.1.patch
 	eapply -p1 "${WORKDIR}"/patch/disable-sslv3.patch
 	eapply -p0 "${WORKDIR}"/patch/kde4-settings.patch
