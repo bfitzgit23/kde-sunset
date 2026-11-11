@@ -13,10 +13,12 @@ inherit kde4-base
 
 DESCRIPTION="Oxygen SVG icon theme"
 HOMEPAGE="http://www.oxygen-icons.org/"
+# The formerly repacked archive is no longer hosted; use the canonical
+# upstream tarball, which also contains the SVG sources.
 [[ ${PV} == *9999 ]] || \
 SRC_URI="
-	!sources? ( https://dev.gentoo.org/~kensington/distfiles/${P}.repacked.tar.xz )
-	sources? ( ${SRC_URI} )
+	https://download.kde.org/Attic/4.14.3/src/${P}.tar.xz
+	mirror://kde/Attic/4.14.3/src/${P}.tar.xz
 "
 
 LICENSE="LGPL-3"
