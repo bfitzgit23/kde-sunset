@@ -10,8 +10,8 @@ if [[ ${QT4_BUILD_TYPE} == release ]]; then
 	KEYWORDS="amd64 ~arm ~mips ~ppc ~ppc64 ~sparc x86"
 fi
 
-DESIGNER_PLUGINS="declarative phonon qt3support"
-IUSE="${DESIGNER_PLUGINS}"
+DESIGNER_PLUGINS="declarative phonon qt3support webkit"
+IUSE="declarative phonon qt3support"
 
 DEPEND="
 	~dev-qt/qtcore-${PV}[debug=,${MULTILIB_USEDEP}]
@@ -30,7 +30,7 @@ src_prepare() {
 
 	local plugin
 	for plugin in ${DESIGNER_PLUGINS}; do
-		if ! use ${plugin} || [[ ${plugin} == phonon ]]; then
+		if [[ ${plugin} == webkit ]] || ! use ${plugin} || [[ ${plugin} == phonon ]]; then
 			sed -i -e "/\<${plugin}\>/d" \
 				tools/designer/src/plugins/plugins.pro || die
 		fi
