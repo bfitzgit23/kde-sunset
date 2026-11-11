@@ -28,6 +28,7 @@ RESTRICT="test"
 KMEXTRA="libs/ksysguard/"
 
 PATCHES=(
+    "${FILESDIR}/${P}-cmake4-auth-actions.patch"
     "${FILESDIR}/${P}-optional-webkit.patch"
 )
 

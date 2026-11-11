@@ -1,0 +1,30 @@
+--- a/libs/ksysguard/processcore/CMakeLists.txt	2026-11-11 18:41:19.022400600 -0500
++++ b/libs/ksysguard/processcore/CMakeLists.txt	2026-11-11 18:41:20.832505900 -0500
+@@ -42,7 +42,26 @@
+ install(TARGETS ksysguardprocesslist_helper DESTINATION ${LIBEXEC_INSTALL_DIR})
+ 
+ kde4_install_auth_helper_files(ksysguardprocesslist_helper org.kde.ksysguard.processlisthelper root)
+-kde4_install_auth_actions(org.kde.ksysguard.processlisthelper actions.actions)
++# CMake 4 (CMP0037) rejects the target name kde4_install_auth_actions() builds
++# from a reverse-DNS helper id ("actions for org.kde.ksysguard.processlisthelper").
++# Inline the same PolicyKit handling with a valid target name instead of relying
++# on whichever KDE4Macros.cmake happens to be installed.
++if(KDE4_AUTH_BACKEND_NAME STREQUAL "POLKITQT" OR KDE4_AUTH_BACKEND_NAME STREQUAL "POLKITQT-1")
++  set(_ksysguard_policy ${CMAKE_CURRENT_BINARY_DIR}/org.kde.ksysguard.processlisthelper.policy)
++  get_filename_component(_ksysguard_actions ${CMAKE_CURRENT_SOURCE_DIR}/actions.actions ABSOLUTE)
++
++  add_custom_command(OUTPUT ${_ksysguard_policy}
++                     COMMAND ${KDE4_KAUTH_POLICY_GEN_EXECUTABLE} ${_ksysguard_actions} > ${_ksysguard_policy}
++                     MAIN_DEPENDENCY ${_ksysguard_actions}
++                     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
++                     COMMENT "Generating org.kde.ksysguard.processlisthelper.policy"
++                     DEPENDS ${_KDE4_KAUTH_POLICY_GEN_EXECUTABLE_DEP})
++  add_custom_target(ksysguard_processlisthelper_actions ALL DEPENDS ${_ksysguard_policy})
++
++  install(FILES ${_ksysguard_policy} DESTINATION ${KDE4_AUTH_POLICY_FILES_INSTALL_DIR})
++elseif(KDE4_AUTH_BACKEND_NAME STREQUAL "APPLE" OR KDE4_AUTH_BACKEND_NAME STREQUAL "OSX")
++  install(CODE "execute_process(COMMAND ${KDE4_KAUTH_POLICY_GEN_EXECUTABLE} actions.actions WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})")
++endif()
+ 
+ set_target_properties(ksysguardprocesslist_helper PROPERTIES COMPILE_FLAGS "-Wall -ggdb")
+ 
