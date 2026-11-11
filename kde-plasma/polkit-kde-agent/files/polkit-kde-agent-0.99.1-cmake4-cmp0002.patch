@@ -1,5 +1,5 @@
---- a/po/CMakeLists.txt
-+++ b/po/CMakeLists.txt
+--- a/po/CMakeLists.txt	2026-11-11 18:43:54.560469000 -0500
++++ b/po/CMakeLists.txt	2026-11-11 18:43:54.667076000 -0500
 @@ -1,9 +1,3 @@
 -# The pofiles macro creates in some versions same name targets
 -# which since cmake 2.8 leads to target clashes.
@@ -9,5 +9,4 @@
 -
  find_package(Gettext REQUIRED)
  if (NOT GETTEXT_MSGMERGE_EXECUTABLE)
- PATCHEOF
-echo '=== patch written ==='; wc -c .tmp-kde-sunset/kde-plasma/polkit-kde-agent/files/polkit-kde-agent-0.99.1-cmake4-cmp0002.patch; head -10 .tmp-kde-sunset/kde-plasma/polkit-kde-agent/files/polkit-kde-agent-0.99.1-cmake4-cmp0002.patch
+ MESSAGE(FATAL_ERROR "Please install msgmerge binary")
