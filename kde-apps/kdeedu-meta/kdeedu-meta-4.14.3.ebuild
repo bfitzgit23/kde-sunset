@@ -10,6 +10,8 @@ HOMEPAGE="https://edu.kde.org"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE=""
 
+# Marble is omitted on purpose: its CMakeLists sets QT_USE_QTWEBKIT ON
+# and links QtWebKit unconditionally, with no switch to turn it off.
 RDEPEND="
 	$(add_kdeapps_dep analitza)
 	$(add_kdeapps_dep artikulate)
@@ -30,7 +32,6 @@ RDEPEND="
 	$(add_kdeapps_dep kturtle)
 	$(add_kdeapps_dep kwordquiz)
 	$(add_kdeapps_dep libkdeedu)
-	# marble hard-requires QtWebKit, which this overlay intentionally excludes.
 	$(add_kdeapps_dep parley)
 	$(add_kdeapps_dep rocs)
 	$(add_kdeapps_dep step)
