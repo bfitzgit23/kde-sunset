@@ -39,6 +39,7 @@ PATCHES=(
 	"${FILESDIR}/${P}-gstreamer16.patch"
 	"${FILESDIR}/${P}-boost157.patch"
 	"${FILESDIR}/${P}-clang-38.patch"
+	"${FILESDIR}/${P}-glib-gatomic.patch"
 )
 
 # bug 497880
