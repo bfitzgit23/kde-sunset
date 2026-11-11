@@ -54,7 +54,6 @@ RDEPEND="
 	media-libs/mesa
 	media-libs/openh264
 	media-libs/opus
-	media-sound/pulseaudio
 	media-video/pipewire
 	net-print/cups
 	sys-apps/dbus
