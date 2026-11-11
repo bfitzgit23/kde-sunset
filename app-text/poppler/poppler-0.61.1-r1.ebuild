@@ -46,6 +46,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-0.40-FindQt4.patch"
 	"${FILESDIR}/${PN}-0.57.0-disable-internal-jpx.patch"
 	"${FILESDIR}/${P}-slotting.patch" # compatibility with Gentoo ebuild repo
+	"${FILESDIR}/${P}-cmake4-policies.patch"
 )
 
 src_prepare() {
@@ -56,13 +57,6 @@ src_prepare() {
 	# cmake just uses it, so remove it if we use clang
 	if [[ ${CC} == clang ]] ; then
 		sed -i -e 's/-fno-check-new//' cmake/modules/PopplerMacros.cmake || die
-	fi
-
-	if ! grep -Fq 'cmake_policy(SET CMP0002 OLD)' CMakeLists.txt ; then
-		sed '/^cmake_minimum_required/acmake_policy(SET CMP0002 OLD)' \
-			-i CMakeLists.txt || die
-	else
-		einfo "policy(SET CMP0002 OLD) - workaround can be removed"
 	fi
 
 	# CMake 4 removed compatibility with versions older than 3.5.
