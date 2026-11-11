@@ -3,14 +3,14 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
+KDE_HANDBOOK="never"
 inherit kde4-base kde4-functions-extra
 
 DESCRIPTION="KDE multi-protocol IM client"
 HOMEPAGE="https://kopete.kde.org https://apps.kde.org/en/kopete"
 
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug v4l +handbook"
+IUSE="debug v4l"
 
 # tests hang, last checked for 4.2.96
 RESTRICT=test
