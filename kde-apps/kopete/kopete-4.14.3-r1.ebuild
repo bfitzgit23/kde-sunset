@@ -48,7 +48,7 @@ PLUGINS="+addbookmarks +autoreplace +contactnotes +highlight +history latex
 #	testbed: NO DEPS
 #	winpopup: NO DEPS (we're adding samba as RDEPEND so it works)
 #	zeroconf (bonjour): NO DEPS
-PROTOCOLS="gadu groupwise meanwhile oscar testbed winpopup +xmpp zeroconf"
+PROTOCOLS="gadu groupwise meanwhile oscar testbed winpopup xmpp zeroconf"
 
 # disabled protocols
 #   irc: NO DEPS

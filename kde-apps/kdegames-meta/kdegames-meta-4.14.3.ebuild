@@ -8,7 +8,7 @@ inherit kde4-meta-pkg
 DESCRIPTION="kdegames - merge this to pull in all kdegames-derived packages"
 HOMEPAGE="https://games.kde.org/"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="opengl"
+IUSE="opengl ksirk"
 
 RDEPEND="
 	$(add_kdeapps_dep bomber)
@@ -39,7 +39,7 @@ RDEPEND="
 	$(add_kdeapps_dep kpat)
 	$(add_kdeapps_dep kreversi)
 	$(add_kdeapps_dep kshisen)
-	$(add_kdeapps_dep ksirk)
+	ksirk? ( $(add_kdeapps_dep ksirk) )
 	$(add_kdeapps_dep ksnakeduel)
 	$(add_kdeapps_dep kspaceduel)
 	$(add_kdeapps_dep ksquares)

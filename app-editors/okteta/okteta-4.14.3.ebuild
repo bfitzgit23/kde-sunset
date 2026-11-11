@@ -15,11 +15,18 @@ SRC_URI="mirror://kde/Attic/${PV}/src/${P}.tar.xz"
 LICENSE="GPL-2"
 SLOT=4/$(ver_cut 1-2)
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +handbook"
+IUSE="debug +handbook qca"
 
 DEPEND="
-	app-crypt/qca:2-qt4
+	qca? ( app-crypt/qca:2-qt4 )
 "
 RDEPEND="${DEPEND}"
+
+src_configure() {
+	local mycmakeargs=(
+		-DWITH_QCA2=$(usex qca)
+	)
+	kde4-base_src_configure
+}
 
 

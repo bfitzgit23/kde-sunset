@@ -9,10 +9,10 @@ inherit kde4-base kde4-functions-extra
 DESCRIPTION="Advanced download manager by KDE"
 HOMEPAGE="https://www.kde.org/applications/internet/kget/"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug bittorrent gpg mms sqlite +handbook"
+IUSE="debug bittorrent gpg mms qca sqlite +handbook"
 
 RDEPEND="
-	app-crypt/qca:2-qt4
+	qca? ( app-crypt/qca:2-qt4 )
 	$(add_kdeapps_dep libkonq)
 	$(add_kdeplasma_dep libkworkspace '' 4.11)
 	bittorrent? ( >=net-libs/libktorrent-1.0.3:4 )
@@ -29,6 +29,7 @@ src_configure() {
 		-DWITH_NepomukCore=OFF
 		-DWITH_NepomukWidgets=OFF
 		-DWITH_KWebKitPart=OFF
+		-DWITH_QCA2=$(usex qca)
 		-DWITH_KTorrent="$(usex bittorrent)"
 		-DWITH_QGpgme="$(usex gpg)"
 		-DWITH_LibMms="$(usex mms)"

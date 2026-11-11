@@ -14,7 +14,7 @@ LICENSE="LGPL-2.1"
 SLOT="4/4.14"
 KEYWORDS="~amd64 ~arm ~x86 ~amd64-linux ~x86-linux"
 IUSE="cpu_flags_x86_3dnow acl altivec +bzip2 debug doc fam +handbook kerberos
-libressl lzma cpu_flags_x86_mmx nls openexr opengl +plasma +policykit qt3support spell
+libressl lzma cpu_flags_x86_mmx nls openexr opengl +plasma +policykit qca qt3support spell
 test cpu_flags_x86_sse cpu_flags_x86_sse2 ssl +udev +udisks +upower webkit zeroconf"
 
 REQUIRED_USE="
@@ -73,8 +73,8 @@ COMMON_DEPEND="
 		media-libs/openexr:=
 	)
 	opengl? ( >=dev-qt/qtopengl-${QT_MINIMAL}:4 )
+	qca? ( app-crypt/qca:2-qt4 )
 	plasma? (
-		app-crypt/qca:2-qt4
 		>=dev-qt/qtsql-${QT_MINIMAL}:4[qt3support?]
 	)
 	policykit? ( sys-auth/polkit-qt:0-qt4 )
@@ -197,7 +197,7 @@ src_configure() {
 		-DWITH_Libintl=$(usex nls)
 		-DWITH_OpenEXR=$(usex openexr)
 		-DWITH_PLASMA4SUPPORT=$(usex plasma)
-		-DWITH_QCA2=$(usex plasma)
+		-DWITH_QCA2=$(usex qca)
 		-DWITH_PolkitQt-1=$(usex policykit)
 		-DWITH_KDE3SUPPORT=$(usex qt3support)
 		-DWITH_ENCHANT=$(usex spell)
