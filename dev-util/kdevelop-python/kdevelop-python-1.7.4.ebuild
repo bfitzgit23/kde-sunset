@@ -6,7 +6,9 @@ EAPI=8
 KDEBASE="kdevelop"
 KMNAME="kdev-python"
 KDE_LINGUAS="bs ca ca@valencia de en_GB es et fi fr gl it nl pl pt pt_BR sk sl sv tr uk"
-PYTHON_COMPAT=( python2_7 )
+# The package is masked. Keep metadata parseable on Python 3.14 even though
+# upstream 1.7.4 cannot build; see profiles/package.mask.
+PYTHON_COMPAT=( python3_14 )
 MY_P="${KMNAME}-${PV}"
 inherit kde4-base python-any-r1
 
