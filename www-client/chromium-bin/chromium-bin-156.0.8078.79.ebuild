@@ -40,7 +40,7 @@ RDEPEND="
 	dev-libs/nspr
 	dev-libs/nss
 	dev-cpp/highway
-	dev-cpp/simdutf
+	=dev-cpp/simdutf-9.2.1
 	dev-util/desktop-file-utils
 	media-libs/alsa-lib
 	media-libs/dav1d
