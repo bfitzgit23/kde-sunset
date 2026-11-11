@@ -3,10 +3,3 @@
 # KDevelop 4 Python plugin: the 1.7-py3 branch requires Python >=3.4.3 and <3.5
 # and uses Python C APIs removed in modern CPython. Python 3.14 cannot build it.
 dev-util/kdevelop-python
-
-# QtWebKit 4 is intentionally disabled in this overlay: it is a very large,
-# slow build and a persistent security liability.  KDE 4 ebuilds here no longer
-# request it (kde4-base forces WEBKIT_REQUIRED="never", webkit flags default
-# off, Marble excluded from kdeedu-meta).  Packages that hard-require QtWebKit
-# must be unmasked deliberately if they are ever needed.
-dev-qt/qtwebkit:4
