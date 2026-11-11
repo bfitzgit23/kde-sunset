@@ -1,0 +1,7 @@
+--- a/kdecore/io/kfilesystemtype_p.cpp
++++ b/kdecore/io/kfilesystemtype_p.cpp
+@@ -21,3 +21,4 @@
+ #include "kfilesystemtype_p.h"
++#include <stdint.h>
+ #include <QFile>
+ #include <QDebug>
