@@ -121,6 +121,7 @@ PDEPEND="
 DOCS=( AUTHORS README{,-WIN32.TXT} TODO )
 
 PATCHES=(
+	"${FILESDIR}/kdelibs-4.14-cmake4-auth-actions-target.patch"
 	"${FILESDIR}/dist/01_gentoo_set_xdg_menu_prefix-1.patch"
 	"${FILESDIR}/dist/02_gentoo_append_xdg_config_dirs-1.patch"
 	"${FILESDIR}/${PN}-4.14.5-fatalwarnings.patch"
