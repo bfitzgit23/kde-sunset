@@ -9,14 +9,14 @@ inherit flag-o-matic kde4-base
 DESCRIPTION="Extra Plasma applets and engines"
 LICENSE="GPL-2 LGPL-2"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="attica debug desktopglobe eigen exif ibus json +pim qalculate qwt scim"
+IUSE="attica debug desktopglobe eigen exif ibus json +pim qalculate qca qwt scim"
 
 RESTRICT=test
 # tests hang
 
 # krunner is only needed to generate dbus interface for lancelot
 COMMON_DEPEND="
-	app-crypt/qca:2-qt4
+	qca? ( app-crypt/qca:2-qt4 )
 	kde-plasma/krunner:4
 	kde-plasma/plasma-workspace:4
 	x11-misc/shared-mime-info
@@ -34,7 +34,7 @@ DEPEND="${COMMON_DEPEND}
 	eigen? ( dev-cpp/eigen:2 )
 "
 RDEPEND="${COMMON_DEPEND}
-	app-crypt/qca:2-qt4[ssl]
+	qca? ( app-crypt/qca:2-qt4[ssl] )
 "
 
 src_configure() {
@@ -48,6 +48,7 @@ src_configure() {
 		-DWITH_Kexiv2="$(usex exif)"
 		-DBUILD_ibus="$(usex ibus)"
 		-DWITH_QJSON="$(usex json)"
+		-DWITH_QCA2="$(usex qca)"
 		-DWITH_KdepimLibs="$(usex pim)"
 		-DWITH_qalculate="$(usex qalculate)"
 		-DWITH_qwt="$(usex qwt)"
