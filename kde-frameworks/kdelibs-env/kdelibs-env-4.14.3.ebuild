@@ -3,11 +3,8 @@
 
 EAPI=8
 
-# This package only installs environment files and must not pull in kdelibs.
-KDE_REQUIRED="never"
-
-inherit kde4-base
-
+# This package installs only environment files.  Do not inherit kde4-base:
+# it would add a kdelibs dependency and run CMake phases without any sources.
 DESCRIPTION="Environment setting required for all KDELibs4 apps to run"
 HOMEPAGE="https://www.kde.org/"
 SRC_URI=""
