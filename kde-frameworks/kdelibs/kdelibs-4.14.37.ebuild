@@ -15,7 +15,7 @@ LICENSE="LGPL-2.1"
 SLOT="4/4.14"
 IUSE="cpu_flags_x86_3dnow acl altivec +bzip2 debug doc fam kerberos
 libressl lzma cpu_flags_x86_mmx nls openexr opengl +plasma +policykit qca qt3support spell
-test cpu_flags_x86_sse cpu_flags_x86_sse2 ssl +udev +udisks +upower webkit zeroconf"
+test cpu_flags_x86_sse cpu_flags_x86_sse2 ssl +udev +udisks +upower zeroconf"
 
 REQUIRED_USE="
 	opengl? ( plasma )
@@ -84,7 +84,6 @@ COMMONDEPEND="
 		!libressl? ( dev-libs/openssl:0= )
 	)
 	udev? ( virtual/udev )
-	webkit? ( >=dev-qt/qtwebkit-${QT_MINIMAL}:4 )
 	zeroconf? ( net-dns/avahi[mdnsresponder-compat] )
 "
 DEPEND="${COMMONDEPEND}
@@ -186,7 +185,7 @@ src_configure() {
 		-DWITH_OpenSSL=$(usex ssl)
 		-DWITH_UDev=$(usex udev)
 		-DWITH_SOLID_UDISKS2=$(usex udisks)
-		-DWITH_KDEWEBKIT=$(usex webkit)
+		-DWITH_KDEWEBKIT=OFF
 		-DWITH_Avahi=$(usex zeroconf)
 	)
 
