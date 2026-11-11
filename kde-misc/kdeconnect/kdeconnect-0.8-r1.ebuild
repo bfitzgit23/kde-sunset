@@ -33,7 +33,12 @@ COMMON_DEPEND="
 "
 RDEPEND="${COMMON_DEPEND}
 	$(add_kdeplasma_dep plasma-workspace)
-	app-crypt/qca:2-qt4[ssl]
+	|| (
+		app-crypt/qca:2-qt4[ssl]
+		app-crypt/qca:2-qt4[botan]
+		app-crypt/qca:2-qt4[gcrypt]
+		app-crypt/qca:2-qt4[nss]
+	)
 "
 DEPEND="${COMMON_DEPEND}
 	sys-devel/gettext
@@ -50,6 +55,10 @@ pkg_postinst(){
 	elog
 	elog "Optional dependency:"
 	elog "net-fs/sshfs (for 'remote filesystem browser' plugin)"
+	elog
+	elog "KDE Connect requires a QCA RSA provider.  If app-crypt/qca is"
+	elog "built with USE=-ssl, enable a non-ssl provider such as botan,"
+	elog "gcrypt, or nss on it."
 	elog
 	elog "The Android .apk file is available via"
 	elog "https://play.google.com/store/apps/details?id=org.kde.kdeconnect_tp"
