@@ -25,7 +25,7 @@ HOMEPAGE="http://ktorrent.pwsp.net/"
 LICENSE="GPL-2"
 SLOT="4"
 IUSE="+bwscheduler debug +downloadorder +infowidget +ipfilter +logviewer
-+magnetgenerator +mediaplayer plasma rss +scanfolder +search +shutdown +stats
++magnetgenerator +mediaplayer plasma rss +scanfolder search +shutdown +stats
 +upnp webinterface +zeroconf"
 
 COMMONDEPEND="

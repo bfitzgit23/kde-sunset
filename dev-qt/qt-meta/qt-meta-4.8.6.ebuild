@@ -9,7 +9,7 @@ HOMEPAGE="https://www.qt.io/"
 LICENSE="metapackage"
 SLOT="4"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux ~ppc-macos"
-IUSE="+dbus examples +qt3support +webkit"
+IUSE="+dbus examples +qt3support"
 
 DEPEND=""
 RDEPEND="
@@ -32,7 +32,6 @@ RDEPEND="
 	>=dev-qt/qtsql-${PV}:4
 	>=dev-qt/qtsvg-${PV}:4
 	>=dev-qt/qttest-${PV}:4
-	webkit? ( >=dev-qt/qtwebkit-${PV}:4 )
 	>=dev-qt/qtxmlpatterns-${PV}:4
 	media-libs/phonon:0-qt4
 "

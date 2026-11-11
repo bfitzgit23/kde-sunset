@@ -157,9 +157,9 @@ SQL_REQUIRED="${SQL_REQUIRED:-never}"
 
 # @ECLASS-VARIABLE: WEBKIT_REQUIRED
 # @DESCRIPTION:
-# Is qtwebkit required? Possible values are 'always', 'optional' and 'never'.
-# This variable must be set before inheriting any eclasses. Defaults to 'never'.
-WEBKIT_REQUIRED="${WEBKIT_REQUIRED:-never}"
+# QtWebKit is intentionally unsupported in this overlay.  Ignore per-ebuild
+# settings so no KDE4 package can pull in QtWebKit.
+WEBKIT_REQUIRED="never"
 
 # @ECLASS-VARIABLE: CPPUNIT_REQUIRED
 # @DESCRIPTION:

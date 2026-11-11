@@ -30,7 +30,7 @@ RDEPEND="
 	$(add_kdeapps_dep kturtle)
 	$(add_kdeapps_dep kwordquiz)
 	$(add_kdeapps_dep libkdeedu)
-	$(add_kdeapps_dep marble)
+	# marble hard-requires QtWebKit, which this overlay intentionally excludes.
 	$(add_kdeapps_dep parley)
 	$(add_kdeapps_dep rocs)
 	$(add_kdeapps_dep step)
