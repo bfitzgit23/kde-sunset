@@ -1,0 +1,33 @@
+--- a/plugins/qca-ossl/qca-ossl.cpp
++++ b/plugins/qca-ossl/qca-ossl.cpp
+@@ -5651,11 +5651,30 @@
+ #endif
+ #ifndef OPENSSL_NO_SSL3_METHOD
+ 		case TLS::SSL_v3:
++#if OPENSSL_VERSION_NUMBER >= 0x40000000L
++			// OpenSSL 4 removed the fixed-version SSLv3 method
++			return QStringList();
++#else
+ 			ctx = SSL_CTX_new(SSLv3_client_method());
++#if OPENSSL_VERSION_NUMBER >= 0x10101000L
++			if (ctx) {
++				SSL_CTX_set_min_proto_version(ctx, SSL3_VERSION);
++				SSL_CTX_set_max_proto_version(ctx, SSL3_VERSION);
++			}
++#endif
+ 			break;
+ #endif
++#endif
+ 		case TLS::TLS_v1:
++#if OPENSSL_VERSION_NUMBER >= 0x10101000L
++			ctx = SSL_CTX_new(TLS_client_method());
++			if (ctx) {
++				SSL_CTX_set_min_proto_version(ctx, TLS1_VERSION);
++				SSL_CTX_set_max_proto_version(ctx, TLS1_3_VERSION);
++			}
++#else
+ 			ctx = SSL_CTX_new(TLSv1_client_method());
++#endif
+ 			break;
+ 		case TLS::DTLS_v1:
+ 		default:

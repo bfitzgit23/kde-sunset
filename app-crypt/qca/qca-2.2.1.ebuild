@@ -47,6 +47,7 @@ RDEPEND="${COMMON_DEPEND}
 PATCHES=(
 	"${FILESDIR}/${PN}-disable-pgp-test.patch"
 	"${FILESDIR}/${P}-cmake4.patch"
+	"${FILESDIR}/${P}-openssl4.patch"
 )
 
 qca_plugin_use() {
