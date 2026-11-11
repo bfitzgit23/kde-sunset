@@ -1,0 +1,38 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -54,8 +54,8 @@
+ find_package(KDeclarative QUIET CONFIG)
+ set_package_properties(KDeclarative PROPERTIES DESCRIPTION "KDE Declarative (QML) support from kdelibs"
+                        URL "http://www.kde.org"
+-                       TYPE REQUIRED
+-                       PURPOSE "Required for building ksmserver"
++                       TYPE OPTIONAL
++                       PURPOSE "Used by the QML parts of the workspace, which are skipped when unavailable"
+                       )
+ 
+ macro_optional_find_package(OpenGL)
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -58,6 +58,10 @@
+                        PURPOSE "Used by the QML parts of the workspace, which are skipped when unavailable"
+                       )
+ 
++if(QT_QTDECLARATIVE_LIBRARY AND KDeclarative_FOUND)
++   add_definitions(-DHAVE_QTDECLARATIVE)
++endif(QT_QTDECLARATIVE_LIBRARY AND KDeclarative_FOUND)
++
+ macro_optional_find_package(OpenGL)
+ set_package_properties(OpenGL PROPERTIES DESCRIPTION "The OpenGL libraries"
+                        URL "http://www.opengl.org"
+
+--- a/ksplash/CMakeLists.txt
++++ b/ksplash/CMakeLists.txt
+@@ -2,4 +2,6 @@
+ add_subdirectory( simple )
+ add_subdirectory( none )
+ add_subdirectory( kcm )
+-add_subdirectory( ksplashqml )
++if(QT_QTDECLARATIVE_LIBRARY)
++    add_subdirectory( ksplashqml )
++endif(QT_QTDECLARATIVE_LIBRARY)

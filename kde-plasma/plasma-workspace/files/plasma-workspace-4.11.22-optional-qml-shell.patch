@@ -1,0 +1,50 @@
+--- a/plasma/desktop/shell/activitymanager/activitymanager.cpp
++++ b/plasma/desktop/shell/activitymanager/activitymanager.cpp
+@@ -22,9 +22,11 @@
+ #include "activitymanager.h"
+ 
+ #include <QGraphicsLinearLayout>
++#ifdef HAVE_QTDECLARATIVE
+ #include <QDeclarativeContext>
+ #include <QDeclarativeEngine>
+ #include <QDeclarativeComponent>
++#endif
+ 
+ #include <KAuthorized>
+ #include <KStandardDirs>
+@@ -36,7 +38,9 @@
+ #include <plasma/containment.h>
+ #include <plasma/corona.h>
+ #include <plasma/package.h>
++#ifdef HAVE_QTDECLARATIVE
+ #include <plasma/widgets/declarativewidget.h>
++#endif
+ 
+ #include "kidenticongenerator.h"
+ #include "plasmaapp.h"
+@@ -62,7 +66,9 @@
+     Plasma::Location location;
+     ActivityManager *q;
+     Plasma::Containment *containment;
++#ifdef HAVE_QTDECLARATIVE
+     Plasma::DeclarativeWidget *declarativeWidget;
++#endif
+     Plasma::Package *package;
+ 
+     QGraphicsLinearLayout *mainLayout;
+@@ -103,6 +109,7 @@
+     package = new Plasma::Package(path, pluginName, structure);
+     KGlobal::locale()->insertCatalog("plasma_package_" + pluginName);
+ 
++#ifdef HAVE_QTDECLARATIVE
+     declarativeWidget = new Plasma::DeclarativeWidget(q);
+     declarativeWidget->setInitializationDelayed(true);
+     declarativeWidget->setQmlPath(package->filePath("mainscript"));
+@@ -115,6 +122,7 @@
+             ctxt->setContextProperty("activityManager", q);
+         }
+     }
++#endif
+ 
+     q->setLayout(mainLayout);
+ }

@@ -1,0 +1,43 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -58,6 +58,10 @@
+                        PURPOSE "Used by the QML parts of the workspace, which are skipped when unavailable"
+                       )
+ 
++if(QT_QTDECLARATIVE_LIBRARY AND KDeclarative_FOUND)
++   add_definitions(-DHAVE_QTDECLARATIVE)
++endif(QT_QTDECLARATIVE_LIBRARY AND KDeclarative_FOUND)
++
+ macro_optional_find_package(OpenGL)
+ set_package_properties(OpenGL PROPERTIES DESCRIPTION "The OpenGL libraries"
+                        URL "http://www.opengl.org"
+
+--- a/plasma/desktop/applets/CMakeLists.txt
++++ b/plasma/desktop/applets/CMakeLists.txt
+@@ -4,8 +4,12 @@
+ 
+ if(NOT WIN32)
+     #task and windowlist depend on libs/taskmanager
+-   add_subdirectory(tasks)
++   if(QT_QTDECLARATIVE_LIBRARY)
++      add_subdirectory(tasks)
++   endif(QT_QTDECLARATIVE_LIBRARY)
+    add_subdirectory(windowlist)
+ 
+-   add_subdirectory(pager)
++   if(QT_QTDECLARATIVE_LIBRARY)
++      add_subdirectory(pager)
++   endif(QT_QTDECLARATIVE_LIBRARY)
+ endif(NOT WIN32)
+
+--- a/plasma/screensaver/CMakeLists.txt
++++ b/plasma/screensaver/CMakeLists.txt
+@@ -1,6 +1,8 @@
+ add_subdirectory(containments)
+ if(NOT WIN32)
++if(QT_QTDECLARATIVE_LIBRARY)
+ add_subdirectory(shell)
++endif(QT_QTDECLARATIVE_LIBRARY)
+ endif(NOT WIN32)
+ 
+ 

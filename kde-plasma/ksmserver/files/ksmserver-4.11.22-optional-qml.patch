@@ -1,0 +1,205 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -54,8 +54,8 @@
+ find_package(KDeclarative QUIET CONFIG)
+ set_package_properties(KDeclarative PROPERTIES DESCRIPTION "KDE Declarative (QML) support from kdelibs"
+                        URL "http://www.kde.org"
+-                       TYPE REQUIRED
+-                       PURPOSE "Required for building ksmserver"
++                       TYPE OPTIONAL
++                       PURPOSE "Used by the QML parts of the workspace, which are skipped when unavailable"
+                       )
+ 
+ macro_optional_find_package(OpenGL)
+
+--- a/ksmserver/curtaineffect.cpp
++++ b/ksmserver/curtaineffect.cpp
+@@ -31,7 +31,9 @@
+ #include <QTimer>
+ #include "config-workspace.h"
+ 
++#ifdef HAVE_QIMAGEBLITZ
+ #include <qimageblitz.h>
++#endif
+ 
+ CurtainEffect::CurtainEffect(QWidget *parent, QPixmap *pixmap)
+     : LogoutEffect(parent, pixmap)
+@@ -49,8 +51,10 @@
+ {
+     QImage image = QPixmap::grabWindow(QApplication::desktop()->winId(), 0, currentY,
+                                        parent->width(), 10 ).toImage();
++#ifdef HAVE_QIMAGEBLITZ
+     Blitz::intensity(image, -0.4);
+     Blitz::grayscale(image);
++#endif
+ 
+     QPainter painter(pixmap);
+     painter.drawImage(0, currentY, image);
+
+--- a/ksmserver/CMakeLists.txt
++++ b/ksmserver/CMakeLists.txt
+@@ -3,6 +3,10 @@
+ add_subdirectory( kcm )
+ endif(${KDE_PLATFORM_PROFILE} STREQUAL "Desktop")
+ 
++if(QIMAGEBLITZ_FOUND)
++   add_definitions(-DHAVE_QIMAGEBLITZ)
++endif(QIMAGEBLITZ_FOUND)
++
+ include_directories(
+    ${KDEBASE_WORKSPACE_SOURCE_DIR}/libs
+    ${QIMAGEBLITZ_INCLUDES}
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -58,6 +58,10 @@
+                        PURPOSE "Used by the QML parts of the workspace, which are skipped when unavailable"
+                       )
+ 
++if(QT_QTDECLARATIVE_LIBRARY AND KDeclarative_FOUND)
++   add_definitions(-DHAVE_QTDECLARATIVE)
++endif(QT_QTDECLARATIVE_LIBRARY AND KDeclarative_FOUND)
++
+ macro_optional_find_package(OpenGL)
+ set_package_properties(OpenGL PROPERTIES DESCRIPTION "The OpenGL libraries"
+                        URL "http://www.opengl.org"
+
+--- a/ksmserver/screenlocker/CMakeLists.txt
++++ b/ksmserver/screenlocker/CMakeLists.txt
+@@ -3,7 +3,10 @@
+ 
+ add_definitions(-DKDE_DEFAULT_DEBUG_AREA=1223)
+ add_subdirectory(data)
+-add_subdirectory(greeter)
++# The greeter is a QML application and cannot be built without QtDeclarative.
++if(QT_QTDECLARATIVE_LIBRARY)
++    add_subdirectory(greeter)
++endif(QT_QTDECLARATIVE_LIBRARY)
+ 
+ # for dbus_add_activation_service
+ include(PkgConfigGetVar)
+
+--- a/ksmserver/shutdowndlg.h
++++ b/ksmserver/shutdowndlg.h
+@@ -69,7 +69,9 @@
+     bool initialized;
+ };
+ 
++#ifdef HAVE_QTDECLARATIVE
+ class QDeclarativeView;
++#endif
+ 
+ // The confirmation dialog
+ class KSMShutdownDlg : public QDialog
+@@ -97,7 +99,9 @@
+     KWorkSpace::ShutdownType m_shutdownType;
+     QString m_bootOption;
+     QStringList rebootOptions;
++#ifdef HAVE_QTDECLARATIVE
+     QDeclarativeView* m_view;
++#endif
+ };
+ 
+ #endif
+
+--- a/ksmserver/shutdowndlg.cpp
++++ b/ksmserver/shutdowndlg.cpp
+@@ -34,10 +34,12 @@
+ #include <QtDBus/QDBusConnection>
+ #include <QtDBus/QDBusMessage>
+ #include <QtDBus/QDBusPendingCall>
++#ifdef HAVE_QTDECLARATIVE
+ #include <QDeclarativeView>
+ #include <QDeclarativeContext>
+ #include <QDeclarativeEngine>
+ #include <QDeclarativePropertyMap>
++#endif
+ 
+ #include <kdialog.h>
+ #include <kiconloader.h>
+@@ -47,13 +49,20 @@
+ #include <kwindowsystem.h>
+ #include <netwm.h>
+ #include <KStandardDirs>
++#ifdef HAVE_QTDECLARATIVE
+ #include <kdeclarative.h>
++#endif
+ 
+ #include <stdio.h>
+ #include <kxerrorhandler.h>
+ 
+ #include <kworkspace/kdisplaymanager.h>
+ 
++#include <QLabel>
++#include <QPainter>
++#include <QPushButton>
++#include <QVBoxLayout>
++
+ #include <config-workspace.h>
+ 
+ #include "logouteffect.h"
+@@ -181,6 +190,7 @@
+ 
+     KDialog::centerOnScreen(this, -3);
+ 
++#ifdef HAVE_QTDECLARATIVE
+     //kDebug() << "Creating QML view";
+     m_view = new QDeclarativeView(this);
+     QDeclarativeContext *context = m_view->rootContext();
+@@ -254,13 +264,42 @@
+     m_view->show();
+     m_view->setFocus();
+     adjustSize();
++#else
++    QVBoxLayout *layout = new QVBoxLayout(this);
++    QLabel *label = new QLabel(i18n("Do you really want to end the current session?"), this);
++    label->setAlignment(Qt::AlignCenter);
++    layout->addWidget(label);
++
++    QPushButton *logoutButton = new QPushButton(i18n("&Log Out"), this);
++    connect(logoutButton, SIGNAL(clicked()), this, SLOT(slotLogout()));
++    layout->addWidget(logoutButton);
++
++    if (maysd) {
++        QPushButton *haltButton = new QPushButton(i18n("Turn &Off Computer"), this);
++        connect(haltButton, SIGNAL(clicked()), this, SLOT(slotHalt()));
++        layout->addWidget(haltButton);
++
++        QPushButton *rebootButton = new QPushButton(i18n("&Restart Computer"), this);
++        connect(rebootButton, SIGNAL(clicked()), this, SLOT(slotReboot()));
++        layout->addWidget(rebootButton);
++    }
++
++    QPushButton *cancelButton = new QPushButton(i18n("&Cancel"), this);
++    connect(cancelButton, SIGNAL(clicked()), this, SLOT(reject()));
++    layout->addWidget(cancelButton);
++    layout->addStretch();
++    setModal(true);
++    resize(360, 200);
++#endif
+ }
+ 
+ bool KSMShutdownDlg::eventFilter ( QObject * watched, QEvent * event )
+ {
++#ifdef HAVE_QTDECLARATIVE
+     if (watched == m_view && event->type() == QEvent::Resize) {
+         adjustSize();
+     }
++#endif
+     return QDialog::eventFilter(watched, event);
+ }
+ 
+@@ -268,11 +307,13 @@
+ {
+     QDialog::resizeEvent( e );
+ 
++#ifdef HAVE_QTDECLARATIVE
+     if( KWindowSystem::compositingActive()) {
+         clearMask();
+     } else {
+         setMask(m_view->mask());
+     }
++#endif
+ 
+     KDialog::centerOnScreen(this, -3);
+ }

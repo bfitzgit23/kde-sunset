@@ -1,0 +1,328 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -54,8 +54,8 @@
+ find_package(KDeclarative QUIET CONFIG)
+ set_package_properties(KDeclarative PROPERTIES DESCRIPTION "KDE Declarative (QML) support from kdelibs"
+                        URL "http://www.kde.org"
+-                       TYPE REQUIRED
+-                       PURPOSE "Required for building ksmserver"
++                       TYPE OPTIONAL
++                       PURPOSE "Used by the QML parts of the workspace, which are skipped when unavailable"
+                       )
+ 
+ macro_optional_find_package(OpenGL)
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -58,6 +58,10 @@
+                        PURPOSE "Used by the QML parts of the workspace, which are skipped when unavailable"
+                       )
+ 
++if(QT_QTDECLARATIVE_LIBRARY AND KDeclarative_FOUND)
++   add_definitions(-DHAVE_QTDECLARATIVE)
++endif(QT_QTDECLARATIVE_LIBRARY AND KDeclarative_FOUND)
++
+ macro_optional_find_package(OpenGL)
+ set_package_properties(OpenGL PROPERTIES DESCRIPTION "The OpenGL libraries"
+                        URL "http://www.opengl.org"
+
+--- a/kwin/CMakeLists.txt
++++ b/kwin/CMakeLists.txt
+@@ -34,6 +34,15 @@
+ 
+ cmake_dependent_option(KWIN_BUILD_KAPPMENU "Build without appmenu support" ON "KWIN_BUILD_DECORATIONS" FALSE)
+ 
++# The window switcher, the scripting interface and the QML thumbnail items all
++# need QtDeclarative; QtScript is also required by the scripting interface.
++if(NOT QT_QTDECLARATIVE_LIBRARY)
++    set(KWIN_BUILD_TABBOX OFF)
++endif(NOT QT_QTDECLARATIVE_LIBRARY)
++if(NOT QT_QTDECLARATIVE_LIBRARY OR NOT QT_QTSCRIPT_LIBRARY)
++    set(KWIN_BUILD_SCRIPTING OFF)
++endif(NOT QT_QTDECLARATIVE_LIBRARY OR NOT QT_QTSCRIPT_LIBRARY)
++
+ # KWIN_HAVE_XRENDER_COMPOSITING - whether XRender-based compositing support is available: may be disabled
+ if( KWIN_BUILD_XRENDER_COMPOSITING )
+     set( KWIN_HAVE_XRENDER_COMPOSITING 1 )
+@@ -135,7 +144,6 @@
+    scene_xrender.cpp
+    scene_opengl.cpp
+    glxbackend.cpp
+-   thumbnailitem.cpp
+    lanczosfilter.cpp
+    deleted.cpp
+    effects.cpp
+@@ -145,6 +153,10 @@
+    xcbutils.cpp
+    )
+ 
++if(QT_QTDECLARATIVE_LIBRARY)
++    set(kwin_KDEINIT_SRCS ${kwin_KDEINIT_SRCS} thumbnailitem.cpp)
++endif(QT_QTDECLARATIVE_LIBRARY)
++
+ if(KWIN_BUILD_SCRIPTING)
+     set(
+         kwin_KDEINIT_SRCS ${kwin_KDEINIT_SRCS}
+@@ -163,7 +175,6 @@
+         kwin_KDEINIT_SRCS ${kwin_KDEINIT_SRCS}
+         tabbox/tabbox.cpp
+         tabbox/clientmodel.cpp
+-        tabbox/declarative.cpp
+         tabbox/desktopchain.cpp
+         tabbox/desktopmodel.cpp
+         tabbox/tabboxconfig.cpp
+
+--- a/kwin/effects.h
++++ b/kwin/effects.h
+@@ -40,9 +40,11 @@
+ namespace KWin
+ {
+ 
++#ifdef HAVE_QTDECLARATIVE
+ class AbstractThumbnailItem;
+ class DesktopThumbnailItem;
+ class WindowThumbnailItem;
++#endif
+ 
+ class Client;
+ class Compositor;
+@@ -316,6 +318,7 @@
+     void setData(int role, const QVariant &data);
+     QVariant data(int role) const;
+ 
++#ifdef HAVE_QTDECLARATIVE
+     void registerThumbnail(AbstractThumbnailItem *item);
+     QHash<WindowThumbnailItem*, QWeakPointer<EffectWindowImpl> > const &thumbnails() const {
+         return m_thumbnails;
+@@ -323,17 +326,24 @@
+     QList<DesktopThumbnailItem*> const &desktopThumbnails() const {
+         return m_desktopThumbnails;
+     }
++#endif
+ private Q_SLOTS:
++#ifdef HAVE_QTDECLARATIVE
+     void thumbnailDestroyed(QObject *object);
+     void thumbnailTargetChanged();
+     void desktopThumbnailDestroyed(QObject *object);
++#endif
+ private:
++#ifdef HAVE_QTDECLARATIVE
+     void insertThumbnail(WindowThumbnailItem *item);
++#endif
+     Toplevel* toplevel;
+     Scene::Window* sw; // This one is used only during paint pass.
+     QHash<int, QVariant> dataMap;
++#ifdef HAVE_QTDECLARATIVE
+     QHash<WindowThumbnailItem*, QWeakPointer<EffectWindowImpl> > m_thumbnails;
+     QList<DesktopThumbnailItem*> m_desktopThumbnails;
++#endif
+ };
+ 
+ class EffectWindowGroupImpl
+
+--- a/kwin/effects.cpp
++++ b/kwin/effects.cpp
+@@ -43,7 +43,9 @@
+ #include "scripting/scriptedeffect.h"
+ #endif
+ #include "screens.h"
++#ifdef HAVE_QTDECLARATIVE
+ #include "thumbnailitem.h"
++#endif
+ #include "virtualdesktops.h"
+ #include "workspace.h"
+ #include "kwinglutils.h"
+@@ -1794,6 +1796,7 @@
+     effects->setElevatedWindow(this, elevate);
+ }
+ 
++#ifdef HAVE_QTDECLARATIVE
+ void EffectWindowImpl::registerThumbnail(AbstractThumbnailItem *item)
+ {
+     if (WindowThumbnailItem *thumb = qobject_cast<WindowThumbnailItem*>(item)) {
+@@ -1834,6 +1837,7 @@
+     // we know it is a DesktopThumbnailItem
+     m_desktopThumbnails.removeAll(static_cast<DesktopThumbnailItem*>(object));
+ }
++#endif
+ 
+ void EffectWindowImpl::referencePreviousWindowPixmap()
+ {
+
+--- a/kwin/scene.h
++++ b/kwin/scene.h
+@@ -32,7 +32,9 @@
+ namespace KWin
+ {
+ 
++#ifdef HAVE_QTDECLARATIVE
+ class AbstractThumbnailItem;
++#endif
+ class Workspace;
+ class Deleted;
+ class EffectFrameImpl;
+@@ -170,14 +172,18 @@
+     QElapsedTimer last_time;
+     Workspace* wspace;
+ private:
++#ifdef HAVE_QTDECLARATIVE
+     void paintWindowThumbnails(Scene::Window *w, QRegion region, qreal opacity, qreal brightness, qreal saturation);
+     void paintDesktopThumbnails(Scene::Window *w);
++#endif
+     /**
+     * Helper function to find the GraphicsView the ThumbnailItem @p item is rendered in which
+     * matches our Window @p w.
+     * If not found @c NULL is returned.
+     **/
++#ifdef HAVE_QTDECLARATIVE
+     QGraphicsView *findViewForThumbnailItem(AbstractThumbnailItem *item, Scene::Window *w);
++#endif
+     QPoint findOffsetInWindow(QWidget *view, xcb_window_t idOfTopmostWindow);
+ };
+ 
+
+--- a/kwin/scene.cpp
++++ b/kwin/scene.cpp
+@@ -81,7 +81,9 @@
+ #include "overlaywindow.h"
+ #include "shadow.h"
+ 
++#ifdef HAVE_QTDECLARATIVE
+ #include "thumbnailitem.h"
++#endif
+ #include "workspace.h"
+ 
+ namespace KWin
+@@ -414,12 +416,15 @@
+     WindowPaintData data(w->window()->effectWindow());
+     data.quads = quads;
+     effects->paintWindow(effectWindow(w), mask, region, data);
++#ifdef HAVE_QTDECLARATIVE
+     // paint thumbnails on top of window
+     paintWindowThumbnails(w, region, data.opacity(), data.brightness(), data.saturation());
+     // and desktop thumbnails
+     paintDesktopThumbnails(w);
++#endif
+ }
+ 
++#ifdef HAVE_QTDECLARATIVE
+ void Scene::paintWindowThumbnails(Scene::Window *w, QRegion region, qreal opacity, qreal brightness, qreal saturation)
+ {
+     EffectWindowImpl *wImpl = static_cast<EffectWindowImpl*>(effectWindow(w));
+@@ -537,7 +542,9 @@
+         s_recursionCheck = NULL;
+     }
+ }
++#endif
+ 
++#ifdef HAVE_QTDECLARATIVE
+ QGraphicsView *Scene::findViewForThumbnailItem(AbstractThumbnailItem *item, Scene::Window *w)
+ {
+     // in principle there could be more than one QGraphicsView per QGraphicsScene,
+@@ -558,6 +565,7 @@
+     }
+     return NULL;
+ }
++#endif
+ 
+ QPoint Scene::findOffsetInWindow(QWidget *view, xcb_window_t idOfTopmostWindow)
+ {
+
+--- a/kwin/clients/CMakeLists.txt
++++ b/kwin/clients/CMakeLists.txt
+@@ -1,4 +1,7 @@
+-add_subdirectory( aurorae )
++# Aurorae decorations are QML scenes.
++if(QT_QTDECLARATIVE_LIBRARY)
++    add_subdirectory( aurorae )
++endif(QT_QTDECLARATIVE_LIBRARY)
+ if(KWIN_BUILD_OXYGEN)
+     add_subdirectory( oxygen )
+ endif()
+
+--- a/kwin/effects/CMakeLists.txt
++++ b/kwin/effects/CMakeLists.txt
+@@ -114,7 +114,10 @@
+ 
+ # Common effects
+ include( kscreen/CMakeLists.txt )
+-include( presentwindows/CMakeLists.txt )
++# The present windows effect renders windows through QML thumbnail items.
++if(QT_QTDECLARATIVE_LIBRARY)
++    include( presentwindows/CMakeLists.txt )
++endif(QT_QTDECLARATIVE_LIBRARY)
+ include( screenedge/CMakeLists.txt )
+ include( slidingpopups/CMakeLists.txt )
+ include( taskbarthumbnail/CMakeLists.txt )
+@@ -122,7 +125,9 @@
+ # Common effects only relevant to desktop
+ if( NOT KWIN_MOBILE_EFFECTS )
+     include( dashboard/CMakeLists.txt )
+-    include( desktopgrid/CMakeLists.txt )
++    if(QT_QTDECLARATIVE_LIBRARY)
++        include( desktopgrid/CMakeLists.txt )
++    endif(QT_QTDECLARATIVE_LIBRARY)
+     include( diminactive/CMakeLists.txt )
+     include( dimscreen/CMakeLists.txt )
+     include( fallapart/CMakeLists.txt )
+
+--- a/kwin/kcmkwin/CMakeLists.txt
++++ b/kwin/kcmkwin/CMakeLists.txt
+@@ -1,5 +1,7 @@
+ add_subdirectory( kwinoptions )
+-add_subdirectory( kwindecoration )
++if(QT_QTDECLARATIVE_LIBRARY)
++    add_subdirectory( kwindecoration )
++endif(QT_QTDECLARATIVE_LIBRARY)
+ add_subdirectory( kwinrules )
+ add_subdirectory( kwincompositing )
+ if(KWIN_BUILD_SCREENEDGES)
+@@ -10,6 +12,6 @@
+ endif()
+ add_subdirectory( kwindesktop )
+ 
+-if( KWIN_BUILD_TABBOX )
++if( KWIN_BUILD_TABBOX AND QT_QTDECLARATIVE_LIBRARY )
+ add_subdirectory( kwintabbox )
+ endif()
+
+--- a/kwin/effects/configs_builtins.cpp
++++ b/kwin/effects/configs_builtins.cpp
+@@ -23,10 +23,14 @@
+ #include <kwinconfig.h>
+ 
+ #include "dashboard/dashboard_config.h"
++#ifdef HAVE_QTDECLARATIVE
+ #include "desktopgrid/desktopgrid_config.h"
++#endif
+ #include "diminactive/diminactive_config.h"
+ #include "magiclamp/magiclamp_config.h"
++#ifdef HAVE_QTDECLARATIVE
+ #include "presentwindows/presentwindows_config.h"
++#endif
+ #include "resize/resize_config.h"
+ #include "showfps/showfps_config.h"
+ #include "thumbnailaside/thumbnailaside_config.h"
+@@ -54,12 +58,20 @@
+ namespace KWin
+ {
+ 
++#ifdef HAVE_QTDECLARATIVE
++#define KWIN_EFFECT_CONFIG_DESKTOPGRID KWIN_EFFECT_CONFIG_SINGLE(desktopgrid, DesktopGridEffectConfig)
++#define KWIN_EFFECT_CONFIG_PRESENTWINDOWS KWIN_EFFECT_CONFIG_SINGLE(presentwindows, PresentWindowsEffectConfig)
++#else
++#define KWIN_EFFECT_CONFIG_DESKTOPGRID
++#define KWIN_EFFECT_CONFIG_PRESENTWINDOWS
++#endif
++
+ KWIN_EFFECT_CONFIG_MULTIPLE(builtins,
+                             KWIN_EFFECT_CONFIG_SINGLE(dashboard, DashboardEffectConfig)
+-                            KWIN_EFFECT_CONFIG_SINGLE(desktopgrid, DesktopGridEffectConfig)
++                            KWIN_EFFECT_CONFIG_DESKTOPGRID
+                             KWIN_EFFECT_CONFIG_SINGLE(diminactive, DimInactiveEffectConfig)
+                             KWIN_EFFECT_CONFIG_SINGLE(magiclamp, MagicLampEffectConfig)
+-                            KWIN_EFFECT_CONFIG_SINGLE(presentwindows, PresentWindowsEffectConfig)
++                            KWIN_EFFECT_CONFIG_PRESENTWINDOWS
+                             KWIN_EFFECT_CONFIG_SINGLE(resize, ResizeEffectConfig)
+                             KWIN_EFFECT_CONFIG_SINGLE(showfps, ShowFpsEffectConfig)
+                             KWIN_EFFECT_CONFIG_SINGLE(thumbnailaside, ThumbnailAsideEffectConfig)

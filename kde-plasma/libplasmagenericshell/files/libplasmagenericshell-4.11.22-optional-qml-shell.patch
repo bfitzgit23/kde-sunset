@@ -1,0 +1,115 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -54,8 +54,8 @@
+ find_package(KDeclarative QUIET CONFIG)
+ set_package_properties(KDeclarative PROPERTIES DESCRIPTION "KDE Declarative (QML) support from kdelibs"
+                        URL "http://www.kde.org"
+-                       TYPE REQUIRED
+-                       PURPOSE "Required for building ksmserver"
++                       TYPE OPTIONAL
++                       PURPOSE "Used by the QML parts of the workspace, which are skipped when unavailable"
+                       )
+ 
+ macro_optional_find_package(OpenGL)
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -58,6 +58,10 @@
+                        PURPOSE "Used by the QML parts of the workspace, which are skipped when unavailable"
+                       )
+ 
++if(QT_QTDECLARATIVE_LIBRARY AND KDeclarative_FOUND)
++   add_definitions(-DHAVE_QTDECLARATIVE)
++endif(QT_QTDECLARATIVE_LIBRARY AND KDeclarative_FOUND)
++
+ macro_optional_find_package(OpenGL)
+ set_package_properties(OpenGL PROPERTIES DESCRIPTION "The OpenGL libraries"
+                        URL "http://www.opengl.org"
+
+--- a/libs/plasmagenericshell/widgetsexplorer/widgetexplorer.cpp
++++ b/libs/plasmagenericshell/widgetsexplorer/widgetexplorer.cpp
+@@ -20,9 +20,11 @@
+ 
+ #include "widgetexplorer.h"
+ 
++#ifdef HAVE_QTDECLARATIVE
+ #include <QDeclarativeContext>
+ #include <QDeclarativeEngine>
+ #include <QDeclarativeComponent>
++#endif
+ 
+ #include <kaction.h>
+ #include <kconfig.h>
+@@ -45,7 +47,9 @@
+ #include <plasma/package.h>
+ #include <plasma/widgets/toolbutton.h>
+ #include <plasma/widgets/lineedit.h>
++#ifdef HAVE_QTDECLARATIVE
+ #include <Plasma/DeclarativeWidget>
++#endif
+ 
+ #include "kcategorizeditemsviewmodels_p.h"
+ #include "plasmaappletitemmodel_p.h"
+@@ -117,7 +121,9 @@
+     KCategorizedItemsViewModels::DefaultFilterModel filterModel;
+     DefaultItemFilterProxyModel filterItemModel;
+ 
++#ifdef HAVE_QTDECLARATIVE
+     Plasma::DeclarativeWidget *declarativeWidget;
++#endif
+ 
+     QGraphicsLinearLayout *mainLayout;
+ };
+@@ -171,6 +177,7 @@
+     Plasma::PackageStructure::Ptr structure = Plasma::PackageStructure::load("Plasma/Generic");
+     package = new Plasma::Package(QString(), "org.kde.desktop.widgetexplorer", structure);
+ 
++#ifdef HAVE_QTDECLARATIVE
+     declarativeWidget = new Plasma::DeclarativeWidget(q);
+     declarativeWidget->setInitializationDelayed(true);
+     declarativeWidget->setQmlPath(package->filePath("mainscript"));
+@@ -186,20 +193,24 @@
+             ctxt->setContextProperty("widgetExplorer", q);
+         }
+     }
++#endif
+ 
+     q->setLayout(mainLayout);
+ }
+ 
+ void WidgetExplorerPrivate::finished()
+ {
++#ifdef HAVE_QTDECLARATIVE
+     if (declarativeWidget->mainComponent()->isError()) {
+         return;
+     }
++#endif
+ 
+     emit q->widgetsMenuActionsChanged();
+     emit q->extraActionsChanged();
+ 
+     return;
++#ifdef HAVE_QTDECLARATIVE
+     QObject::connect(declarativeWidget->rootObject(), SIGNAL(addAppletRequested(const QString &)),
+                      q, SLOT(addApplet(const QString &)));
+     QObject::connect(declarativeWidget->rootObject(), SIGNAL(closeRequested()),
+@@ -211,6 +222,7 @@
+         actionList << action;
+     }
+     declarativeWidget->rootObject()->setProperty("extraActions", QVariant::fromValue(actionList));
++#endif
+ }
+ 
+ void WidgetExplorerPrivate::setLocation(const Plasma::Location loc)
+@@ -473,9 +485,11 @@
+         case QEvent::ActionAdded:
+         case QEvent::ActionChanged:
+         case QEvent::ActionRemoved:
++#ifdef HAVE_QTDECLARATIVE
+             if (d->declarativeWidget->rootObject()) {
+                 emit widgetsMenuActionsChanged();
+             }
++#endif
+             break;
+         default:
+             break;
