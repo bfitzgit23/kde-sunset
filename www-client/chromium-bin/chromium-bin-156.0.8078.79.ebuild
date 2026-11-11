@@ -82,7 +82,8 @@ S="${WORKDIR}"
 src_unpack() {
 	# Arch ships a zstd-compressed tarball; do not rely on tar(1) having
 	# zstd support compiled in or on app-arch/zstd already being present.
-	zstd -dc "${DISTDIR}/${A}" | tar -x -C "${WORKDIR}" || die
+	# DISTDIR may contain a symlink; -f makes zstd follow it.
+	zstd -dcf "${DISTDIR}/${A}" | tar -x -C "${WORKDIR}" || die
 }
 
 src_install() {
