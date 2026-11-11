@@ -28,7 +28,6 @@ RDEPEND="${DEPEND}
 	$(add_kdeframeworks_dep kdelibs 'bzip2?,lzma?')
 	$(add_kdeapps_dep kdialog)
 	virtual/ssh
-	!kernel_SunOS? ( virtual/eject )
 "
 
 KMEXTRA="
