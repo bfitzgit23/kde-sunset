@@ -533,6 +533,24 @@ cmake-utils_src_prepare() {
 # }
 # @CODE
 
+# @FUNCTION: _cmake_qt4_qmake_arg
+# @INTERNAL
+# @DESCRIPTION:
+# FindQt4 interrogates qmake to locate Qt4's headers, libraries and moc.  When
+# Qt5/Qt6 also provide a qmake, or /usr/bin/qmake does not exist at all, the
+# lookup dies with "Qt qmake not found!".  Emit an explicit Qt4 qmake argument
+# for projects that ask for Qt4/KDE4; mycmakeargs still overrides it.
+_cmake_qt4_qmake_arg() {
+	local cmake_lists=${CMAKE_USE_DIR:-${S}}/CMakeLists.txt
+	[[ -f ${cmake_lists} ]] || return 0
+	grep -Eq 'find_package[[:space:]]*\([[:space:]]*(Qt4|KDE4)' "${cmake_lists}" || return 0
+
+	local qmake=${EPREFIX}/usr/$(get_libdir)/qt4/bin/qmake
+	[[ -x ${qmake} ]] || qmake=${EPREFIX}/usr/bin/qmake
+	[[ -x ${qmake} ]] || return 0
+	echo "-DQT_QMAKE_EXECUTABLE=${qmake}"
+}
+
 # @FUNCTION: cmake-utils_src_configure
 # @DESCRIPTION:
 # General function for configuring with cmake. Default behaviour is to start an
@@ -725,6 +743,7 @@ cmake-utils_src_configure() {
 		-DCMAKE_INSTALL_PREFIX="${EPREFIX}/usr"
 		# CMake 4 removed compatibility with policy versions below 3.5.
 		-DCMAKE_POLICY_VERSION_MINIMUM=3.5
+		$(_cmake_qt4_qmake_arg)
 		"${mycmakeargs_local[@]}"
 		-DCMAKE_BUILD_TYPE="${CMAKE_BUILD_TYPE}"
 		$([[ ${EAPI} == 5 ]] && echo -DCMAKE_INSTALL_DO_STRIP=OFF)

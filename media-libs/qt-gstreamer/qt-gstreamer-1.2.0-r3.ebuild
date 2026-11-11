@@ -47,11 +47,18 @@ PATCHES=(
 RESTRICT="test"
 
 src_configure() {
+	# CMake 4 rejects the pre-3.5 policy version declared upstream, and
+	# FindQt4 needs Qt4's qmake rather than Qt5/Qt6's /usr/bin/qmake.
+	local qt4_qmake=${EPREFIX}/usr/$(get_libdir)/qt4/bin/qmake
+	[[ -x ${qt4_qmake} ]] || qt4_qmake=${EPREFIX}/usr/bin/qmake
+
 	local mycmakeargs=(
 		-DCMAKE_DISABLE_FIND_PACKAGE_Qt5Declarative=ON
 		-DQTGSTREAMER_EXAMPLES=OFF
 		-DQTGSTREAMER_TESTS=$(usex test)
 		-DQT_VERSION=4
+		-DCMAKE_POLICY_VERSION_MINIMUM=3.5
+		-DQT_QMAKE_EXECUTABLE="${qt4_qmake}"
 	)
 	cmake_src_configure
 }

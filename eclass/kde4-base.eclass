@@ -776,6 +776,15 @@ kde4-base_src_configure() {
 		-DCMAKE_POLICY_VERSION_MINIMUM=3.5
 	)
 
+	# FindQt4 runs qmake to locate Qt4's headers, libraries and moc.  A
+	# generic /usr/bin/qmake may belong to Qt5/Qt6 or not exist at all, so
+	# name Qt4's own binary instead of relying on PATH.
+	local qt4_qmake=${EPREFIX}/usr/$(get_libdir)/qt4/bin/qmake
+	[[ -x ${qt4_qmake} ]] || qt4_qmake=${EPREFIX}/usr/bin/qmake
+	if [[ -x ${qt4_qmake} ]]; then
+		cmakeargs+=( -DQT_QMAKE_EXECUTABLE="${qt4_qmake}" )
+	fi
+
 	if in_iuse debug && use debug; then
 		# Set "real" debug mode
 		CMAKE_KDE_BUILD_TYPE="Debugfull"

@@ -31,10 +31,18 @@ DEPEND="${RDEPEND}
 DOCS=( AUTHORS README README.porting TODO )
 
 src_configure() {
+	# This release declares a pre-3.5 policy version, which CMake 4 rejects
+	# unless the policy floor is raised for it.
+	# FindQt4 also needs Qt4's own qmake, not Qt5/Qt6's /usr/bin/qmake.
+	local qt4_qmake=${EPREFIX}/usr/$(get_libdir)/qt4/bin/qmake
+	[[ -x ${qt4_qmake} ]] || qt4_qmake=${EPREFIX}/usr/bin/qmake
+
 	local mycmakeargs=(
 		-DSYSCONF_INSTALL_DIR="${EPREFIX}"/etc
 		-DBUILD_EXAMPLES=OFF
 		-DUSE_QT4=ON
+		-DCMAKE_POLICY_VERSION_MINIMUM=3.5
+		-DQT_QMAKE_EXECUTABLE="${qt4_qmake}"
 	)
 	cmake_src_configure
 }
