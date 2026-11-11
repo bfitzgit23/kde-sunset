@@ -42,6 +42,11 @@ src_configure() {
 		-DCMAKE_DISABLE_FIND_PACKAGE_Prison="$(usex !prison)"
 	)
 
+	# KDE4 and its bundled gpgme++ are pre-C++11 code.  std::auto_ptr is
+	# deprecated in C++11 and absent from some modern standard libraries,
+	# so build in the dialect KDE4 was written for.
+	append-cxxflags -std=gnu++98
+
 	kde4-base_src_configure
 }
 
