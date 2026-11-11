@@ -32,7 +32,10 @@ DEPEND="
 # bug #418071
 RDEPEND="${DEPEND}"
 
-PATCHES=( "${FILESDIR}/fix-build-with-ical-3.0.diff" )
+PATCHES=(
+	"${FILESDIR}/fix-build-with-ical-3.0.diff"
+	"${FILESDIR}/kdepimlibs-4.14.11-gpgme2-trustlist.patch"
+)
 
 src_configure() {
 	local mycmakeargs=(

@@ -1,0 +1,122 @@
+--- a/kde4_gpgme++/context.cpp
++++ b/kde4_gpgme++/context.cpp
+@@ -740,18 +740,33 @@
+   }
+ 
+   Error Context::startTrustItemListing( const char * pattern, int maxLevel ) {
++#if GPGME_VERSION_NUMBER >= 0x020000
++    (void)pattern;
++    (void)maxLevel;
++    return Error();
++#else
+     d->lastop = Private::TrustList;
+     return Error( d->lasterr = gpgme_op_trustlist_start( d->ctx, pattern, maxLevel ) );
++#endif
+   }
+ 
+   TrustItem Context::nextTrustItem( Error & e ) {
++#if GPGME_VERSION_NUMBER >= 0x020000
++    e = Error();
++    return TrustItem();
++#else
+     gpgme_trust_item_t ti = 0;
+     e = Error( d->lasterr = gpgme_op_trustlist_next( d->ctx, &ti ) );
+     return TrustItem( ti );
++#endif
+   }
+ 
+   Error Context::endTrustItemListing() {
++#if GPGME_VERSION_NUMBER >= 0x020000
++    return Error();
++#else
+     return Error( d->lasterr = gpgme_op_trustlist_end( d->ctx ) );
++#endif
+   }
+ 
+ #ifdef HAVE_GPGME_ASSUAN_ENGINE
+--- a/kde4_gpgme++/trustitem.cpp
++++ b/kde4_gpgme++/trustitem.cpp
+@@ -29,6 +29,58 @@
+ #include <cassert>
+ 
+ namespace GpgME {
++
++#if GPGME_VERSION_NUMBER >= 0x020000
++  class TrustItem::Private {
++  public:
++    Private( gpgme_trust_item_t = 0 ) {}
++  };
++
++  TrustItem::TrustItem( gpgme_trust_item_t ) {
++    d = new Private;
++  }
++
++  TrustItem::TrustItem( const TrustItem & ) {
++    d = new Private;
++  }
++
++  TrustItem::~TrustItem() {
++    delete d; d = 0;
++  }
++
++  bool TrustItem::isNull() const {
++    return true;
++  }
++
++  gpgme_trust_item_t TrustItem::impl() const {
++    return 0;
++  }
++
++  const char * TrustItem::keyID() const {
++    return 0;
++  }
++
++  const char * TrustItem::userID() const {
++    return 0;
++  }
++
++  const char * TrustItem::ownerTrustAsString() const {
++    return 0;
++  }
++
++  const char * TrustItem::validityAsString() const {
++    return 0;
++  }
++
++  int TrustItem::trustLevel() const {
++    return 0;
++  }
++
++  TrustItem::Type TrustItem::type() const {
++    return Unknown;
++  }
++
++#else
+ 
+   class TrustItem::Private  {
+   public:
+@@ -101,4 +153,6 @@
+     }
+   }
+ 
++#endif
++
+ } // namespace GpgME
+--- a/kde4_gpgme++/eventloopinteractor.cpp
++++ b/kde4_gpgme++/eventloopinteractor.cpp
+@@ -140,6 +140,7 @@
+         instance()->nextKeyEvent( ctx, Key( key, false ) );
+       }
+       break;
++#if GPGME_VERSION_NUMBER < 0x020000
+     case GPGME_EVENT_NEXT_TRUSTITEM:
+       {
+         gpgme_trust_item_t item = static_cast<gpgme_trust_item_t>( type_data );
+@@ -147,6 +148,7 @@
+         gpgme_trust_item_unref( item );
+       }
+       break;
++#endif
+     default: // warn
+       ;
+     }
