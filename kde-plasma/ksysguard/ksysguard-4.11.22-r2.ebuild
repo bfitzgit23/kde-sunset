@@ -29,7 +29,6 @@ KMEXTRA="libs/ksysguard/"
 
 PATCHES=(
     "${FILESDIR}/${P}-optional-webkit.patch"
-    "${FILESDIR}/${P}-processlisthelper-target.patch"
 )
 
 src_configure() {
