@@ -723,6 +723,8 @@ cmake-utils_src_configure() {
 		-C "${common_config}"
 		-G "$(_cmake_generator_to_use)"
 		-DCMAKE_INSTALL_PREFIX="${EPREFIX}/usr"
+		# CMake 4 removed compatibility with policy versions below 3.5.
+		-DCMAKE_POLICY_VERSION_MINIMUM=3.5
 		"${mycmakeargs_local[@]}"
 		-DCMAKE_BUILD_TYPE="${CMAKE_BUILD_TYPE}"
 		$([[ ${EAPI} == 5 ]] && echo -DCMAKE_INSTALL_DO_STRIP=OFF)

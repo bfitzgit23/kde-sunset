@@ -787,8 +787,12 @@ kde4-base_src_prepare() {
 kde4-base_src_configure() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	# Build tests in src_test only, where we override this value
-	local cmakeargs=(-DKDE4_BUILD_TESTS=OFF)
+	# Build tests in src_test only, where we override this value.
+	# CMake 4 removed compatibility with policy versions below 3.5.
+	local cmakeargs=(
+		-DKDE4_BUILD_TESTS=OFF
+		-DCMAKE_POLICY_VERSION_MINIMUM=3.5
+	)
 
 	if in_iuse debug && use debug; then
 		# Set "real" debug mode
