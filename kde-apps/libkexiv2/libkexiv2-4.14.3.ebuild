@@ -15,6 +15,6 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 
-PATCHES=( "${FILESDIR}/exiv-0.27.patch" )
+PATCHES=( "${FILESDIR}/exiv-0.27.patch" "${FILESDIR}/exiv-0.28.patch" )
 
 
