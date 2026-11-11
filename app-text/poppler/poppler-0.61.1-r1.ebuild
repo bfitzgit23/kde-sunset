@@ -46,7 +46,6 @@ PATCHES=(
 	"${FILESDIR}/${PN}-0.40-FindQt4.patch"
 	"${FILESDIR}/${PN}-0.57.0-disable-internal-jpx.patch"
 	"${FILESDIR}/${P}-slotting.patch" # compatibility with Gentoo ebuild repo
-	"${FILESDIR}/${P}-cmp0153.patch"
 )
 
 src_prepare() {
@@ -66,6 +65,15 @@ src_prepare() {
 		einfo "policy(SET CMP0002 OLD) - workaround can be removed"
 	fi
 
+	# CMake 4 removed compatibility with versions older than 3.5.
+	sed -i -e 's/VERSION 3\.1\.0 FATAL_ERROR/VERSION 3.5 FATAL_ERROR/' \
+		CMakeLists.txt || die
+	grep -Fq 'cmake_minimum_required(VERSION 3.5 FATAL_ERROR)' CMakeLists.txt || die
+
+	# exec_program() is deprecated and fails under the CMP0153 policy.
+	sed -i -e 's/exec_program(${PKG_CONFIG_EXECUTABLE} ARGS --version RETURN_VALUE _return_VALUE OUTPUT_VARIABLE _output_VAR)/execute_process(COMMAND ${PKG_CONFIG_EXECUTABLE} --version RESULT_VARIABLE _return_VALUE OUTPUT_VARIABLE _output_VAR)/' \
+		CMakeLists.txt || die
+	grep -Fq 'execute_process(COMMAND ${PKG_CONFIG_EXECUTABLE} --version' CMakeLists.txt || die
 	# we need to up the C++ version, bug #622526, #643278
 	append-cxxflags -std=c++11
 }
