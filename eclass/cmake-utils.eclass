@@ -501,7 +501,7 @@ _cmake_utils_cmake4_repair() {
 
 	local _cmake_file
 	while IFS= read -r -d '' _cmake_file; do
-			sed -i -E -e 's/(cmake_minimum_required[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*[012]\.[0-9][0-9.]*/\1 3.5/I' -e 's/(cmake_minimum_required[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*3\.[0-4]([^0-9]|$)/\1 3.5\2/I' -e 's/(cmake_policy[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*[012]\.[0-9][0-9.]*/\1 3.5/I' -e 's/(cmake_policy[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*3\.[0-4]([^0-9]|$)/\1 3.5\2/I' -e '/target_link_libraries/ s/\bLINK_INTERFACE_LIBRARIES\b/INTERFACE/g' -e 's/\bLINK_INTERFACE_LIBRARIES\b/INTERFACE_LINK_LIBRARIES/g' -e 's/^[[:space:]]*export_library_dependencies[[:space:]]*\((.*)\)[[:space:]]*$/file(WRITE \1 "")/I' "${_cmake_file}" || die "failed to rewrite CMake 4 incompatibilities in ${_cmake_file}"
+			sed -i -E -e '/\.\.\./! s/(cmake_minimum_required[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*[012]\.[0-9][0-9.]*/\1 3.5/I' -e '/\.\.\./! s/(cmake_minimum_required[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*3\.[0-4]([^0-9]|$)/\1 3.5\2/I' -e '/\.\.\./! s/(cmake_policy[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*[012]\.[0-9][0-9.]*/\1 3.5/I' -e '/\.\.\./! s/(cmake_policy[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*3\.[0-4]([^0-9]|$)/\1 3.5\2/I' -e '/target_link_libraries/ s/\bLINK_INTERFACE_LIBRARIES\b/INTERFACE/g' -e 's/\bLINK_INTERFACE_LIBRARIES\b/INTERFACE_LINK_LIBRARIES/g' -e 's/^[[:space:]]*export_library_dependencies[[:space:]]*\((.*)\)[[:space:]]*$/file(WRITE \1 "")/I' "${_cmake_file}" || die "failed to rewrite CMake 4 incompatibilities in ${_cmake_file}"
 	done < <(find "${dir}" -type f \( -name CMakeLists.txt -o -name '*.cmake' \) -print0)
 
 	if ! grep -q 'cmake_minimum_required' "${cmake_lists}"; then
