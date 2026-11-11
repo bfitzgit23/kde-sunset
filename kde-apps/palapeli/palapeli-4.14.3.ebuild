@@ -9,7 +9,7 @@ inherit kde4-base
 DESCRIPTION="KDE jigsaw puzzle game"
 HOMEPAGE="https://www.kde.org/applications/games/palapeli/"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="$(add_kdeapps_dep libkdegames)"
 RDEPEND="${DEPEND}"

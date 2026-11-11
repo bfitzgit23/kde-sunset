@@ -17,7 +17,7 @@ fi
 LICENSE="GPL-2"
 KEYWORDS="amd64 x86"
 SLOT="4"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="
 	dev-libs/apr:1

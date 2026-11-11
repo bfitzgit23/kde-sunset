@@ -13,7 +13,7 @@ HOMEPAGE="
 	https://userbase.kde.org/Gwenview
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug kipi"
+IUSE="debug kipi +handbook"
 
 # tests fail, last checked 4.11.0
 RESTRICT="test"

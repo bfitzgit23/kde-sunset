@@ -12,7 +12,7 @@ DESCRIPTION="Tool to scan calendar data for buggy instances"
 HOMEPAGE="https://www.kde.org/"
 
 KEYWORDS="amd64 x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="
 	$(add_kdeapps_dep kdepim-common-libs)

@@ -9,7 +9,7 @@ inherit kde4-base
 DESCRIPTION="KDE Go game"
 HOMEPAGE="https://www.kde.org/applications/games/kigo/"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="$(add_kdeapps_dep libkdegames)"
 RDEPEND="

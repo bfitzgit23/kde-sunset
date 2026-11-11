@@ -10,7 +10,7 @@ inherit systemd kde4-meta flag-o-matic user
 DESCRIPTION="Login manager by KDE, similar to xdm and gdm"
 
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +consolekit kerberos pam systemd"
+IUSE="debug +consolekit kerberos pam systemd +handbook"
 REQUIRED_USE="consolekit? ( !systemd ) systemd? ( !consolekit )"
 
 DEPEND="

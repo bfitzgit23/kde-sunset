@@ -10,7 +10,7 @@ DESCRIPTION="VNC-compatible server to share KDE desktops"
 HOMEPAGE="https://apps.kde.org/en/krfb"
 
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug telepathy ktp"
+IUSE="debug telepathy ktp +handbook"
 REQUIRED_USE="ktp? ( telepathy )"
 
 DEPEND="

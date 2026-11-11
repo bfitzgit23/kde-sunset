@@ -8,7 +8,7 @@ inherit kde4-base
 
 DESCRIPTION="KDE digital camera manager"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="
 	media-libs/libgphoto2:=

@@ -14,7 +14,7 @@ SRC_URI="mirror://kde/stable/${PN}/${P}a.tar.xz"
 LICENSE="GPL-2 FDL-1.2"
 SLOT="4"
 KEYWORDS="amd64 x86"
-IUSE="debug dvd encode ffmpeg flac mad mp3 musepack sndfile sox taglib vcd vorbis"
+IUSE="debug dvd encode ffmpeg flac mad mp3 musepack sndfile sox taglib vcd vorbis +handbook"
 
 CDEPEND="
 	$(add_kdeapps_dep libkcddb)

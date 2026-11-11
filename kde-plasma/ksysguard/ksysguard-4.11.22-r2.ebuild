@@ -13,7 +13,7 @@ inherit kde4-meta
 DESCRIPTION="Network-enabled task manager and system monitor"
 HOMEPAGE+=" https://userbase.kde.org/KSysGuard"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug lm-sensors test +webkit"
+IUSE="debug lm-sensors test +webkit +handbook"
 
 DEPEND="
 	sys-libs/zlib

@@ -14,7 +14,7 @@ SRC_URI="https://phabricator.kde.org/file/download/jnmscnve2mrtdqqhsmw2/PHID-FIL
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="amd64 x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="media-libs/libpng:0"
 

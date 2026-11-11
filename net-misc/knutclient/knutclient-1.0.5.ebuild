@@ -15,7 +15,7 @@ SRC_URI="ftp://ftp.buzuluk.cz/pub/alo/knutclient/stable/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 PATCHES=(
 	"${FILESDIR}/${P}-desktop.patch"

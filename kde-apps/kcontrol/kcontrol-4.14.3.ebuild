@@ -9,7 +9,7 @@ inherit kde4-meta kde4-functions-extra
 
 DESCRIPTION="The KDE Control Center"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug"
+IUSE="debug +handbook"
 
 RDEPEND="
 	$(add_kdeplasma_dep khotkeys '' 4.11)

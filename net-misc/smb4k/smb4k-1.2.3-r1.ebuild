@@ -17,7 +17,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.xz"
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="amd64 x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 RDEPEND="net-fs/samba[cups]"
 DEPEND="${RDEPEND}

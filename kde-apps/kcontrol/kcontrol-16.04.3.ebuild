@@ -9,7 +9,7 @@ inherit kde4-meta
 
 DESCRIPTION="The KDE Control Center"
 KEYWORDS="amd64 x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 RDEPEND="
 	$(add_kdeapps_dep zeroconf-ioslave)

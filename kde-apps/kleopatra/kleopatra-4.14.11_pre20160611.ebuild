@@ -11,7 +11,7 @@ DESCRIPTION="Certificate manager and GUI for OpenPGP and CMS cryptography"
 HOMEPAGE="https://www.kde.org/applications/utilities/kleopatra/"
 
 KEYWORDS="amd64 x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="
 	$(add_kdeapps_dep kdepim-common-libs '' 4.14.11_pre20160611)

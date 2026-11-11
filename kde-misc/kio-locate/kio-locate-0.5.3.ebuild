@@ -14,7 +14,7 @@ SRC_URI="http://www.kde-apps.org/CONTENT/content-files/120965-${P}.tar.gz -> ${P
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DOCS=( AUTHORS ChangeLog )
 PATCHES=( "${FILESDIR}/${P}-gcc-4.7.patch" )

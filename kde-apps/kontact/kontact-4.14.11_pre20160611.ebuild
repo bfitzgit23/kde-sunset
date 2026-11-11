@@ -11,7 +11,7 @@ DESCRIPTION="Container application to unify several major PIM applications withi
 HOMEPAGE="https://www.kde.org/applications/office/kontact/"
 
 KEYWORDS="amd64 x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="
 	$(add_kdeapps_dep kdepim-common-libs '' 4.14.11_pre20160611)

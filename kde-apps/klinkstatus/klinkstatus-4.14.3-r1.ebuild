@@ -11,7 +11,7 @@ DESCRIPTION="KDE web development - link validity checker"
 HOMEPAGE="https://apps.kde.org/en/klinkstatus"
 
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug tidy"
+IUSE="debug tidy +handbook"
 
 DEPEND="
 	$(add_kdeapps_dep kdepimlibs)

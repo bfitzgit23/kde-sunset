@@ -12,7 +12,7 @@ HOMEPAGE="
 	https://umbrello.kde.org
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug"
+IUSE="debug +handbook"
 
 RDEPEND="
 	dev-libs/libxml2

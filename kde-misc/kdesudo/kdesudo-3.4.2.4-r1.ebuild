@@ -15,7 +15,7 @@ SRC_URI="https://launchpad.net/${PN}/3.x/${PV}/+download/${P}.tar.gz"
 LICENSE="FDL-1.2 GPL-2 LGPL-2"
 SLOT="4"
 KEYWORDS="amd64 x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 RDEPEND="
 	app-admin/sudo

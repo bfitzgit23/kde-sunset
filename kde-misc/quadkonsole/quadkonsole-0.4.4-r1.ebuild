@@ -16,7 +16,7 @@ SRC_URI="http://ponce.cc/slackware/sources/repo/${MY_P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 RDEPEND="
 	|| ( $(add_kdeapps_dep konsolepart) $(add_kdeapps_dep konsole) )

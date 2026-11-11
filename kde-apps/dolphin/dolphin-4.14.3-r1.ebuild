@@ -10,7 +10,7 @@ inherit kde4-meta kde4-functions-extra
 DESCRIPTION="A KDE filemanager focusing on usability"
 HOMEPAGE="https://dolphin.kde.org https://www.kde.org/applications/system/dolphin"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug semantic-desktop thumbnail"
+IUSE="debug semantic-desktop thumbnail +handbook"
 
 DEPEND="
 	$(add_kdeframeworks_dep kactivities '' 4.13)

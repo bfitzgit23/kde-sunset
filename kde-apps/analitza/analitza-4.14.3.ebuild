@@ -9,7 +9,7 @@ inherit kde4-base
 
 DESCRIPTION="KDE library for mathematical features"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug readline"
+IUSE="debug readline opengl"
 
 DEPEND="
 	opengl? ( virtual/glu )

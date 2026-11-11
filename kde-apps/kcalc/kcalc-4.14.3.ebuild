@@ -10,7 +10,7 @@ DESCRIPTION="KDE calculator"
 HOMEPAGE="https://www.kde.org/applications/utilities/kcalc
 https://utils.kde.org/projects/kcalc"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="
 	dev-libs/gmp

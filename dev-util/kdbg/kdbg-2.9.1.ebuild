@@ -15,7 +15,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 RDEPEND="sys-devel/gdb"
 DEPEND="${RDEPEND}"

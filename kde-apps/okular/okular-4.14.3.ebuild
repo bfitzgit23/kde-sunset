@@ -14,7 +14,7 @@ inherit kde4-base
 DESCRIPTION="Universal document viewer based on KPDF by KDE"
 HOMEPAGE="https://okular.kde.org https://www.kde.org/applications/graphics/okular"
 KEYWORDS="amd64 x86"
-IUSE="chm crypt debug djvu dpi ebook +jpeg mobi +postscript +pdf +tiff"
+IUSE="chm crypt debug djvu dpi ebook +jpeg mobi +postscript +pdf +tiff +handbook"
 
 DEPEND="
 	media-libs/freetype

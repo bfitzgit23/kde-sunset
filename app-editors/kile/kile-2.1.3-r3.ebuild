@@ -15,7 +15,7 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.bz2"
 LICENSE="FDL-1.2 GPL-2"
 SLOT="4"
 KEYWORDS="amd64 x86"
-IUSE="debug +pdf +png"
+IUSE="debug +pdf +png +handbook"
 
 DEPEND="
 	x11-misc/shared-mime-info

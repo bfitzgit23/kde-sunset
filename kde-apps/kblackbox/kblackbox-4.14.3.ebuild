@@ -9,7 +9,7 @@ inherit kde4-base
 
 DESCRIPTION="KDE Blackbox Game"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="$(add_kdeapps_dep libkdegames)"
 RDEPEND="${DEPEND}"

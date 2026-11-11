@@ -12,7 +12,7 @@ HOMEPAGE="
 	https://games.kde.org/game.php?game=ksirk
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="
 	app-crypt/qca:2-qt4

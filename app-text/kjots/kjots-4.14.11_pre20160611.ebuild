@@ -15,7 +15,7 @@ SRC_URI="https://dev.gentoo.org/~asturm/distfiles/${KMNAME}-${PV}.tar.xz"
 LICENSE="GPL-2"
 SLOT=4/$(ver_cut 1-2)
 KEYWORDS="amd64 x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="
 	$(add_kdeapps_dep kdepim-common-libs)

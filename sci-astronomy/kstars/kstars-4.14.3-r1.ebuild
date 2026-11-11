@@ -14,7 +14,7 @@ SRC_URI="mirror://kde/Attic/${PV}/src/${P}.tar.xz"
 LICENSE="GPL-2"
 SLOT=4/$(ver_cut 1-2)
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug fits indi"
+IUSE="debug fits indi +handbook"
 
 REQUIRED_USE="indi? ( fits )"
 

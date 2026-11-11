@@ -14,7 +14,7 @@ SRC_URI="mirror://kde/stable/${PN}/${PV}/src/${P}.tar.xz"
 LICENSE="GPL-2 handbook? ( FDL-1.2 )"
 SLOT="4"
 KEYWORDS="amd64 x86"
-IUSE="+crypt debug"
+IUSE="+crypt debug +handbook"
 
 DEPEND="
 	$(add_kdeapps_dep kdepimlibs)

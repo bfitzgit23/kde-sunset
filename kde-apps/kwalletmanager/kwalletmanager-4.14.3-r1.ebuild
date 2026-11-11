@@ -11,7 +11,7 @@ DESCRIPTION="KDE Wallet Management Tool"
 HOMEAGE="https://www.kde.org/applications/system/kwalletmanager
 https://utils.kde.org/projects/kwalletmanager"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND=""
 RDEPEND="

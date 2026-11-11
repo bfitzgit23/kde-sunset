@@ -11,7 +11,7 @@ DESCRIPTION="Tracks time spent on various tasks"
 HOEMPAGE="https://www.kde.org/applications/utilities/ktimetracker/"
 
 KEYWORDS="amd64 x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 RDEPEND="
 	$(add_kdeapps_dep kdepim-common-libs)

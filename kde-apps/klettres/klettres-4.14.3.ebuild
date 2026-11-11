@@ -10,7 +10,7 @@ DESCRIPTION="KDE: KLettres helps a very young child or an adult learning "
 HOMEPAGE="https://www.kde.org/applications/education/klettres
 https://edu.kde.org/klettres"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug"
+IUSE="debug +handbook"
 
 RDEPEND="
 	$(add_kdeapps_dep knotify)

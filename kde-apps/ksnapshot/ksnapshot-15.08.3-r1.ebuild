@@ -12,7 +12,7 @@ HOMEPAGE="https://www.kde.org/applications/graphics/ksnapshot/"
 SRC_URI="mirror://kde/stable/apps/KDE4.x/utils/${PN}-${MY_PV}.tar.xz"
 
 KEYWORDS="~amd64 ~x86"
-IUSE="debug kipi"
+IUSE="debug kipi +handbook"
 
 DEPEND="
 	x11-libs/libXfixes

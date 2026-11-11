@@ -12,7 +12,7 @@ DESCRIPTION="Command line interface to KDE calendars"
 HOMEPAGE+=" https://userbase.kde.org/KonsoleKalendar"
 
 KEYWORDS="amd64 x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="
 	$(add_kdeapps_dep kdepim-common-libs '' 4.14.11_pre20160611)

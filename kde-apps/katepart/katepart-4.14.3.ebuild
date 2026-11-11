@@ -11,7 +11,7 @@ inherit kde4-meta
 DESCRIPTION="Editor KPart by KDE"
 HOMEPAGE+=" http://kate-editor.org/about-katepart/"
 KEYWORDS="amd64 x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 RESTRICT="test"
 # bug 392993

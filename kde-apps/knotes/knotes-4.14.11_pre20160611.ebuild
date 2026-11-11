@@ -11,7 +11,7 @@ DESCRIPTION="Note taking application"
 HOMEPAGE="https://www.kde.org/applications/utilities/knotes/"
 
 KEYWORDS="amd64 x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="
 	$(add_kdeapps_dep kdepim-common-libs)

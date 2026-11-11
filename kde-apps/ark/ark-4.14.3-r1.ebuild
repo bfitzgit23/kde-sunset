@@ -10,7 +10,7 @@ DESCRIPTION="KDE Archiving tool"
 HOMEPAGE="https://www.kde.org/applications/utilities/ark
 https://utils.kde.org/projects/ark"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="+archive +bzip2 debug lzma"
+IUSE="+archive +bzip2 debug lzma +handbook"
 
 DEPEND="
 	$(add_kdeapps_dep libkonq)

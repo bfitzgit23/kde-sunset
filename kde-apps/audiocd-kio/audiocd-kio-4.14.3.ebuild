@@ -8,7 +8,7 @@ inherit kde4-base
 
 DESCRIPTION="KDE kioslaves from the kdemultimedia package"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug flac vorbis"
+IUSE="debug flac vorbis +handbook"
 
 DEPEND="
 	$(add_kdeapps_dep libkcddb)

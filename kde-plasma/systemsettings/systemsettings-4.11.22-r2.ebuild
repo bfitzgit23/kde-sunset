@@ -12,7 +12,7 @@ inherit kde4-meta
 
 DESCRIPTION="System settings utility"
 HOMEPAGE+=" https://userbase.kde.org/System_Settings"
-IUSE="debug gtk +kscreen +usb"
+IUSE="debug gtk +kscreen +usb opengl +handbook"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 
 COMMONDEPEND="

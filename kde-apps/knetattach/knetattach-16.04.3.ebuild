@@ -9,6 +9,6 @@ inherit kde4-meta
 
 DESCRIPTION="KDE network wizard"
 KEYWORDS="amd64 x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 

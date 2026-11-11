@@ -9,7 +9,7 @@ inherit kde4-base
 DESCRIPTION="KDE4 interface for doing mathematics and scientific computing"
 HOMEPAGE="https://apps.kde.org/en/cantor https://edu.kde.org/cantor"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="analitza debug postscript qalculate +R"
+IUSE="analitza debug postscript qalculate +R +handbook"
 
 # TODO Add Sage Mathematics Software backend (http://www.sagemath.org)
 RDEPEND="

@@ -10,7 +10,7 @@ DESCRIPTION="Classical hangman game for KDE"
 HOMEPAGE="https://www.kde.org/applications/education/khangman
 https://edu.kde.org/khangman"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="
 	$(add_kdeapps_dep libkdeedu)

@@ -14,7 +14,7 @@ SRC_URI="http://www.kde-apps.org/CONTENT/content-files/117669-${P}.tar.gz"
 LICENSE="GPL-3"
 SLOT="4"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 RDEPEND="sci-libs/fftw:3.0="
 DEPEND="${RDEPEND}"

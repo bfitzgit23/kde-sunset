@@ -10,7 +10,7 @@ DESCRIPTION="KDE version of the Simon Says game"
 HOMEPAGE="https://www.kde.org/applications/education/blinken
 https://edu.kde.org/blinken"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug"
+IUSE="debug +handbook"
 
 src_install() {
 	kde4-base_src_install

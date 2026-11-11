@@ -11,7 +11,7 @@ inherit kde4-meta
 DESCRIPTION="Command line client for accessing the KDE addressbook"
 
 KEYWORDS="amd64 x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="
 	$(add_kdeapps_dep kdepimlibs)

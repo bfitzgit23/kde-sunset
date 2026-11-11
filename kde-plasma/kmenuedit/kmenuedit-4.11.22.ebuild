@@ -9,7 +9,7 @@ inherit kde4-meta
 
 DESCRIPTION="KDE Plasma menu editor"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug"
+IUSE="debug +handbook"
 
 RDEPEND="
 	kde-plasma/khotkeys:4

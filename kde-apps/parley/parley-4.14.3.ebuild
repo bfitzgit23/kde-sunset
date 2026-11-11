@@ -10,7 +10,7 @@ DESCRIPTION="KDE Educational: vocabulary trainer"
 HOMEPAGE="https://www.kde.org/applications/education/parley
 https://edu.kde.org/applications/school/parley"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +plasma"
+IUSE="debug +plasma +handbook"
 
 DEPEND="
 	$(add_kdeapps_dep libkdeedu)

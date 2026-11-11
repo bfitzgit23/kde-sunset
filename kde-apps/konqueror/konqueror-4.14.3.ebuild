@@ -13,7 +13,7 @@ HOMEPAGE="
 	http://konqueror.org/
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="+bookmarks debug svg"
+IUSE="+bookmarks debug svg +handbook"
 # 4 of 4 tests fail. Last checked for 4.0.3
 RESTRICT="test"
 

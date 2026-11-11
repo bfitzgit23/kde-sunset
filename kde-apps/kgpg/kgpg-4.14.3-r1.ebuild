@@ -11,7 +11,7 @@ DESCRIPTION="KDE gpg keyring manager"
 HOMEPAGE="https://www.kde.org/applications/utilities/kgpg
 https://utils.kde.org/projects/kgpg"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="
 	$(add_kdeapps_dep kdepimlibs)

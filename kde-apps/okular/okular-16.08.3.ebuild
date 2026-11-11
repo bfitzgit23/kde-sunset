@@ -11,7 +11,7 @@ DESCRIPTION="Universal document viewer based on KPDF"
 HOMEPAGE="https://okular.kde.org https://apps.kde.org/en/okular"
 
 KEYWORDS="amd64 x86"
-IUSE="chm crypt debug djvu dpi ebook +jpeg mobi +postscript +pdf +tiff"
+IUSE="chm crypt debug djvu dpi ebook +jpeg mobi +postscript +pdf +tiff +handbook"
 
 RESTRICT+=" test"
 # test 2: parttest hangs

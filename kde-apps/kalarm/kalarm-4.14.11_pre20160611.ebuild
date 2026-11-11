@@ -11,7 +11,7 @@ DESCRIPTION="Personal alarm message, command and email scheduler by KDE"
 HOMEPAGE+=" https://userbase.kde.org/KAlarm"
 
 KEYWORDS="amd64 x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 RDEPEND="
 	$(add_kdeapps_dep kdepim-common-libs)

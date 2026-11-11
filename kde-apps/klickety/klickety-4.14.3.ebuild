@@ -9,7 +9,7 @@ inherit kde4-base
 
 DESCRIPTION="A KDE game almost the same as ksame, but a bit different"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="$(add_kdeapps_dep libkdegames)"
 RDEPEND="${DEPEND}"

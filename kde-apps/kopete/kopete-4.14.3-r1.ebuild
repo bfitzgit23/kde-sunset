@@ -10,7 +10,7 @@ DESCRIPTION="KDE multi-protocol IM client"
 HOMEPAGE="https://kopete.kde.org https://apps.kde.org/en/kopete"
 
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug ssl v4l"
+IUSE="debug ssl v4l +handbook"
 
 # tests hang, last checked for 4.2.96
 RESTRICT=test

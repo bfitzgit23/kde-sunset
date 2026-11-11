@@ -16,7 +16,7 @@ DEPEND="
 RDEPEND="!<kde-base/konq-plugins-4.6"
 
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~x86-fbsd ~amd64-linux ~x86-linux"
-IUSE="minimal"
+IUSE="minimal +handbook"
 
 # /usr/portage/distfiles $ ls -1 kde-l10n-*-${PV}.* |sed -e 's:-${PV}.tar.xz::' -e 's:kde-l10n-::' |tr '\n' ' '
 MY_LANGS="ar bg bs ca ca@valencia cs da de el en_GB es et eu fa fi fr ga gl he

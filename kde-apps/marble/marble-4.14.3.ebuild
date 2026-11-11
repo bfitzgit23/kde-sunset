@@ -11,7 +11,7 @@ inherit kde4-base
 DESCRIPTION="Generic geographical map widget"
 HOMEPAGE="https://marble.kde.org/"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug designer-plugin +kde phonon plasma shapefile test zip"
+IUSE="debug designer-plugin +kde phonon plasma shapefile test zip +handbook"
 
 # tests fail / segfault. Last checked for 4.9.0
 RESTRICT="test"

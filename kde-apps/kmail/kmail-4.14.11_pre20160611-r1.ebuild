@@ -13,7 +13,7 @@ DESCRIPTION="Email client, supporting POP3 and IMAP mailboxes."
 HOMEPAGE="https://www.kde.org/applications/internet/kmail/"
 
 KEYWORDS="amd64 x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="
 	$(add_kdeapps_dep kdepim-common-libs '' 4.14.11_pre20160611)

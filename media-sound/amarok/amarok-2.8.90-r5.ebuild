@@ -17,7 +17,7 @@ SRC_URI="mirror://kde/stable/${PN}/${PV}/src/${P}.tar.xz"
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="amd64 x86"
-IUSE="debug ipod lastfm mp3tunes mtp ofa test +utils"
+IUSE="debug ipod lastfm mp3tunes mtp ofa test +utils +handbook"
 
 # ipod requires gdk enabled and also gtk compiled in libgpod
 COMMONDEPEND="

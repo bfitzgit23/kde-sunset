@@ -14,7 +14,7 @@ SRC_URI="https://tellico-project.org/files/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="~amd64 ~x86"
-IUSE="addressbook cddb debug pdf scanner taglib v4l xmp yaz"
+IUSE="addressbook cddb debug pdf scanner taglib v4l xmp yaz +handbook"
 
 RDEPEND="
 	dev-libs/libxml2

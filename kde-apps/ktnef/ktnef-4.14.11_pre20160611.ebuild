@@ -11,7 +11,7 @@ DESCRIPTION="Viewer for TNEF attachments"
 
 KEYWORDS="amd64 x86"
 LICENSE="LGPL-2.1"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="
 	$(add_kdeapps_dep kdepimlibs)

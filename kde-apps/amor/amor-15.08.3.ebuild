@@ -8,7 +8,7 @@ inherit kde4-base
 
 DESCRIPTION="KDE: Amusing Misuse Of Resources - desktop-dwelling creature"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="x11-libs/libX11
 	x11-libs/libXext"

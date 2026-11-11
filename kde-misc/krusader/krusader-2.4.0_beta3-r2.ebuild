@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/krusader/${MY_P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="amd64 x86"
-IUSE="+bookmarks debug"
+IUSE="+bookmarks debug +handbook"
 
 COMMON_DEPEND="
 	$(add_kdeapps_dep libkonq)

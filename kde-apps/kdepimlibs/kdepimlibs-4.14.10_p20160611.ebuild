@@ -12,7 +12,7 @@ SRC_URI="https://dev.gentoo.org/~asturm/distfiles/${P/10_p/11_pre}.tar.xz"
 
 KEYWORDS="~amd64 ~x86"
 LICENSE="LGPL-2.1"
-IUSE="debug ldap prison"
+IUSE="debug ldap prison test +handbook"
 
 # some akonadi tests timeout, that probably needs more work as its ~700 tests
 RESTRICT="test"

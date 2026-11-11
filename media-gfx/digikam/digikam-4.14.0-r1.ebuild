@@ -22,7 +22,7 @@ LICENSE="GPL-2
 	handbook? ( FDL-1.2 )"
 KEYWORDS="~amd64 ~x86"
 SLOT="4"
-IUSE="addressbook debug doc gphoto2 mysql semantic-desktop +thumbnails video"
+IUSE="addressbook debug doc gphoto2 mysql semantic-desktop +thumbnails video +handbook"
 
 CDEPEND="
 	>=kde-frameworks/kdelibs-4.14.14:4

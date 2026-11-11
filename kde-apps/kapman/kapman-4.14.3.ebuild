@@ -9,7 +9,7 @@ inherit kde4-base
 DESCRIPTION="Pac-Man clone for KDE"
 HOMEPAGE="https://www.kde.org/applications/games/kapman/"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug"
+IUSE="debug +handbook"
 
 DEPEND="$(add_kdeapps_dep libkdegames)"
 RDEPEND="${DEPEND}"
