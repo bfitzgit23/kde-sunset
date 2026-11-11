@@ -26,6 +26,8 @@ RDEPEND="${COMMON_DEPEND}
 	!sys-auth/polkit-kde
 "
 
+
+PATCHES=("${FILESDIR}/${P}-cmake4-cmp0002.patch")
 src_prepare() {
 	kde4-base_src_prepare
 
