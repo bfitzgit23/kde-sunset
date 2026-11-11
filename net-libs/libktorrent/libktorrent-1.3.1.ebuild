@@ -23,8 +23,12 @@ LICENSE="GPL-2"
 SLOT="4"
 IUSE="debug"
 
+PATCHES=(
+	"${FILESDIR}/${P}-qt-sha1.patch"
+)
+
+
 RDEPEND="
-	app-crypt/qca:2-qt4
 	dev-libs/gmp:0=
 	dev-libs/libgcrypt:0=
 "

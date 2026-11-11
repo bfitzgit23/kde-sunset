@@ -1,0 +1,104 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -4,7 +4,6 @@
+ find_package(KDE4Internal REQUIRED)
+ find_package(GMP REQUIRED)
+ find_package(Boost REQUIRED)
+-find_package(QCA2 REQUIRED)
+ 
+ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules;${CMAKE_MODULE_PATH}")
+ find_package(LibGcrypt REQUIRED)
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -2,7 +2,7 @@
+ 
+ include_directories(${CMAKE_CURRENT_BINARY_DIR})
+ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+-include_directories(${LIBGCRYPT_INCLUDE_DIR} ${QCA2_INCLUDE_DIR})
++include_directories(${LIBGCRYPT_INCLUDE_DIR})
+ remove_definitions(-DQT_NO_HTTP)
+ 
+ set(libktorrent_SRC
+@@ -229,7 +229,7 @@
+ # kde4_add_kcfg_files(libktorrent_SRC settings.kcfgc)
+ kde4_add_library(ktorrent SHARED ${libktorrent_SRC})
+ 
+-target_link_libraries(ktorrent ${KDE4_KIO_LIBS} ${GMP_LIBRARIES} ${KDE4_SOLID_LIBS} ${LIBGCRYPT_LIBRARIES} ${QCA2_LIBRARIES})
++target_link_libraries(ktorrent ${KDE4_KIO_LIBS} ${GMP_LIBRARIES} ${KDE4_SOLID_LIBS} ${LIBGCRYPT_LIBRARIES})
+ if(WIN32)
+ target_link_libraries(ktorrent ws2_32)
+ endif(WIN32)
+--- a/src/util/sha1hashgen.h
++++ b/src/util/sha1hashgen.h
+@@ -24,10 +24,7 @@
+ #include "constants.h"
+ #include "sha1hash.h"
+ 
+-namespace QCA
+-{
+-	class Hash;
+-}
++class QCryptographicHash;
+ 
+ namespace bt
+ {
+@@ -81,7 +78,7 @@
+ 		SHA1Hash get() const;
+ 		
+ 	private:
+-		QCA::Hash* h;
++		QCryptographicHash* h;
+ 		Uint8 result[20];
+ 	};
+ 
+--- a/src/util/sha1hashgen.cpp
++++ b/src/util/sha1hashgen.cpp
+@@ -21,16 +21,14 @@
+ #include <stdio.h>
+ #include <string.h>
+ #include <arpa/inet.h>
+-#include <QtCrypto>
++#include <QCryptographicHash>
+ #include "functions.h"
+ 
+ 
+ 
+ namespace bt
+ {
+-	static QCA::Initializer qca_init;
+-
+-	SHA1HashGen::SHA1HashGen() : h(new QCA::Hash("sha1"))
++	SHA1HashGen::SHA1HashGen() : h(new QCryptographicHash(QCryptographicHash::Sha1))
+ 	{
+ 		memset(result,9,20);
+ 	}
+@@ -43,24 +41,24 @@
+ 
+ 	SHA1Hash SHA1HashGen::generate(const Uint8* data,Uint32 len)
+ 	{
+-		h->update((const char*)data,len);
+-		return SHA1Hash((const bt::Uint8*)h->final().constData());
++		h->addData((const char*)data, static_cast<int>(len));
++		return SHA1Hash((const bt::Uint8*)h->result().constData());
+ 	}
+ 	
+ 	void SHA1HashGen::start()
+ 	{
+-		h->clear();
++		h->reset();
+ 	}
+ 		
+ 	void SHA1HashGen::update(const Uint8* data,Uint32 len)
+ 	{
+-		h->update((const char*)data,len);
++		h->addData((const char*)data, static_cast<int>(len));
+ 	}
+ 		
+ 	 
+ 	void SHA1HashGen::end()
+ 	{
+-		memcpy(result,h->final().constData(),20);
++		memcpy(result, h->result().constData(), 20);
+ 	}
+ 		
+ 
