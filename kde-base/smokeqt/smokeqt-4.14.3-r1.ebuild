@@ -14,7 +14,7 @@ DESCRIPTION="Scripting Meta Object Kompiler Engine - Qt bindings"
 HOMEPAGE="https://techbase.kde.org/Development/Languages/Smoke"
 
 KEYWORDS="amd64 ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +phonon qimageblitz qscintilla qwt webkit xmlpatterns"
+IUSE="debug +phonon qimageblitz qscintilla qwt webkit xmlpatterns declarative multimedia opengl qthelp"
 
 # Maybe make more of Qt optional?
 DEPEND="

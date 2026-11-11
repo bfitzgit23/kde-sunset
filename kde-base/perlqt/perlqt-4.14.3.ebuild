@@ -13,7 +13,7 @@ inherit kde4-base
 
 DESCRIPTION="Qt Perl bindings"
 KEYWORDS="amd64 ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug phonon qimageblitz qscintilla qwt webkit"
+IUSE="debug phonon qimageblitz qscintilla qwt webkit declarative multimedia opengl qthelp"
 
 RDEPEND="
 	dev-lang/perl:=
