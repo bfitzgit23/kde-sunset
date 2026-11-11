@@ -4,11 +4,11 @@
 EAPI=8
 
 if [[ ${PV} = *_pre* ]]; then
-	# KDE quickgit https certificate issue
-	# COMMIT_ID="18ed37d89b8185ac15a8bfe245de8a88d17f2c64"
-	# SRC_URI="https://quickgit.kde.org/?p=${PN}.git&a=snapshot&h=${COMMIT_ID}&fmt=tgz -> ${P}.tar.gz"
-	SRC_URI="https://dev.gentoo.org/~johu/distfiles/${P}.tar.gz"
-	S="${WORKDIR}/${PN}"
+	# dev.gentoo.org no longer serves this snapshot; fetch the same commit
+	# from the KDE Invent archive.
+	COMMIT_ID="18ed37d89b8185ac15a8bfe245de8a88d17f2c64"
+	SRC_URI="https://invent.kde.org/pim/akonadi/-/archive/${COMMIT_ID}/${PN}-${COMMIT_ID}.tar.gz -> ${P}.tar.gz"
+	S="${WORKDIR}/${PN}-${COMMIT_ID}"
 else
 	SRC_URI="mirror://kde/stable/${PN}/src/${P}.tar.bz2"
 fi
