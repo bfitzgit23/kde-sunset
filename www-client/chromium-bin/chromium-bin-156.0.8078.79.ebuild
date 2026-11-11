@@ -33,13 +33,13 @@ RDEPEND="
 	dev-libs/double-conversion
 	dev-libs/expat
 	dev-libs/glib:2
-	dev-libs/highway
 	dev-libs/libffi
 	dev-libs/libgcrypt:0
 	dev-libs/libxml2
 	dev-libs/libxslt
 	dev-libs/nspr
 	dev-libs/nss
+	dev-cpp/highway
 	dev-cpp/simdutf
 	dev-util/desktop-file-utils
 	media-libs/alsa-lib
