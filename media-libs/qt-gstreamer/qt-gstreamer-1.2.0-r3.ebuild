@@ -37,6 +37,7 @@ RDEPEND="${COMMON_DEPEND}
 PATCHES=(
 	"${FILESDIR}/${P}-gstreamer15.patch"
 	"${FILESDIR}/${P}-gstreamer16.patch"
+	"${FILESDIR}/${P}-gstreamer18.patch"
 	"${FILESDIR}/${P}-boost157.patch"
 	"${FILESDIR}/${P}-clang-38.patch"
 	"${FILESDIR}/${P}-glib-gatomic.patch"
