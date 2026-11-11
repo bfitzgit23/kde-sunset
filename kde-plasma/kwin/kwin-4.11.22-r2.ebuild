@@ -45,9 +45,8 @@ DEPEND="${COMMONDEPEND}
 	x11-libs/xcb-util-renderutil
 	x11-base/xorg-proto
 "
-RDEPEND="${COMMONDEPEND}
-	x11-apps/scripts
-"
+RDEPEND="${COMMONDEPEND}"
+
 
 KMEXTRACTONLY="
 	ksmserver/
