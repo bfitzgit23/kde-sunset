@@ -1,2 +1,5 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
+# KDevelop 4 Python plugin: the 1.7-py3 branch requires Python >=3.4.3 and <3.5
+# and uses Python C APIs removed in modern CPython. Python 3.14 cannot build it.
+dev-util/kdevelop-python
