@@ -1,0 +1,59 @@
+--- a/libkexiv2/kexiv2exif.cpp
++++ b/libkexiv2/kexiv2exif.cpp
+@@ -693 +693 @@
+-            val = it->toLong(component);
++            val = it->toUint32(component);
+@@ -759 +759 @@
+-                        return QVariant((int)it->toLong(component));
++                        return QVariant((int)it->toUint32(component));
+@@ -893 +893 @@
+-        thumbnail.loadFromData(c1.pData_, c1.size_);
++        thumbnail.loadFromData(c1.c_data(), c1.size());
+@@ -909 +909 @@
+-                    long orientation = it->toLong();
++                    long orientation = it->toUint32();
+@@ -987 +987 @@
+-        if (pos == d->exifMetadata().end() || pos->count() != 1 || pos->toLong() != 0)
++        if (pos == d->exifMetadata().end() || pos->count() != 1 || pos->toUint32() != 0)
+@@ -1014 +1014 @@
+-            val.setDataArea(buf.pData_, buf.size_);
++            val.setDataArea(buf.c_data(), buf.size());
+@@ -1016 +1016 @@
+-            d->exifMetadata()["Exif.SubImage1.JPEGInterchangeFormatLength"] = uint32_t(buf.size_);
++            d->exifMetadata()["Exif.SubImage1.JPEGInterchangeFormatLength"] = uint32_t(buf.size());
+--- a/libkexiv2/kexiv2image.cpp
++++ b/libkexiv2/kexiv2image.cpp
+@@ -109 +109 @@
+-            width = it->toLong();
++            width = it->toUint32();
+@@ -114 +114 @@
+-            height = it2->toLong();
++            height = it2->toUint32();
+@@ -127 +127 @@
+-            width = it3->toLong();
++            width = it3->toUint32();
+@@ -132 +132 @@
+-            height = it4->toLong();
++            height = it4->toUint32();
+@@ -267 +267 @@
+-            orientation = it->toLong();
++            orientation = it->toUint32();
+@@ -286 +286 @@
+-            orientation = it->toLong();
++            orientation = it->toUint32();
+@@ -307 +307 @@
+-            orientation = it->toLong();
++            orientation = it->toUint32();
+@@ -380 +380 @@
+-            RotationMatrix operation((KExiv2Iface::KExiv2::ImageOrientation)it->toLong());
++            RotationMatrix operation((KExiv2Iface::KExiv2::ImageOrientation)it->toUint32());
+--- a/libkexiv2/kexiv2iptc.cpp
++++ b/libkexiv2/kexiv2iptc.cpp
+@@ -100 +100 @@
+-            QByteArray data((const char*)c2.pData_, c2.size_);
++            QByteArray data((const char*)c2.c_data(), c2.size());
+--- a/libkexiv2/kexiv2xmp.cpp
++++ b/libkexiv2/kexiv2xmp.cpp
+@@ -942 +942 @@
+-                    return QVariant((int)it->toLong());
++                    return QVariant((int)it->toUint32());
