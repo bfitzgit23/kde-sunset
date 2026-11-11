@@ -1,23 +1,29 @@
 --- a/plugins/qca-ossl/qca-ossl.cpp
 +++ b/plugins/qca-ossl/qca-ossl.cpp
-@@ -1487,7 +1487,7 @@
+@@ -1487,9 +1487,9 @@
  
  				if (type == EVP_PKEY_RSA)
  				{
 -					RSA *rsa = EVP_PKEY_get0_RSA(pkey);
 +					const RSA *rsa = EVP_PKEY_get0_RSA(pkey);
  					if(RSA_private_encrypt (raw.size(), (unsigned char *)raw.data(),
- 					                        (unsigned char *)out.data(), rsa,
+-					                        (unsigned char *)out.data(), rsa,
++					                        (unsigned char *)out.data(), (RSA *)rsa,
  											RSA_PKCS1_PADDING) == -1) {
-@@ -1534,7 +1534,7 @@
+ 
+ 						state = SignError;
+@@ -1534,9 +1534,9 @@
  				int type = EVP_PKEY_id(pkey);
  
  				if (type == EVP_PKEY_RSA) {
 -					RSA *rsa = EVP_PKEY_get0_RSA(pkey);
 +					const RSA *rsa = EVP_PKEY_get0_RSA(pkey);
  					if((len = RSA_public_decrypt (sig.size(), (unsigned char *)sig.data(),
- 					                                (unsigned char *)out.data (), rsa,
+-					                                (unsigned char *)out.data (), rsa,
++					                                (unsigned char *)out.data (), (RSA *)rsa,
  												  RSA_PKCS1_PADDING)) == -1) {
+ 
+ 						state = VerifyError;
 @@ -1993,7 +1993,7 @@
  			return;
  
