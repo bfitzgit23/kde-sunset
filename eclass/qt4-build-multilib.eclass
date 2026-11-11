@@ -36,7 +36,7 @@ case ${PV} in
 		MY_P=qt-everywhere-opensource-src-${PV/_/-}
 		PATCHNAME="${MY_P}-patches-${PATCH_VERSION}"
 		SRC_URI="
-			http://download.qt.io/official_releases/qt/${PV%.*}/${PV}/${MY_P}.tar.gz
+			https://src.fedoraproject.org/repo/pkgs/qt/${MY_P}.tar.gz/d990ee66bf7ab0c785589776f35ba6ad/${MY_P}.tar.gz
 			mirror://kde-sunset/${PATCHNAME}.tgz"
 		S=${WORKDIR}/${MY_P}
 		;;
