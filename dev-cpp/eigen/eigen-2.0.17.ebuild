@@ -16,6 +16,8 @@ IUSE="debug doc examples test"
 # bugs 426236, 455460, 467288
 RESTRICT="test"
 
+PATCHES=( "${FILESDIR}/${P}-cmake4-location.patch" )
+
 RDEPEND="
 	examples? (
 		dev-qt/qtgui:4

@@ -1,0 +1,36 @@
+CMake 4 removed the OLD behavior of CMP0026, so reading a target's
+LOCATION property is a hard error.  Use the target file generator
+expression in the custom commands instead.
+
+--- a/doc/examples/CMakeLists.txt
++++ b/doc/examples/CMakeLists.txt
+@@ -8,11 +8,9 @@
+ if(EIGEN_STANDARD_LIBRARIES_TO_LINK_TO)
+   target_link_libraries(${example} ${EIGEN_STANDARD_LIBRARIES_TO_LINK_TO})
+ endif()
+-GET_TARGET_PROPERTY(example_executable
+-                    ${example} LOCATION)
+ ADD_CUSTOM_COMMAND(
+   TARGET ${example}
+   POST_BUILD
+-  COMMAND ${example_executable}
++  COMMAND "$<TARGET_FILE:${example}>"
+   ARGS >${CMAKE_CURRENT_BINARY_DIR}/${example}.out
+ )
+ ADD_DEPENDENCIES(all_examples ${example})
+--- a/doc/snippets/CMakeLists.txt
++++ b/doc/snippets/CMakeLists.txt
+@@ -14,11 +14,9 @@
+ if(EIGEN_STANDARD_LIBRARIES_TO_LINK_TO)
+   target_link_libraries(${compile_snippet_target} ${EIGEN_STANDARD_LIBRARIES_TO_LINK_TO})
+ endif()
+-GET_TARGET_PROPERTY(compile_snippet_executable
+-                    ${compile_snippet_target} LOCATION)
+ ADD_CUSTOM_COMMAND(
+   TARGET ${compile_snippet_target}
+   POST_BUILD
+-  COMMAND ${compile_snippet_executable}
++  COMMAND "$<TARGET_FILE:${compile_snippet_target}>"
+   ARGS >${CMAKE_CURRENT_BINARY_DIR}/${snippet}.out
+ )
+ ADD_DEPENDENCIES(all_snippets ${compile_snippet_target})
