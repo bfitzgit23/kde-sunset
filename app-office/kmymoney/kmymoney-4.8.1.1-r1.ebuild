@@ -12,7 +12,7 @@ SRC_URI="mirror://kde/stable/${PN}/${PV}/src/${P}.tar.xz"
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="amd64 x86"
-IUSE="calendar debug doc +handbook hbci ofx quotes test"
+IUSE="calendar debug doc hbci ofx quotes test"
 
 COMMON_DEPEND="
 	>=app-crypt/gpgme-1.7.0[cxx]
@@ -35,17 +35,12 @@ COMMON_DEPEND="
 "
 RDEPEND="${COMMON_DEPEND}
 	kde-frameworks/oxygen-icons:*
-	handbook? ( kde-frameworks/kdelibs:4[handbook] )
 	quotes? ( dev-perl/Finance-Quote )
 "
 DEPEND="${COMMON_DEPEND}
 	dev-libs/boost
 	virtual/pkgconfig
 	doc? ( app-doc/doxygen )
-	handbook? (
-		app-text/docbook-xml-dtd:4.2
-		app-text/docbook-xsl-stylesheets
-	)
 	test? ( dev-qt/qttest:4 )
 "
 

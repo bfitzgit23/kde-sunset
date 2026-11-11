@@ -15,7 +15,7 @@ SRC_URI="mirror://kde/stable/phonon/${PV}/${P}.tar.xz"
 LICENSE="|| ( LGPL-2.1 LGPL-3 )"
 SLOT="0-qt4"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86"
-IUSE="debug designer gstreamer pulseaudio +vlc"
+IUSE="debug designer gstreamer +vlc"
 
 DEPEND="
 	!!dev-qt/qtphonon:4
@@ -23,10 +23,6 @@ DEPEND="
 	>=dev-qt/qtdbus-4.8.7:4[${MULTILIB_USEDEP}]
 	>=dev-qt/qtgui-4.8.7:4[${MULTILIB_USEDEP}]
 	designer? ( >=dev-qt/designer-4.8.7:4[${MULTILIB_USEDEP}] )
-	pulseaudio? (
-		dev-libs/glib:2
-		>=media-sound/pulseaudio-0.9.21[glib]
-	)
 "
 RDEPEND="${DEPEND}
 	!<media-libs/phonon-4.11:0
@@ -43,8 +39,8 @@ multilib_src_configure() {
 		-DWITH_QZeitgeist=OFF
 		-DPHONON_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT=ON
 		-DPHONON_BUILD_DESIGNER_PLUGIN=$(usex designer)
-		-DWITH_GLIB2=$(usex pulseaudio)
-		-DWITH_PulseAudio=$(usex pulseaudio)
+		-DWITH_GLIB2=OFF
+		-DWITH_PulseAudio=OFF
 		-DQT_QMAKE_EXECUTABLE="$(qt4_get_bindir)"/qmake
 	)
 	cmake_src_configure

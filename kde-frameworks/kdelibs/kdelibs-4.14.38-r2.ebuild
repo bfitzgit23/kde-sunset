@@ -13,7 +13,7 @@ SRC_URI="mirror://kde/stable/applications/17.08.3/src/${P}.tar.xz"
 LICENSE="LGPL-2.1"
 SLOT="4/4.14"
 KEYWORDS="~amd64 ~arm ~x86 ~amd64-linux ~x86-linux"
-IUSE="cpu_flags_x86_3dnow acl altivec +bzip2 +dbusmenu debug +declarative doc fam +handbook kerberos
+IUSE="cpu_flags_x86_3dnow acl altivec +bzip2 +dbusmenu debug +declarative doc fam kerberos
 libressl lzma cpu_flags_x86_mmx nls openexr opengl +plasma +policykit qca qt3support spell
 test cpu_flags_x86_sse cpu_flags_x86_sse2 ssl +udev +udisks +upower zeroconf"
 
@@ -116,7 +116,6 @@ PDEPEND="
 	x11-base/xorg-proto
 	>=x11-libs/libXtst-1.1.0
 	x11-misc/xdg-utils
-	handbook? ( kde-apps/khelpcenter:4 )
 	policykit? ( kde-plasma/polkit-kde-agent:* )
 "
 
@@ -184,7 +183,7 @@ src_configure() {
 		-DWITH_Soprano=OFF
 		-DWITH_SharedDesktopOntologies=OFF
 		-DCMAKE_DISABLE_FIND_PACKAGE_Strigi=ON
-		-DBUILD_doc=$(usex handbook)
+		-DBUILD_doc=OFF
 		-DHAVE_X86_3DNOW=$(usex cpu_flags_x86_3dnow)
 		-DHAVE_PPC_ALTIVEC=$(usex altivec)
 		-DHAVE_X86_MMX=$(usex cpu_flags_x86_mmx)

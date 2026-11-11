@@ -7,7 +7,7 @@ inherit kde4-meta-pkg
 
 DESCRIPTION="Merge this to pull in all kdebase-runtime-derived packages"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="crash-reporter +handbook minimal"
+IUSE="crash-reporter minimal"
 
 RDEPEND="
 	$(add_kdeapps_dep kcmshell)
@@ -41,7 +41,6 @@ RDEPEND="
 	$(add_kdeapps_dep renamedlg-plugins)
 	$(add_kdeapps_dep solid-runtime)
 	crash-reporter? ( >=kde-plasma/drkonqi-${PV}:${SLOT} )
-	handbook? ( kde-apps/khelpcenter:4 )
 	minimal? ( $(add_kdeapps_dep solid-runtime '-bluetooth') )
 	!minimal? (
 		$(add_kdeapps_dep attica)

@@ -9,7 +9,7 @@ inherit kde4-meta prefix
 
 DESCRIPTION="Script which starts a complete Plasma session, and associated scripts"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="crash-reporter +handbook minimal +wallpapers"
+IUSE="crash-reporter minimal +wallpapers"
 
 # The KDE apps called from the startkde script.
 # These provide the most minimal KDE desktop.
@@ -67,7 +67,6 @@ RDEPEND="
 	x11-apps/xsetroot
 	x11-apps/xset
 	crash-reporter? ( >=kde-plasma/drkonqi-${PV}:= )
-	handbook? ( kde-apps/khelpcenter:4 )
 	!minimal? (
 		$(add_kdeapps_dep kdepasswd)
 		kde-plasma/freespacenotifier:4

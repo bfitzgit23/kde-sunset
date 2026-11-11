@@ -182,7 +182,8 @@ KDE_REQUIRED="${KDE_REQUIRED:-always}"
 # This variable must be set before inheriting any eclasses. Defaults to 'never'.
 # It adds default handbook dirs for kde-base packages to KMEXTRA and in any case it
 # ensures buildtime and runtime dependencies.
-KDE_HANDBOOK="${KDE_HANDBOOK:-never}"
+# Handbook support is disabled in this overlay; no KHelpCenter dependency.
+KDE_HANDBOOK=never
 
 # @ECLASS-VARIABLE: KDE_LINGUAS_LIVE_OVERRIDE
 # @DESCRIPTION:
@@ -421,26 +422,7 @@ if [[ ${KDEBASE} != "kde-base" && -n ${KDE_LINGUAS} ]]; then
 	unset _lingua
 fi
 
-kdehandbookdepend="
-	app-text/docbook-xml-dtd:4.2
-	app-text/docbook-xsl-stylesheets
-"
-kdehandbookrdepend="
-	kde-frameworks/kdelibs:4[handbook]
-"
-case ${KDE_HANDBOOK} in
-	always)
-		kdedepend+=" ${kdehandbookdepend}"
-		kderdepend+=" ${kdehandbookrdepend}"
-		;;
-	optional)
-		IUSE+=" +handbook"
-		kdedepend+=" handbook? ( ${kdehandbookdepend} )"
-		kderdepend+=" handbook? ( ${kdehandbookrdepend} )"
-		;;
-	*) ;;
-esac
-unset kdehandbookdepend kdehandbookrdepend
+# Handbook support is disabled in this overlay; no build/runtime dependencies.
 
 case ${KDE_SELINUX_MODULE} in
 	none)	;;
