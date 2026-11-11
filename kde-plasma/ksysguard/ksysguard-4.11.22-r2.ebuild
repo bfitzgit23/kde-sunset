@@ -31,6 +31,7 @@ KMEXTRA="
 
 PATCHES=(
 	"${FILESDIR}/${P}-optional-webkit.patch"
+	"${FILESDIR}/${P}-4.11.22-processlisthelper-target.patch"
 )
 
 src_configure() {

@@ -1,0 +1,10 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -40,7 +40,7 @@
+ #                                                                                  
+ #  Target: actions for org.kde.ksysguard.processlisthelper                        
+ #  Fix: rename to valid target (CMake target names must not contain spaces/dots)   
+-PROJECT(VERSION ${PROJECT_VERSION} PROJECT_NAME org.kde.ksysguard.processlisthelper)
++PROJECT(VERSION ${PROJECT_VERSION} PROJECT_NAME org_kde_ksysguard_processlisthelper)
+ 
+ #                                                                                  
