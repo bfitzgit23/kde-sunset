@@ -770,6 +770,40 @@ kde4-base_src_prepare() {
 ' '# Compatibility shim: CMake 4 removed export_library_dependencies().' 'if(NOT CMAKE_VERSION VERSION_LESS 4.0)' 'function(export_library_dependencies _kde4_file)' 'file(WRITE "${_kde4_file}" "")' 'endfunction()' 'endif()'; cat "${S}/CMakeLists.txt"; } > "${S}/CMakeLists.txt.kde4tmp"
 			mv "${S}/CMakeLists.txt.kde4tmp" "${S}/CMakeLists.txt" || die "failed to add export_library_dependencies shim"
 		fi
+		# KDE4 sets the old-style LINK_INTERFACE_LIBRARIES property, which
+		# makes install(EXPORT) fail under CMP0022 NEW.  Move it to the
+		# modern property and clear the old one for every target.
+		if ! grep -q 'KDE4_CMAKE4_INTERFACE_FIX' ""${S}/CMakeLists.txt""; then
+			printf '
+' >> ""${S}/CMakeLists.txt"" || die "failed to terminate "${S}/CMakeLists.txt""
+			cat >> ""${S}/CMakeLists.txt"" <<-'EOF'
+			# KDE4 sets the old-style LINK_INTERFACE_LIBRARIES property, which makes
+			# install(EXPORT) fail under CMP0022 NEW.  Move it to the modern property
+			# and unset the old one for every target, including subdirectories.
+			if(NOT DEFINED KDE4_CMAKE4_INTERFACE_FIX)
+			set(KDE4_CMAKE4_INTERFACE_FIX TRUE)
+			if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.7)
+			function(_kde4_fix_interface_props _dir)
+			  get_property(_targets DIRECTORY "${_dir}" PROPERTY BUILDSYSTEM_TARGETS)
+			  foreach(_t IN LISTS _targets)
+			    get_target_property(_old "${_t}" LINK_INTERFACE_LIBRARIES)
+			    if(NOT _old STREQUAL "_old-NOTFOUND")
+			      if(_old)
+			        set_property(TARGET "${_t}" PROPERTY INTERFACE_LINK_LIBRARIES "${_old}")
+			      endif()
+			      set_property(TARGET "${_t}" PROPERTY LINK_INTERFACE_LIBRARIES)
+			    endif()
+			  endforeach()
+			  get_property(_subdirs DIRECTORY "${_dir}" PROPERTY SUBDIRECTORIES)
+			  foreach(_d IN LISTS _subdirs)
+			    _kde4_fix_interface_props("${_d}")
+			  endforeach()
+			endfunction()
+			_kde4_fix_interface_props("${CMAKE_SOURCE_DIR}")
+			endif()
+			endif()
+			EOF
+		fi
 	fi
 	# Save library dependencies
 	if [[ -n ${KMSAVELIBS} ]] ; then
