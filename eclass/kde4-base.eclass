@@ -744,24 +744,24 @@ kde4-base_src_prepare() {
 	# Apply patches, cmake does the job already
 	cmake_src_prepare
 
-	# CMake 4 requires every project to declare a policy version (CMP0000)
-	# and removed export_library_dependencies() (CMP0033).  KDE4 sources
-	# predate both, so repair them here instead of patching every module.
+	# CMake 4 requires a policy version (CMP0000), rejects policy versions
+	# below 3.5 and removed export_library_dependencies() (CMP0033).  KDE4
+	# sources predate all of it, so repair them here instead of patching
+	# every module.
 	if [[ -f ${S}/CMakeLists.txt ]]; then
+		while IFS= read -r -d '' _cmake_file; do
+			sed -i -E -e 's/(cmake_minimum_required[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*[012]\.[0-9][0-9.]*/\1 3.5/I' -e 's/(cmake_minimum_required[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*3\.[0-4]([^0-9]|$)/\1 3.5\2/I' -e 's/(cmake_policy[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*[012]\.[0-9][0-9.]*/\1 3.5/I' -e 's/(cmake_policy[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*3\.[0-4]([^0-9]|$)/\1 3.5\2/I' -e '/target_link_libraries/ s/\bLINK_INTERFACE_LIBRARIES\b/INTERFACE/g' -e 's/\bLINK_INTERFACE_LIBRARIES\b/INTERFACE_LINK_LIBRARIES/g' -e 's/^[[:space:]]*export_library_dependencies[[:space:]]*\((.*)\)[[:space:]]*$/file(WRITE \1 "")/I' "${_cmake_file}" || die "failed to rewrite CMake 4 incompatibilities in ${_cmake_file}"
+		done < <(find "${S}" -type f \( -name CMakeLists.txt -o -name '*.cmake' \) -print0)
 		if ! grep -q 'cmake_minimum_required' "${S}/CMakeLists.txt"; then
-			{ printf '%s\n' 'cmake_minimum_required(VERSION 3.5)'; cat "${S}/CMakeLists.txt"; } > "${S}/CMakeLists.txt.kde4tmp"
+			{ printf '%s
+' 'cmake_minimum_required(VERSION 3.5)'; cat "${S}/CMakeLists.txt"; } > "${S}/CMakeLists.txt.kde4tmp"
 			mv "${S}/CMakeLists.txt.kde4tmp" "${S}/CMakeLists.txt" || die "failed to add cmake_minimum_required"
 		fi
 		if ! grep -q 'CMake 4 removed export_library_dependencies' "${S}/CMakeLists.txt"; then
-			{ printf '%s\n' '# Compatibility shim: CMake 4 removed export_library_dependencies().' 'if(NOT COMMAND export_library_dependencies)' 'function(export_library_dependencies _kde4_file)' 'file(WRITE "${_kde4_file}" "")' 'endfunction()' 'endif()'; cat "${S}/CMakeLists.txt"; } > "${S}/CMakeLists.txt.kde4tmp"
+			{ printf '%s
+' '# Compatibility shim: CMake 4 removed export_library_dependencies().' 'if(NOT COMMAND export_library_dependencies)' 'function(export_library_dependencies _kde4_file)' 'file(WRITE "${_kde4_file}" "")' 'endfunction()' 'endif()'; cat "${S}/CMakeLists.txt"; } > "${S}/CMakeLists.txt.kde4tmp"
 			mv "${S}/CMakeLists.txt.kde4tmp" "${S}/CMakeLists.txt" || die "failed to add export_library_dependencies shim"
 		fi
-		# Replace the removed command at its call sites (single-line form) and
-		# drop the legacy LINK_INTERFACE_LIBRARIES keyword, which CMP0022
-		# rejects now that its OLD behavior is gone from CMake.
-		while IFS= read -r _cmake_file; do
-			sed -i -e 's/^[[:space:]]*export_library_dependencies[[:space:]]*(\(.*\))[[:space:]]*$/file(WRITE \1 "")/I' -e '/target_link_libraries/ s/\bLINK_INTERFACE_LIBRARIES\b/INTERFACE/g' -e 's/\bLINK_INTERFACE_LIBRARIES\b/INTERFACE_LINK_LIBRARIES/g' "${_cmake_file}" || die "failed to rewrite CMake 4 removals in ${_cmake_file}"
-		done < <(grep -rli -e 'export_library_dependencies' -e 'LINK_INTERFACE_LIBRARIES' "${S}" --include='CMakeLists.txt' --include='*.cmake' 2>/dev/null)
 	fi
 	# Save library dependencies
 	if [[ -n ${KMSAVELIBS} ]] ; then
