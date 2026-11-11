@@ -30,6 +30,7 @@ DOCS=( ChangeLog README.md )
 PATCHES=(
 	"${FILESDIR}/${P}-gnuinstalldirs.patch"
 	"${FILESDIR}/${P}-featuresummary.patch"
+	"${FILESDIR}/${P}-cmake4.patch"
 )
 
 multilib_src_configure() {

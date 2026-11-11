@@ -1,0 +1,19 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -2,13 +2,13 @@
+ 
+ set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DQT_NO_CAST_FROM_ASCII -DQT_NO_CAST_TO_ASCII" )
+ 
+-# Force cmake 2.8.8 in order to have a decent support of Qt5
+-CMAKE_MINIMUM_REQUIRED(VERSION 2.8.8)
++# Require CMake 3.5: CMake 4 removed compatibility with older versions
++CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
+ CMAKE_POLICY(SET CMP0003 NEW)
+ 
+ # Do not link against qtmain on Windows
+ if(POLICY CMP0020)
+-	cmake_policy(SET CMP0020 OLD)
++	cmake_policy(SET CMP0020 NEW)
+ endif()
+ 
+ include(GNUInstallDirs)
