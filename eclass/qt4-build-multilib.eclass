@@ -537,16 +537,17 @@ qt4_multilib_src_install() {
 		fi
 	fi
 
-	# Move the .pc files to the correct location.  Renaming the directory
-	# onto usr/$(get_libdir) fails with "Directory not empty" whenever that
-	# pkgconfig directory already exists, so merge the files instead.
-	local pcdir="${D}${QT4_LIBDIR}/pkgconfig"
+	# Move the .pc files to the correct location.  D and ED are not
+	# guaranteed to end with a slash, so join the paths explicitly, and the
+	# destination may already exist, so renaming the directory is not safe.
+	local pcdir="${D%/}/${QT4_LIBDIR#/}/pkgconfig"
+	local pcdest="${ED%/}/usr/$(get_libdir)/pkgconfig"
 	if [[ -d ${pcdir} ]]; then
-		dodir "/usr/$(get_libdir)/pkgconfig"
+		mkdir -p "${pcdest}" || die
 		if compgen -G "${pcdir}/*" >/dev/null; then
-			mv "${pcdir}"/* "${ED}usr/$(get_libdir)/pkgconfig/" || die
+			mv "${pcdir}"/* "${pcdest}/" || die
 		fi
-		rmdir "${pcdir}" || die
+		rm -rf "${pcdir}"
 	fi
 
 	qt4_install_module_qconfigs
