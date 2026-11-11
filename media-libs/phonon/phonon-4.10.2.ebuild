@@ -6,6 +6,8 @@ EAPI=8
 CMAKE_ECLASS=cmake
 inherit cmake-multilib qmake-utils
 
+PATCHES=( "${FILESDIR}/${P}-cmake-interface-link.patch" )
+
 DESCRIPTION="KDE multimedia API"
 HOMEPAGE="https://community.kde.org/Phonon"
 SRC_URI="mirror://kde/stable/phonon/${PV}/${P}.tar.xz"
