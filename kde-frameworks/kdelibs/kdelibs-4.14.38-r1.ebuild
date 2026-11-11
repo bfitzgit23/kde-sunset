@@ -116,7 +116,7 @@ PDEPEND="
 	x11-base/xorg-proto
 	>=x11-libs/libXtst-1.1.0
 	x11-misc/xdg-utils
-	handbook? ( kde-apps/khelpcenter:* )
+	handbook? ( kde-apps/khelpcenter:4 )
 	policykit? ( kde-plasma/polkit-kde-agent:* )
 "
 

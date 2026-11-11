@@ -67,7 +67,7 @@ RDEPEND="
 	x11-apps/xsetroot
 	x11-apps/xset
 	crash-reporter? ( >=kde-plasma/drkonqi-${PV}:= )
-	handbook? ( kde-apps/khelpcenter:* )
+	handbook? ( kde-apps/khelpcenter:4 )
 	!minimal? (
 		$(add_kdeapps_dep kdepasswd)
 		kde-plasma/freespacenotifier:4

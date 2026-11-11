@@ -41,7 +41,7 @@ RDEPEND="
 	$(add_kdeapps_dep renamedlg-plugins)
 	$(add_kdeapps_dep solid-runtime)
 	crash-reporter? ( >=kde-plasma/drkonqi-${PV}:${SLOT} )
-	handbook? ( kde-apps/khelpcenter:* )
+	handbook? ( kde-apps/khelpcenter:4 )
 	minimal? ( $(add_kdeapps_dep solid-runtime '-bluetooth') )
 	!minimal? (
 		$(add_kdeapps_dep attica)
