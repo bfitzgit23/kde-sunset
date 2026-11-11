@@ -1,0 +1,4 @@
+--- a/libkexiv2/kexiv2iptc.cpp
++++ b/libkexiv2/kexiv2iptc.cpp
+@@ -29,0 +30 @@
++#include <exiv2/photoshop.hpp>
