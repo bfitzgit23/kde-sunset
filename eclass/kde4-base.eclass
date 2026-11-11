@@ -744,6 +744,34 @@ kde4-base_src_prepare() {
 	# Apply patches, cmake does the job already
 	cmake_src_prepare
 
+	# CMake 4 requires every project to declare a policy version (CMP0000)
+	# and removed export_library_dependencies() (CMP0033).  KDE4 sources
+	# predate both, so repair them here instead of patching every module.
+	if [[ -f ${S}/CMakeLists.txt ]]; then
+		if ! grep -q 'cmake_minimum_required' "${S}/CMakeLists.txt"; then
+			{ printf '%s
+' 'cmake_minimum_required(VERSION 3.5)'; cat "${S}/CMakeLists.txt"; } \
+				> "${S}/CMakeLists.txt.kde4tmp" &&
+				mv "${S}/CMakeLists.txt.kde4tmp" "${S}/CMakeLists.txt" ||
+				die "failed to add cmake_minimum_required"
+		fi
+		if ! grep -q 'CMake 4 removed export_library_dependencies' "${S}/CMakeLists.txt"; then
+			{
+				printf '%s
+' \
+					'# Compatibility shim: CMake 4 removed export_library_dependencies().' \
+					'if(NOT COMMAND export_library_dependencies)' \
+					'function(export_library_dependencies _kde4_file)' \
+					'file(WRITE "${_kde4_file}" "")' \
+					'endfunction()' \
+					'endif()'
+				cat "${S}/CMakeLists.txt"
+			} > "${S}/CMakeLists.txt.kde4tmp" &&
+				mv "${S}/CMakeLists.txt.kde4tmp" "${S}/CMakeLists.txt" ||
+				die "failed to add export_library_dependencies shim"
+		fi
+	fi
+
 	# Save library dependencies
 	if [[ -n ${KMSAVELIBS} ]] ; then
 		save_library_dependencies
