@@ -30,7 +30,7 @@ CDEPEND="
 	>=dev-qt/qtdbus-4.8.5:4
 	>=dev-qt/qtgui-4.8.5:4
 	>=dev-qt/qtsql-4.8.5:4[mysql?,postgres?]
-	>=dev-qt/qttest-4.8.5:4
+	test? ( >=dev-qt/qttest-4.8.5:4 )
 	x11-misc/shared-mime-info
 	sqlite? ( dev-db/sqlite:3 )
 "

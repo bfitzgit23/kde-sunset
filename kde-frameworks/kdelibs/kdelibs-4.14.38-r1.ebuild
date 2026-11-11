@@ -88,7 +88,7 @@ COMMON_DEPEND="
 	zeroconf? ( net-dns/avahi[mdnsresponder-compat] )
 "
 DEPEND="${COMMON_DEPEND}
-	>=dev-qt/qttest-${QT_MINIMAL}:4
+	test? ( >=dev-qt/qttest-${QT_MINIMAL}:4 )
 	test? ( dev-util/cppunit )
 "
 RDEPEND="${COMMON_DEPEND}

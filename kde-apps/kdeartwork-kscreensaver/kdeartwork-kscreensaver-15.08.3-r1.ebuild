@@ -20,8 +20,10 @@ RDEPEND="
 	media-libs/libart_lgpl
 	x11-libs/libX11
 	x11-libs/libXt
-	virtual/glu
-	virtual/opengl
+	opengl? (
+		virtual/glu
+		virtual/opengl
+	)
 	kexiv2? ( $(add_kdeapps_dep libkexiv2) )
 	xscreensaver? ( x11-misc/xscreensaver )
 "
@@ -38,7 +40,7 @@ PATCHES=(
 src_configure() {
 	local mycmakeargs=(
 		-DKSCREENSAVER_SOUND_SUPPORT=ON
-		-DOPENGL=ON
+		-DOPENGL="$(usex opengl)"
 		-DWITH_Eigen3="$(usex eigen)"
 		-DWITH_kexiv2="$(usex kexiv2)"
 		-DWITH_xscreensaver="$(usex xscreensaver)"
