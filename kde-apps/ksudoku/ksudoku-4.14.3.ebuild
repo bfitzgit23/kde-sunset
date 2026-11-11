@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 OPENGL_REQUIRED="optional"
 inherit kde4-base
 
@@ -13,7 +12,7 @@ HOMEPAGE="
 	https://games.kde.org/game.php?game=ksudoku
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug opengl +handbook"
+IUSE="debug opengl"
 
 DEPEND="
 	$(add_kdeapps_dep libkdegames)

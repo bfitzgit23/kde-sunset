@@ -20,7 +20,7 @@ MY_LANGS="ar bg bs ca ca@valencia cs da de el en_GB es et eu fa fi fr ga gl he
 hi hr hu ia is it ja kk km ko lt lv mr nb nds nl nn pa pl pt pt_BR ro ru sk sl
 sr sv tg tr ug uk vi wa zh_CN zh_TW"
 
-IUSE="+handbook $(printf 'l10n_%s ' ${MY_LANGS//[@_]/-})"
+IUSE="$(printf 'l10n_%s ' ${MY_LANGS//[@_]/-})"
 
 URI_BASE="mirror://kde/Attic/4.11.2/src/kde-l10n"
 SRC_URI=""
@@ -70,7 +70,7 @@ src_prepare() {
 
 src_configure() {
 	mycmakeargs=(
-		-DBUILD_docs="$(usex handbook)"
+		-DBUILD_docs=OFF
 	)
 	[[ -n ${A} ]] && kde4-base_src_configure
 }

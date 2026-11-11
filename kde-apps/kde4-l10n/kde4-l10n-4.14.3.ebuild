@@ -4,7 +4,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="KDE internationalization package"
@@ -16,7 +15,7 @@ DEPEND="
 RDEPEND="!<kde-base/konq-plugins-4.6"
 
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~x86-fbsd ~amd64-linux ~x86-linux"
-IUSE="minimal +handbook"
+IUSE="minimal"
 
 # /usr/portage/distfiles $ ls -1 kde-l10n-*-${PV}.* |sed -e 's:-${PV}.tar.xz::' -e 's:kde-l10n-::' |tr '\n' ' '
 MY_LANGS="ar bg bs ca ca@valencia cs da de el en_GB es et eu fa fi fr ga gl he
@@ -145,7 +144,7 @@ kio_baloosearch,kio_tags,kio_timeline,plasma_runner_baloosearchrunner}.po
 
 src_configure() {
 	mycmakeargs=(
-		-DBUILD_docs="$(usex handbook)"
+		-DBUILD_docs=OFF
 	)
 	[[ -n ${A} ]] && kde4-base_src_configure
 }

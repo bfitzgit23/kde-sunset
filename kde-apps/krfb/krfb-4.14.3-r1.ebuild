@@ -3,14 +3,13 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="VNC-compatible server to share KDE desktops"
 HOMEPAGE="https://apps.kde.org/en/krfb"
 
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug telepathy ktp +handbook"
+IUSE="debug telepathy ktp"
 REQUIRED_USE="ktp? ( telepathy )"
 
 DEPEND="

@@ -4,7 +4,6 @@
 EAPI=8
 
 KDE_MINIMAL="${PV}"
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="KDE hexeditor"
@@ -15,7 +14,7 @@ SRC_URI="mirror://kde/Attic/${PV}/src/${P}.tar.xz"
 LICENSE="GPL-2"
 SLOT=4/$(ver_cut 1-2)
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +handbook qca"
+IUSE="debug qca"
 
 DEPEND="
 	qca? ( app-crypt/qca:2-qt4 )

@@ -4,7 +4,6 @@
 EAPI=8
 MY_PV=2015.12
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="KDE Screenshot Utility"
@@ -12,7 +11,7 @@ HOMEPAGE="https://www.kde.org/applications/graphics/ksnapshot/"
 SRC_URI="mirror://kde/stable/apps/KDE4.x/utils/${PN}-${MY_PV}.tar.xz"
 
 KEYWORDS="~amd64 ~x86"
-IUSE="debug kipi +handbook"
+IUSE="debug kipi"
 
 DEPEND="
 	x11-libs/libXfixes

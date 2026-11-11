@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 KDE_REQUIRED="optional"
 CPPUNIT_REQUIRED="optional"
 inherit kde4-base
@@ -11,7 +10,7 @@ inherit kde4-base
 DESCRIPTION="Generic geographical map widget"
 HOMEPAGE="https://marble.kde.org/"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug designer-plugin +kde phonon plasma shapefile test zip +handbook"
+IUSE="debug designer-plugin +kde phonon plasma shapefile test zip"
 
 # tests fail / segfault. Last checked for 4.9.0
 RESTRICT="test"

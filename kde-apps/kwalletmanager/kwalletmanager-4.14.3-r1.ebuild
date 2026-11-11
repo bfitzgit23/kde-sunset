@@ -4,14 +4,13 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="KDE Wallet Management Tool"
 HOMEAGE="https://www.kde.org/applications/system/kwalletmanager
 https://utils.kde.org/projects/kwalletmanager"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +handbook"
+IUSE="debug"
 
 DEPEND=""
 RDEPEND="

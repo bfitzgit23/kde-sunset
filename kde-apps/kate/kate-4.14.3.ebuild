@@ -3,14 +3,13 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 KMNAME="kate"
 inherit kde4-meta kde4-functions-extra
 
 DESCRIPTION="Kate is an MDI texteditor"
 HOMEPAGE="https://www.kde.org/applications/utilities/kate http://kate-editor.org"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +handbook"
+IUSE="debug"
 
 DEPEND="
 	$(add_kdeframeworks_dep kactivities '' 4.13)

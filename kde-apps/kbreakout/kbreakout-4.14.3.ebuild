@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 DECLARATIVE_REQUIRED="always"
 inherit kde4-base
 
@@ -13,7 +12,7 @@ HOMEPAGE="
 	https://games.kde.org/game.php?game=kbreakout
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +handbook"
+IUSE="debug"
 
 DEPEND="$(add_kdeapps_dep libkdegames)"
 RDEPEND="${DEPEND}"

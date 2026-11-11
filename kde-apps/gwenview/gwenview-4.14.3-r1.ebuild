@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 OPENGL_REQUIRED="always"
 inherit kde4-base kde4-functions-extra
 
@@ -13,7 +12,7 @@ HOMEPAGE="
 	https://userbase.kde.org/Gwenview
 "
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug kipi +handbook"
+IUSE="debug kipi"
 
 # tests fail, last checked 4.11.0
 RESTRICT="test"

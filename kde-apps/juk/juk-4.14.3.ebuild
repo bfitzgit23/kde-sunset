@@ -3,13 +3,12 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="Jukebox and music manager for KDE"
 HOMEPAGE="https://www.kde.org/applications/multimedia/juk/"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +handbook"
+IUSE="debug"
 
 DEPEND="
 	>=media-libs/taglib-1.6

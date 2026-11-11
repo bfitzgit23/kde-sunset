@@ -12,7 +12,7 @@ SRC_URI="http://www.kde-apps.org/CONTENT/content-files/116892-${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug +handbook taglib"
+IUSE="debug taglib"
 
 DEPEND="taglib? ( media-libs/taglib )"
 RDEPEND="${DEPEND}

@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 
 #VIRTUALX_REQUIRED=test
 RESTRICT=test
@@ -14,7 +13,7 @@ inherit kde4-base
 DESCRIPTION="Universal document viewer based on KPDF by KDE"
 HOMEPAGE="https://okular.kde.org https://www.kde.org/applications/graphics/okular"
 KEYWORDS="amd64 x86"
-IUSE="chm crypt debug djvu dpi ebook +jpeg mobi +postscript +pdf +tiff +handbook"
+IUSE="chm crypt debug djvu dpi ebook +jpeg mobi +postscript +pdf +tiff"
 
 DEPEND="
 	media-libs/freetype

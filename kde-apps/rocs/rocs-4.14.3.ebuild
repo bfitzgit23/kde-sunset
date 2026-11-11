@@ -3,14 +3,13 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="KDE4 interface to work with Graph Theory"
 HOMEPAGE="https://www.kde.org/applications/education/rocs
 https://edu.kde.org/applications/mathematics/rocs"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +handbook"
+IUSE="debug"
 
 RDEPEND="
 	dev-libs/grantlee:0

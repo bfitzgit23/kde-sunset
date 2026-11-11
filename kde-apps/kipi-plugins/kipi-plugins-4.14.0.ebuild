@@ -9,7 +9,6 @@
 EAPI=8
 
 OPENGL_REQUIRED="optional"
-KDE_HANDBOOK="optional"
 KDE_LINGUAS="ar be bg bs ca cs da de el en_GB eo es et eu fi fr ga gl he hi hr
 hu id is it ja km ko lt lv ms nb nds nl nn oc pa pl pt pt_BR ro ru se sk sl sq
 sv th tr uk zh_CN zh_TW"
@@ -22,11 +21,10 @@ DESCRIPTION="Plugins for the KDE Image Plugin Interface"
 HOMEPAGE="http://www.digikam.org/"
 SRC_URI="mirror://kde/stable/digikam/${MY_P}.tar.bz2"
 
-LICENSE="GPL-2
-	handbook? ( FDL-1.2 )"
+LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
 SLOT="4"
-IUSE="cdr calendar crypt debug expoblending gpssync +imagemagick ipod mediawiki panorama redeyes scanner upnp videoslideshow vkontakte opengl +handbook"
+IUSE="cdr calendar crypt debug expoblending gpssync +imagemagick ipod mediawiki panorama redeyes scanner upnp videoslideshow vkontakte opengl"
 
 COMMONDEPEND="
 	>=kde-frameworks/kdelibs-4.14.14

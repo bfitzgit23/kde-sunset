@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="always"
 KMNAME="kde-runtime"
 inherit kde4-meta
 

@@ -3,12 +3,11 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 KMNAME="kde-runtime"
 inherit kde4-meta
 
 DESCRIPTION="Dialog box for setting preferences for debug output"
 KEYWORDS="amd64 x86"
-IUSE="debug +handbook"
+IUSE="debug"
 
 

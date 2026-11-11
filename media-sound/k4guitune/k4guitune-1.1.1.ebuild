@@ -4,7 +4,6 @@
 EAPI=8
 
 QT3SUPPORT_REQUIRED="true"
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="Program to tune musical instruments using your computer's mic- or line- input"
@@ -14,7 +13,7 @@ SRC_URI="http://www.kde-apps.org/CONTENT/content-files/117669-${P}.tar.gz"
 LICENSE="GPL-3"
 SLOT="4"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug +handbook"
+IUSE="debug"
 
 RDEPEND="sci-libs/fftw:3.0="
 DEPEND="${RDEPEND}"
@@ -25,7 +24,7 @@ PATCHES=( "${FILESDIR}/${P}-desktop_entry.patch" )
 
 src_configure() {
 	local mycmakeargs=(
-		-DBUILD_doc=$(usex handbook)
+		-DBUILD_doc=OFF
 	)
 
 	kde4-base_src_configure

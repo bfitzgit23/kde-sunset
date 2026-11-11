@@ -7,7 +7,6 @@ EAPI=8
 KDE_LINGUAS="ar be bg bs ca cs da de el en_GB eo es et eu fa fi fr ga gl he hi
 hr hu is it ja km ko lt lv ms nb nds ne nl nn pa pl pt pt_BR ro ru se sk sl sq
 sv th tr uk vi zh_CN zh_TW"
-KDE_HANDBOOK="optional"
 KDE_DOC_DIRS="doc-digikam doc-showfoto"
 inherit kde4-base
 
@@ -18,11 +17,10 @@ DESCRIPTION="Digital photo management application for KDE"
 HOMEPAGE="http://www.digikam.org/"
 SRC_URI="mirror://kde/stable/${PN}/${MY_P}.tar.bz2"
 
-LICENSE="GPL-2
-	handbook? ( FDL-1.2 )"
+LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
 SLOT="4"
-IUSE="addressbook debug doc gphoto2 mysql semantic-desktop +thumbnails video +handbook"
+IUSE="addressbook debug doc gphoto2 mysql semantic-desktop +thumbnails video"
 
 CDEPEND="
 	>=kde-frameworks/kdelibs-4.14.14:4

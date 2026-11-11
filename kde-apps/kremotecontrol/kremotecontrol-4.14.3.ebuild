@@ -3,14 +3,13 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="KDE frontend for the Linux Infrared Remote Control system"
 HOMEPAGE="https://www.kde.org/applications/utilities/kremotecontrol
 https://utils.kde.org/projects/kremotecontrol"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +handbook"
+IUSE="debug"
 
 RDEPEND="
 	app-misc/lirc

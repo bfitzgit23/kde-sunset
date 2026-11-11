@@ -3,14 +3,13 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 OPENGL_REQUIRED="always"
 inherit kde4-base
 
 DESCRIPTION="A game based on the \"Rubik's Cube\" puzzle"
 HOMEPAGE="https://www.kde.org/applications/games/kubrick/"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +handbook"
+IUSE="debug"
 
 RDEPEND="$(add_kdeapps_dep libkdegames)
 	virtual/glu

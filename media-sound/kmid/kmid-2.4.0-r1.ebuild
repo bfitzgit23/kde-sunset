@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="A MIDI/Karaoke player based on kdelibs"
@@ -13,7 +12,7 @@ SRC_URI="mirror://sourceforge/kmid2/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="amd64 x86"
-IUSE="debug +handbook"
+IUSE="debug"
 
 RDEPEND="
 	media-libs/alsa-lib

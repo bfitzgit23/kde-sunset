@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 CPPUNIT_REQUIRED="optional"
 OPENGL_REQUIRED="always"
 inherit kde4-base flag-o-matic
@@ -12,7 +11,7 @@ DESCRIPTION="KDE: periodic table of the elements"
 HOMEPAGE="https://www.kde.org/applications/education/kalzium
 https://edu.kde.org/kalzium"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +plasma solver test +handbook"
+IUSE="debug +plasma solver test"
 
 DEPEND="
 	$(add_kdeapps_dep libkdeedu)

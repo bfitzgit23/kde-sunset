@@ -3,13 +3,12 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="Cervisia - A KDE CVS frontend"
 HOMEPAGE="https://www.kde.org/applications/development/cervisia"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +handbook"
+IUSE="debug"
 
 RDEPEND="
 	dev-vcs/cvs

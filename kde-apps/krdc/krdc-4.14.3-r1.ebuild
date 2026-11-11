@@ -3,14 +3,13 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="KDE remote desktop connection (RDP and VNC) client"
 HOMEPAGE="https://apps.kde.org/en/krdc"
 
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +rdp telepathy vnc +handbook"
+IUSE="debug +rdp telepathy vnc"
 
 DEPEND="
 	telepathy? ( net-libs/telepathy-qt:0-qt4 )

@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 KMNAME="kdepim"
 KMMODULE="console/${PN}"
 inherit kde4-meta
@@ -11,7 +10,7 @@ inherit kde4-meta
 DESCRIPTION="Command line client for accessing the KDE addressbook"
 
 KEYWORDS="amd64 x86"
-IUSE="debug +handbook"
+IUSE="debug"
 
 DEPEND="
 	$(add_kdeapps_dep kdepimlibs)

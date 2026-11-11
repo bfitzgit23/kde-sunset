@@ -6,7 +6,6 @@ EAPI=8
 QT3SUPPORT_REQUIRED="true"
 KDE_LINGUAS="es"
 KDE_DOC_DIRS="doc/${PN}"
-KDE_HANDBOOK=optional
 inherit kde4-base
 
 DESCRIPTION="MUD client by KDE"
@@ -16,7 +15,7 @@ SRC_URI="http://www.kmuddy.com/releases/stable/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug +handbook"
+IUSE="debug"
 
 DOC=( AUTHORS README CHANGELOG Scripting-HOWTO TODO DESIGN )
 

@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="never"
 inherit kde4-base kde4-functions-extra
 
 DESCRIPTION="KDE multi-protocol IM client"

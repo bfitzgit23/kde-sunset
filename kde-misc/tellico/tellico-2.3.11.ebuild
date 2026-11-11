@@ -4,7 +4,6 @@
 EAPI=8
 
 KDE_MINIMAL="4.13.1"
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="A collection manager for the KDE environment"
@@ -14,7 +13,7 @@ SRC_URI="https://tellico-project.org/files/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="~amd64 ~x86"
-IUSE="addressbook cddb debug pdf scanner taglib v4l xmp yaz +handbook"
+IUSE="addressbook cddb debug pdf scanner taglib v4l xmp yaz"
 
 RDEPEND="
 	dev-libs/libxml2

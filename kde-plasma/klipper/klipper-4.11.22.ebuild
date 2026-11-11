@@ -3,14 +3,13 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 KMNAME="kde-workspace"
 inherit kde4-meta
 
 DESCRIPTION="Applet for KDE Plasma and X clipboard management"
 HOMEPAGE+=" https://userbase.kde.org/Klipper"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug prison +handbook"
+IUSE="debug prison"
 
 DEPEND="
 	kde-plasma/libkworkspace:4

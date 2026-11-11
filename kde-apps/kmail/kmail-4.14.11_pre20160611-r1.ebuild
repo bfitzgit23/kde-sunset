@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 KMNAME="kdepim"
 VIRTUALX_REQUIRED="test"
 WEBKIT_REQUIRED="always"
@@ -13,7 +12,7 @@ DESCRIPTION="Email client, supporting POP3 and IMAP mailboxes."
 HOMEPAGE="https://www.kde.org/applications/internet/kmail/"
 
 KEYWORDS="amd64 x86"
-IUSE="debug +handbook"
+IUSE="debug"
 
 DEPEND="
 	$(add_kdeapps_dep kdepim-common-libs '' 4.14.11_pre20160611)

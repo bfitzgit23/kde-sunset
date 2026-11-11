@@ -4,7 +4,6 @@
 EAPI=8
 
 KDE_DOC_DIRS="doc"
-KDE_HANDBOOK="optional"
 MY_P=${P/_beta/b}
 inherit kde4-base
 
@@ -15,7 +14,7 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.bz2"
 LICENSE="FDL-1.2 GPL-2"
 SLOT="4"
 KEYWORDS="amd64 x86"
-IUSE="debug +pdf +png +handbook"
+IUSE="debug +pdf +png"
 
 DEPEND="
 	x11-misc/shared-mime-info

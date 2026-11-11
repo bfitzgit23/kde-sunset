@@ -5,7 +5,6 @@ EAPI=8
 
 KDE_SCM="git"
 if [[ ${PV} != 9999* ]]; then
-	KDE_HANDBOOK="optional"
 	KDE_DOC_DIRS="doc"
 
 	SRC_URI="http://deb.debian.org/debian/pool/main/libk/${PN}/${P/-/_}.orig.tar.bz2 -> ${MY_P}.tar.bz2"

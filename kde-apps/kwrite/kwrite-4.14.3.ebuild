@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 KMNAME="kate"
 KMEXTRACTONLY="doc/kate"
 inherit kde4-meta
@@ -11,7 +10,7 @@ inherit kde4-meta
 DESCRIPTION="KDE MDI editor/IDE"
 HOMEPAGE="https://www.kde.org/applications/utilities/kwrite"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +handbook"
+IUSE="debug"
 
 RDEPEND="
 	$(add_kdeapps_dep katepart)

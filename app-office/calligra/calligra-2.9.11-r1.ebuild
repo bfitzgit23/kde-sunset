@@ -8,7 +8,6 @@
 EAPI=8
 
 CHECKREQS_DISK_BUILD="4G"
-KDE_HANDBOOK="optional"
 KDE_LINGUAS_LIVE_OVERRIDE="true"
 OPENGL_REQUIRED="optional"
 WEBKIT_REQUIRED="optional"
@@ -21,12 +20,12 @@ SRC_URI="mirror://kde/stable/${P}/${P}.tar.xz"
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="amd64 x86"
-IUSE="color-management +crypt +eigen +exif fftw +fontconfig freetds +glew +glib +gsf gsl import-filter +jpeg +lcms mysql openexr +pdf +pim postgres spacenav sybase test tiff +threads +truetype +xml opengl webkit +handbook"
+IUSE="color-management +crypt +eigen +exif fftw +fontconfig freetds +glew +glib +gsf gsl import-filter +jpeg +lcms mysql openexr +pdf +pim postgres spacenav sybase test tiff +threads +truetype +xml opengl webkit"
 
 # Don't use Active, it's broken on desktops.
 CAL_FTS="author braindump flow gemini karbon kexi krita plan sheets stage words"
 for cal_ft in ${CAL_FTS}; do
-	IUSE+=" calligra_features_${cal_ft}"
+	IUSE+="calligra_features_${cal_ft}"
 done
 unset cal_ft
 

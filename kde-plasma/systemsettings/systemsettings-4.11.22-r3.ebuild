@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 KMNAME="kde-workspace"
 OPENGL_REQUIRED="optional"
 VIRTUALX_REQUIRED="test"
@@ -12,7 +11,7 @@ inherit kde4-meta
 
 DESCRIPTION="System settings utility"
 HOMEPAGE+=" https://userbase.kde.org/System_Settings"
-IUSE="debug gtk +kscreen +usb opengl +handbook"
+IUSE="debug gtk +kscreen +usb opengl"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 
 COMMONDEPEND="

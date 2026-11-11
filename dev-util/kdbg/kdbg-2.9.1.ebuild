@@ -4,7 +4,6 @@
 EAPI=8
 
 KDE_LINGUAS="cs da de es fr hr hu it ja nb nn pl pt ro ru sk sr sv tr zh_CN"
-KDE_HANDBOOK="optional"
 QT3SUPPORT_REQUIRED="true"
 inherit kde4-base
 
@@ -15,7 +14,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug +handbook"
+IUSE="debug"
 
 RDEPEND="sys-devel/gdb"
 DEPEND="${RDEPEND}"

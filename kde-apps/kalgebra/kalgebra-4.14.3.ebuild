@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 DECLARATIVE_REQUIRED="always"
 OPENGL_REQUIRED="optional"
 inherit kde4-base
@@ -12,7 +11,7 @@ DESCRIPTION="MathML-based graph calculator for KDE"
 HOMEPAGE="https://www.kde.org/applications/education/kalgebra
 https://edu.kde.org/kalgebra"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug opengl +handbook"
+IUSE="debug opengl"
 
 DEPEND="
 	$(add_kdeapps_dep analitza 'opengl?')

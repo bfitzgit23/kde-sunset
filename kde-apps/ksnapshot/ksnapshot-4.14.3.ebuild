@@ -3,13 +3,12 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="KDE Screenshot Utility"
 HOMEPAGE="https://www.kde.org/applications/graphics/ksnapshot/"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug kipi +handbook"
+IUSE="debug kipi"
 
 DEPEND="
 	x11-libs/libXfixes

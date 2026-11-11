@@ -4,7 +4,6 @@
 EAPI=8
 
 KDE_REQUIRED="never"
-KDE_HANDBOOK="optional"
 SQL_REQUIRED="always"
 VIRTUALX_REQUIRED="test"
 VIRTUALDBUS_TEST="true"
@@ -17,7 +16,7 @@ SRC_URI="mirror://kde/stable/${PN}/${PV}/src/${P}.tar.xz"
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="amd64 x86"
-IUSE="debug ipod lastfm mp3tunes mtp ofa test +utils +handbook"
+IUSE="debug ipod lastfm mp3tunes mtp ofa test +utils"
 
 # ipod requires gdk enabled and also gtk compiled in libgpod
 COMMONDEPEND="

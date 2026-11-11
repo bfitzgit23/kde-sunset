@@ -3,13 +3,12 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 KMNAME="kde-runtime"
 inherit kde4-meta
 
 DESCRIPTION="The KDE Control Center"
 KEYWORDS="amd64 x86"
-IUSE="debug +handbook"
+IUSE="debug"
 
 RDEPEND="
 	$(add_kdeapps_dep zeroconf-ioslave)

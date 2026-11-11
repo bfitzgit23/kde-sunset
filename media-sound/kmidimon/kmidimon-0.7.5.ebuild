@@ -4,7 +4,6 @@
 EAPI=8
 
 KDE_LINGUAS="cs es ja"
-KDE_HANDBOOK="optional"
 QT3SUPPORT_REQUIRED="true"
 inherit kde4-base
 
@@ -15,7 +14,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="amd64 x86"
-IUSE="debug +handbook"
+IUSE="debug"
 
 RDEPEND="
 	media-libs/alsa-lib

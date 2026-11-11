@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 CPPUNIT_REQUIRED="optional"
 inherit kde4-base
 
@@ -12,7 +11,7 @@ SRC_URI="https://dev.gentoo.org/~asturm/distfiles/${P/10_p/11_pre}.tar.xz"
 
 KEYWORDS="~amd64 ~x86"
 LICENSE="LGPL-2.1"
-IUSE="debug ldap prison test +handbook"
+IUSE="debug ldap prison test"
 
 # some akonadi tests timeout, that probably needs more work as its ~700 tests
 RESTRICT="test"
@@ -42,7 +41,7 @@ S="${WORKDIR}/${P/10_p/11_pre}"
 src_configure() {
 	local mycmakeargs=(
 		-DBUILD_TOOLS=OFF
-		-DBUILD_doc=$(usex handbook)
+		-DBUILD_doc=OFF
 		-DCMAKE_DISABLE_FIND_PACKAGE_Ldap="$(usex !ldap)"
 		-DCMAKE_DISABLE_FIND_PACKAGE_Prison="$(usex !prison)"
 	)

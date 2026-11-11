@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/kenvy24/${P}-src.tgz"
 LICENSE="GPL-3"
 SLOT="4"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug +handbook"
+IUSE="debug"
 
 DEPEND="
 	media-libs/alsa-lib

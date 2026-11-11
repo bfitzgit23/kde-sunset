@@ -3,12 +3,11 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="KDE timer for making a fine cup of tea"
 HOMEPAGE="https://www.kde.org/applications/games/kteatime"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +handbook"
+IUSE="debug"
 
 

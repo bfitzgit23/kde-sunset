@@ -4,13 +4,12 @@
 EAPI=8
 
 DECLARATIVE_REQUIRED="always"
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="Language learning application that helps improving pronunciation skills"
 HOMEPAGE="https://edu.kde.org/applications/language/artikulate"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +handbook"
+IUSE="debug"
 
 DEPEND="
 	dev-qt/qtxmlpatterns:4

@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 KMNAME="kde-workspace"
 OPENGL_REQUIRED="optional"
 inherit kde4-meta
@@ -11,7 +10,7 @@ inherit kde4-meta
 DESCRIPTION="A utility that provides information about a computer system"
 HOMEPAGE="https://www.kde.org/applications/system/kinfocenter/"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug ieee1394 opengl +handbook"
+IUSE="debug ieee1394 opengl"
 
 DEPEND="
 	sys-apps/pciutils

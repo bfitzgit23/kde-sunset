@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK=optional
 inherit kde4-base
 
 DESCRIPTION="KDE PIM internationalization package"
@@ -18,7 +17,7 @@ RDEPEND="
 "
 
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="+handbook"
+IUSE=""
 
 MY_LANGS="ar bg bs ca ca@valencia cs da de el en_GB es et eu fa fi fr ga gl he
 hi hr hu ia id is it ja kk km ko lt lv mr nb nds nl nn pa pl pt pt_BR ro ru sk
@@ -99,7 +98,7 @@ src_prepare() {
 
 src_configure() {
 	mycmakeargs=(
-		-DBUILD_docs="$(usex handbook)"
+		-DBUILD_docs=OFF
 	)
 	[[ -n ${A} ]] && kde4-base_src_configure
 }

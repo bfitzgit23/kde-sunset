@@ -4,7 +4,6 @@
 EAPI=8
 
 KDE_LINGUAS="cs de es fr it pl pt_BR ru uk"
-KDE_HANDBOOK="optional"
 MY_P="knc${PV//./}"
 inherit kde4-base
 
@@ -15,7 +14,7 @@ SRC_URI="ftp://ftp.buzuluk.cz/pub/alo/knutclient/stable/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug +handbook"
+IUSE="debug"
 
 PATCHES=(
 	"${FILESDIR}/${P}-desktop.patch"

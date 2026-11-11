@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 KMNAME="kdepim"
 inherit kde4-meta
 
@@ -11,7 +10,7 @@ DESCRIPTION="Viewer for TNEF attachments"
 
 KEYWORDS="amd64 x86"
 LICENSE="LGPL-2.1"
-IUSE="debug +handbook"
+IUSE="debug"
 
 DEPEND="
 	$(add_kdeapps_dep kdepimlibs)

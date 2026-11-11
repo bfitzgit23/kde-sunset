@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="User friendly IRC Client for KDE4"
@@ -11,10 +10,10 @@ HOMEPAGE="https://kde.org/applications/en/internet/org.kde.konversation
 https://konversation.kde.org"
 SRC_URI="mirror://kde/stable/${PN}/${PV}/src/${P}.tar.xz"
 
-LICENSE="GPL-2 handbook? ( FDL-1.2 )"
+LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="amd64 x86"
-IUSE="+crypt debug +handbook"
+IUSE="+crypt debug"
 
 DEPEND="
 	$(add_kdeapps_dep kdepimlibs)

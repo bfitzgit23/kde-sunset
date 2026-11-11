@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 KMNAME="kde-workspace"
 CPPUNIT_REQUIRED="optional"
 VIRTUALX_REQUIRED="test"
@@ -13,7 +12,7 @@ inherit kde4-meta
 DESCRIPTION="Network-enabled task manager and system monitor"
 HOMEPAGE+=" https://userbase.kde.org/KSysGuard"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug lm-sensors test webkit +handbook"
+IUSE="debug lm-sensors test webkit"
 
 DEPEND="
 	sys-libs/zlib

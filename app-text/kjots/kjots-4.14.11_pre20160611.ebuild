@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 KDE_MINIMAL="${PV}"
 KMNAME="kdepim"
 inherit kde4-meta
@@ -15,7 +14,7 @@ SRC_URI="https://dev.gentoo.org/~asturm/distfiles/${KMNAME}-${PV}.tar.xz"
 LICENSE="GPL-2"
 SLOT=4/$(ver_cut 1-2)
 KEYWORDS="amd64 x86"
-IUSE="debug +handbook"
+IUSE="debug"
 
 DEPEND="
 	$(add_kdeapps_dep kdepim-common-libs)

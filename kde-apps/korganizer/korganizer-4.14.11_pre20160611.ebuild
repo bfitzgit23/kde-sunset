@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 KMNAME="kdepim"
 inherit kde4-meta
 
@@ -11,7 +10,7 @@ DESCRIPTION="Organizational assistant, providing calendars and other similar fun
 HOMEPAGE="https://www.kde.org/applications/office/korganizer/"
 
 KEYWORDS="amd64 x86"
-IUSE="debug +handbook"
+IUSE="debug"
 
 DEPEND="
 	$(add_kdeapps_dep kdepim-common-libs '' 4.14.11_pre20160611)

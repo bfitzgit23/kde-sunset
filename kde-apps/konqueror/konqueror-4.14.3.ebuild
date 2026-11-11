@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 KMNAME="kde-baseapps"
 inherit flag-o-matic kde4-meta
 
@@ -13,7 +12,7 @@ HOMEPAGE="
 	http://konqueror.org/
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="+bookmarks debug svg +handbook"
+IUSE="+bookmarks debug svg"
 # 4 of 4 tests fail. Last checked for 4.0.3
 RESTRICT="test"
 

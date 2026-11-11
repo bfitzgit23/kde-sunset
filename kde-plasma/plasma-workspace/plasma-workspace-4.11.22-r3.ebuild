@@ -4,7 +4,6 @@
 EAPI=8
 
 DECLARATIVE_REQUIRED="optional"
-KDE_HANDBOOK="optional"
 KMNAME="kde-workspace"
 KMMODULE="plasma"
 OPENGL_REQUIRED="always"
@@ -13,7 +12,7 @@ inherit kde4-meta
 
 DESCRIPTION="Plasma: KDE desktop framework"
 KEYWORDS="~amd64 ~arm ~x86 ~amd64-linux ~x86-linux"
-IUSE="debug gps json +pim qalculate +declarative webkit +dbusmenu +handbook"
+IUSE="debug gps json +pim qalculate +declarative webkit +dbusmenu"
 
 COMMONDEPEND="
 	dbusmenu? ( dev-libs/libdbusmenu-qt[qt4(-)] )

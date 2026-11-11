@@ -4,7 +4,6 @@
 EAPI=8
 
 MY_P="${P/_/-}"
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="Advanced twin-panel (commander-style) file-manager with many extras"
@@ -14,7 +13,7 @@ SRC_URI="mirror://sourceforge/krusader/${MY_P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="amd64 x86"
-IUSE="+bookmarks debug +handbook"
+IUSE="+bookmarks debug"
 
 COMMON_DEPEND="
 	$(add_kdeapps_dep libkonq)

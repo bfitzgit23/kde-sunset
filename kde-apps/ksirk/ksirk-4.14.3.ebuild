@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="Port of the board game risk"
@@ -12,7 +11,7 @@ HOMEPAGE="
 	https://games.kde.org/game.php?game=ksirk
 "
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +handbook"
+IUSE="debug"
 
 DEPEND="
 	app-crypt/qca:2-qt4

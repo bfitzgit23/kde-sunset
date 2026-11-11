@@ -3,12 +3,11 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="KDE kioslaves from the kdemultimedia package"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug flac vorbis +handbook"
+IUSE="debug flac vorbis"
 
 DEPEND="
 	$(add_kdeapps_dep libkcddb)

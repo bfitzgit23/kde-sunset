@@ -3,14 +3,13 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="KDE: A powerful flashcard and vocabulary learning program"
 HOMEPAGE="https://www.kde.org/applications/education/kwordquiz
 https://edu.kde.org/kwordquiz"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +handbook"
+IUSE="debug"
 
 DEPEND="
 	$(add_kdeapps_dep libkdeedu)

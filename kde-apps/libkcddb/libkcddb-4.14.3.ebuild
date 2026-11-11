@@ -3,12 +3,11 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="KDE library for CDDB"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug musicbrainz +handbook"
+IUSE="debug musicbrainz"
 
 # tests require network access and compare static data with online data
 # bug 280996

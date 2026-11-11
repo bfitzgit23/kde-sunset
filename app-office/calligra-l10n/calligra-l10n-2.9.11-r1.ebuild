@@ -18,7 +18,7 @@ RDEPEND="!app-office/koffice-l10n"
 
 CAL_FTS="braindump flow karbon kexi krita plan sheets stage words"
 for cal_ft in ${CAL_FTS}; do
-	IUSE+=" calligra_features_${cal_ft}"
+	IUSE+="calligra_features_${cal_ft}"
 done
 unset cal_ft
 

@@ -3,14 +3,13 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 CPPUNIT_REQUIRED="optional"
 inherit kde4-base
 
 DESCRIPTION="Common library for KDE PIM apps"
 KEYWORDS="amd64 x86"
 LICENSE="LGPL-2.1"
-IUSE="debug ldap prison test +handbook"
+IUSE="debug ldap prison test"
 
 # some akonadi tests timeout, that probably needs more work as its ~700 tests
 RESTRICT="test"
@@ -40,7 +39,7 @@ PATCHES=(
 src_configure() {
 	local mycmakeargs=(
 		-DBUILD_TOOLS=OFF
-		-DBUILD_doc=$(usex handbook)
+		-DBUILD_doc=OFF
 		-DCMAKE_DISABLE_FIND_PACKAGE_Ldap="$(usex !ldap)"
 		-DCMAKE_DISABLE_FIND_PACKAGE_Prison="$(usex !prison)"
 	)

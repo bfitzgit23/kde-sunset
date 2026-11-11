@@ -4,7 +4,6 @@
 EAPI=8
 
 KMNAME="konsole"
-KDE_HANDBOOK="never"
 VIRTUALX_REQUIRED="test"
 VIRTUALDBUS_TEST="true"
 inherit kde4-base

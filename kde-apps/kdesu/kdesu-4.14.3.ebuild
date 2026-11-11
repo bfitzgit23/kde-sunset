@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 KMNAME="kde-runtime"
 inherit kde4-meta
 
@@ -12,7 +11,7 @@ inherit kde4-meta
 DESCRIPTION="KDE: gui for su(1)"
 HOMEPAGE+=" https://techbase.kde.org/Projects/kdesu"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +handbook"
+IUSE="debug"
 
 src_configure() {
 	# Upstream moved kdesu to libexec first, then decided to move it back

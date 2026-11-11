@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="never"
 OPENGL_REQUIRED="optional"
 inherit kde4-base
 

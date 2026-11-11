@@ -3,13 +3,12 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="KDE program that clicks the mouse for you"
 HOMEPAGE="https://www.kde.org/applications/utilities/kmousetool/"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +handbook"
+IUSE="debug"
 
 RDEPEND="
 	$(add_kdeapps_dep knotify)

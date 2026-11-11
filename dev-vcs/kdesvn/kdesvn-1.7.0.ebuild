@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 KDE_LINGUAS="cs de el es fr it ja lt pt_BR ro ru"
 KDE_LINGUAS_LIVE_OVERRIDE="true"
 inherit flag-o-matic kde4-base
@@ -17,7 +16,7 @@ fi
 LICENSE="GPL-2"
 KEYWORDS="amd64 x86"
 SLOT="4"
-IUSE="debug +handbook"
+IUSE="debug"
 
 DEPEND="
 	dev-libs/apr:1

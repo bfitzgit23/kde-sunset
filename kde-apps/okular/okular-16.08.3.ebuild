@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 #VIRTUALX_REQUIRED=test
 inherit kde4-base
 
@@ -11,7 +10,7 @@ DESCRIPTION="Universal document viewer based on KPDF"
 HOMEPAGE="https://okular.kde.org https://apps.kde.org/en/okular"
 
 KEYWORDS="amd64 x86"
-IUSE="chm crypt debug djvu dpi ebook +jpeg mobi +postscript +pdf +tiff +handbook"
+IUSE="chm crypt debug djvu dpi ebook +jpeg mobi +postscript +pdf +tiff"
 
 RESTRICT+=" test"
 # test 2: parttest hangs

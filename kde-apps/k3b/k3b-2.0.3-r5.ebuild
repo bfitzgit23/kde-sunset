@@ -4,7 +4,6 @@
 EAPI=8
 
 MULTIMEDIA_REQUIRED="always"
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="Full-featured burning and ripping application by KDE"
@@ -14,7 +13,7 @@ SRC_URI="mirror://kde/stable/${PN}/${P}a.tar.xz"
 LICENSE="GPL-2 FDL-1.2"
 SLOT="4"
 KEYWORDS="amd64 x86"
-IUSE="debug dvd encode ffmpeg flac mad mp3 musepack sndfile sox taglib vcd vorbis +handbook"
+IUSE="debug dvd encode ffmpeg flac mad mp3 musepack sndfile sox taglib vcd vorbis"
 
 CDEPEND="
 	$(add_kdeapps_dep libkcddb)

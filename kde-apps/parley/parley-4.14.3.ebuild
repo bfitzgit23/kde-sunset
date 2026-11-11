@@ -3,14 +3,13 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="KDE Educational: vocabulary trainer"
 HOMEPAGE="https://www.kde.org/applications/education/parley
 https://edu.kde.org/applications/school/parley"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug +plasma +handbook"
+IUSE="debug +plasma"
 
 DEPEND="
 	$(add_kdeapps_dep libkdeedu)

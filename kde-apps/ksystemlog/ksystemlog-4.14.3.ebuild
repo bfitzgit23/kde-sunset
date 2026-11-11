@@ -3,14 +3,13 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 VIRTUALX_REQUIRED=test
 inherit kde4-base
 
 DESCRIPTION="KDE system log viewer"
 HOMEPAGE="https://www.kde.org/applications/system/ksystemlog/"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="debug test +handbook"
+IUSE="debug test"
 
 RESTRICT=test
 # bug 378101

@@ -7,7 +7,6 @@ KDE_LINGUAS="af ar be bg br ca ca@valencia cs cy da de el en_GB eo es et eu fa
 fi fr ga gl he hi hr hu is it ja km ko lt lv mai mk ms nb nds ne nl nn oc
 pa pl pt pt_BR ro ru se sk sl sv ta tg th tr uk vi wa xh zh_CN zh_HK zh_TW"
 KDE_DOC_DIRS="doc-translations/%lingua_${PN}"
-KDE_HANDBOOK="optional"
 QT3SUPPORT_REQUIRED="true"
 inherit kde4-base
 
@@ -21,7 +20,7 @@ SRC_URI="mirror://kde/stable/${KDE_VERSION}/src/extragear/${MY_P}.tar.bz2"
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="4"
 KEYWORDS="~amd64 ~x86"
-IUSE="debug +handbook"
+IUSE="debug"
 
 RDEPEND="
 	x11-libs/libX11

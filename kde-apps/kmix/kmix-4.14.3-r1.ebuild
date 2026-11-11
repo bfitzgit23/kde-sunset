@@ -3,13 +3,12 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 inherit kde4-base
 
 DESCRIPTION="KDE mixer gui"
 HOMEPAGE="https://www.kde.org/applications/multimedia/kmix/"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
-IUSE="alsa debug canberra +handbook"
+IUSE="alsa debug canberra"
 
 DEPEND="
 	alsa? ( >=media-libs/alsa-lib-1.0.14a )

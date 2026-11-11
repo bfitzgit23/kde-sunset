@@ -3,7 +3,6 @@
 
 EAPI=8
 
-KDE_HANDBOOK="optional"
 KDE_LINGUAS="de"
 inherit kde4-base
 
@@ -14,7 +13,7 @@ SRC_URI="https://phabricator.kde.org/file/download/jnmscnve2mrtdqqhsmw2/PHID-FIL
 LICENSE="GPL-2"
 SLOT="4"
 KEYWORDS="amd64 x86"
-IUSE="debug +handbook"
+IUSE="debug"
 
 DEPEND="media-libs/libpng:0"
 
