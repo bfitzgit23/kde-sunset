@@ -1,12 +1,12 @@
---- a/cmake/modules/KDE4Macros.cmake	2026-11-11 18:32:46.272860900 -0500
-+++ b/cmake/modules/KDE4Macros.cmake	2026-11-11 18:32:46.333551300 -0500
+--- a/cmake/modules/KDE4Macros.cmake	2026-11-11 18:35:34.099763800 -0500
++++ b/cmake/modules/KDE4Macros.cmake	2026-11-11 18:35:34.151816800 -0500
 @@ -1375,7 +1375,8 @@
                         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
                         COMMENT "Generating ${HELPER_ID}.policy"
                         DEPENDS ${_KDE4_KAUTH_POLICY_GEN_EXECUTABLE_DEP})
 -    add_custom_target("actions for ${HELPER_ID}" ALL DEPENDS ${_output})
-+    string(REGEX REPLACE "[^A-Za-z0-9_]" "_" _actions_target "${HELPER_ID}")
-+    add_custom_target("actions for ${_actions_target}" ALL DEPENDS ${_output})
++    string(REGEX REPLACE "[^A-Za-z0-9_.+-]" "_" _actions_target "actions for ${HELPER_ID}")
++    add_custom_target("${_actions_target}" ALL DEPENDS ${_output})
  
      install(FILES ${_output} DESTINATION ${KDE4_AUTH_POLICY_FILES_INSTALL_DIR})
    endif()
