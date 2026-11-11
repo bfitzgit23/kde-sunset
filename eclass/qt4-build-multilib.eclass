@@ -849,11 +849,9 @@ qt4_get_mkspec() {
 			die "qt4-build-multilib.eclass: unsupported compiler '$(tc-getCXX)'" ;;
 	esac
 
-	# Add -64 for 64-bit prefix profiles
-	if use amd64-linux || use ppc64-linux ||
-		use x64-macos ||
-		use sparc64-solaris || use x64-solaris
-	then
+	# Add -64 for 64-bit prefix profiles.  The old checks used Prefix
+	# KEYWORDS (amd64-linux, etc.) as USE flags, but they are not in IUSE.
+	if [[ -n ${EPREFIX} && ${CHOST} == *64-* ]]; then
 		[[ -d ${S}/mkspecs/${spec}-64 ]] && spec+=-64
 	fi
 
