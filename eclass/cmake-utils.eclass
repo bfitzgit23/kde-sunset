@@ -489,6 +489,32 @@ _cmake_cleanup_cmake() {
 	_cmake_modify-cmakelists
 }
 
+# CMake 4 removed export_library_dependencies() (CMP0033), requires an
+# explicit cmake_minimum_required (CMP0000) and dropped CMP0022's OLD
+# behavior.  Qt4/KDE4 sources predate all three, so repair them once the
+# patches are applied.  Other projects are left completely untouched.
+_cmake_utils_cmake4_repair() {
+	local dir=${CMAKE_USE_DIR:-${S}}
+	local cmake_lists=${dir}/CMakeLists.txt
+
+	[[ -f ${cmake_lists} ]] || return 0
+	grep -Eq 'find_package[[:space:]]*\([[:space:]]*(Qt4|KDE4)' "${cmake_lists}" || return 0
+
+	if ! grep -q 'cmake_minimum_required' "${cmake_lists}"; then
+		{ printf '%s\n' 'cmake_minimum_required(VERSION 3.5)'; cat "${cmake_lists}"; } > "${cmake_lists}.cmake4tmp"
+		mv "${cmake_lists}.cmake4tmp" "${cmake_lists}" || die "failed to add cmake_minimum_required"
+	fi
+	if ! grep -q 'CMake 4 removed export_library_dependencies' "${cmake_lists}"; then
+		{ printf '%s\n' '# Compatibility shim: CMake 4 removed export_library_dependencies().' 'if(NOT COMMAND export_library_dependencies)' 'function(export_library_dependencies _kde4_file)' 'file(WRITE "${_kde4_file}" "")' 'endfunction()' 'endif()'; cat "${cmake_lists}"; } > "${cmake_lists}.cmake4tmp"
+		mv "${cmake_lists}.cmake4tmp" "${cmake_lists}" || die "failed to add export_library_dependencies shim"
+	fi
+
+	local _cmake_file
+	while IFS= read -r _cmake_file; do
+		sed -i -e 's/^[[:space:]]*export_library_dependencies[[:space:]]*(\(.*\))[[:space:]]*$/file(WRITE \1 "")/I' -e '/target_link_libraries/ s/\bLINK_INTERFACE_LIBRARIES\b/INTERFACE/g' -e 's/\bLINK_INTERFACE_LIBRARIES\b/INTERFACE_LINK_LIBRARIES/g' "${_cmake_file}" || die "failed to rewrite CMake 4 removals in ${_cmake_file}"
+	done < <(grep -rli -e 'export_library_dependencies' -e 'LINK_INTERFACE_LIBRARIES' "${dir}" --include='CMakeLists.txt' --include='*.cmake' 2>/dev/null)
+}
+
 # @FUNCTION: cmake-utils_src_prepare
 # @DESCRIPTION:
 # Apply ebuild and user patches.
@@ -509,6 +535,8 @@ cmake-utils_src_prepare() {
 	fi
 
 	popd > /dev/null || die
+
+	_cmake_utils_cmake4_repair
 
 	# make ${S} read-only in order to detect broken build-systems
 	if [[ ${CMAKE_UTILS_QA_SRC_DIR_READONLY} && ! ${CMAKE_IN_SOURCE_BUILD} ]]; then
