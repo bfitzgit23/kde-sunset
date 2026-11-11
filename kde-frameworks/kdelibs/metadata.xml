@@ -3,6 +3,8 @@
 <pkgmetadata>
 	<!-- maintainer-needed -->
 	<use>
+		<flag name="dbusmenu">Enable the DBusMenu notification-area menu protocol</flag>
+		<flag name="declarative">Build KDeclarative and enable Plasma QML support; required by plasma</flag>
 		<flag name="opengl">Enable OpenGL support for Plasma (GLApplet)</flag>
 		<flag name="qt3support">Enable kde3support/qt3support for very old applications</flag>
 	</use>

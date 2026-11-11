@@ -1,0 +1,152 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -54,6 +54,12 @@
+ ############### Give the user the option to build without Plasma-4 support ###############
+ option(WITH_PLASMA4SUPPORT "Enables the deprecated Plasma-4 Workspace support" "ON")
+ 
++############### Give the user the option to build without KDeclarative support ###############
++option(WITH_KDECLARATIVE "Enables the KDeclarative library and Plasma QML support" "ON")
++
++############### Give the user the option to build without DBusMenu support ###############
++option(WITH_DBUSMENU "Enables the DBusMenu notification-area menu protocol" "ON")
++
+ ############### Load the CTest options ###############
+ # CTestCustom.cmake has to be in the CTEST_BINARY_DIR.
+ # in the KDE build system, this is the same as CMAKE_BINARY_DIR.
+@@ -149,11 +155,17 @@
+                        TYPE OPTIONAL
+                       )
+ 
+-find_package(DBusMenuQt)
+-set_package_properties(DBusMenuQt PROPERTIES DESCRIPTION "Support for notification area menus via the DBusMenu protocol"
+-                       URL "https://launchpad.net/libdbusmenu-qt"
+-                       TYPE REQUIRED
+-                      )
++if(WITH_DBUSMENU)
++  find_package(DBusMenuQt)
++  set_package_properties(DBusMenuQt PROPERTIES DESCRIPTION "Support for notification area menus via the DBusMenu protocol"
++                         URL "https://launchpad.net/libdbusmenu-qt"
++                         TYPE REQUIRED
++                        )
++endif(WITH_DBUSMENU)
++
++if(WITH_DBUSMENU AND DBusMenuQt_FOUND)
++  add_definitions(-DHAVE_DBUSMENUQT)
++endif(WITH_DBUSMENU AND DBusMenuQt_FOUND)
+ 
+ ################# Disallow in-source build #################
+ 
+@@ -361,16 +373,18 @@
+ add_subdirectory( dnssd )
+ add_subdirectory( kross )
+ add_subdirectory( security )
+-if(NOT WINCE AND WITH_PLASMA4SUPPORT)
++if(NOT WINCE AND WITH_PLASMA4SUPPORT AND WITH_KDECLARATIVE)
+ add_subdirectory( plasma )
+-endif(NOT WINCE AND WITH_PLASMA4SUPPORT)
++endif(NOT WINCE AND WITH_PLASMA4SUPPORT AND WITH_KDECLARATIVE)
+ add_subdirectory( kunitconversion )
+ if(WITH_KDEWEBKIT)
+ add_subdirectory( kdewebkit )
+ endif(WITH_KDEWEBKIT)
+ add_subdirectory( includes )
+ 
++if(WITH_KDECLARATIVE)
+ add_subdirectory( experimental )
++endif(WITH_KDECLARATIVE)
+ macro_optional_add_subdirectory( doc  )
+ 
+ ################# write dependency file which will be installed #################
+--- a/includes/CMakeLists.txt
++++ b/includes/CMakeLists.txt
+@@ -1051,7 +1051,7 @@
+ DESTINATION ${INCLUDE_INSTALL_DIR}/KDE/Nepomuk/Vocabulary COMPONENT Devel)
+ 
+ 
+-if(WITH_PLASMA4SUPPORT)
++if(WITH_PLASMA4SUPPORT AND WITH_KDECLARATIVE)
+ install(FILES
+   Plasma/AbstractDialogManager
+   Plasma/AbstractRunner
+@@ -1146,7 +1146,7 @@
+   Plasma/AnimationDriver
+ DESTINATION ${INCLUDE_INSTALL_DIR}/KDE/Plasma COMPONENT Devel)
+ endif(NOT KDE_NO_DEPRECATED)
+-endif(WITH_PLASMA4SUPPORT)
++endif(WITH_PLASMA4SUPPORT AND WITH_KDECLARATIVE)
+ 
+ 
+ install(FILES
+--- a/kdeui/CMakeLists.txt
++++ b/kdeui/CMakeLists.txt
+@@ -31,8 +31,11 @@
+  ${CMAKE_CURRENT_SOURCE_DIR}/windowmanagement
+  ${CMAKE_CURRENT_SOURCE_DIR}/xmlgui
+  ${CMAKE_CURRENT_BINARY_DIR}/util
+- ${DBUSMENUQT_INCLUDE_DIR}
+ )
++
++if(WITH_DBUSMENU AND DBusMenuQt_FOUND)
++  include_directories(${DBUSMENUQT_INCLUDE_DIR})
++endif(WITH_DBUSMENU AND DBusMenuQt_FOUND)
+ if(QCA2_FOUND)
+   include_directories(
+    ${QCA2_INCLUDE_DIR}
+@@ -426,9 +429,9 @@
+ target_link_libraries(kdeui LINK_PRIVATE ${KDE4_KDECORE_LIBS} ${X11_LIBRARIES} ${QT_QTGUI_LIBRARY}
+                             ${QT_QTXML_LIBRARY} ${KDEUI_EXTRA_LIBS} ${QT_QTNETWORK_LIBRARY})
+ 
+-if(NOT WINCE)
++if(NOT WINCE AND WITH_DBUSMENU AND DBusMenuQt_FOUND)
+ target_link_libraries(kdeui  LINK_PRIVATE ${QT_QTSVG_LIBRARY} ${DBUSMENUQT_LIBRARIES})
+-endif(NOT WINCE)
++endif(NOT WINCE AND WITH_DBUSMENU AND DBusMenuQt_FOUND)
+ 
+ if(MINGW)
+    target_link_libraries(kdeui LINK_PRIVATE gdi32 oleaut32)
+--- a/kdeui/notifications/kstatusnotifieritem.cpp
++++ b/kdeui/notifications/kstatusnotifieritem.cpp
+@@ -45,12 +45,15 @@
+ 
+ #include <netinet/in.h>
+ 
++#ifdef HAVE_DBUSMENUQT
+ #include <dbusmenuexporter.h>
++#endif
+ 
+ #include "statusnotifieritemadaptor.h"
+ 
+ static const QString s_statusNotifierWatcherServiceName("org.kde.StatusNotifierWatcher");
+ 
++#ifdef HAVE_DBUSMENUQT
+ /**
+  * Specialization to provide access to KDE icon names
+  */
+@@ -97,6 +100,7 @@
+ #endif
+     }
+ };
++#endif
+ 
+ KStatusNotifierItem::KStatusNotifierItem(QObject *parent)
+       : QObject(parent),
+@@ -444,6 +448,7 @@
+     if (d->systemTrayIcon) {
+         d->systemTrayIcon->setContextMenu(menu);
+     } else if (d->menu != menu) {
++#ifdef HAVE_DBUSMENUQT
+         if (getenv("KSNI_NO_DBUSMENU")) {
+             // This is a hack to make it possible to disable DBusMenu in an
+             // application. The string "/NO_DBUSMENU" must be the same as in
+@@ -455,6 +460,11 @@
+             d->menuObjectPath = "/MenuBar";
+             new KDBusMenuExporter(d->menuObjectPath, menu, d->statusNotifierItemDBus->dbusConnection());
+         }
++#else
++        // DBusMenu support was compiled out; use the legacy menu path.
++        d->menuObjectPath = "/NO_DBUSMENU";
++        menu->installEventFilter(this);
++#endif
+ 
+         connect(menu, SIGNAL(aboutToShow()), this, SLOT(contextMenuAboutToShow()));
+     }
