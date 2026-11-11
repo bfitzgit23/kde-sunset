@@ -1,0 +1,55 @@
+--- a/cmake/modules/KDE4Macros.cmake
++++ b/cmake/modules/KDE4Macros.cmake
+@@ -705,7 +705,9 @@
+    endif (KDE4_ENABLE_FINAL)
+ 
+    if (NOT CMAKE_AUTOMOC)
+-      _automoc4_kde4_post_target_handling(${_target_NAME})
++      if (TARGET ${_target_NAME}_automoc)
++         _automoc4_kde4_post_target_handling(${_target_NAME})
++      endif()
+    endif()
+ 
+    if (NOT _with_pre)
+@@ -846,7 +848,9 @@
+       endif (KDE4_ENABLE_FINAL)
+ 
+       if (NOT CMAKE_AUTOMOC)
+-        _automoc4_kde4_post_target_handling(kdeinit_${_target_NAME})
++        if (TARGET kdeinit_${_target_NAME}_automoc)
++          _automoc4_kde4_post_target_handling(kdeinit_${_target_NAME})
++        endif()
+       endif()
+ 
+       set_target_properties(kdeinit_${_target_NAME} PROPERTIES OUTPUT_NAME kdeinit4_${_target_NAME})
+@@ -1039,7 +1043,9 @@
+    ENDIF(KDE4_ENABLE_UAC_MANIFEST)
+ 
+    if (NOT CMAKE_AUTOMOC)
+-      _automoc4_kde4_post_target_handling(${_target_NAME})
++      if (TARGET ${_target_NAME}_automoc)
++         _automoc4_kde4_post_target_handling(${_target_NAME})
++      endif()
+    endif()
+ 
+    if (_test)
+@@ -1087,7 +1093,9 @@
+    endif (KDE4_ENABLE_FINAL)
+ 
+    if (NOT CMAKE_AUTOMOC)
+-      _automoc4_kde4_post_target_handling(${_target_NAME})
++      if (TARGET ${_target_NAME}_automoc)
++         _automoc4_kde4_post_target_handling(${_target_NAME})
++      endif()
+    endif()
+ 
+    # for shared libraries a -DMAKE_target_LIB is required
+@@ -1103,7 +1111,7 @@
+    # This reduces inter-package dependencies and makes it easier to remove
+    # dependencies of shared libraries without breaking binary compatibility.
+    if(NOT "${_add_lib_param}" STREQUAL "STATIC")
+-      set_target_properties(${_target_NAME} PROPERTIES LINK_INTERFACE_LIBRARIES "" )
++      # CMP0022 NEW forbids exporting the old-style link interface.
+       set_target_properties(${_target_NAME} PROPERTIES INTERFACE_LINK_LIBRARIES "" )
+    endif(NOT "${_add_lib_param}" STREQUAL "STATIC")
+ 
