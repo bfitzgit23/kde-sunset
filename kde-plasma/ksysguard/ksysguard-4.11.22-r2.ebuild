@@ -32,6 +32,21 @@ PATCHES=(
     "${FILESDIR}/${P}-optional-webkit.patch"
 )
 
+src_prepare() {
+    kde4-meta_src_prepare
+
+    # CMake 4 (CMP0037): kde4_install_auth_actions() builds an invalid target name
+    # from the dotted helper id. Apply the inlined replacement here as well, so the
+    # build does not depend on the eclass having honoured PATCHES.
+    local pc="${S}/libs/ksysguard/processcore/CMakeLists.txt"
+    if grep -q 'kde4_install_auth_actions(org\.kde\.ksysguard\.processlisthelper actions\.actions)' "${pc}"; then
+        eapply "${FILESDIR}/${P}-cmake4-auth-actions.patch"
+    fi
+    if grep -q 'kde4_install_auth_actions(org\.kde\.ksysguard\.processlisthelper actions\.actions)' "${pc}"; then
+        die "CMake 4 auth-actions replacement missing in ${pc}"
+    fi
+}
+
 src_configure() {
     local mycmakeargs=(
         -DCMAKE_DISABLE_FIND_PACKAGE_QtWebKit="$(usex !webkit)"
