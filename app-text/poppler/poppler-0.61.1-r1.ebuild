@@ -47,6 +47,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-0.57.0-disable-internal-jpx.patch"
 	"${FILESDIR}/${P}-slotting.patch" # compatibility with Gentoo ebuild repo
 	"${FILESDIR}/${P}-cmake4-policies.patch"
+	"${FILESDIR}/${P}-notest-warning.patch"
 )
 
 src_prepare() {

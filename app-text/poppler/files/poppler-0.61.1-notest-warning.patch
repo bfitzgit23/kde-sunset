@@ -1,0 +1,15 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -70,9 +70,10 @@
+ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+ 
+ set(TESTDATADIR "${CMAKE_SOURCE_DIR}/../test" CACHE STRING "Specify test data dir.")
+-if(NOT (EXISTS ${TESTDATADIR} AND EXISTS ${TESTDATADIR}/test-poppler.c))
++if((BUILD_GTK_TESTS OR BUILD_QT4_TESTS OR BUILD_QT5_TESTS OR BUILD_CPP_TESTS)
++   AND NOT (EXISTS ${TESTDATADIR} AND EXISTS ${TESTDATADIR}/test-poppler.c))
+   message(WARNING "
+- No test data found in $testdatadir.
++ No test data found in ${TESTDATADIR}.
+  You will not be able to run 'make test' successfully.
+ 
+  The test data is not included in the source packages
