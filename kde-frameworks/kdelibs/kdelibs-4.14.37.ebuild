@@ -4,7 +4,7 @@
 EAPI=8
 
 QT_MINIMAL="4.8.7"
-inherit cmake-utils flag-o-matic toolchain-funcs xdg-utils
+inherit cmake-utils flag-o-matic qmake-utils toolchain-funcs xdg-utils
 
 DESCRIPTION="Libraries needed for programs by KDE"
 HOMEPAGE="https://www.kde.org/"
@@ -153,6 +153,9 @@ src_prepare() {
 
 src_configure() {
 	local mycmakeargs=(
+		# FindQt4's fallback only searches /usr/bin; the slotted Qt4
+		# installation has qmake under /usr/$(get_libdir)/qt4/bin.
+		-DQT_QMAKE_EXECUTABLE="$(qt4_get_bindir)"/qmake
 		-DWITH_HSPELL=OFF
 		-DWITH_ASPELL=OFF
 		-DKDE_DEFAULT_HOME=.kde4
