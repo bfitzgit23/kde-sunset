@@ -46,6 +46,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-0.40-FindQt4.patch"
 	"${FILESDIR}/${PN}-0.57.0-disable-internal-jpx.patch"
 	"${FILESDIR}/${P}-slotting.patch" # compatibility with Gentoo ebuild repo
+	"${FILESDIR}/${P}-cmp0153.patch"
 )
 
 src_prepare() {
