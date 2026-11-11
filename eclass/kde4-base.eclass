@@ -757,6 +757,14 @@ kde4-base_src_prepare() {
 ' 'cmake_minimum_required(VERSION 3.5)'; cat "${S}/CMakeLists.txt"; } > "${S}/CMakeLists.txt.kde4tmp"
 			mv "${S}/CMakeLists.txt.kde4tmp" "${S}/CMakeLists.txt" || die "failed to add cmake_minimum_required"
 		fi
+		# KDE4 add_test() names predate CMP0110; leave the old escaping alone
+		# but allow the names under CMake 3.19+, otherwise the CTest file
+		# generation step fails after developer warnings.  Anchor it after the
+		# policy version so subdirectories inherit it.
+		if ! grep -q 'CMP0110' ""${S}/CMakeLists.txt""; then
+			awk '!ins && /^[[:space:]]*cmake_minimum_required/ { print; print "if(POLICY CMP0110)"; print "  cmake_policy(SET CMP0110 NEW)"; print "endif()"; ins=1; next } { print }' ""${S}/CMakeLists.txt"" > ""${S}/CMakeLists.txt".kde4tmp"
+			mv ""${S}/CMakeLists.txt".kde4tmp" ""${S}/CMakeLists.txt"" || die "failed to set CMP0110"
+		fi
 		if ! grep -q 'CMake 4 removed export_library_dependencies' "${S}/CMakeLists.txt"; then
 			{ printf '%s
 ' '# Compatibility shim: CMake 4 removed export_library_dependencies().' 'if(NOT CMAKE_VERSION VERSION_LESS 4.0)' 'function(export_library_dependencies _kde4_file)' 'file(WRITE "${_kde4_file}" "")' 'endfunction()' 'endif()'; cat "${S}/CMakeLists.txt"; } > "${S}/CMakeLists.txt.kde4tmp"
