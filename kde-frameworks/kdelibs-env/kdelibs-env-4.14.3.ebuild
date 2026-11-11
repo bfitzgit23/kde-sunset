@@ -2,6 +2,10 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
+
+# This package only installs environment files and must not pull in kdelibs.
+KDE_REQUIRED="never"
+
 inherit kde4-base
 
 DESCRIPTION="Environment setting required for all KDELibs4 apps to run"
