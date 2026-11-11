@@ -91,12 +91,17 @@ pkg_setup() {
 }
 
 src_configure() {
+	# FindQt4 needs Qt4's qmake, not a Qt5/Qt6-owned /usr/bin/qmake.
+	local qt4_qmake=${EPREFIX}/usr/$(get_libdir)/qt4/bin/qmake
+	[[ -x ${qt4_qmake} ]] || qt4_qmake=${EPREFIX}/usr/bin/qmake
+
 	local mycmakeargs=(
 		-DINSTALL_QSQLITE_IN_QT_PREFIX=ON
 		-DWITH_SOPRANO=FALSE
 		-DAKONADI_BUILD_TESTS=$(usex test)
 		-DAKONADI_BUILD_QSQLITE=$(usex sqlite)
 		-DQT5_BUILD=OFF
+		-DQT_QMAKE_EXECUTABLE="${qt4_qmake}"
 	)
 
 	cmake-utils_src_configure

@@ -26,7 +26,7 @@ RESTRICT=test
 
 src_test() {
 	local mycmakeargs=(-DKDE4_BUILD_TESTS=ON)
-	cmake_src_configure
+	kde4-base_src_configure
 	kde4-base_src_compile
 
 	cd "${BUILD_DIR}"

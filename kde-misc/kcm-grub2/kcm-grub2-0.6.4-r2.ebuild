@@ -43,7 +43,7 @@ src_configure() {
 		-DWITH_ImageMagick="$(usex imagemagick)"
 		-DWITH_HD="$(usex hwinfo)"
 	)
-	cmake_src_configure
+	kde4-base_src_configure
 }
 
 

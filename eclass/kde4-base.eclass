@@ -763,6 +763,18 @@ kde4-base_src_prepare() {
 	fi
 }
 
+# @FUNCTION: _kde4_qt4_qmake
+# @INTERNAL
+# @DESCRIPTION:
+# Echo Qt4's qmake path.  FindQt4 runs qmake to locate Qt4's headers,
+# libraries and moc, and a generic /usr/bin/qmake may belong to Qt5/Qt6.
+_kde4_qt4_qmake() {
+	local qmake=${EPREFIX}/usr/$(get_libdir)/qt4/bin/qmake
+	[[ -x ${qmake} ]] || qmake=${EPREFIX}/usr/bin/qmake
+	[[ -x ${qmake} ]] || return 0
+	echo "${qmake}"
+}
+
 # @FUNCTION: kde4-base_src_configure
 # @DESCRIPTION:
 # Function for configuring the build of KDE4 applications.
@@ -776,14 +788,8 @@ kde4-base_src_configure() {
 		-DCMAKE_POLICY_VERSION_MINIMUM=3.5
 	)
 
-	# FindQt4 runs qmake to locate Qt4's headers, libraries and moc.  A
-	# generic /usr/bin/qmake may belong to Qt5/Qt6 or not exist at all, so
-	# name Qt4's own binary instead of relying on PATH.
-	local qt4_qmake=${EPREFIX}/usr/$(get_libdir)/qt4/bin/qmake
-	[[ -x ${qt4_qmake} ]] || qt4_qmake=${EPREFIX}/usr/bin/qmake
-	if [[ -x ${qt4_qmake} ]]; then
-		cmakeargs+=( -DQT_QMAKE_EXECUTABLE="${qt4_qmake}" )
-	fi
+	local qt4_qmake=$(_kde4_qt4_qmake)
+	[[ -n ${qt4_qmake} ]] && cmakeargs+=( -DQT_QMAKE_EXECUTABLE="${qt4_qmake}" )
 
 	if in_iuse debug && use debug; then
 		# Set "real" debug mode
@@ -856,7 +862,9 @@ kde4-base_src_test() {
 	unset DBUS_SESSION_BUS_ADDRESS DBUS_SESSION_BUS_PID
 
 	# Override this value, set in kde4-base_src_configure()
-	mycmakeargs+=(-DKDE4_BUILD_TESTS=ON)
+	mycmakeargs+=(-DKDE4_BUILD_TESTS=ON -DCMAKE_POLICY_VERSION_MINIMUM=3.5)
+	local qt4_qmake=$(_kde4_qt4_qmake)
+	[[ -n ${qt4_qmake} ]] && mycmakeargs+=(-DQT_QMAKE_EXECUTABLE="${qt4_qmake}")
 	cmake_src_configure
 	kde4-base_src_compile
 
