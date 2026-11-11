@@ -20,7 +20,7 @@ DEPEND="
 	>=dev-qt/qtcore-4.8.7-r2:4
 	>=dev-qt/qtgui-4.8.7:4
 	media-libs/phonon:0-qt4
-	media-video/vlc:=[dbus,ogg,vorbis]
+	media-video/vlc:=[dbus,ogg]
 "
 RDEPEND="${DEPEND}
 	!<media-libs/phonon-vlc-0.11:0
