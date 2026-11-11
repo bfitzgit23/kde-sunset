@@ -36,10 +36,10 @@ src_configure() {
 src_install() {
 	kde4-base_src_install
 
-	rm -r "${ED}"usr/$(get_libdir) || die
-	rm -r "${ED}"usr/share/apps || die
-	rm "${ED}"usr/share/kde4/services/konsolepart.desktop || die
-	rm -r "${ED}"usr/share/kde4/servicetypes || die
+	rm -r "${ED}/usr/$(get_libdir)" || die
+	rm -r "${ED}/usr/share/apps" || die
+	rm "${ED}/usr/share/kde4/services/konsolepart.desktop" || die
+	rm -r "${ED}/usr/share/kde4/servicetypes" || die
 }
 
 

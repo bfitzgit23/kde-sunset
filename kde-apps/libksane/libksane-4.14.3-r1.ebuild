@@ -20,7 +20,7 @@ RDEPEND="${DEPEND}
 
 src_install() {
 	kde4-base_src_install
-	rm -r "${ED}"usr/share/icons || die
+	rm -r "${ED}/usr/share/icons" || die
 }
 
 

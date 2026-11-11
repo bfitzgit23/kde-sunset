@@ -33,7 +33,7 @@ src_install() {
 	kde4-base_src_install
 
 	# hack since ChangeLog-* is automagically installed by eclass
-	rm -f "${ED}"usr/share/doc/${PF}/ChangeLog-pre*
+	rm -f "${ED}/usr/share/doc/${PF}/ChangeLog-pre*"
 }
 
 

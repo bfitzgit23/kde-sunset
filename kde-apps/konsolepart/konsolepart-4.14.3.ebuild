@@ -51,10 +51,10 @@ src_configure() {
 src_install() {
 	kde4-base_src_install
 
-	rm -r "${ED}"usr/bin || die
-	rm -r "${ED}"usr/share/applications || die
-	rm "${ED}"usr/share/kde4/services/ServiceMenus/konsolehere.desktop || die
-	rm "${ED}"usr/share/kde4/services/ServiceMenus/konsolerun.desktop || die
+	rm -r "${ED}/usr/bin" || die
+	rm -r "${ED}/usr/share/applications" || die
+	rm "${ED}/usr/share/kde4/services/ServiceMenus/konsolehere.desktop" || die
+	rm "${ED}/usr/share/kde4/services/ServiceMenus/konsolerun.desktop" || die
 }
 
 
