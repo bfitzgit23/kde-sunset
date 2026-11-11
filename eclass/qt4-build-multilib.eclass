@@ -158,11 +158,12 @@ qt4-build-multilib_src_prepare() {
 			|| die "sed failed (skip X11 tests)"
 	fi
 
-	# Qt4 is not safe to build with C++14 (the new gcc-6 default).
-	# Upstream has addressed this for Qt5, but while we continue to
-	# support Qt4, we need to ensure everything is built in C++98 mode.
-	# See bugs 582522, 582618, 583662, 583744.
-	append-cxxflags -std=gnu++98
+	# The C++98 pin this eclass used to carry (bugs 582522, 582618,
+	# 583662, 583744) cannot coexist with the JavaScriptCore rewrites
+	# further down: those replace std::tr1 traits, auto_ptr and nullptr
+	# returns, which only exist in C++11 and later.  Pin C++17 instead,
+	# the standard the AUR qt4 package builds these same sources with.
+	append-cxxflags -std=gnu++17
 
 	# GCC 14 makes implicit function declarations in C an error and GCC 15 defaults
 	# C to C23, so the bundled 3rdparty C sources (webkit, javascriptcore) can fail
