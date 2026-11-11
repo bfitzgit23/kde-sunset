@@ -511,7 +511,7 @@ _cmake_utils_cmake4_repair() {
 	fi
 	if ! grep -q 'CMake 4 removed export_library_dependencies' "${cmake_lists}"; then
 		{ printf '%s
-' '# Compatibility shim: CMake 4 removed export_library_dependencies().' 'if(NOT COMMAND export_library_dependencies)' 'function(export_library_dependencies _kde4_file)' 'file(WRITE "${_kde4_file}" "")' 'endfunction()' 'endif()'; cat "${cmake_lists}"; } > "${cmake_lists}.cmake4tmp"
+' '# Compatibility shim: CMake 4 removed export_library_dependencies().' 'if(NOT CMAKE_VERSION VERSION_LESS 4.0)' 'function(export_library_dependencies _kde4_file)' 'file(WRITE "${_kde4_file}" "")' 'endfunction()' 'endif()'; cat "${cmake_lists}"; } > "${cmake_lists}.cmake4tmp"
 		mv "${cmake_lists}.cmake4tmp" "${cmake_lists}" || die "failed to add export_library_dependencies shim"
 	fi
 }
