@@ -36,8 +36,9 @@ src_prepare() {
     kde4-meta_src_prepare
 
     # CMake 4 (CMP0037): kde4_install_auth_actions() builds an invalid target name
-    # from the dotted helper id. Apply the inlined replacement here as well, so the
-    # build does not depend on the eclass having honoured PATCHES.
+    # from the dotted helper id, so the call is dropped and the policy is installed
+    # from FILESDIR. Apply that replacement here as well, so the build does not
+    # depend on the eclass having honoured PATCHES.
     local pc="${S}/libs/ksysguard/processcore/CMakeLists.txt"
     if grep -q 'kde4_install_auth_actions(org\.kde\.ksysguard\.processlisthelper actions\.actions)' "${pc}"; then
         eapply "${FILESDIR}/${P}-cmake4-auth-actions.patch"
@@ -54,6 +55,16 @@ src_configure() {
     )
 
     kde4-meta_src_configure
+}
+
+src_install() {
+    kde4-meta_src_install
+
+    # The process-list helper actions (send signal, renice, IO/CPU scheduler) are
+    # installed from the pre-generated policy: the KAuth policy generator cannot
+    # run under CMake 4, and a fake KAuth backend emits an empty file.
+    insinto /usr/share/polkit-1/actions
+    doins "${FILESDIR}/org.kde.ksysguard.processlisthelper.policy"
 }
 
 pkg_postinst() {
