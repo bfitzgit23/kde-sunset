@@ -30,6 +30,7 @@ KMEXTRA="libs/ksysguard/"
 PATCHES=(
     "${FILESDIR}/${P}-cmake4-auth-actions.patch"
     "${FILESDIR}/${P}-optional-webkit.patch"
+    "${FILESDIR}/${P}-no-designer-plugins.patch"
 )
 
 src_prepare() {

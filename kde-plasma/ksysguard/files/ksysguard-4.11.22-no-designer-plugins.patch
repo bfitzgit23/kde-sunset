@@ -1,0 +1,58 @@
+--- a/libs/ksysguard/lsofui/CMakeLists.txt
++++ b/libs/ksysguard/lsofui/CMakeLists.txt
+@@ -19,15 +19,7 @@
+ 
+ install( FILES lsof.h DESTINATION ${INCLUDE_INSTALL_DIR}/ksysguard COMPONENT Devel)
+ 
+-set(ksysguardlsofwidgets_PART_SRCS
+-   ${CMAKE_CURRENT_BINARY_DIR}/ksysguardlsofwidgets.cpp
+-)
+-
+-kde4_add_widget_files(ksysguardlsofwidgets_PART_SRCS ksysguardlsof.widgets)
+-
+-kde4_add_plugin(ksysguardlsofwidgets ${ksysguardlsofwidgets_PART_SRCS})
+-
+-target_link_libraries(ksysguardlsofwidgets ${KDE4_KDECORE_LIBS}  ${QT_QTGUI_LIBRARY} lsofui)
+-
+-install(TARGETS ksysguardlsofwidgets DESTINATION ${PLUGIN_INSTALL_DIR}/plugins/designer )
++# Qt Designer integration is not built. makekdewidgets generates a plugin
++# source from the .widgets file that fails to compile against the Qt 4 headers,
++# and ksysguard does not load these plugins at runtime.
+ 
+--- a/libs/ksysguard/processui/CMakeLists.txt
++++ b/libs/ksysguard/processui/CMakeLists.txt
+@@ -40,13 +40,9 @@
+ 
+ #----------------------
+ 
+-kde4_add_widget_files(ksysguardwidgets_PART_SRCS ${ksysguard_WIDGETS})
+-
+-kde4_add_plugin(ksysguardwidgets ${ksysguardwidgets_PART_SRCS})
+-
+-target_link_libraries(ksysguardwidgets ${KDE4_KDEUI_LIBS} processui)
+-
+-install(TARGETS ksysguardwidgets DESTINATION ${PLUGIN_INSTALL_DIR}/plugins/designer )
++# Qt Designer integration is not built. makekdewidgets generates a plugin
++# source from the .widgets file that fails to compile against the Qt 4 headers,
++# and ksysguard does not load these plugins at runtime.
+ 
+ install( FILES ProcessModel.h ProcessFilter.h KTextEditVT.h ksysguardprocesslist.h DESTINATION ${INCLUDE_INSTALL_DIR}/ksysguard COMPONENT Devel)
+ 
+--- a/libs/ksysguard/signalplotter/CMakeLists.txt
++++ b/libs/ksysguard/signalplotter/CMakeLists.txt
+@@ -20,12 +20,8 @@
+ 
+ #----------------------
+ 
+-kde4_add_widget_files(ksignalplotterwidgets_PART_SRCS ${ksignalplotter_WIDGETS})
+-
+-kde4_add_plugin(ksignalplotterwidgets ${ksignalplotterwidgets_PART_SRCS})
+-
+-target_link_libraries(ksignalplotterwidgets ${KDE4_KDEUI_LIBS} ksignalplotter)
+-
+-install(TARGETS ksignalplotterwidgets DESTINATION ${PLUGIN_INSTALL_DIR}/plugins/designer)
++# Qt Designer integration is not built. makekdewidgets generates a plugin
++# source from the .widgets file that fails to compile against the Qt 4 headers,
++# and ksysguard does not load these plugins at runtime.
+ 
+ install(FILES ksignalplotter.h DESTINATION ${INCLUDE_INSTALL_DIR}/ksysguard COMPONENT Devel)
