@@ -1,0 +1,14 @@
+--- a/helpers/CMakeLists.txt
++++ b/helpers/CMakeLists.txt
+@@ -5,6 +5,10 @@
+ install( TARGETS mounthelper DESTINATION ${LIBEXEC_INSTALL_DIR} )
+ 
+ kde4_install_auth_helper_files( mounthelper net.sourceforge.smb4k.mounthelper root )
+-kde4_install_auth_actions( net.sourceforge.smb4k.mounthelper smb4kmounthelper.actions )
++# CMake 4 (CMP0037) rejects the target name kde4_install_auth_actions() builds
++# from a reverse-DNS helper id ("actions for net.sourceforge.smb4k.mounthelper"), and the policy it
++# generates depends on the KAuth backend kdelibs was built with (the fake
++# backend emits nothing).  Install the pre-generated policy shipped in
++# FILESDIR from src_install() instead of calling the macro.
+ 
+ 
