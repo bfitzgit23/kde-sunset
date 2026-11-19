@@ -1,17 +1,3 @@
---- a/CMakeLists.txt
-+++ b/CMakeLists.txt
-@@ -54,8 +54,8 @@
- find_package(KDeclarative QUIET CONFIG)
- set_package_properties(KDeclarative PROPERTIES DESCRIPTION "KDE Declarative (QML) support from kdelibs"
-                        URL "http://www.kde.org"
--                       TYPE REQUIRED
--                       PURPOSE "Required for building ksmserver"
-+                       TYPE OPTIONAL
-+                       PURPOSE "Used by the QML parts of the workspace, which are skipped when unavailable"
-                       )
- 
- macro_optional_find_package(OpenGL)
-
 --- a/plasma/generic/applets/CMakeLists.txt
 +++ b/plasma/generic/applets/CMakeLists.txt
 @@ -22,6 +22,10 @@

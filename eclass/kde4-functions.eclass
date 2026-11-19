@@ -187,6 +187,63 @@ enable_selected_linguas() {
 
 # @FUNCTION: enable_selected_doc_linguas
 # @DESCRIPTION:
+# @FUNCTION: kde4_make_qml_optional
+# @DESCRIPTION:
+# Relax the QML-related find_package() blocks of ${S}/CMakeLists.txt and define
+# HAVE_QTDECLARATIVE for the sources guarded by it.  Extra package names (e.g.
+# DBusMenuQt QImageBlitz) are downgraded to TYPE OPTIONAL as well.
+# The same top-level CMakeLists.txt ships inside several 4.11.22 snapshots and the
+# block sits at a different offset in each of them, so this is done with edits
+# anchored on the lines themselves instead of patch hunks, which get rejected.
+kde4_make_qml_optional() {
+	local f="${S}/CMakeLists.txt"
+	local pkg
+
+	grep -q 'find_package(KDeclarative' "${f}" ||
+		die "find_package(KDeclarative ...) not found in ${f}"
+
+	for pkg in KDeclarative "$@" ; do
+		if [[ -z $(sed -n "/find_package(${pkg}[[:space:])]/,/^[[:space:]]*)[[:space:]]*\$/p" "${f}") ]] ; then
+			die "find_package(${pkg} ...) not found in ${f}"
+		fi
+		sed -i \
+			-e "/find_package(${pkg}[[:space:])]/,/^[[:space:]]*)[[:space:]]*\$/ s/^\([[:space:]]*\)TYPE REQUIRED/\1TYPE OPTIONAL/" \
+			"${f}" ||
+			die "failed to make ${pkg} optional in ${f}"
+		if sed -n "/find_package(${pkg}[[:space:])]/,/^[[:space:]]*)[[:space:]]*\$/p" "${f}" | grep -q 'TYPE REQUIRED' ; then
+			die "${pkg} is still TYPE REQUIRED in ${f}"
+		fi
+	done
+
+	sed -i \
+		-e "/find_package(KDeclarative /,/^[[:space:]]*)[[:space:]]*\$/ s|^\([[:space:]]*\)PURPOSE \".*\"|\1PURPOSE \"Used by the QML parts of the workspace, which are skipped when unavailable\"|" \
+		"${f}" ||
+		die "failed to relax the KDeclarative description in ${f}"
+
+	if grep -q 'add_definitions(-DHAVE_QTDECLARATIVE)' "${f}" ; then
+		return 0
+	fi
+
+	awk '
+		/find_package\(KDeclarative/ { inkd = 1 }
+		inkd && /^[[:space:]]*\)[[:space:]]*$/ {
+			print
+			print ""
+			print "if(QT_QTDECLARATIVE_LIBRARY AND KDeclarative_FOUND)"
+			print "   add_definitions(-DHAVE_QTDECLARATIVE)"
+			print "endif(QT_QTDECLARATIVE_LIBRARY AND KDeclarative_FOUND)"
+			inkd = 0
+			next
+		}
+		{ print }
+	' "${f}" > "${f}.kde4tmp" ||
+		die "failed to add HAVE_QTDECLARATIVE to ${f}"
+	mv "${f}.kde4tmp" "${f}" || die
+
+	grep -q 'add_definitions(-DHAVE_QTDECLARATIVE)' "${f}" ||
+		die "HAVE_QTDECLARATIVE was not defined in ${f}"
+}
+
 # @FUNCTION: kde4_use_handbook
 # @DESCRIPTION:
 # Returns true if the "handbook" USE flag exists and is enabled.

@@ -29,40 +29,13 @@ KMEXTRACTONLY="
 src_prepare() {
 	kde4-meta_src_prepare
 
-	# KDeclarative is a soft dependency of the shell.  These edits are made with
-	# sed/awk rather than a patch: the block they touch sits at a different place
-	# in different 4.11.22 source snapshots, and a single rejected hunk aborts the
-	# whole prepare phase.
-	local top="${S}/CMakeLists.txt"
+	# KDeclarative is a soft dependency of the shell: downgrade it and define
+	# HAVE_QTDECLARATIVE.  kde4_make_qml_optional anchors the edits on the lines
+	# themselves, because the block it touches sits at a different offset in
+	# different 4.11.22 source snapshots and a patch hunk gets rejected there.
 	local widgetexplorer="${S}/libs/plasmagenericshell/widgetsexplorer/widgetexplorer.cpp"
 
-	grep -q 'find_package(KDeclarative' "${top}" ||
-		die "KDeclarative block not found in ${top}"
-
-	sed -i \
-		-e '/find_package(KDeclarative/,/^[[:space:]]*)[[:space:]]*$/ s/^\([[:space:]]*\)TYPE REQUIRED/\1TYPE OPTIONAL/' \
-		-e '/find_package(KDeclarative/,/^[[:space:]]*)[[:space:]]*$/ s|^\([[:space:]]*\)PURPOSE ".*"|\1PURPOSE "Used by the QML parts of the workspace, which are skipped when unavailable"|' \
-		"${top}" ||
-		die "failed to make KDeclarative optional in ${top}"
-
-	awk '
-		/find_package\(KDeclarative/ { inkd = 1 }
-		inkd && /^[[:space:]]*\)[[:space:]]*$/ {
-			print
-			print ""
-			print "if(QT_QTDECLARATIVE_LIBRARY AND KDeclarative_FOUND)"
-			print "   add_definitions(-DHAVE_QTDECLARATIVE)"
-			print "endif(QT_QTDECLARATIVE_LIBRARY AND KDeclarative_FOUND)"
-			inkd = 0
-			next
-		}
-		{ print }
-	' "${top}" > "${top}.kde4tmp" ||
-		die "failed to add the HAVE_QTDECLARATIVE definition"
-	mv "${top}.kde4tmp" "${top}" || die
-
-	grep -q 'add_definitions(-DHAVE_QTDECLARATIVE)' "${top}" ||
-		die "HAVE_QTDECLARATIVE was not defined in ${top}"
+	kde4_make_qml_optional
 
 	# Guard the QML-only parts of the widget explorer with that definition.
 	sed -i \

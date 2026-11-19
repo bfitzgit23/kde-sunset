@@ -84,6 +84,18 @@ src_unpack() {
 	kde4-meta_src_unpack
 }
 
+src_prepare() {
+	kde4-meta_src_prepare
+
+	# KDeclarative and friends are soft dependencies; this downgrades the
+	# find_package() blocks and defines HAVE_QTDECLARATIVE for the sources
+	# guarded by it.  Done here instead of by a patch: the block sits at a
+	# different offset in different 4.11.22 snapshots and the hunk was
+	# rejected there.
+	kde4_make_qml_optional DBusMenuQt QImageBlitz
+}
+
+
 src_configure() {
 	local mycmakeargs=(
 		-DWITH_NepomukCore=OFF
