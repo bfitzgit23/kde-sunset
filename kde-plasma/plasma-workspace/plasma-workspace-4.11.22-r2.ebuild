@@ -93,6 +93,21 @@ src_prepare() {
 	# different offset in different 4.11.22 snapshots and the hunk was
 	# rejected there.
 	kde4_make_qml_optional DBusMenuQt QImageBlitz
+
+	# FindQalculate.cmake asks pkg-config for "cln --libs" with exec_program(),
+	# which captures stderr as well: when cln.pc is missing, the error text lands
+	# in CLN_LIBRARIES and the newline it carries corrupts build.ninja
+	# ("build.ninja: expected '=', got identifier").  qalculate_engine.cpp only
+	# uses the libqalculate API and libqalculate links libcln itself, so the
+	# runner does not need that flag.
+	local calculator="${S}/plasma/generic/runners/calculator/CMakeLists.txt"
+	if grep -q '${CLN_LIBRARIES}' "${calculator}" ; then
+		sed -i 's/ ${CLN_LIBRARIES}//' "${calculator}" ||
+			die "failed to drop CLN_LIBRARIES from ${calculator}"
+	fi
+	if grep -q '${CLN_LIBRARIES}' "${calculator}" ; then
+		die "CLN_LIBRARIES is still referenced in ${calculator}"
+	fi
 }
 
 
