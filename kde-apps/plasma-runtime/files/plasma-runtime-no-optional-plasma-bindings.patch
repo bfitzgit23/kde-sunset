@@ -1,0 +1,51 @@
+--- a/plasma/declarativeimports/graphicswidgets/graphicswidgetsbindingsplugin.cpp
++++ b/plasma/declarativeimports/graphicswidgets/graphicswidgetsbindingsplugin.cpp
+@@ -46,8 +46,6 @@
+ #include <Plasma/TextEdit>
+ #include <Plasma/ToolButton>
+ #include <Plasma/TreeView>
+-#include <Plasma/VideoWidget>
+-#include <Plasma/WebView>
+ 
+ #include "declarativetabbar.h"
+ 
+@@ -98,8 +96,6 @@
+     qmlRegisterType<Plasma::TextEdit>(uri, 0, 1, "TextEdit");
+     qmlRegisterType<Plasma::ToolButton>(uri, 0, 1, "ToolButton");
+     qmlRegisterType<Plasma::TreeView>(uri, 0, 1, "TreeView");
+-    qmlRegisterType<Plasma::VideoWidget>(uri, 0, 1, "VideoWidget");
+-    qmlRegisterType<Plasma::WebView>(uri, 0, 1, "WebView");
+ }
+ 
+ 
+--- a/plasma/scriptengines/javascript/simplebindings/uiloader.cpp
++++ b/plasma/scriptengines/javascript/simplebindings/uiloader.cpp
+@@ -49,8 +49,6 @@
+ #include <Plasma/TextEdit>
+ #include <Plasma/ToolButton>
+ #include <Plasma/TreeView>
+-#include <Plasma/WebView>
+-#include <Plasma/VideoWidget>
+ 
+ 
+ QGraphicsWidget *createBusyWidget(QGraphicsWidget *parent) { return new Plasma::BusyWidget(parent); }
+@@ -77,8 +75,6 @@
+ QGraphicsWidget *createTextEdit(QGraphicsWidget *parent) { return new Plasma::TextEdit(parent); }
+ QGraphicsWidget *createToolButton(QGraphicsWidget *parent) { return new Plasma::ToolButton(parent); }
+ QGraphicsWidget *createTreeView(QGraphicsWidget *parent) { return new Plasma::TreeView(parent); }
+-QGraphicsWidget *createVideoWidget(QGraphicsWidget *parent) { return new Plasma::VideoWidget(parent); }
+-QGraphicsWidget *createWebView(QGraphicsWidget *parent) { return new Plasma::WebView(parent); }
+ QGraphicsWidget *createGraphicsWidget(QGraphicsWidget *parent) { return new QGraphicsWidget(parent); }
+ 
+ UiLoader::UiLoader()
+@@ -107,9 +103,7 @@
+     m_widgetCtors.insert("TextEdit", createTextEdit);
+     m_widgetCtors.insert("ToolButton", createToolButton);
+     m_widgetCtors.insert("TreeView", createTreeView);
+-    m_widgetCtors.insert("VideoWidget", createVideoWidget);
+-    m_widgetCtors.insert("WebView", createWebView);
+-    m_widgetCtors.insert("GraphicsWidget", createWebView);
++    m_widgetCtors.insert("GraphicsWidget", createGraphicsWidget);
+ }
+ 
+ UiLoader::~UiLoader()
