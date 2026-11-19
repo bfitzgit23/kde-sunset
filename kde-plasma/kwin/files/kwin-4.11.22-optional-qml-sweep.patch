@@ -35,15 +35,6 @@
  if(KWIN_BUILD_SCRIPTING)
      set(
          kwin_KDEINIT_SRCS ${kwin_KDEINIT_SRCS}
-@@ -163,7 +175,6 @@
-         kwin_KDEINIT_SRCS ${kwin_KDEINIT_SRCS}
-         tabbox/tabbox.cpp
-         tabbox/clientmodel.cpp
--        tabbox/declarative.cpp
-         tabbox/desktopchain.cpp
-         tabbox/desktopmodel.cpp
-         tabbox/tabboxconfig.cpp
-
 --- a/kwin/effects.h
 +++ b/kwin/effects.h
 @@ -40,9 +40,11 @@
