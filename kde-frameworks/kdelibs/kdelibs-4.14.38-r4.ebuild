@@ -129,6 +129,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-4.10.0-udisks.patch"
 	"${FILESDIR}/${PN}-4.14.20-FindQt4.patch"
 	"${FILESDIR}/${PN}-4.14.22-webkit.patch"
+	"${FILESDIR}/${PN}-4.14-no-webkit-webview-stub.patch"
 	"${FILESDIR}/${PN}-4.14.35-3dnow.patch"
 	"${FILESDIR}/${PN}-4.14.35-kde3support.patch"
 	"${FILESDIR}/${PN}-4.14.35-plasma4.patch"

@@ -1,0 +1,293 @@
+--- a/plasma/CMakeLists.txt
++++ b/plasma/CMakeLists.txt
+@@ -253,6 +253,14 @@
+         private/animablegraphicswebview.cpp
+         widgets/webview.cpp
+     )
++else(NOT PLASMA_NO_KDEWEBKIT)
++    # QtWebKit support is off, but Plasma::WebView is still declared by the
++    # installed widgets/webview.h and used by consumers such as kde-runtime's
++    # QML bindings and script engines, so its symbols have to exist.
++    set(plasma_LIB_SRCS
++        ${plasma_LIB_SRCS}
++        widgets/webview_stub.cpp
++    )
+ endif(NOT PLASMA_NO_KDEWEBKIT)
+ 
+ kde4_add_kcfg_files(plasma_LIB_SRCS data/kconfigxt/libplasma-theme-global.kcfgc)
+--- a/plasma/widgets/webview_stub.cpp
++++ b/plasma/widgets/webview_stub.cpp
+@@ -0,0 +1,273 @@
++/*
++ *   Copyright 2010 Davide Bettio <davide.bettio@kdemail.net>
++ *
++ *   This program is free software; you can redistribute it and/or modify
++ *   it under the terms of the GNU Library General Public License as
++ *   published by the Free Software Foundation; either version 2, or
++ *   (at your option) any later version.
++ *
++ *   This program is distributed in the hope that it will be useful,
++ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
++ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ *   GNU General Public License for more details
++ *
++ *   You should have received a copy of the GNU Library General Public
++ *   License along with this program; if not, write to the
++ *   Free Software Foundation, Inc.,
++ *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
++ */
++
++/*
++ * Plasma::WebView without QtWebKit.
++ *
++ * widgets/webview.h is installed unconditionally and is used by consumers
++ * (kde-runtime's QML bindings and JavaScript script engine, kdeplasma-addons
++ * and others).  When QtWebKit is unavailable, webview.cpp is not compiled, and
++ * with -Wl,--no-undefined every consumer then fails to link with undefined
++ * references to Plasma::WebView.  This file keeps the class linkable: the
++ * widget exists, renders as an empty frame and loads nothing.
++ */
++
++#include <QtCore/QPointF>
++#include <QtCore/QSizeF>
++#include <QtCore/QUrl>
++#include <QtCore/QVariant>
++#include <QtGui/QFocusEvent>
++#include <QtGui/QKeyEvent>
++#include <QtGui/QPainter>
++#include <QtGui/QGraphicsSceneContextMenuEvent>
++#include <QtGui/QGraphicsSceneDragDropEvent>
++#include <QtGui/QGraphicsSceneHoverEvent>
++#include <QtGui/QGraphicsSceneMouseEvent>
++#include <QtGui/QGraphicsSceneWheelEvent>
++#include <QtGui/QStyleOptionGraphicsItem>
++
++#include <kurl.h>
++
++#include "widgets/webview.h"
++
++namespace Plasma
++{
++
++class WebViewPrivate
++{
++public:
++    WebViewPrivate()
++        : q(0)
++    {
++    }
++
++    void loadingFinished(bool)
++    {
++    }
++
++    void dragTimeoutExpired()
++    {
++    }
++
++    WebView *q;
++};
++
++WebView::WebView(QGraphicsItem *parent)
++    : QGraphicsWidget(parent),
++      d(new WebViewPrivate)
++{
++    d->q = this;
++}
++
++WebView::~WebView()
++{
++    delete d;
++}
++
++void WebView::setUrl(const KUrl &)
++{
++}
++
++KUrl WebView::url() const
++{
++    return KUrl();
++}
++
++void WebView::setHtml(const QByteArray &, const KUrl &)
++{
++}
++
++QString WebView::html() const
++{
++    return QString();
++}
++
++void WebView::setHtml(const QString &, const KUrl &)
++{
++}
++
++QRectF WebView::geometry() const
++{
++    return QGraphicsWidget::geometry();
++}
++
++QSizeF WebView::contentsSize() const
++{
++    return size();
++}
++
++void WebView::setScrollPosition(const QPointF &)
++{
++}
++
++QPointF WebView::scrollPosition() const
++{
++    return QPointF();
++}
++
++QRectF WebView::viewportGeometry() const
++{
++    return geometry();
++}
++
++qreal WebView::zoomFactor() const
++{
++    return 1.0;
++}
++
++void WebView::setZoomFactor(const qreal)
++{
++}
++
++void WebView::setPage(QWebPage *)
++{
++}
++
++QWebPage *WebView::page() const
++{
++    return 0;
++}
++
++QWebFrame *WebView::mainFrame() const
++{
++    return 0;
++}
++
++void WebView::setDragToScroll(bool)
++{
++}
++
++bool WebView::dragToScroll()
++{
++    return false;
++}
++
++void WebView::setGeometry(const QRectF &geometry)
++{
++    QGraphicsWidget::setGeometry(geometry);
++}
++
++void WebView::back()
++{
++}
++
++void WebView::forward()
++{
++}
++
++void WebView::reload()
++{
++}
++
++void WebView::stop()
++{
++}
++
++void WebView::paint(QPainter *, const QStyleOptionGraphicsItem *, QWidget *)
++{
++}
++
++void WebView::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
++{
++    QGraphicsWidget::mouseMoveEvent(event);
++}
++
++void WebView::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
++{
++    QGraphicsWidget::hoverMoveEvent(event);
++}
++
++void WebView::mousePressEvent(QGraphicsSceneMouseEvent *event)
++{
++    QGraphicsWidget::mousePressEvent(event);
++}
++
++void WebView::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
++{
++    QGraphicsWidget::mouseDoubleClickEvent(event);
++}
++
++void WebView::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
++{
++    QGraphicsWidget::mouseReleaseEvent(event);
++}
++
++void WebView::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
++{
++    QGraphicsWidget::contextMenuEvent(event);
++}
++
++void WebView::wheelEvent(QGraphicsSceneWheelEvent *event)
++{
++    QGraphicsWidget::wheelEvent(event);
++}
++
++void WebView::keyPressEvent(QKeyEvent *event)
++{
++    QGraphicsWidget::keyPressEvent(event);
++}
++
++void WebView::keyReleaseEvent(QKeyEvent *event)
++{
++    QGraphicsWidget::keyReleaseEvent(event);
++}
++
++void WebView::focusInEvent(QFocusEvent *event)
++{
++    QGraphicsWidget::focusInEvent(event);
++}
++
++void WebView::focusOutEvent(QFocusEvent *event)
++{
++    QGraphicsWidget::focusOutEvent(event);
++}
++
++void WebView::dragEnterEvent(QGraphicsSceneDragDropEvent *event)
++{
++    QGraphicsWidget::dragEnterEvent(event);
++}
++
++void WebView::dragLeaveEvent(QGraphicsSceneDragDropEvent *event)
++{
++    QGraphicsWidget::dragLeaveEvent(event);
++}
++
++void WebView::dragMoveEvent(QGraphicsSceneDragDropEvent *event)
++{
++    QGraphicsWidget::dragMoveEvent(event);
++}
++
++void WebView::dropEvent(QGraphicsSceneDragDropEvent *event)
++{
++    QGraphicsWidget::dropEvent(event);
++}
++
++QVariant WebView::itemChange(GraphicsItemChange change, const QVariant &value)
++{
++    return QGraphicsWidget::itemChange(change, value);
++}
++
++QSizeF WebView::sizeHint(Qt::SizeHint which, const QSizeF &constraint) const
++{
++    return QGraphicsWidget::sizeHint(which, constraint);
++}
++
++} // namespace Plasma
++
++#include "webview.moc"
