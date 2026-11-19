@@ -46,7 +46,7 @@ src_prepare() {
 	# guarded by it.  Done here instead of by a patch: the block sits at a
 	# different offset in different 4.11.22 snapshots and the hunk was
 	# rejected there.
-	kde4_make_qml_optional
+	kde4_make_qml_optional --qt-only
 }
 
 

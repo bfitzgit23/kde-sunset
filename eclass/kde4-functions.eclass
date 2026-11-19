@@ -198,6 +198,17 @@ enable_selected_linguas() {
 kde4_make_qml_optional() {
 	local f="${S}/CMakeLists.txt"
 	local pkg
+	local cond="QT_QTDECLARATIVE_LIBRARY AND KDeclarative_FOUND"
+
+	# The HAVE_QTDECLARATIVE condition must match the one the package uses to
+	# pick its QML sources (all of them test QT_QTDECLARATIVE_LIBRARY only); if it
+	# is stricter, sources that use the guarded code are compiled while the code
+	# itself is not, and the link fails with undefined references.  --qt-only is
+	# for packages whose QML code needs QtDeclarative alone (kwin, ksmserver).
+	if [[ ${1-} == --qt-only ]] ; then
+		cond="QT_QTDECLARATIVE_LIBRARY"
+		shift
+	fi
 
 	grep -q 'find_package(KDeclarative' "${f}" ||
 		die "find_package(KDeclarative ...) not found in ${f}"
@@ -224,14 +235,14 @@ kde4_make_qml_optional() {
 		return 0
 	fi
 
-	awk '
+	awk -v cond="${cond}" '
 		/find_package\(KDeclarative/ { inkd = 1 }
 		inkd && /^[[:space:]]*\)[[:space:]]*$/ {
 			print
 			print ""
-			print "if(QT_QTDECLARATIVE_LIBRARY AND KDeclarative_FOUND)"
+			print "if(" cond ")"
 			print "   add_definitions(-DHAVE_QTDECLARATIVE)"
-			print "endif(QT_QTDECLARATIVE_LIBRARY AND KDeclarative_FOUND)"
+			print "endif(" cond ")"
 			inkd = 0
 			next
 		}
