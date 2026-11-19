@@ -65,7 +65,7 @@ KMEXTRACTONLY="
 "
 
 src_unpack() {
-	if use handbook; then
+	if kde4_use_handbook ; then
 		KMEXTRA+=" doc/plasma-desktop"
 	fi
 

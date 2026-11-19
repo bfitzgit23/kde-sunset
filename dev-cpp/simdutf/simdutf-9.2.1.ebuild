@@ -18,7 +18,7 @@ LICENSE="|| ( Apache-2.0 MIT )"
 SLOT="0/36"
 KEYWORDS="amd64 arm arm64 ~loong ppc ppc64 ~riscv ~sparc x86"
 
-IUSE="test"
+IUSE="doc test"
 RESTRICT="!test? ( test )"
 
 RDEPEND="

@@ -187,6 +187,16 @@ enable_selected_linguas() {
 
 # @FUNCTION: enable_selected_doc_linguas
 # @DESCRIPTION:
+# @FUNCTION: kde4_use_handbook
+# @DESCRIPTION:
+# Returns true if the "handbook" USE flag exists and is enabled.
+# kde4-base.eclass pins KDE_HANDBOOK to 'never', so handbook is not in IUSE and a
+# plain "use handbook" makes portage abort the build.  Ebuilds which still test
+# the flag must call this instead.
+kde4_use_handbook() {
+	in_iuse handbook && use handbook
+}
+
 # Enable only selected L10N enabled doc folders.
 enable_selected_doc_linguas() {
 	debug-print-function ${FUNCNAME} "$@"
@@ -205,7 +215,7 @@ enable_selected_doc_linguas() {
 		[[ ${handbookdir} = '.' ]] && handbookdir=${translationdir} && translationdir=
 		[[ -d ${handbookdir} ]] || die 'wrong doc dir specified'
 
-		if ! use handbook; then
+		if ! kde4_use_handbook ; then
 			# Disable whole directory
 			sed -e "/add_subdirectory[[:space:]]*([[:space:]]*${handbookdir}[[:space:]]*)/s/^/#DONOTCOMPILE /" \
 				-e "/ADD_SUBDIRECTORY[[:space:]]*([[:space:]]*${handbookdir}[[:space:]]*)/s/^/#DONOTCOMPILE /" \

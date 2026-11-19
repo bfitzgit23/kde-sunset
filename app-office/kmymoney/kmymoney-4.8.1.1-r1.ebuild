@@ -64,7 +64,8 @@ src_prepare() {
 		popd > /dev/null || die
 	fi
 
-	if ! use handbook; then
+	# kmymoney does not inherit the KDE4 eclasses, so test the flag directly.
+	if ! in_iuse handbook || ! use handbook ; then
 		cmake_comment_add_subdirectory doc
 	else
 		if [[ -d doc && -v LINGUAS ]] ; then

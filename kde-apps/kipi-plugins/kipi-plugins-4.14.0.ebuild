@@ -94,7 +94,7 @@ PATCHES=(
 src_prepare() {
 	# prepare the handbook
 	mv "${WORKDIR}/${MY_P}/doc/${PN}" "${WORKDIR}/${MY_P}/extra/${PN}/doc" || die
-	if use handbook; then
+	if kde4_use_handbook ; then
 		echo "add_subdirectory( doc )" >> CMakeLists.txt || die
 	fi
 

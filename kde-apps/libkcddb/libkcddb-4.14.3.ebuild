@@ -23,7 +23,7 @@ KMSAVELIBS="true"
 src_prepare() {
 	kde4-base_src_prepare
 
-	if ! use handbook ; then
+	if ! kde4_use_handbook ; then
 		pushd kcmcddb > /dev/null
 		cmake_comment_add_subdirectory doc
 		popd > /dev/null

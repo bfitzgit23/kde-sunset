@@ -94,7 +94,7 @@ src_prepare() {
 
 	kde4-base_src_prepare
 
-	if use handbook; then
+	if kde4_use_handbook ; then
 		echo "add_subdirectory( doc-digikam )" >> CMakeLists.txt || die
 		echo "add_subdirectory( doc-showfoto )" >> CMakeLists.txt || die
 	fi

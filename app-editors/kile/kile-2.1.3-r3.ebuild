@@ -48,7 +48,7 @@ src_prepare() {
 	sed -e '/INSTALL( FILES AUTHORS/s/^/#DISABLED /' \
 		-i CMakeLists.txt || die
 
-	use handbook || rm -fr doc
+	kde4_use_handbook || rm -fr doc
 }
 
 
