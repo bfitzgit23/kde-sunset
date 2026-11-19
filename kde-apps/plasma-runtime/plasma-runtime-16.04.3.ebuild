@@ -39,6 +39,15 @@ src_prepare() {
 	if grep -q 'kde4_install_auth_actions(org\.kde\.kcontrol\.kcmremotewidgets kcm_remotewidgets\.actions)' "${pc}"; then
 		die "CMake 4 auth-actions replacement missing in ${pc}"
 	fi
+	# libplasma installs <Plasma/WebView> unconditionally but only compiles
+	# webview.cpp when QtWebKit was found at its own configure time.  A WebKit-less
+	# libplasma therefore leaves Plasma::WebView unimplemented, and this export
+	# plugin cannot link under -Wl,--no-undefined (undefined reference to
+	# Plasma::WebView::itemChange).  Drop just that binding in that case.
+	local lp="${EROOT%/}/usr/$(get_libdir)/libplasma.so.3"
+	if [[ -e ${lp} ]] && ! nm -D --defined-only "${lp}" 2>/dev/null | grep -q '_ZN6Plasma7WebView'; then
+		eapply "${FILESDIR}/plasma-runtime-no-webview-binding.patch"
+	fi
 }
 
 src_install() {
