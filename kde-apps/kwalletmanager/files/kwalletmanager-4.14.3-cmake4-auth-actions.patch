@@ -1,0 +1,15 @@
+--- a/src/konfigurator/CMakeLists.txt
++++ b/src/konfigurator/CMakeLists.txt
+@@ -24,7 +24,11 @@
+ install(TARGETS kcm_kwallet_helper DESTINATION ${LIBEXEC_INSTALL_DIR})
+ 
+ kde4_install_auth_helper_files(kcm_kwallet_helper org.kde.kcontrol.kcmkwallet root)
+-kde4_install_auth_actions(org.kde.kcontrol.kcmkwallet kwallet.actions)
++# CMake 4 (CMP0037) rejects the target name kde4_install_auth_actions() builds
++# from a reverse-DNS helper id ("actions for org.kde.kcontrol.kcmkwallet"), and the policy it
++# generates depends on the KAuth backend kdelibs was built with (the fake
++# backend emits nothing).  Install the pre-generated policy shipped in
++# FILESDIR from src_install() instead of calling the macro.
+ 
+ ########### install files ###############
+ 

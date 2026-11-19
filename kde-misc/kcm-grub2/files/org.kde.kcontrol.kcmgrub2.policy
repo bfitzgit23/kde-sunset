@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE policyconfig PUBLIC
+"-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+"http://www.freedesktop.org/standards/PolicyKit/1.0/policyconfig.dtd">
+<policyconfig>
+  <icon_name>system-reboot</icon_name>
+
+  <action id="org.kde.kcontrol.kcmgrub2.defaults">
+    <description>Restore the default GRUB2 Bootloader settings</description>
+    <message>Administrator authorization is required to restore the default GRUB2 Bootloader settings</message>
+    <defaults>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+  </action>
+
+  <action id="org.kde.kcontrol.kcmgrub2.install">
+    <description>Install the GRUB2 Bootloader</description>
+    <message>Administrator authorization is required to install the GRUB2 Bootloader</message>
+    <defaults>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+  </action>
+
+  <action id="org.kde.kcontrol.kcmgrub2.load">
+    <description>Load the GRUB2 Bootloader settings</description>
+    <message>Administrator authorization is required to load the GRUB2 Bootloader settings</message>
+    <defaults>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+  </action>
+
+  <action id="org.kde.kcontrol.kcmgrub2.probe">
+    <description>Probe devices for their GRUB2 names</description>
+    <message>Administrator authorization is required to probe devices for their GRUB2 names</message>
+    <defaults>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+  </action>
+
+  <action id="org.kde.kcontrol.kcmgrub2.probevbe">
+    <description>Probe VESA BIOS Extensions</description>
+    <message>Administrator authorization is required to probe VESA BIOS Extensions</message>
+    <defaults>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+  </action>
+
+  <action id="org.kde.kcontrol.kcmgrub2.save">
+    <description>Save the GRUB2 Bootloader settings</description>
+    <message>Administrator authorization is required to save the GRUB2 Bootloader settings</message>
+    <defaults>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+  </action>
+</policyconfig>

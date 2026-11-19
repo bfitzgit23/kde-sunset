@@ -1,0 +1,12 @@
+--- a/src/file/inotify/CMakeLists.txt
++++ b/src/file/inotify/CMakeLists.txt
+@@ -1,4 +1,8 @@
+-kde4_install_auth_actions(org.kde.baloo.filewatch org.kde.baloo.filewatch.actions)
++# CMake 4 (CMP0037) rejects the target name kde4_install_auth_actions() builds
++# from a reverse-DNS helper id ("actions for org.kde.baloo.filewatch"), and the policy it
++# generates depends on the KAuth backend kdelibs was built with (the fake
++# backend emits nothing).  Install the pre-generated policy shipped in
++# FILESDIR from src_install() instead of calling the macro.
+ kde4_add_executable(kde_baloo_filewatch_raiselimit raiselimit.cpp)
+ 
+ target_link_libraries(kde_baloo_filewatch_raiselimit ${KDE4_KDECORE_LIBS})
