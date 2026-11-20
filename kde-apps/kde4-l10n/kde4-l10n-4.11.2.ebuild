@@ -57,6 +57,14 @@ src_unpack() {
 }
 
 src_prepare() {
+
+	# With no linguas_* enabled ${A} is empty, so src_unpack unpacks nothing and
+	# never writes ${S}/CMakeLists.txt; kde4-base_src_prepare() would then die in
+	# cmake_src_prepare() looking for it.  There is nothing to prepare, and every
+	# later phase is skipped on the same condition.
+	if [[ -z ${A} ]]; then
+		return
+	fi
 	find "${S}" -name CMakeLists.txt -type f \
 		-exec sed -i -e 's:^ *add_subdirectory( *kdepim-runtime *):# no kdepim-runtime:g' {} +
 	find "${S}" -name CMakeLists.txt -type f \
