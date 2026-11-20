@@ -64,7 +64,8 @@ IUSE="${IUSE} ${PLUGINS} ${PROTOCOLS}"
 # (accountselector, kopetelistview, the K3ListView users in the protocols and
 # plugins), so kde3support is a hard requirement, not an optional extra
 COMMONDEPEND="
-	$(add_kdeframeworks_dep kdelibs 'zeroconf? qt3support')
+	$(add_kdeframeworks_dep kdelibs 'zeroconf?')
+	kde-frameworks/kdelibs:4[qt3support]
 	$(add_kdeapps_dep kdepimlibs)
 	dev-libs/libpcre
 	>=dev-qt/qtgui-4.4.0:4[mng]
