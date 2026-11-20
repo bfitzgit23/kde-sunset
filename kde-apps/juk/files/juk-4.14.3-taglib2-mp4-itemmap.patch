@@ -1,0 +1,39 @@
+TagLib 2 renamed MP4::ItemListMap to MP4::ItemMap and itemListMap() to itemMap(),
+and its item map no longer has a non-const operator[] path through the file, so
+the lookup goes through Tag::item(). Guard both forms on the version.
+--- a/coverinfo.cpp
++++ b/coverinfo.cpp
+@@ -299,8 +299,12 @@
+     {
+         TagLib::MP4::Tag *tag = mp4File->tag();
+         if (tag) {
++#if TAGLIB_MAJOR_VERSION >= 2
++            return tag->itemMap().contains("covr");
++#else
+             TagLib::MP4::ItemListMap &items = tag->itemListMap();
+             return items.contains("covr");
++#endif
+         }
+     }
+ #endif
+@@ -363,12 +367,20 @@
+ #ifdef TAGLIB_WITH_MP4
+ static QImage embeddedMP4AlbumArt(TagLib::MP4::Tag *tag)
+ {
++#if TAGLIB_MAJOR_VERSION >= 2
++    const TagLib::MP4::ItemMap &items = tag->itemMap();
++#else
+     TagLib::MP4::ItemListMap &items = tag->itemListMap();
++#endif
+ 
+     if(!items.contains("covr"))
+         return QImage();
+ 
++#if TAGLIB_MAJOR_VERSION >= 2
++    TagLib::MP4::CoverArtList covers = tag->item("covr").toCoverArtList();
++#else
+     TagLib::MP4::CoverArtList covers = items["covr"].toCoverArtList();
++#endif
+     TagLib::MP4::CoverArtList::ConstIterator end = covers.end();
+ 
+     for(TagLib::MP4::CoverArtList::ConstIterator it = covers.begin(); it != end; ++it) {

@@ -17,6 +17,7 @@ RDEPEND="${DEPEND}"
 
 PATCHES=(
 	"${FILESDIR}/${P}-taglib-config-include.patch"
+	"${FILESDIR}/${P}-taglib2-mp4-itemmap.patch"
 )
 
 src_configure() {
