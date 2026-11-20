@@ -5,7 +5,10 @@ EAPI=8
 
 inherit kde4-base kde4-functions-extra
 
-PATCHES=( "${FILESDIR}/${P}-libiris-qbool-compare.patch" )
+PATCHES=(
+	"${FILESDIR}/${P}-libiris-qbool-compare.patch"
+	"${FILESDIR}/${P}-history2-pointer-default.patch"
+)
 
 DESCRIPTION="KDE multi-protocol IM client"
 HOMEPAGE="https://kopete.kde.org https://apps.kde.org/en/kopete"
