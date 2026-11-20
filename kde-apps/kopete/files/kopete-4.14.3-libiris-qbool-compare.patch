@@ -1,0 +1,17 @@
+Subject: libiris: do not order-compare QList::contains with zero
+
+Qt4's QList::contains returns QBool, whose safe-bool conversion yields a
+const void*, so "> 0" is an ordered pointer comparison. That was tolerated as
+a warning in C++98 and is an error now; compare against the null pointer
+constant instead, which keeps the meaning.
+--- a/protocols/jabber/libiris/src/xmpp/xmpp-im/filetransfer.cpp
++++ b/protocols/jabber/libiris/src/xmpp/xmpp-im/filetransfer.cpp
+@@ -430,7 +430,7 @@
+ 
+ bool FileTransferManager::isActive(const FileTransfer *ft) const
+ {
+-	return d->list.contains(const_cast<FileTransfer*>(ft)) > 0;
++	return d->list.contains(const_cast<FileTransfer*>(ft)) != 0;
+ }
+ 
+ void FileTransferManager::setDisabled(const QString &ns, bool state)
