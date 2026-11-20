@@ -15,10 +15,9 @@ IUSE="debug"
 
 DEPEND="
 	$(add_kdeapps_dep libkcddb)
+	media-libs/libdiscid
 	media-libs/musicbrainz:5
 "
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${PN}-${COMMIT}"
-
-
