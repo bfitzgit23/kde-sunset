@@ -846,6 +846,12 @@ kde4-base_src_prepare() {
 				  endif()
 				endfunction()
 				endif()
+				# CMake 3.27+ treats the AUTOMOC include directory as a system
+				# directory; KDE4 was written against the older behaviour, so state a
+				# value instead of leaving the policy unset.
+				if(POLICY CMP0151)
+				cmake_policy(SET CMP0151 NEW)
+				endif()
 			EOF
 			if grep -q '^[[:space:]]*include[[:space:]]*(KDE4Defaults)' "${S}/CMakeLists.txt"; then
 				sed -i -e "/^[[:space:]]*include[[:space:]]*(KDE4Defaults)/r ${TMPDIR}/kde4-auth-actions.cmake" \
