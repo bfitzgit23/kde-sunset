@@ -108,6 +108,19 @@ src_prepare() {
 	if grep -q '${CLN_LIBRARIES}' "${calculator}" ; then
 		die "CLN_LIBRARIES is still referenced in ${calculator}"
 	fi
+	# KDE4's kmenuedit and systemsettings are installed as kmenuedit4 and
+	# systemsettings4 so they stop colliding with Plasma 6, so the launchers here
+	# have to ask for the suffixed names: kickoff's "Edit Applications" action and
+	# the favourites/models entries that reference the settings service.
+	local ref
+	for ref in plasma/desktop/applets/kickoff/applet/applet.cpp plasma/desktop/applets/kickoff/simpleapplet/simpleapplet.cpp; do
+		[[ -f ${S}/${ref} ]] || continue
+		sed -i -e 's/KProcess::execute("kmenuedit")/KProcess::execute("kmenuedit4")/' "${S}/${ref}" || die "failed to redirect kmenuedit launch in ${ref}"
+	done
+	for ref in plasma/desktop/applets/kickoff/core/favoritesmodel.cpp plasma/desktop/applets/kickoff/core/models.cpp plasma/netbook/containments/sal/models/favouritesmodel.cpp; do
+		[[ -f ${S}/${ref} ]] || continue
+		sed -i -e 's/"systemsettings"/"systemsettings4"/' "${S}/${ref}" || die "failed to redirect the systemsettings service in ${ref}"
+	done
 }
 
 

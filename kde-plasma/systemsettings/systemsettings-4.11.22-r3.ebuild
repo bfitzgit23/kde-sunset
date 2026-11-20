@@ -106,3 +106,18 @@ src_configure() {
 
 	kde4-meta_src_configure
 }
+
+src_install() {
+	kde4-meta_src_install
+
+	# Plasma 6's systemsettings installs /usr/bin/systemsettings plus
+	# systemsettings.desktop and kdesystemsettings.desktop, all of which the KDE4
+	# package would otherwise collide with.  Suffix the KDE4 copies and keep
+	# their Exec lines pointing at the suffixed binary.
+	mv "${ED}"/usr/bin/systemsettings "${ED}"/usr/bin/systemsettings4 || die
+	local d
+	for d in systemsettings kdesystemsettings; do
+		mv "${ED}/usr/share/applications/${d}.desktop" "${ED}/usr/share/applications/${d}4.desktop" || die
+		sed -i -e "s/^Exec=systemsettings /Exec=systemsettings4 /" "${ED}/usr/share/applications/${d}4.desktop" || die
+	done
+}

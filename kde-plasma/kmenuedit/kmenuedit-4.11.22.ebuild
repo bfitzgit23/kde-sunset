@@ -27,3 +27,15 @@ src_configure() {
 
 	kde4-meta_src_configure
 }
+
+src_install() {
+	kde4-meta_src_install
+
+	# kde-plasma/kmenuedit (Plasma 6) installs /usr/bin/kmenuedit, and merging
+	# over it would leave Plasma's editor behind its own package until the next
+	# update.  Install the KDE4 one under a suffix and point its menu entry at
+	# it (Plasma 6 ships org.kde.kmenuedit.desktop, so the desktop file itself
+	# does not clash).
+	mv "${ED}"/usr/bin/kmenuedit "${ED}"/usr/bin/kmenuedit4 || die
+	sed -i -e "s/^Exec=kmenuedit$/Exec=kmenuedit4/" "${ED}"/usr/share/applications/kmenuedit.desktop || die
+}
