@@ -115,6 +115,11 @@ src_configure() {
 		-DWITH_Mediastreamer=OFF
 		-DWITH_Speex=OFF
 		-DDISABLE_VIDEOSUPPORT="$(usex !v4l)"
+		# protocols/sms and protocols/groupwise were never ported off Qt3: their
+		# .ui files are Qt3 designer documents, which Qt4's uic turns into a
+		# truncated stub header ("unterminated #ifndef") instead of code
+		-DWITH_sms=OFF
+		-DWITH_groupwise=OFF
 	)
 	# enable protocols
 	for x in ${PROTOCOLS}; do
