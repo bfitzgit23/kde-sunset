@@ -61,10 +61,14 @@ PROTOCOLS="gadu groupwise meanwhile oscar testbed winpopup xmpp zeroconf"
 IUSE="${IUSE} ${PLUGINS} ${PROTOCOLS}"
 
 COMMONDEPEND="
-	$(add_kdeframeworks_dep kdelibs 'zeroconf?')
+	# libkopete builds against Qt3Support and the K3 classes it ships in kdelibs
+	# (accountselector, kopetelistview, the K3ListView users in the protocols and
+	# plugins), so kde3support is a hard requirement, not an optional extra
+	$(add_kdeframeworks_dep kdelibs 'zeroconf? qt3support')
 	$(add_kdeapps_dep kdepimlibs)
 	dev-libs/libpcre
 	>=dev-qt/qtgui-4.4.0:4[mng]
+	dev-qt/qt3support:4
 	media-libs/phonon:0-qt4
 	media-libs/qimageblitz
 	x11-libs/libX11
