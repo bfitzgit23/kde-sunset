@@ -14,6 +14,15 @@ DESCRIPTION="Plasma: KDE desktop framework"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug gps json +pim qalculate"
 
+# Compiler fixes that 4.11.22 needs on a modern toolchain.  This revision is the
+# only one with stable keywords, so it is what portage builds by default and it
+# has to carry them; the -r1/-r2/-r3 revisions are ~amd64.
+PATCHES=(
+	"${FILESDIR}/${P}-bbcukmet-contains.patch"
+	"${FILESDIR}/${P}-plasma-akonadi-cxx11.patch"
+	"${FILESDIR}/${P}-rss-cxx11.patch"
+)
+
 COMMONDEPEND="
 	dev-libs/libdbusmenu-qt[qt4(-)]
 	>=dev-qt/qtcore-4.8.4-r3:4
