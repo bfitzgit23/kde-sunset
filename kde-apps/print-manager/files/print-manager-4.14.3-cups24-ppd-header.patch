@@ -1,0 +1,13 @@
+CUPS 2.4 moved the deprecated PPD API out of <cups/cups.h> into <cups/ppd.h>.
+<cups/adminutil.h> pulls in cups.h, so cupsGetPPD2() is no longer declared here.
+
+--- a/libkcups/KCupsRequest.cpp
++++ b/libkcups/KCupsRequest.cpp
+@@ -29,6 +29,7 @@
+ #include <QStringBuilder>
+ 
+ #include <cups/adminutil.h>
++#include <cups/ppd.h>
+ 
+ #define CUPS_DATADIR    "/usr/share/cups"
+ 

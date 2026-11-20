@@ -9,6 +9,10 @@ DESCRIPTION="Manage print jobs and printers in KDE"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug +gtk"
 
+PATCHES=(
+	"${FILESDIR}/${P}-cups24-ppd-header.patch"
+)
+
 DEPEND="
 	>=net-print/cups-1.5.0[dbus]
 "
