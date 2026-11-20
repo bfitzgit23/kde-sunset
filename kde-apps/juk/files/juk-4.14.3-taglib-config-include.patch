@@ -1,0 +1,15 @@
+coverinfo.cpp tests TAGLIB_WITH_MP4 before it has seen a header that defines
+it: taglib_config.h is only pulled in later, through mediafiles.h. With
+taglib 2.x the formatter headers no longer include it, so the MP4 includes
+were skipped while the MP4 code was still compiled.
+--- a/coverinfo.cpp
++++ b/coverinfo.cpp
+@@ -36,6 +36,9 @@
+ #include <QScopedPointer>
+ 
++/* taglib_config.h defines TAGLIB_WITH_MP4; the individual formatter headers
++   do not pull it in. */
++#include <taglib/taglib_config.h>
+ #include <taglib/mpegfile.h>
+ #include <taglib/tstring.h>
+ #include <taglib/id3v2tag.h>

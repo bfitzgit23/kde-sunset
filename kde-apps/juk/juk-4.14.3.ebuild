@@ -15,6 +15,10 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 
+PATCHES=(
+	"${FILESDIR}/${P}-taglib-config-include.patch"
+)
+
 src_configure() {
 	# https://bugs.gentoo.org/410551 for disabling deprecated TunePimp support
 	local mycmakeargs=(
