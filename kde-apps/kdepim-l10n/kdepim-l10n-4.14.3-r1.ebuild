@@ -50,6 +50,10 @@ src_unpack() {
 }
 
 src_prepare() {
+	# This ebuild never reaches kde4-base_src_prepare()/cmake_src_prepare(),
+	# and EAPI 8 requires every src_prepare() to call eapply_user (or default).
+	eapply_user
+
 	local LNG DIR
 	# add all l10n to cmake
 	if [[ -n ${A} ]]; then

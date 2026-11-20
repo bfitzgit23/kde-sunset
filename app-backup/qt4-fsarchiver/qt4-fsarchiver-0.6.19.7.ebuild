@@ -34,6 +34,9 @@ DEPEND="${CDEPEND}"
 S="${WORKDIR}/${PN}"
 
 src_prepare() {
+	# EAPI 8 requires every src_prepare() to call eapply_user (or default).
+	eapply_user
+
 	# fix .desktop file
 	sed -i \
 		-e '/Encoding/d' starter/"${PN}".desktop \

@@ -61,8 +61,10 @@ src_prepare() {
 	# With no linguas_* enabled ${A} is empty, so src_unpack unpacks nothing and
 	# never writes ${S}/CMakeLists.txt; kde4-base_src_prepare() would then die in
 	# cmake_src_prepare() looking for it.  There is nothing to prepare, and every
-	# later phase is skipped on the same condition.
+	# later phase is skipped on the same condition -- but EAPI 8 still requires
+	# this src_prepare() to call eapply_user (or default).
 	if [[ -z ${A} ]]; then
+		eapply_user
 		return
 	fi
 	find "${S}" -name CMakeLists.txt -type f \
