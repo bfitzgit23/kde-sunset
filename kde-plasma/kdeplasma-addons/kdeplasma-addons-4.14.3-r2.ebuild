@@ -46,6 +46,7 @@ PATCHES=(
    "${FILESDIR}/${P}-rememberthemilk-webkit-guard.patch"
    "${FILESDIR}/${P}-qalculate-std-vector.patch"
    "${FILESDIR}/${P}-webslice-webkit-guard.patch"
+   "${FILESDIR}/${P}-potd-natgeo-webkit-guard.patch"
 )
 
 src_configure() {
