@@ -36,6 +36,10 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 
+PATCHES=(
+	"${FILESDIR}/${P}-fax-bool-increment.patch"
+)
+
 src_configure() {
 	local mycmakeargs=(
 		-DWITH_KActivities=OFF

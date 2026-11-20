@@ -1,0 +1,12 @@
+diff -ruN ok-a/generators/fax/faxinit.cpp ok-b/generators/fax/faxinit.cpp
+--- ok-a/generators/fax/faxinit.cpp	2016-10-06 18:59:46.000000000 -0400
++++ ok-b/generators/fax/faxinit.cpp	2026-11-20 05:30:52.509312386 -0500
+@@ -321,7 +321,7 @@
+     if (already_initialized)
+ 	return;
+ 
+-    ++already_initialized;
++    already_initialized = true;
+ 
+     FillTable(MainTable, 7, Pass, S_Pass);
+     FillTable(MainTable, 7, Horiz, S_Horiz);
