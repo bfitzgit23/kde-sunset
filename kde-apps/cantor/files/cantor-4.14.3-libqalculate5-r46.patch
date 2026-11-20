@@ -1,0 +1,24 @@
+--- a/src/backends/qalculate/qalculateexpression.cpp
++++ b/src/backends/qalculate/qalculateexpression.cpp
+@@ -101,7 +101,7 @@
+             return;
+         }
+ 
+-        string expression = unlocalizeExpression(command);
++        std::string expression = unlocalizeExpression(command);
+ 
+         kDebug() << "EXPR: " << QString(expression.c_str());
+ 
+--- a/src/backends/R/CMakeLists.txt
++++ b/src/backends/R/CMakeLists.txt
+@@ -1,5 +1,10 @@
+ include_directories(${R_INCLUDEDIR})
+ LINK_DIRECTORIES(${R_SHAREDLIBDIR})
++
++# R 4.6 hides the non-API entry points rserver.cpp relies on (Rf_findVar,
++# Rf_findVarInFrame, R_NamespaceRegistry) behind this opt-in.  The macro is
++# inert with older R headers, where those declarations are unconditional.
++add_definitions(-DENABLE_LEGACY_NONAPI)
+ 
+ add_subdirectory(rserver)
+ 

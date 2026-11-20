@@ -29,6 +29,7 @@ RESTRICT="test"
 
 PATCHES=(
 	"${FILESDIR}/${P}-cln-pkgconfig.patch"
+	"${FILESDIR}/${P}-libqalculate5-r46.patch"
 )
 
 src_configure() {
