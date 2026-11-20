@@ -866,6 +866,47 @@ kde4-base_src_prepare() {
 				    add_compile_options(-Wno-deprecated-enum-enum-conversion -Wno-template-id-cdtor)
 				  endif()
 				endif()
+				# KDE4's meinproc4 never returns on a current libxml2/libxslt: every
+				# invocation, even "--version", spins at ~100% CPU until it is killed
+				# (no child processes involved, and deleting ~/.kde4 or starting from a
+				# fresh KDEHOME does not help).  KDE4_CREATE_HANDBOOK and
+				# KDE4_CREATE_MANPAGE run it from an ALL target, so every package that
+				# ships documentation stalls in its build forever, with nothing printed
+				# after the command line ninja echoed.  Keep the install step of the
+				# handbook macro (the DocBook sources still land where they belong) and
+				# skip man page generation, which cannot be produced any other way.
+				# Configure with -DKDE4_BUILD_DOCS=ON to get the upstream macros back
+				# once meinproc4 works again.
+				if(NOT KDE4_BUILD_DOCS)
+				  message(STATUS "kde4: documentation generation disabled (meinproc4 hangs on this toolchain; -DKDE4_BUILD_DOCS=ON restores it)")
+				  macro(KDE4_CREATE_HANDBOOK _kde4_docbook)
+				    set(_kde4_doc_args ${ARGN})
+				    set(_kde4_doc_dest)
+				    get_filename_component(_kde4_doc_dirname "${CMAKE_CURRENT_SOURCE_DIR}" NAME_WE)
+				    if(_kde4_doc_args)
+				      list(GET _kde4_doc_args 0 _kde4_doc_tmp)
+				      if(_kde4_doc_tmp STREQUAL "INSTALL_DESTINATION")
+				        list(GET _kde4_doc_args 1 _kde4_doc_dest)
+				        list(REMOVE_AT _kde4_doc_args 0 1)
+				      endif()
+				    endif()
+				    if(_kde4_doc_args)
+				      list(GET _kde4_doc_args 0 _kde4_doc_tmp)
+				      if(_kde4_doc_tmp STREQUAL "SUBDIR")
+				        list(GET _kde4_doc_args 1 _kde4_doc_dirname)
+				        list(REMOVE_AT _kde4_doc_args 0 1)
+				      endif()
+				    endif()
+				    file(GLOB _kde4_doc_sources *.docbook)
+				    file(GLOB _kde4_doc_images *.png)
+				    if(_kde4_doc_dest)
+				      install(FILES ${_kde4_doc_sources} ${_kde4_doc_images}
+				              DESTINATION ${_kde4_doc_dest}/${_kde4_doc_dirname})
+				    endif()
+				  endmacro()
+				  macro(KDE4_CREATE_MANPAGE _kde4_docbook _kde4_section)
+				  endmacro()
+				endif()
 				# CMake 3.28+ (CMP0153) warns about exec_program() in the installed
 				# launcher-wrapper module, and a "cmake -P" script has no way to set
 				# the policy for itself.  Those wrappers only chmod +x a helper
