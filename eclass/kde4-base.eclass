@@ -749,6 +749,43 @@ kde4-base_src_prepare() {
 	# sources predate all of it, so repair them here instead of patching
 	# every module.
 	if [[ -f ${S}/CMakeLists.txt ]]; then
+		# A package split out of a combined KDE4 tree (kde-workspace, kde-runtime,
+		# kdepim) still orders its build against targets that only exist when the
+		# siblings are built too: kmenuedit waits for kded_khotkeys, kalarm for the
+		# Akonadi resource XML targets.  CMake then refuses to generate:
+		#   The dependency target "..." of target "..." does not exist.
+		# Give every literal dependency its own if(TARGET ...) guard so a dependency
+		# that is not part of this build is dropped instead of aborting configure.
+		# CMake has always required the dependency to exist at that point, so the
+		# guard cannot change a build in which it does exist; the #kde4-guarded
+		# marker keeps a second run idempotent.
+		if [[ ! -f ${TMPDIR}/kde4-guard-add-deps.awk ]]; then
+			cat > "${TMPDIR}/kde4-guard-add-deps.awk" <<-'EOF'
+			{ lines[NR] = $0 }
+			END {
+				for (i = 1; i <= NR; i++) {
+					s = lines[i]
+					if (s ~ /#kde4-guarded/ || s !~ /^[[:space:]]*add_dependencies[[:space:]]*\([^()]*\)[[:space:]]*$/) { print s; continue }
+					x = s
+					sub(/^[[:space:]]*add_dependencies[[:space:]]*\(/, "", x)
+					sub(/\)[[:space:]]*$/, "", x)
+					n = split(x, a, /[[:space:]]+/)
+					literal = (n >= 2)
+					for (j = 2; j <= n; j++) { if (a[j] !~ /^[A-Za-z0-9_.:+-]+$/) literal = 0 }
+					if (literal == 0) { print s; continue }
+					ind = s
+					sub(/[^[:space:]].*$/, "", ind)
+					for (j = 2; j <= n; j++) {
+						print ind "if(TARGET " a[j] ")"
+						print ind "add_dependencies(" a[1] " " a[j] ") #kde4-guarded"
+						print ind "else()"
+						print ind "message(STATUS \"kde4: dropping dependency '" a[j] "' of target '" a[1] "', not built here\")"
+						print ind "endif()"
+					}
+				}
+			}
+			EOF
+		fi
 		while IFS= read -r -d '' _cmake_file; do
 			# The old target_link_libraries(<tgt> LINK_INTERFACE_LIBRARIES ...)
 			# signature is often split over two lines, which the per-line rules
@@ -758,6 +795,10 @@ kde4-base_src_prepare() {
 			sed -z -i -E -e 's/target_link_libraries[[:space:]]*\([[:space:]]*([^[:space:])]+)[[:space:]]+(LINK_INTERFACE_LIBRARIES|INTERFACE_LINK_LIBRARIES)[[:space:]]+/set_property(TARGET \1 APPEND PROPERTY INTERFACE_LINK_LIBRARIES /Ig' "${_cmake_file}" ||
 				die "failed to rewrite split LINK_INTERFACE_LIBRARIES in ${_cmake_file}"
 			sed -i -E -e '/\.\.\./! s/(cmake_minimum_required[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*[012]\.[0-9][0-9.]*/\1 3.5/I' -e '/\.\.\./! s/(cmake_minimum_required[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*3\.[0-4]([^0-9]|$)/\1 3.5\2/I' -e '/\.\.\./! s/(cmake_policy[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*[012]\.[0-9][0-9.]*/\1 3.5/I' -e '/\.\.\./! s/(cmake_policy[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*3\.[0-4]([^0-9]|$)/\1 3.5\2/I' -e 's/^([[:space:]]*)target_link_libraries[[:space:]]*\([[:space:]]*([^[:space:])]+)[[:space:]]+LINK_INTERFACE_LIBRARIES[[:space:]]+/\1set_property(TARGET \2 APPEND PROPERTY INTERFACE_LINK_LIBRARIES /I' -e 's/\bLINK_INTERFACE_LIBRARIES\b/INTERFACE_LINK_LIBRARIES/g' -e 's/^[[:space:]]*export_library_dependencies[[:space:]]*\((.*)\)[[:space:]]*$/file(WRITE \1 "")/I' "${_cmake_file}" || die "failed to rewrite CMake 4 incompatibilities in ${_cmake_file}"
+			awk -f "${TMPDIR}/kde4-guard-add-deps.awk" "${_cmake_file}" > "${_cmake_file}.kde4tmp" ||
+				die "failed to guard add_dependencies() in ${_cmake_file}"
+			mv "${_cmake_file}.kde4tmp" "${_cmake_file}" ||
+				die "failed to rewrite ${_cmake_file}"
 		done < <(find "${S}" -type f \( -name CMakeLists.txt -o -name '*.cmake' \) -print0)
 		if ! grep -q 'cmake_minimum_required' "${S}/CMakeLists.txt"; then
 			{ printf '%s
