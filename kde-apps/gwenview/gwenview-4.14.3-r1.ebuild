@@ -28,6 +28,10 @@ DEPEND="
 	kipi? ( $(add_kdeapps_dep libkipi) )
 "
 
+PATCHES=(
+	"${FILESDIR}/${PN}-exiv2-0.28.patch"
+)
+
 src_configure() {
 	local mycmakeargs=(
 		-DWITH_kipi="$(usex kipi)"
