@@ -799,6 +799,15 @@ kde4-base_src_prepare() {
 				die "failed to guard add_dependencies() in ${_cmake_file}"
 			mv "${_cmake_file}.kde4tmp" "${_cmake_file}" ||
 				die "failed to rewrite ${_cmake_file}"
+			# konqueror and many others add their tests directory unconditionally,
+			# and KDE4Macros' kde4_add_unit_test() uses the pre-3.5
+			#   if( ${ARGV1} STREQUAL "TESTNAME" )
+			# form, which CMake 4 rejects with "Unknown arguments specified" as soon
+			# as it is reached - even though the tests themselves are off.  Skip the
+			# test directories unless they are wanted; with KDE4_BUILD_TESTS=ON the
+			# guard is true and nothing changes.
+			sed -i -E -e 's:^([[:space:]]*)add_subdirectory[[:space:]]*\([[:space:]]*((\$\{CMAKE_CURRENT_SOURCE_DIR\}/)?(tests|autotests|autotest)/?[^()]*)\)[[:space:]]*$:\1if(KDE4_BUILD_TESTS)\n\1add_subdirectory(\2) #kde4-tests-guarded\n\1endif():' "${_cmake_file}" ||
+				die "failed to guard test directories in ${_cmake_file}"
 		done < <(find "${S}" -type f \( -name CMakeLists.txt -o -name '*.cmake' \) -print0)
 		if ! grep -q 'cmake_minimum_required' "${S}/CMakeLists.txt"; then
 			{ printf '%s
