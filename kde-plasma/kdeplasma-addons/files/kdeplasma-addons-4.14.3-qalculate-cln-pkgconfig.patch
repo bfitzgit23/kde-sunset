@@ -1,0 +1,17 @@
+--- a/applets/qalculate/cmake_modules/FindQalculate.cmake
++++ b/applets/qalculate/cmake_modules/FindQalculate.cmake
+@@ -32,7 +32,13 @@
+ 
+     if(_return_VALUE STREQUAL "0")
+       exec_program(${PKGCONFIG_EXECUTABLE} ARGS libqalculate --libs OUTPUT_VARIABLE QALCULATE_LIBRARIES)
+-      exec_program(${PKGCONFIG_EXECUTABLE} ARGS cln --libs OUTPUT_VARIABLE CLN_LIBRARIES)
++      execute_process(COMMAND ${PKGCONFIG_EXECUTABLE} cln --libs
++                      OUTPUT_VARIABLE CLN_LIBRARIES
++                      ERROR_QUIET
++                      RESULT_VARIABLE _cln_return_VALUE)
++      if(NOT _cln_return_VALUE STREQUAL "0")
++        set(CLN_LIBRARIES "")
++      endif(NOT _cln_return_VALUE STREQUAL "0")
+       exec_program(${PKGCONFIG_EXECUTABLE} ARGS libqalculate --cflags OUTPUT_VARIABLE QALCULATE_CFLAGS)
+       set(QALCULATE_FOUND TRUE)
+     endif(_return_VALUE STREQUAL "0")

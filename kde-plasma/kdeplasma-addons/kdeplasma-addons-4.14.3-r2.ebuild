@@ -42,6 +42,7 @@ RDEPEND="${COMMON_DEPEND}
 
 PATCHES=(
    "${FILESDIR}/${P}-webkit.patch"
+   "${FILESDIR}/${P}-qalculate-cln-pkgconfig.patch"
 )
 
 src_configure() {

@@ -14,6 +14,8 @@ IUSE="attica debug desktopglobe eigen exif ibus json +pim qalculate qca qwt scim
 RESTRICT=test
 # tests hang
 
+PATCHES=( "${FILESDIR}/${P}-qalculate-cln-pkgconfig.patch" )
+
 # krunner is only needed to generate dbus interface for lancelot
 COMMON_DEPEND="
 	qca? ( app-crypt/qca:2-qt4 )
