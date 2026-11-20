@@ -43,6 +43,7 @@ RDEPEND="${COMMON_DEPEND}
 PATCHES=(
    "${FILESDIR}/${P}-webkit.patch"
    "${FILESDIR}/${P}-qalculate-cln-pkgconfig.patch"
+   "${FILESDIR}/${P}-rememberthemilk-webkit-guard.patch"
 )
 
 src_configure() {
