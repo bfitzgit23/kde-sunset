@@ -750,6 +750,13 @@ kde4-base_src_prepare() {
 	# every module.
 	if [[ -f ${S}/CMakeLists.txt ]]; then
 		while IFS= read -r -d '' _cmake_file; do
+			# The old target_link_libraries(<tgt> LINK_INTERFACE_LIBRARIES ...)
+			# signature is often split over two lines, which the per-line rules
+			# below cannot see (they need the target name and the keyword in the
+			# same buffer).  Convert it whole-file first, otherwise the plain
+			# keyword rename turns it into -lINTERFACE_LINK_LIBRARIES.
+			sed -z -i -E -e 's/target_link_libraries[[:space:]]*\([[:space:]]*([^[:space:])]+)[[:space:]]+(LINK_INTERFACE_LIBRARIES|INTERFACE_LINK_LIBRARIES)[[:space:]]+/set_property(TARGET \1 APPEND PROPERTY INTERFACE_LINK_LIBRARIES /Ig' "${_cmake_file}" ||
+				die "failed to rewrite split LINK_INTERFACE_LIBRARIES in ${_cmake_file}"
 			sed -i -E -e '/\.\.\./! s/(cmake_minimum_required[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*[012]\.[0-9][0-9.]*/\1 3.5/I' -e '/\.\.\./! s/(cmake_minimum_required[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*3\.[0-4]([^0-9]|$)/\1 3.5\2/I' -e '/\.\.\./! s/(cmake_policy[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*[012]\.[0-9][0-9.]*/\1 3.5/I' -e '/\.\.\./! s/(cmake_policy[[:space:]]*\([[:space:]]*VERSION)[[:space:]]*3\.[0-4]([^0-9]|$)/\1 3.5\2/I' -e 's/^([[:space:]]*)target_link_libraries[[:space:]]*\([[:space:]]*([^[:space:])]+)[[:space:]]+LINK_INTERFACE_LIBRARIES[[:space:]]+/\1set_property(TARGET \2 APPEND PROPERTY INTERFACE_LINK_LIBRARIES /I' -e 's/\bLINK_INTERFACE_LIBRARIES\b/INTERFACE_LINK_LIBRARIES/g' -e 's/^[[:space:]]*export_library_dependencies[[:space:]]*\((.*)\)[[:space:]]*$/file(WRITE \1 "")/I' "${_cmake_file}" || die "failed to rewrite CMake 4 incompatibilities in ${_cmake_file}"
 		done < <(find "${S}" -type f \( -name CMakeLists.txt -o -name '*.cmake' \) -print0)
 		if ! grep -q 'cmake_minimum_required' "${S}/CMakeLists.txt"; then
