@@ -852,9 +852,31 @@ kde4-base_src_prepare() {
 				if(POLICY CMP0151)
 				cmake_policy(SET CMP0151 NEW)
 				endif()
+				# CMake 3.28+ (CMP0153) warns about exec_program() in the installed
+				# launcher-wrapper module, and a "cmake -P" script has no way to set
+				# the policy for itself.  Those wrappers only chmod +x a helper
+				# script, so run the same module body with execute_process().  When
+				# the installed kdelibs already carries the fix this block is inert.
+				if(POLICY CMP0153)
+				set(_kde4_sh_src "${KDE4_MODULE_DIR}/kde4_exec_via_sh.cmake")
+				if(EXISTS "${_kde4_sh_src}")
+				  file(READ "${_kde4_sh_src}" _kde4_sh_text)
+				  if(_kde4_sh_text MATCHES "exec_program")
+				    set(_kde4_sh_dir "${CMAKE_BINARY_DIR}/CMakeFiles/kde4-cmake4-modules")
+				    file(COPY "${KDE4_MODULE_DIR}/" DESTINATION "${_kde4_sh_dir}")
+				    string(REPLACE "exec_program(chmod ARGS ug+x" "execute_process(COMMAND chmod ug+x" _kde4_sh_text "${_kde4_sh_text}")
+				    string(REPLACE "OUTPUT_VARIABLE _dummy )" "OUTPUT_QUIET)" _kde4_sh_text "${_kde4_sh_text}")
+				    string(REPLACE "\\\"\${_filename}\\\"" "\"\${_filename}\"" _kde4_sh_text "${_kde4_sh_text}")
+				    file(WRITE "${_kde4_sh_dir}/kde4_exec_via_sh.cmake" "${_kde4_sh_text}")
+				    set(KDE4_MODULE_DIR "${_kde4_sh_dir}")
+				  endif()
+				endif()
+				endif()
 			EOF
-			if grep -q '^[[:space:]]*include[[:space:]]*(KDE4Defaults)' "${S}/CMakeLists.txt"; then
-				sed -i -e "/^[[:space:]]*include[[:space:]]*(KDE4Defaults)/r ${TMPDIR}/kde4-auth-actions.cmake" \
+			# kwalletmanager and friends write "include( KDE4Defaults )", with spaces
+			# inside the parentheses, so allow them here as well.
+			if grep -q '^[[:space:]]*include[[:space:]]*([[:space:]]*KDE4Defaults' "${S}/CMakeLists.txt"; then
+				sed -i -e "/^[[:space:]]*include[[:space:]]*([[:space:]]*KDE4Defaults/r ${TMPDIR}/kde4-auth-actions.cmake" \
 					"${S}/CMakeLists.txt" || die "failed to redefine kde4_install_auth_actions"
 			else
 				cat "${TMPDIR}/kde4-auth-actions.cmake" >> "${S}/CMakeLists.txt" ||
