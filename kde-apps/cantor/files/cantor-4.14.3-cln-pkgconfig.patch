@@ -1,0 +1,29 @@
+--- a/cmake/FindQalculate.cmake
++++ b/cmake/FindQalculate.cmake
+@@ -32,7 +32,15 @@
+ 
+     if(_return_VALUE STREQUAL "0")
+       exec_program(${PKGCONFIG_EXECUTABLE} ARGS libqalculate --libs OUTPUT_VARIABLE QALCULATE_LIBRARIES)
+-      exec_program(${PKGCONFIG_EXECUTABLE} ARGS cln --libs OUTPUT_VARIABLE CLN_LIBRARIES)
++      # libqalculate 5.x no longer depends on CLN, and the CLN lookup below
++      # leaks pkg-config's error output into CLN_LIBRARIES when cln.pc is
++      # missing, which ends up verbatim on the linker command line.
++      exec_program(${PKGCONFIG_EXECUTABLE} ARGS cln --exists RETURN_VALUE _cln_return_VALUE OUTPUT_VARIABLE _pkgconfigDevNull)
++      if(_cln_return_VALUE STREQUAL "0")
++        exec_program(${PKGCONFIG_EXECUTABLE} ARGS cln --libs OUTPUT_VARIABLE CLN_LIBRARIES)
++      else(_cln_return_VALUE STREQUAL "0")
++        set(CLN_LIBRARIES "")
++      endif(_cln_return_VALUE STREQUAL "0")
+       exec_program(${PKGCONFIG_EXECUTABLE} ARGS libqalculate --cflags OUTPUT_VARIABLE QALCULATE_CFLAGS)
+       set(QALCULATE_FOUND TRUE)
+     endif(_return_VALUE STREQUAL "0")
+--- a/src/backends/qalculate/CMakeLists.txt
++++ b/src/backends/qalculate/CMakeLists.txt
+@@ -22,7 +22,6 @@
+ kde4_add_ui_files(QalculateBackend_SRCS settings.ui)
+ 
+ kde4_add_plugin( cantor_qalculatebackend ${QalculateBackend_SRCS} )
+-message(STATUS ${CLN_LIBRARIES})
+ target_link_libraries( cantor_qalculatebackend ${KDE4_KDEUI_LIBS} cantorlibs ${QALCULATE_LIBRARIES} ${CLN_LIBRARIES})
+ 
+ install( FILES qalculatebackend.desktop DESTINATION ${SERVICES_INSTALL_DIR}/cantor)

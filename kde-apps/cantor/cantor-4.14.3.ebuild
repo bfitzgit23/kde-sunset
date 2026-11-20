@@ -27,6 +27,10 @@ DEPEND="${RDEPEND}
 
 RESTRICT="test"
 
+PATCHES=(
+	"${FILESDIR}/${P}-cln-pkgconfig.patch"
+)
+
 src_configure() {
 	local mycmakeargs=(
 		-DWITH_analitza="$(usex analitza)"
