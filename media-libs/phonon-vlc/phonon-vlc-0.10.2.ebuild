@@ -18,11 +18,16 @@ SLOT="0-qt4"
 KEYWORDS="amd64 ~arm ~ppc ~ppc64 x86"
 IUSE="debug"
 
+# 0.10.2 is Qt4 and therefore the last release for this Phonon; it is written
+# against the libvlc 3 API. VLC 4 dropped libvlc_track_description_t and
+# libvlc_event_t and reworked track/event handling; upstream VLC 4 support only
+# arrived in 0.12.0, which requires Qt5/Qt6. Keep VLC 3 to get the real reason
+# instead of a compile failure.
 DEPEND="
 	>=dev-qt/qtcore-4.8.7-r2:4
 	>=dev-qt/qtgui-4.8.7:4
 	media-libs/phonon:0-qt4
-	media-video/vlc:=[dbus,ogg]
+	<media-video/vlc-4:=[dbus,ogg]
 "
 RDEPEND="${DEPEND}
 	!<media-libs/phonon-vlc-0.11:0
