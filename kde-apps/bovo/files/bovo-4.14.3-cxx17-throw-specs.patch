@@ -1,0 +1,129 @@
+diff -ruN bv-a/ai/aron/aiboard.cc bv-b/ai/aron/aiboard.cc
+--- bv-a/ai/aron/aiboard.cc	2013-07-10 05:53:51.000000000 -0400
++++ bv-b/ai/aron/aiboard.cc	2026-11-20 05:41:31.882637702 -0500
+@@ -64,14 +64,14 @@
+     delete m_dimension;
+ }
+ 
+-bool AiBoard::empty(const Coord& c) const throw(outOfBounds) {
++bool AiBoard::empty(const Coord& c) const {
+     if (!m_dimension->ok(c)) {
+         throw outOfBounds();
+     }
+     return m_board[c.x()][c.y()].empty();
+ }
+ 
+-bool AiBoard::empty(const usi x, const usi y) const throw(outOfBounds) {
++bool AiBoard::empty(const usi x, const usi y) const {
+     return empty(Coord(x, y));
+ }
+ 
+@@ -106,19 +106,19 @@
+     return new Coord();
+ }
+ 
+-Player AiBoard::player(const Coord& c) const throw(outOfBounds) {
++Player AiBoard::player(const Coord& c) const {
+     if (!m_dimension->ok(c)) {
+         throw outOfBounds();
+     }
+     return m_board[c.x()][c.y()].player();
+ }
+ 
+-Player AiBoard::player(const usi x, const usi y) const throw(outOfBounds) {
++Player AiBoard::player(const usi x, const usi y) const {
+     return player(Coord(x, y));
+ }
+ 
+ bool AiBoard::setPlayer(const Move& move)
+-  throw(busy, gameover, notValidPlayer) {
++ {
+     m_cleanBoard = false;
+     zero(move.coord());
+     m_board[move.coord().x()][move.coord().y()].setPlayer(move.player());
+@@ -240,21 +240,21 @@
+     return v3.begin()->second;
+ }
+ 
+-uli AiBoard::points(const Coord& c) const throw(outOfBounds) {
++uli AiBoard::points(const Coord& c) const {
+     if (!m_dimension->ok(c)) {
+         throw outOfBounds();
+     }
+     return m_board[c.x()][c.y()].points();
+ }
+     
+-void AiBoard::addPoints(const Coord& c, uli points) throw(outOfBounds) {
++void AiBoard::addPoints(const Coord& c, uli points) {
+     if (!m_dimension->ok(c)) {
+         throw outOfBounds();
+     }
+     m_board[c.x()][c.y()].setPoints(m_board[c.x()][c.y()].points() + points);
+ }
+ 
+-void AiBoard::setPoints(const Coord& c, uli points) throw(outOfBounds) {
++void AiBoard::setPoints(const Coord& c, uli points) {
+     if (!m_dimension->ok(c)) {
+         throw outOfBounds();
+     }
+diff -ruN bv-a/ai/aron/aiboard.h bv-b/ai/aron/aiboard.h
+--- bv-a/ai/aron/aiboard.h	2013-07-10 05:53:51.000000000 -0400
++++ bv-b/ai/aron/aiboard.h	2026-11-20 05:41:31.881674088 -0500
+@@ -109,7 +109,7 @@
+      * @param coord Coord to check
+      * @return @c true if coord is empty, @c false otherwise
+      */
+-    bool empty(const Coord&) const throw(outOfBounds);
++    bool empty(const Coord&) const;
+ 
+     /**
+      * @brief is a Coord empty or set?
+@@ -120,7 +120,7 @@
+      * @param y X-part of coordinate to check
+      * @return @c true if coord is empty, @c false otherwise
+      */
+-    bool empty(const usi x, const usi y) const throw(outOfBounds);
++    bool empty(const usi x, const usi y) const;
+ 
+     /**
+      * @brief height of AiBoard
+@@ -153,7 +153,7 @@
+      * @return @c X if player 1, @c O if player 2, @c No if empty
+      * @throw outOfBounds if coord isn't on the playing board
+      */
+-    Player player(const Coord&) const throw(outOfBounds);
++    Player player(const Coord&) const;
+ 
+     /**
+      * @brief the player occupying a Coord
+@@ -163,7 +163,7 @@
+      * @return @c X if player 1, @c O if player 2, @c No if empty
+      * @throw outOfBounds if coord isn't on the playing board
+      */
+-    Player player(const usi x, const usi y) const throw(outOfBounds);
++    Player player(const usi x, const usi y) const;
+ 
+     /**
+      * @brief set the player of a Coord
+@@ -177,7 +177,7 @@
+      * @throw gameOver if game was already over
+      * @throw notValidPlayer if player wasn't X or O
+      */
+-    bool setPlayer(const Move& move) throw(busy, gameover, notValidPlayer);
++    bool setPlayer(const Move& move);
+ 
+     /**
+      * @brief change Skill
+@@ -216,9 +216,9 @@
+     Coord evaluate() const;
+ 
+     /* returns, adds och sets points on a given square. */
+-    uli points(const Coord&) const throw(outOfBounds);
+-    void addPoints(const Coord&, const uli points) throw(outOfBounds);
+-    void setPoints(const Coord&, const uli points) throw(outOfBounds);
++    uli points(const Coord&) const;
++    void addPoints(const Coord&, const uli points);
++    void setPoints(const Coord&, const uli points);
+ 
+     /* initialize this class */
+     void setup();

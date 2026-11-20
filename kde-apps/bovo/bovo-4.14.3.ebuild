@@ -13,4 +13,8 @@ IUSE="debug"
 DEPEND="$(add_kdeapps_dep libkdegames)"
 RDEPEND="${DEPEND}"
 
+PATCHES=(
+	"${FILESDIR}/${P}-cxx17-throw-specs.patch"
+)
+
 
