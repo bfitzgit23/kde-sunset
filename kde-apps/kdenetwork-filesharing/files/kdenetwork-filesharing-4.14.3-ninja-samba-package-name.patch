@@ -1,0 +1,13 @@
+The value is already backslash-escaped, and the Ninja generator escapes it a
+second time, so gcc receives -DSAMBA_PACKAGE_NAME="\\\"samba\\\"" and chokes on
+the stray backslash in sambausershareplugin.cpp ("missing terminating "
+character" / "stray '\' in program").  Let CMake hold the quoted value and let
+Ninja do the shell escaping, as verified with Ninja + gcc.
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -149,3 +149,3 @@
+ if(NOT SAMBA_PACKAGE_NAME)
+-    set(SAMBA_PACKAGE_NAME \\\"samba\\\")
++    set(SAMBA_PACKAGE_NAME "\"samba\"")
+ endif(NOT SAMBA_PACKAGE_NAME)
