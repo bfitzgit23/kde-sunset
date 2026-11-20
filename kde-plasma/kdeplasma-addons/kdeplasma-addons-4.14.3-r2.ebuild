@@ -44,6 +44,7 @@ PATCHES=(
    "${FILESDIR}/${P}-webkit.patch"
    "${FILESDIR}/${P}-qalculate-cln-pkgconfig.patch"
    "${FILESDIR}/${P}-rememberthemilk-webkit-guard.patch"
+   "${FILESDIR}/${P}-qalculate-std-vector.patch"
 )
 
 src_configure() {

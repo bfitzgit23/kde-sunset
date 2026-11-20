@@ -1,0 +1,49 @@
+libqalculate 5.x no longer pulls <vector> and "using namespace std" into every
+translation unit through its own headers, so the applet's unqualified vector
+does not name a type. Qualify it and include the header.
+--- a/applets/qalculate/qalculate_labels.h
++++ b/applets/qalculate/qalculate_labels.h
+@@ -29,6 +29,8 @@
+ 
+ #include <QString>
+ 
++#include <vector>
++
+ class QalculateSettings;
+ 
+ class QalculateLabels
+@@ -40,7 +42,7 @@
+ 
+ private:
+     const QalculateSettings *m_qalculateSettings;
+-    vector<MathStructure> result_parts;
++    std::vector<MathStructure> result_parts;
+     bool in_matrix;
+ };
+ 
+--- a/applets/qalculate/qalculate_labels.cpp
++++ b/applets/qalculate/qalculate_labels.cpp
+@@ -232,9 +232,9 @@
+         }
+ 
+         bool par_prev = false;
+-        vector<int> nm;
+-        vector<QString> terms;
+-        vector<bool> do_space;
++        std::vector<int> nm;
++        std::vector<QString> terms;
++        std::vector<bool> do_space;
+         for (size_t i = 0; i < m.size(); i++) {
+             ips_n.wrap = m[i].needsParenthesis(po, ips_n, m, i + 1, ips.division_depth > 0 || ips.power_depth > 0, ips.power_depth > 0);
+             terms.push_back(drawStructure(m[i], po, ips_n));
+@@ -280,8 +280,8 @@
+ 
+         ips_n.depth++;
+ 
+-        vector<QString> terms;
+-        vector<bool> do_space;
++        std::vector<QString> terms;
++        std::vector<bool> do_space;
+         for (size_t i = 0; i < m.size(); i++) {
+             if (m[i].type() == STRUCT_NEGATE && i > 0) {
+                 ips_n.wrap = m[i][0].needsParenthesis(po, ips_n, m, i + 1, ips.division_depth > 0 || ips.power_depth > 0, ips.power_depth > 0);

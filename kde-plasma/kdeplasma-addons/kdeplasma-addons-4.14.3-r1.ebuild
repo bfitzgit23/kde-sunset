@@ -17,6 +17,7 @@ RESTRICT=test
 PATCHES=(
 	"${FILESDIR}/${P}-qalculate-cln-pkgconfig.patch"
 	"${FILESDIR}/${P}-rememberthemilk-webkit-guard.patch"
+	"${FILESDIR}/${P}-qalculate-std-vector.patch"
 )
 
 # krunner is only needed to generate dbus interface for lancelot
