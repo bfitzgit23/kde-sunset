@@ -814,6 +814,47 @@ kde4-base_src_prepare() {
 ' 'cmake_minimum_required(VERSION 3.5)'; cat "${S}/CMakeLists.txt"; } > "${S}/CMakeLists.txt.kde4tmp"
 			mv "${S}/CMakeLists.txt.kde4tmp" "${S}/CMakeLists.txt" || die "failed to add cmake_minimum_required"
 		fi
+		# CMake 4 (CMP0037) rejects the custom target name that KDE4Macros paths
+		# build from a dotted KAuth helper id.  Replace the macro right after
+		# KDE4Defaults is included (KDE4Macros is loaded by then, no subdirectory
+		# has run yet) so the policy is still generated and installed, just under
+		# a target name CMake accepts.
+		if ! grep -q 'KDE4_CMAKE4_AUTH_ACTIONS_FIX' "${S}/CMakeLists.txt"; then
+			cat > "${TMPDIR}/kde4-auth-actions.cmake" <<-'EOF'
+				# CMake 4 (CMP0037) rejects the custom target name that KDE4Macros' 
+				# kde4_install_auth_actions() builds from a dotted KAuth helper id
+				# ("actions for org.kde.foo").  powerdevil, kdm, systemsettings and
+				# ksysguard's processcore all call it, so generate and install the policy
+				# file the same way under a target name CMake accepts.
+				if(COMMAND kde4_install_auth_actions)
+				set(KDE4_CMAKE4_AUTH_ACTIONS_FIX TRUE)
+				function(kde4_install_auth_actions _kde4_helper_id _kde4_actions_file)
+				  if(KDE4_AUTH_BACKEND_NAME STREQUAL "APPLE" OR KDE4_AUTH_BACKEND_NAME STREQUAL "OSX")
+				    install(CODE "execute_process(COMMAND ${KDE4_KAUTH_POLICY_GEN_EXECUTABLE} ${_kde4_actions_file} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})")
+				  elseif(KDE4_AUTH_BACKEND_NAME STREQUAL "POLKITQT" OR KDE4_AUTH_BACKEND_NAME STREQUAL "POLKITQT-1")
+				    set(_kde4_policy ${CMAKE_CURRENT_BINARY_DIR}/${_kde4_helper_id}.policy)
+				    get_filename_component(_kde4_input ${_kde4_actions_file} ABSOLUTE)
+				    string(REPLACE "." "_" _kde4_target "kde4_auth_actions_${_kde4_helper_id}")
+				    add_custom_command(OUTPUT ${_kde4_policy}
+				                       COMMAND ${KDE4_KAUTH_POLICY_GEN_EXECUTABLE} ${_kde4_input} > ${_kde4_policy}
+				                       MAIN_DEPENDENCY ${_kde4_input}
+				                       WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+				                       COMMENT "Generating ${_kde4_helper_id}.policy"
+				                       DEPENDS ${_KDE4_KAUTH_POLICY_GEN_EXECUTABLE_DEP})
+				    add_custom_target(${_kde4_target} ALL DEPENDS ${_kde4_policy})
+				    install(FILES ${_kde4_policy} DESTINATION ${KDE4_AUTH_POLICY_FILES_INSTALL_DIR})
+				  endif()
+				endfunction()
+				endif()
+			EOF
+			if grep -q '^[[:space:]]*include[[:space:]]*(KDE4Defaults)' "${S}/CMakeLists.txt"; then
+				sed -i -e "/^[[:space:]]*include[[:space:]]*(KDE4Defaults)/r ${TMPDIR}/kde4-auth-actions.cmake" \
+					"${S}/CMakeLists.txt" || die "failed to redefine kde4_install_auth_actions"
+			else
+				cat "${TMPDIR}/kde4-auth-actions.cmake" >> "${S}/CMakeLists.txt" ||
+					die "failed to append the kde4_install_auth_actions fix"
+			fi
+		fi
 		# KDE4 add_test() names predate CMP0110; leave the old escaping alone
 		# but allow the names under CMake 3.19+, otherwise the CTest file
 		# generation step fails after developer warnings.  Anchor it after the
