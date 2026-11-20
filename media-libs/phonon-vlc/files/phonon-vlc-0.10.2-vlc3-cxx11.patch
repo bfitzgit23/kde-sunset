@@ -1,0 +1,22 @@
+From: kde-sunset overlay
+Subject: build as C++11, VLC 3 plugin headers require it
+
+VLC's plugin headers pulled in through vlc/plugins use C++11 (<type_traits>,
+auto) as of VLC 3.0.x, but Phonon's installed cmake modules append -ansi
+(-std=c++98) to CMAKE_CXX_FLAGS. Compile options are placed after those
+variables on the command line, so the last -std there is the effective one.
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -22,6 +22,12 @@
+ 
+ include_directories(${PHONON_INCLUDES} ${QT_INCLUDES} ${LIBVLC_INCLUDE_DIR} ${LIBVLC_INCLUDE_DIR}/vlc/plugins)
+ 
++# VLC 3.0.x plugin headers (included from vlc/plugins above) need C++11, while
++# Phonon's cmake modules force -ansi. Compile options come after those flags.
++if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
++    add_compile_options(-std=gnu++11)
++endif()
++
+ set(PHONON_VLC_MAJOR_VERSION "0")
+ set(PHONON_VLC_MINOR_VERSION "10")
+ set(PHONON_VLC_PATCH_VERSION "2")

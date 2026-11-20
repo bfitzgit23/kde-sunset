@@ -6,7 +6,10 @@ EAPI=8
 MY_PN="phonon-backend-vlc"
 inherit cmake
 
-PATCHES=( "${FILESDIR}/${P}-qlatin1string.patch" )
+PATCHES=(
+	"${FILESDIR}/${P}-qlatin1string.patch"
+	"${FILESDIR}/${P}-vlc3-cxx11.patch"
+)
 
 DESCRIPTION="Phonon VLC backend"
 HOMEPAGE="https://community.kde.org/Phonon"
