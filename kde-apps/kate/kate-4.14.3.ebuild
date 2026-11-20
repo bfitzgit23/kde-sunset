@@ -34,6 +34,14 @@ src_configure() {
 	kde4-meta_src_configure
 }
 
+src_install() {
+	kde4-meta_src_install
+
+	# Gear 6 ships /usr/bin/kate and /usr/bin/kwrite, so keep the KDE4 copies
+	# under suffixed names that their own menu entries point at.
+	kde4_suffix_binaries kate kwrite
+}
+
 pkg_postinst() {
 	kde4-meta_pkg_postinst
 

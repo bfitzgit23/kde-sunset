@@ -45,6 +45,13 @@ src_prepare() {
 		|| die "Failed to omit .desktop files"
 }
 
+src_install() {
+	kde4-meta_src_install
+
+	# Gear 6 ships /usr/bin/konqueror; keep the KDE4 copy suffixed.
+	kde4_suffix_binaries konqueror
+}
+
 pkg_postinst() {
 	kde4-meta_pkg_postinst
 

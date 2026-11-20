@@ -34,4 +34,11 @@ src_configure() {
 	kde4-meta_src_configure
 }
 
+src_install() {
+	kde4-meta_src_install
+
+	# Plasma 6 ships /usr/bin/kinfocenter; keep the KDE4 copy suffixed.
+	kde4_suffix_binaries kinfocenter
+}
+
 

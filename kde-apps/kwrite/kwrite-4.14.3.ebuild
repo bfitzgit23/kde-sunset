@@ -16,4 +16,11 @@ RDEPEND="
 	$(add_kdeapps_dep katepart)
 "
 
+src_install() {
+	kde4-meta_src_install
+
+	# Gear 6 ships /usr/bin/kwrite; keep the KDE4 copy suffixed.
+	kde4_suffix_binaries kwrite
+}
+
 

@@ -28,4 +28,9 @@ src_configure() {
 	kde4-base_src_configure
 }
 
+src_install() {
+	kde4-base_src_install
 
+	# Plasma 6's kmix installs /usr/bin/kmix; keep the KDE4 copy suffixed.
+	kde4_suffix_binaries kmix
+}

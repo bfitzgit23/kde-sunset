@@ -852,6 +852,20 @@ kde4-base_src_prepare() {
 				if(POLICY CMP0151)
 				cmake_policy(SET CMP0151 NEW)
 				endif()
+				# Qt 4.8's headers predate most of the diagnostics current GCC grew,
+				# and KDE4 turns on -Wall, so every translation unit drowns in
+				# -Wdeprecated-copy / -Wdeprecated-enum-enum-conversion /
+				# -Wtemplate-id-cdtor notes coming from /usr/include/qt4.  Options
+				# added here land after CMAKE_CXX_FLAGS on the compile line, so they
+				# win over KDE's -Wall.  Third-party gating is by compiler version
+				# because -Wno-<unknown> is silently accepted by GCC and cannot be
+				# probed with check_cxx_compiler_flag().
+				if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+				  add_compile_options(-Wno-deprecated-copy)
+				  if(NOT CMAKE_CXX_COMPILER_VERSION VERSION_LESS 11)
+				    add_compile_options(-Wno-deprecated-enum-enum-conversion -Wno-template-id-cdtor)
+				  endif()
+				endif()
 				# CMake 3.28+ (CMP0153) warns about exec_program() in the installed
 				# launcher-wrapper module, and a "cmake -P" script has no way to set
 				# the policy for itself.  Those wrappers only chmod +x a helper
@@ -1081,6 +1095,36 @@ kde4-base_src_test() {
 	if [ -n "${DBUS_SESSION_BUS_PID}" ] ; then
 		kill ${DBUS_SESSION_BUS_PID}
 	fi
+}
+
+# @FUNCTION: kde4_suffix_binaries
+# @USAGE: <binary>...
+# @DESCRIPTION:
+# Rename $ED/usr/bin/<binary> to <binary>4 and point the Exec=/TryExec=
+# entries of the installed .desktop files at the renamed binary.
+#
+# A KDE4 application and its KF6/Plasma 6 successor normally install the same
+# program name into $PATH.  Merging the KDE4 package over the modern one
+# leaves the file untracked by that package, which replaces it again on its
+# next update, so the KDE4 copy lives on under a suffixed name and keeps its
+# own menu entry.  Binaries the package did not install are skipped, which
+# keeps the call safe where only part of a module was extracted.
+kde4_suffix_binaries() {
+	debug-print-function ${FUNCNAME} "$@"
+
+	local bin desktop apps="${ED%/}/usr/share/applications"
+
+	for bin in "$@"; do
+		[[ -e ${ED%/}/usr/bin/${bin} ]] || continue
+		mv "${ED%/}/usr/bin/${bin}" "${ED%/}/usr/bin/${bin}4" ||
+			die "failed to suffix ${bin}"
+		for desktop in "${apps}"/*.desktop "${apps}"/kde4/*.desktop; do
+			[[ -f ${desktop} ]] || continue
+			grep -qE "^(Exec|TryExec)=${bin}([[:space:]]|\$)" "${desktop}" || continue
+			sed -i -E "s@^(Exec|TryExec)=${bin}([[:space:]]|\$)@\1=${bin}4\2@" \
+				"${desktop}" || die "failed to repoint ${desktop##*/} at ${bin}4"
+		done
+	done
 }
 
 # @FUNCTION: kde4-base_src_install
