@@ -1,0 +1,13 @@
+webslice includes qgraphicswebview.h and links the KDEWebKit libraries, but is
+added unconditionally while the other webkit applets sit behind
+if(QT_QTWEBKIT_FOUND). Without qtwebkit installed it cannot build.
+--- a/applets/CMakeLists.txt
++++ b/applets/CMakeLists.txt
+@@ -99,4 +99,6 @@
+ endif (Q_WS_X11)
+ 
+-add_subdirectory(webslice)
++if(QT_QTWEBKIT_FOUND)
++  add_subdirectory(webslice)
++endif(QT_QTWEBKIT_FOUND)
+ 
