@@ -117,7 +117,9 @@ src_install() {
 	mv "${ED}"/usr/bin/systemsettings "${ED}"/usr/bin/systemsettings4 || die
 	local d
 	for d in systemsettings kdesystemsettings; do
-		mv "${ED}/usr/share/applications/${d}.desktop" "${ED}/usr/share/applications/${d}4.desktop" || die
-		sed -i -e "s/^Exec=systemsettings /Exec=systemsettings4 /" "${ED}/usr/share/applications/${d}4.desktop" || die
+		mv "${ED}/usr/share/applications/kde4/${d}.desktop" \
+			"${ED}/usr/share/applications/kde4/${d}4.desktop" || die
+		sed -i -e "s/^Exec=systemsettings /Exec=systemsettings4 /" \
+			"${ED}/usr/share/applications/kde4/${d}4.desktop" || die
 	done
 }
