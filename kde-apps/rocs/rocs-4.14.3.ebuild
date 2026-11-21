@@ -11,6 +11,8 @@ https://edu.kde.org/applications/mathematics/rocs"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
+PATCHES=( "${FILESDIR}/${P}-renderhints-type.patch" )
+
 RDEPEND="
 	dev-libs/grantlee:0
 	dev-qt/qtxmlpatterns:4

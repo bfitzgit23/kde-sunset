@@ -1,0 +1,14 @@
+--- a/VisualEditor/Actions/SelectMoveHandAction.cpp
++++ b/VisualEditor/Actions/SelectMoveHandAction.cpp
+@@ -83,8 +83,9 @@
+     }
+ 
+     if (_graphScene->items().count() > 600) { // 5! + 25 items on screen
+-        _graphScene->views().at(0)->setRenderHints(QPainter::Antialiasing
+-                & QPainter::TextAntialiasing);
++        // Drawing is expensive with that many items, so drop the render hints
++        // while dragging; executeRelease() turns antialiasing back on.
++        _graphScene->views().at(0)->setRenderHints(0);
+     }
+     return true;
+ }
