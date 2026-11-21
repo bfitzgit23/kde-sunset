@@ -34,7 +34,7 @@ DEPEND="${RDEPEND}
 PATCHES=(
 	"${FILESDIR}/${PN}-4.5.95-webcollage.patch"
 	"${FILESDIR}/${PN}-15.08.3-missing-include.patch"
-	"${FILESDIR}/${PN}-4.14.3-eigen3-api.patch"
+	"${FILESDIR}/${PN}-eigen3-api.patch"
 )
 
 src_configure() {
