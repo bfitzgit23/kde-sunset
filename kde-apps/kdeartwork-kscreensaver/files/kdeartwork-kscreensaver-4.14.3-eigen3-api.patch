@@ -9,24 +9,25 @@
  macro_log_feature(KEXIV2_FOUND "Kexiv2" "A C++ library for exiv manipulation" "kdegraphics" FALSE "" "Needed to rotate photos with exif data" )
 --- a/kscreensaver/kdesavers/rkodesolver.h
 +++ b/kscreensaver/kdesavers/rkodesolver.h
-@@ -333,7 +333,7 @@
+@@ -333,8 +333,7 @@
     // generic scaling factor
     // |y| + |dx * dy/dx| + 1e-15
     Matrix<T,D,1> yscal
 -      = (m_y.cwise().abs() + (dx*m_dydx).cwise().abs()).cwise()
-+      = (m_y.array().abs() + (dx*m_dydx).array().abs()).matrix()
-       + 1e-15;
+-      + 1e-15;
++      = (m_y.array().abs() + (dx*m_dydx).array().abs() + 1e-15).matrix();
  
     unsigned int iter = 0;
-@@ -354,13 +354,13 @@
+    T errmax = 0;
+@@ -354,13 +353,12 @@
           }
           // new dx -> update scaling vector
           yscal
 -            = (m_y.cwise().abs()
 -               + (dx*m_dydx).cwise().abs()).cwise()
+-            + 1e-15;
 +            = (m_y.array().abs()
-+               + (dx*m_dydx).array().abs()).matrix()
-             + 1e-15;
++               + (dx*m_dydx).array().abs() + 1e-15).matrix();
        }
  
        ytmp   = rkStep(dx, yerr); // try to make a step forward
