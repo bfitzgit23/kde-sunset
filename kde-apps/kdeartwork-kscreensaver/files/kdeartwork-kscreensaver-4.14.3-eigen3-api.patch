@@ -1,0 +1,48 @@
+--- a/kscreensaver/kdesavers/CMakeLists.txt
++++ b/kscreensaver/kdesavers/CMakeLists.txt
+@@ -1,6 +1,5 @@
+ macro_optional_find_package(Eigen3)
+ macro_log_feature(EIGEN3_FOUND "Eigen3" "A C++ template library for linear algebra" "kdesupport" FALSE "" "Needed to build the krotation and kpendulum screensavers" )
+-add_definitions(-DEIGEN2_SUPPORT)
+ 
+ macro_optional_find_package(Kexiv2)
+ macro_log_feature(KEXIV2_FOUND "Kexiv2" "A C++ library for exiv manipulation" "kdegraphics" FALSE "" "Needed to rotate photos with exif data" )
+--- a/kscreensaver/kdesavers/rkodesolver.h
++++ b/kscreensaver/kdesavers/rkodesolver.h
+@@ -333,7 +333,7 @@
+    // generic scaling factor
+    // |y| + |dx * dy/dx| + 1e-15
+    Matrix<T,D,1> yscal
+-      = (m_y.cwise().abs() + (dx*m_dydx).cwise().abs()).cwise()
++      = (m_y.array().abs() + (dx*m_dydx).array().abs()).matrix()
+       + 1e-15;
+ 
+    unsigned int iter = 0;
+@@ -354,13 +354,13 @@
+          }
+          // new dx -> update scaling vector
+          yscal
+-            = (m_y.cwise().abs()
+-               + (dx*m_dydx).cwise().abs()).cwise()
++            = (m_y.array().abs()
++               + (dx*m_dydx).array().abs()).matrix()
+             + 1e-15;
+       }
+ 
+       ytmp   = rkStep(dx, yerr); // try to make a step forward
+-      t      = (yerr.cwise() / yscal).cwise().abs(); // calc the error vector
++      t      = (yerr.array() / yscal.array()).abs().matrix(); // calc the error vector
+       errmax = t.maxCoeff()/m_eps;    // calc the rel. maximal error
+       ++iter;
+    } while ((iter < maxiter) && (errmax >= 1.0));
+--- a/kscreensaver/kdesavers/rotation.cpp
++++ b/kscreensaver/kdesavers/rotation.cpp
+@@ -549,7 +549,7 @@
+ 
+    // omega_body = L_body * J_body^(-1)
+    // component-wise division because J_body is a diagonal matrix
+-   Vector3d omega_body = (m_Lz * e_body.col(2)).cwise() / m_J;
++   Vector3d omega_body = ((m_Lz * e_body.col(2)).array() / m_J.array()).matrix();
+ 
+    // initial rotation vector
+    m_omega = et * omega_body;
