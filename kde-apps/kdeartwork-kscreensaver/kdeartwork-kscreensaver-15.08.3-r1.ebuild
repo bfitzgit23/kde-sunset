@@ -32,7 +32,6 @@ DEPEND="${RDEPEND}
 "
 
 PATCHES=(
-	"${FILESDIR}/${PN}-xscreensaver.patch"
 	"${FILESDIR}/${PN}-4.5.95-webcollage.patch"
 	"${FILESDIR}/${PN}-15.08.3-missing-include.patch"
 )
