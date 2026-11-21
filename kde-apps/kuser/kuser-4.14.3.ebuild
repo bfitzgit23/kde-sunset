@@ -18,4 +18,8 @@ RDEPEND="${DEPEND}
 	$(add_kdeapps_dep knotify)
 "
 
+PATCHES=(
+	"${FILESDIR}/${P}-cmake-check-modules.patch"
+)
+
 
