@@ -14,6 +14,7 @@ IUSE="debug"
 PATCHES=(
 	"${FILESDIR}/${P}-renderhints-type.patch"
 	"${FILESDIR}/${P}-make-pair-lvalues.patch"
+	"${FILESDIR}/${P}-no-qtwebkit.patch"
 )
 
 RDEPEND="

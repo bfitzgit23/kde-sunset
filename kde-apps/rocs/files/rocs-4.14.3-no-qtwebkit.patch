@@ -1,0 +1,148 @@
+--- a/App/Ui/DocumentationWidget.ui
++++ b/App/Ui/DocumentationWidget.ui
+@@ -78,8 +78,8 @@
+        </layout>
+       </item>
+       <item row="1" column="0">
+-       <widget class="QWebView" name="viewer">
+-        <property name="url">
++       <widget class="QTextBrowser" name="viewer">
++        <property name="source">
+          <url>
+           <string>http://docs.kde.org/stable/en/kdeedu/rocs/index.html</string>
+          </url>
+@@ -93,11 +93,6 @@
+  </widget>
+  <customwidgets>
+   <customwidget>
+-   <class>QWebView</class>
+-   <extends>QWidget</extends>
+-   <header>QtWebKit/QWebView</header>
+-  </customwidget>
+-  <customwidget>
+    <class>KPushButton</class>
+    <extends>QPushButton</extends>
+    <header>kpushbutton.h</header>
+--- a/App/Ui/DocumentationWidget.cpp
++++ b/App/Ui/DocumentationWidget.cpp
+@@ -18,7 +18,6 @@
+ 
+ 
+ #include "DocumentationWidget.h"
+-#include <QWebHistory>
+ 
+ DocumentationWidget::DocumentationWidget(QWidget* parent)
+     : QWidget(parent)
+@@ -35,19 +34,18 @@
+     connect(ui->buttonBack, SIGNAL(pressed()), ui->viewer, SLOT(back()));
+     connect(ui->buttonForward, SIGNAL(pressed()), ui->viewer, SLOT(forward()));
+     connect(ui->buttonHome, SIGNAL(pressed()), this, SLOT(goHome()));
+-    connect(ui->viewer, SIGNAL(urlChanged(QUrl)), this, SLOT(updateButtonStates()));
++    connect(ui->viewer, SIGNAL(historyChanged()), this, SLOT(updateButtonStates()));
+ 
+     updateButtonStates();
+ }
+ 
+ void DocumentationWidget::goHome()
+ {
+-    ui->viewer->setUrl(_handbook);
++    ui->viewer->setSource(_handbook);
+ }
+ 
+ void DocumentationWidget::updateButtonStates()
+ {
+-    QWebHistory* history = ui->viewer->history();
+-    ui->buttonBack->setEnabled(history->canGoBack());
+-    ui->buttonForward->setEnabled(history->canGoForward());
++    ui->buttonBack->setEnabled(ui->viewer->isBackwardAvailable());
++    ui->buttonForward->setEnabled(ui->viewer->isForwardAvailable());
+ }
+--- a/App/InterfacePlugins/ApiDoc/ApiDocWidget.ui
++++ b/App/InterfacePlugins/ApiDoc/ApiDocWidget.ui
+@@ -32,13 +32,7 @@
+         <widget class="QWidget" name="detailsView">
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+-           <widget class="QWebView" name="docDetails">
+-            <property name="url">
+-             <url>
+-              <string>about:blank</string>
+-             </url>
+-            </property>
+-           </widget>
++           <widget class="QTextBrowser" name="docDetails"/>
+           </item>
+          </layout>
+         </widget>
+@@ -121,11 +115,6 @@
+  </widget>
+  <customwidgets>
+   <customwidget>
+-   <class>QWebView</class>
+-   <extends>QWidget</extends>
+-   <header>QtWebKit/QWebView</header>
+-  </customwidget>
+-  <customwidget>
+    <class>KPushButton</class>
+    <extends>QPushButton</extends>
+    <header>kpushbutton.h</header>
+--- a/App/InterfacePlugins/ApiDoc/ApiDocWidget.cpp
++++ b/App/InterfacePlugins/ApiDoc/ApiDocWidget.cpp
+@@ -21,7 +21,7 @@
+ #include "ApiDocManager.h"
+ #include "ApiDocModel.h"
+ 
+-#include <QWebView>
++#include <QTextDocument>
+ #include <KDebug>
+ #include <KStandardDirs>
+ 
+@@ -53,13 +53,14 @@
+     connect(ui->buttonPrev, SIGNAL(clicked(bool)), this, SLOT(historyGoBack()));
+ 
+     // listen to all links for ids
+-    connect(ui->docDetails, SIGNAL(linkClicked(QUrl)), this, SLOT(showObjectApi(QUrl)));
++    connect(ui->docDetails, SIGNAL(anchorClicked(QUrl)), this, SLOT(showObjectApi(QUrl)));
+     // this option has the following idea:
+-    // * handle relative anchor calls directly in the web engine
++    // * handle relative anchor calls directly in the document viewer
+     // * use for switching between object pages the path "http://virtual/<object-id>"
+-    //   such that that path is handles as external and progapages to this widget
+     // drawback: history only works for object pages, not for anchors
+-    ui->docDetails->page()->setLinkDelegationPolicy(QWebPage::DelegateExternalLinks);
++    ui->docDetails->setOpenLinks(false);
++    ui->docDetails->setOpenExternalLinks(false);
++    ui->docDetails->document()->setBaseUrl(_baseUrl);
+ 
+     ui->docTree->setModel(_model);
+ }
+@@ -76,7 +77,7 @@
+ 
+ void ApiDocWidget::showHtmlOutline(bool logHistory)
+ {
+-    ui->docDetails->setHtml(_manager->apiOverviewDocument(), _baseUrl);
++    ui->docDetails->setHtml(_manager->apiOverviewDocument());
+     ui->pageStack->setCurrentIndex(1);
+ 
+     if (!logHistory) {
+@@ -110,7 +111,7 @@
+ void ApiDocWidget::showObjectApi(const QString &id, bool logHistory=true)
+ {
+     QString htmlDocument = _manager->objectApiDocument(id);
+-    ui->docDetails->setHtml(htmlDocument, _baseUrl);
++    ui->docDetails->setHtml(htmlDocument);
+     ui->pageStack->setCurrentIndex(1);
+ 
+     if (logHistory) {
+@@ -133,6 +134,11 @@
+ {
+     if (aliasPage.toString().isEmpty()) {
+         kError() << "No path given, aborting.";
++        return;
++    }
++
++    if (aliasPage.hasFragment() && aliasPage.path().isEmpty()) {
++        ui->docDetails->scrollToAnchor(aliasPage.fragment());
+         return;
+     }
+ 
