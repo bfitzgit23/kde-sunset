@@ -53,7 +53,7 @@ kde-base/kopete:gadu - Enable the Gadu protocol handler.
 kde-base/kopete:netmeeting - Builds netmeeting plugin (require gnomemeeting)
 kde-base/kopete:history - Enables saving chat history.
 kde-base/kdepim-meta:kitchensync - Include the kitchensync package
-kde-base/kdm:consolekit - Enables support for authorization using consolekit
+kde-plasma/kdm:elogind - Register sessions with elogind through pam_elogind instead of requiring ConsoleKit
 kde-base/krdc:rdp - Enable runtime dependency for net-misc/rdesktop
 kde-base/kalzium:editor - Enable the embedded molecule editor/viewer
 kde-base/kalzium:solver - Enable the equation solver

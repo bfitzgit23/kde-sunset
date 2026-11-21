@@ -3,6 +3,6 @@
 <pkgmetadata>
 	<!-- maintainer-needed -->
 	<use>
-		<flag name="consolekit">Enables support for authorization using consolekit</flag>
+		<flag name="elogind">Register sessions with elogind through pam_elogind instead of requiring ConsoleKit</flag>
 	</use>
 </pkgmetadata>

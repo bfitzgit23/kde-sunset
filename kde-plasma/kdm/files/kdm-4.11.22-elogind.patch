@@ -1,0 +1,27 @@
+--- a/kdm/backend/client.c
++++ b/kdm/backend/client.c
+@@ -1554,6 +1554,25 @@
+         V_RET;
+     }
+ 
+     removeSession = True; /* set it first - same as above */
++
++    /* elogind has no counterpart to the ConsoleKit connector library:
++       pam_elogind registers the session, and takes the seat, the display and
++       the VT from the environment of the process calling
++       pam_open_session().  Export what kdm knows about its own X server so
++       that the session lands on the right seat and counts as active. */
++    if ((td->displayType & d_location) == dLocal) {
++        setenv("XDG_SESSION_TYPE", "x11", 1);
++#ifdef HAVE_VTS
++        if (td->serverVT > 0) {
++            char vtbuf[20];
++
++            sprintf(vtbuf, "%d", td->serverVT);
++            setenv("XDG_VTNR", vtbuf, 1);
++        }
++#endif
++    }
+     pretc = pam_open_session(pamh, 0);
+     reInitErrorLog();
+     if (pretc != PAM_SUCCESS) {
