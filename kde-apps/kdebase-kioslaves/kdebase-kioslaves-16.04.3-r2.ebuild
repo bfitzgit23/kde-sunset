@@ -38,6 +38,7 @@ KMEXTRA="
 PATCHES=(
 	"${FILESDIR}/${P}-webkit.patch"
 	"${FILESDIR}/${P}-perl-5.22.patch"
+	"${FILESDIR}/${P}-exiv2-0.28.patch"
 )
 
 src_configure() {

@@ -1,0 +1,22 @@
+--- a/kioslave/thumbnail/jpegcreator.cpp
++++ b/kioslave/thumbnail/jpegcreator.cpp
+@@ -257,7 +257,8 @@
+     if (settings->rotate()) {
+         //Handle exif rotation
+         try {
+-            Exiv2::Image::AutoPtr exivImg = Exiv2::ImageFactory::open(name.constData());
++            // exiv2 0.28 dropped Image::AutoPtr in favour of Image::UniquePtr; auto follows both
++            auto exivImg = Exiv2::ImageFactory::open(name.constData());
+             if (exivImg.get()) {
+                 exivImg->readMetadata();
+                 Exiv2::ExifData exifData = exivImg->exifData();
+@@ -265,7 +266,8 @@
+                     Exiv2::ExifKey key("Exif.Image.Orientation");
+                     Exiv2::ExifData::iterator it = exifData.findKey(key);
+                     if (it != exifData.end()) {
+-                        int orient = it->toLong();
++                        // exiv2 0.28 replaced Exifdatum::toLong() with toInt64()
++                        int orient = static_cast<int>(it->toInt64());
+                         image = img.transformed(orientationMatrix(orient));
+                         return true;
+                     }
