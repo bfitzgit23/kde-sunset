@@ -10,6 +10,8 @@ HOMEPAGE="https://www.kde.org/applications/education/kturtle https://edu.kde.org
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
+PATCHES=( "${FILESDIR}/${P}-qbool-fontflags.patch" )
+
 RDEPEND="
 	$(add_kdeapps_dep knotify)
 "
