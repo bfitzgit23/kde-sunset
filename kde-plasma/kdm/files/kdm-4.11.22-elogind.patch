@@ -1,7 +1,6 @@
 --- a/kdm/backend/client.c
 +++ b/kdm/backend/client.c
-@@ -1554,6 +1554,25 @@
-         V_RET;
+@@ -1555,6 +1555,23 @@
      }
  
      removeSession = True; /* set it first - same as above */
