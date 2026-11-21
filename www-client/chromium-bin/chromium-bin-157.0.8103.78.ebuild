@@ -34,19 +34,20 @@ QA_PREBUILT="
 "
 
 RDEPEND="
+	!www-client/chromium
 	app-accessibility/at-spi2-core
 	app-arch/brotli
 	app-arch/zstd
 	dev-libs/double-conversion
 	dev-libs/expat
 	dev-libs/glib:2
+	dev-cpp/highway
 	dev-libs/libffi
 	dev-libs/libgcrypt:0
 	dev-libs/libxml2
 	dev-libs/libxslt
 	dev-libs/nspr
 	dev-libs/nss
-	dev-cpp/highway
 	=dev-cpp/simdutf-9.2.1
 	dev-util/desktop-file-utils
 	media-libs/alsa-lib
@@ -56,12 +57,13 @@ RDEPEND="
 	media-libs/freetype
 	media-libs/harfbuzz
 	media-libs/libjpeg-turbo
+	media-libs/libpulse
 	media-libs/libva
 	media-libs/libwebp
 	media-libs/mesa
 	media-libs/openh264
 	media-libs/opus
-	media-video/pipewire
+	media-video/pipewire[sound-server]
 	net-print/cups
 	sys-apps/dbus
 	sys-apps/pciutils
@@ -127,6 +129,47 @@ src_install() {
 	EOF
 	exeinto /usr/bin
 	newexe "${launcher}" chromium
+	dosym chromium /usr/bin/chromium-browser
+
+	# The Arch package ships its own chromium.desktop entry.  StormG pins the
+	# Chromium app as chromium-browser-chromium, so install a matching entry.
+	local appdir="${T}/chromium-app"
+	mkdir -p "${appdir}" || die
+	cat > "${appdir}/chromium-browser-chromium.desktop" <<-'EOF' || die
+		[Desktop Entry]
+		Type=Application
+		Version=1.0
+		Name=Chromium
+		GenericName=Web Browser
+		Comment=Access the Internet
+		Exec=chromium %U
+		Icon=chromium
+		Terminal=false
+		StartupNotify=true
+		StartupWMClass=Chromium
+		Categories=Network;WebBrowser;
+		MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;x-scheme-handler/chrome;video/webm;application/x-xpinstall;
+	EOF
+	insinto /usr/share/applications
+	doins "${appdir}/chromium-browser-chromium.desktop"
+
+	# Keep the XFCE WebBrowser helper name in helpers.rc valid.
+	local helperdir="${T}/chromium-helper"
+	mkdir -p "${helperdir}" || die
+	cat > "${helperdir}/chromium-browser-chromium.desktop" <<-'EOF' || die
+		[Desktop Entry]
+		NoDisplay=true
+		Version=1.0
+		Encoding=UTF-8
+		Type=X-XFCE-Helper
+		X-XFCE-Category=WebBrowser
+		X-XFCE-CommandsWithParameter=chromium "%s"
+		Icon=chromium
+		Name=Chromium
+		X-XFCE-Commands=chromium
+	EOF
+	insinto /usr/share/xfce4/helpers
+	doins "${helperdir}/chromium-browser-chromium.desktop"
 }
 
 pkg_postinst() {
