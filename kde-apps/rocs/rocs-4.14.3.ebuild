@@ -11,7 +11,10 @@ https://edu.kde.org/applications/mathematics/rocs"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
-PATCHES=( "${FILESDIR}/${P}-renderhints-type.patch" )
+PATCHES=(
+	"${FILESDIR}/${P}-renderhints-type.patch"
+	"${FILESDIR}/${P}-make-pair-lvalues.patch"
+)
 
 RDEPEND="
 	dev-libs/grantlee:0
