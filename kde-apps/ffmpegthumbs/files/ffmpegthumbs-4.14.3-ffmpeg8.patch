@@ -1,0 +1,320 @@
+--- a/ffmpegthumbnailer/moviedecoder.h
++++ b/ffmpegthumbnailer/moviedecoder.h
+@@ -52,18 +52,17 @@
+ 
+     bool decodeVideoPacket();
+     bool getVideoPacket();
+-    void convertAndScaleFrame(PixelFormat format, int scaledSize, bool maintainAspectRatio, int& scaledWidth, int& scaledHeight);
+-    void createAVFrame(AVFrame** avFrame, quint8** frameBuffer, int width, int height, PixelFormat format);
++    void convertAndScaleFrame(AVPixelFormat format, int scaledSize, bool maintainAspectRatio, int& scaledWidth, int& scaledHeight);
++    AVFrame* createAVFrame(int width, int height, AVPixelFormat format);
+     void calculateDimensions(int squareSize, bool maintainAspectRatio, int& destWidth, int& destHeight);
+ 
+ private:
+     int                     m_VideoStream;
+     AVFormatContext*        m_pFormatContext;
+     AVCodecContext*         m_pVideoCodecContext;
+-    AVCodec*                m_pVideoCodec;
++    const AVCodec*          m_pVideoCodec;
+     AVStream*               m_pVideoStream;
+     AVFrame*                m_pFrame;
+-    quint8*                 m_pFrameBuffer;
+     AVPacket*               m_pPacket;
+     bool                    m_FormatContextWasGiven;
+     bool                    m_AllowSeek;
+--- a/ffmpegthumbnailer/moviedecoder.cpp
++++ b/ffmpegthumbnailer/moviedecoder.cpp
+@@ -35,7 +35,6 @@
+         , m_pVideoCodec(NULL)
+         , m_pVideoStream(NULL)
+         , m_pFrame(NULL)
+-        , m_pFrameBuffer(NULL)
+         , m_pPacket(NULL)
+         , m_FormatContextWasGiven(pavContext != NULL)
+         , m_AllowSeek(true)
+@@ -51,9 +50,6 @@
+ 
+ void MovieDecoder::initialize(const QString& filename)
+ {
+-    av_register_all();
+-    avcodec_register_all();
+-
+     QFileInfo fileInfo(filename);
+ 
+     if ((!m_FormatContextWasGiven) && avformat_open_input(&m_pFormatContext, fileInfo.absoluteFilePath().toLocal8Bit().data(), NULL, NULL) != 0) {
+@@ -67,7 +63,7 @@
+     }
+ 
+     initializeVideo();
+-    m_pFrame = avcodec_alloc_frame();
++    m_pFrame = av_frame_alloc();
+ 
+     if (m_pFrame) {
+         m_initialized=true;
+@@ -83,7 +79,7 @@
+ void MovieDecoder::destroy()
+ {
+     if (m_pVideoCodecContext) {
+-        avcodec_close(m_pVideoCodecContext);
++        avcodec_free_context(&m_pVideoCodecContext);
+         m_pVideoCodecContext = NULL;
+     }
+ 
+@@ -93,19 +89,13 @@
+     }
+ 
+     if (m_pPacket) {
+-        av_free_packet(m_pPacket);
+-        delete m_pPacket;
++        av_packet_free(&m_pPacket);
+         m_pPacket = NULL;
+     }
+ 
+     if (m_pFrame) {
+-        av_free(m_pFrame);
++        av_frame_free(&m_pFrame);
+         m_pFrame = NULL;
+-    }
+-
+-    if (m_pFrameBuffer) {
+-        av_free(m_pFrameBuffer);
+-        m_pFrameBuffer = NULL;
+     }
+ }
+ 
+@@ -121,7 +111,7 @@
+ void MovieDecoder::initializeVideo()
+ {
+     for (unsigned int i = 0; i < m_pFormatContext->nb_streams; i++) {
+-        if (m_pFormatContext->streams[i]->codec->codec_type == AVMEDIA_TYPE_VIDEO) {
++        if (m_pFormatContext->streams[i]->codecpar->codec_type == AVMEDIA_TYPE_VIDEO) {
+             m_pVideoStream = m_pFormatContext->streams[i];
+             m_VideoStream = i;
+             break;
+@@ -133,15 +123,23 @@
+         return;
+     }
+ 
+-    m_pVideoCodecContext = m_pFormatContext->streams[m_VideoStream]->codec;
+-    m_pVideoCodec = avcodec_find_decoder(m_pVideoCodecContext->codec_id);
++    // Modern libavcodec keeps the stream parameters apart from the decoder
++    // context, which has to be allocated and filled in by hand.
++    const AVCodecParameters* codecParameters = m_pFormatContext->streams[m_VideoStream]->codecpar;
++    m_pVideoCodec = avcodec_find_decoder(codecParameters->codec_id);
+ 
+     if (m_pVideoCodec == NULL) {
+-        // set to NULL, otherwise avcodec_close(m_pVideoCodecContext) crashes
+-        m_pVideoCodecContext = NULL;
+         kDebug() << "Video Codec not found";
+         return;
+     }
++
++    m_pVideoCodecContext = avcodec_alloc_context3(m_pVideoCodec);
++    if (m_pVideoCodecContext == NULL) {
++        kDebug() << "Could not allocate a video codec context";
++        return;
++    }
++
++    avcodec_parameters_to_context(m_pVideoCodecContext, codecParameters);
+ 
+     m_pVideoCodecContext->workaround_bugs = 1;
+ 
+@@ -191,7 +189,7 @@
+ 
+     int ret = av_seek_frame(m_pFormatContext, -1, timestamp, 0);
+     if (ret >= 0) {
+-        avcodec_flush_buffers(m_pFormatContext->streams[m_VideoStream]->codec);
++        avcodec_flush_buffers(m_pVideoCodecContext);
+     } else {
+         kDebug() << "Seeking in video failed";
+         return;
+@@ -211,7 +209,7 @@
+         }
+ 
+         ++keyFrameAttempts;
+-    } while ((!gotFrame || !m_pFrame->key_frame) && keyFrameAttempts < 200);
++    } while ((!gotFrame || !(m_pFrame->flags & AV_FRAME_FLAG_KEY)) && keyFrameAttempts < 200);
+ 
+     if (gotFrame == 0) {
+         kDebug() << "Seeking in video failed";
+@@ -239,21 +237,24 @@
+         return false;
+     }
+ 
+-    avcodec_get_frame_defaults(m_pFrame);
+-
+-    int frameFinished = 0;
+-
+-#if LIBAVCODEC_VERSION_MAJOR < 53
+-    int bytesDecoded = avcodec_decode_video(m_pVideoCodecContext, m_pFrame, &frameFinished, m_pPacket->data, m_pPacket->size);
+-#else
+-    int bytesDecoded = avcodec_decode_video2(m_pVideoCodecContext, m_pFrame, &frameFinished, m_pPacket);
+-#endif
+-
+-    if (bytesDecoded < 0) {
+-        kDebug() << "Failed to decode video frame: bytesDecoded < 0";
+-    }
+-
+-    return (frameFinished > 0);
++    av_frame_unref(m_pFrame);
++
++    // avcodec_decode_video2() is gone; hand the packet to the decoder and pull
++    // out the frame it produced. EAGAIN means this packet alone is not enough
++    // for a frame, in which case the caller moves on to the next one.
++    int ret = avcodec_send_packet(m_pVideoCodecContext, m_pPacket);
++    if (ret < 0 && ret != AVERROR(EAGAIN)) {
++        kDebug() << "Failed to send video packet to the decoder";
++        return false;
++    }
++
++    ret = avcodec_receive_frame(m_pVideoCodecContext, m_pFrame);
++    if (ret < 0 && ret != AVERROR(EAGAIN)) {
++        kDebug() << "Failed to decode video frame";
++        return false;
++    }
++
++    return (ret >= 0);
+ }
+ 
+ bool MovieDecoder::getVideoPacket()
+@@ -264,18 +265,17 @@
+     int attempts = 0;
+ 
+     if (m_pPacket) {
+-        av_free_packet(m_pPacket);
+-        delete m_pPacket;
+-    }
+-
+-    m_pPacket = new AVPacket();
++        av_packet_unref(m_pPacket);
++    } else {
++        m_pPacket = av_packet_alloc();
++    }
+ 
+     while (framesAvailable && !frameDecoded && (attempts++ < 1000)) {
+         framesAvailable = av_read_frame(m_pFormatContext, m_pPacket) >= 0;
+         if (framesAvailable) {
+             frameDecoded = m_pPacket->stream_index == m_VideoStream;
+             if (!frameDecoded) {
+-                av_free_packet(m_pPacket);
++                av_packet_unref(m_pPacket);
+             }
+         }
+     }
+@@ -285,13 +285,11 @@
+ 
+ void MovieDecoder::getScaledVideoFrame(int scaledSize, bool maintainAspectRatio, VideoFrame& videoFrame)
+ {
+-    if (m_pFrame->interlaced_frame) {
+-        avpicture_deinterlace((AVPicture*) m_pFrame, (AVPicture*) m_pFrame, m_pVideoCodecContext->pix_fmt,
+-                              m_pVideoCodecContext->width, m_pVideoCodecContext->height);
+-    }
++    // avpicture_deinterlace() was removed from libavcodec, so interlaced
++    // sources are thumbnailed from the frame exactly as it was decoded.
+ 
+     int scaledWidth, scaledHeight;
+-    convertAndScaleFrame(PIX_FMT_RGB24, scaledSize, maintainAspectRatio, scaledWidth, scaledHeight);
++    convertAndScaleFrame(AV_PIX_FMT_RGB24, scaledSize, maintainAspectRatio, scaledWidth, scaledHeight);
+ 
+     videoFrame.width = scaledWidth;
+     videoFrame.height = scaledHeight;
+@@ -302,11 +300,11 @@
+     memcpy((&(videoFrame.frameData.front())), m_pFrame->data[0], videoFrame.lineSize * videoFrame.height);
+ }
+ 
+-void MovieDecoder::convertAndScaleFrame(PixelFormat format, int scaledSize, bool maintainAspectRatio, int& scaledWidth, int& scaledHeight)
++void MovieDecoder::convertAndScaleFrame(AVPixelFormat format, int scaledSize, bool maintainAspectRatio, int& scaledWidth, int& scaledHeight)
+ {
+     calculateDimensions(scaledSize, maintainAspectRatio, scaledWidth, scaledHeight);
+-    SwsContext* scaleContext = sws_getContext(m_pVideoCodecContext->width, m_pVideoCodecContext->height,
+-                               m_pVideoCodecContext->pix_fmt, scaledWidth, scaledHeight,
++    SwsContext* scaleContext = sws_getContext(m_pFrame->width, m_pFrame->height,
++                               static_cast<AVPixelFormat>(m_pFrame->format), scaledWidth, scaledHeight,
+                                format, SWS_BICUBIC, NULL, NULL, NULL);
+ 
+     if (NULL == scaleContext) {
+@@ -314,20 +312,21 @@
+         return;
+     }
+ 
+-    AVFrame* convertedFrame = NULL;
+-    uint8_t* convertedFrameBuffer = NULL;
+-
+-    createAVFrame(&convertedFrame, &convertedFrameBuffer, scaledWidth, scaledHeight, format);
+-
+-    sws_scale(scaleContext, m_pFrame->data, m_pFrame->linesize, 0, m_pVideoCodecContext->height,
++    AVFrame* convertedFrame = createAVFrame(scaledWidth, scaledHeight, format);
++    if (convertedFrame == NULL) {
++        sws_freeContext(scaleContext);
++        scaledWidth = 0;
++        scaledHeight = 0;
++        return;
++    }
++
++    sws_scale(scaleContext, m_pFrame->data, m_pFrame->linesize, 0, m_pFrame->height,
+               convertedFrame->data, convertedFrame->linesize);
+     sws_freeContext(scaleContext);
+ 
+-    av_free(m_pFrame);
+-    av_free(m_pFrameBuffer);
+-
+-    m_pFrame        = convertedFrame;
+-    m_pFrameBuffer  = convertedFrameBuffer;
++    av_frame_free(&m_pFrame);
++
++    m_pFrame = convertedFrame;
+ }
+ 
+ void MovieDecoder::calculateDimensions(int squareSize, bool maintainAspectRatio, int& destWidth, int& destHeight)
+@@ -336,10 +335,10 @@
+         destWidth = squareSize;
+         destHeight = squareSize;
+     } else {
+-        int srcWidth            = m_pVideoCodecContext->width;
+-        int srcHeight           = m_pVideoCodecContext->height;
+-        int ascpectNominator    = m_pVideoCodecContext->sample_aspect_ratio.num;
+-        int ascpectDenominator  = m_pVideoCodecContext->sample_aspect_ratio.den;
++        int srcWidth            = m_pFrame->width;
++        int srcHeight           = m_pFrame->height;
++        int ascpectNominator    = m_pFrame->sample_aspect_ratio.num;
++        int ascpectDenominator  = m_pFrame->sample_aspect_ratio.den;
+ 
+         if (ascpectNominator != 0 && ascpectDenominator != 0) {
+             srcWidth = srcWidth * ascpectNominator / ascpectDenominator;
+@@ -355,13 +354,26 @@
+     }
+ }
+ 
+-void MovieDecoder::createAVFrame(AVFrame** avFrame, quint8** frameBuffer, int width, int height, PixelFormat format)
+-{
+-    *avFrame = avcodec_alloc_frame();
+-
+-    int numBytes = avpicture_get_size(format, width, height);
+-    *frameBuffer = reinterpret_cast<quint8*>(av_malloc(numBytes));
+-    avpicture_fill((AVPicture*) *avFrame, *frameBuffer, format, width, height);
+-}
+-
+-}
++AVFrame* MovieDecoder::createAVFrame(int width, int height, AVPixelFormat format)
++{
++    AVFrame* frame = av_frame_alloc();
++
++    if (frame == NULL) {
++        kDebug() << "Failed to allocate a frame";
++        return NULL;
++    }
++
++    frame->format = format;
++    frame->width  = width;
++    frame->height = height;
++
++    if (av_frame_get_buffer(frame, 32) < 0) {
++        kDebug() << "Failed to allocate a frame buffer";
++        av_frame_free(&frame);
++        return NULL;
++    }
++
++    return frame;
++}
++
++}

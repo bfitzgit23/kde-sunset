@@ -16,4 +16,8 @@ RDEPEND="${DEPEND}
 	$(add_kdeapps_dep kdebase-kioslaves)
 "
 
+PATCHES=(
+	"${FILESDIR}/${P}-ffmpeg8.patch"
+)
+
 
