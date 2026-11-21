@@ -10,4 +10,6 @@ HOMEPAGE="https://www.kde.org/applications/education/kiten https://edu.kde.org/k
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug"
 
+PATCHES=( "${FILESDIR}/${P}-qbool-hasproperty.patch" )
+
 
