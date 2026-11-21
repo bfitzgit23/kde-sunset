@@ -16,7 +16,10 @@ IUSE="debug doc examples test"
 # bugs 426236, 455460, 467288
 RESTRICT="test"
 
-PATCHES=( "${FILESDIR}/${P}-cmake4-location.patch" )
+PATCHES=(
+	"${FILESDIR}/${P}-cmake4-location.patch"
+	"${FILESDIR}/${P}-nonzeros-return-type.patch"
+)
 
 RDEPEND="
 	examples? (
