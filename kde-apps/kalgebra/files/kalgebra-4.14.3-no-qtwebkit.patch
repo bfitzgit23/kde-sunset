@@ -1,0 +1,113 @@
+--- a/src/consolehtml.h
++++ b/src/consolehtml.h
+@@ -20,7 +20,7 @@
+ #define CONSOLE_H
+ 
+ #include <QWidget>
+-#include <QWebView>
++#include <QTextBrowser>
+ 
+ #include <analitza/analyzer.h>
+ 
+@@ -42,7 +42,7 @@
+  *	@author Aleix Pol Gonzalez
+  */
+ 
+-class ConsoleHtml : public QWebView
++class ConsoleHtml : public QTextBrowser
+ {
+ 	Q_OBJECT
+ 	public:
+--- a/src/consolehtml.cpp
++++ b/src/consolehtml.cpp
+@@ -27,7 +27,6 @@
+ #include <QTextDocument>
+ #include <qevent.h>
+ #include <QDir>
+-#include <QWebFrame>
+ 
+ #include <KLocale>
+ #include <KStandardAction>
+@@ -42,12 +41,13 @@
+ #include <analitza/expression.h>
+ 
+ ConsoleHtml::ConsoleHtml(QWidget *parent)
+-	: QWebView(parent), m_mode(Evaluation)
+-{
+-	page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+-	setRenderHint(QPainter::TextAntialiasing);
+-	
+-	connect(this, SIGNAL(linkClicked(QUrl)), SLOT(openClickedUrl(QUrl)));
++	: QTextBrowser(parent), m_mode(Evaluation)
++{
++	setReadOnly(true);
++	setOpenLinks(false);
++	setOpenExternalLinks(false);
++	
++	connect(this, SIGNAL(anchorClicked(QUrl)), SLOT(openClickedUrl(QUrl)));
+ 	
+ 	QMetaObject::invokeMethod(this, "initialize", Qt::QueuedConnection);
+ }
+@@ -255,25 +255,25 @@
+ 	}
+ 	code += "</body></html>";
+ 
+-	setContent(code);
++	setHtml(code);
+ 	
+ 	emit changed();
+ 
+-	QWebFrame* mf = page()->mainFrame();
+-	mf->setScrollBarValue(Qt::Vertical, mf->scrollBarMaximum(Qt::Vertical));
++	moveCursor(QTextCursor::End);
++	ensureCursorVisible();
+ }
+ 
+ void ConsoleHtml::copy() const
+ {
+-	QApplication::clipboard()->setText(selectedText());
++	QApplication::clipboard()->setText(textCursor().selectedText());
+ }
+ 
+ void ConsoleHtml::contextMenuEvent(QContextMenuEvent* ev)
+ {
+ 	KMenu popup;
+-	if(hasSelection()) {
++	if(textCursor().hasSelection()) {
+ 		popup.addAction(KStandardAction::copy(this, SLOT(copy()), &popup));
+-		KAction *act=new KAction(KIcon("edit-paste"), i18n("Paste \"%1\" to input", selectedText()), &popup);
++		KAction *act=new KAction(KIcon("edit-paste"), i18n("Paste \"%1\" to input", textCursor().selectedText()), &popup);
+ 		connect(act, SIGNAL(triggered()), SLOT(paste()));
+ 		popup.addAction(act);
+ 		popup.addSeparator();
+@@ -302,7 +302,7 @@
+ 
+ void ConsoleHtml::paste()
+ {
+-	emit paste(selectedText());
++	emit paste(textCursor().selectedText());
+ }
+ 
+ #include "consolehtml.moc"
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -6,7 +6,7 @@
+ 
+ find_package(Analitza REQUIRED)
+ 
+-find_package(Qt4 COMPONENTS QtWebKit REQUIRED)
++find_package(Qt4 REQUIRED)
+ 
+ include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES} ${LIBKDEEDU_INCLUDE_DIR}/qtmml ${ANALITZA_INCLUDE_DIR})
+ 
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -20,7 +20,7 @@
+ 
+ kde4_add_executable(kalgebra ${kalgebra_SRCS})
+ target_link_libraries(kalgebra
+-	${QT_QTGUI_LIBRARY} ${QT_QTCORE_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTWEBKIT_LIBRARY}
++	${QT_QTGUI_LIBRARY} ${QT_QTCORE_LIBRARY} ${QT_QTXML_LIBRARY}
+ 	${KDE4_KPARTS_LIBS}
+ 	${ANALITZA_LIBRARY} ${ANALITZAGUI_LIBRARY} ${ANALITZAPLOT_LIBRARY}
+ )

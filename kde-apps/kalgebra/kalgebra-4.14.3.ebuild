@@ -13,6 +13,8 @@ https://edu.kde.org/kalgebra"
 KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 IUSE="debug opengl"
 
+PATCHES=( "${FILESDIR}/${P}-no-qtwebkit.patch" )
+
 DEPEND="
 	$(add_kdeapps_dep analitza 'opengl?')
 	$(add_kdeapps_dep libkdeedu)
